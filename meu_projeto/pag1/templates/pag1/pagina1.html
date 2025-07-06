@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Lessons with Quiz</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .lesson-block {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+        .lesson-block:hover {
+            transform: translateY(-5px);
+        }
+        .lesson-title {
+            color: #343a40;
+            margin-bottom: 20px;
+            font-weight: bold;
+            border-bottom: 2px solid #0d6efd;
+            padding-bottom: 10px;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+        .quiz-title {
+            color: #343a40;
+            margin: 40px 0 20px;
+            font-weight: bold;
+        }
+        .question-block {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .question-text {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #495057;
+        }
+        .option {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #dee2e6;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .option:hover {
+            background-color: #f1f8ff;
+        }
+        .option.correct {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+        .option.incorrect {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+        .feedback {
+            margin-top: 10px;
+            font-style: italic;
+            display: none;
+        }
+        .feedback.correct {
+            color: #155724;
+        }
+        .feedback.incorrect {
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <h1 class="text-center mb-5">Faixa cinza</h1>
+        
+        <!-- Bloco 1 -->
+        <div class="lesson-block">
+            <h2 class="lesson-title">tecnica 1: Osoto-gari</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+        
+        <!-- Bloco 2 -->
+        <div class="lesson-block">
+            <h2 class="lesson-title">Tecnica 2: koshi-guruma</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+        
+        <!-- Bloco 3 -->
+        <div class="lesson-block">
+            <h2 class="lesson-title">Aula 3: Técnicas Avançadas</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+        
+        <!-- Bloco 4 -->
+        <div class="lesson-block">
+            <h2 class="lesson-title">Aula 4: Estudos de Caso</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+        
+        <!-- Bloco 5 -->
+        <div class="lesson-block">
+            <h2 class="lesson-title">Aula 5: Análise Profunda</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+        
+        <!-- Bloco 6 -->
+        <div class="lesson-block">
+            <h2 class="lesson-title">Aula 6: Aplicações Práticas</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+        
+        <!-- Bloco 7 -->
+        <div class="lesson-block">
+            <h2 class="lesson-title">Aula 7: Conclusão e Resumo</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+        
+        <!-- Seção de Perguntas -->
+        <h2 class="quiz-title">Questionário Final</h2>
+        
+        <!-- Pergunta 1 -->
+        <div class="question-block">
+            <p class="question-text">1. Qual é o assunto principal da Aula 1?</p>
+            <div class="option" data-correct="false">
+                A) Conceitos avançados
+            </div>
+            <div class="option" data-correct="true">
+                B) Introdução ao conteúdo
+            </div>
+            <div class="option" data-correct="false">
+                C) Aplicações práticas
+            </div>
+            <div class="feedback correct">Correto! A Aula 1 aborda a introdução ao conteúdo.</div>
+            <div class="feedback incorrect">Incorreto. A resposta certa é 'B' - Introdução ao conteúdo.</div>
+        </div>
+        
+        <!-- Pergunta 2 -->
+        <div class="question-block">
+            <p class="question-text">2. Qual aula trata de técnicas avançadas?</p>
+            <div class="option" data-correct="false">
+                A) Aula 1
+            </div>
+            <div class="option" data-correct="false">
+                B) Aula 2
+            </div>
+            <div class="option" data-correct="true">
+                C) Aula 3
+            </div>
+            <div class="feedback correct">Exato! A Aula 3 trata das técnicas avançadas.</div>
+            <div class="feedback incorrect">Não é essa alternativa. A resposta certa é 'C' - Aula 3.</div>
+        </div>
+        
+        <!-- Pergunta 3 -->
+        <div class="question-block">
+            <p class="question-text">3. Qual desses não é um tópico abordado nas aulas?</p>
+            <div class="option" data-correct="false">
+                A) Conceitos básicos
+            </div>
+            <div class="option" data-correct="false">
+                B) Estudos de caso
+            </div>
+            <div class="option" data-correct="true">
+                C) Linguagens de programação
+            </div>
+            <div class="feedback correct">Perfeito! Linguagens de programação não faz parte do curso.</div>
+            <div class="feedback incorrect">Errado. A resposta certa é 'C' - Linguagens de programação.</div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- JavaScript para o questionário -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const options = document.querySelectorAll('.option');
+            
+            options.forEach(option => {
+                option.addEventListener('click', function() {
+                    const feedbacks = this.parentElement.querySelectorAll('.feedback');
+                    const isCorrect = this.getAttribute('data-correct') === 'true';
+                    
+                    // Remove todas as classes de estilo das outras opções
+                    options.forEach(opt => {
+                        if (opt.parentElement === this.parentElement) {
+                            opt.classList.remove('correct', 'incorrect');
+                        }
+                    });
+                    
+                    // Adiciona classe de estilo à opção selecionada
+                    if (isCorrect) {
+                        this.classList.add('correct');
+                    } else {
+                        this.classList.add('incorrect');
+                    }
+                    
+                    // Mostra o feedback apropriado
+                    feedbacks.forEach(feedback => {
+                        feedback.style.display = 'none';
+                        if ((isCorrect && feedback.classList.contains('correct')) ||
+                            (!isCorrect && feedback.classList.contains('incorrect'))) {
+                            feedback.style.display = 'block';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
