@@ -17,15 +17,17 @@
         }
         
         .welcome-title {
-            font-size: 5.5rem;
+            font-size: 3rem;
             font-weight: bold;
             margin-bottom: 2rem;
-            text-align: center;
+           margin-right: 40rem;
+
         }
         
         .name-input {
             width: 300px;
             margin-bottom: 20vh;
+            margin-right: 40rem;
         }
         
         .color-box {
@@ -67,10 +69,13 @@
     <!-- Seção Hero com Welcome e Input -->
     <section class="hero-section">
         <h1 class="welcome-title">Bem-vindo!</h1>
+           <p style="font-size: 1.5rem; margin-top: 0px; margin-right: 40rem;">Digite seu nome</p>
         <input type="text" class="form-control name-input" placeholder="Digite seu nome">
-        <div id="welcome-message" class="mt-3 text-center" style="font-size: 1.5rem;"></div>
-        <div id="welcome-message" class="mt-3 text-center" style="font-size: 1.5rem;"></div>
+        <div id="welcome-message" class="mt-3 " style="font-size: 2rem;"></div>
+        <div id="welcome-message" class="mt-3 " style="font-size: 2rem;"></div>
     </section>
+ 
+
     
     <!-- Seção das Cores -->
     <section class="container py-5">
@@ -85,9 +90,11 @@
             </div>
             
             <div class="col-md-3">
+                <a href="/pagina2/">
                 <div class="color-box" style="background-color: rgb(89, 89, 244);" onclick="window.location.href='page2.html'">
                    faixa azul
                 </div>
+                </a>
             </div>
             <div class="col-md-3">
                 <div class="color-box" style="background-color: yellow;" onclick="window.location.href='page3.html'">
@@ -120,46 +127,7 @@
         </div>
     </section>
    
-     <!-- Seção FAQ -->
-    <section class="faq-section">
-        <div class="container">
-            <h2 class="text-center mb-5">Perguntas sobre a historia do judÔ</h2>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <i class="bi bi-question-circle" id="q1-icon"></i>
-                    quem criou o judo?
-                </div>
-                <div class="faq-form">
-                    <input type="text" class="form-control" id="q1-input" placeholder="Sua resposta...">
-                    <button class="btn btn-primary" onclick="checkAnswer('q1', 'jigoro-kano  ')">Verificar</button>
-                </div>
-                <div class="correct-answer" id="q1-answer"></div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <i class="bi bi-question-circle" id="q2-icon"></i>
-                    em que ano foi criado o judo?
-                </div>
-                <div class="faq-form">
-                    <input type="text" class="form-control" id="q2-input" placeholder="Sua resposta...">
-                    <button class="btn btn-primary" onclick="checkAnswer('q2', '1882  ')">Verificar</button>
-                </div>
-                <div class="correct-answer" id="q2-answer"></div>
-            </div>
-            
-            <div class="faq-item">
-                <div class="faq-question">
-                    <i class="bi bi-question-circle" id="q3-icon"></i>
-                    qual nome da primeira academia de judo?
-                </div>
-                <div class="faq-form">
-                    <input type="text" class="form-control" id="q3-input" placeholder="Sua resposta...">
-                    <button class="btn btn-primary" onclick="checkAnswer('q3', 'kodokan  ')">Verificar</button>
-                </div>
-                <div class="correct-answer" id="q3-answer"></div>
-            </div>
+     
             
             <!-- Adicione mais perguntas conforme necessário -->
         </div>
