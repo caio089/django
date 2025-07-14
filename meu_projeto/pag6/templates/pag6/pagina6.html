@@ -82,6 +82,39 @@
         .details {
             transition-property: opacity, max-height, transform, margin-top;
         }
+        #carouselEstrang > div {
+            min-width: 370px;
+            max-width: 440px;
+            flex: 0 0 auto;
+            scroll-snap-align: center;
+            height: 340px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: stretch;
+            transition: transform 0.35s cubic-bezier(.68,-0.55,.27,1.55), box-shadow 0.3s, filter 0.3s, opacity 0.3s;
+            box-shadow: 0 2px 16px 0 rgba(124,58,237,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
+            opacity: 1;
+            filter: blur(0px);
+            margin-right: 18px;
+        }
+        #carouselEstrang > div:last-child {
+            margin-right: 0;
+        }
+        #carouselEstrang > div.active,
+        #carouselEstrang > div:hover {
+            transform: none;
+            box-shadow: 0 2px 16px 0 rgba(124,58,237,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
+            opacity: 1;
+            filter: blur(0px);
+        }
+        #carouselEstrang > div:not(.active) {
+            opacity: 1;
+            filter: blur(0px);
+        }
+        @media (max-width: 700px) {
+            #carouselEstrang > div { min-width: 98vw; max-width: 99vw; height: 320px; }
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-display">
@@ -91,7 +124,7 @@
             <div class="flex items-center justify-between mb-6">
                 <div>
                     <h1 class="text-3xl md:text-4xl font-bold mb-2">🥋 Faixa Roxa</h1>
-                    <p class="text-judo-purpleLight text-lg">Seu sexto passo na jornada do judô</p>
+                    <p class="text-judo-purpleLight text-lg text-white">Seu sexto passo na jornada do judô</p>
                 </div>
                 <a href="/" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
                     ← Voltar
@@ -101,7 +134,7 @@
             <div class="bg-white/20 rounded-full h-3 mb-4">
                 <div class="progress-bar bg-white rounded-full h-3" style="width: 0%" id="progressBar"></div>
             </div>
-            <p class="text-sm text-judo-purpleLight">Progresso: <span id="progressText">0%</span></p>
+            <p class="text-sm text-judo-purpleLight"><span class="text-white">Progresso:</span> <span id="progressText" class="text-white">0%</span></p>
         </div>
     </header>
     <main class="max-w-6xl mx-auto px-4 py-6">
@@ -170,7 +203,7 @@
                         </label>
                     </div>
                     <div class="video-container mb-3">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/1nC5U1l5bXw" title="O-SOTO-GURUMA" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/92KbCm6pQeI?si=g_Y6Nf7qCSDkoLkt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="bg-judo-purpleLight p-2 rounded-xl">
                         <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
@@ -195,7 +228,7 @@
                         </label>
                     </div>
                     <div class="video-container mb-3">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/2nC5U1l5bXw" title="UKI-OTOSHI" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/6H5tmncOY4Q?si=36aZFbEYiB0-o4KJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="bg-judo-purpleLight p-2 rounded-xl">
                         <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
@@ -220,7 +253,7 @@
                         </label>
                     </div>
                     <div class="video-container mb-3">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/3nC5U1l5bXw" title="UKI-WAZA" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/weVOpJ63gII?si=MBrqCeALrzGombT9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="bg-judo-purpleLight p-2 rounded-xl">
                         <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
@@ -245,7 +278,7 @@
                         </label>
                     </div>
                     <div class="video-container mb-3">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/4nC5U1l5bXw" title="OKURI-DE-ASHI-HARAI" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/nw1ZdRjrdRI?si=dQKoCZEYpWgbPxVH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="bg-judo-purpleLight p-2 rounded-xl">
                         <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
@@ -270,7 +303,7 @@
                         </label>
                     </div>
                     <div class="video-container mb-3">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/5nC5U1l5bXw" title="USHIRO-GOSHI" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/ORIYstuxYT8?si=kac0NzXcxKbjq4Q0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="bg-judo-purpleLight p-2 rounded-xl">
                         <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
@@ -295,7 +328,7 @@
                         </label>
                     </div>
                     <div class="video-container mb-3">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/6nC5U1l5bXw" title="YAMA-RASHI" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/MGlyKmSuzdc?si=6PdZQIdl6zXVT8tk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="bg-judo-purpleLight p-2 rounded-xl">
                         <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
@@ -320,7 +353,7 @@
                         </label>
                     </div>
                     <div class="video-container mb-3">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/7nC5U1l5bXw" title="KO-UCHI-MAKI-KOMI" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/_1eygIXLD_w?si=LOdktclh48AxRtN0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="bg-judo-purpleLight p-2 rounded-xl">
                         <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
@@ -345,7 +378,7 @@
                         </label>
                     </div>
                     <div class="video-container mb-3">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/8nC5U1l5bXw" title="SOTO-MAKI-KOMI" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/bWG9O1BVKtQ?si=u8tqBAFKqAT_Nnf2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="bg-judo-purpleLight p-2 rounded-xl">
                         <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
@@ -370,7 +403,7 @@
                         </label>
                     </div>
                     <div class="video-container mb-3">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/9nC5U1l5bXw" title="SUMI-GAESHI" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/5VhduA5xkbA?si=S4CoCKZogB92QBel" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="bg-judo-purpleLight p-2 rounded-xl">
                         <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
@@ -395,7 +428,7 @@
                         </label>
                     </div>
                     <div class="video-container mb-3">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/10nC5U1l5bXw" title="HANE-GOSHI" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/M9_7De6A1kk?si=tYW-mSW5OHbPNnZ7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="bg-judo-purpleLight p-2 rounded-xl">
                         <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
@@ -420,7 +453,7 @@
                         </label>
                     </div>
                     <div class="video-container mb-3">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/11nC5U1l5bXw" title="ASHI-GURUMA" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/ROeayhvom9U?si=FMyIWmISuUALvIDj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="bg-judo-purpleLight p-2 rounded-xl">
                         <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
@@ -445,7 +478,7 @@
                         </label>
                     </div>
                     <div class="video-container mb-3">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/12nC5U1l5bXw" title="HARAI-TSURI-KOMI-ASHI" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/gGPXvWL8VbE?si=Bob0vtAID7u3tVBA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="bg-judo-purpleLight p-2 rounded-xl">
                         <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
@@ -534,6 +567,39 @@
         /* Ajuste para a dica ficar colada ao vídeo */
         #carouselProj .bg-judo-purpleLight {
             margin-top: 2px;
+        }
+        #carouselChave > div {
+            min-width: 370px;
+            max-width: 440px;
+            flex: 0 0 auto;
+            scroll-snap-align: center;
+            height: 340px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: stretch;
+            transition: transform 0.35s cubic-bezier(.68,-0.55,.27,1.55), box-shadow 0.3s, filter 0.3s, opacity 0.3s;
+            box-shadow: 0 2px 16px 0 rgba(124,58,237,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
+            opacity: 1;
+            filter: blur(0px);
+            margin-right: 18px;
+        }
+        #carouselChave > div:last-child {
+            margin-right: 0;
+        }
+        #carouselChave > div.active,
+        #carouselChave > div:hover {
+            transform: none;
+            box-shadow: 0 2px 16px 0 rgba(124,58,237,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
+            opacity: 1;
+            filter: blur(0px);
+        }
+        #carouselChave > div:not(.active) {
+            opacity: 1;
+            filter: blur(0px);
+        }
+        @media (max-width: 700px) {
+            #carouselChave > div { min-width: 98vw; max-width: 99vw; height: 320px; }
         }
         </style>
         <script>
