@@ -3,248 +3,618 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Lessons with Quiz</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Faixa Azul - Aulas e Quiz</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        judo: {
+                            gray: '#6B7280',
+                            blue: '#3B82F6',
+                            yellow: '#FBBF24',
+                            orange: '#F97316',
+                            green: '#10B981',
+                            purple: '#8B5CF6',
+                            brown: '#92400E'
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body {
-            background-color: #f8f9fa;
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
         }
-        .lesson-block {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding: 20px;
-            margin-bottom: 30px;
-            transition: transform 0.3s ease;
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .lesson-block:hover {
-            transform: translateY(-5px);
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
-        .lesson-title {
-            color: #343a40;
-            margin-bottom: 20px;
-            font-weight: bold;
-            border-bottom: 2px solid #0d6efd;
-            padding-bottom: 10px;
-        }
+        
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            padding-bottom: 35%;
             height: 0;
             overflow: hidden;
-            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
+            margin: 0 auto;
         }
+        
         .video-container iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border-radius: 8px;
+            border-radius: 12px;
         }
-        .quiz-title {
-            color: #343a40;
-            margin: 40px 0 20px;
-            font-weight: bold;
-        }
-        .question-block {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            padding: 20px;
-            margin-bottom: 25px;
-        }
-        .question-text {
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #495057;
-        }
-        .option {
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #dee2e6;
+        
+        .option-card {
+            transition: all 0.2s ease;
             cursor: pointer;
-            transition: all 0.2s;
+            border: 2px solid transparent;
         }
-        .option:hover {
-            background-color: #f1f8ff;
+        
+        .option-card:hover {
+            border-color: #3B82F6;
+            background-color: #EFF6FF;
+            transform: scale(1.02);
         }
-        .option.correct {
-            background-color: #d4edda;
-            border-color: #c3e6cb;
+        
+        .option-card.correct {
+            background-color: #D1FAE5;
+            border-color: #10B981;
+            color: #065F46;
         }
-        .option.incorrect {
-            background-color: #f8d7da;
-            border-color: #f5c6cb;
+        
+        .option-card.incorrect {
+            background-color: #FEE2E2;
+            border-color: #EF4444;
+            color: #991B1B;
         }
-        .feedback {
-            margin-top: 10px;
-            font-style: italic;
-            display: none;
+        
+        .progress-bar {
+            transition: width 0.5s ease;
         }
-        .feedback.correct {
-            color: #155724;
+        
+        .section-divider {
+            background: linear-gradient(90deg, transparent, #E5E7EB, transparent);
         }
-        .feedback.incorrect {
-            color: #721c24;
+        
+        .floating-action {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .text-gradient {
+            background: linear-gradient(45deg, #3B82F6, #1E40AF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
     </style>
 </head>
-<body>
-    <div class="container py-5">
-        <h1 class="text-center mb-5">Faixa Azul</h1>
-        
-        <!-- Bloco 1 -->
-        <div class="lesson-block">
-            <h2 class="lesson-title">tecnica 1: Osoto-gari</h2>
-            <div class="video-container">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/c-A_nP7mKAc?si=GCH5tAKxZEUKQzaN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-        </div>
-        
-        <!-- Bloco 2 -->
-        <div class="lesson-block">
-            <h2 class="lesson-title">Tecnica 2: ippon-seoi-nague</h2>
-            <div class="video-container">
-             <iframe width="560" height="315" src="https://www.youtube.com/embed/FQnOlCxo4oI?si=okc86CbIZUnbfnQB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-        </div>
-
-         <!-- Bloco 2 -->
-        <div class="lesson-block">
-            <h2 class="lesson-title">Tecnica 3: koshi-guruma
-            <div class="video-container">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/SU7Id6uVJ44?si=cNKL5RyJse5T_a7X" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-        </div>
-
-         <!-- Bloco 2 -->
-        <div class="lesson-block">
-            <h2 class="lesson-title">Tecnica 4:O-goshi</h2>
-            <div class="video-container">
-           <iframe width="560" height="315" src="https://www.youtube.com/embed/yhu1mfy2vJ4?si=q6bwle32ZgDZg2ne" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-        </div>
-
-        <div>
-            <h1>Imbolizaçoes</h1>
-        </div>
-
-         <!-- Bloco 2 -->
-        <div class="lesson-block">
-            <h2 class="lesson-title">imobilizaçao 1: hon-keza-gatame</h2>
-            <div class="video-container">
-                <iframe  src="https://www.youtube.com/embed/NDaQuJOFBYk?si=mUcnSH1vUZ7J6NHH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-
-                  <!-- Bloco 2 -->
-        <div class="lesson-block">
-            <h2 class="lesson-title">imobilizaçao 2:yoko-shiho-gatame</h2>
-            <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/TT7XJVSEQxA?si=y4zqjOqjyM4leinj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-
-                  <!-- Bloco 2 -->
-        <div class="lesson-block">
-            <h2 class="lesson-title">imobilizaçao 3: kami-shiho-gatame</h2>
-            <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/HFuMjOv0WN8?si=j4_TOSpJdpm8ACXN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<body class="bg-gray-50 font-display">
+    <!-- Header com Progresso -->
+    <header class="gradient-bg text-white py-6 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-bold mb-2">🥋 Faixa Azul</h1>
+                    <p class="text-blue-100 text-lg">Seu segundo passo na jornada do judô</p>
+                </div>
+                <a href="/" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
+                    ← Voltar
+                </a>
             </div>
             
+            <!-- Barra de Progresso -->
+            <div class="bg-white/20 rounded-full h-3 mb-4">
+                <div class="progress-bar bg-white rounded-full h-3" style="width: 0%" id="progressBar"></div>
+            </div>
+            <p class="text-sm text-blue-100">Progresso: <span id="progressText">0%</span></p>
         </div>
-        
+    </header>
 
-        
-        <!-- Seção de Perguntas -->
-        <h2 class="quiz-title">Questionário Final</h2>
-        
-        <!-- Pergunta 1 -->
-        <div class="question-block">
-            <p class="question-text">1.qual nome da primeira academia de judo?</p>
-            <div class="option" data-correct="false">
-                A) WBjudo
+    <main class="max-w-6xl mx-auto px-4 py-6">
+        <!-- Seção de Técnicas -->
+        <section class="mb-12">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                    <span class="text-gradient">Técnicas de Projeção</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Aprenda técnicas mais avançadas que elevam seu nível no judô. 
+                    Cada movimento é um passo em direção à sua evolução.
+                </p>
             </div>
-            <div class="option" data-correct="true">
-                B)Kodokan
-            </div>
-            <div class="option" data-correct="false">
-                C) カイオ
-            </div>
-            <div class="feedback correct">Correto!.</div>
-            <div class="feedback incorrect">Incorreto. A resposta certa é 'B'</div>
-        </div>
-        
-        <!-- Pergunta 2 -->
-        <div class="question-block">
-            <p class="question-text">2. qual nome da roupa do judo?</p>
-            <div class="option" data-correct="false">
-                A) kimono
-            </div>
-            <div class="option" data-correct="false">
-                B) camisa
-            </div>
-            <div class="option" data-correct="true">
-                C) judogui
-            </div>
-            <div class="feedback correct">Exato!.</div>
-            <div class="feedback incorrect">Não é essa alternativa. A resposta certa é 'C'.</div>
-        </div>
-        
-        <!-- Pergunta 3 -->
-        <div class="question-block">
-            <p class="question-text">3. qual nome do espaço de treinar judo?</p>
-            <div class="option" data-correct="false">
-                A) tatame
-            </div>
-            <div class="option" data-correct="false">
-                B) tapete
-            </div>
-            <div class="option" data-correct="true">
-                C) dojo
-            </div>
-            <div class="feedback correct">Perfeito!.</div>
-            <div class="feedback incorrect">Errado. A resposta certa é 'C' .</div>
-        </div>
-    </div>
 
-    <!-- Bootstrap JS Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- JavaScript para o questionário -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Técnica 1 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-blue-100 p-2 rounded-full mr-3">
+                            <span class="text-lg">🥋</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">Osoto-gari</h3>
+                            <p class="text-gray-600 text-sm">Técnica de grande projeção externa</p>
+                        </div>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe src="https://www.youtube.com/embed/c-A_nP7mKAc?si=GCH5tAKxZEUKQzaN" 
+                                title="Osoto-gari técnica" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                referrerpolicy="strict-origin-when-cross-origin" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="bg-blue-50 p-2 rounded-xl">
+                        <h4 class="font-semibold text-blue-800 mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-blue-700 text-xs">Mantenha o centro de gravidade baixo e use o peso do seu corpo para executar a técnica com eficiência.</p>
+                    </div>
+                </div>
+
+                <!-- Técnica 2 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-green-100 p-2 rounded-full mr-3">
+                            <span class="text-lg">🥋</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">Ippon-seoi-nage</h3>
+                            <p class="text-gray-600 text-sm">Técnica de projeção por costas</p>
+                        </div>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe src="https://www.youtube.com/embed/FQnOlCxo4oI?si=okc86CbIZUnbfnQB" 
+                                title="Ippon-seoi-nage técnica" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                referrerpolicy="strict-origin-when-cross-origin" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="bg-green-50 p-2 rounded-xl">
+                        <h4 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-green-700 text-xs">A chave está no movimento de rotação e no posicionamento correto das mãos.</p>
+                    </div>
+                </div>
+
+                <!-- Técnica 3 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-orange-100 p-2 rounded-full mr-3">
+                            <span class="text-lg">🥋</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">Koshi-guruma</h3>
+                            <p class="text-gray-600 text-sm">Técnica de projeção por quadril</p>
+                        </div>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe src="https://www.youtube.com/embed/SU7Id6uVJ44?si=cNKL5RyJse5T_a7X" 
+                                title="Koshi-guruma técnica" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                referrerpolicy="strict-origin-when-cross-origin" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="bg-orange-50 p-2 rounded-xl">
+                        <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-orange-700 text-xs">Use o quadril como ponto de apoio e mantenha o oponente próximo ao seu corpo.</p>
+                    </div>
+                </div>
+
+                <!-- Técnica 4 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-purple-100 p-2 rounded-full mr-3">
+                            <span class="text-lg">🥋</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">O-goshi</h3>
+                            <p class="text-gray-600 text-sm">Técnica de grande quadril</p>
+                        </div>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe src="https://www.youtube.com/embed/yhu1mfy2vJ4?si=q6bwle32ZgDZg2ne" 
+                                title="O-goshi técnica" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                referrerpolicy="strict-origin-when-cross-origin" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="bg-purple-50 p-2 rounded-xl">
+                        <h4 class="font-semibold text-purple-800 mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-purple-700 text-xs">Mantenha o quadril baixo e use a força das pernas para levantar o oponente.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divisor Visual -->
+        <div class="section-divider h-px my-8"></div>
+
+        <!-- Seção de Imobilizações -->
+        <section class="mb-12">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                    <span class="text-gradient">Técnicas de Imobilização</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Aprenda técnicas avançadas de controle no solo para dominar seu oponente.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Imobilização 1 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-indigo-100 p-2 rounded-full mr-3">
+                            <span class="text-lg">🥋</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">Hon-kesa-gatame</h3>
+                            <p class="text-gray-600 text-sm">Imobilização lateral básica</p>
+                        </div>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe src="https://www.youtube.com/embed/NDaQuJOFBYk?si=mUcnSH1vUZ7J6NHH" 
+                                title="Hon-kesa-gatame técnica" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                referrerpolicy="strict-origin-when-cross-origin" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="bg-indigo-50 p-2 rounded-xl">
+                        <h4 class="font-semibold text-indigo-800 mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-indigo-700 text-xs">Mantenha o peso distribuído uniformemente e controle os braços do oponente.</p>
+                    </div>
+                </div>
+
+                <!-- Imobilização 2 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-teal-100 p-2 rounded-full mr-3">
+                            <span class="text-lg">🥋</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">Yoko-shiho-gatame</h3>
+                            <p class="text-gray-600 text-sm">Imobilização lateral de quatro pontos</p>
+                        </div>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe src="https://www.youtube.com/embed/TT7XJVSEQxA?si=y4zqjOqjyM4leinj" 
+                                title="Yoko-shiho-gatame técnica" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                referrerpolicy="strict-origin-when-cross-origin" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="bg-teal-50 p-2 rounded-xl">
+                        <h4 class="font-semibold text-teal-800 mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-teal-700 text-xs">Use os quatro pontos de contato para máxima estabilidade e controle.</p>
+                    </div>
+                </div>
+
+                <!-- Imobilização 3 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-cyan-100 p-2 rounded-full mr-3">
+                            <span class="text-lg">🥋</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">Kami-shiho-gatame</h3>
+                            <p class="text-gray-600 text-sm">Imobilização superior de quatro pontos</p>
+                        </div>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe src="https://www.youtube.com/embed/HFuMjOv0WN8?si=j4_TOSpJdpm8ACXN" 
+                                title="Kami-shiho-gatame técnica" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                referrerpolicy="strict-origin-when-cross-origin" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="bg-cyan-50 p-2 rounded-xl">
+                        <h4 class="font-semibold text-cyan-800 mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-cyan-700 text-xs">Mantenha o peso sobre o centro do oponente e controle os braços.</p>
+                    </div>
+                </div>
+
+                <!-- Espaço para futura imobilização -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4 border-2 border-dashed border-gray-300 flex items-center justify-center">
+                    <div class="text-center text-gray-500">
+                        <span class="text-3xl mb-2 block">🥋</span>
+                        <p class="text-sm">Próxima imobilização</p>
+                        <p class="text-xs">Em breve</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divisor Visual -->
+        <div class="section-divider h-px my-8"></div>
+
+        <!-- Seção do Quiz -->
+        <section class="mb-12">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                    <span class="text-gradient">Quiz de Conhecimento</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Teste seus conhecimentos sobre a história e fundamentos do judô.
+                </p>
+            </div>
+
+            <!-- Pergunta 1 -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+                <div class="flex items-center mb-4">
+                    <div class="bg-orange-100 p-2 rounded-full mr-3">
+                        <span class="text-xl">❓</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800">Qual o nome da primeira academia de judô?</h3>
+                </div>
+                
+                <div class="grid gap-3">
+                    <div class="option-card p-3 rounded-xl border-2" data-correct="false">
+                        <div class="flex items-center">
+                            <span class="bg-gray-100 text-gray-600 w-6 h-6 rounded-full flex items-center justify-center font-bold mr-2 text-sm">A</span>
+                            <span class="font-medium text-sm">WBjudo</span>
+                        </div>
+                    </div>
+                    <div class="option-card p-3 rounded-xl border-2" data-correct="true">
+                        <div class="flex items-center">
+                            <span class="bg-gray-100 text-gray-600 w-6 h-6 rounded-full flex items-center justify-center font-bold mr-2 text-sm">B</span>
+                            <span class="font-medium text-sm">Kodokan</span>
+                        </div>
+                    </div>
+                    <div class="option-card p-3 rounded-xl border-2" data-correct="false">
+                        <div class="flex items-center">
+                            <span class="bg-gray-100 text-gray-600 w-6 h-6 rounded-full flex items-center justify-center font-bold mr-2 text-sm">C</span>
+                            <span class="font-medium text-sm">カイオ</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feedback-correct mt-3 p-3 bg-green-50 rounded-xl hidden">
+                    <div class="flex items-center text-green-800">
+                        <span class="text-xl mr-2">✅</span>
+                        <span class="font-semibold text-sm">Correto! Kodokan foi a primeira academia de judô fundada por Jigoro Kano.</span>
+                    </div>
+                </div>
+                <div class="feedback-incorrect mt-3 p-3 bg-red-50 rounded-xl hidden">
+                    <div class="flex items-center text-red-800">
+                        <span class="text-xl mr-2">❌</span>
+                        <span class="font-semibold text-sm">Incorreto. A resposta correta é Kodokan.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pergunta 2 -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+                <div class="flex items-center mb-4">
+                    <div class="bg-orange-100 p-2 rounded-full mr-3">
+                        <span class="text-xl">❓</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800">Qual o nome da roupa do judô?</h3>
+                </div>
+                
+                <div class="grid gap-3">
+                    <div class="option-card p-3 rounded-xl border-2" data-correct="false">
+                        <div class="flex items-center">
+                            <span class="bg-gray-100 text-gray-600 w-6 h-6 rounded-full flex items-center justify-center font-bold mr-2 text-sm">A</span>
+                            <span class="font-medium text-sm">Kimono</span>
+                        </div>
+                    </div>
+                    <div class="option-card p-3 rounded-xl border-2" data-correct="false">
+                        <div class="flex items-center">
+                            <span class="bg-gray-100 text-gray-600 w-6 h-6 rounded-full flex items-center justify-center font-bold mr-2 text-sm">B</span>
+                            <span class="font-medium text-sm">Camisa</span>
+                        </div>
+                    </div>
+                    <div class="option-card p-3 rounded-xl border-2" data-correct="true">
+                        <div class="flex items-center">
+                            <span class="bg-gray-100 text-gray-600 w-6 h-6 rounded-full flex items-center justify-center font-bold mr-2 text-sm">C</span>
+                            <span class="font-medium text-sm">Judogui</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feedback-correct mt-3 p-3 bg-green-50 rounded-xl hidden">
+                    <div class="flex items-center text-green-800">
+                        <span class="text-xl mr-2">✅</span>
+                        <span class="font-semibold text-sm">Exato! Judogui é o nome correto da vestimenta do judô.</span>
+                    </div>
+                </div>
+                <div class="feedback-incorrect mt-3 p-3 bg-red-50 rounded-xl hidden">
+                    <div class="flex items-center text-red-800">
+                        <span class="text-xl mr-2">❌</span>
+                        <span class="font-semibold text-sm">Incorreto. A resposta correta é Judogui.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pergunta 3 -->
+            <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
+                <div class="flex items-center mb-4">
+                    <div class="bg-orange-100 p-2 rounded-full mr-3">
+                        <span class="text-xl">❓</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-800">Qual o nome do espaço de treinar judô?</h3>
+                </div>
+                
+                <div class="grid gap-3">
+                    <div class="option-card p-3 rounded-xl border-2" data-correct="false">
+                        <div class="flex items-center">
+                            <span class="bg-gray-100 text-gray-600 w-6 h-6 rounded-full flex items-center justify-center font-bold mr-2 text-sm">A</span>
+                            <span class="font-medium text-sm">Tatame</span>
+                        </div>
+                    </div>
+                    <div class="option-card p-3 rounded-xl border-2" data-correct="false">
+                        <div class="flex items-center">
+                            <span class="bg-gray-100 text-gray-600 w-6 h-6 rounded-full flex items-center justify-center font-bold mr-2 text-sm">B</span>
+                            <span class="font-medium text-sm">Tapete</span>
+                        </div>
+                    </div>
+                    <div class="option-card p-3 rounded-xl border-2" data-correct="true">
+                        <div class="flex items-center">
+                            <span class="bg-gray-100 text-gray-600 w-6 h-6 rounded-full flex items-center justify-center font-bold mr-2 text-sm">C</span>
+                            <span class="font-medium text-sm">Dojo</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feedback-correct mt-3 p-3 bg-green-50 rounded-xl hidden">
+                    <div class="flex items-center text-green-800">
+                        <span class="text-xl mr-2">✅</span>
+                        <span class="font-semibold text-sm">Perfeito! Dojo é o nome do local onde se pratica judô.</span>
+                    </div>
+                </div>
+                <div class="feedback-incorrect mt-3 p-3 bg-red-50 rounded-xl hidden">
+                    <div class="flex items-center text-red-800">
+                        <span class="text-xl mr-2">❌</span>
+                        <span class="font-semibold text-sm">Incorreto. A resposta correta é Dojo.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Botão Flutuante de Voltar ao Topo -->
+        <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg floating-action transition-colors hidden">
+            <span class="text-2xl">↑</span>
+        </button>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 px-4 mt-8">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-300">
+                © 2024 Academia de Judô - Faixa Azul - Desenvolvido com ❤️ para todos os judocas
+            </p>
+        </div>
+    </footer>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const options = document.querySelectorAll('.option');
-            
+            const options = document.querySelectorAll('.option-card');
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            const backToTopBtn = document.getElementById('backToTop');
+            let answeredQuestions = 0;
+            const totalQuestions = 3;
+
+            // Função para atualizar progresso
+            function updateProgress() {
+                const progress = (answeredQuestions / totalQuestions) * 100;
+                progressBar.style.width = progress + '%';
+                progressText.textContent = Math.round(progress) + '%';
+            }
+
+            // Event listeners para as opções
             options.forEach(option => {
                 option.addEventListener('click', function() {
-                    const feedbacks = this.parentElement.querySelectorAll('.feedback');
+                    const questionBlock = this.closest('.bg-white');
                     const isCorrect = this.getAttribute('data-correct') === 'true';
                     
-                    // Remove todas as classes de estilo das outras opções
-                    options.forEach(opt => {
-                        if (opt.parentElement === this.parentElement) {
-                            opt.classList.remove('correct', 'incorrect');
-                        }
+                    // Remove classes de outras opções da mesma pergunta
+                    questionBlock.querySelectorAll('.option-card').forEach(opt => {
+                        opt.classList.remove('correct', 'incorrect');
                     });
                     
-                    // Adiciona classe de estilo à opção selecionada
+                    // Adiciona classe à opção selecionada
                     if (isCorrect) {
                         this.classList.add('correct');
+                        answeredQuestions++;
                     } else {
                         this.classList.add('incorrect');
                     }
                     
-                    // Mostra o feedback apropriado
-                    feedbacks.forEach(feedback => {
-                        feedback.style.display = 'none';
-                        if ((isCorrect && feedback.classList.contains('correct')) ||
-                            (!isCorrect && feedback.classList.contains('incorrect'))) {
-                            feedback.style.display = 'block';
-                        }
+                    // Mostra feedback
+                    const correctFeedback = questionBlock.querySelector('.feedback-correct');
+                    const incorrectFeedback = questionBlock.querySelector('.feedback-incorrect');
+                    
+                    correctFeedback.classList.add('hidden');
+                    incorrectFeedback.classList.add('hidden');
+                    
+                    if (isCorrect) {
+                        correctFeedback.classList.remove('hidden');
+                    } else {
+                        incorrectFeedback.classList.remove('hidden');
+                    }
+                    
+                    // Atualiza progresso
+                    updateProgress();
+                    
+                    // Desabilita outras opções da mesma pergunta
+                    questionBlock.querySelectorAll('.option-card').forEach(opt => {
+                        opt.style.pointerEvents = 'none';
                     });
                 });
+            });
+
+            // Botão voltar ao topo
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.remove('hidden');
+                } else {
+                    backToTopBtn.classList.add('hidden');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Animação de entrada para os cards
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.card-hover, .bg-white').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
             });
         });
     </script>

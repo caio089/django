@@ -3,166 +3,486 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Academia de Judô - Home</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        judo: {
+                            gray: '#6B7280',
+                            blue: '#3B82F6',
+                            yellow: '#FBBF24',
+                            orange: '#F97316',
+                            green: '#10B981',
+                            purple: '#8B5CF6',
+                            brown: '#92400E'
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
         .hero-section {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: #f8f9fa;
+            background: linear-gradient(135deg, #1E40AF 0%, #1E3A8A 100%);
+            min-height: 100vh;
         }
         
         .welcome-title {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 2rem;
-           margin-right: 40rem;
-
+            background: linear-gradient(45deg, #10B981, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .faixa-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .faixa-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .faixa-card:hover::before {
+            left: 100%;
+        }
+        
+        .faixa-card:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
         
         .name-input {
+            transition: all 0.3s ease;
+        }
+        
+        .name-input:focus {
+            transform: scale(1.02);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+        }
+        
+        .welcome-message {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(45deg, #e0ddeb, #edf1f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px;
             width: 300px;
-            margin-bottom: 20vh;
-            margin-right: 40rem;
+            height: 100vh;
+            background: rgba(17, 24, 39, 0.95);
+            backdrop-filter: blur(10px);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .color-box {
-            height: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 1.5rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.3s;
-            margin-bottom: 2rem;
-            border-radius: 10px;
+        .sidebar.open {
+            right: 0;
         }
         
-        .color-box:hover {
-            transform: scale(1.05);
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
         }
         
-        .faq-section {
-            padding: 5rem 0;
-            background-color: #f8f9fa;
+        .sidebar-overlay.open {
+            opacity: 1;
+            visibility: visible;
         }
         
-        .faq-item {
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid #dee2e6;
-            padding-bottom: 1.5rem;
+        .sidebar-item {
+            transition: all 0.2s ease;
         }
         
-        .faq-question {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
+        .sidebar-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .menu-toggle {
+            transition: all 0.3s ease;
+        }
+        
+        .menu-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        .menu-toggle.active {
+            transform: rotate(90deg);
         }
     </style>
 </head>
-<body>
-    <!-- Seção Hero com Welcome e Input -->
-    <section class="hero-section">
-        <h1 class="welcome-title">Bem-vindo!</h1>
-           <p style="font-size: 1.5rem; margin-top: 0px; margin-right: 40rem;">Digite seu nome</p>
-        <input type="text" class="form-control name-input" placeholder="Digite seu nome">
-        <div id="welcome-message" class="mt-3 " style="font-size: 2rem;"></div>
-        <div id="welcome-message" class="mt-3 " style="font-size: 2rem;"></div>
-    </section>
- 
-
+<body class="bg-gray-50 font-display overflow-hidden">
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
     
-    <!-- Seção das Cores -->
-    <section class="container py-5">
-        
-        <div class="row">
-            <div class="col-md-3">
-                <a href="/pagina1/">
-                <div class="color-box" style="background-color: grey;" onclick="window.location.href='page1.html'">
-                    faixa cinza
-                </div>
-                </a>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="p-6">
+            <div class="flex items-center justify-between mb-8">
+                <h2 class="text-2xl font-bold text-white">🥋 Menu</h2>
+                <button class="menu-toggle text-white text-2xl hover:text-gray-300" id="closeSidebar">
+                    ✕
+                </button>
             </div>
             
-            <div class="col-md-3">
-                <a href="/pagina2/">
-                <div class="color-box" style="background-color: rgb(89, 89, 244);" onclick="window.location.href='page2.html'">
-                   faixa azul
-                </div>
+            <nav class="space-y-2">
+                <a href="/quiz" class="sidebar-item flex items-center p-4 rounded-lg text-white hover:text-blue-300">
+                    <span class="text-2xl mr-4">📝</span>
+                    <div>
+                        <h3 class="font-semibold">Quiz</h3>
+                        <p class="text-sm text-gray-400">Teste seus conhecimentos</p>
+                    </div>
                 </a>
-            </div>
-            <div class="col-md-3">
-                <div class="color-box" style="background-color: yellow;" onclick="window.location.href='page3.html'">
-                   faixa amarela
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="color-box" style="background-color: #f47b02;" onclick="window.location.href='page4.html'">
-                    faixa laranja
-                </div>
-            </div>
-        </div>
-        
-        <div class="row mt-4">
-            <div class="col-md-4">
-                <div class="color-box" style="background-color: green;" onclick="window.location.href='page5.html'">
-                   faixa verde
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="color-box" style="background-color: purple;" onclick="window.location.href='page6.html'">
-                    faixa roxa
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="color-box" style="background-color: rgb(133, 26, 26);" onclick="window.location.href='page7.html'">
-                    faixa marrom
-                </div>
-            </div>
-        </div>
-    </section>
-   
-     
+                
+                <a href="/faixas" class="sidebar-item flex items-center p-4 rounded-lg text-white hover:text-blue-300">
+                    <span class="text-2xl mr-4">🥋</span>
+                    <div>
+                        <h3 class="font-semibold">Faixas do Judô</h3>
+                        <p class="text-sm text-gray-400">Conheça todas as faixas</p>
+                    </div>
+                </a>
+                
+                <a href="/historia" class="sidebar-item flex items-center p-4 rounded-lg text-white hover:text-blue-300">
+                    <span class="text-2xl mr-4">📚</span>
+                    <div>
+                        <h3 class="font-semibold">História do Judô</h3>
+                        <p class="text-sm text-gray-400">Origens e evolução</p>
+                    </div>
+                </a>
+                
+                <a href="/japones" class="sidebar-item flex items-center p-4 rounded-lg text-white hover:text-blue-300">
+                    <span class="text-2xl mr-4">🇯🇵</span>
+                    <div>
+                        <h3 class="font-semibold">Palavras em Japonês</h3>
+                        <p class="text-sm text-gray-400">Vocabulário essencial</p>
+                    </div>
+                </a>
+                
+                <a href="/regras" class="sidebar-item flex items-center p-4 rounded-lg text-white hover:text-blue-300">
+                    <span class="text-2xl mr-4">📋</span>
+                    <div>
+                        <h3 class="font-semibold">Regras do Judô</h3>
+                        <p class="text-sm text-gray-400">Regulamentos oficiais</p>
+                    </div>
+                </a>
+            </nav>
             
-            <!-- Adicione mais perguntas conforme necessário -->
+            <div class="absolute bottom-6 left-6 right-6">
+                <div class="bg-white/10 rounded-lg p-4 text-center">
+                    <p class="text-white text-sm">© 2024 Academia de Judô</p>
+                    <p class="text-gray-400 text-xs">Desenvolvido com ❤️</p>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
 
+    <!-- Menu Toggle Button -->
+    <button class="menu-toggle fixed top-6 right-6 z-50 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full backdrop-blur-sm shadow-lg" id="menuToggle">
+        <span class="text-2xl">☰</span>
+    </button>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Main Content -->
+    <div class="hero-section flex items-center justify-center min-h-screen">
+        <div class="w-full max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Left Side - Welcome Section -->
+                <div class="text-center lg:text-left">
+                    <div class="bg-gradient-to-br from-emerald-500/20 to-teal-600/30 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-emerald-400/30 shadow-2xl">
+                        <h1 class="welcome-title text-5xl lg:text-6xl font-bold mb-6">
+                            Bem-vindo ao Judô!
+                        </h1>
+                        
+                        <p class="text-white/90 text-xl mb-8">
+                            Digite seu nome para começar sua jornada
+                        </p>
+                        
+                        <div class="relative max-w-md mx-auto lg:mx-0 mb-8">
+                            <input 
+                                type="text" 
+                                class="name-input w-full px-6 py-4 text-lg bg-white/90 backdrop-blur-sm border-2 border-emerald-400/30 rounded-2xl text-gray-800 placeholder-gray-500 focus:outline-none focus:border-emerald-400/50"
+                                placeholder="Digite seu nome"
+                                id="nameInput"
+                            >
+                            <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-400/20 to-transparent pointer-events-none"></div>
+                        </div>
+                        
+                        <div id="welcome-message" class="welcome-message text-white text-2xl font-semibold hidden"></div>
+                        
+                        <div class="mt-8">
+                            <p class="text-white/80 text-lg">
+                                Escolha sua faixa ao lado e comece sua evolução no judô!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Side - Belts Grid -->
+                <div class="space-y-4">
+                    <h2 class="text-3xl font-bold text-white text-center mb-8">
+                        <span class="gradient-text">Escolha sua Faixa</span>
+                    </h2>
+                    
+                    <!-- First Row -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <a href="/pagina1/" class="block">
+                            <div class="faixa-card bg-judo-gray rounded-2xl p-6 text-center text-white font-bold text-lg shadow-lg hover:shadow-2xl">
+                                <div class="text-4xl mb-3">🥋</div>
+                                <div>Faixa Cinza</div>
+                                <div class="text-sm opacity-80 mt-2">Iniciante</div>
+                            </div>
+                        </a>
+                        
+                        <a href="/pagina2/" class="block">
+                            <div class="faixa-card bg-judo-blue rounded-2xl p-6 text-center text-white font-bold text-lg shadow-lg hover:shadow-2xl">
+                                <div class="text-4xl mb-3">🥋</div>
+                                <div>Faixa Azul</div>
+                                <div class="text-sm opacity-80 mt-2">Básico</div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <!-- Second Row -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="faixa-card bg-judo-yellow rounded-2xl p-6 text-center text-gray-800 font-bold text-lg shadow-lg hover:shadow-2xl cursor-pointer" onclick="window.location.href='page3.html'">
+                            <div class="text-4xl mb-3">🥋</div>
+                            <div>Faixa Amarela</div>
+                            <div class="text-sm opacity-80 mt-2">Intermediário</div>
+                        </div>
+                        
+                        <div class="faixa-card bg-judo-orange rounded-2xl p-6 text-center text-white font-bold text-lg shadow-lg hover:shadow-2xl cursor-pointer" onclick="window.location.href='page4.html'">
+                            <div class="text-4xl mb-3">🥋</div>
+                            <div>Faixa Laranja</div>
+                            <div class="text-sm opacity-80 mt-2">Avançado</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Third Row -->
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="faixa-card bg-judo-green rounded-2xl p-4 text-center text-white font-bold text-base shadow-lg hover:shadow-2xl cursor-pointer" onclick="window.location.href='page5.html'">
+                            <div class="text-3xl mb-2">🥋</div>
+                            <div>Faixa Verde</div>
+                            <div class="text-xs opacity-80 mt-1">Expert</div>
+                        </div>
+                        
+                        <div class="faixa-card bg-judo-purple rounded-2xl p-4 text-center text-white font-bold text-base shadow-lg hover:shadow-2xl cursor-pointer" onclick="window.location.href='page6.html'">
+                            <div class="text-3xl mb-2">🥋</div>
+                            <div>Faixa Roxa</div>
+                            <div class="text-xs opacity-80 mt-1">Mestre</div>
+                        </div>
+                        
+                        <div class="faixa-card bg-judo-brown rounded-2xl p-4 text-center text-white font-bold text-base shadow-lg hover:shadow-2xl cursor-pointer" onclick="window.location.href='page7.html'">
+                            <div class="text-3xl mb-2">🥋</div>
+                            <div>Faixa Marrom</div>
+                            <div class="text-xs opacity-80 mt-1">Sênior</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Adicione interações JavaScript aqui se necessário
-        document.querySelector('.name-input').addEventListener('keypress', function(e) {
-            if(e.key === 'Enter') {
-                const name = this.value.trim();
-                if(name) {
-                    document.querySelector('.welcome-title').textContent = `Bem-vindo, ${name}!`;
-                    document.getElementById('welcome-message').textContent = 
-                        'Vamos começar essa jornada tão sonhada da mudança de faixa, estamos aqui para lhe ajudar. Escolha a faixa que você vai mudar';
-                }
-            }
-        });
+        // Sidebar functionality with improved JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.getElementById('sidebar');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            const closeSidebar = document.getElementById('closeSidebar');
 
-       function checkAnswer(qId, correctAnswer) {
-            const input = document.getElementById(`${qId}-input`);
-            const icon = document.getElementById(`${qId}-icon`);
-            const answerEl = document.getElementById(`${qId}-answer`);
-            
-            if (input.value.toLowerCase() === correctAnswer.toLowerCase()) {
-                icon.className = 'bi bi-check-circle-fill correct';
-                answerEl.style.display = 'none';
-            } else {
-                icon.className = 'bi bi-x-circle-fill incorrect';
-                answerEl.textContent = `Resposta correta: ${correctAnswer}`;
-                answerEl.style.display = 'block';
+            // Function to open sidebar
+            function openSidebar() {
+                sidebar.classList.add('open');
+                sidebarOverlay.classList.add('open');
+                menuToggle.classList.add('active');
+                document.body.style.overflow = 'hidden';
             }
-        }
+
+            // Function to close sidebar
+            function closeSidebarFunc() {
+                sidebar.classList.remove('open');
+                sidebarOverlay.classList.remove('open');
+                menuToggle.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            // Event listeners for sidebar
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openSidebar();
+                });
+            }
+
+            if (closeSidebar) {
+                closeSidebar.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    closeSidebarFunc();
+                });
+            }
+
+            if (sidebarOverlay) {
+                sidebarOverlay.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    closeSidebarFunc();
+                });
+            }
+
+            // Keyboard navigation for sidebar
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+                    closeSidebarFunc();
+                }
+            });
+
+            // Close sidebar when clicking outside
+            document.addEventListener('click', function(e) {
+                if (sidebar.classList.contains('open') && 
+                    !sidebar.contains(e.target) && 
+                    !menuToggle.contains(e.target)) {
+                    closeSidebarFunc();
+                }
+            });
+
+            // Name input functionality
+            const nameInput = document.getElementById('nameInput');
+            const welcomeMessage = document.getElementById('welcome-message');
+
+            if (nameInput) {
+                nameInput.addEventListener('keypress', function(e) {
+                    if(e.key === 'Enter') {
+                        const name = this.value.trim();
+                        if(name) {
+                            const welcomeTitle = document.querySelector('.welcome-title');
+                            if (welcomeTitle) {
+                                welcomeTitle.textContent = `Bem-vindo, ${name}!`;
+                            }
+                            
+                            if (welcomeMessage) {
+                                welcomeMessage.textContent = 
+                                    'Vamos começar essa jornada tão sonhada da mudança de faixa, estamos aqui para lhe ajudar. Escolha a faixa que você vai mudar!';
+                                welcomeMessage.classList.remove('hidden');
+                                
+                                // Add smooth animation
+                                welcomeMessage.style.animation = 'none';
+                                welcomeMessage.offsetHeight; // Trigger reflow
+                                welcomeMessage.style.animation = 'fadeInUp 0.6s ease-out';
+                            }
+                            
+                            // Hide the input
+                            if (this.parentElement) {
+                                this.parentElement.style.display = 'none';
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Add hover effects to belt cards
+            document.querySelectorAll('.faixa-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.05)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Sidebar navigation links functionality
+            const sidebarLinks = document.querySelectorAll('.sidebar-item');
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Add loading effect
+                    this.style.opacity = '0.7';
+                    this.style.transform = 'scale(0.95)';
+                    
+                    setTimeout(() => {
+                        this.style.opacity = '1';
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+
+            // Prevent default behavior for sidebar links (for demo purposes)
+            // In production, these would navigate to actual pages
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    const text = this.querySelector('h3').textContent;
+                    
+                    // Show a temporary message (replace with actual navigation)
+                    alert(`Navegando para: ${text}\nURL: ${href}`);
+                    
+                    // Close sidebar after navigation
+                    setTimeout(() => {
+                        closeSidebarFunc();
+                    }, 500);
+                });
+            });
+
+            // Add smooth scroll behavior
+            document.documentElement.style.scrollBehavior = 'smooth';
+
+            // Initialize tooltips for belt cards
+            document.querySelectorAll('.faixa-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.title = 'Clique para acessar esta faixa';
+                });
+            });
+
+            console.log('Sidebar and navigation functionality loaded successfully!');
+        });
     </script>
 </body>
 </html>
