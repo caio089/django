@@ -24,5 +24,7 @@ urlpatterns = [
     path('pagina2/', include('pag2.urls')),
     path('pagina3/', include('pag3.urls')),
     path('pagina4/', include('pag4.urls')),
+    path('pagina5/', include('pag5.urls')),
+    path('pagina6/', include('pag6.urls')),
 ]
 

@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'pag2',
     'pag3',
     'pag4',
+    'pag5',
+    'pag6',
 ]
 
 MIDDLEWARE = [

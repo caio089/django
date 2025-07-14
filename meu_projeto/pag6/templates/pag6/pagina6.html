@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faixa Roxa - Aulas</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        judo: {
+                            purple: '#7c3aed', // Roxo principal
+                            purpleLight: '#a78bfa', // Roxo claro
+                            purpleDark: '#4c1d95', // Roxo escuro
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        .gradient-bg {
+            background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 35%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+        .progress-bar {
+            transition: width 0.5s ease;
+        }
+        .section-divider {
+            background: linear-gradient(90deg, transparent, #7c3aed, transparent);
+        }
+        .floating-action {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .text-gradient {
+            background: linear-gradient(45deg, #a78bfa, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        #welcomeCard {
+            box-shadow: 0 2px 16px 0 rgba(124,58,237,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
+        }
+        #welcomeCard:hover {
+            box-shadow: 0 0 24px 4px #a78bfa, 0 2px 16px 0 rgba(124,58,237,0.12);
+        }
+        .details {
+            transition-property: opacity, max-height, transform, margin-top;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-display">
+    <!-- Header com Progresso -->
+    <header class="gradient-bg text-white py-6 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-bold mb-2">🥋 Faixa Roxa</h1>
+                    <p class="text-judo-purpleLight text-lg">Seu sexto passo na jornada do judô</p>
+                </div>
+                <a href="/" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
+                    ← Voltar
+                </a>
+            </div>
+            <!-- Barra de Progresso -->
+            <div class="bg-white/20 rounded-full h-3 mb-4">
+                <div class="progress-bar bg-white rounded-full h-3" style="width: 0%" id="progressBar"></div>
+            </div>
+            <p class="text-sm text-judo-purpleLight">Progresso: <span id="progressText">0%</span></p>
+        </div>
+    </header>
+    <main class="max-w-6xl mx-auto px-4 py-6">
+        <!-- Card de Boas-Vindas Minimalista -->
+        <div id="welcomeCard" class="bg-white/80 border border-judo-purpleDark rounded-xl shadow-md p-3 mb-8 mx-auto max-w-xl flex flex-col items-center transition-all duration-300 cursor-pointer group hover:shadow-judo-purpleLight/60 hover:shadow-2xl">
+            <div class="flex items-center gap-2">
+                <span class="text-xl text-judo-purple">🥋</span>
+                <span class="font-semibold text-judo-purpleDark text-lg">Faixa Roxa</span>
+            </div>
+            <div class="flex flex-row gap-4 mt-2 w-full justify-center">
+                <div class="text-center">
+                    <div class="font-bold text-judo-purple">Condição</div>
+                    <div class="details transition-all duration-400 ease-in-out opacity-0 max-h-0 translate-y-2 group-hover:opacity-100 group-hover:max-h-32 group-hover:translate-y-0 group-hover:mt-1 overflow-hidden text-xs text-gray-700">
+                        <div>a. SEIS MESES COMO FAIXA LARANJA</div>
+                        <div>b. IDADE MÍNIMA: 10 ANOS DE IDADE</div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="font-bold text-judo-purple">Habilidades</div>
+                    <div class="details transition-all duration-400 ease-in-out opacity-0 max-h-0 translate-y-2 group-hover:opacity-100 group-hover:max-h-40 group-hover:translate-y-0 group-hover:mt-1 overflow-hidden text-xs text-gray-700 text-left">
+                        <div>a. 10 (DEZ) TÉCNICAS DE NAGUE-WAZA (PROJEÇÕES)</div>
+                        <div>b. 4 (QUATRO) TÉCNICAS DE OSSAE-WAZA (IMOBILIZAÇÕES)</div>
+                        <div>c. 3 (TRÊS) TÉCNICAS DE KANSETSU-WAZA (CHAVE DE BRAÇO)</div>
+                        <div>d. 3 (TRÊS) TÉCNICAS DE SHIME-WAZA (ESTRANGULAMENTO)</div>
+                        <div>e. 4 (QUATRO) TÉCNICAS DE RENRAKUENKA-WAZA (ATAQUES SUCESSIVOS)</div>
+                        <div>f. 7 (SETE) TÉCNICAS DE KAESHI-WAZA (CONTRA GOLPES)</div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-xs text-gray-400 mt-2">Passe o mouse para ver detalhes</div>
+        </div>
+        <!-- Seção de Técnicas -->
+        <section class="mb-12">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                    <span class="text-gradient">Técnicas de Projeção</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Aprenda técnicas avançadas que elevam seu nível no judô. Cada movimento é um passo em direção à sua evolução.
+                </p>
+            </div>
+            <div class="relative">
+                <!-- Botão Esquerda -->
+                <button id="carouselLeft" type="button" class="hidden md:flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-judo-purpleDark/80 hover:bg-judo-purpleDark text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                </button>
+                <!-- Carrossel -->
+                <div id="carouselProj" class="flex overflow-x-auto gap-6 pb-4 scroll-smooth snap-x snap-mandatory hide-scrollbar">
+                    <!-- Técnica 1 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">O-SOTO-GURUMA</h3>
+                                <p class="text-gray-600 text-sm">Grande roda externa</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="proj-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/1nC5U1l5bXw" title="O-SOTO-GURUMA" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Use o quadril para girar e projetar com força.</p>
+                    </div>
+                </div>
+                <!-- Técnica 2 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">UKI-OTOSHI</h3>
+                                <p class="text-gray-600 text-sm">Queda flutuante</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="proj-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/2nC5U1l5bXw" title="UKI-OTOSHI" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Aproveite o desequilíbrio do oponente para puxar e derrubar.</p>
+                    </div>
+                </div>
+                <!-- Técnica 3 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">UKI-WAZA</h3>
+                                <p class="text-gray-600 text-sm">Técnica flutuante</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="proj-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/3nC5U1l5bXw" title="UKI-WAZA" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Gire o corpo e use o braço para puxar o oponente.</p>
+                    </div>
+                </div>
+                <!-- Técnica 4 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">OKURI-DE-ASHI-HARAI</h3>
+                                <p class="text-gray-600 text-sm">Varredura dos pés em movimento</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="proj-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/4nC5U1l5bXw" title="OKURI-DE-ASHI-HARAI" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Sincronize o movimento dos pés para varrer com precisão.</p>
+                    </div>
+                </div>
+                <!-- Técnica 5 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">USHIRO-GOSHI</h3>
+                                <p class="text-gray-600 text-sm">Quadril para trás</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="proj-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/5nC5U1l5bXw" title="USHIRO-GOSHI" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Levante o oponente com o quadril e projete para trás.</p>
+                    </div>
+                </div>
+                <!-- Técnica 6 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">YAMA-RASHI</h3>
+                                <p class="text-gray-600 text-sm">Técnica da montanha</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="proj-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/6nC5U1l5bXw" title="YAMA-RASHI" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Use o impulso do corpo para criar o efeito de "montanha".</p>
+                    </div>
+                </div>
+                <!-- Técnica 7 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">KO-UCHI-MAKI-KOMI</h3>
+                                <p class="text-gray-600 text-sm">Enrolamento interno menor</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="proj-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/7nC5U1l5bXw" title="KO-UCHI-MAKI-KOMI" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Enrole o braço do oponente e gire o corpo para projetar.</p>
+                    </div>
+                </div>
+                <!-- Técnica 8 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">SOTO-MAKI-KOMI</h3>
+                                <p class="text-gray-600 text-sm">Enrolamento externo</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="proj-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/8nC5U1l5bXw" title="SOTO-MAKI-KOMI" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Enrole o corpo do oponente por fora e gire para o solo.</p>
+                    </div>
+                </div>
+                <!-- Técnica 9 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">SUMI-GAESHI</h3>
+                                <p class="text-gray-600 text-sm">Retorno da esquina</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="proj-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/9nC5U1l5bXw" title="SUMI-GAESHI" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Use a alavanca das pernas para girar o oponente.</p>
+                    </div>
+                </div>
+                <!-- Técnica 10 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">HANE-GOSHI</h3>
+                                <p class="text-gray-600 text-sm">Quadril em mola</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="proj-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/10nC5U1l5bXw" title="HANE-GOSHI" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Use o quadril como mola para impulsionar o oponente.</p>
+                    </div>
+                </div>
+                <!-- Técnica 11 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">ASHI-GURUMA</h3>
+                                <p class="text-gray-600 text-sm">Roda com a perna</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="proj-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/11nC5U1l5bXw" title="ASHI-GURUMA" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Gire a perna para criar a roda e projetar o oponente.</p>
+                    </div>
+                </div>
+                <!-- Técnica 12 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">HARAI-TSURI-KOMI-ASHI</h3>
+                                <p class="text-gray-600 text-sm">Varredura com elevação e puxada do pé</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="proj-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/12nC5U1l5bXw" title="HARAI-TSURI-KOMI-ASHI" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Puxe e varra o pé do oponente com precisão e força.</p>
+                    </div>
+                </div>
+                </div>
+                <!-- Botão Direita -->
+                <button id="carouselRight" type="button" class="hidden md:flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-judo-purpleDark/80 hover:bg-judo-purpleDark text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                </button>
+            </div>
+        </section>
+        <style>
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        #carouselProj {
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            transition: box-shadow 0.3s;
+        }
+        #carouselProj > div {
+            min-width: 370px;
+            max-width: 440px;
+            flex: 0 0 auto;
+            scroll-snap-align: center;
+            height: 340px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: stretch;
+            transition: transform 0.35s cubic-bezier(.68,-0.55,.27,1.55), box-shadow 0.3s, filter 0.3s, opacity 0.3s;
+            box-shadow: 0 2px 16px 0 rgba(124,58,237,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
+            opacity: 1;
+            filter: blur(0px);
+            margin-right: 18px;
+        }
+        #carouselProj > div:last-child {
+            margin-right: 0;
+        }
+        #carouselProj > div.active,
+        #carouselProj > div:hover {
+            transform: none;
+            box-shadow: 0 2px 16px 0 rgba(124,58,237,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
+            opacity: 1;
+            filter: blur(0px);
+        }
+        #carouselProj > div:not(.active) {
+            opacity: 1;
+            filter: blur(0px);
+        }
+        @media (max-width: 700px) {
+            #carouselProj > div { min-width: 98vw; max-width: 99vw; height: 320px; }
+        }
+        .carousel-arrow-anim {
+            animation: arrow-bounce 0.7s;
+        }
+        @keyframes arrow-bounce {
+            0% { transform: scale(1); }
+            30% { transform: scale(1.2); }
+            60% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+        /* Ajuste do vídeo dentro do card */
+        .video-container {
+            position: relative;
+            padding-bottom: 44%; /* Proporção menor para caber dica */
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.08);
+            max-width: 100%;
+            margin: 4px 0 6px 0;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+        /* Ajuste para a dica ficar colada ao vídeo */
+        #carouselProj .bg-judo-purpleLight {
+            margin-top: 2px;
+        }
+        </style>
+        <script>
+        // Carrossel Projeções
+        const carousel = document.getElementById('carouselProj');
+        const leftBtn = document.getElementById('carouselLeft');
+        const rightBtn = document.getElementById('carouselRight');
+        function getCardCenters() {
+            const cards = Array.from(carousel.children);
+            return cards.map(card => card.offsetLeft + card.offsetWidth / 2);
+        }
+        function setActiveCard() {
+            const cards = Array.from(carousel.children);
+            const scrollCenter = carousel.scrollLeft + carousel.offsetWidth / 2;
+            let minDist = Infinity, activeIdx = 0;
+            getCardCenters().forEach((center, i) => {
+                const dist = Math.abs(center - scrollCenter);
+                if (dist < minDist) { minDist = dist; activeIdx = i; }
+            });
+            cards.forEach((card, i) => {
+                card.classList.toggle('active', i === activeIdx);
+            });
+        }
+        if (carousel && leftBtn && rightBtn) {
+            leftBtn.addEventListener('click', () => {
+                carousel.scrollBy({ left: -carousel.offsetWidth * 0.8, behavior: 'smooth' });
+                leftBtn.classList.add('carousel-arrow-anim');
+                setTimeout(() => leftBtn.classList.remove('carousel-arrow-anim'), 700);
+            });
+            rightBtn.addEventListener('click', () => {
+                carousel.scrollBy({ left: carousel.offsetWidth * 0.8, behavior: 'smooth' });
+                rightBtn.classList.add('carousel-arrow-anim');
+                setTimeout(() => rightBtn.classList.remove('carousel-arrow-anim'), 700);
+            });
+            // Mostrar/esconder botões conforme scroll
+            const updateButtons = () => {
+                leftBtn.style.display = carousel.scrollLeft > 10 ? 'flex' : 'none';
+                rightBtn.style.display = (carousel.scrollLeft + carousel.offsetWidth < carousel.scrollWidth - 10) ? 'flex' : 'none';
+            };
+            carousel.addEventListener('scroll', () => {
+                updateButtons();
+                setActiveCard();
+            });
+            window.addEventListener('resize', () => {
+                updateButtons();
+                setActiveCard();
+            });
+            setTimeout(() => {
+                updateButtons();
+                setActiveCard();
+            }, 300);
+        }
+        // Snap elástico ao parar de rolar
+        let isScrolling;
+        carousel.addEventListener('scroll', function() {
+            window.clearTimeout(isScrolling);
+            isScrolling = setTimeout(() => {
+                // Snap para o card mais próximo
+                const cards = Array.from(carousel.children);
+                const scrollCenter = carousel.scrollLeft + carousel.offsetWidth / 2;
+                let minDist = Infinity, snapIdx = 0;
+                getCardCenters().forEach((center, i) => {
+                    const dist = Math.abs(center - scrollCenter);
+                    if (dist < minDist) { minDist = dist; snapIdx = i; }
+                });
+                const target = cards[snapIdx];
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                }
+            }, 220);
+        });
+        </script>
+        <!-- Divisor Visual -->
+        <div class="section-divider h-px my-8"></div>
+        <!-- Seção de Imobilizações -->
+        <section class="mb-12">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                    <span class="text-gradient">Técnicas de Imobilização</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Aprenda novas técnicas de controle no solo para dominar seu oponente.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Imobilização 1 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">MUNE-GATAME</h3>
+                                <p class="text-gray-600 text-sm">Imobilização pelo peito</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="imob-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/lIt5vywPBF0?si=0O8rE2_BiF_xngiJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Mantenha o peito pressionando o tórax do oponente.</p>
+                    </div>
+                </div>
+                <!-- Imobilização 2 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">URA-SHIHO-GATAME</h3>
+                                <p class="text-gray-600 text-sm">Imobilização dos quatro apoios por trás</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="imob-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/eeAHZB0v3XY?si=F34Kd9z7leLr69BL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Controle os quadris do oponente e mantenha o peso centralizado.</p>
+                    </div>
+                </div>
+                <!-- Imobilização 3 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">KATA-OSSAE-GATAME</h3>
+                                <p class="text-gray-600 text-sm">Imobilização lateral com controle do braço</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="imob-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/HrfxhGmQCDk?si=rBFSyzQisuEuoOeM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Mantenha o braço do oponente bem controlado e o peso baixo.</p>
+                    </div>
+                </div>
+                <!-- Imobilização 4 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">URA-KESA-GATAME</h3>
+                                <p class="text-gray-600 text-sm">Imobilização lateral invertida</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="imob-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/omioagb6ZNk?si=dZfQ_lL3-EB9FrSp&amp;start=42" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Mantenha o quadril baixo e controle o tronco do oponente.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Divisor Visual -->
+        <div class="section-divider h-px my-8"></div>
+        <!-- Seção de Chave de Braço -->
+        <section class="mb-12">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                    <span class="text-gradient">Técnicas de Chave de Braço</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Aprenda técnicas essenciais de finalização com chave de braço para ampliar seu repertório no judô.
+                </p>
+            </div>
+            <div class="relative">
+                <!-- Botão Esquerda -->
+                <button id="carouselChaveLeft" type="button" class="hidden md:flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-judo-purpleDark/80 hover:bg-judo-purpleDark text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                </button>
+                <!-- Carrossel -->
+                <div id="carouselChave" class="flex overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory hide-scrollbar">
+                    <!-- Chave de Braço 1 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">WAKI-GATAME</h3>
+                                <p class="text-gray-600 text-sm">Chave de braço pela axila</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="chave-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/13nC5U1l5bXw" title="WAKI-GATAME" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Mantenha o braço do oponente firme e pressione com a axila.</p>
+                    </div>
+                </div>
+                <!-- Chave de Braço 2 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">SAN-KAKU-GATAME</h3>
+                                <p class="text-gray-600 text-sm">Chave de braço triângulo</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="chave-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/14nC5U1l5bXw" title="SAN-KAKU-GATAME" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Feche o triângulo com as pernas e pressione o braço do oponente.</p>
+                    </div>
+                </div>
+                <!-- Chave de Braço 3 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">UDE-HITIGUI-GATAME</h3>
+                                <p class="text-gray-600 text-sm">Chave de braço cruzada</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="chave-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/15nC5U1l5bXw" title="UDE-HITIGUI-GATAME" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Cruze os braços do oponente e pressione para finalizar.</p>
+                    </div>
+                </div>
+                <!-- Chave de Braço 4 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">GUYAKU-JUJI-GATAME</h3>
+                                <p class="text-gray-600 text-sm">Chave de braço cruzada invertida</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="chave-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/16nC5U1l5bXw" title="GUYAKU-JUJI-GATAME" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Aplique a chave cruzando os braços do oponente de forma invertida.</p>
+                    </div>
+                </div>
+                </div>
+                <!-- Botão Direita -->
+                <button id="carouselChaveRight" type="button" class="hidden md:flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-judo-purpleDark/80 hover:bg-judo-purpleDark text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                </button>
+            </div>
+        </section>
+        <!-- Divisor Visual -->
+        <div class="section-divider h-px my-8"></div>
+        <!-- Seção de Estrangulamento -->
+        <section class="mb-12">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                    <span class="text-gradient">Técnicas de Estrangulamento</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Aprenda técnicas essenciais de estrangulamento para ampliar seu repertório no judô.
+                </p>
+            </div>
+            <div class="relative">
+                <!-- Botão Esquerda -->
+                <button id="carouselEstrangLeft" type="button" class="hidden md:flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-judo-purpleDark/80 hover:bg-judo-purpleDark text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                </button>
+                <!-- Carrossel -->
+                <div id="carouselEstrang" class="flex overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory hide-scrollbar">
+                    <!-- Estrangulamento 1 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">OKURI-ERI-JIME</h3>
+                                <p class="text-gray-600 text-sm">Estrangulamento deslizante pela gola</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="chave-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/17nC5U1l5bXw" title="OKURI-ERI-JIME" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Deslize a mão pela gola e pressione para finalizar.</p>
+                    </div>
+                </div>
+                <!-- Estrangulamento 2 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">SAN-KAKU-JIME</h3>
+                                <p class="text-gray-600 text-sm">Estrangulamento triângulo</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="chave-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/18nC5U1l5bXw" title="SAN-KAKU-JIME" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Feche o triângulo com as pernas e pressione o pescoço do oponente.</p>
+                    </div>
+                </div>
+                <!-- Estrangulamento 3 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">KATAHA-JIME</h3>
+                                <p class="text-gray-600 text-sm">Estrangulamento com um braço</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="chave-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/19nC5U1l5bXw" title="KATAHA-JIME" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Use um braço para pressionar a lateral do pescoço do oponente.</p>
+                    </div>
+                </div>
+                <!-- Estrangulamento 4 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">RYOTE-JIME</h3>
+                                <p class="text-gray-600 text-sm">Estrangulamento com as duas mãos</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="chave-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/20nC5U1l5bXw" title="RYOTE-JIME" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Agarre a gola com as duas mãos e pressione para baixo.</p>
+                    </div>
+                </div>
+                <!-- Estrangulamento 5 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">TSU-KOMI-JIME</h3>
+                                <p class="text-gray-600 text-sm">Estrangulamento com puxada</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="chave-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/21nC5U1l5bXw" title="TSU-KOMI-JIME" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Puxe a gola do oponente para cima ao aplicar o estrangulamento.</p>
+                    </div>
+                </div>
+                <!-- Estrangulamento 6 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">YOKO-KATA-JUJI-JIME</h3>
+                                <p class="text-gray-600 text-sm">Estrangulamento cruzado lateral</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="chave-checkbox accent-judo-purple w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/22nC5U1l5bXw" title="YOKO-KATA-JUJI-JIME" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-judo-purpleLight p-2 rounded-xl">
+                        <h4 class="font-semibold text-judo-purpleDark mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-judo-purple text-xs">Cruze as mãos lateralmente na gola do oponente e pressione.</p>
+                    </div>
+                </div>
+                </div>
+                <!-- Botão Direita -->
+                <button id="carouselEstrangRight" type="button" class="hidden md:flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-judo-purpleDark/80 hover:bg-judo-purpleDark text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                </button>
+            </div>
+        </section>
+        <script>
+        // Carrossel Chave de Braço
+        const carouselChave = document.getElementById('carouselChave');
+        const chaveLeftBtn = document.getElementById('carouselChaveLeft');
+        const chaveRightBtn = document.getElementById('carouselChaveRight');
+        if (carouselChave && chaveLeftBtn && chaveRightBtn) {
+            chaveLeftBtn.addEventListener('click', () => {
+                carouselChave.scrollBy({ left: -carouselChave.offsetWidth * 0.8, behavior: 'smooth' });
+                chaveLeftBtn.classList.add('carousel-arrow-anim');
+                setTimeout(() => chaveLeftBtn.classList.remove('carousel-arrow-anim'), 700);
+            });
+            chaveRightBtn.addEventListener('click', () => {
+                carouselChave.scrollBy({ left: carouselChave.offsetWidth * 0.8, behavior: 'smooth' });
+                chaveRightBtn.classList.add('carousel-arrow-anim');
+                setTimeout(() => chaveRightBtn.classList.remove('carousel-arrow-anim'), 700);
+            });
+            const updateChaveBtns = () => {
+                chaveLeftBtn.style.display = carouselChave.scrollLeft > 10 ? 'flex' : 'none';
+                chaveRightBtn.style.display = (carouselChave.scrollLeft + carouselChave.offsetWidth < carouselChave.scrollWidth - 10) ? 'flex' : 'none';
+            };
+            carouselChave.addEventListener('scroll', updateChaveBtns);
+            window.addEventListener('resize', updateChaveBtns);
+            setTimeout(updateChaveBtns, 300);
+        }
+        // Carrossel Estrangulamento
+        const carouselEstrang = document.getElementById('carouselEstrang');
+        const estrangLeftBtn = document.getElementById('carouselEstrangLeft');
+        const estrangRightBtn = document.getElementById('carouselEstrangRight');
+        if (carouselEstrang && estrangLeftBtn && estrangRightBtn) {
+            estrangLeftBtn.addEventListener('click', () => {
+                carouselEstrang.scrollBy({ left: -carouselEstrang.offsetWidth * 0.8, behavior: 'smooth' });
+                estrangLeftBtn.classList.add('carousel-arrow-anim');
+                setTimeout(() => estrangLeftBtn.classList.remove('carousel-arrow-anim'), 700);
+            });
+            estrangRightBtn.addEventListener('click', () => {
+                carouselEstrang.scrollBy({ left: carouselEstrang.offsetWidth * 0.8, behavior: 'smooth' });
+                estrangRightBtn.classList.add('carousel-arrow-anim');
+                setTimeout(() => estrangRightBtn.classList.remove('carousel-arrow-anim'), 700);
+            });
+            const updateEstrangBtns = () => {
+                estrangLeftBtn.style.display = carouselEstrang.scrollLeft > 10 ? 'flex' : 'none';
+                estrangRightBtn.style.display = (carouselEstrang.scrollLeft + carouselEstrang.offsetWidth < carouselEstrang.scrollWidth - 10) ? 'flex' : 'none';
+            };
+            carouselEstrang.addEventListener('scroll', updateEstrangBtns);
+            window.addEventListener('resize', updateEstrangBtns);
+            setTimeout(updateEstrangBtns, 300);
+        }
+        </script>
+        <!-- Divisor Visual -->
+        <div class="section-divider h-px my-8"></div>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 px-4 mt-8">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-300">
+                © 2024 Academia de Judô - Faixa Laranja - Desenvolvido com ❤️ para todos os judocas
+            </p>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const projCheckboxes = document.querySelectorAll('.proj-checkbox');
+            const imobCheckboxes = document.querySelectorAll('.imob-checkbox');
+            const chaveCheckboxes = document.querySelectorAll('.chave-checkbox');
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            // Função para atualizar progresso
+            function updateProgress() {
+                const totalProjChecked = document.querySelectorAll('.proj-checkbox:checked').length;
+                const totalImobChecked = document.querySelectorAll('.imob-checkbox:checked').length;
+                const totalChaveChecked = document.querySelectorAll('.chave-checkbox:checked').length;
+                const totalQuestions = projCheckboxes.length + imobCheckboxes.length + chaveCheckboxes.length;
+                const completedQuestions = totalProjChecked + totalImobChecked + totalChaveChecked;
+                const progress = (completedQuestions / totalQuestions) * 100;
+                progressBar.style.width = progress + '%';
+                progressText.textContent = Math.round(progress) + '%';
+            }
+            projCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateProgress);
+            });
+            imobCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateProgress);
+            });
+            chaveCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateProgress);
+            });
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
