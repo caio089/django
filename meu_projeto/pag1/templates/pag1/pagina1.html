@@ -136,6 +136,46 @@
     </header>
 
     <main class="max-w-6xl mx-auto px-4 py-6">
+        <!-- Card de Boas-Vindas Minimalista -->
+        <div id="welcomeCard" class="bg-white/80 border border-gray-400 rounded-xl shadow-md p-3 mb-8 mx-auto max-w-xl flex flex-col items-center transition-all duration-300 cursor-pointer group hover:shadow-gray-400/60 hover:shadow-2xl">
+            <div class="flex items-center gap-2">
+                <span class="text-xl text-gray-500">🥋</span>
+                <span class="font-semibold text-gray-700 text-lg">Bem-vindo à Faixa Cinza</span>
+            </div>
+            <div class="flex flex-row gap-4 mt-2 w-full justify-center">
+                <div class="text-center">
+                    <div class="font-bold text-gray-600">Condição</div>
+                    <div class="details transition-all duration-400 ease-in-out opacity-0 max-h-0 translate-y-2 group-hover:opacity-100 group-hover:max-h-32 group-hover:translate-y-0 group-hover:mt-1 overflow-hidden text-xs text-gray-700">
+                        <div>• 6 meses de faixa branca</div>
+                        <div>• Idade mínima: 5 anos</div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="font-bold text-gray-600">Habilidades</div>
+                    <div class="details transition-all duration-400 ease-in-out opacity-0 max-h-0 translate-y-2 group-hover:opacity-100 group-hover:max-h-40 group-hover:translate-y-0 group-hover:mt-1 overflow-hidden text-xs text-gray-700 text-left">
+                        <div>• Shinsei e Kumikata</div>
+                        <div>• Formas de Rei</div>
+                        <div>• Disciplina</div>
+                        <div>• Tipos de Ukemis (Rolamentos)</div>
+                        <div>• 2 técnicas de Nague-waza</div>
+                        <div>• 1 técnica de Ossaekomi-waza</div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-xs text-gray-400 mt-2">Passe o mouse para ver detalhes</div>
+        </div>
+        <style>
+        #welcomeCard {
+            box-shadow: 0 2px 16px 0 rgba(107,114,128,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
+        }
+        #welcomeCard:hover {
+            box-shadow: 0 0 24px 4px #d1d5db, 0 2px 16px 0 rgba(107,114,128,0.12);
+        }
+        .details {
+            transition-property: opacity, max-height, transform, margin-top;
+        }
+        </style>
+
         <!-- Seção de Técnicas -->
         <section class="mb-12">
             <div class="text-center mb-8">
@@ -151,14 +191,20 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- Técnica 1 -->
                 <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
-                    <div class="flex items-center mb-3">
-                        <div class="bg-blue-100 p-2 rounded-full mr-3">
-                            <span class="text-lg">🥋</span>
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-blue-100 p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">Osoto-gari</h3>
+                                <p class="text-gray-600 text-sm">Técnica de grande projeção externa</p>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="text-lg font-bold text-gray-800">Osoto-gari</h3>
-                            <p class="text-gray-600 text-sm">Técnica de grande projeção externa</p>
-                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="proj-checkbox accent-gray-500 w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
                     </div>
                     <div class="video-container mb-3">
                         <iframe src="https://www.youtube.com/embed/c-A_nP7mKAc?si=GCH5tAKxZEUKQzaN" 
@@ -177,14 +223,20 @@
 
                 <!-- Técnica 2 -->
                 <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
-                    <div class="flex items-center mb-3">
-                        <div class="bg-green-100 p-2 rounded-full mr-3">
-                            <span class="text-lg">🥋</span>
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-green-100 p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">Ippon-seoi-nage</h3>
+                                <p class="text-gray-600 text-sm">Técnica de projeção por costas</p>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="text-lg font-bold text-gray-800">Ippon-seoi-nage</h3>
-                            <p class="text-gray-600 text-sm">Técnica de projeção por costas</p>
-                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="proj-checkbox accent-green-500 w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
                     </div>
                     <div class="video-container mb-3">
                         <iframe src="https://www.youtube.com/embed/FQnOlCxo4oI?si=okc86CbIZUnbfnQB" 
@@ -220,14 +272,20 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- Imobilização 1 -->
                 <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
-                    <div class="flex items-center mb-3">
-                        <div class="bg-purple-100 p-2 rounded-full mr-3">
-                            <span class="text-lg">🥋</span>
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-purple-100 p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">Hon-kesa-gatame</h3>
+                                <p class="text-gray-600 text-sm">Imobilização lateral básica</p>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="text-lg font-bold text-gray-800">Hon-kesa-gatame</h3>
-                            <p class="text-gray-600 text-sm">Imobilização lateral básica</p>
-                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="imob-checkbox accent-purple-500 w-5 h-5 mr-1" />
+                            <span class="text-xs text-gray-700">Aprendi</span>
+                        </label>
                     </div>
                     <div class="video-container mb-3">
                         <iframe src="https://www.youtube.com/embed/NDaQuJOFBYk?si=mUcnSH1vUZ7J6NHH" 
@@ -258,150 +316,6 @@
         <!-- Divisor Visual -->
         <div class="section-divider h-px my-8"></div>
 
-        <!-- Seção do Quiz -->
-        <section class="mb-12">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
-                    <span class="text-gradient">Quiz de Conhecimento</span>
-                </h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                    Teste seus conhecimentos sobre a história e fundamentos do judô.
-                </p>
-            </div>
-
-            <!-- Pergunta 1 -->
-            <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
-                <div class="flex items-center mb-4">
-                    <div class="bg-orange-100 p-2 rounded-full mr-3">
-                        <span class="text-xl">❓</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-800">Quem criou o judô?</h3>
-                </div>
-                
-                <div class="grid gap-3">
-                    <div class="option-card p-3 rounded-xl border-2" data-correct="false">
-                        <div class="flex items-center">
-                            <span class="bg-gray-100 text-gray-600 w-6 h-6 rounded-full flex items-center justify-center font-bold mr-2 text-sm">A</span>
-                            <span class="font-medium text-sm">Sensei Wendell Barbosa</span>
-                        </div>
-                    </div>
-                    <div class="option-card p-3 rounded-xl border-2" data-correct="true">
-                        <div class="flex items-center">
-                            <span class="bg-gray-100 text-gray-600 w-6 h-6 rounded-full flex items-center justify-center font-bold mr-2 text-sm">B</span>
-                            <span class="font-medium text-sm">Jigoro Kano</span>
-                        </div>
-                    </div>
-                    <div class="option-card p-3 rounded-xl border-2" data-correct="false">
-                        <div class="flex items-center">
-                            <span class="bg-gray-100 text-gray-600 w-6 h-6 rounded-full flex items-center justify-center font-bold mr-2 text-sm">C</span>
-                            <span class="font-medium text-sm">Sensei Queiroz</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="feedback-correct mt-3 p-3 bg-green-50 rounded-xl hidden">
-                    <div class="flex items-center text-green-800">
-                        <span class="text-xl mr-2">✅</span>
-                        <span class="font-semibold text-sm">Correto! Jigoro Kano foi o fundador do judô em 1882.</span>
-                    </div>
-                </div>
-                <div class="feedback-incorrect mt-3 p-3 bg-red-50 rounded-xl hidden">
-                    <div class="flex items-center text-red-800">
-                        <span class="text-xl mr-2">❌</span>
-                        <span class="font-semibold text-sm">Incorreto. A resposta correta é Jigoro Kano.</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pergunta 2 -->
-            <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
-                <div class="flex items-center mb-4">
-                    <div class="bg-orange-100 p-2 rounded-full mr-3">
-                        <span class="text-xl">❓</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-800">Em que ano foi criado o judô?</h3>
-                </div>
-                
-                <div class="grid gap-3">
-                    <div class="option-card p-3 rounded-xl border-2" data-correct="false">
-                        <div class="flex items-center">
-                            <span class="bg-gray-100 text-gray-600 w-6 h-6 rounded-full flex items-center justify-center font-bold mr-2 text-sm">A</span>
-                            <span class="font-medium text-sm">1878</span>
-                        </div>
-                    </div>
-                    <div class="option-card p-3 rounded-xl border-2" data-correct="false">
-                        <div class="flex items-center">
-                            <span class="bg-gray-100 text-gray-600 w-6 h-6 rounded-full flex items-center justify-center font-bold mr-2 text-sm">B</span>
-                            <span class="font-medium text-sm">2014</span>
-                        </div>
-                    </div>
-                    <div class="option-card p-3 rounded-xl border-2" data-correct="true">
-                        <div class="flex items-center">
-                            <span class="bg-gray-100 text-gray-600 w-6 h-6 rounded-full flex items-center justify-center font-bold mr-2 text-sm">C</span>
-                            <span class="font-medium text-sm">1882</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="feedback-correct mt-3 p-3 bg-green-50 rounded-xl hidden">
-                    <div class="flex items-center text-green-800">
-                        <span class="text-xl mr-2">✅</span>
-                        <span class="font-semibold text-sm">Exato! O judô foi criado em 1882 por Jigoro Kano.</span>
-                    </div>
-                </div>
-                <div class="feedback-incorrect mt-3 p-3 bg-red-50 rounded-xl hidden">
-                    <div class="flex items-center text-red-800">
-                        <span class="text-xl mr-2">❌</span>
-                        <span class="font-semibold text-sm">Incorreto. O judô foi criado em 1882.</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pergunta 3 -->
-            <div class="bg-white rounded-2xl shadow-lg p-6 mb-6">
-                <div class="flex items-center mb-4">
-                    <div class="bg-orange-100 p-2 rounded-full mr-3">
-                        <span class="text-xl">❓</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-gray-800">Em que país foi criado o judô?</h3>
-                </div>
-                
-                <div class="grid gap-3">
-                    <div class="option-card p-3 rounded-xl border-2" data-correct="false">
-                        <div class="flex items-center">
-                            <span class="bg-gray-100 text-gray-600 w-6 h-6 rounded-full flex items-center justify-center font-bold mr-2 text-sm">A</span>
-                            <span class="font-medium text-sm">China</span>
-                        </div>
-                    </div>
-                    <div class="option-card p-3 rounded-xl border-2" data-correct="false">
-                        <div class="flex items-center">
-                            <span class="bg-gray-100 text-gray-600 w-6 h-6 rounded-full flex items-center justify-center font-bold mr-2 text-sm">B</span>
-                            <span class="font-medium text-sm">Brasil</span>
-                        </div>
-                    </div>
-                    <div class="option-card p-3 rounded-xl border-2" data-correct="true">
-                        <div class="flex items-center">
-                            <span class="bg-gray-100 text-gray-600 w-6 h-6 rounded-full flex items-center justify-center font-bold mr-2 text-sm">C</span>
-                            <span class="font-medium text-sm">Japão</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="feedback-correct mt-3 p-3 bg-green-50 rounded-xl hidden">
-                    <div class="flex items-center text-green-800">
-                        <span class="text-xl mr-2">✅</span>
-                        <span class="font-semibold text-sm">Perfeito! O judô foi criado no Japão.</span>
-                    </div>
-                </div>
-                <div class="feedback-incorrect mt-3 p-3 bg-red-50 rounded-xl hidden">
-                    <div class="flex items-center text-red-800">
-                        <span class="text-xl mr-2">❌</span>
-                        <span class="font-semibold text-sm">Incorreto. O judô foi criado no Japão.</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Botão Flutuante de Voltar ao Topo -->
         <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg floating-action transition-colors hidden">
             <span class="text-2xl">↑</span>
@@ -419,7 +333,8 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const options = document.querySelectorAll('.option-card');
+            const projCheckboxes = document.querySelectorAll('.proj-checkbox');
+            const imobCheckboxes = document.querySelectorAll('.imob-checkbox');
             const progressBar = document.getElementById('progressBar');
             const progressText = document.getElementById('progressText');
             const backToTopBtn = document.getElementById('backToTop');
@@ -428,51 +343,21 @@
 
             // Função para atualizar progresso
             function updateProgress() {
-                const progress = (answeredQuestions / totalQuestions) * 100;
+                const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
+                const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
+                const totalQuestions = projCheckboxes.length + imobCheckboxes.length;
+                const completedQuestions = totalProjChecked + totalImobChecked;
+                const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
                 progressBar.style.width = progress + '%';
                 progressText.textContent = Math.round(progress) + '%';
             }
 
             // Event listeners para as opções
-            options.forEach(option => {
-                option.addEventListener('click', function() {
-                    const questionBlock = this.closest('.bg-white');
-                    const isCorrect = this.getAttribute('data-correct') === 'true';
-                    
-                    // Remove classes de outras opções da mesma pergunta
-                    questionBlock.querySelectorAll('.option-card').forEach(opt => {
-                        opt.classList.remove('correct', 'incorrect');
-                    });
-                    
-                    // Adiciona classe à opção selecionada
-                    if (isCorrect) {
-                        this.classList.add('correct');
-                        answeredQuestions++;
-                    } else {
-                        this.classList.add('incorrect');
-                    }
-                    
-                    // Mostra feedback
-                    const correctFeedback = questionBlock.querySelector('.feedback-correct');
-                    const incorrectFeedback = questionBlock.querySelector('.feedback-incorrect');
-                    
-                    correctFeedback.classList.add('hidden');
-                    incorrectFeedback.classList.add('hidden');
-                    
-                    if (isCorrect) {
-                        correctFeedback.classList.remove('hidden');
-                    } else {
-                        incorrectFeedback.classList.remove('hidden');
-                    }
-                    
-                    // Atualiza progresso
-                    updateProgress();
-                    
-                    // Desabilita outras opções da mesma pergunta
-                    questionBlock.querySelectorAll('.option-card').forEach(opt => {
-                        opt.style.pointerEvents = 'none';
-                    });
-                });
+            projCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateProgress);
+            });
+            imobCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateProgress);
             });
 
             // Botão voltar ao topo
