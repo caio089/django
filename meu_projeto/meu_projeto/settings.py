@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'core',
     'pag1',
     'pag2',
- 
+    'pag3',
 ]
 
 MIDDLEWARE = [
