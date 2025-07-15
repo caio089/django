@@ -82,6 +82,27 @@
         .details {
             transition-property: opacity, max-height, transform, margin-top;
         }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .technique-card {
+            height: 420px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .technique-card .video-container {
+            flex-shrink: 0;
+        }
+        .technique-card .p-4 {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+        }
+        .technique-card .bg-orange-50 {
+            margin-top: auto;
+            margin-bottom: 0;
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-display">
@@ -134,8 +155,8 @@
             <div class="text-xs text-gray-400 mt-2">Passe o mouse para ver detalhes</div>
         </div>
         <!-- Seção de Técnicas -->
-        <section class="mb-12">
-            <div class="text-center mb-8">
+        <section class="mb-8">
+            <div class="text-center mb-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
                     <span class="text-gradient">Técnicas de Projeção</span>
                 </h2>
@@ -144,164 +165,196 @@
                     Cada movimento é um passo em direção à sua evolução.
                 </p>
             </div>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Técnica 1 -->
-                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
-                    <div class="flex items-center mb-3 justify-between">
-                        <div class="flex items-center">
-                            <div class="bg-orange-100 p-2 rounded-full mr-3">
-                                <span class="text-lg">🥋</span>
+            <div class="relative">
+                <!-- Botão Esquerda -->
+                <button id="carouselLeft" type="button" class="hidden md:flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-orange-600/80 hover:bg-orange-600 text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                </button>
+                <!-- Carrossel -->
+                <div id="carouselProj" class="flex overflow-x-auto gap-6 pb-4 scroll-smooth snap-x snap-mandatory hide-scrollbar">
+                    <!-- Técnica 1 -->
+                    <div class="technique-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                        <div class="relative">
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/4BUUvqxi_Kk?si=u4-q6TLWy6dGLops" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-gray-800">DE-ASHI-HARAI</h3>
-                                <p class="text-gray-600 text-sm">Projeção por varredura do pé avançado</p>
-                            </div>
-                        </div>
-                        <label class="flex items-center ml-2 select-none">
-                            <input type="checkbox" class="proj-checkbox accent-orange-500 w-5 h-5 mr-1" />
-                            <span class="text-xs text-gray-700">Aprendi</span>
-                        </label>
-                    </div>
-                    <div class="video-container mb-3">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/4BUUvqxi_Kk?si=u4-q6TLWy6dGLops" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                    <div class="bg-orange-50 p-2 rounded-xl">
-                        <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
-                        <p class="text-orange-700 text-xs">Sincronize o movimento do pé com o desequilíbrio do oponente.</p>
-                    </div>
-                </div>
-                <!-- Técnica 2 -->
-                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
-                    <div class="flex items-center mb-3 justify-between">
-                        <div class="flex items-center">
-                            <div class="bg-orange-100 p-2 rounded-full mr-3">
-                                <span class="text-lg">🥋</span>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-gray-800">KO-SOTO-GARI</h3>
-                                <p class="text-gray-600 text-sm">Projeção por gancho externo menor</p>
+                            <div class="absolute top-2 right-2">
+                                <label class="flex items-center select-none">
+                                    <input type="checkbox" class="proj-checkbox accent-orange-500 w-4 h-4 mr-1" />
+                                    <span class="text-xs text-white bg-black/50 px-2 py-1 rounded">Aprendi</span>
+                                </label>
                             </div>
                         </div>
-                        <label class="flex items-center ml-2 select-none">
-                            <input type="checkbox" class="proj-checkbox accent-orange-500 w-5 h-5 mr-1" />
-                            <span class="text-xs text-gray-700">Aprendi</span>
-                        </label>
-                    </div>
-                    <div class="video-container mb-3">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/jeQ541ScLB4?si=OdsK1_9dQs1HMz9S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                    <div class="bg-orange-50 p-2 rounded-xl">
-                        <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
-                        <p class="text-orange-700 text-xs">Aproveite o momento em que o oponente transfere o peso para o pé de apoio.</p>
-                    </div>
-                </div>
-                <!-- Técnica 3 -->
-                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
-                    <div class="flex items-center mb-3 justify-between">
-                        <div class="flex items-center">
-                            <div class="bg-orange-100 p-2 rounded-full mr-3">
-                                <span class="text-lg">🥋</span>
+                        <div class="p-4">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-orange-100 p-2 rounded-full mr-3">
+                                    <span class="text-sm">🥋</span>
+                                </div>
+                                <h3 class="text-base font-bold text-gray-800">DE-ASHI-HARAI</h3>
                             </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-gray-800">SEOI-OTOSHI</h3>
-                                <p class="text-gray-600 text-sm">Projeção por queda sobre o ombro</p>
+                            <p class="text-gray-600 text-xs mb-3">Projeção por varredura do pé avançado</p>
+                            <div class="bg-orange-50 p-2 rounded-lg">
+                                <h4 class="font-semibold text-orange-800 mb-1 text-xs">💡 Dica:</h4>
+                                <p class="text-orange-700 text-xs">Sincronize o movimento do pé com o desequilíbrio do oponente.</p>
                             </div>
                         </div>
-                        <label class="flex items-center ml-2 select-none">
-                            <input type="checkbox" class="proj-checkbox accent-orange-500 w-5 h-5 mr-1" />
-                            <span class="text-xs text-gray-700">Aprendi</span>
-                        </label>
                     </div>
-                    <div class="video-container mb-3">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/vu1TMVNnq34?si=Z_RzsrluW7ohJU2h" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                    <div class="bg-orange-50 p-2 rounded-xl">
-                        <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
-                        <p class="text-orange-700 text-xs">Abaixe o quadril e use o giro do corpo para projetar.</p>
-                    </div>
-                </div>
-                <!-- Técnica 4 -->
-                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
-                    <div class="flex items-center mb-3 justify-between">
-                        <div class="flex items-center">
-                            <div class="bg-orange-100 p-2 rounded-full mr-3">
-                                <span class="text-lg">🥋</span>
+
+                    <!-- Técnica 2 -->
+                    <div class="technique-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                        <div class="relative">
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/jeQ541ScLB4?si=OdsK1_9dQs1HMz9S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-gray-800">TSURI-GOSHI</h3>
-                                <p class="text-gray-600 text-sm">Projeção por quadril com elevação</p>
+                            <div class="absolute top-2 right-2">
+                                <label class="flex items-center select-none">
+                                    <input type="checkbox" class="proj-checkbox accent-orange-500 w-4 h-4 mr-1" />
+                                    <span class="text-xs text-white bg-black/50 px-2 py-1 rounded">Aprendi</span>
+                                </label>
                             </div>
                         </div>
-                        <label class="flex items-center ml-2 select-none">
-                            <input type="checkbox" class="proj-checkbox accent-orange-500 w-5 h-5 mr-1" />
-                            <span class="text-xs text-gray-700">Aprendi</span>
-                        </label>
-                    </div>
-                    <div class="video-container mb-3">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/51Htlp7xEvE?si=5-jKQ78ErET8RtIO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                    <div class="bg-orange-50 p-2 rounded-xl">
-                        <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
-                        <p class="text-orange-700 text-xs">Eleve o oponente com o quadril e finalize com o giro.</p>
-                    </div>
-                </div>
-                <!-- Técnica 5 -->
-                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
-                    <div class="flex items-center mb-3 justify-between">
-                        <div class="flex items-center">
-                            <div class="bg-orange-100 p-2 rounded-full mr-3">
-                                <span class="text-lg">🥋</span>
+                        <div class="p-4">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-orange-100 p-2 rounded-full mr-3">
+                                    <span class="text-sm">🥋</span>
+                                </div>
+                                <h3 class="text-base font-bold text-gray-800">KO-SOTO-GARI</h3>
                             </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-gray-800">UCHI-MATA</h3>
-                                <p class="text-gray-600 text-sm">Projeção por varredura interna da coxa</p>
+                            <p class="text-gray-600 text-xs mb-3">Projeção por gancho externo menor</p>
+                            <div class="bg-orange-50 p-2 rounded-lg">
+                                <h4 class="font-semibold text-orange-800 mb-1 text-xs">💡 Dica:</h4>
+                                <p class="text-orange-700 text-xs">Aproveite o momento em que o oponente transfere o peso para o pé de apoio.</p>
                             </div>
                         </div>
-                        <label class="flex items-center ml-2 select-none">
-                            <input type="checkbox" class="proj-checkbox accent-orange-500 w-5 h-5 mr-1" />
-                            <span class="text-xs text-gray-700">Aprendi</span>
-                        </label>
                     </div>
-                    <div class="video-container mb-3">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/iUpSu5J-bgw?si=9WtD4HFq_8663MB-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                    <div class="bg-orange-50 p-2 rounded-xl">
-                        <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
-                        <p class="text-orange-700 text-xs">Gire o corpo e use a perna para varrer a coxa do oponente.</p>
-                    </div>
-                </div>
-                <!-- Técnica 6 -->
-                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
-                    <div class="flex items-center mb-3 justify-between">
-                        <div class="flex items-center">
-                            <div class="bg-orange-100 p-2 rounded-full mr-3">
-                                <span class="text-lg">🥋</span>
+
+                    <!-- Técnica 3 -->
+                    <div class="technique-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                        <div class="relative">
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/vu1TMVNnq34?si=Z_RzsrluW7ohJU2h" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-gray-800">HARAI-GOSHI</h3>
-                                <p class="text-gray-600 text-sm">Projeção por varredura do quadril</p>
+                            <div class="absolute top-2 right-2">
+                                <label class="flex items-center select-none">
+                                    <input type="checkbox" class="proj-checkbox accent-orange-500 w-4 h-4 mr-1" />
+                                    <span class="text-xs text-white bg-black/50 px-2 py-1 rounded">Aprendi</span>
+                                </label>
                             </div>
                         </div>
-                        <label class="flex items-center ml-2 select-none">
-                            <input type="checkbox" class="proj-checkbox accent-orange-500 w-5 h-5 mr-1" />
-                            <span class="text-xs text-gray-700">Aprendi</span>
-                        </label>
+                        <div class="p-4">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-orange-100 p-2 rounded-full mr-3">
+                                    <span class="text-sm">🥋</span>
+                                </div>
+                                <h3 class="text-base font-bold text-gray-800">SEOI-OTOSHI</h3>
+                            </div>
+                            <p class="text-gray-600 text-xs mb-3">Projeção por queda sobre o ombro</p>
+                            <div class="bg-orange-50 p-2 rounded-lg">
+                                <h4 class="font-semibold text-orange-800 mb-1 text-xs">💡 Dica:</h4>
+                                <p class="text-orange-700 text-xs">Abaixe o quadril e use o giro do corpo para projetar.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="video-container mb-3">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/qTo8HlAAkOo?si=zeY7htmFa7gxwAfq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+                    <!-- Técnica 4 -->
+                    <div class="technique-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                        <div class="relative">
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/51Htlp7xEvE?si=5-jKQ78ErET8RtIO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                            <div class="absolute top-2 right-2">
+                                <label class="flex items-center select-none">
+                                    <input type="checkbox" class="proj-checkbox accent-orange-500 w-4 h-4 mr-1" />
+                                    <span class="text-xs text-white bg-black/50 px-2 py-1 rounded">Aprendi</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-orange-100 p-2 rounded-full mr-3">
+                                    <span class="text-sm">🥋</span>
+                                </div>
+                                <h3 class="text-base font-bold text-gray-800">TSURI-GOSHI</h3>
+                            </div>
+                            <p class="text-gray-600 text-xs mb-3">Projeção por quadril com elevação</p>
+                            <div class="bg-orange-50 p-2 rounded-lg">
+                                <h4 class="font-semibold text-orange-800 mb-1 text-xs">💡 Dica:</h4>
+                                <p class="text-orange-700 text-xs">Eleve o oponente com o quadril e finalize com o giro.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-orange-50 p-2 rounded-xl">
-                        <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
-                        <p class="text-orange-700 text-xs">Sincronize o giro do corpo com a varredura do quadril.</p>
+
+                    <!-- Técnica 5 -->
+                    <div class="technique-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                        <div class="relative">
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/iUpSu5J-bgw?si=9WtD4HFq_8663MB-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                            <div class="absolute top-2 right-2">
+                                <label class="flex items-center select-none">
+                                    <input type="checkbox" class="proj-checkbox accent-orange-500 w-4 h-4 mr-1" />
+                                    <span class="text-xs text-white bg-black/50 px-2 py-1 rounded">Aprendi</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-orange-100 p-2 rounded-full mr-3">
+                                    <span class="text-sm">🥋</span>
+                                </div>
+                                <h3 class="text-base font-bold text-gray-800">UCHI-MATA</h3>
+                            </div>
+                            <p class="text-gray-600 text-xs mb-3">Projeção por varredura interna da coxa</p>
+                            <div class="bg-orange-50 p-2 rounded-lg">
+                                <h4 class="font-semibold text-orange-800 mb-1 text-xs">💡 Dica:</h4>
+                                <p class="text-orange-700 text-xs">Gire o corpo e use a perna para varrer a coxa do oponente.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Técnica 6 -->
+                    <div class="technique-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                        <div class="relative">
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/qTo8HlAAkOo?si=zeY7htmFa7gxwAfq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                            <div class="absolute top-2 right-2">
+                                <label class="flex items-center select-none">
+                                    <input type="checkbox" class="proj-checkbox accent-orange-500 w-4 h-4 mr-1" />
+                                    <span class="text-xs text-white bg-black/50 px-2 py-1 rounded">Aprendi</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-orange-100 p-2 rounded-full mr-3">
+                                    <span class="text-sm">🥋</span>
+                                </div>
+                                <h3 class="text-base font-bold text-gray-800">HARAI-GOSHI</h3>
+                            </div>
+                            <p class="text-gray-600 text-xs mb-3">Projeção por varredura do quadril</p>
+                            <div class="bg-orange-50 p-2 rounded-lg">
+                                <h4 class="font-semibold text-orange-800 mb-1 text-xs">💡 Dica:</h4>
+                                <p class="text-orange-700 text-xs">Sincronize o giro do corpo com a varredura do quadril.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <!-- Botão Direita -->
+                <button id="carouselRight" type="button" class="hidden md:flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-orange-600/80 hover:bg-orange-600 text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                </button>
             </div>
         </section>
         <!-- Divisor Visual -->
-        <div class="section-divider h-px my-8"></div>
+        <div class="section-divider h-px my-6"></div>
         <!-- Seção de Imobilizações -->
-        <section class="mb-12">
-            <div class="text-center mb-8">
+        <section class="mb-8">
+            <div class="text-center mb-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
                     <span class="text-gradient">Técnicas de Imobilização</span>
                 </h2>
@@ -309,107 +362,133 @@
                     Aprenda técnicas avançadas de controle no solo para dominar seu oponente.
                 </p>
             </div>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Imobilização 1 -->
-                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
-                    <div class="flex items-center mb-3 justify-between">
-                        <div class="flex items-center">
-                            <div class="bg-orange-100 p-2 rounded-full mr-3">
-                                <span class="text-lg">🥋</span>
+            <div class="relative">
+                <!-- Botão Esquerda -->
+                <button id="carouselImobLeft" type="button" class="hidden md:flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-orange-600/80 hover:bg-orange-600 text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                </button>
+                <!-- Carrossel -->
+                <div id="carouselImob" class="flex overflow-x-auto gap-6 pb-4 scroll-smooth snap-x snap-mandatory hide-scrollbar">
+                    <!-- Imobilização 1 -->
+                    <div class="technique-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                        <div class="relative">
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/e5HrhANfDcU?si=GgrI9WraB9ZTBvwW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-gray-800">MAKURA-KESA-GATAME (I e II)</h3>
-                                <p class="text-gray-600 text-sm">Imobilização lateral com apoio de travesseiro, variações I e II</p>
-                            </div>
-                        </div>
-                        <label class="flex items-center ml-2 select-none">
-                            <input type="checkbox" class="imob-checkbox accent-orange-500 w-5 h-5 mr-1" />
-                            <span class="text-xs text-gray-700">Aprendi</span>
-                        </label>
-                    </div>
-                    <div class="video-container mb-3">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/e5HrhANfDcU?si=GgrI9WraB9ZTBvwW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                    <div class="bg-orange-50 p-2 rounded-xl">
-                        <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
-                        <p class="text-orange-700 text-xs">Mantenha o peso sobre o tórax do oponente e controle o braço.</p>
-                    </div>
-                </div>
-                <!-- Imobilização 2 -->
-                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
-                    <div class="flex items-center mb-3 justify-between">
-                        <div class="flex items-center">
-                            <div class="bg-orange-100 p-2 rounded-full mr-3">
-                                <span class="text-lg">🥋</span>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-gray-800">USHIRO-KESA-GATAME</h3>
-                                <p class="text-gray-600 text-sm">Imobilização lateral por trás</p>
+                            <div class="absolute top-2 right-2">
+                                <label class="flex items-center select-none">
+                                    <input type="checkbox" class="imob-checkbox accent-orange-500 w-4 h-4 mr-1" />
+                                    <span class="text-xs text-white bg-black/50 px-2 py-1 rounded">Aprendi</span>
+                                </label>
                             </div>
                         </div>
-                        <label class="flex items-center ml-2 select-none">
-                            <input type="checkbox" class="imob-checkbox accent-orange-500 w-5 h-5 mr-1" />
-                            <span class="text-xs text-gray-700">Aprendi</span>
-                        </label>
-                    </div>
-                    <div class="video-container mb-3">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/SBapox2M2dE?si=udntyAI0ajP89Qgc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                    <div class="bg-orange-50 p-2 rounded-xl">
-                        <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
-                        <p class="text-orange-700 text-xs">Controle o quadril do oponente e mantenha o peso centralizado.</p>
-                    </div>
-                </div>
-                <!-- Imobilização 3 -->
-                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
-                    <div class="flex items-center mb-3 justify-between">
-                        <div class="flex items-center">
-                            <div class="bg-orange-100 p-2 rounded-full mr-3">
-                                <span class="text-lg">🥋</span>
+                        <div class="p-4">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-orange-100 p-2 rounded-full mr-3">
+                                    <span class="text-sm">🥋</span>
+                                </div>
+                                <h3 class="text-base font-bold text-gray-800">MAKURA-KESA-GATAME (I e II)</h3>
                             </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-gray-800">KUZURE-TATE-SHIHO-GATAME (I e II)</h3>
-                                <p class="text-gray-600 text-sm">Imobilização vertical modificada, variações I e II</p>
+                            <p class="text-gray-600 text-xs mb-3">Imobilização lateral com apoio de travesseiro, variações I e II</p>
+                            <div class="bg-orange-50 p-2 rounded-lg">
+                                <h4 class="font-semibold text-orange-800 mb-1 text-xs">💡 Dica:</h4>
+                                <p class="text-orange-700 text-xs">Mantenha o peso sobre o tórax do oponente e controle o braço.</p>
                             </div>
                         </div>
-                        <label class="flex items-center ml-2 select-none">
-                            <input type="checkbox" class="imob-checkbox accent-orange-500 w-5 h-5 mr-1" />
-                            <span class="text-xs text-gray-700">Aprendi</span>
-                        </label>
                     </div>
-                    <div class="video-container mb-3">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/Sx7bgjx3O8Y?si=F6vw5XteIlpLujMq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                    <div class="bg-orange-50 p-2 rounded-xl">
-                        <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
-                        <p class="text-orange-700 text-xs">Mantenha o controle dos ombros e quadris do oponente.</p>
-                    </div>
-                </div>
-                <!-- Imobilização 4 -->
-                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
-                    <div class="flex items-center mb-3 justify-between">
-                        <div class="flex items-center">
-                            <div class="bg-orange-100 p-2 rounded-full mr-3">
-                                <span class="text-lg">🥋</span>
+
+                    <!-- Imobilização 2 -->
+                    <div class="technique-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                        <div class="relative">
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/SBapox2M2dE?si=udntyAI0ajP89Qgc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-gray-800">KATA-GATAME</h3>
-                                <p class="text-gray-600 text-sm">Imobilização por controle do braço e pescoço</p>
+                            <div class="absolute top-2 right-2">
+                                <label class="flex items-center select-none">
+                                    <input type="checkbox" class="imob-checkbox accent-orange-500 w-4 h-4 mr-1" />
+                                    <span class="text-xs text-white bg-black/50 px-2 py-1 rounded">Aprendi</span>
+                                </label>
                             </div>
                         </div>
-                        <label class="flex items-center ml-2 select-none">
-                            <input type="checkbox" class="imob-checkbox accent-orange-500 w-5 h-5 mr-1" />
-                            <span class="text-xs text-gray-700">Aprendi</span>
-                        </label>
+                        <div class="p-4">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-orange-100 p-2 rounded-full mr-3">
+                                    <span class="text-sm">🥋</span>
+                                </div>
+                                <h3 class="text-base font-bold text-gray-800">USHIRO-KESA-GATAME</h3>
+                            </div>
+                            <p class="text-gray-600 text-xs mb-3">Imobilização lateral por trás</p>
+                            <div class="bg-orange-50 p-2 rounded-lg">
+                                <h4 class="font-semibold text-orange-800 mb-1 text-xs">💡 Dica:</h4>
+                                <p class="text-orange-700 text-xs">Controle o quadril do oponente e mantenha o peso centralizado.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="video-container mb-3">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/zQR3IOXxO_Q?si=6MfNkIzaGr3N0KI-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+                    <!-- Imobilização 3 -->
+                    <div class="technique-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                        <div class="relative">
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/Sx7bgjx3O8Y?si=F6vw5XteIlpLujMq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                            <div class="absolute top-2 right-2">
+                                <label class="flex items-center select-none">
+                                    <input type="checkbox" class="imob-checkbox accent-orange-500 w-4 h-4 mr-1" />
+                                    <span class="text-xs text-white bg-black/50 px-2 py-1 rounded">Aprendi</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-orange-100 p-2 rounded-full mr-3">
+                                    <span class="text-sm">🥋</span>
+                                </div>
+                                <h3 class="text-base font-bold text-gray-800">KUZURE-TATE-SHIHO-GATAME (I e II)</h3>
+                            </div>
+                            <p class="text-gray-600 text-xs mb-3">Imobilização vertical modificada, variações I e II</p>
+                            <div class="bg-orange-50 p-2 rounded-lg">
+                                <h4 class="font-semibold text-orange-800 mb-1 text-xs">💡 Dica:</h4>
+                                <p class="text-orange-700 text-xs">Mantenha o controle dos ombros e quadris do oponente.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-orange-50 p-2 rounded-xl">
-                        <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
-                        <p class="text-orange-700 text-xs">Aperte o braço do oponente contra o pescoço e mantenha o peso baixo.</p>
+
+                    <!-- Imobilização 4 -->
+                    <div class="technique-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                        <div class="relative">
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/zQR3IOXxO_Q?si=6MfNkIzaGr3N0KI-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                            <div class="absolute top-2 right-2">
+                                <label class="flex items-center select-none">
+                                    <input type="checkbox" class="imob-checkbox accent-orange-500 w-4 h-4 mr-1" />
+                                    <span class="text-xs text-white bg-black/50 px-2 py-1 rounded">Aprendi</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center mb-2">
+                                <div class="bg-orange-100 p-2 rounded-full mr-3">
+                                    <span class="text-sm">🥋</span>
+                                </div>
+                                <h3 class="text-base font-bold text-gray-800">KATA-GATAME</h3>
+                            </div>
+                            <p class="text-gray-600 text-xs mb-3">Imobilização por controle do braço e pescoço</p>
+                            <div class="bg-orange-50 p-2 rounded-lg">
+                                <h4 class="font-semibold text-orange-800 mb-1 text-xs">💡 Dica:</h4>
+                                <p class="text-orange-700 text-xs">Aperte o braço do oponente contra o pescoço e mantenha o peso baixo.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <!-- Botão Direita -->
+                <button id="carouselImobRight" type="button" class="hidden md:flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-orange-600/80 hover:bg-orange-600 text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                </button>
             </div>
         </section>
         <!-- Divisor Visual -->
@@ -505,12 +584,13 @@
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // --- PROGRESSO (já existente) ---
             const projCheckboxes = document.querySelectorAll('.proj-checkbox');
             const imobCheckboxes = document.querySelectorAll('.imob-checkbox');
             const chaveCheckboxes = document.querySelectorAll('.chave-checkbox');
             const progressBar = document.getElementById('progressBar');
             const progressText = document.getElementById('progressText');
-            // Função para atualizar progresso
+            
             function updateProgress() {
                 const totalProjChecked = document.querySelectorAll('.proj-checkbox:checked').length;
                 const totalImobChecked = document.querySelectorAll('.imob-checkbox:checked').length;
@@ -521,6 +601,7 @@
                 progressBar.style.width = progress + '%';
                 progressText.textContent = Math.round(progress) + '%';
             }
+            
             projCheckboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', updateProgress);
             });
@@ -531,6 +612,54 @@
                 checkbox.addEventListener('change', updateProgress);
             });
             updateProgress();
+
+            // --- CARROSSEL PROJEÇÃO ---
+            const carouselProj = document.getElementById('carouselProj');
+            const projLeftBtn = document.getElementById('carouselLeft');
+            const projRightBtn = document.getElementById('carouselRight');
+            if (carouselProj && projLeftBtn && projRightBtn) {
+                projLeftBtn.addEventListener('click', () => {
+                    carouselProj.scrollBy({ left: -carouselProj.offsetWidth * 0.8, behavior: 'smooth' });
+                    projLeftBtn.classList.add('carousel-arrow-anim');
+                    setTimeout(() => projLeftBtn.classList.remove('carousel-arrow-anim'), 700);
+                });
+                projRightBtn.addEventListener('click', () => {
+                    carouselProj.scrollBy({ left: carouselProj.offsetWidth * 0.8, behavior: 'smooth' });
+                    projRightBtn.classList.add('carousel-arrow-anim');
+                    setTimeout(() => projRightBtn.classList.remove('carousel-arrow-anim'), 700);
+                });
+                const updateProjBtns = () => {
+                    projLeftBtn.style.display = carouselProj.scrollLeft > 10 ? 'flex' : 'none';
+                    projRightBtn.style.display = (carouselProj.scrollLeft + carouselProj.offsetWidth < carouselProj.scrollWidth - 10) ? 'flex' : 'none';
+                };
+                carouselProj.addEventListener('scroll', updateProjBtns);
+                window.addEventListener('resize', updateProjBtns);
+                setTimeout(updateProjBtns, 300);
+            }
+
+            // --- CARROSSEL IMOBILIZAÇÃO ---
+            const carouselImob = document.getElementById('carouselImob');
+            const imobLeftBtn = document.getElementById('carouselImobLeft');
+            const imobRightBtn = document.getElementById('carouselImobRight');
+            if (carouselImob && imobLeftBtn && imobRightBtn) {
+                imobLeftBtn.addEventListener('click', () => {
+                    carouselImob.scrollBy({ left: -carouselImob.offsetWidth * 0.8, behavior: 'smooth' });
+                    imobLeftBtn.classList.add('carousel-arrow-anim');
+                    setTimeout(() => imobLeftBtn.classList.remove('carousel-arrow-anim'), 700);
+                });
+                imobRightBtn.addEventListener('click', () => {
+                    carouselImob.scrollBy({ left: carouselImob.offsetWidth * 0.8, behavior: 'smooth' });
+                    imobRightBtn.classList.add('carousel-arrow-anim');
+                    setTimeout(() => imobRightBtn.classList.remove('carousel-arrow-anim'), 700);
+                });
+                const updateImobBtns = () => {
+                    imobLeftBtn.style.display = carouselImob.scrollLeft > 10 ? 'flex' : 'none';
+                    imobRightBtn.style.display = (carouselImob.scrollLeft + carouselImob.offsetWidth < carouselImob.scrollWidth - 10) ? 'flex' : 'none';
+                };
+                carouselImob.addEventListener('scroll', updateImobBtns);
+                window.addEventListener('resize', updateImobBtns);
+                setTimeout(updateImobBtns, 300);
+            }
         });
     </script>
 </body>
