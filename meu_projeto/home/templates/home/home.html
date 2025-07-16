@@ -50,7 +50,8 @@
                 <span class="font-bold text-base text-gray-700 tracking-wider">Judô</span>
             </div>
             <h2 class="text-lg font-semibold mb-3 text-gray-800 animate-fade-in-down">Acessar sua conta</h2>
-            <form id="login-form" class="w-full flex flex-col gap-2" autocomplete="off">
+            <form id="login-form" method="post" action="{% url 'login' %}" class="w-full flex flex-col gap-2" autocomplete="off">
+                {% csrf_token %}
                 <div class="relative">
                     <input id="email" type="email" name="email" placeholder=" " required class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" />
                     <label for="email" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Email</label>
@@ -137,66 +138,8 @@
             togglePassword.innerHTML = senhaInput.type === 'password' ? '<i class="fa-regular fa-eye"></i>' : '<i class="fa-regular fa-eye-slash"></i>';
         });
 
-        // Feedback visual e microinteração no login
-        const loginForm = document.getElementById('login-form');
-        const loginBtn = document.getElementById('login-btn');
-        const loginSpinner = document.getElementById('login-spinner');
-        const feedback = document.getElementById('login-feedback');
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            loginBtn.disabled = true;
-            loginSpinner.classList.remove('hidden');
-            loginBtn.classList.add('opacity-70');
-            feedback.textContent = '';
-            feedback.style.opacity = 0;
-            setTimeout(() => {
-                // Simula validação
-                const email = document.getElementById('email').value;
-                const senha = document.getElementById('senha').value;
-                if(email && senha.length >= 4) {
-                    feedback.textContent = 'Login realizado com sucesso!';
-                    feedback.classList.remove('bg-red-600');
-                    feedback.classList.add('bg-blue-600');
-                    setTimeout(() => {
-                        window.location.href = "/index/";
-                    }, 1200);
-                } else {
-                    feedback.textContent = 'Preencha todos os campos corretamente.';
-                    feedback.classList.remove('bg-blue-600');
-                    feedback.classList.add('bg-red-600');
-                }
-                feedback.style.opacity = 1;
-                feedback.style.pointerEvents = 'auto';
-                setTimeout(() => {
-                    feedback.style.opacity = 0;
-                    feedback.style.pointerEvents = 'none';
-                }, 2500);
-                loginBtn.disabled = false;
-                loginSpinner.classList.add('hidden');
-                loginBtn.classList.remove('opacity-70');
-            }, 1200);
-        });
-
-        // Adicionar lógica para alternar entre login e cadastro
-        const cadastroCampos = document.getElementById('cadastro-campos');
-        const criarContaLink = document.getElementById('criar-conta-link');
-        const loginBtnText = document.getElementById('login-btn-text');
-        let modoCadastro = false;
-        criarContaLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            modoCadastro = !modoCadastro;
-            if (modoCadastro) {
-                cadastroCampos.style.display = 'block';
-                loginBtnText.textContent = 'Criar conta';
-                criarContaLink.textContent = 'Já possui conta? Entrar';
-            } else {
-                cadastroCampos.style.display = 'none';
-                loginBtnText.textContent = 'Entrar';
-                criarContaLink.textContent = 'Crie uma conta grátis';
-            }
-        });
-        // Inicialmente esconder campos de cadastro
-        cadastroCampos.style.display = 'none';
+        // Remover manipulação do submit do formulário de login
+        // ... mantenha apenas animações, toggle de senha, etc ...
     </script>
 </body>
 </html>

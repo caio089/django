@@ -17,7 +17,7 @@ def login_view(request):
         if form.is_valid():
             user = form.cleaned_data['user']
             login(request, user)
-            return redirect('/index/')
+            return redirect('index')
     return render(request, 'home/home.html', {
         'form': form,
         'register_form': register_form,

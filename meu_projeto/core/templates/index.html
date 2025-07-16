@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -30,6 +31,8 @@
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap');
+        .font-league { font-family: 'League Spartan', system-ui, sans-serif; }
         
         .hero-section {
             background: linear-gradient(135deg, #374151 0%, #1F2937 100%);
@@ -466,7 +469,7 @@
             <div class="absolute bottom-6 left-6 right-6">
                 <div class="bg-white/10 rounded-lg p-4 text-center">
                     <p class="text-white text-sm">© 2024 Academia de Judô</p>
-                    <p class="text-gray-400 text-xs">Desenvolvido com ❤️</p>
+                    <p class="text-gray-400 text-xs">Desenvolvido por Caio campos</p>
                 </div>
             </div>
         </div>
@@ -485,25 +488,29 @@
                 <!-- Left Side - Welcome Section -->
                 <div class="text-center lg:text-left welcome-section">
                     <div class="welcome-container bg-gradient-to-br from-slate-700/90 via-gray-600/80 to-zinc-700/90 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-slate-500/30 shadow-xl relative gradient-animated">
-                        <h1 class="welcome-title text-5xl lg:text-6xl font-bold mb-6">
-                            Bem-vindo ao Judô!
-                        </h1>
-                        
-                        <p class="text-white/90 text-xl mb-8 typing-text instruction-text">
-                            Digite seu nome para começar sua jornada
-                        </p>
-                        
-                        <div class="relative max-w-md mx-auto lg:mx-0 mb-8">
-                            <input 
-                                type="text" 
-                                class="name-input w-full px-6 py-4 text-lg bg-white/95 backdrop-blur-sm border border-slate-400/50 rounded-2xl text-gray-800 placeholder-gray-500 focus:outline-none focus:border-slate-400/70 focus:ring-2 focus:ring-slate-400/30"
-                                placeholder="Digite seu nome"
-                                id="nameInput"
-                            >
-                        </div>
-                        
-                        <div id="welcome-message" class="welcome-message text-white text-2xl font-semibold hidden"></div>
-                        
+                        {# <h1 class="welcome-title text-5xl lg:text-6xl font-bold mb-6">Bem-vindo ao Judô!</h1> #}
+                        {# Remover debug de usuário autenticado e email #}
+
+{% if nome and faixa %}
+    <div class="w-full flex flex-col items-center justify-center my-6">
+        <h2 class="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-blue-200 to-slate-400 drop-shadow-lg animate-fade-in-up text-center select-none font-league" style="letter-spacing: 0.5px;">
+            {{ nome }}, você está no caminho certo.
+        </h2>
+        <p class="mt-2 text-lg md:text-xl font-semibold text-slate-200 drop-shadow-xl animate-fade-in-up text-center select-none font-league" style="text-shadow: 0 2px 16px #0003;">
+            A faixa <span class="text-blue-400 font-bold">{{ faixa }}</span> é só o começo.<br>
+            Aqui você vai adquirir todo o conhecimento necessário para a próxima etapa.
+        </p>
+    </div>
+{% else %}
+    <div class="w-full flex flex-col items-center justify-center my-6">
+        <h2 class="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-gray-300 to-slate-400 drop-shadow-lg animate-fade-in-up text-center select-none font-league">
+            Sua jornada começa aqui.
+        </h2>
+        <p class="mt-2 text-lg md:text-xl font-semibold text-slate-200 drop-shadow-xl animate-fade-in-up text-center select-none font-league">
+            Faça login para liberar seu potencial!
+        </p>
+    </div>
+{% endif %}
                         <div class="mt-8">
                             <p class="text-white/80 text-lg final-text">
                                 Escolha sua faixa ao lado e comece sua evolução no judô!
@@ -522,55 +529,55 @@
                     <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
                         <a href="/pagina1/" class="block">
                             <div class="faixa-card bg-judo-gray rounded-2xl p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl relative">
-                                <div class="emoji">🥋</div>
-                                <div>Faixa Cinza \ Ponteira Cinza</div>
-                                <div class="text-sm opacity-80">Iniciante</div>
+                                <img src="{% static 'faixa-cinza.png' %}" alt="Faixa Cinza" class="mx-auto mb-2" style="height: 48px; width: auto;" />
+                                <div>Faixa Cinza  Ponteira Cinza</div>
+                                <div class="text-sm opacity-80"></div>
                             </div>
                         </a>
                         
                         <a href="/pagina2/" class="block">
                             <div class="faixa-card bg-judo-blue rounded-2xl p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl">
-                                <div class="emoji">🥋</div>
-                                <div>Faixa Azul \ Ponteira Azul</div>
-                                <div class="text-sm opacity-80">Básico</div>
+                                <img src="{% static 'faixa-azul.png' %}" alt="Faixa Azul" class="mx-auto mb-2" style="height: 48px; width: auto;" />
+                                <div>Faixa Azul  Ponteira Azul</div>
+                                <div class="text-sm opacity-80"></div>
                             </div>
                         </a>
                         
                         <a href="/pagina3/" class="block">
                             <div class="faixa-card bg-judo-yellow rounded-2xl p-6 text-center text-gray-800 font-bold shadow-lg hover:shadow-2xl">
-                                <div class="emoji">🥋</div>
-                                <div>Faixa Amarela \ Ponteira Amarela</div>
-                                <div class="text-sm opacity-80">Intermediário</div>
+                                <img src="{% static 'faixa-amarela.png' %}" alt="Faixa Amarela" class="mx-auto mb-2" style="height: 48px; width: auto;" />
+                                <div>Faixa Amarela  Ponteira Amarela</div>
+                                <div class="text-sm opacity-80"></div>
                             </div>
                         </a>
                         <a href="/pagina4/" class="block">
                         <div class="faixa-card bg-judo-orange rounded-2xl p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="window.location.href='page4.html'">
-                            <div class="emoji">🥋</div>
-                            <div>Faixa Laranja \ Ponteira Laranja</div>
-                            <div class="text-sm opacity-80">Avançado</div>
+                            <img src="{% static 'faixa-laranja.png' %}" alt="Faixa Laranja" class="mx-auto mb-2" style="height: 48px; width: auto;" />
+                            <div>Faixa Laranja  Ponteira Laranja</div>
+                            <div class="text-sm opacity-80"></div>
                         </div>
                     </a>
                     <a href="/pagina5/">
                         <div class="faixa-card bg-judo-green rounded-2xl p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="window.location.href='page5.html'">
-                            <div class="emoji">🥋</div>
+                            <img src="{% static 'faixa-verde.png' %}" alt="Faixa Verde" class="mx-auto mb-2" style="height: 48px; width: auto;" />
                             <div>Faixa Verde</div>
-                            <div class="text-sm opacity-80">Expert</div>
+                            <div class="text-sm opacity-80"></div>
                         </div>
                     </a>
                     <a href="/pagina6/">
                         <div class="faixa-card bg-judo-purple rounded-2xl p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="window.location.href='page6.html'">
-                            <div class="emoji">🥋</div>
+                            <img src="{% static 'faixa-roxa.png' %}" alt="Faixa Roxa" class="mx-auto mb-2" style="height: 48px; width: auto;" />
                             <div>Faixa Roxa</div>
-                            <div class="text-sm opacity-80">Mestre</div>
+                            <div class="text-sm opacity-80"></div>
                         </div>
                     </a> 
                     <a href="/pagina7/">
                         <div class="faixa-card bg-judo-brown rounded-2xl p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="window.location.href='page7.html'">
-                            <div class="emoji">🥋</div>
+                            <img src="{% static 'faixa-marrom.png' %}" alt="Faixa Marrom" class="mx-auto mb-2" style="height: 48px; width: auto;" />
                             <div>Faixa Marrom</div>
-                            <div class="text-sm opacity-80">Sênior</div>
+                            <div class="text-sm opacity-80"></div>
                         </div>
-                        </a>
+                    </a>
                     </div>
                 </div>
             </div>
