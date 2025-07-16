@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -107,11 +108,14 @@
 </head>
 <body class="bg-gray-50 font-display">
     <!-- Header com Progresso -->
-    <header class="gradient-bg text-white py-6 px-4">
+    <header class="gradient-bg text-white py-4 px-4">
         <div class="max-w-6xl mx-auto">
-            <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center justify-between mb-4">
                 <div>
-                    <h1 class="text-3xl md:text-4xl font-bold mb-2">🥋 Faixa Verde</h1>
+                    <h1 class="text-3xl md:text-4xl font-bold mb-2 flex items-center gap-3">
+                        <img src="{% static 'faixa-verde.png' %}" alt="Faixa Verde" class="w-12 h-8 object-contain">
+                        Faixa Verde
+                    </h1>
                     <p class="text-green-100 text-lg">Seu quinto passo na jornada do judô</p>
                 </div>
                 <a href="/" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
@@ -119,15 +123,15 @@
                 </a>
             </div>
             <!-- Barra de Progresso -->
-            <div class="bg-white/20 rounded-full h-3 mb-4">
-                <div class="progress-bar bg-white rounded-full h-3" style="width: 0%" id="progressBar"></div>
+            <div class="bg-white/20 rounded-full h-5 mb-3 shadow-inner">
+                <div class="progress-bar bg-gradient-to-r from-verde-400 to-verde-600 rounded-full h-5 shadow-lg transition-all duration-500" style="width: 0%" id="progressBar"></div>
             </div>
-            <p class="text-sm text-green-100">Progresso: <span id="progressText">0%</span></p>
+            <p class="text-base font-semibold text-white">Progresso: <span id="progressText" class="text-verde-200">0%</span></p>
         </div>
     </header>
     <main class="max-w-6xl mx-auto px-4 py-6">
         <!-- Card de Boas-Vindas Minimalista -->
-        <div id="welcomeCard" class="bg-white/80 border border-green-300 rounded-xl shadow-md p-3 mb-8 mx-auto max-w-xl flex flex-col items-center transition-all duration-300 cursor-pointer group hover:shadow-green-300/60 hover:shadow-2xl">
+        <div id="welcomeCard" class="bg-white/80 border border-verde-300 rounded-xl shadow-md p-6 mb-8 w-full flex flex-col items-center">
             <div class="flex items-center gap-2">
                 <span class="text-xl text-green-500">🥋</span>
                 <span class="font-semibold text-green-700 text-lg">Faixa Verde</span>
@@ -135,14 +139,14 @@
             <div class="flex flex-row gap-4 mt-2 w-full justify-center">
                 <div class="text-center">
                     <div class="font-bold text-green-600">Condição</div>
-                    <div class="details transition-all duration-400 ease-in-out opacity-0 max-h-0 translate-y-2 group-hover:opacity-100 group-hover:max-h-32 group-hover:translate-y-0 group-hover:mt-1 overflow-hidden text-xs text-gray-700">
+                    <div class="text-sm text-gray-700">
                         <div>a. SEIS MESES COMO FAIXA LARANJA</div>
                         <div>b. IDADE MÍNIMA: 10 ANOS DE IDADE</div>
                     </div>
                 </div>
                 <div class="text-center">
                     <div class="font-bold text-green-600">Habilidades</div>
-                    <div class="details transition-all duration-400 ease-in-out opacity-0 max-h-0 translate-y-2 group-hover:opacity-100 group-hover:max-h-40 group-hover:translate-y-0 group-hover:mt-1 overflow-hidden text-xs text-gray-700 text-left">
+                    <div class="text-sm text-gray-700">
                         <div>a. 10 (DEZ) TÉCNICAS DE NAGUE-WAZA (PROJEÇÕES)</div>
                         <div>b. 4 (QUATRO) TÉCNICAS DE OSSAE-WAZA (IMOBILIZAÇÕES)</div>
                         <div>c. 3 (TRÊS) TÉCNICAS DE KANSETSU-WAZA (CHAVE DE BRAÇO)</div>
@@ -152,10 +156,55 @@
                     </div>
                 </div>
             </div>
-            <div class="text-xs text-gray-400 mt-2">Passe o mouse para ver detalhes</div>
+            
         </div>
+        <!-- Divs de Navegação Japonesa -->
+        <div class="flex justify-center gap-8 mb-8">
+            <div class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-blue-400 hover:bg-gradient-to-br hover:from-blue-50 hover:to-white transform hover:-translate-y-2">
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-400/0 to-blue-400/0 group-hover:from-blue-400/10 group-hover:to-blue-400/5 transition-all duration-500"></div>
+                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:rotate-12">🥋</div>
+                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-blue-700 group-hover:scale-105">Palavras</div>
+                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-blue-600">Japonês</div>
+            </div>
+            
+            <div class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-green-400 hover:bg-gradient-to-br hover:from-green-50 hover:to-white transform hover:-translate-y-2">
+                <div class="absolute inset-0 bg-gradient-to-r from-green-400/0 to-green-400/0 group-hover:from-green-400/10 group-hover:to-green-400/5 transition-all duration-500"></div>
+                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-spin">🔄</div>
+                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-green-700 group-hover:scale-105">Rolamentos</div>
+                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-green-600">Ukemi</div>
+            </div>
+            
+            <div id="nage-waza-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-orange-400 hover:bg-gradient-to-br hover:from-orange-50 hover:to-white transform hover:-translate-y-2">
+                <div class="absolute inset-0 bg-gradient-to-r from-orange-400/0 to-orange-400/0 group-hover:from-orange-400/10 group-hover:to-orange-400/5 transition-all duration-500"></div>
+                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-pulse">💥</div>
+                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-orange-700 group-hover:scale-105">Quedas</div>
+                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-orange-600">Nage-waza</div>
+            </div>
+            
+            <div id="imobilizacoes-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-purple-400 hover:bg-gradient-to-br hover:from-purple-50 hover:to-white transform hover:-translate-y-2">
+                <div class="absolute inset-0 bg-gradient-to-r from-purple-400/0 to-purple-400/0 group-hover:from-purple-400/10 group-hover:to-purple-400/5 transition-all duration-500"></div>
+                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-bounce">🔒</div>
+                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-purple-700 group-hover:scale-105">Imobilizações</div>
+                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-purple-600">Osaekomi-waza</div>
+            </div>
+            
+            <div id="chave-braco-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-red-400 hover:bg-gradient-to-br hover:from-red-50 hover:to-white transform hover:-translate-y-2">
+                <div class="absolute inset-0 bg-gradient-to-r from-red-400/0 to-red-400/0 group-hover:from-red-400/10 group-hover:to-red-400/5 transition-all duration-500"></div>
+                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-ping">🦴</div>
+                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-red-700 group-hover:scale-105">Chave de Braço</div>
+                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-red-600">Kansetsu-waza</div>
+            </div>
+            
+            <div id="estrangulamento-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-pink-400 hover:bg-gradient-to-br hover:from-pink-50 hover:to-white transform hover:-translate-y-2">
+                <div class="absolute inset-0 bg-gradient-to-r from-pink-400/0 to-pink-400/0 group-hover:from-pink-400/10 group-hover:to-pink-400/5 transition-all duration-500"></div>
+                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-pulse">💀</div>
+                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-pink-700 group-hover:scale-105">Estrangulamento</div>
+                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-pink-600">Shime-waza</div>
+            </div>
+        </div>
+
         <!-- Seção de Técnicas -->
-        <section class="mb-8">
+        <section id="nage-waza-section" class="mb-8">
             <div class="text-center mb-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
                     <span class="text-gradient">Técnicas de Projeção</span>
@@ -464,7 +513,7 @@
         <!-- Divisor Visual -->
         <div class="section-divider h-px my-6"></div>
         <!-- Seção de Imobilizações -->
-        <section class="mb-8">
+        <section id="imobilizacoes-section" class="mb-8">
             <div class="text-center mb-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
                     <span class="text-gradient">Técnicas de Imobilização</span>
@@ -605,7 +654,7 @@
         <!-- Divisor Visual -->
         <div class="section-divider h-px my-6"></div>
         <!-- Seção de Chave de Braço -->
-        <section class="mb-8">
+        <section id="chave-braco-section" class="mb-8">
             <div class="text-center mb-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
                     <span class="text-gradient">Técnicas de Chave de Braço</span>
@@ -718,7 +767,7 @@
         <!-- Divisor Visual -->
         <div class="section-divider h-px my-6"></div>
         <!-- Seção de Estrangulamento -->
-        <section class="mb-8">
+        <section id="estrangulamento-section" class="mb-8">
             <div class="text-center mb-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
                     <span class="text-gradient">Técnicas de Estrangulamento</span>
@@ -830,6 +879,21 @@
         </section>
         <!-- Divisor Visual -->
         <div class="section-divider h-px my-8"></div>
+        <!-- Barra de Progresso Flutuante -->
+        <div id="floatingProgress" class="fixed top-4 left-0 right-0 mx-auto w-fit bg-white border border-gray-300 rounded-lg shadow-lg p-3 z-50 opacity-0 transition-opacity duration-300 pointer-events-none">
+            <div class="flex items-center gap-5">
+                <div class="w-80 bg-gray-200 rounded-full h-3">
+                    <div id="floatingProgressBar" class="bg-gradient-to-r from-green-400 to-emerald-500 h-3 rounded-full transition-all duration-500 shadow-sm" style="width: 0%"></div>
+                </div>
+                <span id="floatingProgressText" class="text-base font-bold text-gray-800">0%</span>
+            </div>
+        </div>
+
+        <!-- Botão Flutuante de Voltar ao Topo -->
+        <button id="backToTop" class="fixed bottom-8 right-8 bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-lg floating-action transition-colors hidden">
+            <span class="text-2xl">↑</span>
+        </button>
+
     </main>
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-6 px-4 mt-8">
@@ -846,6 +910,9 @@
             const chaveCheckboxes = document.querySelectorAll('.chave-checkbox');
             const progressBar = document.getElementById('progressBar');
             const progressText = document.getElementById('progressText');
+            const floatingProgress = document.getElementById('floatingProgress');
+            const floatingProgressBar = document.getElementById('floatingProgressBar');
+            const floatingProgressText = document.getElementById('floatingProgressText');
             
             // Função para atualizar progresso
             function updateProgress() {
@@ -857,6 +924,26 @@
                 const progress = (completedQuestions / totalQuestions) * 100;
                 progressBar.style.width = progress + '%';
                 progressText.textContent = Math.round(progress) + '%';
+                
+                // Mostrar barra de progresso flutuante
+                showFloatingProgress(progress);
+            }
+
+            // Função para mostrar barra de progresso flutuante
+            function showFloatingProgress(progress) {
+                // Atualizar valores da barra flutuante
+                floatingProgressBar.style.width = progress + '%';
+                floatingProgressText.textContent = Math.round(progress) + '%';
+                
+                // Mostrar a barra
+                floatingProgress.style.opacity = '1';
+                floatingProgress.style.pointerEvents = 'auto';
+                
+                // Esconder após 5 segundos
+                setTimeout(() => {
+                    floatingProgress.style.opacity = '0';
+                    floatingProgress.style.pointerEvents = 'none';
+                }, 5000);
             }
             
             projCheckboxes.forEach(checkbox => {
@@ -869,6 +956,82 @@
                 checkbox.addEventListener('change', updateProgress);
             });
             updateProgress();
+
+            // Botão voltar ao topo
+            const backToTopBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.remove('hidden');
+                } else {
+                    backToTopBtn.classList.add('hidden');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Animação para as divs de navegação japonesa
+            document.querySelectorAll('.japanese-nav-card').forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 200 + (index * 100)); // Delay escalonado para cada card
+            });
+
+            // Navegação interna
+            const nageWazaNav = document.getElementById('nage-waza-nav');
+            const imobilizacoesNav = document.getElementById('imobilizacoes-nav');
+            const chaveBracoNav = document.getElementById('chave-braco-nav');
+            const estrangulamentoNav = document.getElementById('estrangulamento-nav');
+            
+            const nageWazaSection = document.getElementById('nage-waza-section');
+            const imobilizacoesSection = document.getElementById('imobilizacoes-section');
+            const chaveBracoSection = document.getElementById('chave-braco-section');
+            const estrangulamentoSection = document.getElementById('estrangulamento-section');
+
+            if (nageWazaNav && nageWazaSection) {
+                nageWazaNav.addEventListener('click', function() {
+                    nageWazaSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
+            }
+
+            if (imobilizacoesNav && imobilizacoesSection) {
+                imobilizacoesNav.addEventListener('click', function() {
+                    imobilizacoesSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
+            }
+
+            if (chaveBracoNav && chaveBracoSection) {
+                chaveBracoNav.addEventListener('click', function() {
+                    chaveBracoSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
+            }
+
+            if (estrangulamentoNav && estrangulamentoSection) {
+                estrangulamentoNav.addEventListener('click', function() {
+                    estrangulamentoSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
+            }
 
             // --- CARROSSEL PROJEÇÃO ---
             const carouselProj = document.getElementById('carouselProj');

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -136,15 +137,24 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+        
+        .japanese-nav-card {
+            position: relative;
+            z-index: 10;
+            cursor: pointer !important;
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-display">
     <!-- Header com Progresso -->
-    <header class="gradient-bg text-white py-6 px-4">
+    <header class="gradient-bg text-white py-4 px-4">
         <div class="max-w-6xl mx-auto">
-            <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center justify-between mb-4">
                 <div>
-                    <h1 class="text-3xl md:text-4xl font-bold mb-2">🥋 Faixa Amarela</h1>
+                    <h1 class="text-3xl md:text-4xl font-bold mb-2 flex items-center gap-3">
+                        <img src="{% static 'faixa-amarela.png' %}" alt="Faixa Amarela" class="w-12 h-8 object-contain">
+                        Faixa Amarela
+                    </h1>
                     <p class="text-yellow-100 text-lg">Seu terceiro passo na jornada do judô</p>
                 </div>
                 <a href="/" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
@@ -153,31 +163,31 @@
             </div>
             
             <!-- Barra de Progresso -->
-            <div class="bg-white/20 rounded-full h-3 mb-4">
-                <div class="progress-bar bg-white rounded-full h-3" style="width: 0%" id="progressBar"></div>
+            <div class="bg-white/20 rounded-full h-5 mb-3 shadow-inner">
+                <div class="progress-bar bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full h-5 shadow-lg transition-all duration-500" style="width: 0%" id="progressBar"></div>
             </div>
-            <p class="text-sm text-yellow-100">Progresso: <span id="progressText">0%</span></p>
+            <p class="text-base font-semibold text-white">Progresso: <span id="progressText" class="text-yellow-200">0%</span></p>
         </div>
     </header>
 
     <main class="max-w-6xl mx-auto px-4 py-6">
         <!-- Card de Boas-Vindas Minimalista -->
-        <div id="welcomeCard" class="bg-white/80 border border-yellow-300 rounded-xl shadow-md p-3 mb-8 mx-auto max-w-xl flex flex-col items-center transition-all duration-300 cursor-pointer group hover:shadow-yellow-300/60 hover:shadow-2xl">
-            <div class="flex items-center gap-2">
-                <span class="text-xl text-yellow-500">🥋</span>
-                <span class="font-semibold text-yellow-700 text-lg">Bem-vindo à Faixa Amarela</span>
+        <div id="welcomeCard" class="bg-white/80 border border-yellow-300 rounded-xl shadow-md p-6 mb-8 w-full flex flex-col items-center">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-2xl text-yellow-500">🥋</span>
+                <span class="font-semibold text-yellow-700 text-xl">Bem-vindo à Faixa Amarela</span>
             </div>
-            <div class="flex flex-row gap-4 mt-2 w-full justify-center">
+            <div class="flex flex-row gap-8 w-full justify-center">
                 <div class="text-center">
-                    <div class="font-bold text-yellow-600">Condição</div>
-                    <div class="details transition-all duration-400 ease-in-out opacity-0 max-h-0 translate-y-2 group-hover:opacity-100 group-hover:max-h-32 group-hover:translate-y-0 group-hover:mt-1 overflow-hidden text-xs text-gray-700">
+                    <div class="font-bold text-yellow-600 text-lg mb-2">Condição</div>
+                    <div class="text-sm text-gray-700">
                         <div>• 6 meses de faixa azul</div>
                         <div>• Idade mínima: 8 anos</div>
                     </div>
                 </div>
                 <div class="text-center">
-                    <div class="font-bold text-yellow-600">Habilidades</div>
-                    <div class="details transition-all duration-400 ease-in-out opacity-0 max-h-0 translate-y-2 group-hover:opacity-100 group-hover:max-h-40 group-hover:translate-y-0 group-hover:mt-1 overflow-hidden text-xs text-gray-700 text-left">
+                    <div class="font-bold text-yellow-600 text-lg mb-2">Habilidades</div>
+                    <div class="text-sm text-gray-700 text-left">
                         <div>• Shintai, Tai Sabaki e Kumikata</div>
                         <div>• Tipos de Ukemis (Rolamentos)</div>
                         <div>• 6 técnicas de Nague-waza</div>
@@ -187,17 +197,10 @@
                     </div>
                 </div>
             </div>
-            <div class="text-xs text-gray-400 mt-2">Passe o mouse para ver detalhes</div>
         </div>
         <style>
         #welcomeCard {
             box-shadow: 0 2px 16px 0 rgba(251,191,36,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
-        }
-        #welcomeCard:hover {
-            box-shadow: 0 0 24px 4px #fde68a, 0 2px 16px 0 rgba(251,191,36,0.12);
-        }
-        .details {
-            transition-property: opacity, max-height, transform, margin-top;
         }
         </style>
 
@@ -211,8 +214,39 @@
         }
         </style>
 
+        <!-- Divs de Navegação Japonesa -->
+        <div class="flex justify-center gap-8 mb-8">
+            <div class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-blue-400 hover:bg-gradient-to-br hover:from-blue-50 hover:to-white transform hover:-translate-y-2">
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-400/0 to-blue-400/0 group-hover:from-blue-400/10 group-hover:to-blue-400/5 transition-all duration-500"></div>
+                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:rotate-12">🥋</div>
+                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-blue-700 group-hover:scale-105">Palavras</div>
+                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-blue-600">Japonês</div>
+            </div>
+            
+            <div class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-green-400 hover:bg-gradient-to-br hover:from-green-50 hover:to-white transform hover:-translate-y-2">
+                <div class="absolute inset-0 bg-gradient-to-r from-green-400/0 to-green-400/0 group-hover:from-green-400/10 group-hover:to-green-400/5 transition-all duration-500"></div>
+                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-spin">🔄</div>
+                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-green-700 group-hover:scale-105">Rolamentos</div>
+                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-green-600">Ukemi</div>
+            </div>
+            
+            <div id="nage-waza-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-orange-400 hover:bg-gradient-to-br hover:from-orange-50 hover:to-white transform hover:-translate-y-2">
+                <div class="absolute inset-0 bg-gradient-to-r from-orange-400/0 to-orange-400/0 group-hover:from-orange-400/10 group-hover:to-orange-400/5 transition-all duration-500"></div>
+                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-pulse">💥</div>
+                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-orange-700 group-hover:scale-105">Quedas</div>
+                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-orange-600">Nage-waza</div>
+            </div>
+            
+            <div id="imobilizacoes-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-purple-400 hover:bg-gradient-to-br hover:from-purple-50 hover:to-white transform hover:-translate-y-2">
+                <div class="absolute inset-0 bg-gradient-to-r from-purple-400/0 to-purple-400/0 group-hover:from-purple-400/10 group-hover:to-purple-400/5 transition-all duration-500"></div>
+                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-bounce">🔒</div>
+                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-purple-700 group-hover:scale-105">Imobilizações</div>
+                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-purple-600">Osaekomi-waza</div>
+            </div>
+        </div>
+
         <!-- Seção de Técnicas -->
-        <section class="mb-8">
+        <section id="nage-waza-section" class="mb-8">
             <div class="text-center mb-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
                     <span class="text-gradient">Técnicas de Projeção</span>
@@ -333,7 +367,7 @@
                             <div class="bg-yellow-100 p-2 rounded-full mr-3">
                                 <span class="text-sm">🥋</span>
                             </div>
-                            <h3 class="text-base font-bold text-gray-800">TAI-OTOSHI</h3>
+                            <h3 class="text-base font-bold text-gray-800">TAI-OTOSHI </h3>
                         </div>
                         <p class="text-gray-600 text-xs mb-3">Técnica de projeção que usa a sua perna para desequilíbrar o oponente</p>
                         <div class="bg-yellow-50 p-2 rounded-lg">
@@ -361,7 +395,7 @@
                             <div class="bg-yellow-100 p-2 rounded-full mr-3">
                                 <span class="text-sm">🥋</span>
                             </div>
-                            <h3 class="text-base font-bold text-gray-800">UKI-GOSHI</h3>
+                            <h3 class="text-base font-bold text-gray-800">UKI-GOSHI </h3>
                         </div>
                         <p class="text-gray-600 text-xs mb-3">Técnica de projeção passando metade do quadril</p>
                         <div class="bg-yellow-50 p-2 rounded-lg">
@@ -405,7 +439,7 @@
         <div class="section-divider h-px my-6"></div>
 
         <!-- Seção de Imobilizações -->
-        <section class="mb-8">
+        <section id="imobilizacoes-section" class="mb-8">
             <div class="text-center mb-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
                     <span class="text-gradient">Técnicas de Imobilização</span>
@@ -547,6 +581,20 @@
         <!-- Divisor Visual -->
         <div class="section-divider h-px my-8"></div>
 
+        <!-- Barra de Progresso Flutuante -->
+        <div id="floatingProgress" class="fixed top-4 left-0 right-0 mx-auto w-fit bg-white border border-gray-300 rounded-lg shadow-lg p-3 z-50 opacity-0 transition-opacity duration-300 pointer-events-none">
+            <div class="flex items-center gap-5">
+                <div class="w-80 bg-gray-200 rounded-full h-3">
+                    <div id="floatingProgressBar" class="bg-gradient-to-r from-green-400 to-emerald-500 h-3 rounded-full transition-all duration-500 shadow-sm" style="width: 0%"></div>
+                </div>
+                <span id="floatingProgressText" class="text-base font-bold text-gray-800">0%</span>
+            </div>
+        </div>
+
+        <!-- Botão Flutuante de Voltar ao Topo -->
+        <button id="backToTop" class="fixed bottom-8 right-8 bg-yellow-600 hover:bg-yellow-700 text-white p-4 rounded-full shadow-lg floating-action transition-colors hidden">
+            <span class="text-2xl">↑</span>
+        </button>
 
     </main>
 
@@ -566,9 +614,12 @@
             const imobCheckboxes = document.querySelectorAll('.imob-checkbox');
             const progressBar = document.getElementById('progressBar');
             const progressText = document.getElementById('progressText');
+            const floatingProgress = document.getElementById('floatingProgress');
+            const floatingProgressBar = document.getElementById('floatingProgressBar');
+            const floatingProgressText = document.getElementById('floatingProgressText');
             const backToTopBtn = document.getElementById('backToTop');
             let answeredQuestions = 0;
-            const totalQuestions = 3;
+            const totalQuestions = projCheckboxes.length + imobCheckboxes.length;
 
             function updateProgress() {
                 const totalProjChecked = document.querySelectorAll('.proj-checkbox:checked').length;
@@ -578,6 +629,26 @@
                 const progress = (completedQuestions / totalQuestions) * 100;
                 progressBar.style.width = progress + '%';
                 progressText.textContent = Math.round(progress) + '%';
+                
+                // Mostrar barra de progresso flutuante
+                showFloatingProgress(progress);
+            }
+
+            // Função para mostrar barra de progresso flutuante
+            function showFloatingProgress(progress) {
+                // Atualizar valores da barra flutuante
+                floatingProgressBar.style.width = progress + '%';
+                floatingProgressText.textContent = Math.round(progress) + '%';
+                
+                // Mostrar a barra
+                floatingProgress.style.opacity = '1';
+                floatingProgress.style.pointerEvents = 'auto';
+                
+                // Esconder após 5 segundos
+                setTimeout(() => {
+                    floatingProgress.style.opacity = '0';
+                    floatingProgress.style.pointerEvents = 'none';
+                }, 5000);
             }
             projCheckboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', updateProgress);
@@ -610,6 +681,51 @@
                 card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
                 observer.observe(card);
             });
+
+            // Animação para as divs de navegação japonesa
+            document.querySelectorAll('.japanese-nav-card').forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 200 + (index * 100)); // Delay escalonado para cada card
+            });
+
+            // Navegação interna
+            const nageWazaNav = document.getElementById('nage-waza-nav');
+            const imobilizacoesNav = document.getElementById('imobilizacoes-nav');
+            const nageWazaSection = document.getElementById('nage-waza-section');
+            const imobilizacoesSection = document.getElementById('imobilizacoes-section');
+
+            console.log('Elementos de navegação encontrados:', {
+                nageWazaNav: !!nageWazaNav,
+                imobilizacoesNav: !!imobilizacoesNav,
+                nageWazaSection: !!nageWazaSection,
+                imobilizacoesSection: !!imobilizacoesSection
+            });
+
+            if (nageWazaNav && nageWazaSection) {
+                nageWazaNav.addEventListener('click', function() {
+                    console.log('Navegando para seção de quedas');
+                    nageWazaSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
+            }
+
+            if (imobilizacoesNav && imobilizacoesSection) {
+                imobilizacoesNav.addEventListener('click', function() {
+                    console.log('Navegando para seção de imobilizações');
+                    imobilizacoesSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                });
+            }
 
             // --- CARROSSEL PROJEÇÃO ---
             const carouselProj = document.getElementById('carouselProj');
