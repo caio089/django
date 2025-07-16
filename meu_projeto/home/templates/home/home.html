@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Judô</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        body, html { height: 100%; }
+        .bg-judo {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 0;
+            background: url('https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=1200&q=80') center center/cover no-repeat;
+        }
+        .bg-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 1;
+            background: linear-gradient(to right, rgba(15,23,42,0.85) 40%, rgba(15,23,42,0.25) 80%, rgba(15,23,42,0.05) 100%);
+        }
+        .bg-blur-gradient {
+            position: fixed;
+            top: 0; left: 40vw; right: 0; bottom: 0;
+            z-index: 2;
+            pointer-events: none;
+            background: linear-gradient(to left, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.0) 100%);
+            filter: blur(18px) saturate(1.1);
+        }
+        .floating-label {
+            pointer-events: none;
+            transition: all 0.2s;
+        }
+        .input:focus ~ .floating-label,
+        .input:not(:placeholder-shown) ~ .floating-label {
+            transform: translateY(-1.7rem) scale(0.85);
+            color: #2563eb;
+        }
+    </style>
+</head>
+<body class="h-screen w-screen flex items-center justify-start relative overflow-hidden">
+    <div class="bg-judo"></div>
+    <div class="bg-overlay"></div>
+    <div class="bg-blur-gradient"></div>
+    <div class="relative z-10 w-full flex flex-col items-start justify-center min-h-screen pl-8 md:pl-20">
+        <!-- Mensagens do Django -->
+        {% if messages %}
+            <div class="w-full mb-2">
+                {% for message in messages %}
+                    <div class="px-4 py-2 rounded text-xs font-semibold mb-1 {% if message.tags == 'success' %}bg-green-100 text-green-700{% elif message.tags == 'error' %}bg-red-100 text-red-700{% else %}bg-blue-100 text-blue-700{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div id="login-card" class="bg-white/95 rounded-2xl shadow-2xl px-4 py-3 w-full max-w-md flex flex-col items-center animate-fade-in-up transition-all duration-700" style="backdrop-filter: blur(2px);">
+            <div class="flex items-center gap-1 mb-1 animate-fade-in-down">
+                <i class="fa-solid fa-user-ninja text-blue-600 text-xl animate-bounce"></i>
+                <span class="font-bold text-base text-gray-700 tracking-wider">Judô</span>
+            </div>
+            <h2 class="text-lg font-semibold mb-3 text-gray-800 animate-fade-in-down">Acessar sua conta</h2>
+            <form id="login-form" class="w-full flex flex-col gap-2" method="post" action="{% url 'login' %}" autocomplete="off">
+                {% csrf_token %}
+                {% if form.errors %}
+                    <div class="mb-2 text-red-600 text-xs font-semibold">{{ form.non_field_errors|striptags }}</div>
+                {% endif %}
+                <div class="relative">
+                    <input id="email" type="email" name="email" placeholder=" " required class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" value="{{ form.email.value|default:'' }}" />
+                    <label for="email" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Email</label>
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm"><i class="fa-regular fa-envelope"></i></span>
+                </div>
+                <div class="relative">
+                    <input id="senha" type="password" name="senha" placeholder=" " required class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" />
+                    <label for="senha" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Senha</label>
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm"><i class="fa-solid fa-key"></i></span>
+                    <button type="button" id="togglePassword" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600 transition text-sm" tabindex="-1"><i class="fa-regular fa-eye"></i></button>
+                </div>
+                <button id="login-btn" type="submit" class="mt-1 w-full py-2 rounded-md bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white font-semibold text-base shadow transition-all duration-300 focus:ring-4 focus:ring-blue-200 focus:outline-none active:scale-95 flex items-center justify-center gap-2">
+                    <span>Entrar</span>
+                    <span id="login-spinner" class="hidden animate-spin"><i class="fa-solid fa-spinner"></i></span>
+                </button>
+            </form>
+            <div class="flex items-center justify-between w-full mt-2 text-xs text-gray-600 animate-fade-in-up">
+                <label class="flex items-center gap-1 cursor-pointer">
+                    <input type="checkbox" class="accent-blue-700 transition-all duration-200" />
+                    Lembrar de mim
+                </label>
+                <a href="#" class="hover:underline transition-colors duration-200">Esqueceu a senha?</a>
+            </div>
+            <div class="w-full text-center mt-2 text-xs text-gray-500 animate-fade-in-up">
+                Não possui conta? <a href="#" id="show-register" class="text-blue-600 hover:underline transition-colors duration-200">Crie uma conta grátis</a>
+            </div>
+            <!-- Formulário de cadastro escondido -->
+            <form id="register-form" class="w-full flex flex-col gap-2 mt-4 hidden" method="post" action="{% url 'register' %}">
+                {% csrf_token %}
+                {% if register_form and register_form.errors %}
+                    <div class="mb-2 text-red-600 text-xs font-semibold">{{ register_form.non_field_errors|striptags }}</div>
+                {% endif %}
+                <div class="relative">
+                    <input id="reg-nome" type="text" name="nome" placeholder=" " required class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" value="{{ register_form.nome.value|default:'' }}" />
+                    <label for="reg-nome" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Nome completo</label>
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm"><i class="fa-regular fa-user"></i></span>
+                </div>
+                <div class="relative">
+                    <input id="reg-idade" type="number" name="idade" placeholder=" " min="1" max="120" required class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" value="{{ register_form.idade.value|default:'' }}" />
+                    <label for="reg-idade" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Idade</label>
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm"><i class="fa-solid fa-calendar"></i></span>
+                </div>
+                <div class="relative">
+                    <select id="reg-faixa" name="faixa" required class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 text-sm transition-all duration-300">
+                        <option value="" disabled selected hidden>Faixa atual</option>
+                        <option value="branca" {% if register_form.faixa.value == 'branca' %}selected{% endif %}>Branca</option>
+                        <option value="cinza" {% if register_form.faixa.value == 'cinza' %}selected{% endif %}>Cinza</option>
+                        <option value="azul" {% if register_form.faixa.value == 'azul' %}selected{% endif %}>Azul</option>
+                        <option value="amarela" {% if register_form.faixa.value == 'amarela' %}selected{% endif %}>Amarela</option>
+                        <option value="laranja" {% if register_form.faixa.value == 'laranja' %}selected{% endif %}>Laranja</option>
+                        <option value="verde" {% if register_form.faixa.value == 'verde' %}selected{% endif %}>Verde</option>
+                        <option value="roxa" {% if register_form.faixa.value == 'roxa' %}selected{% endif %}>Roxa</option>
+                        <option value="marrom" {% if register_form.faixa.value == 'marrom' %}selected{% endif %}>Marrom</option>
+                        <option value="preta" {% if register_form.faixa.value == 'preta' %}selected{% endif %}>Preta</option>
+                    </select>
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm"><i class="fa-solid fa-medal"></i></span>
+                </div>
+                <div class="relative">
+                    <input id="reg-email" type="email" name="email" placeholder=" " required class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" value="{{ register_form.email.value|default:'' }}" />
+                    <label for="reg-email" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Email</label>
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm"><i class="fa-regular fa-envelope"></i></span>
+                </div>
+                <div class="relative">
+                    <input id="reg-senha" type="password" name="senha" placeholder=" " required class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" />
+                    <label for="reg-senha" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Senha</label>
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm"><i class="fa-solid fa-key"></i></span>
+                </div>
+                <button type="submit" class="mt-1 w-full py-2 rounded-md bg-gradient-to-r from-green-600 to-green-400 hover:from-green-700 hover:to-green-500 text-white font-semibold text-base shadow transition-all duration-300 focus:ring-4 focus:ring-green-200 focus:outline-none active:scale-95 flex items-center justify-center gap-2">
+                    <span>Criar conta</span>
+                </button>
+            </form>
+            <div class="w-full text-center mt-4 text-[10px] text-gray-400 animate-fade-in-up">© 2024 Judô</div>
+            <div id="login-feedback" class="fixed left-1/2 -translate-x-1/2 top-8 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg font-semibold text-xs opacity-0 pointer-events-none transition-all duration-500 z-50"></div>
+        </div>
+    </div>
+    <script>
+        // Fade-in animações customizadas
+        document.querySelectorAll('.animate-fade-in-up').forEach((el, i) => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(40px)';
+            setTimeout(() => {
+                el.style.transition = 'opacity 0.7s, transform 0.7s';
+                el.style.opacity = 1;
+                el.style.transform = 'translateY(0)';
+            }, 200 + i * 120);
+        });
+        document.querySelectorAll('.animate-fade-in-down').forEach((el, i) => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(-40px)';
+            setTimeout(() => {
+                el.style.transition = 'opacity 0.7s, transform 0.7s';
+                el.style.opacity = 1;
+                el.style.transform = 'translateY(0)';
+            }, 200 + i * 120);
+        });
+
+        // Mostrar/ocultar senha
+        const senhaInput = document.getElementById('senha');
+        const togglePassword = document.getElementById('togglePassword');
+        togglePassword.addEventListener('click', () => {
+            senhaInput.type = senhaInput.type === 'password' ? 'text' : 'password';
+            togglePassword.innerHTML = senhaInput.type === 'password' ? '<i class="fa-regular fa-eye"></i>' : '<i class="fa-regular fa-eye-slash"></i>';
+        });
+
+        // Mostrar/ocultar formulário de cadastro
+        document.getElementById('show-register').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('register-form').classList.toggle('hidden');
+        });
+
+        // Removido: Feedback visual e microinteração no login (agora feito pelo backend)
+    </script>
+</body>
+</html>
