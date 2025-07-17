@@ -112,6 +112,125 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+        
+        /* Animações para transição japonesa */
+        .japanese-nav-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .japanese-nav-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
+        }
+        
+        .japanese-nav-card.clicked::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .japanese-nav-card.clicked {
+            transform: scale(0.95);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+        }
+        
+        /* Animação de scroll suave */
+        .scroll-indicator {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            background: rgba(59, 130, 246, 0.9);
+            color: white;
+            padding: 12px 16px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            z-index: 1000;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
+        }
+        
+        .scroll-indicator.show {
+            opacity: 1;
+        }
+        
+        .scroll-indicator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -8px;
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-right: 8px solid rgba(59, 130, 246, 0.9);
+            transform: translateY(-50%);
+        }
+        
+        /* Animação de destaque no destino */
+        .destination-highlight {
+            animation: destinationPulse 2s ease-out;
+        }
+        
+        @keyframes destinationPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 0 20px rgba(59, 130, 246, 0.3);
+                transform: scale(1.02);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+                transform: scale(1);
+            }
+        }
+        
+        /* Efeito de partículas durante o scroll */
+        .scroll-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #3B82F6;
+            border-radius: 50%;
+            animation: particleFloat 1.5s ease-out forwards;
+        }
+        
+        @keyframes particleFloat {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(0);
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-display">
@@ -481,6 +600,14 @@
             </div>
         </div>
 
+        <!-- Indicador de Scroll -->
+        <div id="scrollIndicator" class="scroll-indicator">
+            <span id="scrollText">Navegando...</span>
+        </div>
+        
+        <!-- Container de Partículas -->
+        <div id="scrollParticles" class="scroll-particles"></div>
+        
         <!-- Botão Flutuante de Voltar ao Topo -->
         <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg floating-action transition-colors hidden">
             <span class="text-2xl">↑</span>
@@ -598,18 +725,132 @@
                 }, 200 + (index * 100)); // Delay escalonado para cada card
             });
 
-            // Navegação interna
-            document.getElementById('nage-waza-nav').addEventListener('click', function() {
-                document.getElementById('nage-waza-section').scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+            // Função para criar partículas
+            function createParticles(x, y, count = 8) {
+                const particlesContainer = document.getElementById('scrollParticles');
+                
+                for (let i = 0; i < count; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = x + Math.random() * 40 - 20 + 'px';
+                    particle.style.top = y + Math.random() * 40 - 20 + 'px';
+                    particle.style.animationDelay = Math.random() * 0.5 + 's';
+                    
+                    particlesContainer.appendChild(particle);
+                    
+                    // Remover partícula após animação
+                    setTimeout(() => {
+                        if (particle.parentNode) {
+                            particle.parentNode.removeChild(particle);
+                        }
+                    }, 1500);
+                }
+            }
+            
+            // Função para animação de scroll com efeitos
+            function smoothScrollTo(element, cardElement) {
+                const targetElement = document.getElementById(element);
+                const scrollIndicator = document.getElementById('scrollIndicator');
+                const scrollText = document.getElementById('scrollText');
+                
+                if (!targetElement) return;
+                
+                // Adicionar classe clicked ao card
+                cardElement.classList.add('clicked');
+                
+                // Criar partículas no ponto de clique
+                const rect = cardElement.getBoundingClientRect();
+                createParticles(rect.left + rect.width / 2, rect.top + rect.height / 2);
+                
+                // Mostrar indicador de scroll
+                scrollText.textContent = 'Navegando...';
+                scrollIndicator.classList.add('show');
+                
+                // Calcular posição de destino
+                const targetPosition = targetElement.offsetTop - 100;
+                const startPosition = window.pageYOffset;
+                const distance = targetPosition - startPosition;
+                const duration = 1200; // 1.2 segundos
+                let start = null;
+                
+                // Função de easing personalizada
+                function easeInOutCubic(t) {
+                    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                }
+                
+                // Função de animação
+                function animation(currentTime) {
+                    if (start === null) start = currentTime;
+                    const timeElapsed = currentTime - start;
+                    const progress = Math.min(timeElapsed / duration, 1);
+                    const easedProgress = easeInOutCubic(progress);
+                    
+                    window.scrollTo(0, startPosition + distance * easedProgress);
+                    
+                    // Atualizar texto do indicador
+                    if (progress < 0.5) {
+                        scrollText.textContent = 'Navegando...';
+                    } else {
+                        scrollText.textContent = 'Chegando...';
+                    }
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(animation);
+                    } else {
+                        // Animação concluída
+                        setTimeout(() => {
+                            scrollIndicator.classList.remove('show');
+                            cardElement.classList.remove('clicked');
+                            
+                            // Adicionar destaque no destino
+                            targetElement.classList.add('destination-highlight');
+                            setTimeout(() => {
+                                targetElement.classList.remove('destination-highlight');
+                            }, 2000);
+                        }, 300);
+                    }
+                }
+                
+                requestAnimationFrame(animation);
+            }
+            
+            // Navegação interna com animações
+            document.getElementById('nage-waza-nav').addEventListener('click', function(e) {
+                e.preventDefault();
+                smoothScrollTo('nage-waza-section', this);
             });
 
-            document.getElementById('imobilizacoes-nav').addEventListener('click', function() {
-                document.getElementById('imobilizacoes-section').scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+            document.getElementById('imobilizacoes-nav').addEventListener('click', function(e) {
+                e.preventDefault();
+                smoothScrollTo('imobilizacoes-section', this);
+            });
+            
+            // Adicionar animação para todos os cards de navegação japonesa
+            document.querySelectorAll('.japanese-nav-card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Se não for um dos cards principais, criar uma animação genérica
+                    if (!this.id || (this.id !== 'nage-waza-nav' && this.id !== 'imobilizacoes-nav')) {
+                        e.preventDefault();
+                        
+                        // Adicionar efeito visual
+                        this.classList.add('clicked');
+                        
+                        // Criar partículas
+                        const rect = this.getBoundingClientRect();
+                        createParticles(rect.left + rect.width / 2, rect.top + rect.height / 2);
+                        
+                        // Mostrar indicador
+                        const scrollIndicator = document.getElementById('scrollIndicator');
+                        const scrollText = document.getElementById('scrollText');
+                        scrollText.textContent = 'Em desenvolvimento...';
+                        scrollIndicator.classList.add('show');
+                        
+                        // Remover efeitos após animação
+                        setTimeout(() => {
+                            this.classList.remove('clicked');
+                            scrollIndicator.classList.remove('show');
+                        }, 1500);
+                    }
                 });
             });
         });

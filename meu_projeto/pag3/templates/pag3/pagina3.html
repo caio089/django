@@ -143,6 +143,179 @@
             z-index: 10;
             cursor: pointer !important;
         }
+        
+        /* Animações para transição japonesa - Página 3 */
+        .japanese-nav-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .japanese-nav-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.4) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
+        }
+        
+        .japanese-nav-card.clicked::before {
+            width: 400px;
+            height: 400px;
+        }
+        
+        .japanese-nav-card.clicked {
+            transform: scale(0.9) rotate(2deg);
+            box-shadow: 0 0 40px rgba(251, 191, 36, 0.6);
+            border-color: #F59E0B;
+        }
+        
+        /* Efeito de brilho durante o clique */
+        .japanese-nav-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .japanese-nav-card.clicked::after {
+            left: 100%;
+        }
+        
+        /* Animação de scroll suave com indicador */
+        .scroll-indicator {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            background: rgba(251, 191, 36, 0.95);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            z-index: 1000;
+            opacity: 0;
+            transition: all 0.4s ease;
+            pointer-events: none;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 40px rgba(251, 191, 36, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .scroll-indicator.show {
+            opacity: 1;
+            transform: translateY(-50%) scale(1.05);
+        }
+        
+        .scroll-indicator::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -10px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid rgba(251, 191, 36, 0.95);
+            transform: translateY(-50%);
+        }
+        
+        /* Animação de destaque no destino */
+        .destination-highlight {
+            animation: destinationPulseYellow 1.5s ease-out;
+        }
+        
+        @keyframes destinationPulseYellow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.8);
+                transform: scale(1);
+            }
+            25% {
+                box-shadow: 0 0 0 15px rgba(251, 191, 36, 0.4);
+                transform: scale(1.02);
+            }
+            50% {
+                box-shadow: 0 0 0 25px rgba(251, 191, 36, 0.2);
+                transform: scale(1.01);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(251, 191, 36, 0);
+                transform: scale(1);
+            }
+        }
+        
+        /* Efeito de partículas douradas */
+        .scroll-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #FBBF24;
+            border-radius: 50%;
+            animation: particleFloatYellow 1.2s ease-out forwards;
+            box-shadow: 0 0 10px rgba(251, 191, 36, 0.6);
+        }
+        
+        @keyframes particleFloatYellow {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotate(0deg);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateY(-40px) scale(1.2) rotate(180deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-80px) scale(0) rotate(360deg);
+            }
+        }
+        
+        /* Efeito de onda de energia */
+        .energy-wave {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: energyWave 1.5s ease-out forwards;
+        }
+        
+        @keyframes energyWave {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 1;
+            }
+            100% {
+                width: 250px;
+                height: 250px;
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-display">
@@ -591,6 +764,14 @@
             </div>
         </div>
 
+        <!-- Indicador de Scroll -->
+        <div id="scrollIndicator" class="scroll-indicator">
+            <span id="scrollText">Navegando...</span>
+        </div>
+        
+        <!-- Container de Partículas -->
+        <div id="scrollParticles" class="scroll-particles"></div>
+        
         <!-- Botão Flutuante de Voltar ao Topo -->
         <button id="backToTop" class="fixed bottom-8 right-8 bg-yellow-600 hover:bg-yellow-700 text-white p-4 rounded-full shadow-lg floating-action transition-colors hidden">
             <span class="text-2xl">↑</span>
@@ -694,38 +875,149 @@
                 }, 200 + (index * 100)); // Delay escalonado para cada card
             });
 
-            // Navegação interna
+            // Função para criar partículas douradas
+            function createParticles(x, y, count = 12) {
+                const particlesContainer = document.getElementById('scrollParticles');
+                
+                for (let i = 0; i < count; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = x + Math.random() * 60 - 30 + 'px';
+                    particle.style.top = y + Math.random() * 60 - 30 + 'px';
+                    particle.style.animationDelay = Math.random() * 0.3 + 's';
+                    particle.style.animationDuration = (0.8 + Math.random() * 0.4) + 's';
+                    
+                    particlesContainer.appendChild(particle);
+                    
+                    // Remover partícula após animação
+                    setTimeout(() => {
+                        if (particle.parentNode) {
+                            particle.parentNode.removeChild(particle);
+                        }
+                    }, 1500);
+                }
+            }
+            
+            // Função para criar onda de energia
+            function createEnergyWave(element) {
+                const wave = document.createElement('div');
+                wave.className = 'energy-wave';
+                element.appendChild(wave);
+                
+                setTimeout(() => {
+                    if (wave.parentNode) {
+                        wave.parentNode.removeChild(wave);
+                    }
+                }, 1000);
+            }
+            
+            // Função para animação de scroll com efeitos visuais
+            function smoothScrollTo(element, cardElement) {
+                const targetElement = document.getElementById(element);
+                
+                if (!targetElement) return;
+                
+                // Adicionar classe clicked ao card
+                cardElement.classList.add('clicked');
+                
+                // Criar onda de energia
+                createEnergyWave(cardElement);
+                
+                // Criar partículas no ponto de clique
+                const rect = cardElement.getBoundingClientRect();
+                createParticles(rect.left + rect.width / 2, rect.top + rect.height / 2);
+                
+                // Não mostrar indicador de scroll - apenas animações visuais
+                
+                // Calcular posição de destino
+                const targetPosition = targetElement.offsetTop - 120;
+                const startPosition = window.pageYOffset;
+                const distance = targetPosition - startPosition;
+                const duration = 900; // 0.9 segundos para transição mais rápida
+                let start = null;
+                
+                // Função de easing personalizada para movimento mais dramático
+                function easeInOutQuart(t) {
+                    return t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2;
+                }
+                
+                // Função de animação
+                function animation(currentTime) {
+                    if (start === null) start = currentTime;
+                    const timeElapsed = currentTime - start;
+                    const progress = Math.min(timeElapsed / duration, 1);
+                    const easedProgress = easeInOutQuart(progress);
+                    
+                    window.scrollTo(0, startPosition + distance * easedProgress);
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(animation);
+                    } else {
+                        // Animação concluída
+                        setTimeout(() => {
+                            cardElement.classList.remove('clicked');
+                            
+                            // Adicionar destaque no destino
+                            targetElement.classList.add('destination-highlight');
+                            
+                            // Criar partículas finais no destino
+                            const destRect = targetElement.getBoundingClientRect();
+                            createParticles(destRect.left + destRect.width / 2, destRect.top + 50, 8);
+                            
+                            setTimeout(() => {
+                                targetElement.classList.remove('destination-highlight');
+                            }, 1500);
+                        }, 200);
+                    }
+                }
+                
+                requestAnimationFrame(animation);
+            }
+            
+            // Navegação interna com animações visuais
             const nageWazaNav = document.getElementById('nage-waza-nav');
             const imobilizacoesNav = document.getElementById('imobilizacoes-nav');
             const nageWazaSection = document.getElementById('nage-waza-section');
             const imobilizacoesSection = document.getElementById('imobilizacoes-section');
 
-            console.log('Elementos de navegação encontrados:', {
-                nageWazaNav: !!nageWazaNav,
-                imobilizacoesNav: !!imobilizacoesNav,
-                nageWazaSection: !!nageWazaSection,
-                imobilizacoesSection: !!imobilizacoesSection
-            });
-
             if (nageWazaNav && nageWazaSection) {
-                nageWazaNav.addEventListener('click', function() {
-                    console.log('Navegando para seção de quedas');
-                    nageWazaSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                nageWazaNav.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    smoothScrollTo('nage-waza-section', this);
                 });
             }
 
             if (imobilizacoesNav && imobilizacoesSection) {
-                imobilizacoesNav.addEventListener('click', function() {
-                    console.log('Navegando para seção de imobilizações');
-                    imobilizacoesSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                imobilizacoesNav.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    smoothScrollTo('imobilizacoes-section', this);
                 });
             }
+            
+            // Adicionar animação para todos os cards de navegação japonesa
+            document.querySelectorAll('.japanese-nav-card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Se não for um dos cards principais, criar uma animação genérica
+                    if (!this.id || (this.id !== 'nage-waza-nav' && this.id !== 'imobilizacoes-nav')) {
+                        e.preventDefault();
+                        
+                        // Adicionar efeito visual
+                        this.classList.add('clicked');
+                        
+                        // Criar partículas
+                        const rect = this.getBoundingClientRect();
+                        createParticles(rect.left + rect.width / 2, rect.top + rect.height / 2);
+                        
+                        // Criar onda de energia
+                        createEnergyWave(this);
+                        
+                        // Remover efeitos após animação
+                        setTimeout(() => {
+                            this.classList.remove('clicked');
+                        }, 1200);
+                    }
+                });
+            });
 
             // --- CARROSSEL PROJEÇÃO ---
             const carouselProj = document.getElementById('carouselProj');
