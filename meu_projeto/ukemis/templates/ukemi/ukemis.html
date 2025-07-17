@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rolamentos (Ukemi) - Judô</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        judo: {
+                            emerald: '#10B981',
+                            gray: '#6B7280',
+                            blue: '#3B82F6',
+                            yellow: '#FBBF24',
+                            orange: '#F97316',
+                            green: '#10B981',
+                            purple: '#8B5CF6',
+                            brown: '#92400E'
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        .gradient-bg {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(16,185,129,0.25);
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 35%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px -5px rgba(16,185,129,0.10);
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+        }
+        .section-divider {
+            background: linear-gradient(90deg, transparent, #D1FAE5, transparent);
+        }
+        .text-gradient {
+            background: linear-gradient(45deg, #10B981, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-display">
+    <!-- Header com Progresso -->
+    <header class="gradient-bg text-white py-4 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center justify-between mb-4">
+                <div>
+                    <h1 class="text-3xl md:text-4xl font-bold mb-2 flex items-center gap-3">
+                        <span class="inline-block w-12 h-8 bg-emerald-400 rounded mr-2"></span>
+                        Rolamentos (Ukemi)
+                    </h1>
+                    <p class="text-emerald-100 text-lg">A base da segurança e evolução no judô</p>
+                </div>
+                <a href="/index/" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
+                    ← Voltar
+                </a>
+            </div>
+            <!-- Barra de Progresso -->
+            <div class="bg-white/20 rounded-full h-5 mb-3 shadow-inner">
+                <div class="progress-bar bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full h-5 shadow-lg transition-all duration-500" style="width: 0%" id="progressBar"></div>
+            </div>
+            <p class="text-base font-semibold text-white">Progresso: <span id="progressText" class="text-emerald-200">0%</span></p>
+        </div>
+    </header>
+    <main class="max-w-6xl mx-auto px-4 py-6">
+        <!-- Card de Boas-Vindas Minimalista -->
+        <div id="welcomeCard" class="bg-white/80 border border-emerald-400 rounded-xl shadow-md p-6 mb-8 w-full flex flex-col items-center">
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-2xl text-emerald-500">🥋</span>
+                <span class="font-semibold text-emerald-700 text-xl">Bem-vindo aos Rolamentos (Ukemi)</span>
+            </div>
+            <div class="text-center">
+                <div class="font-bold text-emerald-600 text-lg mb-2">Por que aprender Ukemi?</div>
+                <div class="text-sm text-emerald-700">
+                    <div>• Segurança nas quedas</div>
+                    <div>• Prevenção de lesões</div>
+                    <div>• Base para técnicas avançadas</div>
+                    <div>• Confiança no tatame</div>
+                </div>
+            </div>
+        </div>
+        <style>
+        #welcomeCard {
+            box-shadow: 0 2px 16px 0 rgba(16,185,129,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
+        }
+        </style>
+        <!-- Seção de Rolamentos -->
+        <section id="ukemi-section" class="mb-12">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                    <span class="text-gradient">Rolamentos Fundamentais do Judô</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Aprenda e pratique os principais rolamentos (ukemi) para garantir sua segurança e evolução no judô.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- 10 espaços para vídeos de rolamentos -->
+                {% for i in range10 %}
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4 flex flex-col">
+                    <div class="flex items-center mb-3 gap-3">
+                        <div class="bg-emerald-100 p-2 rounded-full">
+                            <span class="text-lg">🥋</span>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">Ukemi {{ i }}</h3>
+                            <p class="text-emerald-700 text-sm">Descrição do rolamento {{ i }}</p>
+                        </div>
+                    </div>
+                    <div class="video-container mb-3">
+                        <!-- Substitua o src abaixo pelo link do vídeo desejado -->
+                        <iframe src="" title="Ukemi {{ i }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-emerald-50 p-2 rounded-xl">
+                        <h4 class="font-semibold text-emerald-800 mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-emerald-700 text-xs">Dica para o rolamento {{ i }}.</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 px-4 mt-8">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-300">
+                © 2024 Academia de Judô - Rolamentos (Ukemi) - Desenvolvido com ❤️ para todos os judocas
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

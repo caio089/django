@@ -28,5 +28,6 @@ urlpatterns = [
     path('pagina5/', include('pag5.urls')),
     path('pagina6/', include('pag6.urls')),
     path('pagina7/', include('pag7.urls')),
+    path('ukemis/', include('ukemis.urls')),
 ]
 

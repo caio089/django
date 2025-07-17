@@ -436,8 +436,16 @@
                 <a href="/faixas" class="sidebar-item flex items-center p-4 rounded-lg text-white hover:text-blue-300">
                     <span class="text-2xl mr-4">🥋</span>
                     <div>
-                        <h3 class="font-semibold">Faixas do Judô</h3>
+                        <h3 class="font-semibold">Faixas</h3>
                         <p class="text-sm text-gray-400">Conheça todas as faixas</p>
+                    </div>
+                </a>
+                
+                <a href="/ukemis/" class="sidebar-item flex items-center p-4 rounded-lg text-white hover:text-emerald-400">
+                    <span class="text-2xl mr-4">🔄</span>
+                    <div>
+                        <h3 class="font-semibold">Rolamentos do Judô</h3>
+                        <p class="text-sm text-gray-400">Conheça todos os ukemis</p>
                     </div>
                 </a>
                 
@@ -578,6 +586,12 @@
                             <div class="text-sm opacity-80"></div>
                         </div>
                     </a>
+                    <!-- Card de Rolamentos (Ukemi) apenas visual -->
+                    <div class="faixa-card bg-emerald-500 rounded-2xl p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl relative opacity-80 cursor-default select-none">
+                        <span class="text-4xl mb-2 block">🔄</span>
+                        <div>Rolamentos do Judô (Ukemi)</div>
+                        <div class="text-sm opacity-80">Acesse pelo menu lateral</div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -748,36 +762,37 @@
 
             // Sidebar navigation links functionality
             const sidebarLinks = document.querySelectorAll('.sidebar-item');
-            sidebarLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    // Add loading effect
-                    this.style.opacity = '0.7';
-                    this.style.transform = 'scale(0.95)';
-                    
-                    setTimeout(() => {
-                        this.style.opacity = '1';
-                        this.style.transform = 'scale(1)';
-                    }, 150);
-                });
-            });
+            // REMOVER O BLOCO ABAIXO PARA PERMITIR NAVEGAÇÃO NORMAL
+            // sidebarLinks.forEach(link => {
+            //     link.addEventListener('click', function(e) {
+            //         // Add loading effect
+            //         this.style.opacity = '0.7';
+            //         this.style.transform = 'scale(0.95)';
+            //         
+            //         setTimeout(() => {
+            //             this.style.opacity = '1';
+            //             this.style.transform = 'scale(1)';
+            //         }, 150);
+            //     });
+            // });
 
             // Prevent default behavior for sidebar links (for demo purposes)
             // In production, these would navigate to actual pages
-            sidebarLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const href = this.getAttribute('href');
-                    const text = this.querySelector('h3').textContent;
-                    
-                    // Show a temporary message (replace with actual navigation)
-                    alert(`Navegando para: ${text}\nURL: ${href}`);
-                    
-                    // Close sidebar after navigation
-                    setTimeout(() => {
-                        closeSidebarFunc();
-                    }, 500);
-                });
-            });
+            // sidebarLinks.forEach(link => {
+            //     link.addEventListener('click', function(e) {
+            //         e.preventDefault();
+            //         const href = this.getAttribute('href');
+            //         const text = this.querySelector('h3').textContent;
+            //         
+            //         // Show a temporary message (replace with actual navigation)
+            //         alert(`Navegando para: ${text}\nURL: ${href}`);
+            //         
+            //         // Close sidebar after navigation
+            //         setTimeout(() => {
+            //             closeSidebarFunc();
+            //         }, 500);
+            //     });
+            // });
 
             // Add smooth scroll behavior
             document.documentElement.style.scrollBehavior = 'smooth';
