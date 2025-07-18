@@ -34,232 +34,60 @@
         }
     </script>
     <style>
+        /* --- INÍCIO: CSS de animações da página 2 --- */
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
-        
-        /* Aplicar Open Sans como fonte padrão para o corpo - altamente legível */
-        body {
-            font-family: 'Open Sans', system-ui, sans-serif !important;
-        }
-        
-        /* Aplicar Montserrat para títulos - moderna e impactante */
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', system-ui, sans-serif !important;
-        }
-        
-        /* Aplicar Roboto para botões - clara e acessível */
-        button, .btn, input[type="button"], input[type="submit"], input[type="reset"] {
-            font-family: 'Roboto', system-ui, sans-serif !important;
-        }
-        
-        /* Melhorar legibilidade para descrições */
-        p, span, div {
-            font-family: 'Open Sans', system-ui, sans-serif !important;
-            line-height: 1.6 !important;
-        }
-        
-        /* Títulos com melhor contraste e espaçamento */
-        h1, h2, h3, h4, h5, h6 {
-            letter-spacing: -0.02em !important;
-            line-height: 1.3 !important;
-        }
-        
-        /* Botões com melhor legibilidade */
-        button, .btn, input[type="button"], input[type="submit"], input[type="reset"] {
-            font-weight: 500 !important;
-            letter-spacing: 0.01em !important;
-        }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #6B7280 0%, #4B5563 100%);
-        }
-        
-        .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-        
-        .video-container {
-            width: calc(100% - 32px);
-            height: 250px;
-            border-radius: 8px;
-            overflow: hidden;
-            background: #000;
-            margin: 16px auto;
-        }
-        
-        .video-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 8px;
-        }
-        
-        /* Padrão YouTube para cards de vídeo */
-        .video-card {
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            transition: all 0.3s ease;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid #f3f4f6;
-        }
-        
-        .video-card:hover {
-            box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            transform: translateY(-2px);
-        }
-        
-        .video-header {
-            padding: 20px 20px 16px 20px;
-            border-bottom: 1px solid #e5e7eb;
-            background: linear-gradient(to right, #f9fafb, #ffffff);
-        }
-        
-        .video-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #0f0f0f;
-            margin-bottom: 4px;
-            line-height: 1.4;
-        }
-        
-        .video-description {
-            font-size: 14px;
-            color: #606060;
-            margin-bottom: 8px;
-        }
-        
-        .video-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 16px;
-            background: #f8f9fa;
-        }
-        
-        .video-tip {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            border-left: 4px solid #0284c7;
-            padding: 16px 20px;
-            margin: 0;
-            position: relative;
-        }
-        
-        .video-tip::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(2, 132, 199, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%);
+        body { font-family: 'Open Sans', system-ui, sans-serif !important; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', system-ui, sans-serif !important; }
+        button, .btn, input[type="button"], input[type="submit"], input[type="reset"] { font-family: 'Roboto', system-ui, sans-serif !important; }
+        p, span, div { font-family: 'Open Sans', system-ui, sans-serif !important; line-height: 1.6 !important; }
+        h1, h2, h3, h4, h5, h6 { letter-spacing: -0.02em !important; line-height: 1.3 !important; }
+        button, .btn, input[type="button"], input[type="submit"], input[type="reset"] { font-weight: 500 !important; letter-spacing: 0.01em !important; }
+        .gradient-bg { background: linear-gradient(135deg, #6B7280 0%, #4B5563 100%) !important; }
+        .card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
+        .video-container { width: calc(100% - 32px); height: 250px; border-radius: 8px; overflow: hidden; background: #000; margin: 16px auto; }
+        .video-container iframe { width: 100%; height: 100%; border: none; border-radius: 8px; }
+        .video-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); transition: all 0.3s ease; height: 100%; display: flex; flex-direction: column; border: 1px solid #f3f4f6; }
+        .video-card:hover { box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); transform: translateY(-2px); }
+        .video-header { padding: 20px 20px 16px 20px; border-bottom: 1px solid #e5e7eb; background: linear-gradient(to right, #f9fafb, #ffffff); }
+        .video-title { font-size: 16px; font-weight: 600; color: #0f0f0f; margin-bottom: 4px; line-height: 1.4; }
+        .video-description { font-size: 14px; color: #606060; margin-bottom: 8px; }
+        .video-actions { display: flex; justify-content: space-between; align-items: center; padding: 8px 16px; background: #f8f9fa; }
+        .video-tip { background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-left: 4px solid #0284c7; padding: 16px 20px; margin: 0; position: relative; }
+        .video-tip::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(2, 132, 199, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%); pointer-events: none; }
+        .video-tip-title { font-size: 14px; font-weight: 600; color: #0284c7; margin-bottom: 4px; position: relative; z-index: 1; }
+        .video-tip-text { font-size: 13px; color: #374151; line-height: 1.5; position: relative; z-index: 1; }
+        .option-card { transition: all 0.2s ease; cursor: pointer; border: 2px solid transparent; }
+        .option-card:hover { border-color: #3B82F6; background-color: #EFF6FF; transform: scale(1.02); }
+        .option-card.correct { background-color: #D1FAE5; border-color: #10B981; color: #065F46; }
+        .option-card.incorrect { background-color: #FEE2E2; border-color: #EF4444; color: #991B1B; }
+        .progress-bar { transition: width 0.5s ease; }
+        .section-divider { background: linear-gradient(90deg, transparent, #E5E7EB, transparent); }
+        .floating-action { animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        .text-gradient { background: linear-gradient(45deg, #6B7280, #4B5563); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 600 !important; }
+        h1, h2, h3 { color: #1f2937 !important; }
+        .text-xs, .text-sm { line-height: 1.5 !important; }
+        button, .btn, a[href] { cursor: pointer !important; }
+        .card-hover p, .card-hover div { line-height: 1.7 !important; }
+        #floatingProgress.hidden { display: none !important; opacity: 0 !important; visibility: hidden !important; }
+        /* --- RESTANTE DO CSS DE ANIMAÇÕES DA PAGINA 2 --- */
+        /* Copie aqui o restante do CSS de animações da pagina2.html, incluindo partículas, back-to-top, etc. */
+        /* Partículas para o botão voltar ao topo */
+        .back-to-top-particle {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
             pointer-events: none;
+            z-index: 1000;
+            animation: backToTopParticle 1.2s ease-out forwards;
         }
-        
-        .video-tip-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: #0284c7;
-            margin-bottom: 4px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .video-tip-text {
-            font-size: 13px;
-            color: #374151;
-            line-height: 1.5;
-            position: relative;
-            z-index: 1;
-        }
-        
-
-        
-        .option-card {
-            transition: all 0.2s ease;
-            cursor: pointer;
-            border: 2px solid transparent;
-        }
-        
-        .option-card:hover {
-            border-color: #3B82F6;
-            background-color: #EFF6FF;
-            transform: scale(1.02);
-        }
-        
-        .option-card.correct {
-            background-color: #D1FAE5;
-            border-color: #10B981;
-            color: #065F46;
-        }
-        
-        .option-card.incorrect {
-            background-color: #FEE2E2;
-            border-color: #EF4444;
-            color: #991B1B;
-        }
-        
-        .progress-bar {
-            transition: width 0.5s ease;
-        }
-        
-        .section-divider {
-            background: linear-gradient(90deg, transparent, #E5E7EB, transparent);
-        }
-        
-        .floating-action {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .text-gradient {
-            background: linear-gradient(45deg, #6B7280, #4B5563);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        /* Garantir que a barra flutuante fique completamente escondida */
-        #floatingProgress.hidden {
-            display: none !important;
-            opacity: 0 !important;
-            visibility: hidden !important;
-        }
-        
-        /* Melhorar acessibilidade e legibilidade */
-        .text-gradient {
-            font-weight: 600 !important;
-        }
-        
-        /* Melhorar contraste para títulos */
-        h1, h2, h3 {
-            color: #1f2937 !important;
-        }
-        
-        /* Melhorar legibilidade de textos pequenos */
-        .text-xs, .text-sm {
-            line-height: 1.5 !important;
-        }
-        
-        /* Melhorar acessibilidade de botões */
-        button, .btn, a[href] {
-            cursor: pointer !important;
-        }
-        
-        /* Melhorar espaçamento para leitura */
-        .card-hover p, .card-hover div {
-            line-height: 1.7 !important;
+        @keyframes backToTopParticle {
+            0% { opacity: 1; transform: translateY(0) scale(1); }
+            50% { opacity: 0.8; transform: translateY(-25px) scale(1.2); }
+            100% { opacity: 0; transform: translateY(-60px) scale(0); }
         }
     </style>
 </head>
@@ -538,179 +366,177 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const projCheckboxes = document.querySelectorAll('.proj-checkbox');
-            const imobCheckboxes = document.querySelectorAll('.imob-checkbox');
-            const progressBar = document.getElementById('progressBar');
-            const progressText = document.getElementById('progressText');
-            const floatingProgress = document.getElementById('floatingProgress');
-            const floatingProgressBar = document.getElementById('floatingProgressBar');
-            const floatingProgressText = document.getElementById('floatingProgressText');
-            const backToTopBtn = document.getElementById('backToTop');
-            let answeredQuestions = 0;
-            const totalQuestions = 3;
-
-            // Função para atualizar progresso (SEM mostrar barra flutuante)
-            function updateProgress() {
-                const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
-                const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
-                const totalQuestions = projCheckboxes.length + imobCheckboxes.length;
-                const completedQuestions = totalProjChecked + totalImobChecked;
-                const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
-                progressBar.style.width = progress + '%';
-                progressText.textContent = Math.round(progress) + '%';
+// --- INÍCIO: JS de animações de clique e rolagem da página 2 ---
+// IntersectionObserver para animar cards ao rolar
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+document.querySelectorAll('.card-hover, .bg-white').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(card);
+});
+// Animação para as divs de navegação japonesa
+// (delay escalonado)
+document.querySelectorAll('.japanese-nav-card').forEach((card, index) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    setTimeout(() => {
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+    }, 200 + (index * 100));
+});
+// Navegação interna animada
+function smoothScrollTo(element, cardElement) {
+    const targetElement = document.getElementById(element);
+    if (!targetElement) return;
+    // Adicionar classe clicked ao card
+    cardElement.classList.add('clicked');
+    // Calcular posição de destino
+    const targetPosition = targetElement.offsetTop - 100;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    const duration = 1200;
+    let start = null;
+    function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+    function animation(currentTime) {
+        if (start === null) start = currentTime;
+        const timeElapsed = currentTime - start;
+        const progress = Math.min(timeElapsed / duration, 1);
+        const easedProgress = easeInOutCubic(progress);
+        window.scrollTo(0, startPosition + distance * easedProgress);
+        if (progress < 1) {
+            requestAnimationFrame(animation);
+        } else {
+            setTimeout(() => {
+                cardElement.classList.remove('clicked');
+                targetElement.classList.add('destination-highlight');
+                setTimeout(() => {
+                    targetElement.classList.remove('destination-highlight');
+                }, 2000);
+            }, 300);
+        }
+    }
+    requestAnimationFrame(animation);
+}
+document.getElementById('nage-waza-nav').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('imobilizacoes-section').classList.add('hidden');
+    document.getElementById('nage-waza-section').classList.remove('hidden');
+    setTimeout(() => {
+        smoothScrollTo('nage-waza-section', this);
+    }, 100);
+});
+document.getElementById('imobilizacoes-nav').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('nage-waza-section').classList.add('hidden');
+    document.getElementById('imobilizacoes-section').classList.remove('hidden');
+    setTimeout(() => {
+        smoothScrollTo('imobilizacoes-section', this);
+    }, 100);
+});
+document.getElementById('ukemi-nav').addEventListener('click', function() {
+    window.location.href = '/ukemis/';
+});
+// Botão voltar ao topo
+window.addEventListener('scroll', function() {
+    const backToTopBtn = document.getElementById('backToTop');
+    if (window.pageYOffset > 300) {
+        backToTopBtn.classList.remove('hidden');
+    } else {
+        backToTopBtn.classList.add('hidden');
+    }
+});
+document.getElementById('backToTop').addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+// --- FIM: JS de animações de clique e rolagem da página 2 ---
+// --- INÍCIO: Animação do botão voltar ao topo igual à página 2 ---
+function createBackToTopParticles(button) {
+    const rect = button.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    for (let i = 0; i < 12; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'back-to-top-particle';
+        particle.style.left = centerX + (Math.random() - 0.5) * 60 + 'px';
+        particle.style.top = centerY + (Math.random() - 0.5) * 60 + 'px';
+        particle.style.background = `rgba(255, 255, 255, ${0.7 + Math.random() * 0.3})`;
+        particle.style.animationDelay = Math.random() * 0.5 + 's';
+        document.body.appendChild(particle);
+        setTimeout(() => {
+            if (particle.parentNode) {
+                particle.parentNode.removeChild(particle);
             }
-
-            // Função para mostrar barra de progresso flutuante
-            function showFloatingProgress(progress) {
-                // Atualizar valores da barra flutuante
-                floatingProgressBar.style.width = progress + '%';
-                floatingProgressText.textContent = Math.round(progress) + '%';
-                
-                // Mostrar a barra
-                floatingProgress.classList.remove('hidden');
-                floatingProgress.style.opacity = '1';
-                floatingProgress.style.pointerEvents = 'auto';
-                
-                // Esconder após 5 segundos
-                setTimeout(() => {
-                    floatingProgress.style.opacity = '0';
-                    floatingProgress.style.pointerEvents = 'none';
-                    setTimeout(() => {
-                        floatingProgress.classList.add('hidden');
-                    }, 300); // Aguarda a transição de opacity
-                }, 5000);
-            }
-
-            // Garantir que a barra flutuante comece escondida
-            floatingProgress.classList.add('hidden');
-            floatingProgress.style.opacity = '0';
-            floatingProgress.style.pointerEvents = 'none';
-
-            // Event listeners para as opções
-            projCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', function(e) {
-                    updateProgress();
-                    // Mostrar barra flutuante apenas quando marcar (não desmarcar)
-                    if (e.target.checked) {
-                        const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
-                        const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
-                        const totalQuestions = projCheckboxes.length + imobCheckboxes.length;
-                        const completedQuestions = totalProjChecked + totalImobChecked;
-                        const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
-                        showFloatingProgress(progress);
-                    }
-                });
-            });
-            imobCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', function(e) {
-                    updateProgress();
-                    // Mostrar barra flutuante apenas quando marcar (não desmarcar)
-                    if (e.target.checked) {
-                        const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
-                        const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
-                        const totalQuestions = projCheckboxes.length + imobCheckboxes.length;
-                        const completedQuestions = totalProjChecked + totalImobChecked;
-                        const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
-                        showFloatingProgress(progress);
-                    }
-                });
-            });
-
-            // Botão voltar ao topo
-            window.addEventListener('scroll', function() {
-                if (window.pageYOffset > 300) {
-                    backToTopBtn.classList.remove('hidden');
-                } else {
-                    backToTopBtn.classList.add('hidden');
-                }
-            });
-
-            backToTopBtn.addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-
-            // Animação de entrada para os cards
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.card-hover, .bg-white').forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                observer.observe(card);
-            });
-
-            // Animação para as divs de navegação japonesa
-            document.querySelectorAll('.japanese-nav-card').forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                
-                setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, 200 + (index * 100)); // Delay escalonado para cada card
-            });
-
-            // Navegação interna
-            document.getElementById('nage-waza-nav').addEventListener('click', function() {
-                // Esconder todas as seções primeiro
-                document.getElementById('imobilizacoes-section').classList.add('hidden');
-                // Mostrar a seção de técnicas de projeção
-                document.getElementById('nage-waza-section').classList.remove('hidden');
-                // Scroll suave para a seção
-                setTimeout(() => {
-                    document.getElementById('nage-waza-section').scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }, 100);
-            });
-
-            document.getElementById('imobilizacoes-nav').addEventListener('click', function() {
-                // Esconder todas as seções primeiro
-                document.getElementById('nage-waza-section').classList.add('hidden');
-                // Mostrar a seção de imobilizações
-                document.getElementById('imobilizacoes-section').classList.remove('hidden');
-                // Scroll suave para a seção
-                setTimeout(() => {
-                    document.getElementById('imobilizacoes-section').scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }, 100);
-            });
-
-            // Event listeners para os botões de voltar ao topo das seções
-            document.querySelectorAll('.back-to-top-section').forEach(button => {
-                button.addEventListener('click', function() {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                });
-            });
-
-            // Navegação para Ukemi
-            document.getElementById('ukemi-nav').addEventListener('click', function() {
-                window.location.href = '/ukemis/';
-            });
+        }, 1200);
+    }
+}
+function backToTopHandler() {
+    createBackToTopParticles(this);
+    this.style.transform = 'scale(0.95)';
+    this.style.transition = 'transform 0.1s ease';
+    const startPosition = window.pageYOffset;
+    const targetPosition = 0;
+    const distance = targetPosition - startPosition;
+    const duration = 1000;
+    let start = null;
+    function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+    function animation(currentTime) {
+        if (start === null) start = currentTime;
+        const timeElapsed = currentTime - start;
+        const progress = Math.min(timeElapsed / duration, 1);
+        const easedProgress = easeInOutCubic(progress);
+        window.scrollTo(0, startPosition + distance * easedProgress);
+        if (progress < 1) {
+            requestAnimationFrame(animation);
+        } else {
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+                this.style.transition = 'transform 0.3s ease';
+            }, 100);
+        }
+    }
+    requestAnimationFrame(animation);
+}
+function initializeBackToTopButtons() {
+    document.querySelectorAll('.back-to-top-section, #backToTop').forEach(button => {
+        const isVisible = button.offsetParent !== null;
+        if (!button.hasAttribute('data-initialized')) {
+            button.removeEventListener('click', backToTopHandler);
+            button.classList.add('animate-in');
+            button.addEventListener('click', backToTopHandler);
+            button.setAttribute('data-initialized', 'true');
+        }
+    });
+}
+document.addEventListener('DOMContentLoaded', function() {
+    initializeBackToTopButtons();
+    setInterval(() => {
+        const buttons = document.querySelectorAll('.back-to-top-section, #backToTop');
+        const uninitializedButtons = Array.from(buttons).filter(button => {
+            return !button.hasAttribute('data-initialized');
         });
+        if (uninitializedButtons.length > 0) {
+            initializeBackToTopButtons();
+        }
+    }, 2000);
+});
+// --- FIM: Animação do botão voltar ao topo ---
     </script>
 </body>
 </html>

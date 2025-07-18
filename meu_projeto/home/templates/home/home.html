@@ -50,52 +50,52 @@
                 <span class="font-bold text-base text-gray-700 tracking-wider">Judô</span>
             </div>
             <h2 class="text-lg font-semibold mb-3 text-gray-800 animate-fade-in-down">Acessar sua conta</h2>
-            <form id="login-form" method="post" action="{% url 'login' %}" class="w-full flex flex-col gap-2" autocomplete="off">
+            <form id="login-form" method="post" action="{% if show_register %}{% url 'register' %}{% else %}{% url 'login' %}{% endif %}" class="w-full flex flex-col gap-2" autocomplete="off">
                 {% csrf_token %}
-                <div class="relative">
-                    <input id="email" type="email" name="email" placeholder=" " required class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" />
+                <div class="relative" id="login-email-group">
+                    <input id="email" type="email" name="email" placeholder=" " required class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" value="{{ register_form.email.value|default:form.email.value|default_if_none:''|default:'' }}" />
                     <label for="email" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Email</label>
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm"><i class="fa-regular fa-envelope"></i></span>
                 </div>
-                <div class="relative">
+                <div class="relative" id="login-senha-group">
                     <input id="senha" type="password" name="senha" placeholder=" " required class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" />
                     <label for="senha" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Senha</label>
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm"><i class="fa-solid fa-key"></i></span>
                     <button type="button" id="togglePassword" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600 transition text-sm" tabindex="-1"><i class="fa-regular fa-eye"></i></button>
                 </div>
-                <div id="cadastro-campos" style="display:none;">
+                <div id="cadastro-campos" {% if show_register %}style="display:block;"{% else %}style="display:none;"{% endif %}>
                     <div class="relative">
-                        <input id="nome" type="text" name="nome" placeholder=" " class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" />
+                        <input id="nome" type="text" name="nome" placeholder=" " class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" value="{{ register_form.nome.value|default_if_none:''|default:'' }}" />
                         <label for="nome" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Nome completo</label>
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm"><i class="fa-regular fa-user"></i></span>
                     </div>
                     <div class="relative">
-                        <input id="idade" type="number" name="idade" placeholder=" " min="1" max="120" class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" />
+                        <input id="idade" type="number" name="idade" placeholder=" " min="1" max="120" class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" value="{{ register_form.idade.value }}" />
                         <label for="idade" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Idade</label>
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm"><i class="fa-solid fa-calendar"></i></span>
                     </div>
                     <div class="relative">
                         <select id="faixa" name="faixa" class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 text-sm transition-all duration-300">
                             <option value="" disabled selected hidden>Faixa atual</option>
-                            <option value="branca">Branca</option>
-                            <option value="cinza">Cinza</option>
-                            <option value="azul">Azul</option>
-                            <option value="amarela">Amarela</option>
-                            <option value="laranja">Laranja</option>
-                            <option value="verde">Verde</option>
-                            <option value="roxa">Roxa</option>
-                            <option value="marrom">Marrom</option>
-                            <option value="preta">Preta</option>
+                            <option value="branca" {% if register_form.faixa.value == 'branca' %}selected{% endif %}>Branca</option>
+                            <option value="cinza" {% if register_form.faixa.value == 'cinza' %}selected{% endif %}>Cinza</option>
+                            <option value="azul" {% if register_form.faixa.value == 'azul' %}selected{% endif %}>Azul</option>
+                            <option value="amarela" {% if register_form.faixa.value == 'amarela' %}selected{% endif %}>Amarela</option>
+                            <option value="laranja" {% if register_form.faixa.value == 'laranja' %}selected{% endif %}>Laranja</option>
+                            <option value="verde" {% if register_form.faixa.value == 'verde' %}selected{% endif %}>Verde</option>
+                            <option value="roxa" {% if register_form.faixa.value == 'roxa' %}selected{% endif %}>Roxa</option>
+                            <option value="marrom" {% if register_form.faixa.value == 'marrom' %}selected{% endif %}>Marrom</option>
+                            <option value="preta" {% if register_form.faixa.value == 'preta' %}selected{% endif %}>Preta</option>
                         </select>
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm"><i class="fa-solid fa-medal"></i></span>
                     </div>
                 </div>
                 <button id="login-btn" type="submit" class="mt-1 w-full py-2 rounded-md bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white font-semibold text-base shadow transition-all duration-300 focus:ring-4 focus:ring-blue-200 focus:outline-none active:scale-95 flex items-center justify-center gap-2">
-                    <span id="login-btn-text">Entrar</span>
+                    <span id="login-btn-text">{% if show_register %}Criar conta{% else %}Entrar{% endif %}</span>
                     <span id="login-spinner" class="hidden animate-spin"><i class="fa-solid fa-spinner"></i></span>
                 </button>
             </form>
-            <div class="flex items-center justify-between w-full mt-2 text-xs text-gray-600 animate-fade-in-up">
+            <div class="flex items-center justify-between w-full mt-2 text-xs text-gray-600 animate-fade-in-up" id="login-options" {% if show_register %}style="display:none;"{% else %}style="display:flex;"{% endif %}>
                 <label class="flex items-center gap-1 cursor-pointer">
                     <input type="checkbox" class="accent-blue-700 transition-all duration-200" />
                     Lembrar de mim
@@ -103,7 +103,13 @@
                 <a href="#" class="hover:underline transition-colors duration-200">Esqueceu a senha?</a>
             </div>
             <div class="w-full text-center mt-2 text-xs text-gray-500 animate-fade-in-up">
-                Não possui conta? <a href="#" id="criar-conta-link" class="text-blue-600 hover:underline transition-colors duration-200">Crie uma conta grátis</a>
+                <span id="toggle-auth-mode">
+                {% if show_register %}
+                  Já tem conta? <a href="#" id="fazer-login-link" class="text-blue-600 hover:underline transition-colors duration-200">Faça login</a>
+                {% else %}
+                  Não possui conta? <a href="#" id="criar-conta-link" class="text-blue-600 hover:underline transition-colors duration-200">Crie uma conta grátis</a>
+                {% endif %}
+                </span>
             </div>
             <div class="w-full text-center mt-4 text-[10px] text-gray-400 animate-fade-in-up">© 2024 Judô</div>
             <div id="login-feedback" class="fixed left-1/2 -translate-x-1/2 top-8 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg font-semibold text-xs opacity-0 pointer-events-none transition-all duration-500 z-50"></div>
@@ -140,6 +146,27 @@
 
         // Remover manipulação do submit do formulário de login
         // ... mantenha apenas animações, toggle de senha, etc ...
+
+        // Alternar entre login e cadastro
+        document.addEventListener('DOMContentLoaded', function() {
+            const cadastroCampos = document.getElementById('cadastro-campos');
+            const criarContaLink = document.getElementById('criar-conta-link');
+            const fazerLoginLink = document.getElementById('fazer-login-link');
+            const loginForm = document.getElementById('login-form');
+            const loginOptions = document.getElementById('login-options');
+            if (criarContaLink) {
+                criarContaLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.location.href = '{% url 'register' %}';
+                });
+            }
+            if (fazerLoginLink) {
+                fazerLoginLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.location.href = '{% url 'login' %}';
+                });
+            }
+        });
     </script>
 </body>
 </html>

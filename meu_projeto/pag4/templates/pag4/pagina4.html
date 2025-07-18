@@ -104,6 +104,35 @@
             margin-top: auto;
             margin-bottom: 0;
         }
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fade-in 1.2s cubic-bezier(0.4,0,0.2,1);
+        }
+        .japanese-nav-card.clicked::before {
+            width: 400px;
+            height: 400px;
+        }
+        .japanese-nav-card.clicked {
+            transform: scale(0.9) rotate(2deg);
+            box-shadow: 0 0 40px rgba(251, 191, 36, 0.6);
+            border-color: #F59E0B;
+        }
+        .japanese-nav-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+        }
+        .japanese-nav-card.clicked::after {
+            left: 100%;
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-display">
@@ -204,7 +233,7 @@
         </div>
 
         <!-- Seção de Técnicas -->
-        <section id="nage-waza-section" class="mb-8">
+        <section id="nage-waza-section" class="mb-8 hidden">
             <div class="text-center mb-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
                     <span class="text-gradient">Técnicas de Projeção</span>
@@ -224,170 +253,158 @@
                 <!-- Carrossel -->
                 <div id="carouselProj" class="flex overflow-x-auto gap-6 pb-4 scroll-smooth snap-x snap-mandatory hide-scrollbar">
                     <!-- Técnica 1 -->
-                    <div class="technique-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
-                        <div class="relative">
-                            <div class="video-container">
-                                <iframe src="https://www.youtube.com/embed/4BUUvqxi_Kk?si=u4-q6TLWy6dGLops" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                        <div class="flex items-center mb-3 justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-orange-100 p-2 rounded-full mr-3">
+                                    <span class="text-lg">🥋</span>
                             </div>
-                            <div class="absolute top-2 right-2">
-                                <label class="flex items-center select-none">
-                                    <input type="checkbox" class="proj-checkbox accent-orange-500 w-4 h-4 mr-1" />
-                                    <span class="text-xs text-white bg-black/50 px-2 py-1 rounded">Aprendi</span>
-                                </label>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-800">DE-ASHI-HARAI</h3>
+                                    <p class="text-gray-600 text-sm">Projeção por varredura do pé avançado</p>
                             </div>
                         </div>
-                        <div class="p-4">
-                            <div class="flex items-center mb-2">
-                                <div class="bg-orange-100 p-2 rounded-full mr-3">
-                                    <span class="text-sm">🥋</span>
+                            <label class="flex items-center ml-2 select-none">
+                                <input type="checkbox" class="proj-checkbox accent-orange-500 w-5 h-5 mr-1" />
+                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                            </label>
                                 </div>
-                                <h3 class="text-base font-bold text-gray-800">DE-ASHI-HARAI</h3>
+                        <div class="video-container mb-3">
+                            <iframe src="https://www.youtube.com/embed/4BUUvqxi_Kk?si=u4-q6TLWy6dGLops" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
-                            <p class="text-gray-600 text-xs mb-3">Projeção por varredura do pé avançado</p>
-                            <div class="bg-orange-50 p-2 rounded-lg">
-                                <h4 class="font-semibold text-orange-800 mb-1 text-xs">💡 Dica:</h4>
+                        <div class="bg-orange-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
                                 <p class="text-orange-700 text-xs">Sincronize o movimento do pé com o desequilíbrio do oponente.</p>
-                            </div>
                         </div>
                     </div>
 
                     <!-- Técnica 2 -->
-                    <div class="technique-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
-                        <div class="relative">
-                            <div class="video-container">
-                                <iframe src="https://www.youtube.com/embed/jeQ541ScLB4?si=OdsK1_9dQs1HMz9S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                        <div class="flex items-center mb-3 justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-orange-100 p-2 rounded-full mr-3">
+                                    <span class="text-lg">🥋</span>
                             </div>
-                            <div class="absolute top-2 right-2">
-                                <label class="flex items-center select-none">
-                                    <input type="checkbox" class="proj-checkbox accent-orange-500 w-4 h-4 mr-1" />
-                                    <span class="text-xs text-white bg-black/50 px-2 py-1 rounded">Aprendi</span>
-                                </label>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-800">KO-SOTO-GARI</h3>
+                                    <p class="text-gray-600 text-sm">Projeção por gancho externo menor</p>
                             </div>
                         </div>
-                        <div class="p-4">
-                            <div class="flex items-center mb-2">
-                                <div class="bg-orange-100 p-2 rounded-full mr-3">
-                                    <span class="text-sm">🥋</span>
+                            <label class="flex items-center ml-2 select-none">
+                                <input type="checkbox" class="proj-checkbox accent-orange-500 w-5 h-5 mr-1" />
+                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                            </label>
                                 </div>
-                                <h3 class="text-base font-bold text-gray-800">KO-SOTO-GARI</h3>
+                        <div class="video-container mb-3">
+                            <iframe src="https://www.youtube.com/embed/jeQ541ScLB4?si=OdsK1_9dQs1HMz9S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
-                            <p class="text-gray-600 text-xs mb-3">Projeção por gancho externo menor</p>
-                            <div class="bg-orange-50 p-2 rounded-lg">
-                                <h4 class="font-semibold text-orange-800 mb-1 text-xs">💡 Dica:</h4>
+                        <div class="bg-orange-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
                                 <p class="text-orange-700 text-xs">Aproveite o momento em que o oponente transfere o peso para o pé de apoio.</p>
-                            </div>
                         </div>
                     </div>
 
                     <!-- Técnica 3 -->
-                    <div class="technique-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
-                        <div class="relative">
-                            <div class="video-container">
-                                <iframe src="https://www.youtube.com/embed/vu1TMVNnq34?si=Z_RzsrluW7ohJU2h" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                        <div class="flex items-center mb-3 justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-orange-100 p-2 rounded-full mr-3">
+                                    <span class="text-lg">🥋</span>
                             </div>
-                            <div class="absolute top-2 right-2">
-                                <label class="flex items-center select-none">
-                                    <input type="checkbox" class="proj-checkbox accent-orange-500 w-4 h-4 mr-1" />
-                                    <span class="text-xs text-white bg-black/50 px-2 py-1 rounded">Aprendi</span>
-                                </label>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-800">SEOI-OTOSHI</h3>
+                                    <p class="text-gray-600 text-sm">Projeção por queda sobre o ombro</p>
                             </div>
                         </div>
-                        <div class="p-4">
-                            <div class="flex items-center mb-2">
-                                <div class="bg-orange-100 p-2 rounded-full mr-3">
-                                    <span class="text-sm">🥋</span>
+                            <label class="flex items-center ml-2 select-none">
+                                <input type="checkbox" class="proj-checkbox accent-orange-500 w-5 h-5 mr-1" />
+                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                            </label>
                                 </div>
-                                <h3 class="text-base font-bold text-gray-800">SEOI-OTOSHI</h3>
+                        <div class="video-container mb-3">
+                            <iframe src="https://www.youtube.com/embed/vu1TMVNnq34?si=Z_RzsrluW7ohJU2h" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
-                            <p class="text-gray-600 text-xs mb-3">Projeção por queda sobre o ombro</p>
-                            <div class="bg-orange-50 p-2 rounded-lg">
-                                <h4 class="font-semibold text-orange-800 mb-1 text-xs">💡 Dica:</h4>
+                        <div class="bg-orange-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
                                 <p class="text-orange-700 text-xs">Abaixe o quadril e use o giro do corpo para projetar.</p>
-                            </div>
                         </div>
                     </div>
 
                     <!-- Técnica 4 -->
-                    <div class="technique-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
-                        <div class="relative">
-                            <div class="video-container">
-                                <iframe src="https://www.youtube.com/embed/51Htlp7xEvE?si=5-jKQ78ErET8RtIO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                        <div class="flex items-center mb-3 justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-orange-100 p-2 rounded-full mr-3">
+                                    <span class="text-lg">🥋</span>
                             </div>
-                            <div class="absolute top-2 right-2">
-                                <label class="flex items-center select-none">
-                                    <input type="checkbox" class="proj-checkbox accent-orange-500 w-4 h-4 mr-1" />
-                                    <span class="text-xs text-white bg-black/50 px-2 py-1 rounded">Aprendi</span>
-                                </label>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-800">TSURI-GOSHI</h3>
+                                    <p class="text-gray-600 text-sm">Projeção por quadril com elevação</p>
                             </div>
                         </div>
-                        <div class="p-4">
-                            <div class="flex items-center mb-2">
-                                <div class="bg-orange-100 p-2 rounded-full mr-3">
-                                    <span class="text-sm">🥋</span>
+                            <label class="flex items-center ml-2 select-none">
+                                <input type="checkbox" class="proj-checkbox accent-orange-500 w-5 h-5 mr-1" />
+                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                            </label>
                                 </div>
-                                <h3 class="text-base font-bold text-gray-800">TSURI-GOSHI</h3>
+                        <div class="video-container mb-3">
+                            <iframe src="https://www.youtube.com/embed/51Htlp7xEvE?si=5-jKQ78ErET8RtIO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
-                            <p class="text-gray-600 text-xs mb-3">Projeção por quadril com elevação</p>
-                            <div class="bg-orange-50 p-2 rounded-lg">
-                                <h4 class="font-semibold text-orange-800 mb-1 text-xs">💡 Dica:</h4>
+                        <div class="bg-orange-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
                                 <p class="text-orange-700 text-xs">Eleve o oponente com o quadril e finalize com o giro.</p>
-                            </div>
                         </div>
                     </div>
 
                     <!-- Técnica 5 -->
-                    <div class="technique-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
-                        <div class="relative">
-                            <div class="video-container">
-                                <iframe src="https://www.youtube.com/embed/iUpSu5J-bgw?si=9WtD4HFq_8663MB-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                        <div class="flex items-center mb-3 justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-orange-100 p-2 rounded-full mr-3">
+                                    <span class="text-lg">🥋</span>
                             </div>
-                            <div class="absolute top-2 right-2">
-                                <label class="flex items-center select-none">
-                                    <input type="checkbox" class="proj-checkbox accent-orange-500 w-4 h-4 mr-1" />
-                                    <span class="text-xs text-white bg-black/50 px-2 py-1 rounded">Aprendi</span>
-                                </label>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-800">UCHI-MATA</h3>
+                                    <p class="text-gray-600 text-sm">Projeção por varredura interna da coxa</p>
                             </div>
                         </div>
-                        <div class="p-4">
-                            <div class="flex items-center mb-2">
-                                <div class="bg-orange-100 p-2 rounded-full mr-3">
-                                    <span class="text-sm">🥋</span>
+                            <label class="flex items-center ml-2 select-none">
+                                <input type="checkbox" class="proj-checkbox accent-orange-500 w-5 h-5 mr-1" />
+                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                            </label>
                                 </div>
-                                <h3 class="text-base font-bold text-gray-800">UCHI-MATA</h3>
+                        <div class="video-container mb-3">
+                            <iframe src="https://www.youtube.com/embed/iUpSu5J-bgw?si=9WtD4HFq_8663MB-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
-                            <p class="text-gray-600 text-xs mb-3">Projeção por varredura interna da coxa</p>
-                            <div class="bg-orange-50 p-2 rounded-lg">
-                                <h4 class="font-semibold text-orange-800 mb-1 text-xs">💡 Dica:</h4>
+                        <div class="bg-orange-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
                                 <p class="text-orange-700 text-xs">Gire o corpo e use a perna para varrer a coxa do oponente.</p>
-                            </div>
                         </div>
                     </div>
 
                     <!-- Técnica 6 -->
-                    <div class="technique-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
-                        <div class="relative">
-                            <div class="video-container">
-                                <iframe src="https://www.youtube.com/embed/qTo8HlAAkOo?si=zeY7htmFa7gxwAfq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                        <div class="flex items-center mb-3 justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-orange-100 p-2 rounded-full mr-3">
+                                    <span class="text-lg">🥋</span>
                             </div>
-                            <div class="absolute top-2 right-2">
-                                <label class="flex items-center select-none">
-                                    <input type="checkbox" class="proj-checkbox accent-orange-500 w-4 h-4 mr-1" />
-                                    <span class="text-xs text-white bg-black/50 px-2 py-1 rounded">Aprendi</span>
-                                </label>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-800">HARAI-GOSHI</h3>
+                                    <p class="text-gray-600 text-sm">Projeção por varredura do quadril</p>
                             </div>
                         </div>
-                        <div class="p-4">
-                            <div class="flex items-center mb-2">
-                                <div class="bg-orange-100 p-2 rounded-full mr-3">
-                                    <span class="text-sm">🥋</span>
+                            <label class="flex items-center ml-2 select-none">
+                                <input type="checkbox" class="proj-checkbox accent-orange-500 w-5 h-5 mr-1" />
+                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                            </label>
                                 </div>
-                                <h3 class="text-base font-bold text-gray-800">HARAI-GOSHI</h3>
+                        <div class="video-container mb-3">
+                            <iframe src="https://www.youtube.com/embed/qTo8HlAAkOo?si=zeY7htmFa7gxwAfq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
-                            <p class="text-gray-600 text-xs mb-3">Projeção por varredura do quadril</p>
-                            <div class="bg-orange-50 p-2 rounded-lg">
-                                <h4 class="font-semibold text-orange-800 mb-1 text-xs">💡 Dica:</h4>
+                        <div class="bg-orange-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
                                 <p class="text-orange-700 text-xs">Sincronize o giro do corpo com a varredura do quadril.</p>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -398,11 +415,14 @@
                     </svg>
                 </button>
             </div>
+            <div class="text-center mt-8">
+                <button class="back-to-top-section bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-buttons transition-colors shadow-lg">
+                    ↑ Voltar ao Topo
+                </button>
+            </div>
         </section>
-        <!-- Divisor Visual -->
-        <div class="section-divider h-px my-6"></div>
         <!-- Seção de Imobilizações -->
-        <section id="imobilizacoes-section" class="mb-8">
+        <section id="imobilizacoes-section" class="mb-8 hidden">
             <div class="text-center mb-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
                     <span class="text-gradient">Técnicas de Imobilização</span>
@@ -421,114 +441,106 @@
                 <!-- Carrossel -->
                 <div id="carouselImob" class="flex overflow-x-auto gap-6 pb-4 scroll-smooth snap-x snap-mandatory hide-scrollbar">
                     <!-- Imobilização 1 -->
-                    <div class="technique-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
-                        <div class="relative">
-                            <div class="video-container">
-                                <iframe src="https://www.youtube.com/embed/e5HrhANfDcU?si=GgrI9WraB9ZTBvwW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                        <div class="flex items-center mb-3 justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-orange-100 p-2 rounded-full mr-3">
+                                    <span class="text-lg">🥋</span>
                             </div>
-                            <div class="absolute top-2 right-2">
-                                <label class="flex items-center select-none">
-                                    <input type="checkbox" class="imob-checkbox accent-orange-500 w-4 h-4 mr-1" />
-                                    <span class="text-xs text-white bg-black/50 px-2 py-1 rounded">Aprendi</span>
-                                </label>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-800">MAKURA-KESA-GATAME (I e II)</h3>
+                                    <p class="text-gray-600 text-sm">Imobilização lateral com apoio de travesseiro, variações I e II</p>
                             </div>
                         </div>
-                        <div class="p-4">
-                            <div class="flex items-center mb-2">
-                                <div class="bg-orange-100 p-2 rounded-full mr-3">
-                                    <span class="text-sm">🥋</span>
+                            <label class="flex items-center ml-2 select-none">
+                                <input type="checkbox" class="imob-checkbox accent-orange-500 w-5 h-5 mr-1" />
+                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                            </label>
                                 </div>
-                                <h3 class="text-base font-bold text-gray-800">MAKURA-KESA-GATAME (I e II)</h3>
+                        <div class="video-container mb-3">
+                            <iframe src="https://www.youtube.com/embed/e5HrhANfDcU?si=GgrI9WraB9ZTBvwW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
-                            <p class="text-gray-600 text-xs mb-3">Imobilização lateral com apoio de travesseiro, variações I e II</p>
-                            <div class="bg-orange-50 p-2 rounded-lg">
-                                <h4 class="font-semibold text-orange-800 mb-1 text-xs">💡 Dica:</h4>
+                        <div class="bg-orange-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
                                 <p class="text-orange-700 text-xs">Mantenha o peso sobre o tórax do oponente e controle o braço.</p>
-                            </div>
                         </div>
                     </div>
 
                     <!-- Imobilização 2 -->
-                    <div class="technique-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
-                        <div class="relative">
-                            <div class="video-container">
-                                <iframe src="https://www.youtube.com/embed/SBapox2M2dE?si=udntyAI0ajP89Qgc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                        <div class="flex items-center mb-3 justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-orange-100 p-2 rounded-full mr-3">
+                                    <span class="text-lg">🥋</span>
                             </div>
-                            <div class="absolute top-2 right-2">
-                                <label class="flex items-center select-none">
-                                    <input type="checkbox" class="imob-checkbox accent-orange-500 w-4 h-4 mr-1" />
-                                    <span class="text-xs text-white bg-black/50 px-2 py-1 rounded">Aprendi</span>
-                                </label>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-800">USHIRO-KESA-GATAME</h3>
+                                    <p class="text-gray-600 text-sm">Imobilização lateral por trás</p>
                             </div>
                         </div>
-                        <div class="p-4">
-                            <div class="flex items-center mb-2">
-                                <div class="bg-orange-100 p-2 rounded-full mr-3">
-                                    <span class="text-sm">🥋</span>
+                            <label class="flex items-center ml-2 select-none">
+                                <input type="checkbox" class="imob-checkbox accent-orange-500 w-5 h-5 mr-1" />
+                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                            </label>
                                 </div>
-                                <h3 class="text-base font-bold text-gray-800">USHIRO-KESA-GATAME</h3>
+                        <div class="video-container mb-3">
+                            <iframe src="https://www.youtube.com/embed/SBapox2M2dE?si=udntyAI0ajP89Qgc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
-                            <p class="text-gray-600 text-xs mb-3">Imobilização lateral por trás</p>
-                            <div class="bg-orange-50 p-2 rounded-lg">
-                                <h4 class="font-semibold text-orange-800 mb-1 text-xs">💡 Dica:</h4>
+                        <div class="bg-orange-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
                                 <p class="text-orange-700 text-xs">Controle o quadril do oponente e mantenha o peso centralizado.</p>
-                            </div>
                         </div>
                     </div>
 
                     <!-- Imobilização 3 -->
-                    <div class="technique-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
-                        <div class="relative">
-                            <div class="video-container">
-                                <iframe src="https://www.youtube.com/embed/Sx7bgjx3O8Y?si=F6vw5XteIlpLujMq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                        <div class="flex items-center mb-3 justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-orange-100 p-2 rounded-full mr-3">
+                                    <span class="text-lg">🥋</span>
                             </div>
-                            <div class="absolute top-2 right-2">
-                                <label class="flex items-center select-none">
-                                    <input type="checkbox" class="imob-checkbox accent-orange-500 w-4 h-4 mr-1" />
-                                    <span class="text-xs text-white bg-black/50 px-2 py-1 rounded">Aprendi</span>
-                                </label>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-800">KUZURE-TATE-SHIHO-GATAME (I e II)</h3>
+                                    <p class="text-gray-600 text-sm">Imobilização vertical modificada, variações I e II</p>
                             </div>
                         </div>
-                        <div class="p-4">
-                            <div class="flex items-center mb-2">
-                                <div class="bg-orange-100 p-2 rounded-full mr-3">
-                                    <span class="text-sm">🥋</span>
+                            <label class="flex items-center ml-2 select-none">
+                                <input type="checkbox" class="imob-checkbox accent-orange-500 w-5 h-5 mr-1" />
+                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                            </label>
                                 </div>
-                                <h3 class="text-base font-bold text-gray-800">KUZURE-TATE-SHIHO-GATAME (I e II)</h3>
+                        <div class="video-container mb-3">
+                            <iframe src="https://www.youtube.com/embed/zQR3IOXxO_Q?si=6MfNkIzaGr3N0KI-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
-                            <p class="text-gray-600 text-xs mb-3">Imobilização vertical modificada, variações I e II</p>
-                            <div class="bg-orange-50 p-2 rounded-lg">
-                                <h4 class="font-semibold text-orange-800 mb-1 text-xs">💡 Dica:</h4>
+                        <div class="bg-orange-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
                                 <p class="text-orange-700 text-xs">Mantenha o controle dos ombros e quadris do oponente.</p>
-                            </div>
                         </div>
                     </div>
 
                     <!-- Imobilização 4 -->
-                    <div class="technique-card bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
-                        <div class="relative">
-                            <div class="video-container">
-                                <iframe src="https://www.youtube.com/embed/zQR3IOXxO_Q?si=6MfNkIzaGr3N0KI-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                        <div class="flex items-center mb-3 justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-orange-100 p-2 rounded-full mr-3">
+                                    <span class="text-lg">🥋</span>
                             </div>
-                            <div class="absolute top-2 right-2">
-                                <label class="flex items-center select-none">
-                                    <input type="checkbox" class="imob-checkbox accent-orange-500 w-4 h-4 mr-1" />
-                                    <span class="text-xs text-white bg-black/50 px-2 py-1 rounded">Aprendi</span>
-                                </label>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-800">KATA-GATAME </h3>
+                                    <p class="text-gray-600 text-sm">Imobilização por controle do braço e pescoço</p>
                             </div>
                         </div>
-                        <div class="p-4">
-                            <div class="flex items-center mb-2">
-                                <div class="bg-orange-100 p-2 rounded-full mr-3">
-                                    <span class="text-sm">🥋</span>
+                            <label class="flex items-center ml-2 select-none">
+                                <input type="checkbox" class="imob-checkbox accent-orange-500 w-5 h-5 mr-1" />
+                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                            </label>
                                 </div>
-                                <h3 class="text-base font-bold text-gray-800">KATA-GATAME </h3>
+                        <div class="video-container mb-3">
+                            <iframe src="https://www.youtube.com/embed/zQR3IOXxO_Q?si=6MfNkIzaGr3N0KI-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
-                            <p class="text-gray-600 text-xs mb-3">Imobilização por controle do braço e pescoço</p>
-                            <div class="bg-orange-50 p-2 rounded-lg">
-                                <h4 class="font-semibold text-orange-800 mb-1 text-xs">💡 Dica:</h4>
+                        <div class="bg-orange-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
                                 <p class="text-orange-700 text-xs">Aperte o braço do oponente contra o pescoço e mantenha o peso baixo.</p>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -539,11 +551,14 @@
                     </svg>
                 </button>
             </div>
+            <div class="text-center mt-8">
+                <button class="back-to-top-section bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-buttons transition-colors shadow-lg">
+                    ↑ Voltar ao Topo
+                </button>
+            </div>
         </section>
-        <!-- Divisor Visual -->
-        <div class="section-divider h-px my-8"></div>
         <!-- Seção de Chave de Braço -->
-        <section id="chave-braco-section" class="mb-12">
+        <section id="chave-braco-section" class="mb-12 hidden">
             <div class="text-center mb-8">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
                     <span class="text-gradient">Técnicas de Chave de Braço</span>
@@ -554,7 +569,7 @@
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- Chave de Braço -->
-                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
                     <div class="flex items-center mb-3 justify-between">
                         <div class="flex items-center">
                             <div class="bg-orange-100 p-2 rounded-full mr-3">
@@ -567,7 +582,7 @@
                         </div>
                         <label class="flex items-center ml-2 select-none">
                             <input type="checkbox" class="chave-checkbox accent-orange-500 w-5 h-5 mr-1" />
-                            <span class="text-xs text-gray-700">Aprendi</span>
+                            <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                         </label>
                     </div>
                     <div class="video-container mb-3">
@@ -579,11 +594,14 @@
                     </div>
                 </div>
             </div>
+            <div class="text-center mt-8">
+                <button class="back-to-top-section bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-buttons transition-colors shadow-lg">
+                    ↑ Voltar ao Topo
+                </button>
+            </div>
         </section>
-        <!-- Divisor Visual -->
-        <div class="section-divider h-px my-8"></div>
         <!-- Seção de Estrangulamento -->
-        <section id="estrangulamento-section" class="mb-12">
+        <section id="estrangulamento-section" class="mb-12 hidden">
             <div class="text-center mb-8">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
                     <span class="text-gradient">Técnicas de Estrangulamento</span>
@@ -594,7 +612,7 @@
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- Estrangulamento -->
-                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
                     <div class="flex items-center mb-3 justify-between">
                         <div class="flex items-center">
                             <div class="bg-orange-100 p-2 rounded-full mr-3">
@@ -607,7 +625,7 @@
                         </div>
                         <label class="flex items-center ml-2 select-none">
                             <input type="checkbox" class="chave-checkbox accent-orange-500 w-5 h-5 mr-1" />
-                            <span class="text-xs text-gray-700">Aprendi</span>
+                            <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                         </label>
                     </div>
                     <div class="video-container mb-3">
@@ -619,9 +637,12 @@
                     </div>
                 </div>
             </div>
+            <div class="text-center mt-8">
+                <button class="back-to-top-section bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-buttons transition-colors shadow-lg">
+                    ↑ Voltar ao Topo
+                </button>
+            </div>
         </section>
-        <!-- Divisor Visual -->
-        <div class="section-divider h-px my-8"></div>
         <!-- Barra de Progresso Flutuante -->
         <div id="floatingProgress" class="fixed top-4 left-0 right-0 mx-auto w-fit bg-white border border-gray-300 rounded-lg shadow-lg p-3 z-50 opacity-0 transition-opacity duration-300 pointer-events-none">
             <div class="flex items-center gap-5">
@@ -632,8 +653,10 @@
             </div>
         </div>
 
+        <!-- Remover indicador de scroll e simplificar partículas -->
+        <div id="scrollParticles" class="scroll-particles"></div>
         <!-- Botão Flutuante de Voltar ao Topo -->
-        <button id="backToTop" class="fixed bottom-8 right-8 bg-orange-600 hover:bg-orange-700 text-white p-4 rounded-full shadow-lg floating-action transition-colors hidden">
+        <button id="backToTop" class="fixed bottom-8 right-8 bg-orange-600 hover:bg-orange-700 text-white p-4 rounded-full shadow-lg floating-action transition-colors hidden font-buttons">
             <span class="text-2xl">↑</span>
         </button>
 
@@ -673,20 +696,29 @@
             }
 
             // Função para mostrar barra de progresso flutuante
+            let floatingProgressTimeout;
             function showFloatingProgress(progress) {
-                // Atualizar valores da barra flutuante
                 floatingProgressBar.style.width = progress + '%';
                 floatingProgressText.textContent = Math.round(progress) + '%';
-                
-                // Mostrar a barra
+                floatingProgress.classList.remove('hidden');
                 floatingProgress.style.opacity = '1';
                 floatingProgress.style.pointerEvents = 'auto';
-                
-                // Esconder após 5 segundos
-                setTimeout(() => {
+                if (floatingProgressTimeout) clearTimeout(floatingProgressTimeout);
+                if (progress === 0) {
                     floatingProgress.style.opacity = '0';
                     floatingProgress.style.pointerEvents = 'none';
-                }, 5000);
+                setTimeout(() => {
+                        floatingProgress.classList.add('hidden');
+                    }, 300);
+                } else {
+                    floatingProgressTimeout = setTimeout(() => {
+                    floatingProgress.style.opacity = '0';
+                    floatingProgress.style.pointerEvents = 'none';
+                        setTimeout(() => {
+                            floatingProgress.classList.add('hidden');
+                        }, 300);
+                    }, 3000);
+                }
             }
             
             projCheckboxes.forEach(checkbox => {
@@ -709,13 +741,66 @@
                     backToTopBtn.classList.add('hidden');
                 }
             });
-
-            backToTopBtn.addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
+            // Função para criar partículas no botão voltar ao topo
+            function createBackToTopParticles(button) {
+                const rect = button.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                for (let i = 0; i < 12; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'back-to-top-particle';
+                    particle.style.left = centerX + (Math.random() - 0.5) * 60 + 'px';
+                    particle.style.top = centerY + (Math.random() - 0.5) * 60 + 'px';
+                    particle.style.background = `rgba(255, 255, 255, ${0.7 + Math.random() * 0.3})`;
+                    particle.style.position = 'fixed';
+                    particle.style.width = '10px';
+                    particle.style.height = '10px';
+                    particle.style.borderRadius = '50%';
+                    particle.style.pointerEvents = 'none';
+                    particle.style.zIndex = 9999;
+                    particle.style.transition = 'opacity 0.8s';
+                    document.body.appendChild(particle);
+                    setTimeout(() => {
+                        particle.style.opacity = 0;
+                        setTimeout(() => {
+                            if (particle.parentNode) {
+                                particle.parentNode.removeChild(particle);
+                            }
+                        }, 400);
+                    }, 800);
+                }
+            }
+            // Handler para o botão voltar ao topo
+            function backToTopHandler() {
+                createBackToTopParticles(this);
+                this.style.transform = 'scale(0.95)';
+                this.style.transition = 'transform 0.1s ease';
+                const startPosition = window.pageYOffset;
+                const duration = 1000;
+                let start = null;
+                function easeInOutCubic(t) {
+                    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                }
+                function animation(currentTime) {
+                    if (start === null) start = currentTime;
+                    const timeElapsed = currentTime - start;
+                    const progress = Math.min(timeElapsed / duration, 1);
+                    const easedProgress = easeInOutCubic(progress);
+                    window.scrollTo(0, startPosition * (1 - easedProgress));
+                    if (progress < 1) {
+                        requestAnimationFrame(animation);
+                    } else {
+                        setTimeout(() => {
+                            backToTopBtn.style.transform = 'scale(1)';
+                            backToTopBtn.style.transition = 'transform 0.3s ease';
+                        }, 100);
+                    }
+                }
+                requestAnimationFrame(animation);
+            }
+            // Inicializar botão flutuante
+            backToTopBtn.removeEventListener('click', backToTopHandler);
+            backToTopBtn.addEventListener('click', backToTopHandler);
 
             // Animação para as divs de navegação japonesa
             document.querySelectorAll('.japanese-nav-card').forEach((card, index) => {
@@ -729,50 +814,115 @@
                 }, 200 + (index * 100)); // Delay escalonado para cada card
             });
 
-            // Navegação interna
+            // Atualizar navegação japonesa para mostrar/ocultar seções corretamente
             const nageWazaNav = document.getElementById('nage-waza-nav');
             const imobilizacoesNav = document.getElementById('imobilizacoes-nav');
             const chaveBracoNav = document.getElementById('chave-braco-nav');
             const estrangulamentoNav = document.getElementById('estrangulamento-nav');
-            
             const nageWazaSection = document.getElementById('nage-waza-section');
             const imobilizacoesSection = document.getElementById('imobilizacoes-section');
             const chaveBracoSection = document.getElementById('chave-braco-section');
             const estrangulamentoSection = document.getElementById('estrangulamento-section');
-
+            function hideAllSections() {
+              nageWazaSection.classList.add('hidden');
+              imobilizacoesSection.classList.add('hidden');
+              chaveBracoSection.classList.add('hidden');
+              estrangulamentoSection.classList.add('hidden');
+            }
+            // Copiar animações de clique e ida até os cards da pagina3.html (efeito de destaque, partículas, indicador de scroll, etc)
+            function createParticles(x, y, count = 8) {
+                const particlesContainer = document.getElementById('scrollParticles');
+                for (let i = 0; i < count; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = x + Math.random() * 40 - 20 + 'px';
+                    particle.style.top = y + Math.random() * 40 - 20 + 'px';
+                    particle.style.animationDelay = Math.random() * 0.5 + 's';
+                    particlesContainer.appendChild(particle);
+                    setTimeout(() => {
+                        if (particle.parentNode) {
+                            particle.parentNode.removeChild(particle);
+                        }
+                    }, 1500);
+                }
+            }
+            // Substituir smoothScrollTo pela versão completa da página 3
+            function smoothScrollTo(element, cardElement) {
+                const targetElement = document.getElementById(element);
+                if (!targetElement) return;
+                cardElement.classList.add('clicked');
+                // Criar partículas no ponto de clique
+                const rect = cardElement.getBoundingClientRect();
+                createParticles(rect.left + rect.width / 2, rect.top + rect.height / 2);
+                // Calcular posição de destino
+                const targetPosition = targetElement.offsetTop - 100;
+                const startPosition = window.pageYOffset;
+                const distance = targetPosition - startPosition;
+                const duration = 1200;
+                let start = null;
+                function easeInOutCubic(t) {
+                    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                }
+                function animation(currentTime) {
+                    if (start === null) start = currentTime;
+                    const timeElapsed = currentTime - start;
+                    const progress = Math.min(timeElapsed / duration, 1);
+                    const easedProgress = easeInOutCubic(progress);
+                    window.scrollTo(0, startPosition + distance * easedProgress);
+                    if (progress < 1) {
+                        requestAnimationFrame(animation);
+                    } else {
+                        setTimeout(() => {
+                            cardElement.classList.remove('clicked');
+                            targetElement.classList.add('destination-highlight');
+                            setTimeout(() => {
+                                targetElement.classList.remove('destination-highlight');
+                            }, 2000);
+                        }, 300);
+                    }
+                }
+                requestAnimationFrame(animation);
+            }
+            function showSectionWithAnimation(section) {
+              section.classList.remove('hidden');
+              section.classList.add('animate-fade-in');
+              setTimeout(() => section.classList.remove('animate-fade-in'), 1300);
+            }
+            // Adicionar animação de clique nas barras japonesas
+            function animateJapaneseNavCard(card) {
+              card.classList.add('clicked');
+              setTimeout(() => card.classList.remove('clicked'), 800);
+            }
             if (nageWazaNav && nageWazaSection) {
-                nageWazaNav.addEventListener('click', function() {
-                    nageWazaSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                });
+              nageWazaNav.addEventListener('click', function(e) {
+                animateJapaneseNavCard(this);
+                hideAllSections();
+                showSectionWithAnimation(nageWazaSection);
+                setTimeout(() => smoothScrollTo('nage-waza-section', this), 300);
+              });
             }
-
             if (imobilizacoesNav && imobilizacoesSection) {
-                imobilizacoesNav.addEventListener('click', function() {
-                    imobilizacoesSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                });
+              imobilizacoesNav.addEventListener('click', function(e) {
+                animateJapaneseNavCard(this);
+                hideAllSections();
+                showSectionWithAnimation(imobilizacoesSection);
+                setTimeout(() => smoothScrollTo('imobilizacoes-section', this), 300);
+              });
             }
-
             if (chaveBracoNav && chaveBracoSection) {
-                chaveBracoNav.addEventListener('click', function() {
-                    chaveBracoSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                });
+              chaveBracoNav.addEventListener('click', function(e) {
+                animateJapaneseNavCard(this);
+                hideAllSections();
+                showSectionWithAnimation(chaveBracoSection);
+                setTimeout(() => smoothScrollTo('chave-braco-section', this), 300);
+              });
             }
-
             if (estrangulamentoNav && estrangulamentoSection) {
-                estrangulamentoNav.addEventListener('click', function() {
-                    estrangulamentoSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+              estrangulamentoNav.addEventListener('click', function(e) {
+                animateJapaneseNavCard(this);
+                hideAllSections();
+                showSectionWithAnimation(estrangulamentoSection);
+                setTimeout(() => smoothScrollTo('estrangulamento-section', this), 300);
                 });
             }
 
@@ -823,6 +973,31 @@
                 window.addEventListener('resize', updateImobBtns);
                 setTimeout(updateImobBtns, 300);
             }
+
+            // Inicializar botão flutuante
+            backToTopBtn.removeEventListener('click', backToTopHandler);
+            backToTopBtn.addEventListener('click', backToTopHandler);
+            // Inicializar botões das seções
+            function initializeBackToTopSectionButtons() {
+                document.querySelectorAll('.back-to-top-section').forEach(button => {
+                    if (!button.hasAttribute('data-initialized')) {
+                        button.removeEventListener('click', backToTopHandler);
+                        button.classList.add('animate-in');
+                        button.addEventListener('click', backToTopHandler);
+                        button.setAttribute('data-initialized', 'true');
+                    }
+                });
+            }
+            initializeBackToTopSectionButtons();
+            setInterval(() => {
+                const buttons = document.querySelectorAll('.back-to-top-section');
+                const uninitializedButtons = Array.from(buttons).filter(button => {
+                    return !button.hasAttribute('data-initialized');
+                });
+                if (uninitializedButtons.length > 0) {
+                    initializeBackToTopSectionButtons();
+                }
+            }, 2000);
         });
     </script>
 </body>
