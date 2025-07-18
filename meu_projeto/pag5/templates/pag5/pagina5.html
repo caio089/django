@@ -38,22 +38,23 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
         .video-container {
-            position: relative;
-            padding-bottom: 45%;
-            height: 0;
-            overflow: hidden;
+            width: 100%;
+            max-width: 440px;
+            margin: 0 auto 1rem auto;
+            aspect-ratio: 16/9;
+            background: #eee;
             border-radius: 12px;
-            box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.1);
-            max-width: 100%;
-            margin: 0 auto;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
+            border: none;
             border-radius: 12px;
+            display: block;
         }
         .progress-bar {
             transition: width 0.5s ease;
@@ -86,7 +87,7 @@
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .technique-card {
-            height: 380px;
+            height: 420px;
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -98,11 +99,40 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            padding: 0.75rem;
+            padding: 1rem;
         }
         .technique-card .bg-green-50 {
-            margin-top: 0.5rem;
+            margin-top: auto;
             margin-bottom: 0;
+        }
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fade-in 1.2s cubic-bezier(0.4,0,0.2,1);
+        }
+        .japanese-nav-card.clicked::before {
+            width: 400px;
+            height: 400px;
+        }
+        .japanese-nav-card.clicked {
+            transform: scale(0.9) rotate(2deg);
+            box-shadow: 0 0 40px rgba(34, 197, 94, 0.6);
+            border-color: #22c55e;
+        }
+        .japanese-nav-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+        }
+        .japanese-nav-card.clicked::after {
+            left: 100%;
         }
     </style>
 </head>
@@ -124,39 +154,38 @@
             </div>
             <!-- Barra de Progresso -->
             <div class="bg-white/20 rounded-full h-5 mb-3 shadow-inner">
-                <div class="progress-bar bg-gradient-to-r from-verde-400 to-verde-600 rounded-full h-5 shadow-lg transition-all duration-500" style="width: 0%" id="progressBar"></div>
+                <div class="progress-bar bg-gradient-to-r from-green-400 to-green-600 rounded-full h-5 shadow-lg transition-all duration-500" style="width: 0%" id="progressBar"></div>
             </div>
-            <p class="text-base font-semibold text-white">Progresso: <span id="progressText" class="text-verde-200">0%</span></p>
+            <p class="text-base font-semibold text-white">Progresso: <span id="progressText" class="text-green-200">0%</span></p>
         </div>
     </header>
     <main class="max-w-6xl mx-auto px-4 py-6">
         <!-- Card de Boas-Vindas Minimalista -->
-        <div id="welcomeCard" class="bg-white/80 border border-verde-300 rounded-xl shadow-md p-6 mb-8 w-full flex flex-col items-center">
+        <div id="welcomeCard" class="bg-white/80 border border-green-300 rounded-xl shadow-md p-6 mb-8 w-full flex flex-col items-center">
             <div class="flex items-center gap-2">
                 <span class="text-xl text-green-500">🥋</span>
-                <span class="font-semibold text-green-700 text-lg">Faixa Verde</span>
+                <span class="font-semibold text-green-700 text-lg">Bem-vindo à Faixa Verde</span>
             </div>
             <div class="flex flex-row gap-4 mt-2 w-full justify-center">
                 <div class="text-center">
                     <div class="font-bold text-green-600">Condição</div>
                     <div class="text-sm text-gray-700">
-                        <div>a. SEIS MESES COMO FAIXA LARANJA</div>
-                        <div>b. IDADE MÍNIMA: 10 ANOS DE IDADE</div>
+                        <div>• 6 meses de faixa laranja</div>
+                        <div>• Idade mínima: 10 anos</div>
                     </div>
                 </div>
                 <div class="text-center">
                     <div class="font-bold text-green-600">Habilidades</div>
                     <div class="text-sm text-gray-700">
-                        <div>a. 10 (DEZ) TÉCNICAS DE NAGUE-WAZA (PROJEÇÕES)</div>
-                        <div>b. 4 (QUATRO) TÉCNICAS DE OSSAE-WAZA (IMOBILIZAÇÕES)</div>
-                        <div>c. 3 (TRÊS) TÉCNICAS DE KANSETSU-WAZA (CHAVE DE BRAÇO)</div>
-                        <div>d. 3 (TRÊS) TÉCNICAS DE SHIME-WAZA (ESTRANGULAMENTO)</div>
-                        <div>e. 4 (QUATRO) TÉCNICAS DE RENRAKUENKA-WAZA (ATAQUES SUCESSIVOS)</div>
-                        <div>f. 7 (SETE) TÉCNICAS DE KAESHI-WAZA (CONTRA GOLPES)</div>
+                        <div>• 10 técnicas de Nague-waza (Projeções)</div>
+                        <div>• 4 técnicas de Ossae-komi (Imobilizações)</div>
+                        <div>• 3 tipos de Kansetsu-waza (Chave de braço)</div>
+                        <div>• 3 tipos de Shime-waza (Estrangulamento)</div>
+                        <div>• 4 técnicas de Renrakuenka-waza (Ataques sucessivos)</div>
+                        <div>• 7 técnicas de Kaeshi-waza (Contra golpes)</div>
                     </div>
                 </div>
             </div>
-            
         </div>
         <!-- Divs de Navegação Japonesa -->
         <div class="flex justify-center gap-8 mb-8">
@@ -204,7 +233,7 @@
         </div>
 
         <!-- Seção de Técnicas -->
-        <section id="nage-waza-section" class="mb-8">
+        <section id="nage-waza-section" class="mb-8 hidden">
             <div class="text-center mb-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
                     <span class="text-gradient">Técnicas de Projeção</span>
@@ -513,7 +542,7 @@
         <!-- Divisor Visual -->
         <div class="section-divider h-px my-6"></div>
         <!-- Seção de Imobilizações -->
-        <section id="imobilizacoes-section" class="mb-8">
+        <section id="imobilizacoes-section" class="mb-8 hidden">
             <div class="text-center mb-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
                     <span class="text-gradient">Técnicas de Imobilização</span>
@@ -654,7 +683,7 @@
         <!-- Divisor Visual -->
         <div class="section-divider h-px my-6"></div>
         <!-- Seção de Chave de Braço -->
-        <section id="chave-braco-section" class="mb-8">
+        <section id="chave-braco-section" class="mb-12 hidden">
             <div class="text-center mb-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
                     <span class="text-gradient">Técnicas de Chave de Braço</span>
@@ -767,7 +796,7 @@
         <!-- Divisor Visual -->
         <div class="section-divider h-px my-6"></div>
         <!-- Seção de Estrangulamento -->
-        <section id="estrangulamento-section" class="mb-8">
+        <section id="estrangulamento-section" class="mb-12 hidden">
             <div class="text-center mb-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
                     <span class="text-gradient">Técnicas de Estrangulamento</span>
@@ -998,38 +1027,34 @@
             const estrangulamentoSection = document.getElementById('estrangulamento-section');
 
             if (nageWazaNav && nageWazaSection) {
-                nageWazaNav.addEventListener('click', function() {
-                    nageWazaSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                nageWazaNav.addEventListener('click', function(e) {
+                    hideAllSections();
+                    showSectionWithAnimation(nageWazaSection);
+                    setTimeout(() => smoothScrollToSection('nage-waza-section', this), 300);
                 });
             }
 
             if (imobilizacoesNav && imobilizacoesSection) {
-                imobilizacoesNav.addEventListener('click', function() {
-                    imobilizacoesSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                imobilizacoesNav.addEventListener('click', function(e) {
+                    hideAllSections();
+                    showSectionWithAnimation(imobilizacoesSection);
+                    setTimeout(() => smoothScrollToSection('imobilizacoes-section', this), 300);
                 });
             }
 
             if (chaveBracoNav && chaveBracoSection) {
-                chaveBracoNav.addEventListener('click', function() {
-                    chaveBracoSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                chaveBracoNav.addEventListener('click', function(e) {
+                    hideAllSections();
+                    showSectionWithAnimation(chaveBracoSection);
+                    setTimeout(() => smoothScrollToSection('chave-braco-section', this), 300);
                 });
             }
 
             if (estrangulamentoNav && estrangulamentoSection) {
-                estrangulamentoNav.addEventListener('click', function() {
-                    estrangulamentoSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                estrangulamentoNav.addEventListener('click', function(e) {
+                    hideAllSections();
+                    showSectionWithAnimation(estrangulamentoSection);
+                    setTimeout(() => smoothScrollToSection('estrangulamento-section', this), 300);
                 });
             }
 
@@ -1127,6 +1152,51 @@
                 carouselEstrang.addEventListener('scroll', updateEstrangBtns);
                 window.addEventListener('resize', updateEstrangBtns);
                 setTimeout(updateEstrangBtns, 300);
+            }
+
+            function hideAllSections() {
+              nageWazaSection.classList.add('hidden');
+              imobilizacoesSection.classList.add('hidden');
+              chaveBracoSection.classList.add('hidden');
+              estrangulamentoSection.classList.add('hidden');
+            }
+            function showSectionWithAnimation(section) {
+              section.classList.remove('hidden');
+              section.classList.add('animate-fade-in');
+              setTimeout(() => section.classList.remove('animate-fade-in'), 1300);
+            }
+            function smoothScrollToSection(sectionId, cardElement) {
+                const targetElement = document.getElementById(sectionId);
+                if (!targetElement) return;
+                cardElement.classList.add('clicked');
+                // Calcular posição de destino
+                const targetPosition = targetElement.offsetTop - 100;
+                const startPosition = window.pageYOffset;
+                const distance = targetPosition - startPosition;
+                const duration = 1200;
+                let start = null;
+                function easeInOutCubic(t) {
+                    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                }
+                function animation(currentTime) {
+                    if (start === null) start = currentTime;
+                    const timeElapsed = currentTime - start;
+                    const progress = Math.min(timeElapsed / duration, 1);
+                    const easedProgress = easeInOutCubic(progress);
+                    window.scrollTo(0, startPosition + distance * easedProgress);
+                    if (progress < 1) {
+                        requestAnimationFrame(animation);
+                    } else {
+                        setTimeout(() => {
+                            cardElement.classList.remove('clicked');
+                            targetElement.classList.add('destination-highlight');
+                            setTimeout(() => {
+                                targetElement.classList.remove('destination-highlight');
+                            }, 2000);
+                        }, 300);
+                    }
+                }
+                requestAnimationFrame(animation);
             }
         });
     </script>

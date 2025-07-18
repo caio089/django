@@ -38,22 +38,23 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
         .video-container {
-            position: relative;
-            padding-bottom: 35%;
-            height: 0;
-            overflow: hidden;
+            width: 100%;
+            max-width: 440px;
+            margin: 0 auto 1rem auto;
+            aspect-ratio: 16/9;
+            background: #eee;
             border-radius: 12px;
-            box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.1);
-            max-width: 100%;
-            margin: 0 auto;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
+            border: none;
             border-radius: 12px;
+            display: block;
         }
         .progress-bar {
             transition: width 0.5s ease;
@@ -236,7 +237,7 @@
         <section id="nage-waza-section" class="mb-8 hidden">
             <div class="text-center mb-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
-                    <span class="text-gradient">Técnicas de Projeção</span>
+                    <span class="text-gradient">Técnicas de Nague-waza
                 </h2>
                 <p class="text-lg text-gray-600 max-w-3xl mx-auto">
                     Aprenda técnicas mais avançadas que elevam seu nível no judô. 
@@ -269,7 +270,7 @@
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
                                 </div>
-                        <div class="video-container mb-3">
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/4BUUvqxi_Kk?si=u4-q6TLWy6dGLops" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
@@ -295,7 +296,7 @@
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
                                 </div>
-                        <div class="video-container mb-3">
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/jeQ541ScLB4?si=OdsK1_9dQs1HMz9S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
@@ -321,7 +322,7 @@
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
                                 </div>
-                        <div class="video-container mb-3">
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/vu1TMVNnq34?si=Z_RzsrluW7ohJU2h" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
@@ -347,7 +348,7 @@
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
                                 </div>
-                        <div class="video-container mb-3">
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/51Htlp7xEvE?si=5-jKQ78ErET8RtIO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
@@ -373,7 +374,7 @@
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
                                 </div>
-                        <div class="video-container mb-3">
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/iUpSu5J-bgw?si=9WtD4HFq_8663MB-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
@@ -399,7 +400,7 @@
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
                                 </div>
-                        <div class="video-container mb-3">
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/qTo8HlAAkOo?si=zeY7htmFa7gxwAfq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
@@ -457,7 +458,7 @@
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
                                 </div>
-                        <div class="video-container mb-3">
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/e5HrhANfDcU?si=GgrI9WraB9ZTBvwW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
@@ -483,7 +484,7 @@
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
                                 </div>
-                        <div class="video-container mb-3">
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/SBapox2M2dE?si=udntyAI0ajP89Qgc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
@@ -509,7 +510,7 @@
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
                                 </div>
-                        <div class="video-container mb-3">
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/zQR3IOXxO_Q?si=6MfNkIzaGr3N0KI-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
@@ -535,7 +536,7 @@
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
                                 </div>
-                        <div class="video-container mb-3">
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/zQR3IOXxO_Q?si=6MfNkIzaGr3N0KI-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
@@ -585,7 +586,7 @@
                             <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                         </label>
                     </div>
-                    <div class="video-container mb-3">
+                    <div class="video-container">
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/OWgSOlCuMXw?si=SH-aVpATcCrFBdnA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="bg-orange-50 p-2 rounded-xl">
@@ -628,7 +629,7 @@
                             <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                         </label>
                     </div>
-                    <div class="video-container mb-3">
+                    <div class="video-container">
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/9f0n8jez7iA?si=z8AbtAXVovIXnG8o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="bg-orange-50 p-2 rounded-xl">
@@ -923,7 +924,7 @@
                 hideAllSections();
                 showSectionWithAnimation(estrangulamentoSection);
                 setTimeout(() => smoothScrollTo('estrangulamento-section', this), 300);
-                });
+              });
             }
 
             // --- CARROSSEL PROJEÇÃO ---
