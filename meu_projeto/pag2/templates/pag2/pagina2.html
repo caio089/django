@@ -23,14 +23,51 @@
                         }
                     },
                     fontFamily: {
-                        'display': ['Inter', 'system-ui', 'sans-serif'],
+                        'sans': ['Open Sans', 'system-ui', 'sans-serif'],
+                        'display': ['Montserrat', 'system-ui', 'sans-serif'],
+                        'titles': ['Montserrat', 'system-ui', 'sans-serif'],
+                        'buttons': ['Roboto', 'system-ui', 'sans-serif'],
+                        'body': ['Open Sans', 'system-ui', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+        
+        /* Aplicar Open Sans como fonte padrão para o corpo - altamente legível */
+        body {
+            font-family: 'Open Sans', system-ui, sans-serif !important;
+        }
+        
+        /* Aplicar Montserrat para títulos - moderna e impactante */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', system-ui, sans-serif !important;
+        }
+        
+        /* Aplicar Roboto para botões - clara e acessível */
+        button, .btn, input[type="button"], input[type="submit"], input[type="reset"] {
+            font-family: 'Roboto', system-ui, sans-serif !important;
+        }
+        
+        /* Melhorar legibilidade para descrições */
+        p, span, div {
+            font-family: 'Open Sans', system-ui, sans-serif !important;
+            line-height: 1.6 !important;
+        }
+        
+        /* Títulos com melhor contraste e espaçamento */
+        h1, h2, h3, h4, h5, h6 {
+            letter-spacing: -0.02em !important;
+            line-height: 1.3 !important;
+        }
+        
+        /* Botões com melhor legibilidade */
+        button, .btn, input[type="button"], input[type="submit"], input[type="reset"] {
+            font-weight: 500 !important;
+            letter-spacing: 0.01em !important;
+        }
         
         .gradient-bg {
             background: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
@@ -46,23 +83,101 @@
         }
         
         .video-container {
-            position: relative;
-            padding-bottom: 35%;
-            height: 0;
+            width: calc(100% - 32px);
+            height: 250px;
+            border-radius: 8px;
             overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.1);
-            max-width: 100%;
-            margin: 0 auto;
+            background: #000;
+            margin: 16px auto;
         }
         
         .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+        
+        /* Padrão YouTube para cards de vídeo */
+        .video-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #f3f4f6;
+        }
+        
+        .video-card:hover {
+            box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+        
+        .video-header {
+            padding: 20px 20px 16px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            background: linear-gradient(to right, #f9fafb, #ffffff);
+        }
+        
+        .video-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0f0f0f;
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+        
+        .video-description {
+            font-size: 14px;
+            color: #606060;
+            margin-bottom: 8px;
+        }
+        
+        .video-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 16px;
+            background: #f8f9fa;
+        }
+        
+        .video-tip {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 4px solid #0284c7;
+            padding: 16px 20px;
+            margin: 0;
+            position: relative;
+        }
+        
+        .video-tip::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 12px;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(2, 132, 199, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%);
+            pointer-events: none;
+        }
+        
+        .video-tip-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0284c7;
+            margin-bottom: 4px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .video-tip-text {
+            font-size: 13px;
+            color: #374151;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
         }
         
         .option-card {
@@ -111,6 +226,162 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+        
+        /* Melhorar acessibilidade e legibilidade */
+        .text-gradient {
+            font-weight: 600 !important;
+        }
+        
+        /* Melhorar contraste para títulos */
+        h1, h2, h3 {
+            color: #1f2937 !important;
+        }
+        
+        /* Melhorar legibilidade de textos pequenos */
+        .text-xs, .text-sm {
+            line-height: 1.5 !important;
+        }
+        
+        /* Melhorar acessibilidade de botões */
+        button, .btn, a[href] {
+            cursor: pointer !important;
+        }
+        
+        /* Melhorar espaçamento para leitura */
+        .card-hover p, .card-hover div {
+            line-height: 1.7 !important;
+        }
+        
+        /* Garantir que a barra flutuante fique completamente escondida */
+        #floatingProgress.hidden {
+            display: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+        
+        /* Animação para botão Voltar ao Topo */
+        .back-to-top-section {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateY(0);
+            animation: slideInFromBottom 0.6s ease-out;
+        }
+        
+        .back-to-top-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.8s ease;
+            z-index: 1;
+        }
+        
+        .back-to-top-section:hover::before {
+            left: 100%;
+        }
+        
+        /* Efeito de brilho adicional */
+        .back-to-top-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+        
+        .back-to-top-section:hover::after {
+            opacity: 1;
+        }
+        
+        .back-to-top-section:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+            animation: pulse 1s infinite;
+        }
+        
+        .back-to-top-section:active {
+            transform: translateY(-1px) scale(0.95);
+            transition: all 0.1s ease;
+        }
+        
+        /* Animação de destaque quando o botão aparece */
+        .back-to-top-section.animate-in {
+            animation: buttonAppear 0.8s ease-out;
+        }
+        
+        @keyframes buttonAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.8);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateY(-5px) scale(1.05);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        @keyframes slideInFromBottom {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+            }
+        }
+        
+        /* Partículas para o botão voltar ao topo */
+        .back-to-top-particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: backToTopParticle 1.2s ease-out forwards;
+            z-index: 1000;
+        }
+        
+        @keyframes backToTopParticle {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateY(-25px) scale(1.2);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-60px) scale(0);
+            }
         }
         
         /* Animações para transição japonesa */
@@ -233,7 +504,7 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 font-display">
+<body class="bg-gray-50 font-sans">
     <!-- Header com Progresso -->
     <header class="gradient-bg text-white py-4 px-4">
         <div class="max-w-6xl mx-auto">
@@ -245,7 +516,7 @@
                     </h1>
                     <p class="text-blue-100 text-lg">Seu segundo passo na jornada do judô</p>
                 </div>
-                <a href="/index/" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
+                <a href="/index/" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors font-buttons">
                     ← Voltar
                 </a>
             </div>
@@ -300,7 +571,7 @@
                 <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-blue-600">Japonês</div>
             </div>
             
-            <div class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-green-400 hover:bg-gradient-to-br hover:from-green-50 hover:to-white transform hover:-translate-y-2">
+            <div id="ukemi-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-green-400 hover:bg-gradient-to-br hover:from-green-50 hover:to-white transform hover:-translate-y-2">
                 <div class="absolute inset-0 bg-gradient-to-r from-green-400/0 to-green-400/0 group-hover:from-green-400/10 group-hover:to-green-400/5 transition-all duration-500"></div>
                 <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-spin">🔄</div>
                 <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-green-700 group-hover:scale-105">Rolamentos</div>
@@ -323,7 +594,7 @@
         </div>
 
         <!-- Seção de Técnicas -->
-        <section id="nage-waza-section" class="mb-12">
+        <section id="nage-waza-section" class="mb-12 hidden">
             <div class="text-center mb-8">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
                     <span class="text-gradient">Técnicas de Projeção</span>
@@ -463,13 +734,20 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Botão Voltar ao Topo para Técnicas de Projeção -->
+            <div class="text-center mt-8">
+                <button class="back-to-top-section bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-buttons transition-colors shadow-lg">
+                    ↑ Voltar ao Topo
+                </button>
+            </div>
         </section>
 
         <!-- Divisor Visual -->
         <div class="section-divider h-px my-8"></div>
 
         <!-- Seção de Imobilizações -->
-        <section id="imobilizacoes-section" class="mb-12">
+        <section id="imobilizacoes-section" class="mb-12 hidden">
             <div class="text-center mb-8">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
                     <span class="text-gradient">Técnicas de Imobilização</span>
@@ -585,13 +863,20 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Botão Voltar ao Topo para Imobilizações -->
+            <div class="text-center mt-8">
+                <button class="back-to-top-section bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg font-buttons transition-colors shadow-lg">
+                    ↑ Voltar ao Topo
+                </button>
+            </div>
         </section>
 
         <!-- Divisor Visual -->
         <div class="section-divider h-px my-8"></div>
 
         <!-- Barra de Progresso Flutuante -->
-        <div id="floatingProgress" class="fixed top-4 left-0 right-0 mx-auto w-fit bg-white border border-gray-300 rounded-lg shadow-lg p-3 z-50 opacity-0 transition-opacity duration-300 pointer-events-none">
+        <div id="floatingProgress" class="fixed top-4 left-0 right-0 mx-auto w-fit bg-white border border-gray-300 rounded-lg shadow-lg p-3 z-50 opacity-0 transition-opacity duration-300 pointer-events-none hidden">
             <div class="flex items-center gap-5">
                 <div class="w-80 bg-gray-200 rounded-full h-3">
                     <div id="floatingProgressBar" class="bg-gradient-to-r from-green-400 to-emerald-500 h-3 rounded-full transition-all duration-500 shadow-sm" style="width: 0%"></div>
@@ -609,7 +894,7 @@
         <div id="scrollParticles" class="scroll-particles"></div>
         
         <!-- Botão Flutuante de Voltar ao Topo -->
-        <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg floating-action transition-colors hidden">
+        <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg floating-action transition-colors hidden font-buttons">
             <span class="text-2xl">↑</span>
         </button>
     </main>
@@ -636,7 +921,7 @@
             let answeredQuestions = 0;
             const totalQuestions = projCheckboxes.length + imobCheckboxes.length;
 
-            // Função para atualizar progresso
+            // Função para atualizar progresso (SEM mostrar barra flutuante)
             function updateProgress() {
                 const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
                 const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
@@ -645,9 +930,6 @@
                 const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
                 progressBar.style.width = progress + '%';
                 progressText.textContent = Math.round(progress) + '%';
-                
-                // Mostrar barra de progresso flutuante
-                showFloatingProgress(progress);
             }
 
             // Função para mostrar barra de progresso flutuante
@@ -657,6 +939,7 @@
                 floatingProgressText.textContent = Math.round(progress) + '%';
                 
                 // Mostrar a barra
+                floatingProgress.classList.remove('hidden');
                 floatingProgress.style.opacity = '1';
                 floatingProgress.style.pointerEvents = 'auto';
                 
@@ -664,15 +947,45 @@
                 setTimeout(() => {
                     floatingProgress.style.opacity = '0';
                     floatingProgress.style.pointerEvents = 'none';
+                    setTimeout(() => {
+                        floatingProgress.classList.add('hidden');
+                    }, 300); // Aguarda a transição de opacity
                 }, 5000);
             }
 
+            // Garantir que a barra flutuante comece escondida
+            floatingProgress.classList.add('hidden');
+            floatingProgress.style.opacity = '0';
+            floatingProgress.style.pointerEvents = 'none';
+
             // Event listeners para as opções
             projCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', updateProgress);
+                checkbox.addEventListener('change', function(e) {
+                    updateProgress();
+                    // Mostrar barra flutuante apenas quando marcar (não desmarcar)
+                    if (e.target.checked) {
+                        const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
+                        const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
+                        const totalQuestions = projCheckboxes.length + imobCheckboxes.length;
+                        const completedQuestions = totalProjChecked + totalImobChecked;
+                        const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
+                        showFloatingProgress(progress);
+                    }
+                });
             });
             imobCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', updateProgress);
+                checkbox.addEventListener('change', function(e) {
+                    updateProgress();
+                    // Mostrar barra flutuante apenas quando marcar (não desmarcar)
+                    if (e.target.checked) {
+                        const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
+                        const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
+                        const totalQuestions = projCheckboxes.length + imobCheckboxes.length;
+                        const completedQuestions = totalProjChecked + totalImobChecked;
+                        const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
+                        showFloatingProgress(progress);
+                    }
+                });
             });
 
             // Botão voltar ao topo
@@ -817,12 +1130,36 @@
             // Navegação interna com animações
             document.getElementById('nage-waza-nav').addEventListener('click', function(e) {
                 e.preventDefault();
-                smoothScrollTo('nage-waza-section', this);
+                // Esconder todas as seções primeiro
+                document.getElementById('imobilizacoes-section').classList.add('hidden');
+                // Mostrar a seção de técnicas de projeção
+                document.getElementById('nage-waza-section').classList.remove('hidden');
+                // Reinicializar botões back-to-top após mostrar a seção
+                setTimeout(() => {
+                    smoothScrollTo('nage-waza-section', this);
+                }, 100);
+                
+                // Inicializar botões após a seção estar completamente visível
+                setTimeout(() => {
+                    initializeBackToTopButtons();
+                }, 300);
             });
 
             document.getElementById('imobilizacoes-nav').addEventListener('click', function(e) {
                 e.preventDefault();
-                smoothScrollTo('imobilizacoes-section', this);
+                // Esconder todas as seções primeiro
+                document.getElementById('nage-waza-section').classList.add('hidden');
+                // Mostrar a seção de imobilizações
+                document.getElementById('imobilizacoes-section').classList.remove('hidden');
+                // Reinicializar botões back-to-top após mostrar a seção
+                setTimeout(() => {
+                    smoothScrollTo('imobilizacoes-section', this);
+                }, 100);
+                
+                // Inicializar botões após a seção estar completamente visível
+                setTimeout(() => {
+                    initializeBackToTopButtons();
+                }, 300);
             });
             
             // Adicionar animação para todos os cards de navegação japonesa
@@ -852,6 +1189,121 @@
                         }, 1500);
                     }
                 });
+            });
+
+            // Função para criar partículas no botão voltar ao topo
+            function createBackToTopParticles(button) {
+                const rect = button.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                
+                for (let i = 0; i < 12; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'back-to-top-particle';
+                    particle.style.left = centerX + (Math.random() - 0.5) * 60 + 'px';
+                    particle.style.top = centerY + (Math.random() - 0.5) * 60 + 'px';
+                    particle.style.animationDelay = Math.random() * 0.5 + 's';
+                    particle.style.background = `rgba(255, 255, 255, ${0.7 + Math.random() * 0.3})`;
+                    
+                    document.body.appendChild(particle);
+                    
+                    // Remover partícula após animação
+                    setTimeout(() => {
+                        if (particle.parentNode) {
+                            particle.parentNode.removeChild(particle);
+                        }
+                    }, 1200);
+                }
+            }
+
+            // Função para inicializar animações dos botões back-to-top
+            function initializeBackToTopButtons() {
+                document.querySelectorAll('.back-to-top-section').forEach(button => {
+                    // Verificar se o botão está visível
+                    const isVisible = button.offsetParent !== null;
+                    
+                    if (isVisible && !button.hasAttribute('data-initialized')) {
+                        // Remover event listeners existentes para evitar duplicação
+                        button.removeEventListener('click', backToTopHandler);
+                        
+                        // Adicionar animação de entrada quando o botão aparece
+                        button.classList.add('animate-in');
+                        
+                        // Adicionar event listener
+                        button.addEventListener('click', backToTopHandler);
+                        
+                        // Marcar como inicializado
+                        button.setAttribute('data-initialized', 'true');
+                        
+                        console.log('Botão back-to-top inicializado:', button.textContent.trim());
+                    }
+                });
+            }
+            
+            // Handler para o botão voltar ao topo
+            function backToTopHandler() {
+                // Criar partículas
+                createBackToTopParticles(this);
+                
+                // Adicionar efeito visual ao clicar
+                this.style.transform = 'scale(0.95)';
+                this.style.transition = 'transform 0.1s ease';
+                
+                // Scroll suave com easing personalizado
+                const startPosition = window.pageYOffset;
+                const targetPosition = 0;
+                const distance = targetPosition - startPosition;
+                const duration = 1000; // 1 segundo
+                let start = null;
+                
+                // Função de easing suave
+                function easeInOutCubic(t) {
+                    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                }
+                
+                // Função de animação
+                function animation(currentTime) {
+                    if (start === null) start = currentTime;
+                    const timeElapsed = currentTime - start;
+                    const progress = Math.min(timeElapsed / duration, 1);
+                    const easedProgress = easeInOutCubic(progress);
+                    
+                    window.scrollTo(0, startPosition + distance * easedProgress);
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(animation);
+                    } else {
+                        // Restaurar o botão após a animação
+                        setTimeout(() => {
+                            this.style.transform = 'scale(1)';
+                            this.style.transition = 'transform 0.3s ease';
+                        }, 100);
+                    }
+                }
+                
+                requestAnimationFrame(animation);
+            }
+            
+            // Inicializar botões back-to-top
+            initializeBackToTopButtons();
+            
+            // Verificar periodicamente se há botões não inicializados
+            setInterval(() => {
+                const buttons = document.querySelectorAll('.back-to-top-section');
+                const uninitializedButtons = Array.from(buttons).filter(button => {
+                    const isVisible = button.offsetParent !== null;
+                    return isVisible && !button.hasAttribute('data-initialized');
+                });
+                
+                if (uninitializedButtons.length > 0) {
+                    console.log('Encontrados botões não inicializados:', uninitializedButtons.length);
+                    initializeBackToTopButtons();
+                }
+            }, 2000);
+
+            // Navegação para Ukemi
+            document.getElementById('ukemi-nav').addEventListener('click', function() {
+                window.location.href = '/ukemis/';
             });
         });
     </script>

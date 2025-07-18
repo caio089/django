@@ -23,14 +23,51 @@
                         }
                     },
                     fontFamily: {
-                        'display': ['Inter', 'system-ui', 'sans-serif'],
+                        'sans': ['Open Sans', 'system-ui', 'sans-serif'],
+                        'display': ['Montserrat', 'system-ui', 'sans-serif'],
+                        'titles': ['Montserrat', 'system-ui', 'sans-serif'],
+                        'buttons': ['Roboto', 'system-ui', 'sans-serif'],
+                        'body': ['Open Sans', 'system-ui', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+        
+        /* Aplicar Open Sans como fonte padrão para o corpo - altamente legível */
+        body {
+            font-family: 'Open Sans', system-ui, sans-serif !important;
+        }
+        
+        /* Aplicar Montserrat para títulos - moderna e impactante */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', system-ui, sans-serif !important;
+        }
+        
+        /* Aplicar Roboto para botões - clara e acessível */
+        button, .btn, input[type="button"], input[type="submit"], input[type="reset"] {
+            font-family: 'Roboto', system-ui, sans-serif !important;
+        }
+        
+        /* Melhorar legibilidade para descrições */
+        p, span, div {
+            font-family: 'Open Sans', system-ui, sans-serif !important;
+            line-height: 1.6 !important;
+        }
+        
+        /* Títulos com melhor contraste e espaçamento */
+        h1, h2, h3, h4, h5, h6 {
+            letter-spacing: -0.02em !important;
+            line-height: 1.3 !important;
+        }
+        
+        /* Botões com melhor legibilidade */
+        button, .btn, input[type="button"], input[type="submit"], input[type="reset"] {
+            font-weight: 500 !important;
+            letter-spacing: 0.01em !important;
+        }
         
         .gradient-bg {
             background: linear-gradient(135deg, #6B7280 0%, #4B5563 100%);
@@ -46,24 +83,104 @@
         }
         
         .video-container {
-            position: relative;
-            padding-bottom: 35%;
-            height: 0;
+            width: calc(100% - 32px);
+            height: 250px;
+            border-radius: 8px;
             overflow: hidden;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.1);
-            max-width: 100%;
-            margin: 0 auto;
+            background: #000;
+            margin: 16px auto;
         }
         
         .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+        
+        /* Padrão YouTube para cards de vídeo */
+        .video-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #f3f4f6;
+        }
+        
+        .video-card:hover {
+            box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+        
+        .video-header {
+            padding: 20px 20px 16px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            background: linear-gradient(to right, #f9fafb, #ffffff);
+        }
+        
+        .video-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0f0f0f;
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+        
+        .video-description {
+            font-size: 14px;
+            color: #606060;
+            margin-bottom: 8px;
+        }
+        
+        .video-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 16px;
+            background: #f8f9fa;
+        }
+        
+        .video-tip {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 4px solid #0284c7;
+            padding: 16px 20px;
+            margin: 0;
+            position: relative;
+        }
+        
+        .video-tip::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 16px;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(2, 132, 199, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%);
+            pointer-events: none;
         }
+        
+        .video-tip-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0284c7;
+            margin-bottom: 4px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .video-tip-text {
+            font-size: 13px;
+            color: #374151;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+        }
+        
+
         
         .option-card {
             transition: all 0.2s ease;
@@ -112,9 +229,41 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+        
+        /* Garantir que a barra flutuante fique completamente escondida */
+        #floatingProgress.hidden {
+            display: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+        
+        /* Melhorar acessibilidade e legibilidade */
+        .text-gradient {
+            font-weight: 600 !important;
+        }
+        
+        /* Melhorar contraste para títulos */
+        h1, h2, h3 {
+            color: #1f2937 !important;
+        }
+        
+        /* Melhorar legibilidade de textos pequenos */
+        .text-xs, .text-sm {
+            line-height: 1.5 !important;
+        }
+        
+        /* Melhorar acessibilidade de botões */
+        button, .btn, a[href] {
+            cursor: pointer !important;
+        }
+        
+        /* Melhorar espaçamento para leitura */
+        .card-hover p, .card-hover div {
+            line-height: 1.7 !important;
+        }
     </style>
 </head>
-<body class="bg-gray-50 font-display">
+<body class="bg-gray-50 font-sans">
     <!-- Header com Progresso -->
     <header class="gradient-bg text-white py-4 px-4">
         <div class="max-w-6xl mx-auto">
@@ -126,7 +275,7 @@
                     </h1>
                     <p class="text-gray-200 text-lg">Seu primeiro passo na jornada do judô</p>
                 </div>
-                <a href="/index/" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
+                <a href="/index/" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors font-buttons">
                     ← Voltar
                 </a>
             </div>
@@ -182,7 +331,7 @@
                 <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-blue-600">Japonês</div>
             </div>
             
-            <div class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-green-400 hover:bg-gradient-to-br hover:from-green-50 hover:to-white transform hover:-translate-y-2">
+            <div id="ukemi-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-green-400 hover:bg-gradient-to-br hover:from-green-50 hover:to-white transform hover:-translate-y-2">
                 <div class="absolute inset-0 bg-gradient-to-r from-green-400/0 to-green-400/0 group-hover:from-green-400/10 group-hover:to-green-400/5 transition-all duration-500"></div>
                 <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-spin">🔄</div>
                 <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-green-700 group-hover:scale-105">Rolamentos</div>
@@ -205,36 +354,35 @@
         </div>
 
         <!-- Seção de Técnicas -->
-        <section id="nage-waza-section" class="mb-12">
+        <section id="nage-waza-section" class="mb-12 hidden">
             <div class="text-center mb-8">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
                     <span class="text-gradient">Técnicas de Projeção</span>
                 </h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                    Aprenda as técnicas fundamentais que formam a base do judô. 
-                    Cada movimento é um passo em direção à sua evolução.
-                </p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Técnica 1 -->
-                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
-                    <div class="flex items-center mb-3 justify-between">
-                        <div class="flex items-center">
-                            <div class="bg-blue-100 p-2 rounded-full mr-3">
-                                <span class="text-lg">🥋</span>
+                <div class="video-card">
+                    <div class="video-header">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-blue-100 p-2 rounded-full mr-3">
+                                    <span class="text-lg">🥋</span>
+                                </div>
+                                <div>
+                                    <h3 class="video-title">Osoto-gari</h3>
+                                    <p class="video-description">Técnica de grande projeção externa</p>
+                                </div>
                             </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-gray-800">Osoto-gari</h3>
-                                <p class="text-gray-600 text-sm">Técnica de grande projeção externa</p>
-                            </div>
+                            <label class="flex items-center ml-2 select-none">
+                                <input type="checkbox" class="proj-checkbox accent-gray-500 w-5 h-5 mr-1" />
+                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                            </label>
                         </div>
-                        <label class="flex items-center ml-2 select-none">
-                            <input type="checkbox" class="proj-checkbox accent-gray-500 w-5 h-5 mr-1" />
-                            <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
-                        </label>
                     </div>
-                    <div class="video-container mb-3">
+                    
+                    <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/c-A_nP7mKAc?si=GCH5tAKxZEUKQzaN" 
                                 title="Osoto-gari técnica" 
                                 frameborder="0" 
@@ -243,30 +391,34 @@
                                 allowfullscreen>
                         </iframe>
                     </div>
-                    <div class="bg-blue-50 p-2 rounded-xl">
-                        <h4 class="font-semibold text-blue-800 mb-1 text-sm">💡 Dica:</h4>
-                        <p class="text-blue-700 text-xs">Mantenha o centro de gravidade baixo e use o peso do seu corpo para executar a técnica com eficiência.</p>
+                    
+                    <div class="video-tip">
+                        <h4 class="video-tip-title">💡 Dica:</h4>
+                        <p class="video-tip-text">Mantenha o centro de gravidade baixo e use o peso do seu corpo para executar a técnica com eficiência.</p>
                     </div>
                 </div>
 
                 <!-- Técnica 2 -->
-                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
-                    <div class="flex items-center mb-3 justify-between">
-                        <div class="flex items-center">
-                            <div class="bg-green-100 p-2 rounded-full mr-3">
-                                <span class="text-lg">🥋</span>
+                <div class="video-card">
+                    <div class="video-header">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-green-100 p-2 rounded-full mr-3">
+                                    <span class="text-lg">🥋</span>
+                                </div>
+                                <div>
+                                    <h3 class="video-title">Ippon-seoi-nage</h3>
+                                    <p class="video-description">Técnica de projeção por costas</p>
+                                </div>
                             </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-gray-800">Ippon-seoi-nage</h3>
-                                <p class="text-gray-600 text-sm">Técnica de projeção por costas</p>
-                            </div>
+                            <label class="flex items-center ml-2 select-none">
+                                <input type="checkbox" class="proj-checkbox accent-green-500 w-5 h-5 mr-1" />
+                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                            </label>
                         </div>
-                        <label class="flex items-center ml-2 select-none">
-                            <input type="checkbox" class="proj-checkbox accent-green-500 w-5 h-5 mr-1" />
-                            <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
-                        </label>
                     </div>
-                    <div class="video-container mb-3">
+                    
+                    <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/FQnOlCxo4oI?si=okc86CbIZUnbfnQB" 
                                 title="Ippon-seoi-nage técnica" 
                                 frameborder="0" 
@@ -275,11 +427,19 @@
                                 allowfullscreen>
                         </iframe>
                     </div>
-                    <div class="bg-green-50 p-2 rounded-xl">
-                        <h4 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h4>
-                        <p class="text-green-700 text-xs">A chave está no movimento de rotação e no posicionamento correto das mãos.</p>
+                    
+                    <div class="video-tip">
+                        <h4 class="video-tip-title">💡 Dica:</h4>
+                        <p class="video-tip-text">A chave está no movimento de rotação e no posicionamento correto das mãos.</p>
                     </div>
                 </div>
+            </div>
+            
+            <!-- Botão Voltar ao Topo para Técnicas de Projeção -->
+            <div class="text-center mt-8">
+                <button class="back-to-top-section bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-buttons transition-colors shadow-lg">
+                    ↑ Voltar ao Topo
+                </button>
             </div>
         </section>
 
@@ -287,35 +447,35 @@
         <div class="section-divider h-px my-8"></div>
 
         <!-- Seção de Imobilizações -->
-        <section id="imobilizacoes-section" class="mb-12">
+        <section id="imobilizacoes-section" class="mb-12 hidden">
             <div class="text-center mb-8">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
                     <span class="text-gradient">Técnicas de Imobilização</span>
                 </h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                    Aprenda a controlar seu oponente no solo com técnicas eficazes de imobilização.
-                </p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Imobilização 1 -->
-                <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
-                    <div class="flex items-center mb-3 justify-between">
-                        <div class="flex items-center">
-                            <div class="bg-purple-100 p-2 rounded-full mr-3">
-                                <span class="text-lg">🥋</span>
+                <div class="video-card">
+                    <div class="video-header">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-purple-100 p-2 rounded-full mr-3">
+                                    <span class="text-lg">🥋</span>
+                                </div>
+                                <div>
+                                    <h3 class="video-title">Hon-kesa-gatame</h3>
+                                    <p class="video-description">Imobilização lateral básica</p>
+                                </div>
                             </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-gray-800">Hon-kesa-gatame</h3>
-                                <p class="text-gray-600 text-sm">Imobilização lateral básica</p>
-                            </div>
+                            <label class="flex items-center ml-2 select-none">
+                                <input type="checkbox" class="imob-checkbox accent-purple-500 w-5 h-5 mr-1" />
+                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                            </label>
                         </div>
-                        <label class="flex items-center ml-2 select-none">
-                            <input type="checkbox" class="imob-checkbox accent-purple-500 w-5 h-5 mr-1" />
-                            <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
-                        </label>
                     </div>
-                    <div class="video-container mb-3">
+                    
+                    <div class="video-container">
                         <iframe src="https://www.youtube.com/embed/NDaQuJOFBYk?si=mUcnSH1vUZ7J6NHH" 
                                 title="Hon-kesa-gatame técnica" 
                                 frameborder="0" 
@@ -324,20 +484,28 @@
                                 allowfullscreen>
                         </iframe>
                     </div>
-                    <div class="bg-purple-50 p-2 rounded-xl">
-                        <h4 class="font-semibold text-purple-800 mb-1 text-sm">💡 Dica:</h4>
-                        <p class="text-purple-700 text-xs">Mantenha o peso distribuído uniformemente e controle os braços do oponente.</p>
+                    
+                    <div class="video-tip">
+                        <h4 class="video-tip-title">💡 Dica:</h4>
+                        <p class="video-tip-text">Mantenha o peso distribuído uniformemente e controle os braços do oponente.</p>
                     </div>
                 </div>
 
                 <!-- Espaço para futura imobilização -->
-                <div class="card-hover bg-white rounded-2xl shadow-lg p-4 border-2 border-dashed border-gray-300 flex items-center justify-center">
-                    <div class="text-center text-gray-500">
+                <div class="video-card border-2 border-dashed border-gray-300 flex items-center justify-center">
+                    <div class="text-center text-gray-500 p-8">
                         <span class="text-3xl mb-2 block">🥋</span>
-                        <p class="text-sm">Próxima imobilização</p>
-                        <p class="text-xs">Em breve</p>
+                        <p class="video-title text-gray-500">Próxima imobilização</p>
+                        <p class="video-description">Em breve</p>
                     </div>
                 </div>
+            </div>
+            
+            <!-- Botão Voltar ao Topo para Imobilizações -->
+            <div class="text-center mt-8">
+                <button class="back-to-top-section bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg font-buttons transition-colors shadow-lg">
+                    ↑ Voltar ao Topo
+                </button>
             </div>
         </section>
 
@@ -345,7 +513,7 @@
         <div class="section-divider h-px my-8"></div>
 
             <!-- Barra de Progresso Flutuante -->
-    <div id="floatingProgress" class="fixed top-4 left-0 right-0 mx-auto w-fit bg-white border border-gray-300 rounded-lg shadow-lg p-3 z-50 opacity-0 transition-opacity duration-300 pointer-events-none">
+    <div id="floatingProgress" class="fixed top-4 left-0 right-0 mx-auto w-fit bg-white border border-gray-300 rounded-lg shadow-lg p-3 z-50 opacity-0 transition-opacity duration-300 pointer-events-none hidden">
         <div class="flex items-center gap-5">
             <div class="w-80 bg-gray-200 rounded-full h-3">
                 <div id="floatingProgressBar" class="bg-gradient-to-r from-green-400 to-emerald-500 h-3 rounded-full transition-all duration-500 shadow-sm" style="width: 0%"></div>
@@ -355,7 +523,7 @@
     </div>
 
     <!-- Botão Flutuante de Voltar ao Topo -->
-    <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg floating-action transition-colors hidden">
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg floating-action transition-colors hidden font-buttons">
         <span class="text-2xl">↑</span>
     </button>
     </main>
@@ -382,7 +550,7 @@
             let answeredQuestions = 0;
             const totalQuestions = 3;
 
-            // Função para atualizar progresso
+            // Função para atualizar progresso (SEM mostrar barra flutuante)
             function updateProgress() {
                 const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
                 const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
@@ -391,9 +559,6 @@
                 const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
                 progressBar.style.width = progress + '%';
                 progressText.textContent = Math.round(progress) + '%';
-                
-                // Mostrar barra de progresso flutuante
-                showFloatingProgress(progress);
             }
 
             // Função para mostrar barra de progresso flutuante
@@ -403,6 +568,7 @@
                 floatingProgressText.textContent = Math.round(progress) + '%';
                 
                 // Mostrar a barra
+                floatingProgress.classList.remove('hidden');
                 floatingProgress.style.opacity = '1';
                 floatingProgress.style.pointerEvents = 'auto';
                 
@@ -410,15 +576,45 @@
                 setTimeout(() => {
                     floatingProgress.style.opacity = '0';
                     floatingProgress.style.pointerEvents = 'none';
+                    setTimeout(() => {
+                        floatingProgress.classList.add('hidden');
+                    }, 300); // Aguarda a transição de opacity
                 }, 5000);
             }
 
+            // Garantir que a barra flutuante comece escondida
+            floatingProgress.classList.add('hidden');
+            floatingProgress.style.opacity = '0';
+            floatingProgress.style.pointerEvents = 'none';
+
             // Event listeners para as opções
             projCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', updateProgress);
+                checkbox.addEventListener('change', function(e) {
+                    updateProgress();
+                    // Mostrar barra flutuante apenas quando marcar (não desmarcar)
+                    if (e.target.checked) {
+                        const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
+                        const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
+                        const totalQuestions = projCheckboxes.length + imobCheckboxes.length;
+                        const completedQuestions = totalProjChecked + totalImobChecked;
+                        const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
+                        showFloatingProgress(progress);
+                    }
+                });
             });
             imobCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', updateProgress);
+                checkbox.addEventListener('change', function(e) {
+                    updateProgress();
+                    // Mostrar barra flutuante apenas quando marcar (não desmarcar)
+                    if (e.target.checked) {
+                        const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
+                        const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
+                        const totalQuestions = projCheckboxes.length + imobCheckboxes.length;
+                        const completedQuestions = totalProjChecked + totalImobChecked;
+                        const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
+                        showFloatingProgress(progress);
+                    }
+                });
             });
 
             // Botão voltar ao topo
@@ -473,17 +669,46 @@
 
             // Navegação interna
             document.getElementById('nage-waza-nav').addEventListener('click', function() {
-                document.getElementById('nage-waza-section').scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                // Esconder todas as seções primeiro
+                document.getElementById('imobilizacoes-section').classList.add('hidden');
+                // Mostrar a seção de técnicas de projeção
+                document.getElementById('nage-waza-section').classList.remove('hidden');
+                // Scroll suave para a seção
+                setTimeout(() => {
+                    document.getElementById('nage-waza-section').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 100);
             });
 
             document.getElementById('imobilizacoes-nav').addEventListener('click', function() {
-                document.getElementById('imobilizacoes-section').scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                // Esconder todas as seções primeiro
+                document.getElementById('nage-waza-section').classList.add('hidden');
+                // Mostrar a seção de imobilizações
+                document.getElementById('imobilizacoes-section').classList.remove('hidden');
+                // Scroll suave para a seção
+                setTimeout(() => {
+                    document.getElementById('imobilizacoes-section').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 100);
+            });
+
+            // Event listeners para os botões de voltar ao topo das seções
+            document.querySelectorAll('.back-to-top-section').forEach(button => {
+                button.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
                 });
+            });
+
+            // Navegação para Ukemi
+            document.getElementById('ukemi-nav').addEventListener('click', function() {
+                window.location.href = '/ukemis/';
             });
         });
     </script>
