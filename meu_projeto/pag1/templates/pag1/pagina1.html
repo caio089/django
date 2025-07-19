@@ -368,33 +368,33 @@
     <script>
 // --- INÍCIO: JS de animações de clique e rolagem da página 2 ---
 // IntersectionObserver para animar cards ao rolar
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-document.querySelectorAll('.card-hover, .bg-white').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(card);
-});
-// Animação para as divs de navegação japonesa
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            document.querySelectorAll('.card-hover, .bg-white').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+            // Animação para as divs de navegação japonesa
 // (delay escalonado)
-document.querySelectorAll('.japanese-nav-card').forEach((card, index) => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    setTimeout(() => {
-        card.style.opacity = '1';
-        card.style.transform = 'translateY(0)';
+            document.querySelectorAll('.japanese-nav-card').forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
     }, 200 + (index * 100));
 });
 // Navegação interna animada
@@ -438,19 +438,19 @@ document.getElementById('nage-waza-nav').addEventListener('click', function(e) {
     document.getElementById('nage-waza-section').classList.remove('hidden');
     setTimeout(() => {
         smoothScrollTo('nage-waza-section', this);
-    }, 100);
-});
+                }, 100);
+            });
 document.getElementById('imobilizacoes-nav').addEventListener('click', function(e) {
     e.preventDefault();
-    document.getElementById('nage-waza-section').classList.add('hidden');
-    document.getElementById('imobilizacoes-section').classList.remove('hidden');
-    setTimeout(() => {
+                document.getElementById('nage-waza-section').classList.add('hidden');
+                document.getElementById('imobilizacoes-section').classList.remove('hidden');
+                setTimeout(() => {
         smoothScrollTo('imobilizacoes-section', this);
-    }, 100);
-});
-document.getElementById('ukemi-nav').addEventListener('click', function() {
-    window.location.href = '/ukemis/';
-});
+                }, 100);
+            });
+            document.getElementById('ukemi-nav').addEventListener('click', function() {
+                window.location.href = '/ukemis/';
+            });
 // Botão voltar ao topo
 window.addEventListener('scroll', function() {
     const backToTopBtn = document.getElementById('backToTop');
