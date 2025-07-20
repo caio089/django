@@ -39,8 +39,8 @@
         }
         .video-container {
             width: 100%;
-            max-width: 440px;
-            margin: 0 auto;
+            max-width: 480px;
+            margin: 0 auto 1rem auto;
             aspect-ratio: 16/9;
             background: #eee;
             border-radius: 12px;
@@ -86,44 +86,28 @@
         }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        /* CSS específico para os cards de técnica */
         .technique-card {
-            height: 520px;
+            height: 380px;
             display: flex;
             flex-direction: column;
             overflow: hidden;
-        }
-        .technique-card .grow-block {
-            display: flex;
-            flex-direction: column;
-            flex: 1 1 0%;
-            min-height: 0;
+            justify-content: space-between;
         }
         .technique-card .video-container {
-            flex: 1 1 0%;
-            width: 100%;
-            max-width: 100%;
-            min-height: 220px;
-            background: #eee;
-            border-radius: 0.5rem;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 0;
+            flex-shrink: 0;
+            margin-bottom: 1rem;
         }
-        .technique-card .video-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 0.5rem;
-            display: block;
-        }
-        .technique-card .bg-green-50,
-        .technique-card .bg-orange-50 {
+        .technique-card .bg-orange-50,
+        .technique-card .bg-green-50 {
             margin-top: auto;
             margin-bottom: 0;
             flex-shrink: 0;
+        }
+        .technique-card h3 {
+            line-height: 1.2;
+        }
+        .technique-card p {
+            line-height: 1.3;
         }
         @keyframes fade-in {
             from { opacity: 0; transform: translateY(30px); }
@@ -154,25 +138,7 @@
         .japanese-nav-card.clicked::after {
             left: 100%;
         }
-        .video-container:not(.technique-card .video-container) {
-            width: 100%;
-            max-width: 440px;
-            margin: 0 auto;
-            aspect-ratio: 16/9;
-            background: #eee;
-            border-radius: 12px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .video-container:not(.technique-card .video-container) iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 12px;
-            display: block;
-        }
+
     </style>
 </head>
 <body class="bg-gray-50 font-display">
@@ -291,7 +257,7 @@
                 <!-- Carrossel -->
                 <div id="carouselProj" class="flex overflow-x-auto gap-6 pb-4 scroll-smooth snap-x snap-mandatory hide-scrollbar">
                     <!-- Técnica 1 -->
-                    <div class="technique-card flex flex-col min-w-[370px] max-w-[500px] shadow-lg rounded-2xl bg-white">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-orange-100 p-2 rounded-full mr-3">
@@ -307,17 +273,17 @@
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
                         </div>
-                        <div class="w-full rounded-xl bg-gray-100 flex items-center justify-center overflow-hidden h-56">
-                            <iframe class="w-full h-full rounded-xl" src="https://www.youtube.com/embed/MnNG67pF_a0?si=h7wKWSO9m0OKDIZ1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/MnNG67pF_a0?si=h7wKWSO9m0OKDIZ1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
-                        <div class="bg-orange-50 p-2 rounded-xl mt-0">
+                        <div class="bg-orange-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
                             <p class="text-orange-700 text-xs">Use o peso do corpo para derrubar lateralmente.</p>
                         </div>
                     </div>
 
                     <!-- Técnica 2 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-orange-100 p-2 rounded-full mr-3">
@@ -343,159 +309,159 @@
                     </div>
 
                     <!-- Técnica 3 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-orange-100 p-2 rounded-full mr-3">
                                     <span class="text-lg">🥋</span>
-                            </div>
+                                </div>
                                 <div>
                                     <h3 class="text-lg font-bold text-gray-800">MOROTE-GARI</h3>
-                                    <p class="text-gray-600 text-sm">Dupla colheita de pernas</p>
+                                    <p class="text-gray-600 text-sm">Colheita dupla</p>
+                                </div>
                             </div>
-                        </div>
                             <label class="flex items-center ml-2 select-none">
                                 <input type="checkbox" class="proj-checkbox accent-orange-500 w-5 h-5 mr-1" />
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
-                                </div>
-                        <div class="technique-card .video-container">
+                        </div>
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/BHLQS4K85bs?si=ufzQofQkz4zrZVix" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                        <div class="technique-card .bg-green-50 p-2 rounded-xl">
+                        </div>
+                        <div class="bg-orange-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
                             <p class="text-orange-700 text-xs">Abaixe o quadril e agarre ambas as pernas do oponente.</p>
                         </div>
                     </div>
 
                     <!-- Técnica 4 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-orange-100 p-2 rounded-full mr-3">
                                     <span class="text-lg">🥋</span>
-                            </div>
+                                </div>
                                 <div>
                                     <h3 class="text-lg font-bold text-gray-800">TANI-OTOSHI</h3>
                                     <p class="text-gray-600 text-sm">Queda do vale</p>
+                                </div>
                             </div>
-                        </div>
                             <label class="flex items-center ml-2 select-none">
                                 <input type="checkbox" class="proj-checkbox accent-orange-500 w-5 h-5 mr-1" />
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
-                                </div>
-                        <div class="technique-card .video-container">
+                        </div>
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/3b9Me3Fohpk?si=DF1hRvDBNuctm4vt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                        <div class="technique-card .bg-green-50 p-2 rounded-xl">
+                        </div>
+                        <div class="bg-orange-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
                             <p class="text-orange-700 text-xs">Projete o oponente para trás usando o peso do corpo.</p>
                         </div>
                     </div>
 
                     <!-- Técnica 5 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-orange-100 p-2 rounded-full mr-3">
                                     <span class="text-lg">🥋</span>
-                            </div>
+                                </div>
                                 <div>
                                     <h3 class="text-lg font-bold text-gray-800">TOMOE-NAGUE</h3>
-                                    <p class="text-gray-600 text-sm">Projeção circular com apoio do pé</p>
+                                    <p class="text-gray-600 text-sm">Projeção circular</p>
+                                </div>
                             </div>
-                        </div>
                             <label class="flex items-center ml-2 select-none">
                                 <input type="checkbox" class="proj-checkbox accent-orange-500 w-5 h-5 mr-1" />
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
-                                </div>
-                        <div class="technique-card .video-container">
+                        </div>
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/880WbHvHv6A?si=gd2NKWwCMUDaa5BU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                        <div class="technique-card .bg-green-50 p-2 rounded-xl">
+                        </div>
+                        <div class="bg-orange-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
                             <p class="text-orange-700 text-xs">Use o pé como apoio para girar o adversário por cima de você.</p>
                         </div>
                     </div>
 
                     <!-- Técnica 6 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-orange-100 p-2 rounded-full mr-3">
                                     <span class="text-lg">🥋</span>
-                            </div>
+                                </div>
                                 <div>
                                     <h3 class="text-lg font-bold text-gray-800">KO-SOTO-GAKE</h3>
                                     <p class="text-gray-600 text-sm">Gancho externo menor</p>
+                                </div>
                             </div>
-                        </div>
                             <label class="flex items-center ml-2 select-none">
                                 <input type="checkbox" class="proj-checkbox accent-orange-500 w-5 h-5 mr-1" />
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
-                                </div>
-                        <div class="technique-card .video-container">
+                        </div>
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/mHhccqTONjM?si=Xeh7mH5aEeaD8-E-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                        <div class="technique-card .bg-green-50 p-2 rounded-xl">
+                        </div>
+                        <div class="bg-orange-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
                             <p class="text-orange-700 text-xs">Gancho o pé do adversário por trás para desequilibrar.</p>
                         </div>
                     </div>
 
                     <!-- Técnica 7 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-orange-100 p-2 rounded-full mr-3">
                                     <span class="text-lg">🥋</span>
-                            </div>
+                                </div>
                                 <div>
                                     <h3 class="text-lg font-bold text-gray-800">O-GURUMA</h3>
                                     <p class="text-gray-600 text-sm">Grande roda</p>
+                                </div>
                             </div>
-                        </div>
                             <label class="flex items-center ml-2 select-none">
                                 <input type="checkbox" class="proj-checkbox accent-orange-500 w-5 h-5 mr-1" />
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
-                                </div>
-                        <div class="technique-card .video-container">
+                        </div>
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/SnZciTAY9vc?si=w2t1XY3kYq4a1zin" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                        <div class="technique-card .bg-green-50 p-2 rounded-xl">
+                        </div>
+                        <div class="bg-orange-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
                             <p class="text-orange-700 text-xs">Gire o corpo e use a perna para executar a roda.</p>
                         </div>
                     </div>
 
                     <!-- Técnica 8 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-orange-100 p-2 rounded-full mr-3">
                                     <span class="text-lg">🥋</span>
-                            </div>
+                                </div>
                                 <div>
                                     <h3 class="text-lg font-bold text-gray-800">SODE-TSURI-KOMI-GOSHI</h3>
-                                    <p class="text-gray-600 text-sm">Quadril com elevação pela manga</p>
+                                    <p class="text-gray-600 text-sm">Quadril com elevação</p>
+                                </div>
                             </div>
-                        </div>
                             <label class="flex items-center ml-2 select-none">
                                 <input type="checkbox" class="proj-checkbox accent-orange-500 w-5 h-5 mr-1" />
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
-                                </label>
-                            </div>
-                        <div class="technique-card .video-container">
+                            </label>
+                        </div>
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/51Htlp7xEvE?si=5-jKQ78ErET8RtIO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
-                        <div class="technique-card .bg-green-50 p-2 rounded-xl">
+                        <div class="bg-orange-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
                             <p class="text-orange-700 text-xs">Eleve o oponente com o quadril e finalize com o giro.</p>
-                                </div>
+                        </div>
                     </div>
                 </div>
                 <!-- Botão Direita -->
@@ -531,106 +497,106 @@
                 <!-- Carrossel -->
                 <div id="carouselImob" class="flex overflow-x-auto gap-6 pb-4 scroll-smooth snap-x snap-mandatory hide-scrollbar">
                     <!-- Imobilização 1 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-green-100 p-2 rounded-full mr-3">
                                     <span class="text-lg">🥋</span>
-                            </div>
+                                </div>
                                 <div>
                                     <h3 class="text-lg font-bold text-gray-800">MUNE-GATAME</h3>
                                     <p class="text-gray-600 text-sm">Imobilização pelo peito</p>
+                                </div>
                             </div>
-                        </div>
                             <label class="flex items-center ml-2 select-none">
                                 <input type="checkbox" class="imob-checkbox accent-green-500 w-5 h-5 mr-1" />
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
-                                </div>
-                        <div class="technique-card .video-container">
+                        </div>
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/lIt5vywPBF0?si=0O8rE2_BiF_xngiJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                        <div class="technique-card .bg-green-50 p-2 rounded-xl">
+                        </div>
+                        <div class="bg-green-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h4>
-                                <p class="text-green-700 text-xs">Mantenha o peito pressionando o tórax do oponente.</p>
+                            <p class="text-green-700 text-xs">Mantenha o peito pressionando o tórax do oponente.</p>
                         </div>
                     </div>
 
                     <!-- Imobilização 2 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-green-100 p-2 rounded-full mr-3">
                                     <span class="text-lg">🥋</span>
-                            </div>
+                                </div>
                                 <div>
                                     <h3 class="text-lg font-bold text-gray-800">URA-SHIHO-GATAME</h3>
-                                    <p class="text-gray-600 text-sm">Imobilização dos quatro apoios por trás</p>
+                                    <p class="text-gray-600 text-sm">Imobilização por trás</p>
+                                </div>
                             </div>
-                        </div>
                             <label class="flex items-center ml-2 select-none">
                                 <input type="checkbox" class="imob-checkbox accent-green-500 w-5 h-5 mr-1" />
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
-                                </div>
-                        <div class="technique-card .video-container">
+                        </div>
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/eeAHZB0v3XY?si=F34Kd9z7leLr69BL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                        <div class="technique-card .bg-green-50 p-2 rounded-xl">
+                        </div>
+                        <div class="bg-green-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h4>
-                                <p class="text-green-700 text-xs">Controle os quadris do oponente e mantenha o peso centralizado.</p>
+                            <p class="text-green-700 text-xs">Controle os quadris do oponente e mantenha o peso centralizado.</p>
                         </div>
                     </div>
 
                     <!-- Imobilização 3 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-green-100 p-2 rounded-full mr-3">
                                     <span class="text-lg">🥋</span>
-                            </div>
+                                </div>
                                 <div>
                                     <h3 class="text-lg font-bold text-gray-800">KATA-OSSAE-GATAME</h3>
-                                    <p class="text-gray-600 text-sm">Imobilização lateral com controle do braço</p>
+                                    <p class="text-gray-600 text-sm">Imobilização lateral</p>
+                                </div>
                             </div>
-                        </div>
                             <label class="flex items-center ml-2 select-none">
                                 <input type="checkbox" class="imob-checkbox accent-green-500 w-5 h-5 mr-1" />
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
-                                </div>
-                        <div class="technique-card .video-container">
+                        </div>
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/HrfxhGmQCDk?si=rBFSyzQisuEuoOeM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                        <div class="technique-card .bg-green-50 p-2 rounded-xl">
+                        </div>
+                        <div class="bg-green-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h4>
-                                <p class="text-green-700 text-xs">Mantenha o braço do oponente bem controlado e o peso baixo.</p>
+                            <p class="text-green-700 text-xs">Mantenha o braço do oponente bem controlado e o peso baixo.</p>
                         </div>
                     </div>
 
                     <!-- Imobilização 4 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-green-100 p-2 rounded-full mr-3">
                                     <span class="text-lg">🥋</span>
-                            </div>
+                                </div>
                                 <div>
                                     <h3 class="text-lg font-bold text-gray-800">URA-KESA-GATAME</h3>
                                     <p class="text-gray-600 text-sm">Imobilização lateral invertida</p>
+                                </div>
                             </div>
-                        </div>
                             <label class="flex items-center ml-2 select-none">
                                 <input type="checkbox" class="imob-checkbox accent-green-500 w-5 h-5 mr-1" />
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
-                                </div>
-                        <div class="technique-card .video-container">
+                        </div>
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/omioagb6ZNk?si=dZfQ_lL3-EB9FrSp&amp;start=42" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                        <div class="technique-card .bg-green-50 p-2 rounded-xl">
+                        </div>
+                        <div class="bg-green-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h4>
-                                <p class="text-green-700 text-xs">Mantenha o quadril baixo e controle o tronco do oponente.</p>
+                            <p class="text-green-700 text-xs">Mantenha o quadril baixo e controle o tronco do oponente.</p>
                         </div>
                     </div>
                 </div>
@@ -667,80 +633,80 @@
                 <!-- Carrossel -->
                 <div id="carouselChave" class="flex overflow-x-auto gap-6 pb-4 scroll-smooth snap-x snap-mandatory hide-scrollbar">
                     <!-- Chave de Braço 1 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-green-100 p-2 rounded-full mr-3">
                                     <span class="text-lg">🥋</span>
-                            </div>
+                                </div>
                                 <div>
-                                    <h3 class="text-lg font-bold text-gray-800">UDE-GARAME (I, II e III)</h3>
-                                    <p class="text-gray-600 text-sm">Chave de braço em três variações</p>
+                                    <h3 class="text-lg font-bold text-gray-800">UDE-GARAME</h3>
+                                    <p class="text-gray-600 text-sm">Chave de braço</p>
+                                </div>
                             </div>
-                        </div>
                             <label class="flex items-center ml-2 select-none">
                                 <input type="checkbox" class="chave-checkbox accent-green-500 w-5 h-5 mr-1" />
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
-                                </div>
-                        <div class="technique-card .video-container">
+                        </div>
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/AIlTvZb4RlE?si=ailjO1ATAo9k0wS-&amp;start=42" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                        <div class="technique-card .bg-green-50 p-2 rounded-xl">
+                        </div>
+                        <div class="bg-green-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h4>
-                                <p class="text-green-700 text-xs">Ajuste o braço do oponente para cada variação da chave.</p>
+                            <p class="text-green-700 text-xs">Ajuste o braço do oponente para cada variação da chave.</p>
                         </div>
                     </div>
 
                     <!-- Chave de Braço 2 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-green-100 p-2 rounded-full mr-3">
                                     <span class="text-lg">🥋</span>
-                            </div>
+                                </div>
                                 <div>
                                     <h3 class="text-lg font-bold text-gray-800">HIZA-GATAME</h3>
                                     <p class="text-gray-600 text-sm">Chave de braço com o joelho</p>
+                                </div>
                             </div>
-                        </div>
                             <label class="flex items-center ml-2 select-none">
                                 <input type="checkbox" class="chave-checkbox accent-green-500 w-5 h-5 mr-1" />
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
-                                </div>
-                        <div class="technique-card .video-container">
+                        </div>
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/H2HtAJdiJcE?si=hvs6fuI2yrmgN91X&amp;start=42" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                        <div class="technique-card .bg-green-50 p-2 rounded-xl">
+                        </div>
+                        <div class="bg-green-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h4>
-                                <p class="text-green-700 text-xs">Use o joelho para pressionar o braço do oponente.</p>
+                            <p class="text-green-700 text-xs">Use o joelho para pressionar o braço do oponente.</p>
                         </div>
                     </div>
 
                     <!-- Chave de Braço 3 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-green-100 p-2 rounded-full mr-3">
                                     <span class="text-lg">🥋</span>
-                            </div>
+                                </div>
                                 <div>
                                     <h3 class="text-lg font-bold text-gray-800">KANUKE-GATAME</h3>
                                     <p class="text-gray-600 text-sm">Chave de braço com torção</p>
+                                </div>
                             </div>
-                        </div>
                             <label class="flex items-center ml-2 select-none">
                                 <input type="checkbox" class="chave-checkbox accent-green-500 w-5 h-5 mr-1" />
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
-                                </div>
-                        <div class="technique-card .video-container">
+                        </div>
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/H3GjtQXu1y8?si=WMQeu2JRmEPqfe7s&amp;start=42" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                        <div class="technique-card .bg-green-50 p-2 rounded-xl">
+                        </div>
+                        <div class="bg-green-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h4>
-                                <p class="text-green-700 text-xs">Gire o braço do oponente para aplicar a torção.</p>
+                            <p class="text-green-700 text-xs">Gire o braço do oponente para aplicar a torção.</p>
                         </div>
                     </div>
                 </div>
@@ -772,80 +738,80 @@
                 <!-- Carrossel -->
                 <div id="carouselEstrang" class="flex overflow-x-auto gap-6 pb-4 scroll-smooth snap-x snap-mandatory hide-scrollbar">
                     <!-- Estrangulamento 1 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-green-100 p-2 rounded-full mr-3">
                                     <span class="text-lg">🥋</span>
-                            </div>
+                                </div>
                                 <div>
-                                    <h3 class="text-lg font-bold text-gray-800">NAMI-JUJI-JIME (MONTADO)</h3>
-                                    <p class="text-gray-600 text-sm">Estrangulamento cruzado tradicional montado</p>
+                                    <h3 class="text-lg font-bold text-gray-800">NAMI-JUJI-JIME</h3>
+                                    <p class="text-gray-600 text-sm">Estrangulamento cruzado</p>
+                                </div>
                             </div>
-                        </div>
                             <label class="flex items-center ml-2 select-none">
                                 <input type="checkbox" class="estrang-checkbox accent-green-500 w-5 h-5 mr-1" />
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
-                                </div>
-                        <div class="technique-card .video-container">
+                        </div>
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/k2cHry9HByQ?si=YtXEL5RnZRU-MIZs&amp;start=42" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                        <div class="technique-card .bg-green-50 p-2 rounded-xl">
+                        </div>
+                        <div class="bg-green-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h4>
-                                <p class="text-green-700 text-xs">Cruze as mãos na gola do oponente e pressione para baixo.</p>
+                            <p class="text-green-700 text-xs">Cruze as mãos na gola do oponente e pressione para baixo.</p>
                         </div>
                     </div>
 
                     <!-- Estrangulamento 2 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-green-100 p-2 rounded-full mr-3">
                                     <span class="text-lg">🥋</span>
-                            </div>
+                                </div>
                                 <div>
-                                    <h3 class="text-lg font-bold text-gray-800">KATA-JUJI-JIME (PELO LADO)</h3>
-                                    <p class="text-gray-600 text-sm">Estrangulamento cruzado pelo lado</p>
+                                    <h3 class="text-lg font-bold text-gray-800">KATA-JUJI-JIME</h3>
+                                    <p class="text-gray-600 text-sm">Estrangulamento lateral</p>
+                                </div>
                             </div>
-                        </div>
                             <label class="flex items-center ml-2 select-none">
                                 <input type="checkbox" class="estrang-checkbox accent-green-500 w-5 h-5 mr-1" />
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
-                                </div>
-                        <div class="technique-card .video-container">
+                        </div>
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/k2cHry9HByQ?si=wAkjvbo_VyUEDt_o&amp;start=42" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                        <div class="technique-card .bg-green-50 p-2 rounded-xl">
+                        </div>
+                        <div class="bg-green-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h4>
-                                <p class="text-green-700 text-xs">Aplique a pressão lateralmente na gola do oponente.</p>
+                            <p class="text-green-700 text-xs">Aplique a pressão lateralmente na gola do oponente.</p>
                         </div>
                     </div>
 
                     <!-- Estrangulamento 3 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-green-100 p-2 rounded-full mr-3">
                                     <span class="text-lg">🥋</span>
-                            </div>
+                                </div>
                                 <div>
-                                    <h3 class="text-lg font-bold text-gray-800">GUYAKU-JUJI-JIME (NA GUARDA DE PERNAS)</h3>
-                                    <p class="text-gray-600 text-sm">Estrangulamento cruzado invertido na guarda</p>
+                                    <h3 class="text-lg font-bold text-gray-800">GUYAKU-JUJI-JIME</h3>
+                                    <p class="text-gray-600 text-sm">Estrangulamento invertido</p>
+                                </div>
                             </div>
-                        </div>
                             <label class="flex items-center ml-2 select-none">
                                 <input type="checkbox" class="estrang-checkbox accent-green-500 w-5 h-5 mr-1" />
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
-                                </div>
-                        <div class="technique-card .video-container">
+                        </div>
+                        <div class="video-container">
                             <iframe src="https://www.youtube.com/embed/t3tQriIPdlI?si=dW3aUrhmuq0mG3wQ&amp;start=42" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                        <div class="technique-card .bg-green-50 p-2 rounded-xl">
+                        </div>
+                        <div class="bg-green-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h4>
-                                <p class="text-green-700 text-xs">Cruze as mãos invertidas na gola do oponente e pressione na guarda.</p>
+                            <p class="text-green-700 text-xs">Cruze as mãos invertidas na gola do oponente e pressione na guarda.</p>
                         </div>
                     </div>
                 </div>
@@ -883,7 +849,7 @@
     <footer class="bg-gray-800 text-white py-6 px-4 mt-8">
         <div class="max-w-6xl mx-auto text-center">
             <p class="text-gray-300">
-                © 2024 Academia de Judô - Faixa Laranja - Desenvolvido com ❤️ para todos os judocas
+                © 2024 Academia de Judô - Faixa Verde - Desenvolvido com ❤️ para todos os judocas
             </p>
         </div>
     </footer>
