@@ -7,6 +7,8 @@
     <title>Academia de Judô - Home</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Montserrat, Poppins, Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -30,9 +32,12 @@
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;600&family=Inter:wght@400;500;700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap');
         .font-league { font-family: 'League Spartan', system-ui, sans-serif; }
+        .font-title { font-family: 'Montserrat', 'Poppins', Arial, sans-serif; }
+        .font-subtitle { font-family: 'Poppins', Arial, sans-serif; }
+        .font-desc { font-family: 'Inter', Arial, sans-serif; }
         
         .hero-section {
             background: linear-gradient(135deg, #374151 0%, #1F2937 100%);
@@ -58,27 +63,11 @@
         }
         
         .welcome-container {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            animation: gentleFloat 4s ease-in-out infinite;
-        }
-        
-        .welcome-container:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-            animation-play-state: paused;
-        }
-        
-        @keyframes gentleFloat {
-            0%, 100% { 
-                transform: translateY(0px);
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            }
-            50% { 
-                transform: translateY(-5px);
-                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-            }
+            will-change: transform;
+            box-shadow: 0 18px 60px 0 rgba(139,92,42,0.18), 0 4px 24px 0 rgba(139,92,42,0.13), 0 0 32px 0 rgba(255,255,255,0.08) inset;
+            border: 2px solid rgba(139,92,42,0.16);
+            perspective: 900px;
+            transform: rotateX(-18deg) rotateY(18deg);
         }
         
 
@@ -496,25 +485,24 @@
                 <!-- Left Side - Welcome Section -->
                 <div class="text-center lg:text-left welcome-section">
                     <div class="welcome-container bg-gradient-to-br from-slate-700/90 via-gray-600/80 to-zinc-700/90 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-slate-500/30 shadow-xl relative gradient-animated">
-                        {# <h1 class="welcome-title text-5xl lg:text-6xl font-bold mb-6">Bem-vindo ao Judô!</h1> #}
                         {# Remover debug de usuário autenticado e email #}
 
 {% if nome and faixa %}
     <div class="w-full flex flex-col items-center justify-center my-6">
-        <h2 class="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-blue-200 to-slate-400 drop-shadow-lg animate-fade-in-up text-center select-none font-league" style="letter-spacing: 0.5px;">
+        <h2 class="font-title text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-blue-200 to-slate-400 drop-shadow-lg animate-fade-in-up text-center select-none font-league" style="letter-spacing: 0.5px;">
             {{ nome }}, você está no caminho certo.
         </h2>
-        <p class="mt-2 text-lg md:text-xl font-semibold text-slate-200 drop-shadow-xl animate-fade-in-up text-center select-none font-league" style="text-shadow: 0 2px 16px #0003;">
+        <p class="font-desc mt-2 text-lg md:text-xl font-semibold text-slate-200 drop-shadow-xl animate-fade-in-up text-center select-none font-league" style="text-shadow: 0 2px 16px #0003;">
             A faixa <span class="text-blue-400 font-bold">{{ faixa }}</span> é só o começo.<br>
             Aqui você vai adquirir todo o conhecimento necessário para a próxima etapa.
         </p>
     </div>
 {% else %}
     <div class="w-full flex flex-col items-center justify-center my-6">
-        <h2 class="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-gray-300 to-slate-400 drop-shadow-lg animate-fade-in-up text-center select-none font-league">
+        <h2 class="font-title text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-gray-300 to-slate-400 drop-shadow-lg animate-fade-in-up text-center select-none font-league">
             Sua jornada começa aqui.
         </h2>
-        <p class="mt-2 text-lg md:text-xl font-semibold text-slate-200 drop-shadow-xl animate-fade-in-up text-center select-none font-league">
+        <p class="font-desc mt-2 text-lg md:text-xl font-semibold text-slate-200 drop-shadow-xl animate-fade-in-up text-center select-none font-league">
             Faça login para liberar seu potencial!
         </p>
     </div>
@@ -552,9 +540,9 @@
                         </a>
                         
                         <a href="/pagina3/" class="block">
-                            <div class="faixa-card bg-judo-yellow rounded-2xl p-6 text-center text-gray-800 font-bold shadow-lg hover:shadow-2xl">
+                            <div class="faixa-card bg-judo-yellow rounded-2xl p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl">
                                 <img src="{% static 'faixa-amarela.png' %}" alt="Faixa Amarela" class="mx-auto mb-2" style="height: 48px; width: auto;" />
-                                <div>Faixa Amarela  Ponteira Amarela</div>
+                                <div class="text-white">Faixa Amarela  Ponteira Amarela</div>
                                 <div class="text-sm opacity-80"></div>
                             </div>
                         </a>
@@ -587,11 +575,13 @@
                         </div>
                     </a>
                     <!-- Card de Rolamentos (Ukemi) apenas visual -->
+                    <a href="/ukemis/">
                     <div class="faixa-card bg-emerald-500 rounded-2xl p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl relative opacity-80 cursor-default select-none">
                         <span class="text-4xl mb-2 block">🔄</span>
                         <div>Rolamentos do Judô (Ukemi)</div>
                         <div class="text-sm opacity-80">Acesse pelo menu lateral</div>
                     </div>
+                </a>
                     </div>
                 </div>
             </div>
@@ -803,6 +793,47 @@
                     this.title = 'Clique para acessar esta faixa';
                 });
             });
+
+            // Efeito 3D tilt minimalista na div de boas-vindas
+            (function() {
+                const container = document.querySelector('.welcome-container');
+                if (!container) return;
+                const maxTilt = 13; // graus
+                const perspective = 900;
+                container.style.perspective = perspective + 'px';
+                container.addEventListener('mousemove', function(e) {
+                    const rect = container.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const percentX = (x - centerX) / centerX;
+                    const percentY = (y - centerY) / centerY;
+                    const tiltX = percentY * maxTilt;
+                    const tiltY = -percentX * maxTilt;
+                    container.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+                    container.classList.add('tilted');
+                });
+                container.addEventListener('mouseleave', function() {
+                    container.style.transform = 'rotateX(0deg) rotateY(0deg)';
+                    container.classList.remove('tilted');
+                });
+                container.addEventListener('mouseenter', function() {
+                    container.style.transition = 'transform 0.25s cubic-bezier(0.4,0,0.2,1), box-shadow 0.25s cubic-bezier(0.4,0,0.2,1)';
+                });
+            })();
+
+            // Remover o JS de hover para a .welcome-container 3D
+            // (function() {
+            //     const container = document.querySelector('.welcome-container');
+            //     if (!container) return;
+            //     container.addEventListener('mouseenter', function() {
+            //         container.classList.add('float3d-right');
+            //     });
+            //     container.addEventListener('mouseleave', function() {
+            //         container.classList.remove('float3d-right');
+            //     });
+            // })();
 
             console.log('Sidebar and navigation functionality loaded successfully!');
         });
