@@ -6,8 +6,14 @@ from .models import Profile
 from .forms import EmailLoginForm, RegisterForm
 
 def home(request):
-    return render(request, 'home/home.html')
-
+    form = EmailLoginForm()
+    register_form = RegisterForm()
+    show_register = False
+    return render(request, 'home/home.html', {
+        'form': form,
+        'register_form': register_form,
+        'show_register': show_register
+    })
 
 def login_view(request):
     form = EmailLoginForm(request.POST or None)
