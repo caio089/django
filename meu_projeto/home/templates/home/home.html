@@ -53,7 +53,7 @@
             <form id="login-form" method="post" action="{% if show_register %}{% url 'register' %}{% else %}{% url 'login' %}{% endif %}" class="w-full flex flex-col gap-2" autocomplete="off" novalidate>
                 {% csrf_token %}
                 <div class="relative" id="login-email-group">
-                    <input id="email" type="email" name="email" placeholder=" " required aria-label="Email" class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" value="{{ register_form.email.value|default:form.email.value|default_if_none:''|default:'' }}" />
+                    <input id="email" type="email" name="email" placeholder=" " required aria-label="Email" class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" value="{{ register_form.email.value|default:'' }}" />
                     <label for="email" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Email</label>
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm"><i class="fa-regular fa-envelope" aria-hidden="true"></i></span>
                 </div>
@@ -65,12 +65,12 @@
                 </div>
                 <div id="cadastro-campos" {% if show_register %}style="display:block;"{% else %}style="display:none;"{% endif %}>
                     <div class="relative">
-                        <input id="nome" type="text" name="nome" placeholder=" " aria-label="Nome completo" class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" value="{{ register_form.nome.value|default_if_none:''|default:'' }}" />
+                        <input id="nome" type="text" name="nome" placeholder=" " aria-label="Nome completo" class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" value="{{ register_form.nome.value|default:'' }}" />
                         <label for="nome" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Nome completo</label>
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm"><i class="fa-regular fa-user" aria-hidden="true"></i></span>
                     </div>
                     <div class="relative">
-                        <input id="idade" type="number" name="idade" placeholder=" " min="1" max="120" aria-label="Idade" class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" value="{{ register_form.idade.value|default_if_none:''|default:'' }}" />
+                        <input id="idade" type="number" name="idade" placeholder=" " min="1" max="120" aria-label="Idade" class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" value="{{ register_form.idade.value|default:'' }}" />
                         <label for="idade" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Idade</label>
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm"><i class="fa-solid fa-calendar" aria-hidden="true"></i></span>
                     </div>
@@ -105,9 +105,9 @@
             <div class="w-full text-center mt-2 text-xs  text-gray-500 animate-fade-in-up">
                 <span id="toggle-auth-mode">
                 {% if show_register %}
-                  Já tem conta? <a href="#" id="fazer-login-link" class="text-blue-600 hover:underline transition-colors duration-200">Faça login</a>
+                  Já tem conta? <a href="{% url 'login' %}" id="fazer-login-link" class="text-blue-600 hover:underline transition-colors duration-200">Faça login</a>
                 {% else %}
-                Não possui conta? <a href="#" id="criar-conta-link" class="text-blue-600 hover:underline transition-colors duration-200">Crie uma conta grátis</a>
+                Não possui conta? <a href="{% url 'register' %}" id="criar-conta-link" class="text-blue-600 hover:underline transition-colors duration-200">Crie uma conta grátis</a>
                 {% endif %}
                 </span>
             </div>
@@ -165,4 +165,5 @@
         });
     </script>
 </body>
+
 </html>
