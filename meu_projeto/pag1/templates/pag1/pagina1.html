@@ -93,64 +93,94 @@
     <!-- Google Fonts: Montserrat, Inter, Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@400;500;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gray-50 font-sans">
+<body class="bg-gray-50 font-sans min-h-screen flex flex-col">
     <!-- Header com Progresso -->
-    <header class="gradient-bg text-white py-4 px-4">
+    <header class="gradient-bg text-white py-2 px-4">
         <div class="max-w-6xl mx-auto">
-            <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center justify-between mb-2">
                 <div>
-                    <h1 class="text-3xl md:text-4xl font-bold mb-2 flex items-center gap-3">
-                        <img src="{% static 'faixa-cinza.png' %}" alt="Faixa Cinza" class="w-12 h-8 object-contain">
+                    <h1 class="text-2xl md:text-3xl font-bold mb-1 flex items-center gap-2">
+                        <img src="{% static 'faixa-cinza.png' %}" alt="Faixa Cinza" class="w-10 h-7 object-contain">
                         <span class="text-white">Faixa Cinza</span>
                     </h1>
-                    <p class="text-gray-200 text-lg">Seu primeiro passo na jornada do judô</p>
+                    <p class="text-gray-200 text-base">Seu primeiro passo na jornada do judô</p>
                 </div>
-                <a href="/index/" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors font-buttons">
+                <a href="/index/" class="bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-lg transition-colors font-buttons">
                     ← Voltar
                 </a>
             </div>
             
             <!-- Barra de Progresso -->
-            <div class="bg-white/20 rounded-full h-5 mb-3 shadow-inner">
-                <div class="progress-bar bg-gradient-to-r from-blue-400 to-blue-600 rounded-full h-5 shadow-lg transition-all duration-500" style="width: 0%" id="progressBar"></div>
+            <div class="bg-white/20 rounded-full h-4 mb-2 shadow-inner">
+                <div class="progress-bar bg-gradient-to-r from-blue-400 to-blue-600 rounded-full h-4 shadow-lg transition-all duration-500" style="width: 0%" id="progressBar"></div>
             </div>
-            <p class="text-base font-semibold text-white">Progresso: <span id="progressText" class="text-blue-200">0%</span></p>
+            <p class="text-sm font-semibold text-white">Progresso: <span id="progressText" class="text-blue-200">0%</span></p>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-4 py-6">
-        <!-- Card de Boas-Vindas Minimalista -->
-        <div id="welcomeCard" class="bg-white/80 border border-gray-400 rounded-xl shadow-md p-6 mb-8 w-full flex flex-col items-center">
-            <div class="flex items-center gap-3 mb-4">
-                <span class="text-2xl text-gray-500">🥋</span>
-                <span class="font-semibold text-gray-700 text-xl">Bem-vindo à Faixa Cinza</span>
-            </div>
-            <div class="flex flex-row gap-8 w-full justify-center">
-                <div class="text-center">
-                    <div class="font-bold text-gray-600 text-lg mb-2">Condição</div>
-                    <div class="text-sm text-gray-700">
-                        <div>• 6 meses de faixa branca</div>
-                        <div>• Idade mínima: 5 anos</div>
-                    </div>
+    <main class="max-w-6xl mx-auto px-4 py-6 flex-1 w-full">
+        <!-- Card de Boas-Vindas Minimalista -->   
+        </div>
+        <div class="w-full text-center mb-2">
+            <h2 class="font-bold text-gray-700 text-2xl">Condições</h2>
+            <div class="flex flex-wrap justify-center gap-4 mt-2">
+                <div class="bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500 habilidade-item">
+                    6 meses de faixa branca
                 </div>
-                <div class="text-center">
-                    <div class="font-bold text-gray-600 text-lg mb-2">Habilidades</div>
-                    <div class="text-sm text-gray-700 text-left">
-                        <div>• Shinsei (movimentaço) e Kumikata(disputa de pegada)</div>
-                        <div>• Formas de Rei (cumprimento)</div>
-                        <div>• Disciplina</div>
-                        <div>• Tipos de Ukemis (Rolamentos)</div>
-                        <div>• 2 técnicas de Nague-waza (projeção)</div>
-                        <div>• 1 técnica de Ossaekomi-waza (imobilização)</div>
-                    </div>
+                <div class="bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500 habilidade-item">
+                    Idade mínima: 5 anos
+                </div>
+            </div>
+        </div>
+        <div class="w-full text-center mb-4">
+            <h2 class="font-bold text-gray-700 text-2xl">Habilidades</h2>
+            <div id="habilidadesTyping" class="flex flex-wrap justify-center gap-4 mt-2">
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    Shinsei (movimentaço) e Kumikata (disputa de pegada)
+                </div>
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    Formas de Rei (cumprimento)
+                </div>
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    Disciplina
+                </div>
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    Tipos de Ukemis (Rolamentos)
+                </div>
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    2 técnicas de Nague-waza (projeção)
+                </div>
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    1 técnica de Ossaekomi-waza (imobilização)
                 </div>
             </div>
         </div>
         <style>
-        #welcomeCard {
-            box-shadow: 0 2px 16px 0 rgba(107,114,128,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
+        @keyframes fadeGrow {
+            0% {
+                opacity: 0.1;
+                transform: scale(0.7);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .habilidade-item {
+            opacity: 0;
+            transform: scale(0.7);
+            animation: fadeGrow 1.3s cubic-bezier(0.4,0,0.2,1) forwards;
         }
         </style>
+        <script>
+        // Todas as habilidades animam ao mesmo tempo
+        document.addEventListener('DOMContentLoaded', function() {
+            const items = document.querySelectorAll('.habilidade-item');
+            items.forEach((item) => {
+                item.style.animationDelay = '0s';
+            });
+        });
+        </script>
 
         <!-- Divs de Navegação Japonesa -->
         <div class="flex justify-center gap-8 mb-8">
@@ -331,7 +361,7 @@
             <!-- Botão Voltar ao Topo para Imobilizações -->
             <div class="text-center mt-8">
                 <button class="back-to-top-section bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg font-buttons transition-colors shadow-lg">
-                    ↑ Voltar ao Topo
+                 ↑ Voltar ao Topo
                 </button>
             </div>
         </section>
@@ -353,10 +383,10 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6 px-4 mt-8">
+    <footer class="bg-gray-800 text-white py-2 px-4 mt-auto">
         <div class="max-w-6xl mx-auto text-center">
             <p class="text-gray-300">
-                © 2024 Academia de Judô - Faixa Cinza - Desenvolvido com ❤️ para todos os judocas
+                © 2024 Academia de Judô - Faixa Cinza - Desenvolvido por Caio Campos
             </p>
         </div>
     </footer>
