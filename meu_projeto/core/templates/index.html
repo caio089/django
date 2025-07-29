@@ -67,24 +67,20 @@
             box-shadow: 0 18px 60px 0 rgba(139,92,42,0.18), 0 4px 24px 0 rgba(139,92,42,0.13), 0 0 32px 0 rgba(255,255,255,0.08) inset;
             border: 2px solid rgba(139,92,42,0.16);
             perspective: 900px;
-            /* Animação contínua de flutuação 3D */
-            animation: welcomeFloat3d 3.2s ease-in-out infinite alternate;
+            /* Animação única de entrada */
+            animation: welcomeContainerEnter 1.5s ease-out forwards;
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            /* Removido gradient-animated para evitar movimento contínuo */
         }
-        @keyframes welcomeFloat3d {
+        @keyframes welcomeContainerEnter {
             0% {
-                transform: rotateX(-28deg) rotateY(28deg) translateY(0px) scale(1);
-            }
-            25% {
-                transform: rotateX(-10deg) rotateY(38deg) translateY(-22px) scale(1.025);
-            }
-            50% {
-                transform: rotateX(-38deg) rotateY(8deg) translateY(18px) scale(1.03);
-            }
-            75% {
-                transform: rotateX(-20deg) rotateY(32deg) translateY(-12px) scale(1.02);
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
             }
             100% {
-                transform: rotateX(-28deg) rotateY(28deg) translateY(0px) scale(1);
+                opacity: 1;
+                transform: translateY(0) scale(1);
             }
         }
         
@@ -129,29 +125,19 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            /* Animação contínua de flutuação 3D */
-            animation: faixaFloat3d 5.2s ease-in-out infinite alternate;
+            /* Animação única de entrada */
+            animation: faixaCardEnter 1.2s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
         }
-        @keyframes faixaFloat3d {
+        @keyframes faixaCardEnter {
             0% {
-                transform: rotateX(0deg) rotateY(0deg) translateY(0px) scale(1);
-                box-shadow: 0 8px 25px rgba(0,0,0,0.15), 0 0 0 0 rgba(255,255,255,0.1);
-            }
-            25% {
-                transform: rotateX(7deg) rotateY(-7deg) translateY(-6px) scale(1.01);
-                box-shadow: 0 14px 32px rgba(0,0,0,0.18), 0 0 12px 0 rgba(255,255,255,0.13);
-            }
-            50% {
-                transform: rotateX(-8deg) rotateY(8deg) translateY(4px) scale(1.015);
-                box-shadow: 0 18px 40px rgba(0,0,0,0.20), 0 0 18px 0 rgba(255,255,255,0.15);
-            }
-            75% {
-                transform: rotateX(5deg) rotateY(-5deg) translateY(-3px) scale(1.01);
-                box-shadow: 0 12px 28px rgba(0,0,0,0.17), 0 0 10px 0 rgba(255,255,255,0.12);
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
             }
             100% {
-                transform: rotateX(0deg) rotateY(0deg) translateY(0px) scale(1);
-                box-shadow: 0 8px 25px rgba(0,0,0,0.15), 0 0 0 0 rgba(255,255,255,0.1);
+                opacity: 1;
+                transform: translateY(0) scale(1);
             }
         }
         
@@ -268,19 +254,7 @@
             }
         }
         
-        .gradient-animated {
-            background-size: 200% 200%;
-            animation: gradientShift 8s ease-in-out infinite;
-        }
-        
-        @keyframes gradientShift {
-            0%, 100% { 
-                background-position: 0% 50%;
-            }
-            50% { 
-                background-position: 100% 50%;
-            }
-        }
+
         
 
         
@@ -533,7 +507,7 @@
                 
                 <!-- Left Side - Welcome Section -->
                 <div class="text-center lg:text-left welcome-section">
-                    <div class="welcome-container bg-gradient-to-br from-slate-700/90 via-gray-600/80 to-zinc-700/90 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-slate-500/30 shadow-xl relative gradient-animated">
+                    <div class="welcome-container bg-gradient-to-br from-slate-700/90 via-gray-600/80 to-zinc-700/90 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-slate-500/30 shadow-xl relative">
                         {# Remover debug de usuário autenticado e email #}
 
 {% if nome and faixa %}
@@ -724,15 +698,8 @@
                     }, 600);
                 });
                 
-                // Add staggered entrance animation
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                
-                setTimeout(() => {
-                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, index * 100);
+                // Delay escalonado para entrada única
+                card.style.animationDelay = (index * 0.1) + 's';
             });
             
             // Add ripple animation
@@ -781,10 +748,10 @@
             
 
 
-            // Add hover effects to belt cards
+            // Add hover effects to belt cards (simplificado)
             document.querySelectorAll('.faixa-card').forEach(card => {
                 card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-8px) scale(1.05)';
+                    this.style.transform = 'translateY(-5px) scale(1.02)';
                 });
                 
                 card.addEventListener('mouseleave', function() {
@@ -794,37 +761,7 @@
 
             // Sidebar navigation links functionality
             const sidebarLinks = document.querySelectorAll('.sidebar-item');
-            // REMOVER O BLOCO ABAIXO PARA PERMITIR NAVEGAÇÃO NORMAL
-            // sidebarLinks.forEach(link => {
-            //     link.addEventListener('click', function(e) {
-            //         // Add loading effect
-            //         this.style.opacity = '0.7';
-            //         this.style.transform = 'scale(0.95)';
-            //         
-            //         setTimeout(() => {
-            //             this.style.opacity = '1';
-            //             this.style.transform = 'scale(1)';
-            //         }, 150);
-            //     });
-            // });
-
-            // Prevent default behavior for sidebar links (for demo purposes)
-            // In production, these would navigate to actual pages
-            // sidebarLinks.forEach(link => {
-            //     link.addEventListener('click', function(e) {
-            //         e.preventDefault();
-            //         const href = this.getAttribute('href');
-            //         const text = this.querySelector('h3').textContent;
-            //         
-            //         // Show a temporary message (replace with actual navigation)
-            //         alert(`Navegando para: ${text}\nURL: ${href}`);
-            //         
-            //         // Close sidebar after navigation
-            //         setTimeout(() => {
-            //             closeSidebarFunc();
-            //         }, 500);
-            //     });
-            // });
+          
 
             // Add smooth scroll behavior
             document.documentElement.style.scrollBehavior = 'smooth';
@@ -836,46 +773,24 @@
                 });
             });
 
-            // Efeito 3D tilt minimalista na div de boas-vindas
+            // Efeito 3D tilt sutil apenas no hover (sem movimento contínuo)
             (function() {
                 const container = document.querySelector('.welcome-container');
                 if (!container) return;
-                const maxTilt = 13; // graus
-                const perspective = 900;
-                container.style.perspective = perspective + 'px';
-                container.addEventListener('mousemove', function(e) {
-                    const rect = container.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    const percentX = (x - centerX) / centerX;
-                    const percentY = (y - centerY) / centerY;
-                    const tiltX = percentY * maxTilt;
-                    const tiltY = -percentX * maxTilt;
-                    container.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
-                    container.classList.add('tilted');
-                });
-                container.addEventListener('mouseleave', function() {
-                    container.style.transform = 'rotateX(0deg) rotateY(0deg)';
-                    container.classList.remove('tilted');
-                });
+                
                 container.addEventListener('mouseenter', function() {
-                    container.style.transition = 'transform 0.25s cubic-bezier(0.4,0,0.2,1), box-shadow 0.25s cubic-bezier(0.4,0,0.2,1)';
+                    this.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+                    this.style.transform = 'translateY(-2px) scale(1.01)';
+                    this.style.boxShadow = '0 25px 60px 0 rgba(139,92,42,0.25), 0 8px 32px 0 rgba(139,92,42,0.18), 0 0 40px 0 rgba(255,255,255,0.12) inset';
+                });
+                
+                container.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                    this.style.boxShadow = '0 18px 60px 0 rgba(139,92,42,0.18), 0 4px 24px 0 rgba(139,92,42,0.13), 0 0 32px 0 rgba(255,255,255,0.08) inset';
                 });
             })();
 
-            // Remover o JS de hover para a .welcome-container 3D
-            // (function() {
-            //     const container = document.querySelector('.welcome-container');
-            //     if (!container) return;
-            //     container.addEventListener('mouseenter', function() {
-            //         container.classList.add('float3d-right');
-            //     });
-            //     container.addEventListener('mouseleave', function() {
-            //         container.classList.remove('float3d-right');
-            //     });
-            // })();
+          
 
             console.log('Sidebar and navigation functionality loaded successfully!');
         });

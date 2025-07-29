@@ -170,6 +170,241 @@
             opacity: 0;
             transform: scale(0.7);
             animation: fadeGrow 1.3s cubic-bezier(0.4,0,0.2,1) forwards;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Efeito de cursor para habilidades e condições */
+        .habilidade-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .habilidade-item:hover::before {
+            left: 100%;
+        }
+        
+        .habilidade-item:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.9) !important;
+        }
+        
+        /* Efeito de borda animada */
+        .habilidade-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            background: linear-gradient(45deg, #6B7280, #4B5563, #6B7280) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .habilidade-item:hover::after {
+            opacity: 1;
+        }
+        
+        /* Animação sutil para habilidades e condições */
+        .habilidade-item {
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .habilidade-item:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+            background: rgba(255, 255, 255, 0.95) !important;
+        }
+        
+        .habilidade-item:active {
+            transform: translateY(-1px) scale(1.01);
+            transition: all 0.1s ease;
+        }
+        
+        /* Efeito ripple sutil para cliques */
+        .ripple-effect {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.3);
+            transform: scale(0);
+            animation: ripple 0.6s ease-out;
+            pointer-events: none;
+            z-index: 5;
+        }
+        
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        /* Animações do Modal de Parabéns */
+        .modal-enter {
+            animation: modalEnter 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        @keyframes modalEnter {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        /* Troféu animado */
+        .trophy-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .trophy-icon {
+            font-size: 4rem;
+            animation: trophyBounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+        }
+        
+        @keyframes trophyBounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(5deg); }
+            75% { transform: translateY(-5px) rotate(-3deg); }
+        }
+        
+        .trophy-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+        }
+        
+        /* Título animado */
+        .congratulations-title {
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes titleGlow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3)); }
+            50% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6)); }
+        }
+        
+        /* Partículas de celebração */
+        .celebration-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FF6347);
+            border-radius: 50%;
+            animation: celebrationFloat 3s ease-in-out infinite;
+            animation-delay: var(--delay);
+            left: var(--x);
+            top: var(--y);
+        }
+        
+        @keyframes celebrationFloat {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0);
+            }
+            20% {
+                opacity: 1;
+                transform: translateY(-20px) scale(1);
+            }
+            80% {
+                opacity: 1;
+                transform: translateY(-40px) scale(1.2);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-60px) scale(0);
+            }
+        }
+        
+        /* Cards de estatísticas */
+        .stat-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            animation: statCardEnter 0.6s ease-out forwards;
+            animation-delay: calc(var(--index, 0) * 0.1s);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .stat-card:nth-child(1) { --index: 1; }
+        .stat-card:nth-child(2) { --index: 2; }
+        
+        @keyframes statCardEnter {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+        
+        /* Botões animados */
+        .continue-btn, .close-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .continue-btn::before, .close-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .continue-btn:hover::before, .close-btn:hover::before {
+            left: 100%;
         }
         </style>
         <script>
@@ -178,6 +413,39 @@
             const items = document.querySelectorAll('.habilidade-item');
             items.forEach((item) => {
                 item.style.animationDelay = '0s';
+            });
+            
+            // Selecionar elementos de habilidades para animações
+            const habilidadeItems = document.querySelectorAll('.habilidade-item');
+            
+            // Função para criar efeito ripple
+            function createRipple(element, event) {
+                const rect = element.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = event.clientX - rect.left - size / 2;
+                const y = event.clientY - rect.top - size / 2;
+                
+                const ripple = document.createElement('span');
+                ripple.className = 'ripple-effect';
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                
+                element.appendChild(ripple);
+                
+                // Remover ripple após animação
+                setTimeout(() => {
+                    if (ripple.parentNode) {
+                        ripple.parentNode.removeChild(ripple);
+                    }
+                }, 600);
+            }
+            
+            // Adicionar evento de clique para ripple
+            habilidadeItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    createRipple(item, e);
+                });
             });
         });
         </script>
@@ -367,7 +635,7 @@
         </section>
 
             <!-- Barra de Progresso Flutuante -->
-    <div id="floatingProgress" class="fixed top-4 left-0 right-0 mx-auto w-fit bg-white border border-gray-300 rounded-lg shadow-lg p-3 z-50 opacity-0 transition-opacity duration-300 pointer-events-none hidden">
+    <div id="floatingProgress" class="fixed top-4 left-0 right-0 mx-auto w-fit bg-white/95 backdrop-blur-sm border border-gray-300 rounded-lg shadow-xl p-3 z-50 opacity-0 transition-all duration-500 pointer-events-none hidden transform translate-y-[-10px]">
         <div class="flex items-center gap-5">
             <div class="w-80 bg-gray-200 rounded-full h-3">
                 <div id="floatingProgressBar" class="bg-gradient-to-r from-green-400 to-emerald-500 h-3 rounded-full transition-all duration-500 shadow-sm" style="width: 0%"></div>
@@ -380,6 +648,68 @@
     <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg floating-action transition-colors hidden font-buttons">
         <span class="text-2xl">↑</span>
     </button>
+
+    <!-- Modal de Parabéns -->
+    <div id="congratulationsModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] hidden items-center justify-center">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-2xl mx-4 p-8 text-center relative overflow-hidden">
+            <!-- Partículas de fundo -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                <div class="celebration-particle" style="--delay: 0s; --x: 10%; --y: 20%"></div>
+                <div class="celebration-particle" style="--delay: 0.2s; --x: 80%; --y: 30%"></div>
+                <div class="celebration-particle" style="--delay: 0.4s; --x: 20%; --y: 70%"></div>
+                <div class="celebration-particle" style="--delay: 0.6s; --x: 70%; --y: 80%"></div>
+                <div class="celebration-particle" style="--delay: 0.8s; --x: 50%; --y: 10%"></div>
+                <div class="celebration-particle" style="--delay: 1s; --x: 90%; --y: 60%"></div>
+            </div>
+            
+            <!-- Conteúdo principal -->
+            <div class="relative z-10">
+                <!-- Ícone de troféu animado -->
+                <div class="trophy-container mb-6">
+                    <div class="trophy-icon">🏆</div>
+                    <div class="trophy-glow"></div>
+                </div>
+                
+                <!-- Título principal -->
+                <h1 class="congratulations-title text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 bg-clip-text text-transparent">
+                    Parabéns!
+                </h1>
+                
+                <!-- Subtítulo -->
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
+                    Você Concluiu a <span class="text-gradient">Faixa Cinza</span>!
+                </h2>
+                
+                <!-- Mensagem motivacional -->
+                <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                    Sua dedicação e disciplina foram fundamentais para alcançar este marco. 
+                    Continue treinando e evoluindo no caminho do judô!
+                </p>
+                
+                <!-- Estatísticas -->
+                <div class="stats-grid grid grid-cols-2 gap-4 mb-8">
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Progresso</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Técnicas Dominadas</div>
+                    </div>
+                </div>
+                
+                <!-- Botões de ação -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button id="continueTraining" class="continue-btn bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Continuar Treinando
+                    </button>
+                    <button id="closeCongratulations" class="close-btn bg-gray-500 hover:bg-gray-600 text-white px-8 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
     </main>
 
     <!-- Footer -->
@@ -426,18 +756,29 @@
 // Navegação interna animada
 function smoothScrollTo(element, cardElement) {
     const targetElement = document.getElementById(element);
-    if (!targetElement) return;
+    if (!targetElement) {
+        console.log('Target element not found:', element); // Debug
+        return;
+    }
+    
+    console.log('Scrolling to:', element); // Debug
+    
     // Adicionar classe clicked ao card
-    cardElement.classList.add('clicked');
+    if (cardElement) {
+        cardElement.classList.add('clicked');
+    }
+    
     // Calcular posição de destino
     const targetPosition = targetElement.offsetTop - 100;
     const startPosition = window.pageYOffset;
     const distance = targetPosition - startPosition;
     const duration = 1200;
     let start = null;
+    
     function easeInOutCubic(t) {
         return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
     }
+    
     function animation(currentTime) {
         if (start === null) start = currentTime;
         const timeElapsed = currentTime - start;
@@ -448,7 +789,9 @@ function smoothScrollTo(element, cardElement) {
             requestAnimationFrame(animation);
         } else {
             setTimeout(() => {
-                cardElement.classList.remove('clicked');
+                if (cardElement) {
+                    cardElement.classList.remove('clicked');
+                }
                 targetElement.classList.add('destination-highlight');
                 setTimeout(() => {
                     targetElement.classList.remove('destination-highlight');
@@ -464,16 +807,17 @@ document.getElementById('nage-waza-nav').addEventListener('click', function(e) {
     document.getElementById('nage-waza-section').classList.remove('hidden');
     setTimeout(() => {
         smoothScrollTo('nage-waza-section', this);
-                }, 100);
-            });
+    }, 100);
+});
+
 document.getElementById('imobilizacoes-nav').addEventListener('click', function(e) {
     e.preventDefault();
-                document.getElementById('nage-waza-section').classList.add('hidden');
-                document.getElementById('imobilizacoes-section').classList.remove('hidden');
-                setTimeout(() => {
+    document.getElementById('nage-waza-section').classList.add('hidden');
+    document.getElementById('imobilizacoes-section').classList.remove('hidden');
+    setTimeout(() => {
         smoothScrollTo('imobilizacoes-section', this);
-                }, 100);
-            });
+    }, 100);
+});
             document.getElementById('ukemi-nav').addEventListener('click', function() {
                 window.location.href = '/ukemis/';
             });
@@ -563,6 +907,363 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 2000);
 });
 // --- FIM: Animação do botão voltar ao topo ---
+
+// --- INÍCIO: Sistema de Progresso e Barra Flutuante ---
+let progress = 0;
+let totalItems = 0;
+let hasShownCongratulations = false;
+
+// Função para contar total de checkboxes "Aprendi"
+function countTotalItems() {
+    totalItems = document.querySelectorAll('.proj-checkbox, .imob-checkbox').length;
+    console.log('Total items found:', totalItems); // Debug
+    return totalItems;
+}
+
+// Função para calcular progresso
+function calculateProgress() {
+    // Garantir que totalItems está atualizado
+    countTotalItems();
+    
+    const checkedItems = document.querySelectorAll('.proj-checkbox:checked, .imob-checkbox:checked').length;
+    progress = Math.round((checkedItems / totalItems) * 100);
+    
+    // Garantir que progresso não seja negativo ou maior que 100
+    progress = Math.max(0, Math.min(100, progress));
+    
+    console.log('Progress calculation:', { checkedItems, totalItems, progress }); // Debug
+    
+    // Atualizar barra de progresso principal
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+    if (progressBar && progressText) {
+        progressBar.style.width = progress + '%';
+        progressText.textContent = progress + '%';
+    }
+    
+    // Atualizar barra flutuante
+    const floatingProgress = document.getElementById('floatingProgress');
+    const floatingProgressBar = document.getElementById('floatingProgressBar');
+    const floatingProgressText = document.getElementById('floatingProgressText');
+    
+    if (floatingProgress && floatingProgressBar && floatingProgressText) {
+        floatingProgressBar.style.width = progress + '%';
+        floatingProgressText.textContent = progress + '%';
+        
+        // Mostrar/esconder barra flutuante baseado no scroll
+        if (window.pageYOffset > 200) {
+            floatingProgress.classList.remove('hidden');
+            floatingProgress.style.opacity = '1';
+            floatingProgress.style.transform = 'translateY(0)';
+            floatingProgress.style.pointerEvents = 'auto';
+        } else {
+            floatingProgress.classList.add('hidden');
+            floatingProgress.style.opacity = '0';
+            floatingProgress.style.transform = 'translateY(-10px)';
+            floatingProgress.style.pointerEvents = 'none';
+        }
+    }
+    
+    // Verificar se chegou a 100% e mostrar parabéns
+    if (progress === 100 && !hasShownCongratulations) {
+        console.log('Progress is 100% - checking for congratulations'); // Debug
+        
+        // Verificação extra: garantir que todos os checkboxes estão marcados
+        const allCheckboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
+        const allChecked = Array.from(allCheckboxes).every(checkbox => checkbox.checked);
+        
+        console.log('All checkboxes checked:', allChecked); // Debug
+        
+        if (allChecked) {
+            console.log('Showing congratulations!'); // Debug
+            setTimeout(() => {
+                showCongratulations();
+            }, 500); // Pequeno delay para melhor experiência
+        }
+    }
+}
+
+// Event listeners para checkboxes
+function initializeProgressSystem() {
+    const checkboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
+    
+    console.log('Found checkboxes:', checkboxes.length); // Debug
+    
+    // Garantir que todos os checkboxes começam desmarcados
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+    });
+    
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            console.log('Checkbox changed:', this.checked); // Debug
+            calculateProgress();
+            saveProgress();
+            
+            // Efeito visual quando marca/desmarca
+            const label = this.closest('label');
+            if (this.checked) {
+                label.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    label.style.transform = 'scale(1)';
+                }, 200);
+            }
+        });
+    });
+    
+    // Calcular progresso inicial (deve ser 0%)
+    calculateProgress();
+    
+    console.log('Progress system setup complete'); // Debug
+}
+
+// Controle da barra flutuante baseado no scroll
+window.addEventListener('scroll', function() {
+    const floatingProgress = document.getElementById('floatingProgress');
+    if (floatingProgress) {
+        if (window.pageYOffset > 200) {
+            floatingProgress.classList.remove('hidden');
+            floatingProgress.style.opacity = '1';
+            floatingProgress.style.transform = 'translateY(0)';
+            floatingProgress.style.pointerEvents = 'auto';
+        } else {
+            floatingProgress.classList.add('hidden');
+            floatingProgress.style.opacity = '0';
+            floatingProgress.style.transform = 'translateY(-10px)';
+            floatingProgress.style.pointerEvents = 'none';
+        }
+    }
+});
+
+// Salvar progresso no localStorage
+function saveProgress() {
+    const checkboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
+    const progressData = {};
+    
+    checkboxes.forEach((checkbox, index) => {
+        progressData[`checkbox_${index}`] = checkbox.checked;
+    });
+    
+    localStorage.setItem('judoProgress', JSON.stringify(progressData));
+}
+
+// Carregar progresso do localStorage
+function loadProgress() {
+    const savedProgress = localStorage.getItem('judoProgress');
+    if (savedProgress) {
+        const progressData = JSON.parse(savedProgress);
+        const checkboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
+        
+        checkboxes.forEach((checkbox, index) => {
+            if (progressData[`checkbox_${index}`]) {
+                checkbox.checked = true;
+            }
+        });
+        
+        calculateProgress();
+    }
+}
+
+// Carregar progresso ao iniciar
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM Content Loaded - Initializing progress system'); // Debug
+    
+    // Não carregar progresso salvo - sempre começar em 0%
+    // loadProgress();
+    initializeProgressSystem();
+    initializeCongratulationsButtons();
+    
+    console.log('Progress system initialized'); // Debug
+});
+
+// --- FIM: Sistema de Progresso e Barra Flutuante ---
+
+// --- INÍCIO: Sistema de Parabéns ---
+
+// Função para mostrar modal de parabéns
+function showCongratulations() {
+    console.log('showCongratulations called'); // Debug
+    
+    if (hasShownCongratulations) {
+        console.log('Already shown congratulations'); // Debug
+        return;
+    }
+    
+    const modal = document.getElementById('congratulationsModal');
+    if (!modal) {
+        console.log('Modal not found'); // Debug
+        return;
+    }
+    
+    console.log('Showing congratulations modal'); // Debug
+    
+    hasShownCongratulations = true;
+    
+    // Mostrar modal - versão simplificada
+    modal.style.display = 'flex';
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    
+    // Adicionar animação de entrada
+    const modalContent = modal.querySelector('div');
+    if (modalContent) {
+        modalContent.classList.add('modal-enter');
+    }
+    
+    // Tocar som de celebração (se disponível)
+    try {
+        playCelebrationSound();
+    } catch (e) {
+        console.log('Sound not available:', e);
+    }
+    
+    // Salvar que já mostrou parabéns
+    localStorage.setItem('congratulationsShown', 'true');
+    
+    // Scroll suave para o topo
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    console.log('Modal should be visible now'); // Debug
+}
+
+// Função para tocar som de celebração
+function playCelebrationSound() {
+    // Criar áudio de celebração simples
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    
+    // Configurar som de celebração
+    oscillator.frequency.setValueAtTime(523.25, audioContext.currentTime); // C
+    oscillator.frequency.setValueAtTime(659.25, audioContext.currentTime + 0.1); // E
+    oscillator.frequency.setValueAtTime(783.99, audioContext.currentTime + 0.2); // G
+    
+    gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+    
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 0.3);
+}
+
+// Função para fechar modal
+function closeCongratulations() {
+    console.log('Closing congratulations modal'); // Debug
+    const modal = document.getElementById('congratulationsModal');
+    if (modal) {
+        modal.style.display = 'none';
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        console.log('Modal closed successfully'); // Debug
+    } else {
+        console.log('Modal not found for closing'); // Debug
+    }
+}
+
+// Event listeners para botões do modal
+function initializeCongratulationsButtons() {
+    const continueBtn = document.getElementById('continueTraining');
+    const closeBtn = document.getElementById('closeCongratulations');
+    
+    console.log('Initializing congratulations buttons'); // Debug
+    console.log('Continue button found:', !!continueBtn); // Debug
+    console.log('Close button found:', !!closeBtn); // Debug
+    
+    if (continueBtn) {
+        continueBtn.addEventListener('click', function() {
+            console.log('Continue training clicked'); // Debug
+            closeCongratulations();
+            
+            // Pequeno delay para garantir que o modal fechou
+            setTimeout(() => {
+                // Scroll para seção de técnicas
+                const nageSection = document.getElementById('nage-waza-section');
+                if (nageSection) {
+                    nageSection.classList.remove('hidden');
+                    nageSection.scrollIntoView({ behavior: 'smooth' });
+                    console.log('Scrolled to nage-waza section'); // Debug
+                } else {
+                    console.log('Nage-waza section not found'); // Debug
+                }
+            }, 300);
+        });
+    }
+    
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            console.log('Close button clicked'); // Debug
+            closeCongratulations();
+        });
+    }
+    
+    // Fechar modal ao clicar fora dele
+    const modal = document.getElementById('congratulationsModal');
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                console.log('Clicked outside modal - closing'); // Debug
+                closeCongratulations();
+            }
+        });
+    }
+}
+
+
+
+// --- FIM: Sistema de Parabéns ---
+
+// Função para resetar progresso (opcional)
+function resetProgress() {
+    const checkboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+    });
+    
+    // Resetar variáveis
+    hasShownCongratulations = false;
+    localStorage.removeItem('congratulationsShown');
+    localStorage.removeItem('judoProgress');
+    
+    // Recalcular progresso
+    calculateProgress();
+}
+
+// --- FIM: Sistema Completo ---
+
+// Função para testar o modal de parabéns (remover em produção)
+function testCongratulations() {
+    console.log('Testing congratulations modal');
+    hasShownCongratulations = false; // Reset para teste
+    showCongratulations();
+}
+
+// Função para marcar todos os checkboxes (teste)
+function markAllCheckboxes() {
+    const checkboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = true;
+    });
+    calculateProgress();
+}
+
+// Função para resetar modal (teste)
+function resetModal() {
+    const modal = document.getElementById('congratulationsModal');
+    if (modal) {
+        modal.style.display = 'none';
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        hasShownCongratulations = false;
+        console.log('Modal reset successfully'); // Debug
+    }
+}
+
+// Adicionar ao console para teste
+window.testCongratulations = testCongratulations;
+window.markAllCheckboxes = markAllCheckboxes;
+window.resetModal = resetModal;
     </script>
 </body>
 </html>
