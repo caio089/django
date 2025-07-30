@@ -29,5 +29,6 @@ urlpatterns = [
     path('pagina6/', include('pag6.urls')),
     path('pagina7/', include('pag7.urls')),
     path('ukemis/', include('ukemis.urls')),
+    path('quiz/', include('quiz.urls')),
 ]
 

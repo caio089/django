@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Interativo</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .fade-in {
+      animation: fadeIn 0.4s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-blue-900 via-indigo-800 to-purple-900 text-white min-h-screen p-6">
+
+  <!-- Status -->
+  <div class="max-w-3xl mx-auto bg-white text-gray-900 rounded-xl shadow-lg p-4 mb-6 flex justify-between items-center">
+    <span id="status" class="text-lg font-semibold">Pergunta 0/0</span>
+    <span id="score" class="text-lg font-semibold text-green-600">Acertos: 0</span>
+  </div>
+
+  <!-- Quiz Container -->
+  <div id="quiz-container" class="max-w-3xl mx-auto space-y-6"></div>
+
+  <!-- Finalização -->
+  <div id="result" class="hidden text-center mt-8 fade-in">
+    <h2 class="text-3xl font-bold text-green-400">✅ Quiz Finalizado!</h2>
+    <p id="final-score" class="text-xl mt-2"></p>
+    <button onclick="restartQuiz()" class="mt-4 bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition">Reiniciar</button>
+  </div>
+
+  <script>
+    const questions = [
+      { question: "Quem criou o judo??", answers: ["Jigoro kano", "Londres", "Roma", "Madri"], correct: 0 },
+      { question: "Quem desenvolveu a Teoria da Relatividade?", answers: ["Newton", "Einstein", "Tesla", "Galileu"], correct: 1 },
+      { question: "Qual é o maior planeta do Sistema Solar?", answers: ["Marte", "Saturno", "Júpiter", "Vênus"], correct: 2 },
+      { question: "Qual é o elemento químico representado por 'O'?", answers: ["Ouro", "Osmio", "Oxigênio", "Óxido"], correct: 2 }
+    ];
+
+    let score = 0;
+    let answered = 0;
+
+    const quizContainer = document.getElementById("quiz-container");
+    const statusElement = document.getElementById("status");
+    const scoreElement = document.getElementById("score");
+    const resultElement = document.getElementById("result");
+    const finalScoreElement = document.getElementById("final-score");
+
+    function updateStatus() {
+      statusElement.textContent = `Pergunta ${answered}/${questions.length}`;
+      scoreElement.textContent = `Acertos: ${score}`;
+    }
+
+    function createQuestionCard(qIndex) {
+      const q = questions[qIndex];
+
+      const card = document.createElement("div");
+      card.className = "bg-white text-gray-900 rounded-xl shadow-xl p-6 fade-in";
+
+      const questionText = document.createElement("h2");
+      questionText.className = "text-lg font-semibold mb-4 text-center";
+      questionText.textContent = `${qIndex + 1}. ${q.question}`;
+      card.appendChild(questionText);
+
+      const answersDiv = document.createElement("div");
+      answersDiv.className = "grid gap-3";
+
+      q.answers.forEach((answer, index) => {
+        const btn = document.createElement("button");
+        btn.textContent = answer;
+        btn.className =
+          "bg-gray-100 text-gray-800 py-2 px-4 rounded-lg border-2 border-transparent hover:bg-indigo-100 transition";
+        btn.onclick = () => handleAnswer(qIndex, index, btn, answersDiv);
+        answersDiv.appendChild(btn);
+      });
+
+      card.appendChild(answersDiv);
+      quizContainer.appendChild(card);
+    }
+
+    function handleAnswer(qIndex, selectedIndex, btn, answersDiv) {
+      const correctIndex = questions[qIndex].correct;
+      const buttons = answersDiv.querySelectorAll("button");
+
+      if (!buttons[0].disabled) {
+        buttons.forEach(b => b.disabled = true);
+
+        if (selectedIndex === correctIndex) {
+          btn.classList.add("bg-green-500", "text-white");
+          score++;
+        } else {
+          btn.classList.add("bg-red-500", "text-white");
+          buttons[correctIndex].classList.add("bg-green-500", "text-white");
+        }
+
+        answered++;
+        updateStatus();
+
+        if (answered === questions.length) {
+          setTimeout(showResult, 600);
+        }
+      }
+    }
+
+    function showResult() {
+      resultElement.classList.remove("hidden");
+      finalScoreElement.textContent = `Você acertou ${score} de ${questions.length} perguntas!`;
+    }
+
+    function restartQuiz() {
+      score = 0;
+      answered = 0;
+      quizContainer.innerHTML = "";
+      resultElement.classList.add("hidden");
+      initQuiz();
+    }
+
+    function initQuiz() {
+      updateStatus();
+      questions.forEach((_, index) => createQuestionCard(index));
+    }
+
+    initQuiz();
+  </script>
+</body>
+</html>

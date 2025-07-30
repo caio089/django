@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'pag7',
     'home',
     'ukemis',
+    'quiz',
 ]
 
 MIDDLEWARE = [
