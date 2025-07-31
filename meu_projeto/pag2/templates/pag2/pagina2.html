@@ -502,6 +502,156 @@
                 transform: translateY(-100px) scale(0);
             }
         }
+
+        @keyframes fadeGrow {
+            0% {
+                opacity: 0.1;
+                transform: scale(0.7);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .habilidade-item {
+            opacity: 0;
+            transform: scale(0.7);
+            animation: fadeGrow 1.3s cubic-bezier(0.4,0,0.2,1) forwards;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Efeito de cursor para habilidades e condições */
+        .habilidade-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .habilidade-item:hover::before {
+            left: 100%;
+        }
+        
+        .habilidade-item:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.9) !important;
+        }
+        
+        /* Efeito de borda animada */
+        .habilidade-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            background: linear-gradient(45deg, #6B7280, #4B5563, #6B7280) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .habilidade-item:hover::after {
+            opacity: 1;
+        }
+        
+        /* Animação sutil para habilidades e condições */
+        .habilidade-item {
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .habilidade-item:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+            background: rgba(255, 255, 255, 0.95) !important;
+        }
+        
+        .habilidade-item:active {
+            transform: translateY(-1px) scale(1.01);
+            transition: all 0.1s ease;
+        }
+        
+        /* Efeito ripple sutil para cliques */
+        .ripple-effect {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.3);
+            transform: scale(0);
+            animation: ripple 0.6s ease-out;
+            pointer-events: none;
+            z-index: 5;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            animation: statCardEnter 0.6s ease-out forwards;
+            animation-delay: calc(var(--index, 0) * 0.1s);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .stat-card:nth-child(1) { --index: 1; }
+        .stat-card:nth-child(2) { --index: 2; }
+        
+        @keyframes statCardEnter {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+        
+        /* Botões animados */
+        .continue-btn, .close-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .continue-btn::before, .close-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .continue-btn:hover::before, .close-btn:hover::before {
+            left: 100%;
+        }
+        
     </style>
 </head>
 <body class="bg-gray-50 font-sans">
@@ -529,33 +679,46 @@
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-4 py-6">
+   
         <!-- Card de Boas-Vindas Minimalista -->
-        <div id="welcomeCard" class="bg-white/80 border border-blue-400 rounded-xl shadow-md p-6 mb-8 w-full flex flex-col items-center">
-            <div class="flex items-center gap-3 mb-4">
-                <span class="text-2xl text-blue-500">🥋</span>
-                <span class="font-semibold text-blue-700 text-xl">Bem-vindo à Faixa Azul</span>
+        <main class="max-w-6xl mx-auto px-4 py-6 flex-1 w-full">
+            <!-- Card de Boas-Vindas Minimalista -->   
             </div>
-            <div class="flex flex-row gap-8 w-full justify-center">
-                <div class="text-center">
-                    <div class="font-bold text-blue-600 text-lg mb-2">Condição</div>
-                    <div class="text-sm text-blue-700">
-                        <div>• 6 meses de faixa branca ou cinza</div>
-                        <div>• Idade mínima: 7 anos</div>
+            <div class="w-full text-center mb-2">
+                <h2 class="font-bold text-gray-700 text-2xl">Condições</h2>
+                <div class="flex flex-wrap justify-center gap-4 mt-2">
+                    <div class="bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500 habilidade-item">
+                        6 meses de faixa branca
                     </div>
-                </div>
-                <div class="text-center">
-                    <div class="font-bold text-blue-600 text-lg mb-2">Habilidades</div>
-                    <div class="text-sm text-blue-700 text-left">
-                        <div>• Shinsei e Kumikata</div>
-                        <div>• Tipos de Graduação</div>
-                        <div>• Tipos de Ukemis (Rolamentos)</div>
-                        <div>• 4 técnicas de Nague-waza</div>
-                        <div>• 3 técnicas de Ossaekomi-waza</div>
+                    <div class="bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500 habilidade-item">
+                        Idade mínima: 5 anos
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="w-full text-center mb-4">
+                <h2 class="font-bold text-gray-700 text-2xl">Habilidades</h2>
+                <div id="habilidadesTyping" class="flex flex-wrap justify-center gap-4 mt-2">
+                    <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                        Shinsei (movimentaço) e Kumikata (disputa de pegada)
+                    </div>
+                    <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                        Formas de Rei (cumprimento)
+                    </div>
+                    <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                        Disciplina
+                    </div>
+                    <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                        Tipos de Ukemis (Rolamentos)
+                    </div>
+                    <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                        2 técnicas de Nague-waza (projeção)
+                    </div>
+                    <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                        1 técnica de Ossaekomi-waza (imobilização)
+                    </div>
+                </div>
+            </div>
+    
         <style>
         #welcomeCard {
             box-shadow: 0 2px 16px 0 rgba(59,130,246,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
@@ -563,7 +726,8 @@
         </style>
 
         <!-- Divs de Navegação Japonesa -->
-        <div class="flex justify-center gap-8 mb-8">
+        
+          <div class="flex justify-center gap-8 mb-8">
             <div class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-blue-400 hover:bg-gradient-to-br hover:from-blue-50 hover:to-white transform hover:-translate-y-2">
                 <div class="absolute inset-0 bg-gradient-to-r from-blue-400/0 to-blue-400/0 group-hover:from-blue-400/10 group-hover:to-blue-400/5 transition-all duration-500"></div>
                 <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:rotate-12">🥋</div>
@@ -592,7 +756,6 @@
                 <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-purple-600">Osaekomi-waza</div>
             </div>
         </div>
-
         <!-- Seção de Técnicas -->
         <section id="nage-waza-section" class="mb-12 hidden">
             <div class="text-center mb-8">
@@ -909,6 +1072,48 @@
     </footer>
 
     <script>
+
+         // Todas as habilidades animam ao mesmo tempo
+         document.addEventListener('DOMContentLoaded', function() {
+            const items = document.querySelectorAll('.habilidade-item');
+            items.forEach((item) => {
+                item.style.animationDelay = '0s';
+            });
+            
+            // Selecionar elementos de habilidades para animações
+            const habilidadeItems = document.querySelectorAll('.habilidade-item');
+            
+            // Função para criar efeito ripple
+            function createRipple(element, event) {
+                const rect = element.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = event.clientX - rect.left - size / 2;
+                const y = event.clientY - rect.top - size / 2;
+                
+                const ripple = document.createElement('span');
+                ripple.className = 'ripple-effect';
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                
+                element.appendChild(ripple);
+                
+                // Remover ripple após animação
+                setTimeout(() => {
+                    if (ripple.parentNode) {
+                        ripple.parentNode.removeChild(ripple);
+                    }
+                }, 600);
+            }
+            
+            // Adicionar evento de clique para ripple
+            habilidadeItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    createRipple(item, e);
+                });
+            });
+        });
+
         document.addEventListener('DOMContentLoaded', function() {
             const projCheckboxes = document.querySelectorAll('.proj-checkbox');
             const imobCheckboxes = document.querySelectorAll('.imob-checkbox');
