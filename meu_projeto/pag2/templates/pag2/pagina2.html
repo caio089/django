@@ -668,18 +668,34 @@
             }
         }
         
+        /* Garantir que o modal apareça corretamente */
+        #congratulationsModal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        #congratulationsModal.hidden {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+        
+        #congratulationsModal:not(.hidden) {
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
+        }
+        
         /* Troféu animado */
         .trophy-container {
             position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: inline-block;
         }
         
         .trophy-icon {
             font-size: 4rem;
             animation: trophyBounce 2s ease-in-out infinite;
             filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+          
         }
         
         @keyframes trophyBounce {
@@ -698,6 +714,7 @@
             border-radius: 50%;
             transform: translate(-50%, -50%);
             animation: glowPulse 2s ease-in-out infinite;
+            
         }
         
         @keyframes glowPulse {
@@ -1175,6 +1192,9 @@
         <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg floating-action transition-colors hidden font-buttons">
             <span class="text-2xl">↑</span>
         </button>
+        
+        <!-- Botão de Teste (remover em produção) -->
+      
     </main>
 
     <!-- Footer -->
@@ -1186,17 +1206,7 @@
         </div>
     </footer>
 
-     <!-- Conteúdo principal -->
-     <div class="relative z-10">
-        <!-- Ícone de troféu animado -->
-        <div class="trophy-container mb-6">
-            <div class="trophy-icon">🏆</div>
-            <div class="trophy-glow"></div>
-        </div>
-        
-       
     <!-- Modal de Parabéns -->
-     <main class="hidden">
     <div id="congratulationsModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] hidden items-center justify-center">
         <div class="bg-white rounded-3xl shadow-2xl max-w-2xl mx-4 p-8 text-center relative overflow-hidden">
             <!-- Partículas de fundo -->
@@ -1210,9 +1220,9 @@
             </div>
             
             <!-- Conteúdo principal -->
-            <div class="relative z-10 ">
+            <div class="relative z-10">
                 <!-- Ícone de troféu animado -->
-                <div class="trophy-container hidden mb-6">
+                <div class="trophy-container mb-6">
                     <div class="trophy-icon">🏆</div>
                     <div class="trophy-glow"></div>
                 </div>
@@ -1224,7 +1234,7 @@
                 
                 <!-- Subtítulo -->
                 <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
-                    Você Concluiu a <span class="text-gradient">Faixa Cinza</span>!
+                    Você Concluiu a <span class="text-gradient">Faixa Azul</span>!
                 </h2>
                 
                 <!-- Mensagem motivacional -->
@@ -1240,7 +1250,7 @@
                         <div class="stat-label">Progresso</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">3</div>
+                        <div class="stat-number">6</div>
                         <div class="stat-label">Técnicas Dominadas</div>
                     </div>
                 </div>
@@ -1257,8 +1267,6 @@
             </div>
         </div>
     </div>
-    <main>
-    </main>
 
     <script>
 
@@ -1699,14 +1707,45 @@
             document.getElementById('ukemi-nav').addEventListener('click', function() {
                 window.location.href = '/ukemis/';
             });
+            
+            // Botão de teste
+            const testButton = document.getElementById('testButton');
+            if (testButton) {
+                testButton.addEventListener('click', function() {
+                    console.log('=== TESTE MANUAL ===');
+                    console.log('1. Verificando checkboxes...');
+                    const checkboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
+                    console.log('Total checkboxes:', checkboxes.length);
+                    
+                    console.log('2. Marcando todos os checkboxes...');
+                    checkboxes.forEach((checkbox, index) => {
+                        checkbox.checked = true;
+                        console.log(`Checkbox ${index + 1} marcado`);
+                    });
+                    
+                    console.log('3. Chamando calculateProgress...');
+                    calculateProgress();
+                    
+                    console.log('4. Estado final:');
+                    console.log('- Progresso:', progress);
+                    console.log('- Total items:', totalItems);
+                    console.log('- Has shown congratulations:', hasShownCongratulations);
+                    
+                    console.log('5. Forçando showCongratulations...');
+                    showCongratulations();
+                    
+                    console.log('=== FIM DO TESTE ===');
+                });
+            }
         });
+        ;
 
       // --- INÍCIO: Sistema de Progresso e Barra Flutuante ---
 let progress = 0;
 let totalItems = 0;
 let hasShownCongratulations = false;
 
-// Função para contar total de checkboxes "Aprendi"
+// Função para contar total de checkboxes "Aprendi" (não mais necessária)
 function countTotalItems() {
     totalItems = document.querySelectorAll('.proj-checkbox, .imob-checkbox').length;
     console.log('Total items found:', totalItems); // Debug
@@ -1715,16 +1754,23 @@ function countTotalItems() {
 
 // Função para calcular progresso
 function calculateProgress() {
-    // Garantir que totalItems está atualizado
-    countTotalItems();
+    // Contar checkboxes diretamente
+    const allCheckboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
+    const checkedCheckboxes = document.querySelectorAll('.proj-checkbox:checked, .imob-checkbox:checked');
     
-    const checkedItems = document.querySelectorAll('.proj-checkbox:checked, .imob-checkbox:checked').length;
-    progress = Math.round((checkedItems / totalItems) * 100);
+    totalItems = allCheckboxes.length;
+    const checkedItems = checkedCheckboxes.length;
     
-    // Garantir que progresso não seja negativo ou maior que 100
-    progress = Math.max(0, Math.min(100, progress));
+    // Calcular progresso
+    progress = totalItems > 0 ? Math.round((checkedItems / totalItems) * 100) : 0;
     
-    console.log('Progress calculation:', { checkedItems, totalItems, progress }); // Debug
+    console.log('Progress calculation:', { 
+        totalItems, 
+        checkedItems, 
+        progress, 
+        allCheckboxes: allCheckboxes.length,
+        checkedCheckboxes: checkedCheckboxes.length
+    }); // Debug
     
     // Atualizar barra de progresso principal
     const progressBar = document.getElementById('progressBar');
@@ -1762,7 +1808,6 @@ function calculateProgress() {
         console.log('Progress is 100% - checking for congratulations'); // Debug
         
         // Verificação extra: garantir que todos os checkboxes estão marcados
-        const allCheckboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
         const allChecked = Array.from(allCheckboxes).every(checkbox => checkbox.checked);
         
         console.log('All checkboxes checked:', allChecked); // Debug
@@ -1778,18 +1823,21 @@ function calculateProgress() {
 
 // Event listeners para checkboxes
 function initializeProgressSystem() {
-    const checkboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
+    console.log('=== INICIALIZANDO SISTEMA DE PROGRESSO ===');
     
-    console.log('Found checkboxes:', checkboxes.length); // Debug
+    const checkboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
+    console.log('Checkboxes encontrados:', checkboxes.length);
     
     // Garantir que todos os checkboxes começam desmarcados
-    checkboxes.forEach(checkbox => {
+    checkboxes.forEach((checkbox, index) => {
         checkbox.checked = false;
+        console.log(`Checkbox ${index + 1} desmarcado`);
     });
     
-    checkboxes.forEach(checkbox => {
+    // Adicionar event listeners
+    checkboxes.forEach((checkbox, index) => {
         checkbox.addEventListener('change', function() {
-            console.log('Checkbox changed:', this.checked); // Debug
+            console.log(`Checkbox ${index + 1} mudou para:`, this.checked);
             calculateProgress();
             saveProgress();
             
@@ -1804,10 +1852,11 @@ function initializeProgressSystem() {
         });
     });
     
-    // Calcular progresso inicial (deve ser 0%)
+    // Calcular progresso inicial
     calculateProgress();
     
-    console.log('Progress system setup complete'); // Debug
+    console.log('Sistema de progresso inicializado com sucesso!');
+    console.log('=== FIM DA INICIALIZAÇÃO ===');
 }
 
 // Controle da barra flutuante baseado no scroll
@@ -1859,14 +1908,25 @@ function loadProgress() {
 
 // Carregar progresso ao iniciar
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM Content Loaded - Initializing progress system'); // Debug
+    console.log('=== INICIALIZAÇÃO DO SISTEMA ===');
     
-    // Não carregar progresso salvo - sempre começar em 0%
-    // loadProgress();
+    // Resetar estado para teste
+    hasShownCongratulations = false;
+    localStorage.removeItem('congratulationsShown');
+    
+    // Inicializar sistema de progresso
+    console.log('Inicializando sistema de progresso...');
     initializeProgressSystem();
+    
+    console.log('Inicializando botões de parabéns...');
     initializeCongratulationsButtons();
     
-    console.log('Progress system initialized'); // Debug
+    console.log('Estado final da inicialização:');
+    console.log('- Progresso:', progress);
+    console.log('- Total items:', totalItems);
+    console.log('- Has shown congratulations:', hasShownCongratulations);
+    
+    console.log('=== FIM DA INICIALIZAÇÃO ===');
 });
 
 // --- FIM: Sistema de Progresso e Barra Flutuante ---
@@ -1875,39 +1935,41 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Função para mostrar modal de parabéns
 function showCongratulations() {
-    console.log('showCongratulations called'); // Debug
-    
-    if (hasShownCongratulations) {
-        console.log('Already shown congratulations'); // Debug
-        return;
-    }
+    console.log('=== SHOW CONGRATULATIONS ===');
     
     const modal = document.getElementById('congratulationsModal');
     if (!modal) {
-        console.log('Modal not found'); // Debug
+        console.log('ERRO: Modal não encontrado!');
         return;
     }
     
-    console.log('Showing congratulations modal'); // Debug
+    console.log('Modal encontrado, mostrando...');
+    console.log('Estado antes:', {
+        display: modal.style.display,
+        classes: modal.className,
+        hasShownCongratulations: hasShownCongratulations
+    });
     
-    hasShownCongratulations = true;
-    
-    // Mostrar modal - versão simplificada
+    // Forçar exibição
     modal.style.display = 'flex';
     modal.classList.remove('hidden');
     modal.classList.add('flex');
+    modal.style.opacity = '1';
+    modal.style.visibility = 'visible';
+    modal.style.pointerEvents = 'auto';
+    
+    hasShownCongratulations = true;
+    
+    console.log('Estado depois:', {
+        display: modal.style.display,
+        classes: modal.className,
+        hasShownCongratulations: hasShownCongratulations
+    });
     
     // Adicionar animação de entrada
     const modalContent = modal.querySelector('div');
     if (modalContent) {
         modalContent.classList.add('modal-enter');
-    }
-    
-    // Tocar som de celebração (se disponível)
-    try {
-        playCelebrationSound();
-    } catch (e) {
-        console.log('Sound not available:', e);
     }
     
     // Salvar que já mostrou parabéns
@@ -1916,8 +1978,10 @@ function showCongratulations() {
     // Scroll suave para o topo
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
-    console.log('Modal should be visible now'); // Debug
+    console.log('Modal deve estar visível agora!');
+    console.log('=== FIM SHOW CONGRATULATIONS ===');
 }
+
 
 // Função para tocar som de celebração
 function playCelebrationSound() {
@@ -2032,6 +2096,51 @@ function testCongratulations() {
     showCongratulations();
 }
 
+// Função para testar o modal diretamente
+window.testModal = function() {
+    console.log('=== TESTE DIRETO DO MODAL ===');
+    const modal = document.getElementById('congratulationsModal');
+    if (modal) {
+        console.log('Modal encontrado!');
+        console.log('Classes atuais:', modal.className);
+        console.log('Display atual:', modal.style.display);
+        
+        console.log('Forçando exibição...');
+        modal.style.display = 'flex';
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        
+        console.log('Classes após mudança:', modal.className);
+        console.log('Display após mudança:', modal.style.display);
+        
+        // Verificar se está visível
+        setTimeout(() => {
+            const rect = modal.getBoundingClientRect();
+            console.log('Modal visível:', rect.width > 0 && rect.height > 0);
+            console.log('Dimensões:', rect.width, 'x', rect.height);
+        }, 100);
+    } else {
+        console.log('ERRO: Modal não encontrado!');
+    }
+};
+
+// Função para forçar parabéns
+window.forceCongratulations = function() {
+    console.log('=== FORÇANDO PARABÉNS ===');
+    hasShownCongratulations = false;
+    
+    const modal = document.getElementById('congratulationsModal');
+    if (modal) {
+        console.log('Modal encontrado, forçando exibição...');
+        modal.style.display = 'flex';
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        console.log('Modal deve estar visível agora!');
+    } else {
+        console.log('Modal não encontrado!');
+    }
+};
+
 // Função para marcar todos os checkboxes (teste)
 function markAllCheckboxes() {
     const checkboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
@@ -2057,6 +2166,170 @@ function resetModal() {
 window.testCongratulations = testCongratulations;
 window.markAllCheckboxes = markAllCheckboxes;
 window.resetModal = resetModal;
+window.testModal = testModal;
+window.forceCongratulations = forceCongratulations;
+window.diagnosticoCompleto = diagnosticoCompleto;
+window.simularPagina1 = simularPagina1;
+
+// Função para testar o sistema de progresso
+window.testProgressSystem = function() {
+    console.log('=== TESTE COMPLETO DO SISTEMA ===');
+    console.log('1. Verificando checkboxes...');
+    const checkboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
+    console.log('Total checkboxes encontrados:', checkboxes.length);
+    
+    console.log('2. Verificando estado atual...');
+    console.log('Progresso atual:', progress);
+    console.log('Já mostrou parabéns:', hasShownCongratulations);
+    
+    console.log('3. Marcando todos os checkboxes...');
+    checkboxes.forEach((checkbox, index) => {
+        checkbox.checked = true;
+        console.log(`Checkbox ${index + 1} marcado`);
+    });
+    
+    console.log('4. Recalculando progresso...');
+    calculateProgress();
+    
+    console.log('5. Estado final:');
+    console.log('Progresso final:', progress);
+    console.log('Todos marcados:', Array.from(checkboxes).every(cb => cb.checked));
+    
+    console.log('6. Verificando modal...');
+    const modal = document.getElementById('congratulationsModal');
+    console.log('Modal encontrado:', !!modal);
+    if (modal) {
+        console.log('Classes do modal:', modal.className);
+        console.log('Display do modal:', modal.style.display);
+    }
+    
+    // 7. Forçar exibição do modal se progresso for 100%
+    if (progress === 100) {
+        console.log('7. Progresso é 100% - forçando exibição do modal...');
+        forceCongratulations();
+    }
+    
+    console.log('=== FIM DO TESTE ===');
+};
+
+// Função para resetar tudo
+window.resetEverything = function() {
+    console.log('Resetting everything...');
+    
+    // Resetar checkboxes
+    const checkboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+    });
+    
+    // Resetar variáveis
+    hasShownCongratulations = false;
+    progress = 0;
+    
+    // Limpar localStorage
+    localStorage.removeItem('congratulationsShown');
+    localStorage.removeItem('judoProgress');
+    
+    // Recalcular progresso
+    calculateProgress();
+    
+    // Fechar modal se estiver aberto
+    closeCongratulations();
+    
+    console.log('Everything reset successfully');
+};
+
+// Função de diagnóstico completo
+window.diagnosticoCompleto = function() {
+    console.log('=== DIAGNÓSTICO COMPLETO ===');
+    
+    // 1. Verificar checkboxes
+    const checkboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
+    console.log('1. CHECKBOXES:');
+    console.log('   - Total encontrados:', checkboxes.length);
+    console.log('   - Marcados:', document.querySelectorAll('.proj-checkbox:checked, .imob-checkbox:checked').length);
+    
+    // 2. Verificar modal
+    const modal = document.getElementById('congratulationsModal');
+    console.log('2. MODAL:');
+    console.log('   - Encontrado:', !!modal);
+    if (modal) {
+        console.log('   - Classes:', modal.className);
+        console.log('   - Display:', modal.style.display);
+        console.log('   - Z-index:', modal.style.zIndex);
+    }
+    
+    // 3. Verificar variáveis globais
+    console.log('3. VARIÁVEIS:');
+    console.log('   - Progresso:', progress);
+    console.log('   - Total items:', totalItems);
+    console.log('   - Has shown congratulations:', hasShownCongratulations);
+    
+    // 4. Verificar localStorage
+    console.log('4. LOCALSTORAGE:');
+    console.log('   - congratulationsShown:', localStorage.getItem('congratulationsShown'));
+    console.log('   - judoProgress:', localStorage.getItem('judoProgress'));
+    
+    // 5. Verificar funções
+    console.log('5. FUNÇÕES:');
+    console.log('   - showCongratulations existe:', typeof showCongratulations);
+    console.log('   - calculateProgress existe:', typeof calculateProgress);
+    
+    // 6. Teste de progresso
+    console.log('6. TESTE DE PROGRESSO:');
+    if (typeof calculateProgress === 'function') {
+        calculateProgress();
+        console.log('   - Progresso após cálculo:', progress);
+    }
+    
+    console.log('=== FIM DO DIAGNÓSTICO ===');
+};
+
+// Função que simula exatamente a página1.html
+window.simularPagina1 = function() {
+    console.log('=== SIMULANDO PÁGINA1.HTML ===');
+    
+    // 1. Resetar tudo
+    hasShownCongratulations = false;
+    progress = 0;
+    
+    // 2. Marcar todos os checkboxes
+    const checkboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = true;
+    });
+    
+    // 3. Calcular progresso
+    calculateProgress();
+    
+    // 4. Verificar se chegou a 100%
+    if (progress === 100) {
+        console.log('Progresso chegou a 100% - mostrando modal...');
+        
+        // 5. Mostrar modal exatamente como na página1.html
+        const modal = document.getElementById('congratulationsModal');
+        if (modal) {
+            console.log('Modal encontrado - aplicando lógica da página1.html...');
+            modal.style.display = 'flex';
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Adicionar animação
+            const modalContent = modal.querySelector('div');
+            if (modalContent) {
+                modalContent.classList.add('modal-enter');
+            }
+            
+            console.log('Modal deve estar visível agora!');
+        } else {
+            console.log('ERRO: Modal não encontrado!');
+        }
+    } else {
+        console.log('ERRO: Progresso não chegou a 100% (atual:', progress, ')');
+    }
+    
+    console.log('=== FIM DA SIMULAÇÃO ===');
+};
 
     </script>
 </body>
