@@ -3,128 +3,457 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quiz Interativo</title>
+  <title>Quiz - Teoria do Judô</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    .fade-in {
-      animation: fadeIn 0.4s ease-in-out;
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            judo: {
+              emerald: '#10B981',
+              gray: '#6B7280',
+              blue: '#3B82F6',
+              yellow: '#FBBF24',
+              orange: '#F97316',
+              green: '#10B981',
+              purple: '#8B5CF6',
+              brown: '#92400E'
+            }
+          },
+          fontFamily: {
+            'display': ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
     }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #1E40AF 0%, #1D4ED8 100%);
+    }
+    
+    .card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -12px rgba(30,64,175,0.25);
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.6s ease-out;
+    }
+    
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      }
+    }
+    
+    .slide-in {
+      animation: slideIn 0.5s ease-out;
+    }
+    
+    @keyframes slideIn {
+      from { 
+        opacity: 0; 
+        transform: translateX(-30px); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateX(0); 
+      }
+    }
+    
+    .bounce-in {
+      animation: bounceIn 0.8s ease-out;
+    }
+    
+    @keyframes bounceIn {
+      0% { 
+        opacity: 0; 
+        transform: scale(0.3); 
+      }
+      50% { 
+        opacity: 1; 
+        transform: scale(1.05); 
+      }
+      70% { 
+        transform: scale(0.9); 
+      }
+      100% { 
+        opacity: 1; 
+        transform: scale(1); 
+      }
+    }
+    
+    .progress-bar {
+      transition: width 0.8s ease-in-out;
+    }
+    
+    .answer-btn {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .answer-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -5px rgba(30,64,175,0.2);
+    }
+    
+    .correct-answer {
+      animation: correctPulse 0.6s ease-out;
+    }
+    
+    @keyframes correctPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    .incorrect-answer {
+      animation: incorrectShake 0.6s ease-out;
+    }
+    
+    @keyframes incorrectShake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+    
+    .text-gradient {
+      background: linear-gradient(45deg, #1E40AF, #1D4ED8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .section-divider {
+      background: linear-gradient(90deg, transparent, #DBEAFE, transparent);
     }
   </style>
 </head>
-<body class="bg-sky-50 from-blue-900 via-indigo-800 to-purple-900 text-white min-h-screen p-6 ">
+<body class="bg-gray-50 font-display min-h-screen">
+  <!-- Header com Progresso -->
+  <header class="gradient-bg text-white py-6 px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h1 class="text-3xl md:text-4xl font-bold mb-2 flex items-center gap-3">
+            <i class="fa-solid fa-medal text-blue-300"></i>
+            Quiz - Teoria do Judô
+          </h1>
+          <p class="text-blue-100 text-lg">Teste seus conhecimentos sobre a arte suave</p>
+        </div>
+        <a href="/index/" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
+          <i class="fa-solid fa-arrow-left mr-2"></i>Voltar
+        </a>
+      </div>
+      
+      <!-- Barra de Progresso -->
+      <div class="bg-white/20 rounded-full h-4 mb-3 shadow-inner">
+        <div class="progress-bar bg-gradient-to-r from-green-400 to-green-600 rounded-full h-4 shadow-lg" 
+             style="width: 0%" id="progressBar"></div>
+      </div>
+      
+      <!-- Status -->
+      <div class="flex justify-between items-center">
+        <div class="flex items-center gap-6">
+          <span id="status" class="text-lg font-semibold">
+            <i class="fa-solid fa-question-circle mr-2"></i>Pergunta 0/0
+          </span>
+          <span id="score" class="text-lg font-semibold text-blue-200">
+            <i class="fa-solid fa-trophy mr-2"></i>Acertos: 0
+          </span>
+        </div>
+      </div>
+    </div>
+  </header>
 
-  <!-- Status -->
-  <div class="max-w-3xl mx-auto bg-white text-gray-900 rounded-xl shadow-lg p-4 mb-6 flex justify-between items-center">
-    <span id="status" class="text-lg font-semibold">Pergunta 0/0</span>
-    <span id="score" class="text-lg font-semibold text-green-600">Acertos: 0</span>
-  </div>
+  <main class="max-w-4xl mx-auto px-4 py-8">
+    <!-- Quiz Container -->
+    <div id="quiz-container" class="space-y-6"></div>
 
-  <!-- Quiz Container -->
-  <div id="quiz-container" class="max-w-3xl mx-auto space-y-6"></div>
-
-  <!-- Finalização -->
-  <div id="result" class="hidden text-center mt-8 fade-in">
-    <h2 class="text-3xl font-bold text-green-400">✅ Quiz Finalizado!</h2>
-    <p id="final-score" class="text-xl mt-2"></p>
-    <button onclick="restartQuiz()" class="mt-4 bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition">Reiniciar</button>
-  </div>
+    <!-- Finalização -->
+    <div id="result" class="hidden text-center mt-12 fade-in">
+      <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-blue-200">
+        <div class="mb-6">
+          <div class="text-6xl mb-4">🎉</div>
+          <h2 class="text-3xl font-bold text-gradient mb-2">Quiz Finalizado!</h2>
+          <p class="text-gray-600">Parabéns por completar o teste de teoria do judô!</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+          <div class="bg-blue-50 rounded-xl p-4">
+            <div class="text-2xl font-bold text-blue-600" id="final-score">0/0</div>
+            <div class="text-sm text-blue-700">Acertos</div>
+          </div>
+          <div class="bg-purple-50 rounded-xl p-4">
+            <div class="text-2xl font-bold text-purple-600" id="final-percentage">0%</div>
+            <div class="text-sm text-purple-700">Percentual</div>
+          </div>
+        </div>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button onclick="restartQuiz()" 
+                  class="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-8 py-3 rounded-xl hover:from-blue-700 hover:to-blue-600 transition-all duration-300 font-semibold flex items-center justify-center gap-2">
+            <i class="fa-solid fa-redo"></i>
+            Reiniciar Quiz
+          </button>
+          <a href="/index/" 
+             class="bg-gray-100 text-gray-700 px-8 py-3 rounded-xl hover:bg-gray-200 transition-all duration-300 font-semibold flex items-center justify-center gap-2">
+            <i class="fa-solid fa-home"></i>
+            Voltar ao Início
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
 
   <script>
     const questions = [
-      { question: "Quem criou o judo??", answers: ["Jigoro kano", "Londres", "Roma", "Madri"], correct: 0 },
-      { question: "Quem desenvolveu a Teoria da Relatividade?", answers: ["Newton", "Einstein", "Tesla", "Galileu"], correct: 1 },
-      { question: "Qual é o maior planeta do Sistema Solar?", answers: ["Marte", "Saturno", "Júpiter", "Vênus"], correct: 2 },
-      { question: "Qual é o elemento químico representado por 'O'?", answers: ["Ouro", "Osmio", "Oxigênio", "Óxido"], correct: 2 }
+      {
+        question: "Quem criou o judô?",
+        answers: ["Jigoro Kano", "Mitsuyo Maeda", "Kyuzo Mifune", "Masahiko Kimura"],
+        correct: 0,
+        explanation: "Jigoro Kano criou o judô em 1882, fundando o Instituto Kodokan em Tóquio."
+      },
+      {
+        question: "Qual é o significado da palavra 'judo'?",
+        answers: ["Caminho da força", "Arte da guerra", "Caminho suave", "Arte marcial"],
+        correct: 2,
+        explanation: "'Ju' significa suave e 'do' significa caminho, formando 'caminho suave'."
+      },
+      {
+        question: "Qual é o princípio fundamental do judô?",
+        answers: ["Máxima eficiência com mínimo esforço", "Força bruta", "Velocidade máxima", "Técnica perfeita"],
+        correct: 0,
+        explanation: "O princípio fundamental é 'Seiryoku Zenyo' - máxima eficiência com mínimo esforço."
+      },
+      {
+        question: "Qual é a cor da faixa mais alta no judô?",
+        answers: ["Vermelha", "Preta", "Branca", "Dourada"],
+        correct: 0,
+        explanation: "A faixa vermelha é a mais alta, seguida da branca e vermelha, e depois da branca."
+      },
+      {
+        question: "O que significa 'Rei' no judô?",
+        answers: ["Respeito", "Força", "Técnica", "Vitória"],
+        correct: 0,
+        explanation: "'Rei' significa respeito e é fundamental na etiqueta do judô."
+      },
+      {
+        question: "Qual é o nome do local onde se pratica judô?",
+        answers: ["Dojo", "Tatame", "Academia", "Ginásio"],
+        correct: 0,
+        explanation: "Dojo é o local sagrado onde se pratica judô e outras artes marciais."
+      },
+      {
+        question: "Qual é a técnica mais básica do judô?",
+        answers: ["Uke-goshi", "Seoi-nage", "O-goshi", "Tai-otoshi"],
+        correct: 2,
+        explanation: "O-goshi (grande quadril) é considerada uma das técnicas mais fundamentais."
+      },
+      {
+        question: "O que significa 'Ukemi' no judô?",
+        answers: ["Técnica de projeção", "Técnica de imobilização", "Técnica de queda", "Técnica de estrangulamento"],
+        correct: 2,
+        explanation: "Ukemi são as técnicas de queda que protegem o praticante durante as projeções."
+      },
+      {
+        question: "Qual é o objetivo principal do judô?",
+        answers: ["Derrotar o oponente", "Desenvolver corpo e mente", "Ganhar competições", "Aprender autodefesa"],
+        correct: 1,
+        explanation: "O judô visa o desenvolvimento físico, mental e moral através da prática."
+      },
+      {
+        question: "Qual é o nome do uniforme usado no judô?",
+        answers: ["Kimono", "Gi", "Judogi", "Hakama"],
+        correct: 2,
+        explanation: "Judogi é o nome correto do uniforme usado no judô."
+      }
     ];
 
+    let currentQuestion = 0;
     let score = 0;
-    let answered = 0;
+    let answered = false;
 
     const quizContainer = document.getElementById("quiz-container");
     const statusElement = document.getElementById("status");
     const scoreElement = document.getElementById("score");
+    const progressBar = document.getElementById("progressBar");
     const resultElement = document.getElementById("result");
     const finalScoreElement = document.getElementById("final-score");
+    const finalPercentageElement = document.getElementById("final-percentage");
 
     function updateStatus() {
-      statusElement.textContent = `Pergunta ${answered}/${questions.length}`;
-      scoreElement.textContent = `Acertos: ${score}`;
+      statusElement.innerHTML = `<i class="fa-solid fa-question-circle mr-2"></i>Pergunta ${currentQuestion + 1}/${questions.length}`;
+      scoreElement.innerHTML = `<i class="fa-solid fa-trophy mr-2"></i>Acertos: ${score}`;
+      
+      const progress = ((currentQuestion + 1) / questions.length) * 100;
+      progressBar.style.width = `${progress}%`;
     }
 
-    function createQuestionCard(qIndex) {
-      const q = questions[qIndex];
-
+    function createQuestionCard() {
+      const q = questions[currentQuestion];
+      
       const card = document.createElement("div");
-      card.className = "bg-white text-gray-900 rounded-xl shadow-xl p-6 fade-in";
+      card.className = "bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-blue-200 fade-in";
+      card.style.maxWidth = "800px";
+      card.style.margin = "0 auto";
 
+      const questionHeader = document.createElement("div");
+      questionHeader.className = "text-center mb-8";
+      
+      const questionNumber = document.createElement("div");
+      questionNumber.className = "text-sm text-blue-600 font-semibold mb-2";
+      questionNumber.textContent = `Pergunta ${currentQuestion + 1} de ${questions.length}`;
+      
       const questionText = document.createElement("h2");
-      questionText.className = "text-lg font-semibold mb-4 text-center";
-      questionText.textContent = `${qIndex + 1}. ${q.question}`;
-      card.appendChild(questionText);
+      questionText.className = "text-2xl font-bold text-gray-800 mb-4";
+      questionText.textContent = q.question;
+      
+      questionHeader.appendChild(questionNumber);
+      questionHeader.appendChild(questionText);
+      card.appendChild(questionHeader);
 
       const answersDiv = document.createElement("div");
-      answersDiv.className = "grid gap-3";
+      answersDiv.className = "grid gap-4";
 
       q.answers.forEach((answer, index) => {
         const btn = document.createElement("button");
         btn.textContent = answer;
-        btn.className =
-          "bg-gray-100 text-gray-800 py-2 px-4 rounded-lg border-2 border-transparent hover:bg-indigo-100 transition";
-        btn.onclick = () => handleAnswer(qIndex, index, btn, answersDiv);
+        btn.className = "answer-btn bg-gray-50 text-gray-800 py-4 px-6 rounded-xl border-2 border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-300 text-left font-medium";
+        btn.onclick = () => handleAnswer(index, btn, answersDiv);
         answersDiv.appendChild(btn);
       });
 
       card.appendChild(answersDiv);
+      
+      // Adicionar explicação (inicialmente oculta)
+      const explanationDiv = document.createElement("div");
+      explanationDiv.className = "mt-6 p-4 bg-blue-50 rounded-xl border border-blue-200 hidden";
+      explanationDiv.id = "explanation";
+      
+      const explanationTitle = document.createElement("div");
+      explanationTitle.className = "font-semibold text-blue-800 mb-2";
+      explanationTitle.innerHTML = '<i class="fa-solid fa-lightbulb mr-2"></i>Explicação:';
+      
+      const explanationText = document.createElement("p");
+      explanationText.className = "text-blue-700 text-sm";
+      explanationText.textContent = q.explanation;
+      
+      explanationDiv.appendChild(explanationTitle);
+      explanationDiv.appendChild(explanationText);
+      card.appendChild(explanationDiv);
+
+      // Botão "Próxima Pergunta" (inicialmente oculto)
+      const nextButtonDiv = document.createElement("div");
+      nextButtonDiv.className = "mt-6 text-center hidden";
+      nextButtonDiv.id = "next-button-container";
+      
+      const nextButton = document.createElement("button");
+      nextButton.className = "bg-gradient-to-r from-blue-600 to-blue-500 text-white px-8 py-3 rounded-xl hover:from-blue-700 hover:to-blue-600 transition-all duration-300 font-semibold flex items-center justify-center gap-2 mx-auto";
+      nextButton.innerHTML = '<i class="fa-solid fa-arrow-right mr-2"></i>Próxima Pergunta';
+      nextButton.onclick = () => nextQuestion();
+      
+      nextButtonDiv.appendChild(nextButton);
+      card.appendChild(nextButtonDiv);
+
       quizContainer.appendChild(card);
     }
 
-    function handleAnswer(qIndex, selectedIndex, btn, answersDiv) {
-      const correctIndex = questions[qIndex].correct;
+    function handleAnswer(selectedIndex, btn, answersDiv) {
+      if (answered) return; // Evitar múltiplos cliques
+      
+      const correctIndex = questions[currentQuestion].correct;
       const buttons = answersDiv.querySelectorAll("button");
+      const explanation = document.getElementById("explanation");
+      const nextButtonContainer = document.getElementById("next-button-container");
 
-      if (!buttons[0].disabled) {
-        buttons.forEach(b => b.disabled = true);
+      // Desabilitar todos os botões
+      buttons.forEach(b => b.disabled = true);
 
-        if (selectedIndex === correctIndex) {
-          btn.classList.add("bg-green-500", "text-white");
-          score++;
-        } else {
-          btn.classList.add("bg-red-500", "text-white");
-          buttons[correctIndex].classList.add("bg-green-500", "text-white");
-        }
+      if (selectedIndex === correctIndex) {
+        btn.classList.add("bg-blue-500", "text-white", "border-blue-500", "correct-answer");
+        score++;
+      } else {
+        btn.classList.add("bg-red-500", "text-white", "border-red-500", "incorrect-answer");
+        buttons[correctIndex].classList.add("bg-blue-500", "text-white", "border-blue-500");
+      }
 
-        answered++;
-        updateStatus();
+      // Mostrar explicação
+      if (explanation) {
+        setTimeout(() => {
+          explanation.classList.remove("hidden");
+          explanation.classList.add("slide-in");
+        }, 500);
+      }
 
-        if (answered === questions.length) {
-          setTimeout(showResult, 600);
-        }
+      // Mostrar botão "Próxima Pergunta"
+      if (nextButtonContainer) {
+        setTimeout(() => {
+          nextButtonContainer.classList.remove("hidden");
+          nextButtonContainer.classList.add("fade-in");
+        }, 1000);
+      }
+
+      answered = true;
+      updateStatus();
+    }
+
+    function nextQuestion() {
+      currentQuestion++;
+      answered = false;
+      
+      if (currentQuestion < questions.length) {
+        quizContainer.innerHTML = "";
+        createQuestionCard();
+      } else {
+        showResult();
       }
     }
 
     function showResult() {
+      const percentage = Math.round((score / questions.length) * 100);
+      
+      finalScoreElement.textContent = `${score}/${questions.length}`;
+      finalPercentageElement.textContent = `${percentage}%`;
+      
       resultElement.classList.remove("hidden");
-      finalScoreElement.textContent = `Você acertou ${score} de ${questions.length} perguntas!`;
+      resultElement.classList.add("bounce-in");
+      
+      // Scroll para o resultado
+      resultElement.scrollIntoView({ behavior: 'smooth' });
     }
 
     function restartQuiz() {
+      currentQuestion = 0;
       score = 0;
-      answered = 0;
+      answered = false;
       quizContainer.innerHTML = "";
       resultElement.classList.add("hidden");
-      initQuiz();
+      
+      updateStatus();
+      createQuestionCard();
     }
 
     function initQuiz() {
       updateStatus();
-      questions.forEach((_, index) => createQuestionCard(index));
+      createQuestionCard();
     }
 
-    initQuiz();
+    // Inicializar quiz quando a página carregar
+    document.addEventListener('DOMContentLoaded', initQuiz);
   </script>
 </body>
 </html>

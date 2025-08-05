@@ -188,6 +188,230 @@
             overflow: hidden;
         }
         
+        /* Efeito de destaque especial para a barra japonesa */
+        .japanese-nav-container {
+            position: relative;
+            background: linear-gradient(135deg, rgba(251, 191, 36, 0.03) 0%, rgba(251, 191, 36, 0.01) 100%);
+            border-radius: 16px;
+            padding: 16px;
+            margin: 16px 0;
+            border: 1px solid rgba(251, 191, 36, 0.08);
+            box-shadow: 0 4px 20px rgba(251, 191, 36, 0.08);
+        }
+        
+        .japanese-nav-container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #fbbf24, #f59e0b, #fbbf24);
+            border-radius: 18px;
+            z-index: -1;
+            opacity: 0.2;
+            animation: borderGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes borderGlow {
+            0% {
+                opacity: 0.15;
+            }
+            100% {
+                opacity: 0.25;
+            }
+        }
+        
+        /* Melhorar o hover dos cards */
+        .japanese-nav-card:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(251, 191, 36, 0.15);
+            border-color: #fbbf24;
+        }
+        
+        /* Efeito de brilho nos cards */
+        .japanese-nav-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .japanese-nav-card:hover::after {
+            left: 100%;
+        }
+        
+        /* Animações do Modal de Parabéns */
+        .modal-enter {
+            animation: modalEnter 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        @keyframes modalEnter {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        /* Garantir que o modal apareça corretamente */
+        #congratulationsModal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        #congratulationsModal.hidden {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+        
+        #congratulationsModal:not(.hidden) {
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
+        }
+        
+        /* Troféu animado */
+        .trophy-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .trophy-icon {
+            font-size: 4rem;
+            animation: trophyBounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+        }
+        
+        @keyframes trophyBounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(5deg); }
+            75% { transform: translateY(-5px) rotate(-3deg); }
+        }
+        
+        .trophy-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+        }
+        
+        /* Título animado */
+        .congratulations-title {
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes titleGlow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3)); }
+            50% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6)); }
+        }
+        
+        /* Partículas de celebração */
+        .celebration-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FF6347);
+            border-radius: 50%;
+            animation: celebrationFloat 3s ease-in-out infinite;
+            animation-delay: var(--delay);
+            left: var(--x);
+            top: var(--y);
+        }
+        
+        @keyframes celebrationFloat {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0);
+            }
+            20% {
+                opacity: 1;
+                transform: translateY(-20px) scale(1);
+            }
+            80% {
+                opacity: 1;
+                transform: translateY(-40px) scale(1.2);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-60px) scale(0);
+            }
+        }
+        
+        /* Botões animados */
+        .continue-btn, .close-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .continue-btn::before, .close-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .continue-btn:hover::before, .close-btn:hover::before {
+            left: 100%;
+        }
+        
+        /* Estatísticas */
+        .stat-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #fbbf24;
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            animation: statCardEnter 0.6s ease-out forwards;
+            animation-delay: calc(var(--index, 0) * 0.1s);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .stat-card:nth-child(1) { --index: 1; }
+        .stat-card:nth-child(2) { --index: 2; }
+        
+        @keyframes statCardEnter {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #92400e;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: #92400e;
+            font-weight: 500;
+        }
+        
         .japanese-nav-card::before {
             content: '';
             position: absolute;
@@ -235,18 +459,18 @@
             top: 50%;
             right: 20px;
             transform: translateY(-50%);
-            background: rgba(59, 130, 246, 0.9);
+            background: rgba(251, 191, 36, 0.9);
             color: white;
             padding: 12px 16px;
             border-radius: 25px;
             font-size: 14px;
             font-weight: 600;
-            z-index: 1000;
+            z-index: 1002;
             opacity: 0;
             transition: all 0.3s ease;
             pointer-events: none;
             backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 8px 32px rgba(251, 191, 36, 0.3);
         }
         
         .scroll-indicator.show {
@@ -262,7 +486,7 @@
             height: 0;
             border-top: 8px solid transparent;
             border-bottom: 8px solid transparent;
-            border-right: 8px solid rgba(59, 130, 246, 0.9);
+            border-right: 8px solid rgba(251, 191, 36, 0.9);
             transform: translateY(-50%);
         }
         
@@ -341,19 +565,109 @@
             z-index: 999;
         }
         
+        /* Efeito de cursor para habilidades e condições */
+        .habilidade-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .habilidade-item:hover::before {
+            left: 100%;
+        }
+        
+        .habilidade-item:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 0.9) !important;
+        }
+        
+        /* Efeito de borda animada */
+        .habilidade-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            background: linear-gradient(45deg, #6B7280, #4B5563, #6B7280) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .habilidade-item:hover::after {
+            opacity: 1;
+        }
+        
+        /* Animação sutil para habilidades e condições */
+        .habilidade-item {
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .habilidade-item:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+            background: rgba(255, 255, 255, 0.95) !important;
+        }
+        
+        .habilidade-item:active {
+            transform: translateY(-1px) scale(1.01);
+            transition: all 0.1s ease;
+        }
+        
+        /* Efeito ripple sutil para cliques */
+        .ripple-effect {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(251, 191, 36, 0.3);
+            transform: scale(0);
+            animation: ripple 0.6s ease-out;
+            pointer-events: none;
+            z-index: 5;
+        }
+        
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
         .particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: #3B82F6;
+            width: 6px;
+            height: 6px;
+            background: #FBBF24;
             border-radius: 50%;
             animation: particleFloat 1.5s ease-out forwards;
+            box-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+            z-index: 1001;
         }
         
         @keyframes particleFloat {
             0% {
                 opacity: 1;
                 transform: translateY(0) scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateY(-50px) scale(1.2);
             }
             100% {
                 opacity: 0;
@@ -501,7 +815,7 @@
         <div class="max-w-6xl mx-auto">
             <div class="flex items-center justify-between mb-4">
                 <div>
-                    <h1 class="text-3xl md:text-4xl font-bold mb-2 flex items-center gap-3">
+                    <h1 class="text-3xl md:text-4xl font-bold mb-2 flex items-center gap-3 text-white">
                         <img src="{% static 'faixa-amarela.png' %}" alt="Faixa Amarela" class="w-12 h-8 object-contain">
                         Faixa Amarela
                     </h1>
@@ -514,37 +828,47 @@
             
             <!-- Barra de Progresso -->
             <div class="bg-white/20 rounded-full h-5 mb-3 shadow-inner">
-                <div class="progress-bar bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full h-5 shadow-lg transition-all duration-500" style="width: 0%" id="progressBar"></div>
+                <div class="progress-bar bg-gradient-to-r from-green-400 to-green-400 rounded-full h-5 shadow-lg transition-all duration-500" style="width: 0%" id="progressBar"></div>
             </div>
-            <p class="text-base font-semibold text-white">Progresso: <span id="progressText" class="text-yellow-200">0%</span></p>
+            <p class="text-base font-semibold text-white">Progresso: <span id="progressText" class="text-white">0%</span></p>
         </div>
     </header>
 
     <main class="max-w-6xl mx-auto px-4 py-6">
-        <!-- Card de Boas-Vindas Minimalista -->
-        <div id="welcomeCard" class="bg-white/80 border border-yellow-300 rounded-xl shadow-md p-6 mb-8 w-full flex flex-col items-center">
-            <div class="flex items-center gap-3 mb-4">
-                <span class="text-2xl text-yellow-500">🥋</span>
-                <span class="font-semibold text-yellow-700 text-xl">Bem-vindo à Faixa Amarela</span>
-            </div>
-            <div class="flex flex-row gap-8 w-full justify-center">
-                <div class="text-center">
-                    <div class="font-bold text-yellow-600 text-lg mb-2">Condição</div>
-                    <div class="text-sm text-gray-700">
-                        <div>• 6 meses de faixa azul</div>
-                        <div>• Idade mínima: 8 anos</div>
-                    </div>
+        <!-- Seção de Condições -->
+        <div class="w-full text-center mb-2">
+            <h2 class="font-bold text-gray-700 text-2xl">Condições</h2>
+            <div class="flex flex-wrap justify-center gap-4 mt-2">
+                <div class="bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500 habilidade-item">
+                    6 meses de faixa azul
                 </div>
-                <div class="text-center">
-                    <div class="font-bold text-yellow-600 text-lg mb-2">Habilidades</div>
-                    <div class="text-sm text-gray-700 text-left">
-                        <div>• Shintai, Tai Sabaki e Kumikata</div>
-                        <div>• Tipos de Ukemis (Rolamentos)</div>
-                        <div>• 6 técnicas de Nague-waza</div>
-                        <div>• 4 técnicas de Ossae-komi</div>
-                        <div>• 3 técnicas de Renrakuenka-waza</div>
-                        <div>• 3 técnicas de Kaeshi-waza</div>
-                    </div>
+                <div class="bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500 habilidade-item">
+                    Idade mínima: 8 anos de idade
+                </div>
+            </div>
+        </div>
+        
+        <!-- Seção de Habilidades -->
+        <div class="w-full text-center mb-4">
+            <h2 class="font-bold text-gray-700 text-2xl">Habilidades</h2>
+            <div id="habilidadesTyping" class="flex flex-wrap justify-center gap-4 mt-2">
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    Shintai, Tai Sabaki e Kumikata
+                </div>
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    Tipos de Ukemis (Rolamentos)
+                </div>
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    6 técnicas de Nague-waza
+                </div>
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    4 técnicas de Ossae-komi
+                </div>
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    3 técnicas de Renrakuenka-waza
+                </div>
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    3 técnicas de Kaeshi-waza
                 </div>
             </div>
         </div>
@@ -565,33 +889,40 @@
         </style>
 
         <!-- Divs de Navegação Japonesa -->
-        <div class="flex justify-center gap-8 mb-8">
-            <div class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-blue-400 hover:bg-gradient-to-br hover:from-blue-50 hover:to-white transform hover:-translate-y-2">
-                <div class="absolute inset-0 bg-gradient-to-r from-blue-400/0 to-blue-400/0 group-hover:from-blue-400/10 group-hover:to-blue-400/5 transition-all duration-500"></div>
-                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:rotate-12">🥋</div>
-                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-blue-700 group-hover:scale-105">Palavras</div>
-                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-blue-600">Japonês</div>
+        <div class="japanese-nav-container">
+            <div class="text-center mb-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">🥋 Navegação Japonesa</h3>
+                <p class="text-gray-600 text-sm">Escolha uma categoria para começar sua jornada</p>
             </div>
             
-            <div id="ukemi-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-green-400 hover:bg-gradient-to-br hover:from-green-50 hover:to-white transform hover:-translate-y-2">
-                <div class="absolute inset-0 bg-gradient-to-r from-green-400/0 to-green-400/0 group-hover:from-green-400/10 group-hover:to-green-400/5 transition-all duration-500"></div>
-                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-spin">🔄</div>
-                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-green-700 group-hover:scale-105">Rolamentos</div>
-                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-green-600">Ukemi</div>
-            </div>
-            
-            <div id="nage-waza-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-orange-400 hover:bg-gradient-to-br hover:from-orange-50 hover:to-white transform hover:-translate-y-2">
-                <div class="absolute inset-0 bg-gradient-to-r from-orange-400/0 to-orange-400/0 group-hover:from-orange-400/10 group-hover:to-orange-400/5 transition-all duration-500"></div>
-                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-pulse">💥</div>
-                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-orange-700 group-hover:scale-105">Quedas</div>
-                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-orange-600">Nage-waza</div>
-            </div>
-            
-            <div id="imobilizacoes-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-purple-400 hover:bg-gradient-to-br hover:from-purple-50 hover:to-white transform hover:-translate-y-2">
-                <div class="absolute inset-0 bg-gradient-to-r from-purple-400/0 to-purple-400/0 group-hover:from-purple-400/10 group-hover:to-purple-400/5 transition-all duration-500"></div>
-                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-bounce">🔒</div>
-                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-purple-700 group-hover:scale-105">Imobilizações</div>
-                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-purple-600">Osaekomi-waza</div>
+            <div class="flex justify-center gap-8 mb-8">
+                <div class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-blue-400 hover:bg-gradient-to-br hover:from-blue-50 hover:to-white transform hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-400/0 to-blue-400/0 group-hover:from-blue-400/10 group-hover:to-blue-400/5 transition-all duration-500"></div>
+                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:rotate-12">🥋</div>
+                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-blue-700 group-hover:scale-105">Palavras</div>
+                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-blue-600">Japonês</div>
+                </div>
+                
+                <div id="ukemi-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-green-400 hover:bg-gradient-to-br hover:from-green-50 hover:to-white transform hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-r from-green-400/0 to-green-400/0 group-hover:from-green-400/10 group-hover:to-green-400/5 transition-all duration-500"></div>
+                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-spin">🔄</div>
+                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-green-700 group-hover:scale-105">Rolamentos</div>
+                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-green-600">Ukemi</div>
+                </div>
+                
+                <div id="nage-waza-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-orange-400 hover:bg-gradient-to-br hover:from-orange-50 hover:to-white transform hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-r from-orange-400/0 to-orange-400/0 group-hover:from-orange-400/10 group-hover:to-orange-400/5 transition-all duration-500"></div>
+                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-pulse">💥</div>
+                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-orange-700 group-hover:scale-105">Quedas</div>
+                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-orange-600">Nage-waza</div>
+                </div>
+                
+                <div id="imobilizacoes-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-purple-400 hover:bg-gradient-to-br hover:from-purple-50 hover:to-white transform hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-400/0 to-purple-400/0 group-hover:from-purple-400/10 group-hover:to-purple-400/5 transition-all duration-500"></div>
+                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-bounce">🔒</div>
+                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-purple-700 group-hover:scale-105">Imobilizações</div>
+                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-purple-600">Osaekomi-waza</div>
+                </div>
             </div>
         </div>
 
@@ -827,7 +1158,7 @@
         <div class="section-divider h-px my-6"></div>
 
         <!-- Seção de Imobilizações -->
-        <section id="imobilizacoes-section" class="mb-12 hidden">
+        <section id="imobilizacoes-section" class="mb-12">
             <div class="text-center mb-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
                     <span class="text-gradient">Técnicas de Imobilização</span>
@@ -1026,8 +1357,121 @@
         </div>
     </footer>
 
+    <!-- Modal de Parabéns -->
+    <div id="congratulationsModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] hidden items-center justify-center">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-2xl mx-4 p-8 text-center relative overflow-hidden">
+            <!-- Partículas de fundo -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                <div class="celebration-particle" style="--delay: 0s; --x: 10%; --y: 20%"></div>
+                <div class="celebration-particle" style="--delay: 0.2s; --x: 80%; --y: 30%"></div>
+                <div class="celebration-particle" style="--delay: 0.4s; --x: 20%; --y: 70%"></div>
+                <div class="celebration-particle" style="--delay: 0.6s; --x: 70%; --y: 80%"></div>
+                <div class="celebration-particle" style="--delay: 0.8s; --x: 50%; --y: 10%"></div>
+                <div class="celebration-particle" style="--delay: 1s; --x: 90%; --y: 60%"></div>
+            </div>
+            
+            <!-- Conteúdo principal -->
+            <div class="relative z-10">
+                <!-- Ícone de troféu animado -->
+                <div class="trophy-container mb-6">
+                    <div class="trophy-icon">🏆</div>
+                    <div class="trophy-glow"></div>
+                </div>
+                
+                <!-- Título principal -->
+                <h1 class="congratulations-title text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 bg-clip-text text-transparent">
+                    Parabéns!
+                </h1>
+                
+                <!-- Subtítulo -->
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
+                    Você Concluiu a <span class="text-gradient">Faixa Amarela</span>!
+                </h2>
+                
+                <!-- Mensagem motivacional -->
+                <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                    Sua dedicação e disciplina foram fundamentais para alcançar este marco. 
+                    Continue treinando e evoluindo no caminho do judô!
+                </p>
+                
+                <!-- Estatísticas -->
+                <div class="stats-grid grid grid-cols-2 gap-4 mb-8">
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Progresso</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">10</div>
+                        <div class="stat-label">Técnicas Dominadas</div>
+                    </div>
+                </div>
+                
+                <!-- Botões de ação -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button id="continueTraining" class="continue-btn bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white px-8 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Continuar Treinando
+                    </button>
+                    <button id="closeCongratulations" class="close-btn bg-gray-500 hover:bg-gray-600 text-white px-8 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // --- ANIMAÇÕES DE HABILIDADES E CONDIÇÕES ---
+            
+            // Função para animar habilidades com efeito de digitação
+            function animateHabilidades() {
+                const habilidades = document.querySelectorAll('.habilidade-item');
+                
+                // Todas as habilidades animam ao mesmo tempo
+                habilidades.forEach((habilidade, index) => {
+                    setTimeout(() => {
+                        habilidade.style.opacity = '0';
+                        habilidade.style.transform = 'translateY(20px) scale(0.9)';
+                        habilidade.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                        
+                        setTimeout(() => {
+                            habilidade.style.opacity = '1';
+                            habilidade.style.transform = 'translateY(0) scale(1)';
+                        }, 100);
+                    }, index * 150); // Delay escalonado para cada habilidade
+                });
+            }
+            
+            // Selecionar elementos de habilidades para animações
+            const habilidadesTyping = document.getElementById('habilidadesTyping');
+            const habilidadesItems = document.querySelectorAll('.habilidade-item');
+            
+            // Inicializar animações quando a página carregar
+            setTimeout(() => {
+                animateHabilidades();
+            }, 500);
+            
+            // Adicionar efeito de clique nas habilidades
+            habilidadesItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Efeito de ripple
+                    const ripple = document.createElement('div');
+                    ripple.className = 'ripple-effect';
+                    ripple.style.width = ripple.style.height = '20px';
+                    ripple.style.left = '50%';
+                    ripple.style.top = '50%';
+                    ripple.style.transform = 'translate(-50%, -50%)';
+                    
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => {
+                        if (ripple.parentNode) {
+                            ripple.parentNode.removeChild(ripple);
+                        }
+                    }, 600);
+                });
+            });
+            
             // --- PROGRESSO E ANIMAÇÃO DOS CARDS (já existente) ---
             const projCheckboxes = document.querySelectorAll('.proj-checkbox');
             const imobCheckboxes = document.querySelectorAll('.imob-checkbox');
@@ -1039,6 +1483,7 @@
             const backToTopBtn = document.getElementById('backToTop');
             let answeredQuestions = 0;
             const totalQuestions = projCheckboxes.length + imobCheckboxes.length;
+            let hasShownCongratulations = false;
 
             // Função para atualizar progresso (SEM mostrar barra flutuante)
             function updateProgress() {
@@ -1047,9 +1492,118 @@
                 const totalQuestions = projCheckboxes.length + imobCheckboxes.length;
                 const completedQuestions = totalProjChecked + totalImobChecked;
                 const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
+                
+
+                
                 progressBar.style.width = progress + '%';
                 progressText.textContent = Math.round(progress) + '%';
+                
+                // Verificar se chegou a 100% e mostrar parabéns
+                if (progress >= 100 && !hasShownCongratulations) {
+                    console.log('Progress is 100% - checking for congratulations'); // Debug
+                    
+                    // Verificar se todos os checkboxes estão marcados
+                    const allChecked = Array.from(projCheckboxes).every(cb => cb.checked) && 
+                                     Array.from(imobCheckboxes).every(cb => cb.checked);
+                    
+                    if (allChecked) {
+                        console.log('Showing congratulations!'); // Debug
+                        setTimeout(() => {
+                            showCongratulations();
+                        }, 500);
+                    }
+                }
+                
+                // Verificação adicional: se todos os checkboxes estão marcados, mostrar parabéns
+                if (completedQuestions >= 10 && !hasShownCongratulations) {
+                    console.log('Todos os 10 checkboxes marcados - mostrando parabéns!');
+                    setTimeout(() => {
+                        showCongratulations();
+                    }, 500);
+                }
             }
+            
+            // --- SISTEMA DE PARABÉNS ---
+            
+            // Função para mostrar modal de parabéns
+            function showCongratulations() {
+                console.log('=== SHOW CONGRATULATIONS ===');
+                
+                const modal = document.getElementById('congratulationsModal');
+                if (!modal) {
+                    console.log('ERRO: Modal não encontrado!');
+                    return;
+                }
+                
+                console.log('Modal encontrado, mostrando...');
+                
+                // Forçar exibição
+                modal.style.display = 'flex';
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                modal.style.opacity = '1';
+                modal.style.visibility = 'visible';
+                modal.style.pointerEvents = 'auto';
+                
+                hasShownCongratulations = true;
+                
+                // Adicionar animação de entrada
+                const modalContent = modal.querySelector('div');
+                if (modalContent) {
+                    modalContent.classList.add('modal-enter');
+                }
+                
+                // Salvar que já mostrou parabéns
+                localStorage.setItem('congratulationsShown', 'true');
+                
+                // Scroll suave para o topo
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                console.log('Modal deve estar visível agora!');
+                console.log('=== FIM SHOW CONGRATULATIONS ===');
+            }
+            
+            // Função para fechar modal
+            function closeCongratulations() {
+                console.log('Closing congratulations modal'); // Debug
+                const modal = document.getElementById('congratulationsModal');
+                if (modal) {
+                    modal.style.display = 'none';
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                    console.log('Modal closed successfully'); // Debug
+                } else {
+                    console.log('Modal not found for closing'); // Debug
+                }
+            }
+            
+            // Event listeners para botões do modal
+            function initializeCongratulationsButtons() {
+                const continueBtn = document.getElementById('continueTraining');
+                const closeBtn = document.getElementById('closeCongratulations');
+                
+                console.log('Initializing congratulations buttons'); // Debug
+                console.log('Continue button found:', !!continueBtn); // Debug
+                console.log('Close button found:', !!closeBtn); // Debug
+                
+                if (continueBtn) {
+                    continueBtn.addEventListener('click', function() {
+                        console.log('Continue training clicked'); // Debug
+                        closeCongratulations();
+                        // Aqui você pode adicionar lógica para continuar treinando
+                    });
+                }
+                
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', function() {
+                        console.log('Close congratulations clicked'); // Debug
+                        closeCongratulations();
+                    });
+                }
+            }
+            
+            // Inicializar botões de parabéns
+            initializeCongratulationsButtons();
 
             // Função para mostrar barra de progresso flutuante
             function showFloatingProgress(progress) {
@@ -1062,19 +1616,32 @@
                 floatingProgress.style.opacity = '1';
                 floatingProgress.style.pointerEvents = 'auto';
                 
-                // Esconder após 5 segundos
+                // Esconder após 3 segundos (tempo mais adequado)
                 setTimeout(() => {
                     floatingProgress.style.opacity = '0';
                     floatingProgress.style.pointerEvents = 'none';
                     setTimeout(() => {
                         floatingProgress.classList.add('hidden');
                     }, 300); // Aguarda a transição de opacity
-                }, 5000);
+                }, 3000);
             }
+
             // Garantir que a barra flutuante comece escondida
             floatingProgress.classList.add('hidden');
             floatingProgress.style.opacity = '0';
             floatingProgress.style.pointerEvents = 'none';
+            
+
+            
+            // Esconder seções inicialmente
+            document.getElementById('nage-waza-section').classList.add('hidden');
+            document.getElementById('imobilizacoes-section').classList.add('hidden');
+            
+
+            
+
+            
+
 
             // Event listeners para as opções
             projCheckboxes.forEach(checkbox => {
@@ -1140,6 +1707,8 @@
             // Função para criar partículas
             function createParticles(x, y, count = 8) {
                 const particlesContainer = document.getElementById('scrollParticles');
+                
+                if (!particlesContainer) return;
                 
                 for (let i = 0; i < count; i++) {
                     const particle = document.createElement('div');
@@ -1338,6 +1907,73 @@
                 }
             }, 2000);
 
+            // Função para animação de scroll com efeitos (copiada da página2.html)
+            function smoothScrollTo(element, cardElement) {
+                const targetElement = document.getElementById(element);
+                const scrollIndicator = document.getElementById('scrollIndicator');
+                const scrollText = document.getElementById('scrollText');
+                
+                if (!targetElement) return;
+                
+                // Adicionar classe clicked ao card
+                cardElement.classList.add('clicked');
+                
+                // Criar partículas no ponto de clique
+                const rect = cardElement.getBoundingClientRect();
+                createParticles(rect.left + rect.width / 2, rect.top + rect.height / 2);
+                
+                // Mostrar indicador de scroll
+                scrollText.textContent = 'Navegando...';
+                scrollIndicator.classList.add('show');
+                
+                // Calcular posição de destino
+                const targetPosition = targetElement.offsetTop - 100;
+                const startPosition = window.pageYOffset;
+                const distance = targetPosition - startPosition;
+                const duration = 1200; // 1.2 segundos
+                let start = null;
+                
+                // Função de easing personalizada
+                function easeInOutCubic(t) {
+                    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                }
+                
+                // Função de animação
+                function animation(currentTime) {
+                    if (start === null) start = currentTime;
+                    const timeElapsed = currentTime - start;
+                    const progress = Math.min(timeElapsed / duration, 1);
+                    const easedProgress = easeInOutCubic(progress);
+                    
+                    window.scrollTo(0, startPosition + distance * easedProgress);
+                    
+                    // Atualizar texto do indicador
+                    if (progress < 0.5) {
+                        scrollText.textContent = 'Navegando...';
+                    } else {
+                        scrollText.textContent = 'Chegando...';
+                    }
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(animation);
+                    } else {
+                        // Animação concluída
+                        setTimeout(() => {
+                            scrollIndicator.classList.remove('show');
+                            cardElement.classList.remove('clicked');
+                            
+                            // Adicionar destaque no destino
+                            targetElement.classList.add('destination-highlight');
+                            setTimeout(() => {
+                                targetElement.classList.remove('destination-highlight');
+                            }, 2000);
+                        }, 300);
+                    }
+                }
+                
+                requestAnimationFrame(animation);
+            }
+            
             // Navegação interna com animações visuais
             const nageWazaNav = document.getElementById('nage-waza-nav');
             const imobilizacoesNav = document.getElementById('imobilizacoes-nav');
@@ -1410,6 +2046,8 @@
                     }
                 });
             });
+            
+
 
 
 
