@@ -389,6 +389,29 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            animation: japaneseCardEntrance 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .japanese-nav-card:nth-child(1) { animation-delay: 0.1s; }
+        .japanese-nav-card:nth-child(2) { animation-delay: 0.2s; }
+        .japanese-nav-card:nth-child(3) { animation-delay: 0.3s; }
+        .japanese-nav-card:nth-child(4) { animation-delay: 0.4s; }
+        
+        @keyframes japaneseCardEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+            50% {
+                opacity: 0.8;
+                transform: translateY(-5px) scale(1.05);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
         
         .japanese-nav-card::before {
@@ -398,7 +421,7 @@
             left: 50%;
             width: 0;
             height: 0;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
             border-radius: 50%;
             transform: translate(-50%, -50%);
             transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -412,8 +435,67 @@
         
         .japanese-nav-card.clicked {
             transform: scale(0.95);
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
         }
+        
+        /* Efeito de destaque especial para a barra japonesa */
+        .japanese-nav-container {
+            position: relative;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.03) 0%, rgba(59, 130, 246, 0.01) 100%);
+            border-radius: 16px;
+            padding: 16px;
+            margin: 16px 0;
+            border: 1px solid rgba(59, 130, 246, 0.08);
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.08);
+        }
+        
+        .japanese-nav-container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #60a5fa, #3b82f6, #60a5fa);
+            border-radius: 18px;
+            z-index: -1;
+            opacity: 0.2;
+            animation: borderGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes borderGlow {
+            0% {
+                opacity: 0.15;
+            }
+            100% {
+                opacity: 0.25;
+            }
+        }
+        
+        /* Melhorar o hover dos cards */
+        .japanese-nav-card:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+            border-color: #60a5fa;
+        }
+        
+        /* Efeito de brilho nos cards */
+        .japanese-nav-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .japanese-nav-card:hover::after {
+            left: 100%;
+        }
+        
+
         
         /* Animação de scroll suave */
         .scroll-indicator {
@@ -788,26 +870,26 @@
 </head>
 <body class="bg-gray-50 font-sans">
     <!-- Header com Progresso -->
-    <header class="gradient-bg text-white py-4 px-4">
+    <header class="gradient-bg text-white py-3.5 px-4">
         <div class="max-w-6xl mx-auto">
-            <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center justify-between mb-3.5">
                 <div>
-                    <h1 class="text-3xl md:text-4xl font-bold mb-2 flex items-center gap-3">
-                        <img src="{% static 'faixa-azul.png' %}" alt="Faixa Azul" class="w-12 h-8 object-contain">
+                    <h1 class="text-2xl md:text-3xl font-bold mb-1.5 flex items-center gap-2">
+                        <img src="{% static 'faixa-azul.png' %}" alt="Faixa Azul" class="w-11 h-7 object-contain">
                         Faixa Azul
                     </h1>
-                    <p class="text-blue-100 text-lg">Seu segundo passo na jornada do judô</p>
+                    <p class="text-blue-100 text-base">Seu segundo passo na jornada do judô</p>
                 </div>
-                <a href="/index/" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors font-buttons">
+                <a href="/index/" class="bg-white/20 hover:bg-white/30 px-3.5 py-2 rounded-lg transition-colors font-buttons text-sm">
                     ← Voltar
                 </a>
             </div>
             
             <!-- Barra de Progresso -->
-            <div class="bg-white/20 rounded-full h-5 mb-3 shadow-inner">
-                <div class="progress-bar bg-gradient-to-r from-blue-400 to-blue-600 rounded-full h-5 shadow-lg transition-all duration-500" style="width: 0%" id="progressBar"></div>
+            <div class="bg-white/20 rounded-full h-4 mb-2.5 shadow-inner">
+                <div class="progress-bar bg-gradient-to-r from-green-400 to-green-600 rounded-full h-4 shadow-lg transition-all duration-500" style="width: 0%" id="progressBar"></div>
             </div>
-            <p class="text-base font-semibold text-white">Progresso: <span id="progressText" class="text-blue-200">0%</span></p>
+            <p class="text-sm font-semibold text-white">Progresso: <span id="progressText" class="text-green-200">0%</span></p>
         </div>
     </header>
 
@@ -820,10 +902,10 @@
                 <h2 class="font-bold text-gray-700 text-2xl">Condições</h2>
                 <div class="flex flex-wrap justify-center gap-4 mt-2">
                     <div class="bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500 habilidade-item">
-                        6 meses de faixa branca
+                        6 meses de faixa branca ou na faixa cinza
                     </div>
                     <div class="bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500 habilidade-item">
-                        Idade mínima: 5 anos
+                        Idade mínima: 7 anos de idade
                     </div>
                 </div>
             </div>
@@ -843,10 +925,10 @@
                         Tipos de Ukemis (Rolamentos)
                     </div>
                     <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
-                        2 técnicas de Nague-waza (projeção)
+                        4 técnicas de Nague-waza (projeção)
                     </div>
                     <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
-                        1 técnica de Ossaekomi-waza (imobilização)
+                        3 técnica de Ossaekomi-waza (imobilização)
                     </div>
                 </div>
             </div>
@@ -859,33 +941,40 @@
 
         <!-- Divs de Navegação Japonesa -->
         
-          <div class="flex justify-center gap-8 mb-8">
-            <div class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-blue-400 hover:bg-gradient-to-br hover:from-blue-50 hover:to-white transform hover:-translate-y-2">
-                <div class="absolute inset-0 bg-gradient-to-r from-blue-400/0 to-blue-400/0 group-hover:from-blue-400/10 group-hover:to-blue-400/5 transition-all duration-500"></div>
-                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:rotate-12">🥋</div>
-                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-blue-700 group-hover:scale-105">Palavras</div>
-                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-blue-600">Japonês</div>
+        <div class="japanese-nav-container">
+            <div class="text-center mb-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">🥋 Navegação Japonesa</h3>
+                <p class="text-gray-600 text-sm">Escolha uma categoria para começar sua jornada</p>
             </div>
             
-            <div id="ukemi-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-green-400 hover:bg-gradient-to-br hover:from-green-50 hover:to-white transform hover:-translate-y-2">
-                <div class="absolute inset-0 bg-gradient-to-r from-green-400/0 to-green-400/0 group-hover:from-green-400/10 group-hover:to-green-400/5 transition-all duration-500"></div>
-                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-spin">🔄</div>
-                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-green-700 group-hover:scale-105">Rolamentos</div>
-                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-green-600">Ukemi</div>
-            </div>
-            
-            <div id="nage-waza-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-orange-400 hover:bg-gradient-to-br hover:from-orange-50 hover:to-white transform hover:-translate-y-2">
-                <div class="absolute inset-0 bg-gradient-to-r from-orange-400/0 to-orange-400/0 group-hover:from-orange-400/10 group-hover:to-orange-400/5 transition-all duration-500"></div>
-                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-pulse">💥</div>
-                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-orange-700 group-hover:scale-105">Quedas</div>
-                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-orange-600">Nage-waza</div>
-            </div>
-            
-            <div id="imobilizacoes-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-purple-400 hover:bg-gradient-to-br hover:from-purple-50 hover:to-white transform hover:-translate-y-2">
-                <div class="absolute inset-0 bg-gradient-to-r from-purple-400/0 to-purple-400/0 group-hover:from-purple-400/10 group-hover:to-purple-400/5 transition-all duration-500"></div>
-                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-bounce">🔒</div>
-                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-purple-700 group-hover:scale-105">Imobilizações</div>
-                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-purple-600">Osaekomi-waza</div>
+            <div class="flex justify-center gap-8 mb-8">
+                <div class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-blue-400 hover:bg-gradient-to-br hover:from-blue-50 hover:to-white transform hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-400/0 to-blue-400/0 group-hover:from-blue-400/10 group-hover:to-blue-400/5 transition-all duration-500"></div>
+                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:rotate-12">🥋</div>
+                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-blue-700 group-hover:scale-105">Palavras</div>
+                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-blue-600">Japonês</div>
+                </div>
+                
+                <div id="ukemi-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-green-400 hover:bg-gradient-to-br hover:from-green-50 hover:to-white transform hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-r from-green-400/0 to-green-400/0 group-hover:from-green-400/10 group-hover:to-green-400/5 transition-all duration-500"></div>
+                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-spin">🔄</div>
+                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-green-700 group-hover:scale-105">Rolamentos</div>
+                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-green-600">Ukemi</div>
+                </div>
+                
+                <div id="nage-waza-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-orange-400 hover:bg-gradient-to-br hover:from-orange-50 hover:to-white transform hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-r from-orange-400/0 to-orange-400/0 group-hover:from-orange-400/10 group-hover:to-orange-400/5 transition-all duration-500"></div>
+                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-pulse">💥</div>
+                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-orange-700 group-hover:scale-105">Quedas</div>
+                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-orange-600">Nage-waza</div>
+                </div>
+                
+                <div id="imobilizacoes-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-purple-400 hover:bg-gradient-to-br hover:from-purple-50 hover:to-white transform hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-400/0 to-purple-400/0 group-hover:from-purple-400/10 group-hover:to-purple-400/5 transition-all duration-500"></div>
+                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-bounce">🔒</div>
+                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-purple-700 group-hover:scale-105">Imobilizações</div>
+                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-purple-600">Osaekomi-waza</div>
+                </div>
             </div>
         </div>
         <!-- Seção de Técnicas -->
@@ -1250,7 +1339,7 @@
                         <div class="stat-label">Progresso</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">6</div>
+                        <div class="stat-number">7</div>
                         <div class="stat-label">Técnicas Dominadas</div>
                     </div>
                 </div>

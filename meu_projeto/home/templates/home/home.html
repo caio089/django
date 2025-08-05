@@ -37,14 +37,40 @@
             transform: translateY(-1.7rem) scale(0.85);
             color: #2563eb;
         }
+        .error-message {
+            color: #dc2626;
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        .input.error {
+            border-color: #dc2626;
+        }
+        .input.error:focus {
+            border-color: #dc2626;
+            box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.1);
+        }
+        .success-message {
+            color: #059669;
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        .form-success {
+            border-color: #059669;
+        }
+        .form-success:focus {
+            border-color: #059669;
+            box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.1);
+        }
     </style>
 </head>
 <body class="h-screen w-screen flex items-center justify-start relative overflow-hidden">
     <div class="bg-judo"></div>
     <div class="bg-overlay"></div>
     <div class="bg-blur-gradient"></div>
-    <div class="relative z-10 w-full flex flex-col items-start justify-center min-h-screen pl-8 md:pl-20">
-        <div id="login-card" class="bg-white/95 rounded-2xl shadow-2xl px-4 py-3 w-full max-w-md flex flex-col items-center animate-fade-in-up transition-all duration-700" style="backdrop-filter: blur(2px);">
+    <div class="relative z-10 w-full flex flex-col items-start justify-center min-h-screen pl-4 md:pl-8 lg:pl-20">
+        <div id="login-card" class="bg-white/95 rounded-2xl shadow-2xl px-4 py-3 w-full max-w-md mx-auto md:mx-0 flex flex-col items-center animate-fade-in-up transition-all duration-700" style="backdrop-filter: blur(2px);">
             <div class="flex items-center gap-1 mb-1 animate-fade-in-down">
                 <i class="fa-solid fa-user-ninja text-blue-600 text-xl animate-bounce"></i>
                 <span class="font-bold text-base text-gray-700 tracking-wider">Judô</span>
@@ -56,27 +82,31 @@
                     <input id="email" type="email" name="email" placeholder=" " required aria-label="Email" class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" value="{{ register_form.email.value|default:'' }}" />
                     <label for="email" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Email</label>
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm"><i class="fa-regular fa-envelope" aria-hidden="true"></i></span>
+                    <div class="error-message" id="email-error"></div>
                 </div>
                 <div class="relative" id="login-senha-group">
-                    <input id="senha" type="password" name="senha" placeholder=" " required aria-label="Senha" class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" />
+                    <input id="senha" type="password" name="senha" placeholder=" " required aria-label="Senha" class="input peer w-full pl-10 pr-10 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" />
                     <label for="senha" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Senha</label>
                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm"><i class="fa-solid fa-key" aria-hidden="true"></i></span>
-                    <button type="button" id="togglePassword" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600 transition text-sm" tabindex="-1" aria-label="Mostrar ou ocultar senha"><i class="fa-regular fa-eye"></i></button>
+                    <button type="button" id="togglePassword" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-600 transition text-sm" aria-label="Mostrar ou ocultar senha"><i class="fa-regular fa-eye"></i></button>
+                    <div class="error-message" id="senha-error"></div>
                 </div>
                 <div id="cadastro-campos" {% if show_register %}style="display:block;"{% else %}style="display:none;"{% endif %}>
                     <div class="relative">
-                        <input id="nome" type="text" name="nome" placeholder=" " aria-label="Nome completo" class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" value="{{ register_form.nome.value|default:'' }}" />
+                        <input id="nome" type="text" name="nome" placeholder=" " required aria-label="Nome completo" class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" value="{{ register_form.nome.value|default:'' }}" />
                         <label for="nome" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Nome completo</label>
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm"><i class="fa-regular fa-user" aria-hidden="true"></i></span>
+                        <div class="error-message" id="nome-error"></div>
                     </div>
                     <div class="relative">
-                        <input id="idade" type="number" name="idade" placeholder=" " min="1" max="120" aria-label="Idade" class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" value="{{ register_form.idade.value|default:'' }}" />
+                        <input id="idade" type="number" name="idade" placeholder=" " min="3" max="120" required aria-label="Idade" class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" value="{{ register_form.idade.value|default:'' }}" />
                         <label for="idade" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Idade</label>
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm"><i class="fa-solid fa-calendar" aria-hidden="true"></i></span>
+                        <div class="error-message" id="idade-error"></div>
                     </div>
                     <div class="relative">
-                        <select id="faixa" name="faixa" aria-label="Faixa atual" class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 text-sm transition-all duration-300">
-                            <option value="" disabled selected hidden>Faixa atual</option>
+                        <select id="faixa" name="faixa" required aria-label="Faixa atual" class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 text-sm transition-all duration-300">
+                            <option value="" disabled selected>Faixa atual</option>
                             <option value="branca" {% if register_form.faixa.value == 'branca' %}selected{% endif %}>Branca</option>
                             <option value="cinza" {% if register_form.faixa.value == 'cinza' %}selected{% endif %}>Cinza</option>
                             <option value="azul" {% if register_form.faixa.value == 'azul' %}selected{% endif %}>Azul</option>
@@ -87,10 +117,12 @@
                             <option value="marrom" {% if register_form.faixa.value == 'marrom' %}selected{% endif %}>Marrom</option>
                             <option value="preta" {% if register_form.faixa.value == 'preta' %}selected{% endif %}>Preta</option>
                         </select>
+                        <label for="faixa" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Faixa atual</label>
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm"><i class="fa-solid fa-medal" aria-hidden="true"></i></span>
+                        <div class="error-message" id="faixa-error"></div>
                     </div>
                 </div>
-                <button id="login-btn" type="submit" class="mt-1 w-full py-2 rounded-md bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white font-semibold text-base shadow transition-all duration-300 focus:ring-4 focus:ring-blue-200 focus:outline-none active:scale-95 flex items-center justify-center gap-2">
+                <button id="login-btn" type="submit" class="mt-1 w-full py-2 rounded-md bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white font-semibold text-base shadow transition-all duration-300 focus:ring-4 focus:ring-blue-200 focus:outline-none active:scale-95 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
                     <span id="login-btn-text">{% if show_register %}Criar conta{% else %}Entrar{% endif %}</span>
                     <span id="login-spinner" class="hidden animate-spin"><i class="fa-solid fa-spinner" aria-hidden="true"></i></span>
                 </button>
@@ -141,21 +173,176 @@
         const togglePassword = document.getElementById('togglePassword');
         if (senhaInput && togglePassword) {
             togglePassword.addEventListener('click', () => {
-                senhaInput.type = senhaInput.type === 'password' ? 'text' : 'password';
-                togglePassword.innerHTML = senhaInput.type === 'password' ? '<i class="fa-regular fa-eye"></i>' : '<i class="fa-regular fa-eye-slash"></i>';
+                const type = senhaInput.type === 'password' ? 'text' : 'password';
+                senhaInput.type = type;
+                togglePassword.innerHTML = type === 'password' ? '<i class="fa-regular fa-eye"></i>' : '<i class="fa-regular fa-eye-slash"></i>';
+                togglePassword.setAttribute('aria-label', type === 'password' ? 'Mostrar senha' : 'Ocultar senha');
             });
         }
 
-        // Alternar entre login e cadastro
+        // Validação de formulário
+        function showError(fieldId, message) {
+            const field = document.getElementById(fieldId);
+            const errorDiv = document.getElementById(fieldId + '-error');
+            if (field && errorDiv) {
+                field.classList.add('error');
+                errorDiv.textContent = message;
+                errorDiv.style.display = 'block';
+            }
+        }
+
+        function clearError(fieldId) {
+            const field = document.getElementById(fieldId);
+            const errorDiv = document.getElementById(fieldId + '-error');
+            if (field && errorDiv) {
+                field.classList.remove('error');
+                errorDiv.style.display = 'none';
+            }
+        }
+
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function validateForm() {
+            let isValid = true;
+            
+            // Validar email
+            const email = document.getElementById('email');
+            if (email && email.value.trim() === '') {
+                showError('email', 'Email é obrigatório');
+                isValid = false;
+            } else if (email && !validateEmail(email.value.trim())) {
+                showError('email', 'Email inválido');
+                isValid = false;
+            } else {
+                clearError('email');
+            }
+
+            // Validar senha
+            const senha = document.getElementById('senha');
+            if (senha && senha.value.trim() === '') {
+                showError('senha', 'Senha é obrigatória');
+                isValid = false;
+            } else if (senha && senha.value.length < 6) {
+                showError('senha', 'Senha deve ter pelo menos 6 caracteres');
+                isValid = false;
+            } else {
+                clearError('senha');
+            }
+
+            // Validar campos de cadastro se estiver no modo registro
+            const cadastroCampos = document.getElementById('cadastro-campos');
+            if (cadastroCampos && cadastroCampos.style.display !== 'none') {
+                const nome = document.getElementById('nome');
+                const idade = document.getElementById('idade');
+                const faixa = document.getElementById('faixa');
+
+                if (nome && nome.value.trim() === '') {
+                    showError('nome', 'Nome é obrigatório');
+                    isValid = false;
+                } else {
+                    clearError('nome');
+                }
+
+                if (idade && (idade.value === '' || parseInt(idade.value) < 3 || parseInt(idade.value) > 120)) {
+                    showError('idade', 'Idade deve estar entre 3 e 120 anos');
+                    isValid = false;
+                } else {
+                    clearError('idade');
+                }
+
+                if (faixa && faixa.value === '') {
+                    showError('faixa', 'Selecione uma faixa');
+                    isValid = false;
+                } else {
+                    clearError('faixa');
+                }
+            }
+
+            return isValid;
+        }
+
+        function showSuccess(fieldId) {
+            const field = document.getElementById(fieldId);
+            if (field) {
+                field.classList.remove('error');
+                field.classList.add('form-success');
+            }
+        }
+
+        function showFeedback(message, type = 'success') {
+            const feedback = document.getElementById('login-feedback');
+            if (feedback) {
+                feedback.textContent = message;
+                feedback.className = `fixed left-1/2 -translate-x-1/2 top-8 px-4 py-2 rounded-lg shadow-lg font-semibold text-xs transition-all duration-500 z-50`;
+                
+                if (type === 'success') {
+                    feedback.classList.add('bg-green-600', 'text-white');
+                } else {
+                    feedback.classList.add('bg-red-600', 'text-white');
+                }
+                
+                feedback.style.opacity = '1';
+                feedback.style.pointerEvents = 'auto';
+                
+                setTimeout(() => {
+                    feedback.style.opacity = '0';
+                    feedback.style.pointerEvents = 'none';
+                }, 3000);
+            }
+        }
+
+        // Limpar erros quando o usuário digita
+        document.addEventListener('input', function(e) {
+            if (e.target.classList.contains('input')) {
+                clearError(e.target.id);
+            }
+        });
+
+        // Manipular envio do formulário
         document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('login-form');
+            const loginBtn = document.getElementById('login-btn');
+            const loginBtnText = document.getElementById('login-btn-text');
+            const loginSpinner = document.getElementById('login-spinner');
+
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    if (!validateForm()) {
+                        showFeedback('Por favor, corrija os erros no formulário.', 'error');
+                        return;
+                    }
+
+                    // Mostrar loading
+                    loginBtn.disabled = true;
+                    loginBtnText.style.display = 'none';
+                    loginSpinner.classList.remove('hidden');
+
+                    // Simular envio (remover em produção)
+                    setTimeout(() => {
+                        showFeedback('Formulário enviado com sucesso!', 'success');
+                        setTimeout(() => {
+                            form.submit();
+                        }, 1000);
+                    }, 1000);
+                });
+            }
+
+            // Links de navegação
             const criarContaLink = document.getElementById('criar-conta-link');
             const fazerLoginLink = document.getElementById('fazer-login-link');
+            
             if (criarContaLink) {
                 criarContaLink.addEventListener('click', function(e) {
                     e.preventDefault();
                     window.location.href = '{% url 'register' %}';
                 });
             }
+            
             if (fazerLoginLink) {
                 fazerLoginLink.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -165,5 +352,4 @@
         });
     </script>
 </body>
-
 </html>
