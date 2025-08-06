@@ -92,6 +92,259 @@
             box-shadow: 0 0 40px rgba(124, 58, 237, 0.6);
             border-color: #7c3aed;
         }
+        
+        /* Estilos para as habilidades com animação de digitação */
+        .habilidade-item {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideInUp 0.6s ease-out forwards;
+        }
+        
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Aplicar delay escalonado para as habilidades */
+        .habilidade-item:nth-child(1) { animation-delay: 0.1s; }
+        .habilidade-item:nth-child(2) { animation-delay: 0.2s; }
+        .habilidade-item:nth-child(3) { animation-delay: 0.3s; }
+        .habilidade-item:nth-child(4) { animation-delay: 0.4s; }
+        .habilidade-item:nth-child(5) { animation-delay: 0.5s; }
+        .habilidade-item:nth-child(6) { animation-delay: 0.6s; }
+        
+        /* Efeito de destaque especial para a barra japonesa */
+        .japanese-nav-container {
+            position: relative;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.03) 0%, rgba(124, 58, 237, 0.01) 100%);
+            border-radius: 16px;
+            padding: 16px;
+            margin: 16px 0;
+            border: 1px solid rgba(124, 58, 237, 0.08);
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.08);
+        }
+        
+        .japanese-nav-container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #7c3aed, #4c1d95, #7c3aed);
+            border-radius: 18px;
+            z-index: -1;
+            opacity: 0.2;
+            animation: borderGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes borderGlow {
+            0% {
+                opacity: 0.15;
+            }
+            100% {
+                opacity: 0.25;
+            }
+        }
+        
+        /* Melhorar o hover dos cards */
+        .japanese-nav-card:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.15);
+            border-color: #7c3aed;
+        }
+        
+        /* Efeito de brilho nos cards */
+        .japanese-nav-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .japanese-nav-card:hover::after {
+            left: 100%;
+        }
+        
+        /* Animações para transição japonesa */
+        .japanese-nav-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Animações do Modal de Parabéns */
+        .modal-enter {
+            animation: modalEnter 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        @keyframes modalEnter {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        /* Garantir que o modal apareça corretamente */
+        #congratulationsModal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        #congratulationsModal.hidden {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+        
+        #congratulationsModal:not(.hidden) {
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
+        }
+        
+        /* Troféu animado */
+        .trophy-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .trophy-icon {
+            font-size: 4rem;
+            animation: trophyBounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+        }
+        
+        @keyframes trophyBounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(5deg); }
+            75% { transform: translateY(-5px) rotate(-3deg); }
+        }
+        
+        .trophy-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+        }
+        
+        /* Título animado */
+        .congratulations-title {
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes titleGlow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3)); }
+            50% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6)); }
+        }
+        
+        /* Partículas de celebração */
+        .celebration-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FF6347);
+            border-radius: 50%;
+            animation: celebrationFloat 3s ease-in-out infinite;
+            animation-delay: var(--delay);
+            left: var(--x);
+            top: var(--y);
+        }
+        
+        @keyframes celebrationFloat {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0);
+            }
+            20% {
+                opacity: 1;
+                transform: translateY(-20px) scale(1);
+            }
+            80% {
+                opacity: 1;
+                transform: translateY(-40px) scale(1.2);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-60px) scale(0);
+            }
+        }
+        
+        /* Botões animados */
+        .continue-btn, .close-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .continue-btn::before, .close-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .continue-btn:hover::before, .close-btn:hover::before {
+            left: 100%;
+        }
+        
+        /* Estatísticas */
+        .stat-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #fbbf24;
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            animation: statCardEnter 0.6s ease-out forwards;
+            animation-delay: calc(var(--index, 0) * 0.1s);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .stat-card:nth-child(1) { --index: 1; }
+        .stat-card:nth-child(2) { --index: 2; }
+        
+        @keyframes statCardEnter {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #f59e0b;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: #92400e;
+            font-weight: 500;
+        }
         @keyframes fade-in {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -112,12 +365,17 @@
                 transform: scale(1.02);
             }
         }
+        #carouselEstrang {
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            transition: box-shadow 0.3s;
+            padding-right: 20px; /* Adicionar padding para permitir scroll completo */
+        }
         #carouselEstrang > div {
-            min-width: 370px;
-            max-width: 440px;
+            min-width: 350px;
+            max-width: 420px;
             flex: 0 0 auto;
-            scroll-snap-align: center;
-            height: 340px;
+            height: 380px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -126,10 +384,11 @@
             box-shadow: 0 2px 16px 0 rgba(124,58,237,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
             opacity: 1;
             filter: blur(0px);
-            margin-right: 18px;
+            margin-right: 12px;
         }
         #carouselEstrang > div:last-child {
             margin-right: 0;
+            padding-right: 40px; /* Aumentar padding para garantir que a última div seja visível */
         }
         #carouselEstrang > div.active,
         #carouselEstrang > div:hover {
@@ -200,76 +459,92 @@
         </div>
     </header>
     <main class="max-w-6xl mx-auto px-4 py-6">
-        <!-- Card de Boas-Vindas Minimalista -->
-        <div id="welcomeCard" class="bg-white/80 border border-roxa-300 rounded-xl shadow-md p-6 mb-8 w-full flex flex-col items-center">
-            <div class="flex items-center gap-2">
-                <span class="text-xl text-judo-purple">🥋</span>
-                <span class="font-semibold text-judo-purpleDark text-lg">Faixa Roxa</span>
-            </div>
-            <div class="flex flex-row gap-4 mt-2 w-full justify-center">
-                <div class="text-center">
-                    <div class="font-bold text-judo-purple">Condição</div>
-                    <div class="text-sm text-gray-700">
-                        <div>a. SEIS MESES COMO FAIXA LARANJA</div>
-                        <div>b. IDADE MÍNIMA: 10 ANOS DE IDADE</div>
-                    </div>
+        <!-- Seção de Condições -->
+        <div class="w-full text-center mb-2">
+            <h2 class="font-bold text-gray-700 text-2xl">Condições</h2>
+            <div class="flex flex-wrap justify-center gap-4 mt-2">
+                <div class="bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500 habilidade-item">
+                    6 meses de faixa verde
                 </div>
-                <div class="text-center">
-                    <div class="font-bold text-judo-purple">Habilidades</div>
-                    <div class="text-sm text-gray-700">
-                        <div>a. 10 (DEZ) TÉCNICAS DE NAGUE-WAZA (PROJEÇÕES)</div>
-                        <div>b. 4 (QUATRO) TÉCNICAS DE OSSAE-WAZA (IMOBILIZAÇÕES)</div>
-                        <div>c. 3 (TRÊS) TÉCNICAS DE KANSETSU-WAZA (CHAVE DE BRAÇO)</div>
-                        <div>d. 3 (TRÊS) TÉCNICAS DE SHIME-WAZA (ESTRANGULAMENTO)</div>
-                        <div>e. 4 (QUATRO) TÉCNICAS DE RENRAKUENKA-WAZA (ATAQUES SUCESSIVOS)</div>
-                        <div>f. 7 (SETE) TÉCNICAS DE KAESHI-WAZA (CONTRA GOLPES)</div>
-                    </div>
+                <div class="bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500 habilidade-item">
+                    Idade mínima: 12 anos de idade
                 </div>
             </div>
-            
+        </div>
+        
+        <!-- Seção de Habilidades -->
+        <div class="w-full text-center mb-4">
+            <h2 class="font-bold text-gray-700 text-2xl">Habilidades</h2>
+            <div id="habilidadesTyping" class="flex flex-wrap justify-center gap-4 mt-2">
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    12 técnicas de Nague-waza (Projeções)
+                </div>
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    4 técnicas de Ossae-komi (Imobilizações)
+                </div>
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    4 tipos de Kansetsu-waza (Chave de braço)
+                </div>
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    6 tipos de Shime-waza (Estrangulamento)
+                </div>
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    4 técnicas de Renrakuenka-waza (Ataques sucessivos)
+                </div>
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    7 técnicas de Kaeshi-waza (Contra golpes)
+                </div>
+            </div>
         </div>
         <!-- Divs de Navegação Japonesa -->
-        <div class="flex justify-center gap-8 mb-8">
-            <div class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-blue-400 hover:bg-gradient-to-br hover:from-blue-50 hover:to-white transform hover:-translate-y-2">
-                <div class="absolute inset-0 bg-gradient-to-r from-blue-400/0 to-blue-400/0 group-hover:from-blue-400/10 group-hover:to-blue-400/5 transition-all duration-500"></div>
-                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:rotate-12">🥋</div>
-                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-blue-700 group-hover:scale-105">Palavras</div>
-                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-blue-600">Japonês</div>
+        <div class="japanese-nav-container">
+            <div class="text-center mb-4">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">🥋 Navegação Japonesa</h3>
+                <p class="text-gray-600 text-sm">Escolha uma categoria para começar sua jornada</p>
             </div>
             
-            <div class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-green-400 hover:bg-gradient-to-br hover:from-green-50 hover:to-white transform hover:-translate-y-2">
-                <div class="absolute inset-0 bg-gradient-to-r from-green-400/0 to-green-400/0 group-hover:from-green-400/10 group-hover:to-green-400/5 transition-all duration-500"></div>
-                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-spin">🔄</div>
-                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-green-700 group-hover:scale-105">Rolamentos</div>
-                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-green-600">Ukemi</div>
-            </div>
-            
-            <div id="nage-waza-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-orange-400 hover:bg-gradient-to-br hover:from-orange-50 hover:to-white transform hover:-translate-y-2">
-                <div class="absolute inset-0 bg-gradient-to-r from-orange-400/0 to-orange-400/0 group-hover:from-orange-400/10 group-hover:to-orange-400/5 transition-all duration-500"></div>
-                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-pulse">💥</div>
-                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-orange-700 group-hover:scale-105">Quedas</div>
-                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-orange-600">Nage-waza</div>
-            </div>
-            
-            <div id="imobilizacoes-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-purple-400 hover:bg-gradient-to-br hover:from-purple-50 hover:to-white transform hover:-translate-y-2">
-                <div class="absolute inset-0 bg-gradient-to-r from-purple-400/0 to-purple-400/0 group-hover:from-purple-400/10 group-hover:to-purple-400/5 transition-all duration-500"></div>
-                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-bounce">🔒</div>
-                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-purple-700 group-hover:scale-105">Imobilizações</div>
-                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-purple-600">Osaekomi-waza</div>
-            </div>
-            
-            <div id="chave-braco-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-red-400 hover:bg-gradient-to-br hover:from-red-50 hover:to-white transform hover:-translate-y-2">
-                <div class="absolute inset-0 bg-gradient-to-r from-red-400/0 to-red-400/0 group-hover:from-red-400/10 group-hover:to-red-400/5 transition-all duration-500"></div>
-                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-ping">🦴</div>
-                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-red-700 group-hover:scale-105">Chave de Braço</div>
-                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-red-600">Kansetsu-waza</div>
-            </div>
-            
-            <div id="estrangulamento-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-pink-400 hover:bg-gradient-to-br hover:from-pink-50 hover:to-white transform hover:-translate-y-2">
-                <div class="absolute inset-0 bg-gradient-to-r from-pink-400/0 to-pink-400/0 group-hover:from-pink-400/10 group-hover:to-pink-400/5 transition-all duration-500"></div>
-                <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-pulse">💀</div>
-                <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-pink-700 group-hover:scale-105">Estrangulamento</div>
-                <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-pink-600">Shime-waza</div>
+            <div class="flex justify-center gap-8 mb-8">
+                <div class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-blue-400 hover:bg-gradient-to-br hover:from-blue-50 hover:to-white transform hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-400/0 to-blue-400/0 group-hover:from-blue-400/10 group-hover:to-blue-400/5 transition-all duration-500"></div>
+                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:rotate-12">🥋</div>
+                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-blue-700 group-hover:scale-105">Palavras</div>
+                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-blue-600">Japonês</div>
+                </div>
+                
+                <div class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-green-400 hover:bg-gradient-to-br hover:from-green-50 hover:to-white transform hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-r from-green-400/0 to-green-400/0 group-hover:from-green-400/10 group-hover:to-green-400/5 transition-all duration-500"></div>
+                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-spin">🔄</div>
+                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-green-700 group-hover:scale-105">Rolamentos</div>
+                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-green-600">Ukemi</div>
+                </div>
+                
+                <div id="nage-waza-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-orange-400 hover:bg-gradient-to-br hover:from-orange-50 hover:to-white transform hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-r from-orange-400/0 to-orange-400/0 group-hover:from-orange-400/10 group-hover:to-orange-400/5 transition-all duration-500"></div>
+                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-pulse">💥</div>
+                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-orange-700 group-hover:scale-105">Quedas</div>
+                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-orange-600">Nage-waza</div>
+                </div>
+                
+                <div id="imobilizacoes-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-purple-400 hover:bg-gradient-to-br hover:from-purple-50 hover:to-white transform hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-400/0 to-purple-400/0 group-hover:from-purple-400/10 group-hover:to-purple-400/5 transition-all duration-500"></div>
+                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-bounce">🔒</div>
+                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-purple-700 group-hover:scale-105">Imobilizações</div>
+                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-purple-600">Osaekomi-waza</div>
+                </div>
+                
+                <div id="chave-braco-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-red-400 hover:bg-gradient-to-br hover:from-red-50 hover:to-white transform hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-r from-red-400/0 to-red-400/0 group-hover:from-red-400/10 group-hover:to-red-400/5 transition-all duration-500"></div>
+                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-ping">🦴</div>
+                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-red-700 group-hover:scale-105">Chave de Braço</div>
+                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-red-600">Kansetsu-waza</div>
+                </div>
+                
+                <div id="estrangulamento-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-pink-400 hover:bg-gradient-to-br hover:from-pink-50 hover:to-white transform hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-r from-pink-400/0 to-pink-400/0 group-hover:from-pink-400/10 group-hover:to-pink-400/5 transition-all duration-500"></div>
+                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-pulse">💀</div>
+                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-pink-700 group-hover:scale-105">Estrangulamento</div>
+                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-pink-600">Shime-waza</div>
+                </div>
             </div>
         </div>
 
@@ -291,9 +566,9 @@
                     </svg>
                 </button>
                 <!-- Carrossel -->
-                <div id="carouselProj" class="flex overflow-x-auto gap-8 pb-4 scroll-smooth snap-x snap-mandatory hide-scrollbar">
+                <div id="carouselProj" class="flex overflow-x-auto gap-4 pb-4 scroll-smooth hide-scrollbar justify-start">
                     <!-- Técnica 1 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[350px] max-w-[420px] flex-shrink-0">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
@@ -318,7 +593,7 @@
                         </div>
                     </div>
                     <!-- Técnica 2 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[350px] max-w-[420px] flex-shrink-0">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
@@ -343,7 +618,7 @@
                         </div>
                     </div>
                     <!-- Técnica 3 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[350px] max-w-[420px] flex-shrink-0">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
@@ -368,7 +643,7 @@
                         </div>
                     </div>
                     <!-- Técnica 4 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[350px] max-w-[420px] flex-shrink-0">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
@@ -393,7 +668,7 @@
                         </div>
                     </div>
                     <!-- Técnica 5 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[350px] max-w-[420px] flex-shrink-0">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
@@ -418,7 +693,7 @@
                         </div>
                     </div>
                     <!-- Técnica 6 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[350px] max-w-[420px] flex-shrink-0">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
@@ -468,7 +743,7 @@
                         </div>
                     </div>
                     <!-- Técnica 8 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[350px] max-w-[420px] flex-shrink-0">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
@@ -493,7 +768,7 @@
                         </div>
                     </div>
                     <!-- Técnica 9 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[350px] max-w-[420px] flex-shrink-0">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
@@ -518,7 +793,7 @@
                         </div>
                     </div>
                     <!-- Técnica 10 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[350px] max-w-[420px] flex-shrink-0">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
@@ -543,7 +818,7 @@
                         </div>
                     </div>
                     <!-- Técnica 11 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[350px] max-w-[420px] flex-shrink-0">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
@@ -568,7 +843,7 @@
                         </div>
                     </div>
                     <!-- Técnica 12 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[350px] max-w-[420px] flex-shrink-0">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
@@ -607,46 +882,59 @@
             </div>
         </section>
         <style>
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        #carouselProj {
-            scroll-behavior: smooth;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            transition: box-shadow 0.3s;
-        }
-        #carouselProj > div {
-            min-width: 370px;
-            max-width: 440px;
-            flex: 0 0 auto;
-            scroll-snap-align: center;
-            height: 340px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: stretch;
-            transition: transform 0.35s cubic-bezier(.68,-0.55,.27,1.55), box-shadow 0.3s, filter 0.3s, opacity 0.3s;
-            box-shadow: 0 2px 16px 0 rgba(124,58,237,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
-            opacity: 1;
-            filter: blur(0px);
-            margin-right: 18px;
-        }
-        #carouselProj > div:last-child {
-            margin-right: 0;
-        }
-        #carouselProj > div.active,
-        #carouselProj > div:hover {
-            transform: none;
-            box-shadow: 0 2px 16px 0 rgba(124,58,237,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
-            opacity: 1;
-            filter: blur(0px);
-        }
-        #carouselProj > div:not(.active) {
-            opacity: 1;
-            filter: blur(0px);
-        }
+       .hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+#carouselProj {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    transition: box-shadow 0.3s;
+    padding-right: 20px;
+    scroll-snap-type: none;  /* Apenas aqui */
+    gap: 12px; /* espaçamento entre cards sem padding estranho */
+}
+
+#carouselProj > div {
+    min-width: 350px;
+    max-width: 420px;
+    flex: 0 0 auto;
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    transition: transform 0.35s cubic-bezier(.68,-0.55,.27,1.55), box-shadow 0.3s, filter 0.3s, opacity 0.3s;
+    box-shadow: 0 2px 16px 0 rgba(124,58,237,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
+    opacity: 1;
+    filter: blur(0px);
+    flex-shrink: 0;
+    scroll-snap-align: none; /* garante que não alinha sozinho */
+}
+
+#carouselProj > div:last-child {
+    margin-right: 0; /* não precisa de padding-right aqui */
+}
+
+#carouselProj > div.active,
+#carouselProj > div:hover {
+    transform: none;
+    box-shadow: 0 2px 16px 0 rgba(124,58,237,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
+    opacity: 1;
+    filter: blur(0px);
+}
+
+#carouselProj > div:not(.active) {
+    opacity: 1;
+    filter: blur(0px);
+}
+
+        
         @media (max-width: 700px) {
             #carouselProj > div { min-width: 98vw; max-width: 99vw; height: 320px; }
+            #carouselChave > div { min-width: 98vw; max-width: 99vw; height: 320px; }
+            #carouselEstrang > div { min-width: 98vw; max-width: 99vw; height: 320px; }
         }
         .carousel-arrow-anim {
             animation: arrow-bounce 0.7s;
@@ -680,12 +968,17 @@
         #carouselProj .bg-judo-purpleLight {
             margin-top: 2px;
         }
+        #carouselChave {
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            transition: box-shadow 0.3s;
+            padding-right: 20px; /* Adicionar padding para permitir scroll completo */
+        }
         #carouselChave > div {
-            min-width: 370px;
-            max-width: 440px;
+            min-width: 350px;
+            max-width: 420px;
             flex: 0 0 auto;
-            scroll-snap-align: center;
-            height: 340px;
+            height: 380px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -694,10 +987,11 @@
             box-shadow: 0 2px 16px 0 rgba(124,58,237,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
             opacity: 1;
             filter: blur(0px);
-            margin-right: 18px;
+            margin-right: 12px;
         }
         #carouselChave > div:last-child {
             margin-right: 0;
+            padding-right: 40px; /* Aumentar padding para garantir que a última div seja visível */
         }
         #carouselChave > div.active,
         #carouselChave > div:hover {
@@ -737,23 +1031,30 @@
         }
         if (carousel && leftBtn && rightBtn) {
             leftBtn.addEventListener('click', () => {
-                carousel.scrollBy({ left: -carousel.offsetWidth * 0.8, behavior: 'smooth' });
+                carousel.scrollBy({ left: -carousel.offsetWidth * 0.6, behavior: 'smooth' });
                 leftBtn.classList.add('carousel-arrow-anim');
                 setTimeout(() => leftBtn.classList.remove('carousel-arrow-anim'), 700);
             });
             rightBtn.addEventListener('click', () => {
-                carousel.scrollBy({ left: carousel.offsetWidth * 0.8, behavior: 'smooth' });
+                // Se estiver próximo do final, ir direto para o final
+                const remainingScroll = carousel.scrollWidth - carousel.scrollLeft - carousel.offsetWidth;
+                if (remainingScroll < carousel.offsetWidth * 0.8) {
+                    carousel.scrollTo({ left: carousel.scrollWidth - carousel.offsetWidth, behavior: 'smooth' });
+                } else {
+                    carousel.scrollBy({ left: carousel.offsetWidth * 0.6, behavior: 'smooth' });
+                }
                 rightBtn.classList.add('carousel-arrow-anim');
                 setTimeout(() => rightBtn.classList.remove('carousel-arrow-anim'), 700);
             });
             // Mostrar/esconder botões conforme scroll
             const updateButtons = () => {
                 leftBtn.style.display = carousel.scrollLeft > 10 ? 'flex' : 'none';
-                rightBtn.style.display = (carousel.scrollLeft + carousel.offsetWidth < carousel.scrollWidth - 10) ? 'flex' : 'none';
+                // Verificar se chegou ao final do carrossel com margem de erro
+                const isAtEnd = carousel.scrollLeft + carousel.offsetWidth >= carousel.scrollWidth - 20;
+                rightBtn.style.display = isAtEnd ? 'none' : 'flex';
             };
             carousel.addEventListener('scroll', () => {
                 updateButtons();
-                setActiveCard();
             });
             window.addEventListener('resize', () => {
                 updateButtons();
@@ -764,25 +1065,7 @@
                 setActiveCard();
             }, 300);
         }
-        // Snap elástico ao parar de rolar
-        let isScrolling;
-        carousel.addEventListener('scroll', function() {
-            window.clearTimeout(isScrolling);
-            isScrolling = setTimeout(() => {
-                // Snap para o card mais próximo
-                const cards = Array.from(carousel.children);
-                const scrollCenter = carousel.scrollLeft + carousel.offsetWidth / 2;
-                let minDist = Infinity, snapIdx = 0;
-                getCardCenters().forEach((center, i) => {
-                    const dist = Math.abs(center - scrollCenter);
-                    if (dist < minDist) { minDist = dist; snapIdx = i; }
-                });
-                const target = cards[snapIdx];
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-                }
-            }, 220);
-        });
+        // Removido o snap elástico para permitir scroll livre
         </script>
         <!-- Seção de Imobilizações -->
         <section id="imobilizacoes-section" class="mb-12 hidden">
@@ -802,7 +1085,7 @@
                     </svg>
                 </button>
                 <!-- Carrossel -->
-                <div id="carouselImob" class="flex overflow-x-auto gap-8 pb-4 scroll-smooth snap-x snap-mandatory hide-scrollbar">
+                <div id="carouselImob" class="flex overflow-x-auto gap-4 pb-4 scroll-smooth hide-scrollbar">
                     <!-- Imobilização 1 -->
                     <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
                         <div class="flex items-center mb-3 justify-between">
@@ -935,7 +1218,7 @@
                     </svg>
                 </button>
                 <!-- Carrossel -->
-                <div id="carouselChave" class="flex overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory hide-scrollbar">
+                <div id="carouselChave" class="flex overflow-x-auto gap-4 pb-4 scroll-smooth hide-scrollbar">
                     <!-- Chave de Braço 1 -->
                 <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
                     <div class="flex items-center mb-3 justify-between">
@@ -1069,7 +1352,7 @@
                     </svg>
                 </button>
                 <!-- Carrossel -->
-                <div id="carouselEstrang" class="flex overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory hide-scrollbar">
+                <div id="carouselEstrang" class="flex overflow-x-auto gap-4 pb-4 scroll-smooth hide-scrollbar">
                     <!-- Estrangulamento 1 -->
                 <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
                     <div class="flex items-center mb-3 justify-between">
@@ -1298,6 +1581,68 @@
         </button>
 
     </main>
+    <!-- Modal de Parabéns -->
+    <div id="congratulationsModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] hidden items-center justify-center">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-2xl mx-4 p-8 text-center relative overflow-hidden">
+            <!-- Partículas de fundo -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                <div class="celebration-particle" style="--delay: 0s; --x: 10%; --y: 20%"></div>
+                <div class="celebration-particle" style="--delay: 0.2s; --x: 80%; --y: 30%"></div>
+                <div class="celebration-particle" style="--delay: 0.4s; --x: 20%; --y: 70%"></div>
+                <div class="celebration-particle" style="--delay: 0.6s; --x: 70%; --y: 80%"></div>
+                <div class="celebration-particle" style="--delay: 0.8s; --x: 50%; --y: 10%"></div>
+                <div class="celebration-particle" style="--delay: 1s; --x: 90%; --y: 60%"></div>
+            </div>
+            
+            <!-- Conteúdo principal -->
+            <div class="relative z-10">
+                <!-- Ícone de troféu animado -->
+                <div class="trophy-container mb-6">
+                    <div class="trophy-icon">🏆</div>
+                    <div class="trophy-glow"></div>
+                </div>
+                
+                <!-- Título principal -->
+                <h1 class="congratulations-title text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-500 via-violet-500 to-indigo-500 bg-clip-text text-transparent">
+                    Parabéns!
+                </h1>
+                
+                <!-- Subtítulo -->
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
+                    Você Concluiu a <span class="text-gradient">Faixa Roxa</span>!
+                </h2>
+                
+                <!-- Mensagem motivacional -->
+                <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                    Sua dedicação e disciplina foram fundamentais para alcançar este marco. 
+                    Continue treinando e evoluindo no caminho do judô!
+                </p>
+                
+                <!-- Estatísticas -->
+                <div class="stats-grid grid grid-cols-2 gap-4 mb-8">
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Progresso</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">37</div>
+                        <div class="stat-label">Técnicas Dominadas</div>
+                    </div>
+                </div>
+                
+                <!-- Botões de ação -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button id="continueTraining" class="continue-btn bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white px-8 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Continuar Treinando
+                    </button>
+                    <button id="closeCongratulations" class="close-btn bg-gray-500 hover:bg-gray-600 text-white px-8 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-6 px-4 mt-8">
         <div class="max-w-6xl mx-auto text-center">
@@ -1317,6 +1662,8 @@
             const floatingProgress = document.getElementById('floatingProgress');
             const floatingProgressBar = document.getElementById('floatingProgressBar');
             const floatingProgressText = document.getElementById('floatingProgressText');
+            
+            let hasShownCongratulations = false;
             // Função para atualizar progresso
             function updateProgress() {
                 const totalProjChecked = document.querySelectorAll('.proj-checkbox:checked').length;
@@ -1328,6 +1675,32 @@
                 const progress = (completedQuestions / totalQuestions) * 100;
                 progressBar.style.width = progress + '%';
                 progressText.textContent = Math.round(progress) + '%';
+                
+                // Verificar se chegou a 100% e mostrar parabéns
+                if (progress >= 100 && !hasShownCongratulations) {
+                    console.log('Progress is 100% - checking for congratulations');
+                    
+                    // Verificar se todos os checkboxes estão marcados
+                    const allChecked = Array.from(projCheckboxes).every(cb => cb.checked) && 
+                                     Array.from(imobCheckboxes).every(cb => cb.checked) &&
+                                     Array.from(chaveCheckboxes).every(cb => cb.checked) &&
+                                     Array.from(estrangCheckboxes).every(cb => cb.checked);
+                    
+                    if (allChecked) {
+                        console.log('Showing congratulations!');
+                        setTimeout(() => {
+                            showCongratulations();
+                        }, 500);
+                    }
+                }
+                
+                // Verificação adicional: se todos os checkboxes estão marcados, mostrar parabéns
+                if (completedQuestions >= 37 && !hasShownCongratulations) {
+                    console.log('Todos os 37 checkboxes marcados - mostrando parabéns!');
+                    setTimeout(() => {
+                        showCongratulations();
+                    }, 500);
+                }
             }
 
             // Função para mostrar barra de progresso flutuante
@@ -1379,6 +1752,88 @@
                 });
             });
             updateProgress();
+            
+            // --- SISTEMA DE PARABÉNS ---
+            
+            // Função para mostrar modal de parabéns
+            function showCongratulations() {
+                console.log('=== SHOW CONGRATULATIONS ===');
+                
+                const modal = document.getElementById('congratulationsModal');
+                if (!modal) {
+                    console.log('ERRO: Modal não encontrado!');
+                    return;
+                }
+                
+                console.log('Modal encontrado, mostrando...');
+                
+                // Forçar exibição
+                modal.style.display = 'flex';
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                modal.style.opacity = '1';
+                modal.style.visibility = 'visible';
+                modal.style.pointerEvents = 'auto';
+                
+                hasShownCongratulations = true;
+                
+                // Adicionar animação de entrada
+                const modalContent = modal.querySelector('div');
+                if (modalContent) {
+                    modalContent.classList.add('modal-enter');
+                }
+                
+                // Salvar que já mostrou parabéns
+                localStorage.setItem('congratulationsShown', 'true');
+                
+                // Scroll suave para o topo
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                console.log('Modal deve estar visível agora!');
+                console.log('=== FIM SHOW CONGRATULATIONS ===');
+            }
+            
+            // Função para fechar modal
+            function closeCongratulations() {
+                console.log('Closing congratulations modal');
+                const modal = document.getElementById('congratulationsModal');
+                if (modal) {
+                    modal.style.display = 'none';
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                    console.log('Modal closed successfully');
+                } else {
+                    console.log('Modal not found for closing');
+                }
+            }
+            
+            // Event listeners para botões do modal
+            function initializeCongratulationsButtons() {
+                const continueBtn = document.getElementById('continueTraining');
+                const closeBtn = document.getElementById('closeCongratulations');
+                
+                console.log('Initializing congratulations buttons');
+                console.log('Continue button found:', !!continueBtn);
+                console.log('Close button found:', !!closeBtn);
+                
+                if (continueBtn) {
+                    continueBtn.addEventListener('click', function() {
+                        console.log('Continue training clicked');
+                        closeCongratulations();
+                        // Aqui você pode adicionar lógica para continuar treinando
+                    });
+                }
+                
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', function() {
+                        console.log('Close congratulations clicked');
+                        closeCongratulations();
+                    });
+                }
+            }
+            
+            // Inicializar botões do modal
+            initializeCongratulationsButtons();
 
             // Botão voltar ao topo
             const backToTopBtn = document.getElementById('backToTop');
@@ -1577,6 +2032,35 @@
                 }
             }, 2000);
 
+            // JavaScript para carrossel de Projeções
+            const carouselProj = document.getElementById('carouselProj');
+            const projLeftBtn = document.getElementById('carouselLeft');
+            const projRightBtn = document.getElementById('carouselRight');
+            
+            if (carouselProj && projLeftBtn && projRightBtn) {
+                projLeftBtn.addEventListener('click', () => {
+                    carouselProj.scrollBy({ left: -carouselProj.offsetWidth * 0.8, behavior: 'smooth' });
+                    projLeftBtn.classList.add('carousel-arrow-anim');
+                    setTimeout(() => projLeftBtn.classList.remove('carousel-arrow-anim'), 700);
+                });
+                projRightBtn.addEventListener('click', () => {
+                    carouselProj.scrollBy({ left: carouselProj.offsetWidth * 0.8, behavior: 'smooth' });
+                    projRightBtn.classList.add('carousel-arrow-anim');
+                    setTimeout(() => projRightBtn.classList.remove('carousel-arrow-anim'), 700);
+                });
+                
+                const updateProjBtns = () => {
+                    projLeftBtn.style.display = carouselProj.scrollLeft > 10 ? 'flex' : 'none';
+                    // Ajustar a condição para mostrar o botão direito até o final
+                    const isAtEnd = carouselProj.scrollLeft + carouselProj.offsetWidth >= carouselProj.scrollWidth - 20;
+                    projRightBtn.style.display = isAtEnd ? 'none' : 'flex';
+                };
+                
+                carouselProj.addEventListener('scroll', updateProjBtns);
+                window.addEventListener('resize', updateProjBtns);
+                setTimeout(updateProjBtns, 300);
+            }
+
             // JavaScript para carrossel de Imobilizações
             const carouselImob = document.getElementById('carouselImob');
             const imobLeftBtn = document.getElementById('carouselImobLeft');
@@ -1584,11 +2068,31 @@
             
             if (carouselImob && imobLeftBtn && imobRightBtn) {
                 imobLeftBtn.addEventListener('click', () => {
-                    carouselImob.scrollBy({ left: -carouselImob.offsetWidth * 0.8, behavior: 'smooth' });
+                    carouselImob.scrollBy({ left: -carouselImob.offsetWidth * 0.6, behavior: 'smooth' });
+                    imobLeftBtn.classList.add('carousel-arrow-anim');
+                    setTimeout(() => imobLeftBtn.classList.remove('carousel-arrow-anim'), 700);
                 });
                 imobRightBtn.addEventListener('click', () => {
-                    carouselImob.scrollBy({ left: carouselImob.offsetWidth * 0.8, behavior: 'smooth' });
+                    // Se estiver próximo do final, ir direto para o final
+                    const remainingScroll = carouselImob.scrollWidth - carouselImob.scrollLeft - carouselImob.offsetWidth;
+                    if (remainingScroll < carouselImob.offsetWidth * 0.8) {
+                        carouselImob.scrollTo({ left: carouselImob.scrollWidth - carouselImob.offsetWidth, behavior: 'smooth' });
+                    } else {
+                        carouselImob.scrollBy({ left: carouselImob.offsetWidth * 0.6, behavior: 'smooth' });
+                    }
+                    imobRightBtn.classList.add('carousel-arrow-anim');
+                    setTimeout(() => imobRightBtn.classList.remove('carousel-arrow-anim'), 700);
                 });
+                
+                const updateImobBtns = () => {
+                    imobLeftBtn.style.display = carouselImob.scrollLeft > 10 ? 'flex' : 'none';
+                    const isAtEnd = carouselImob.scrollLeft + carouselImob.offsetWidth >= carouselImob.scrollWidth - 20;
+                    imobRightBtn.style.display = isAtEnd ? 'none' : 'flex';
+                };
+                
+                carouselImob.addEventListener('scroll', updateImobBtns);
+                window.addEventListener('resize', updateImobBtns);
+                setTimeout(updateImobBtns, 300);
             }
 
             // JavaScript para carrossel de Chave de Braço
@@ -1599,10 +2103,24 @@
             if (carouselChave && chaveLeftBtn && chaveRightBtn) {
                 chaveLeftBtn.addEventListener('click', () => {
                     carouselChave.scrollBy({ left: -carouselChave.offsetWidth * 0.8, behavior: 'smooth' });
+                    chaveLeftBtn.classList.add('carousel-arrow-anim');
+                    setTimeout(() => chaveLeftBtn.classList.remove('carousel-arrow-anim'), 700);
                 });
                 chaveRightBtn.addEventListener('click', () => {
                     carouselChave.scrollBy({ left: carouselChave.offsetWidth * 0.8, behavior: 'smooth' });
+                    chaveRightBtn.classList.add('carousel-arrow-anim');
+                    setTimeout(() => chaveRightBtn.classList.remove('carousel-arrow-anim'), 700);
                 });
+                
+                const updateChaveBtns = () => {
+                    chaveLeftBtn.style.display = carouselChave.scrollLeft > 10 ? 'flex' : 'none';
+                    const isAtEnd = carouselChave.scrollLeft + carouselChave.offsetWidth >= carouselChave.scrollWidth - 20;
+                    chaveRightBtn.style.display = isAtEnd ? 'none' : 'flex';
+                };
+                
+                carouselChave.addEventListener('scroll', updateChaveBtns);
+                window.addEventListener('resize', updateChaveBtns);
+                setTimeout(updateChaveBtns, 300);
             }
 
             // JavaScript para carrossel de Estrangulamento
@@ -1613,10 +2131,24 @@
             if (carouselEstrang && estrangLeftBtn && estrangRightBtn) {
                 estrangLeftBtn.addEventListener('click', () => {
                     carouselEstrang.scrollBy({ left: -carouselEstrang.offsetWidth * 0.8, behavior: 'smooth' });
+                    estrangLeftBtn.classList.add('carousel-arrow-anim');
+                    setTimeout(() => estrangLeftBtn.classList.remove('carousel-arrow-anim'), 700);
                 });
                 estrangRightBtn.addEventListener('click', () => {
                     carouselEstrang.scrollBy({ left: carouselEstrang.offsetWidth * 0.8, behavior: 'smooth' });
+                    estrangRightBtn.classList.add('carousel-arrow-anim');
+                    setTimeout(() => estrangRightBtn.classList.remove('carousel-arrow-anim'), 700);
                 });
+                
+                const updateEstrangBtns = () => {
+                    estrangLeftBtn.style.display = carouselEstrang.scrollLeft > 10 ? 'flex' : 'none';
+                    const isAtEnd = carouselEstrang.scrollLeft + carouselEstrang.offsetWidth >= carouselEstrang.scrollWidth - 20;
+                    estrangRightBtn.style.display = isAtEnd ? 'none' : 'flex';
+                };
+                
+                carouselEstrang.addEventListener('scroll', updateEstrangBtns);
+                window.addEventListener('resize', updateEstrangBtns);
+                setTimeout(updateEstrangBtns, 300);
             }
 
         });

@@ -19,6 +19,16 @@ class Profile(models.Model):
         ('preta', 'Preta'),
     ]
     faixa = models.CharField(max_length=10, choices=FAIXAS)
+    
 
     def __str__(self):
         return self.nome
+
+
+    
+    def __str__(self):
+        return f"{self.profile.nome} - {self.faixa_anterior} → {self.faixa_atual}"
+    
+    class Meta:
+        verbose_name = "Histórico de Faixas"
+        verbose_name_plural = "Históricos de Faixas"
