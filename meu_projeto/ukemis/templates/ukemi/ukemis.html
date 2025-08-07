@@ -13,7 +13,9 @@
                 extend: {
                     colors: {
                         judo: {
-                            emerald: '#10B981',
+                            emerald: '#059669',
+                            emeraldLight: '#10B981',
+                            emeraldDark: '#047857',
                             gray: '#6B7280',
                             blue: '#3B82F6',
                             yellow: '#FBBF24',
@@ -40,14 +42,14 @@
         }
         .card-hover:hover {
             transform: translateY(-8px);
-            box-shadow: 0 25px 50px -12px rgba(16,185,129,0.25);
+            box-shadow: 0 25px 50px -12px rgba(5,150,105,0.25);
         }
         .video-container {
             position: relative;
             width: 100%;
             height: 250px;
             border-radius: 12px;
-            box-shadow: 0 8px 20px -5px rgba(16,185,129,0.10);
+            box-shadow: 0 8px 20px -5px rgba(5,150,105,0.10);
             overflow: hidden;
         }
         .video-container iframe {
@@ -64,7 +66,7 @@
             background: linear-gradient(90deg, transparent, #D1FAE5, transparent);
         }
         .text-gradient {
-            background: linear-gradient(45deg, #10B981, #059669);
+            background: linear-gradient(45deg, #059669, #047857);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -115,23 +117,12 @@
             opacity: 0 !important;
             visibility: hidden !important;
             pointer-events: none !important;
-            display: none !important;
         }
         
         #congratulationsModal:not(.hidden) {
             opacity: 1 !important;
             visibility: visible !important;
             pointer-events: auto !important;
-            display: flex !important;
-        }
-        
-        /* Forçar exibição do modal quando necessário */
-        #congratulationsModal.show {
-            display: flex !important;
-            opacity: 1 !important;
-            visibility: visible !important;
-            pointer-events: auto !important;
-            z-index: 9999 !important;
         }
         
         /* Troféu animado */
@@ -268,6 +259,27 @@
             font-weight: 500;
         }
         
+        /* Botões animados */
+        .continue-btn, .close-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .continue-btn::before, .close-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .continue-btn:hover::before, .close-btn:hover::before {
+            left: 100%;
+        }
+        
         /* Estilos para a barra flutuante */
         .floating-action {
             animation: float 3s ease-in-out infinite;
@@ -288,10 +300,10 @@
             <div class="flex items-center justify-between mb-4">
                 <div>
                     <h1 class="text-3xl md:text-4xl font-bold mb-2 flex items-center gap-3">
-                        <span class="inline-block w-12 h-8 bg-emerald-400 rounded mr-2"></span>
+                        <img src="{% static 'rolamento.png' %}" alt="Rolamento" class="w-12 h-12 object-contain">
                         Rolamentos (Ukemi)
                     </h1>
-                    <p class="text-emerald-100 text-lg">A base da segurança e evolução no judô</p>
+                    <p class="text-white text-lg font-medium">A base da segurança e evolução no judô</p>
                 </div>
                 <a href="/index/" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
                     ← Voltar
@@ -301,7 +313,7 @@
             <div class="bg-white/20 rounded-full h-5 mb-3 shadow-inner">
                 <div class="progress-bar bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full h-5 shadow-lg transition-all duration-500" style="width: 0%" id="progressBar"></div>
             </div>
-            <p class="text-base font-semibold text-white">Progresso: <span id="progressText" class="text-emerald-200">0%</span></p>
+            <p class="text-base font-semibold text-white">Progresso: <span id="progressText" class="text-white font-bold">0%</span></p>
         </div>
     </header>
     
@@ -370,7 +382,7 @@
                             </div>
                             <div>
                                 <h3 class="text-lg font-bold text-gray-800">Rolinho (Cambalhota)</h3>
-                                <p class="text-emerald-700 text-sm">Rolamento básico para iniciantes</p>
+                                <p class="text-emerald-700 text-sm font-medium">Rolamento básico para iniciantes</p>
                             </div>
                         </div>
                         <label class="flex items-center ml-2 select-none">
@@ -396,7 +408,7 @@
                             </div>
                             <div>
                                 <h3 class="text-lg font-bold text-gray-800">Ushiro-ukemi</h3>
-                                <p class="text-emerald-700 text-sm">Rolamento para trás</p>
+                                <p class="text-emerald-600 text-sm font-medium">Rolamento para trás</p>
                             </div>
                         </div>
                         <label class="flex items-center ml-2 select-none">
@@ -422,7 +434,7 @@
                             </div>
                             <div>
                                 <h3 class="text-lg font-bold text-gray-800">Zenpo-kaiten</h3>
-                                <p class="text-emerald-700 text-sm">Rolamento para frente com giro</p>
+                                <p class="text-emerald-600 text-sm font-medium">Rolamento para frente com giro</p>
                             </div>
                         </div>
                         <label class="flex items-center ml-2 select-none">
@@ -448,7 +460,7 @@
                             </div>
                             <div>
                                 <h3 class="text-lg font-bold text-gray-800">Mae-ukemi</h3>
-                                <p class="text-emerald-700 text-sm">Rolamento para frente</p>
+                                <p class="text-emerald-600 text-sm font-medium">Rolamento para frente</p>
                             </div>
                         </div>
                         <label class="flex items-center ml-2 select-none">
@@ -497,7 +509,7 @@
     </main>
     
     <!-- Modal de Parabéns -->
-    <div id="congratulationsModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] hidden items-center justify-center" style="display: none;">
+    <div id="congratulationsModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] hidden items-center justify-center">
         <div class="bg-white rounded-3xl shadow-2xl max-w-2xl mx-4 p-8 text-center relative overflow-hidden">
             <!-- Partículas de fundo -->
             <div class="absolute inset-0 overflow-hidden pointer-events-none">
@@ -569,8 +581,6 @@
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('=== INICIANDO SCRIPT UKEMI ===');
-            
             const ukemiCheckboxes = document.querySelectorAll('.ukemi-checkbox');
             const progressBar = document.getElementById('progressBar');
             const progressText = document.getElementById('progressText');
@@ -578,14 +588,6 @@
             const floatingProgressBar = document.getElementById('floatingProgressBar');
             const floatingProgressText = document.getElementById('floatingProgressText');
             const congratulationsModal = document.getElementById('congratulationsModal');
-            
-            console.log('Checkboxes encontrados:', ukemiCheckboxes.length);
-            console.log('ProgressBar encontrado:', progressBar);
-            console.log('ProgressText encontrado:', progressText);
-            console.log('FloatingProgress encontrado:', floatingProgress);
-            console.log('FloatingProgressBar encontrado:', floatingProgressBar);
-            console.log('FloatingProgressText encontrado:', floatingProgressText);
-            console.log('CongratulationsModal encontrado:', congratulationsModal);
             
             let hasShownCongratulations = false;
             
@@ -619,22 +621,22 @@
                 progressText.textContent = Math.round(progress) + '%';
                 
                 // Verificar se chegou a 100% e mostrar parabéns
-                if (progress >= 100 && !hasShownCongratulations) {
-                    console.log('Progresso atingiu 100% - mostrando parabéns!');
-                    setTimeout(() => {
-                        showCongratulations();
-                    }, 500);
-                } else if (progress >= 100 && hasShownCongratulations) {
-                    console.log('Progresso 100% mas parabéns já foram mostrados (hasShownCongratulations = true)');
-                } else if (progress < 100) {
-                    console.log(`Progresso ${progress}% - ainda não atingiu 100%`);
+                if (progress >= 100 && totalChecked === totalQuestions && !hasShownCongratulations) {
+                    console.log('Condições atendidas - mostrando parabéns!');
+                    showCongratulations();
+                } else {
+                    console.log('Condições não atendidas:', {
+                        progress: progress,
+                        totalChecked: totalChecked,
+                        totalQuestions: totalQuestions,
+                        hasShownCongratulations: hasShownCongratulations
+                    });
                 }
             }
             
             // Função para mostrar modal de parabéns
             function showCongratulations() {
                 console.log('=== SHOW CONGRATULATIONS ===');
-                hasShownCongratulations = true;
                 
                 const modal = document.getElementById('congratulationsModal');
                 if (!modal) {
@@ -643,23 +645,16 @@
                 }
                 
                 console.log('Modal encontrado, mostrando...');
-                console.log('Estado inicial do modal:', {
-                    display: modal.style.display,
-                    opacity: modal.style.opacity,
-                    visibility: modal.style.visibility,
-                    classes: modal.className
-                });
                 
-                // Forçar exibição com múltiplas abordagens
+                // Forçar exibição
                 modal.style.display = 'flex';
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
                 modal.style.opacity = '1';
                 modal.style.visibility = 'visible';
                 modal.style.pointerEvents = 'auto';
-                modal.style.zIndex = '9999';
                 
-                // Remover classes que podem esconder e adicionar classe show
-                modal.classList.remove('hidden');
-                modal.classList.add('flex', 'show');
+                hasShownCongratulations = true;
                 
                 // Adicionar animação de entrada
                 const modalContent = modal.querySelector('div');
@@ -673,38 +668,21 @@
                 // Scroll suave para o topo
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 
-                console.log('Estado final do modal:', {
-                    display: modal.style.display,
-                    opacity: modal.style.opacity,
-                    visibility: modal.style.visibility,
-                    classes: modal.className
-                });
                 console.log('Modal deve estar visível agora!');
                 console.log('=== FIM SHOW CONGRATULATIONS ===');
-                
-                // Verificar se o modal está realmente visível
-                setTimeout(() => {
-                    const computedStyle = window.getComputedStyle(modal);
-                    console.log('Computed styles do modal:', {
-                        display: computedStyle.display,
-                        opacity: computedStyle.opacity,
-                        visibility: computedStyle.visibility,
-                        zIndex: computedStyle.zIndex
-                    });
-                }, 100);
             }
             
             // Função para fechar modal
             function closeCongratulations() {
-                console.log('Fechando modal de parabéns');
+                console.log('Closing congratulations modal');
                 const modal = document.getElementById('congratulationsModal');
                 if (modal) {
                     modal.style.display = 'none';
                     modal.classList.add('hidden');
                     modal.classList.remove('flex');
-                    console.log('Modal fechado com sucesso');
+                    console.log('Modal closed successfully');
                 } else {
-                    console.log('Modal não encontrado para fechar');
+                    console.log('Modal not found for closing');
                 }
             }
             
@@ -722,22 +700,48 @@
             });
             
             // Event listeners para botões do modal
-            document.getElementById('continueTraining')?.addEventListener('click', function() {
-                closeCongratulations();
-                // Aqui você pode adicionar redirecionamento para próxima página
-                window.location.href = '/index/';
-            });
+            function initializeCongratulationsButtons() {
+                const continueBtn = document.getElementById('continueTraining');
+                const closeBtn = document.getElementById('closeCongratulations');
+                
+                console.log('Initializing congratulations buttons');
+                console.log('Continue button found:', !!continueBtn);
+                console.log('Close button found:', !!closeBtn);
+                
+                if (continueBtn) {
+                    continueBtn.addEventListener('click', function() {
+                        console.log('Continue training clicked');
+                        closeCongratulations();
+                        // Aqui você pode adicionar redirecionamento para próxima página
+                        window.location.href = '/index/';
+                    });
+                }
+                
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', function() {
+                        console.log('Close congratulations clicked');
+                        closeCongratulations();
+                    });
+                }
+            }
             
-            document.getElementById('closeCongratulations')?.addEventListener('click', function() {
-                closeCongratulations();
-            });
+            // Inicializar botões do modal
+            initializeCongratulationsButtons();
             
-            // Verificar se já mostrou parabéns anteriormente
-            if (localStorage.getItem('ukemiCongratulationsShown') === 'true') {
-                hasShownCongratulations = true;
-                console.log('Parabéns já foram mostrados anteriormente');
+            // Limpar localStorage para teste (remover depois)
+            localStorage.removeItem('ukemiCongratulationsShown');
+            hasShownCongratulations = false;
+            console.log('LocalStorage limpo - modal pode aparecer');
+            
+            // Garantir que o modal esteja escondido inicialmente
+            const initialModal = document.getElementById('congratulationsModal');
+            if (initialModal) {
+                initialModal.style.display = 'none';
+                initialModal.classList.add('hidden');
+                initialModal.classList.remove('flex');
+                console.log('Modal escondido na inicialização');
             } else {
-                console.log('Primeira vez - parabéns podem ser mostrados');
+                console.log('ERRO: Modal não encontrado na inicialização');
             }
             
             // Função para limpar localStorage (remover depois)
@@ -747,82 +751,22 @@
                 console.log('LocalStorage limpo - parabéns podem ser mostrados novamente');
             };
             
-            // Inicializar progresso
-            updateProgress();
-            
-            // Função de teste para verificar modal (remover depois)
+            // Função para testar modal (remover depois)
             window.testModal = function() {
                 console.log('Testando modal...');
-                const modal = document.getElementById('congratulationsModal');
-                console.log('Modal encontrado:', modal);
-                if (modal) {
-                    console.log('Classes do modal:', modal.className);
-                    console.log('Display atual:', modal.style.display);
-                    console.log('Opacity atual:', modal.style.opacity);
-                }
                 showCongratulations();
             };
             
-            // Função para forçar progresso 100% (remover depois)
-            window.force100 = function() {
-                console.log('Forçando progresso 100%...');
-                ukemiCheckboxes.forEach(checkbox => {
-                    checkbox.checked = true;
-                });
-                updateProgress();
-            };
+            // Inicializar progresso (sem mostrar modal)
+            const initialChecked = document.querySelectorAll('.ukemi-checkbox:checked').length;
+            const initialTotal = ukemiCheckboxes.length;
+            const initialProgress = (initialChecked / initialTotal) * 100;
             
-            // Função para forçar modal (remover depois)
-            window.forceModal = function() {
-                console.log('Forçando exibição do modal...');
-                hasShownCongratulations = false;
-                showCongratulations();
-            };
+            console.log(`Inicialização: ${initialChecked}/${initialTotal} = ${initialProgress}%`);
             
-            // Função para verificar modal (remover depois)
-            window.checkModal = function() {
-                const modal = document.getElementById('congratulationsModal');
-                if (modal) {
-                    console.log('Modal encontrado no DOM');
-                    console.log('HTML do modal:', modal.outerHTML);
-                    console.log('Classes:', modal.className);
-                    console.log('Styles:', {
-                        display: modal.style.display,
-                        opacity: modal.style.opacity,
-                        visibility: modal.style.visibility,
-                        zIndex: modal.style.zIndex
-                    });
-                } else {
-                    console.log('ERRO: Modal não encontrado no DOM!');
-                }
-            };
-            
-            // Função para criar modal de teste (remover depois)
-            window.createTestModal = function() {
-                const testModal = document.createElement('div');
-                testModal.id = 'testModal';
-                testModal.style.cssText = `
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: rgba(0,0,0,0.5);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    z-index: 10000;
-                `;
-                testModal.innerHTML = `
-                    <div style="background: white; padding: 20px; border-radius: 10px;">
-                        <h2>Modal de Teste</h2>
-                        <p>Se você vê isso, o problema não é com modais em geral.</p>
-                        <button onclick="this.parentElement.parentElement.remove()">Fechar</button>
-                    </div>
-                `;
-                document.body.appendChild(testModal);
-                console.log('Modal de teste criado');
-            };
+            // Atualizar barras sem mostrar modal
+            progressBar.style.width = initialProgress + '%';
+            progressText.textContent = Math.round(initialProgress) + '%';
             
             // Verificar se os vídeos estão carregando
             const iframes = document.querySelectorAll('.video-container iframe');
