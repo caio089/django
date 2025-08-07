@@ -663,21 +663,9 @@
             background: rgba(255, 255, 255, 0.95) !important;
         }
         
-        .habilidade-item:active {
-            transform: translateY(-1px) scale(1.01);
-            transition: all 0.1s ease;
-        }
+
         
-        /* Efeito ripple sutil para cliques */
-        .ripple-effect {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(59, 130, 246, 0.3);
-            transform: scale(0);
-            animation: ripple 0.6s ease-out;
-            pointer-events: none;
-            z-index: 5;
-        }
+
         .stat-card {
             background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
             border: 2px solid #e2e8f0;
@@ -1366,38 +1354,7 @@
                 item.style.animationDelay = '0s';
             });
             
-            // Selecionar elementos de habilidades para animações
-            const habilidadeItems = document.querySelectorAll('.habilidade-item');
-            
-            // Função para criar efeito ripple
-            function createRipple(element, event) {
-                const rect = element.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = event.clientX - rect.left - size / 2;
-                const y = event.clientY - rect.top - size / 2;
-                
-                const ripple = document.createElement('span');
-                ripple.className = 'ripple-effect';
-                ripple.style.width = ripple.style.height = size + 'px';
-                ripple.style.left = x + 'px';
-                ripple.style.top = y + 'px';
-                
-                element.appendChild(ripple);
-                
-                // Remover ripple após animação
-                setTimeout(() => {
-                    if (ripple.parentNode) {
-                        ripple.parentNode.removeChild(ripple);
-                    }
-                }, 600);
-            }
-            
-            // Adicionar evento de clique para ripple
-            habilidadeItems.forEach(item => {
-                item.addEventListener('click', (e) => {
-                    createRipple(item, e);
-                });
-            });
+
         });
 
         document.addEventListener('DOMContentLoaded', function() {

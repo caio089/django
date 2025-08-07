@@ -115,69 +115,7 @@
         .habilidade-item:nth-child(5) { animation-delay: 0.5s; }
         .habilidade-item:nth-child(6) { animation-delay: 0.6s; }
         
-        /* Efeito de destaque especial para a barra japonesa */
-        .japanese-nav-container {
-            position: relative;
-            background: linear-gradient(135deg, rgba(139, 92, 42, 0.03) 0%, rgba(139, 92, 42, 0.01) 100%);
-            border-radius: 16px;
-            padding: 16px;
-            margin: 16px 0;
-            border: 1px solid rgba(139, 92, 42, 0.08);
-            box-shadow: 0 4px 20px rgba(139, 92, 42, 0.08);
-        }
-        
-        .japanese-nav-container::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #8B5C2A, #4E2E0E, #8B5C2A);
-            border-radius: 18px;
-            z-index: -1;
-            opacity: 0.2;
-            animation: borderGlow 3s ease-in-out infinite alternate;
-        }
-        
-        @keyframes borderGlow {
-            0% {
-                opacity: 0.15;
-            }
-            100% {
-                opacity: 0.25;
-            }
-        }
-        
-        /* Melhorar o hover dos cards */
-        .japanese-nav-card:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(139, 92, 42, 0.15);
-            border-color: #8B5C2A;
-        }
-        
-        /* Efeito de brilho nos cards */
-        .japanese-nav-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            transition: left 0.5s;
-        }
-        
-        .japanese-nav-card:hover::after {
-            left: 100%;
-        }
-        
-        /* Animações para transição japonesa */
-        .japanese-nav-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
+
         
         /* Animações do Modal de Parabéns */
         .modal-enter {
@@ -365,6 +303,70 @@
                 transform: scale(1.02);
             }
         }
+        
+        /* Efeito de destaque especial para a barra japonesa */
+        .japanese-nav-container {
+            position: relative;
+            background: linear-gradient(135deg, rgba(139, 92, 42, 0.03) 0%, rgba(139, 92, 42, 0.01) 100%);
+            border-radius: 16px;
+            padding: 16px;
+            margin: 16px 0;
+            border: 1px solid rgba(139, 92, 42, 0.08);
+            box-shadow: 0 4px 20px rgba(139, 92, 42, 0.08);
+        }
+        
+        .japanese-nav-container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #8B5C2A, #4E2E0E, #8B5C2A);
+            border-radius: 18px;
+            z-index: -1;
+            opacity: 0.2;
+            animation: borderGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes borderGlow {
+            0% {
+                opacity: 0.15;
+            }
+            100% {
+                opacity: 0.25;
+            }
+        }
+        
+        /* Melhorar o hover dos cards */
+        .japanese-nav-card:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(139, 92, 42, 0.15);
+            border-color: #8B5C2A;
+        }
+        
+        /* Efeito de brilho nos cards */
+        .japanese-nav-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .japanese-nav-card:hover::after {
+            left: 100%;
+        }
+        
+        /* Animações para transição japonesa */
+        .japanese-nav-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
         #carouselEstrang {
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
@@ -422,7 +424,8 @@
         }
         .technique-card .bg-orange-50,
         .technique-card .bg-green-50,
-        .technique-card .bg-judo-brownLight {
+        .technique-card .bg-judo-brownLight,
+        .technique-card .bg-brown-50 {
             margin-top: auto;
             margin-bottom: 0;
             flex-shrink: 0;
@@ -582,16 +585,13 @@
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
                         </div>
-                        <div class="flex gap-4">
-                            <div class="video-container flex-1">
-                                <iframe src="https://www.youtube.com/embed/bp1tscHlePI?si=5H1ICg6aBM-B-X-5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                            <div class="bg-brown-50 p-2 rounded-xl flex-shrink-0 w-48">
-                                <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
-                                <p class="text-brown-700 text-xs">Use o quadril e o giro do corpo para separar lateralmente.</p>
-                            </div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/bp1tscHlePI?si=5H1ICg6aBM-B-X-5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
-                    </div>
+                        <div class="bg-brown-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
+                            <p class="text-brown-700 text-xs">Use o quadril e o giro do corpo para separar lateralmente.</p>
+                        </div>
                     </div>
                     <!-- Técnica 2 -->
                     <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
@@ -610,14 +610,12 @@
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
                         </div>
-                        <div class="flex gap-4">
-                            <div class="video-container flex-1">
-                                <iframe src="https://www.youtube.com/embed/tP1Sj1uDfSo?si=PFBamwcYNW5-T-Kk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                            <div class="bg-brown-50 p-2 rounded-xl flex-shrink-0 w-48">
-                                <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
-                                <p class="text-brown-700 text-xs">Aproveite o impulso para projetar lateralmente.</p>
-                            </div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/tP1Sj1uDfSo?si=PFBamwcYNW5-T-Kk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                        <div class="bg-brown-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
+                            <p class="text-brown-700 text-xs">Aproveite o impulso para projetar lateralmente.</p>
                         </div>
                     </div>
                     <!-- Técnica 3 -->
@@ -637,14 +635,12 @@
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
                         </div>
-                        <div class="flex gap-4">
-                            <div class="video-container flex-1">
-                                <iframe src="https://www.youtube.com/embed/2DsVvDw7b8g?si=QVKC007iV2pwiCPP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                            <div class="bg-brown-50 p-2 rounded-xl flex-shrink-0 w-48">
-                                <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
-                                <p class="text-brown-700 text-xs">Projete com força usando a perna por fora.</p>
-                            </div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/2DsVvDw7b8g?si=QVKC007iV2pwiCPP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                        <div class="bg-brown-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
+                            <p class="text-brown-700 text-xs">Projete com força usando a perna por fora.</p>
                         </div>
                     </div>
                     <!-- Técnica 4 -->
@@ -664,14 +660,12 @@
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
                         </div>
-                        <div class="flex gap-4">
-                            <div class="video-container flex-1">
-                                <iframe src="https://www.youtube.com/embed/lLU9wv52ni0?si=08tR2g6go3Pd-vwh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                            <div class="bg-brown-50 p-2 rounded-xl flex-shrink-0 w-48">
-                                <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
-                                <p class="text-brown-700 text-xs">Use o desequilíbrio para derrubar na diagonal.</p>
-                            </div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/lLU9wv52ni0?si=08tR2g6go3Pd-vwh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                        <div class="bg-brown-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
+                            <p class="text-brown-700 text-xs">Use o desequilíbrio para derrubar na diagonal.</p>
                         </div>
                     </div>
                     <!-- Técnica 5 -->
@@ -691,14 +685,12 @@
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
                         </div>
-                        <div class="flex gap-4">
-                            <div class="video-container flex-1">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/MehP6I5cY2c?si=1KN7OWUQuM2Hu4lt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                            <div class="bg-brown-50 p-2 rounded-xl flex-shrink-0 w-48">
-                                <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
-                                <p class="text-brown-700 text-xs">Gire o corpo para criar a roda lateral.</p>
-                            </div>
+                        <div class="video-container">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/MehP6I5cY2c?si=1KN7OWUQuM2Hu4lt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                        <div class="bg-brown-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
+                            <p class="text-brown-700 text-xs">Gire o corpo para criar a roda lateral.</p>
                         </div>
                     </div>
                     <!-- Técnica 6 -->
@@ -718,14 +710,12 @@
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
                         </div>
-                        <div class="flex gap-4">
-                            <div class="video-container flex-1">
-                                <iframe src="https://www.youtube.com/embed/vU6aJ2kFxoI?si=zLDPXbl_pwgwZxVh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                            <div class="bg-brown-50 p-2 rounded-xl flex-shrink-0 w-48">
-                                <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
-                                <p class="text-brown-700 text-xs">Levante o oponente com os dois braços.</p>
-                            </div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/vU6aJ2kFxoI?si=zLDPXbl_pwgwZxVh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                        <div class="bg-brown-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
+                            <p class="text-brown-700 text-xs">Levante o oponente com os dois braços.</p>
                         </div>
                     </div>
                     <!-- Técnica 7 -->
@@ -745,14 +735,12 @@
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
                         </div>
-                        <div class="flex gap-4">
-                            <div class="video-container flex-1">
-                                <iframe src="https://www.youtube.com/embed/Fgi9b8DJ5sQ?si=GXuO08cMw5LtFvuU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                            <div class="bg-brown-50 p-2 rounded-xl flex-shrink-0 w-48">
-                                <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
-                                <p class="text-brown-700 text-xs">Use o impulso do oponente para projetar de costas.</p>
-                            </div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/Fgi9b8DJ5sQ?si=GXuO08cMw5LtFvuU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                        <div class="bg-brown-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
+                            <p class="text-brown-700 text-xs">Use o impulso do oponente para projetar de costas.</p>
                         </div>
                     </div>
                     <!-- Técnica 8 -->
@@ -772,14 +760,12 @@
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
                         </div>
-                        <div class="flex gap-4">
-                            <div class="video-container flex-1">
-                                <iframe src="https://www.youtube.com/embed/DGDv2oMwmas?si=XhY_xZmYEQ_jJsWU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                            <div class="bg-brown-50 p-2 rounded-xl flex-shrink-0 w-48">
-                                <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
-                                <p class="text-brown-700 text-xs">Enrole o corpo do oponente por fora e gire para o solo.</p>
-                            </div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/DGDv2oMwmas?si=XhY_xZmYEQ_jJsWU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                        <div class="bg-brown-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
+                            <p class="text-brown-700 text-xs">Enrole o corpo do oponente por fora e gire para o solo.</p>
                         </div>
                     </div>
                     <!-- Técnica 9 -->
@@ -799,14 +785,12 @@
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
                         </div>
-                        <div class="flex gap-4">
-                            <div class="video-container flex-1">
-                                <iframe src="https://www.youtube.com/embed/6CRBGLGz9j8?si=UIzfjVDnGggGK-kZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                            <div class="bg-brown-50 p-2 rounded-xl flex-shrink-0 w-48">
-                                <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
-                                <p class="text-brown-700 text-xs">Use o quadril como mola para enrolar e projetar.</p>
-                            </div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/6CRBGLGz9j8?si=UIzfjVDnGggGK-kZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                        <div class="bg-brown-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
+                            <p class="text-brown-700 text-xs">Use o quadril como mola para enrolar e projetar.</p>
                         </div>
                     </div>
                     <!-- Técnica 10 -->
@@ -826,14 +810,12 @@
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
                         </div>
-                        <div class="flex gap-4">
-                            <div class="video-container flex-1">
-                                <iframe src="https://www.youtube.com/embed/4pQd_bEnlf0?si=t-gGdMRJRUwGrf_R" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                            <div class="bg-brown-50 p-2 rounded-xl flex-shrink-0 w-48">
-                                <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
-                                <p class="text-brown-700 text-xs">Troque o quadril rapidamente para projetar o oponente.</p>
-                            </div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/4pQd_bEnlf0?si=t-gGdMRJRUwGrf_R" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                        <div class="bg-brown-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
+                            <p class="text-brown-700 text-xs">Troque o quadril rapidamente para projetar o oponente.</p>
                         </div>
                     </div>
                     <!-- Técnica 11 -->
@@ -853,14 +835,12 @@
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
                         </div>
-                        <div class="flex gap-4">
-                            <div class="video-container flex-1">
-                                <iframe src="https://www.youtube.com/embed/Ji9MSQvmkQw?si=IdPQ4VjU_VOltIUo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                            <div class="bg-brown-50 p-2 rounded-xl flex-shrink-0 w-48">
-                                <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
-                                <p class="text-brown-700 text-xs">Gire lateralmente para executar a projeção circular.</p>
-                            </div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/Ji9MSQvmkQw?si=IdPQ4VjU_VOltIUo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                        <div class="bg-brown-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
+                            <p class="text-brown-700 text-xs">Gire lateralmente para executar a projeção circular.</p>
                         </div>
                     </div>
                     <!-- Técnica 12 -->
@@ -880,14 +860,12 @@
                                 <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
                             </label>
                         </div>
-                        <div class="flex gap-4">
-                            <div class="video-container flex-1">
-                                <iframe src="https://www.youtube.com/embed/McfzA0yRVt4?si=scfjxFyPEo1NhPJH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                            <div class="bg-brown-50 p-2 rounded-xl flex-shrink-0 w-48">
-                                <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
-                                <p class="text-brown-700 text-xs">Puxe e eleve o oponente para projetar com o quadril.</p>
-                            </div>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube.com/embed/McfzA0yRVt4?si=scfjxFyPEo1NhPJH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                        <div class="bg-brown-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-brown-800 mb-1 text-sm">💡 Dica:</h4>
+                            <p class="text-brown-700 text-xs">Puxe e eleve o oponente para projetar com o quadril.</p>
                         </div>
                     </div>
                 </div>
@@ -909,16 +887,15 @@
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         #carouselProj {
             scroll-behavior: smooth;
-            scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
             transition: box-shadow 0.3s;
+            padding-right: 20px; /* Adicionar padding para permitir scroll completo */
         }
         #carouselProj > div {
-            min-width: 370px;
-            max-width: 440px;
+            min-width: 350px;
+            max-width: 420px;
             flex: 0 0 auto;
-            scroll-snap-align: center;
-            height: 340px;
+            height: 380px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -927,10 +904,11 @@
             box-shadow: 0 2px 16px 0 rgba(139,92,42,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
             opacity: 1;
             filter: blur(0px);
-            margin-right: 18px;
+            margin-right: 12px;
         }
         #carouselProj > div:last-child {
             margin-right: 0;
+            padding-right: 40px; /* Aumentar padding para garantir que a última div seja visível */
         }
         #carouselProj > div.active,
         #carouselProj > div:hover {

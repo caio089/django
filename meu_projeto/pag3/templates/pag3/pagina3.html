@@ -626,28 +626,9 @@
             background: rgba(255, 255, 255, 0.95) !important;
         }
         
-        .habilidade-item:active {
-            transform: translateY(-1px) scale(1.01);
-            transition: all 0.1s ease;
-        }
+
         
-        /* Efeito ripple sutil para cliques */
-        .ripple-effect {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(251, 191, 36, 0.3);
-            transform: scale(0);
-            animation: ripple 0.6s ease-out;
-            pointer-events: none;
-            z-index: 5;
-        }
-        
-        @keyframes ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
+
         
         .particle {
             position: absolute;
@@ -1451,26 +1432,7 @@
                 animateHabilidades();
             }, 500);
             
-            // Adicionar efeito de clique nas habilidades
-            habilidadesItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    // Efeito de ripple
-                    const ripple = document.createElement('div');
-                    ripple.className = 'ripple-effect';
-                    ripple.style.width = ripple.style.height = '20px';
-                    ripple.style.left = '50%';
-                    ripple.style.top = '50%';
-                    ripple.style.transform = 'translate(-50%, -50%)';
-                    
-                    this.appendChild(ripple);
-                    
-                    setTimeout(() => {
-                        if (ripple.parentNode) {
-                            ripple.parentNode.removeChild(ripple);
-                        }
-                    }, 600);
-                });
-            });
+
             
             // --- PROGRESSO E ANIMAÇÃO DOS CARDS (já existente) ---
             const projCheckboxes = document.querySelectorAll('.proj-checkbox');

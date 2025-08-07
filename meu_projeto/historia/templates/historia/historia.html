@@ -1,0 +1,1586 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>História do Judô - Academia de Judô</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        judo: {
+                            gray: '#6B7280',
+                            blue: '#3B82F6',
+                            yellow: '#FBBF24',
+                            orange: '#F97316',
+                            green: '#10B981',
+                            purple: '#8B5CF6',
+                            brown: '#92400E'
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;600&family=Inter:wght@400;500;700&display=swap');
+        
+        .font-title { font-family: 'Montserrat', 'Poppins', Arial, sans-serif; }
+        .font-subtitle { font-family: 'Poppins', Arial, sans-serif; }
+        .font-desc { font-family: 'Inter', Arial, sans-serif; }
+        
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #1F2937 0%, #374151 50%, #6B7280 100%);
+            min-height: auto;
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 2rem;
+        }
+        
+        /* Animação de entrada para o hero */
+        .hero-section h1,
+        .hero-section p {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: heroFadeIn 1s ease-out forwards;
+        }
+        
+        .hero-section h1 {
+            animation-delay: 0.3s;
+        }
+        
+        .hero-section p {
+            animation-delay: 0.6s;
+        }
+        
+        @keyframes heroFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="auto" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="auto" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        /* Timeline Styles */
+        .timeline-container {
+            position: relative;
+        }
+        
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #3B82F6, #1E40AF, #1E3A8A);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            animation-delay: calc(var(--index) * 0.2s);
+        }
+        
+        .timeline-item:nth-child(even) {
+            animation-delay: calc(var(--index) * 0.2s + 0.1s);
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 2rem;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #3B82F6, #1E40AF);
+            border: 4px solid #ffffff;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            z-index: 10;
+        }
+        
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 0 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+        }
+        
+        .timeline-year {
+            background: linear-gradient(135deg, #3B82F6, #1E40AF);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Card Animations */
+        .history-card {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: cardEnter 0.8s ease-out forwards;
+        }
+        
+        .history-card:nth-child(1) { animation-delay: 0.1s; }
+        .history-card:nth-child(2) { animation-delay: 0.2s; }
+        .history-card:nth-child(3) { animation-delay: 0.3s; }
+        .history-card:nth-child(4) { animation-delay: 0.4s; }
+        
+        @keyframes cardEnter {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Philosophy Section */
+        .philosophy-section {
+            background: linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 100%);
+        }
+        
+        .philosophy-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .philosophy-card:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 32px rgba(59, 130, 246, 0.15);
+        }
+        
+        /* Animações de Hover Avançadas */
+        .hover-glow:hover {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+            transform: translateY(-5px) scale(1.03);
+        }
+        
+        .hover-rotate:hover {
+            transform: rotate(2deg) scale(1.05);
+            transition: all 0.3s ease;
+        }
+        
+        .hover-bounce:hover {
+            animation: hoverBounce 0.6s ease;
+        }
+        
+        @keyframes hoverBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .hover-pulse:hover {
+            animation: hoverPulse 1s infinite;
+        }
+        
+        @keyframes hoverPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .hover-shine:hover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: auto;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s ease;
+            z-index: 1;
+        }
+        
+        .hover-shine:hover::before {
+            left: 100%;
+        }
+        
+        .hover-3d:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(5deg) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .hover-color-shift:hover {
+            background: linear-gradient(135deg, #3B82F6, #1E40AF) !important;
+            color: white !important;
+            transform: translateY(-3px);
+        }
+        
+        .hover-text-glow:hover {
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+            transform: scale(1.05);
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, #3B82F6, #1E40AF);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .timeline-container::before {
+                left: 2rem;
+            }
+            
+            .timeline-dot {
+                left: 2rem;
+            }
+            
+            .timeline-content {
+                margin-left: 4rem;
+                margin-right: 1rem;
+            }
+        }
+        
+        /* Animações de Scroll Diferenciadas */
+        .scroll-reveal {
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+        
+        .scroll-reveal.revealed {
+            opacity: 1;
+        }
+        
+        /* Animação Slide da Esquerda */
+        .slide-left {
+            transform: translateX(-100px);
+            opacity: 0;
+        }
+        
+        .slide-left.revealed {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        /* Animação Slide da Direita */
+        .slide-right {
+            transform: translateX(100px);
+            opacity: 0;
+        }
+        
+        .slide-right.revealed {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        /* Animação Zoom In */
+        .zoom-in {
+            transform: scale(0.5);
+            opacity: 0;
+        }
+        
+        .zoom-in.revealed {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        /* Animação Rotação */
+        .rotate-in {
+            transform: rotate(-180deg) scale(0.5);
+            opacity: 0;
+        }
+        
+        .rotate-in.revealed {
+            transform: rotate(0deg) scale(1);
+            opacity: 1;
+        }
+        
+        /* Animação Flip */
+        .flip-in {
+            transform: perspective(1000px) rotateY(90deg);
+            opacity: 0;
+        }
+        
+        .flip-in.revealed {
+            transform: perspective(1000px) rotateY(0deg);
+            opacity: 1;
+        }
+        
+        /* Animação Bounce */
+        .bounce-in {
+            transform: translateY(100px) scale(0.8);
+            opacity: 0;
+        }
+        
+        .bounce-in.revealed {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            animation: bounce 0.6s ease-out;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        /* Animação Fade com Delay */
+        .fade-delay {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .fade-delay.revealed {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: calc(var(--delay) * 0.2s);
+        }
+        
+        /* Animação Parallax */
+        .parallax {
+            transform: translateY(50px);
+            opacity: 0;
+        }
+        
+        .parallax.revealed {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Animação Wave */
+        .wave-in {
+            transform: translateY(30px) rotateX(15deg);
+            opacity: 0;
+        }
+        
+        .wave-in.revealed {
+            transform: translateY(0) rotateX(0deg);
+            opacity: 1;
+            animation: wave 0.8s ease-out;
+        }
+        
+        @keyframes wave {
+            0% {
+                transform: translateY(30px) rotateX(15deg);
+            }
+            50% {
+                transform: translateY(-5px) rotateX(5deg);
+            }
+            100% {
+                transform: translateY(0) rotateX(0deg);
+            }
+        }
+    </style>
+</head>
+<body class="font-display bg-gray-50">
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <svg class="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
+    <!-- Hero Section -->
+    <section class="hero-section flex items-center justify-center min-h-screen relative">
+        <div class="container mx-auto px-6 text-center text-white relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="font-title text-5xl md:text-7xl font-bold mb-6 slide-left">
+                    História do Judô
+                </h1>
+                <p class="font-desc text-xl md:text-2xl mb-8 text-gray-200 slide-right">
+                    Uma jornada de mais de 140 anos de evolução, filosofia e tradição
+                </p>
+                <div class="flex justify-center">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-full px-8 py-3 text-white font-semibold">
+                        <span class="text-2xl mr-3">🥋</span>
+                        Desde 1882 até os dias atuais
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="font-title text-3xl md:text-4xl font-bold text-gray-800 mb-6 hover-text-glow">
+                    O Caminho da Suavidade
+                </h2>
+                <p class="font-desc text-lg text-gray-600 leading-relaxed">
+                    O judô, que significa "caminho da suavidade", é muito mais que uma arte marcial. 
+                    É uma filosofia de vida que transcende o combate físico, ensinando valores como respeito, 
+                    disciplina e harmonia. Criado pelo mestre Jigoro Kano em 1882, o judô representa a 
+                    evolução das antigas artes marciais japonesas para uma prática moderna e educacional.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="font-title text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
+                    Linha do Tempo do Judô
+                </h2>
+                
+                <div class="timeline-container">
+                    <!-- 1882 - Fundação -->
+                    <div class="timeline-item slide-left" style="--index: 1;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1882</div>
+                            <h3 class="font-subtitle text-xl font-bold text-gray-800 mb-3">
+                                Fundação do Judô
+                            </h3>
+                            <p class="font-desc text-gray-600 leading-relaxed mb-4">
+                                Jigoro Kano funda o Instituto Kodokan em Tóquio, criando o judô como uma 
+                                nova arte marcial baseada nos princípios de eficiência máxima e benefício mútuo. 
+                                O judô nasce da evolução do jujutsu tradicional, eliminando técnicas perigosas 
+                                e focando no desenvolvimento físico e mental.
+                            </p>
+                            <div class="bg-blue-50 rounded-lg p-4 border-l-4 border-blue-500">
+                                <h4 class="font-semibold text-blue-800 mb-2">Contexto Histórico:</h4>
+                                <p class="text-sm text-blue-700">
+                                    O Japão estava em plena era Meiji, modernizando-se rapidamente. Kano, 
+                                    um jovem estudante de 22 anos, estudou jujutsu com mestres como Fukuda 
+                                    Hachinosuke e Iso Masatomo, mas ficou desapontado com a violência 
+                                    desnecessária das técnicas tradicionais.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 1886 - Primeira Demonstração -->
+                    <div class="timeline-item slide-right" style="--index: 2;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1886</div>
+                            <h3 class="font-subtitle text-xl font-bold text-gray-800 mb-3">
+                                Primeira Demonstração Pública
+                            </h3>
+                            <p class="font-desc text-gray-600 leading-relaxed mb-4">
+                                O judô é apresentado oficialmente ao público japonês através de demonstrações 
+                                que mostram sua eficácia e superioridade sobre outras artes marciais. 
+                                Esta demonstração marca o início da aceitação do judô como uma prática válida 
+                                e educacional.
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="bg-green-50 rounded-lg p-3 border-l-4 border-green-500">
+                                    <h4 class="font-semibold text-green-800 mb-1">Desafio da Polícia:</h4>
+                                    <p class="text-sm text-green-700">
+                                        A polícia de Tóquio organizou um torneio entre escolas de jujutsu. 
+                                        O Kodokan venceu 13 de 15 lutas, provando a eficácia do judô.
+                                    </p>
+                                </div>
+                                <div class="bg-purple-50 rounded-lg p-3 border-l-4 border-purple-500">
+                                    <h4 class="font-semibold text-purple-800 mb-1">Reconhecimento:</h4>
+                                    <p class="text-sm text-purple-700">
+                                        Após a demonstração, o judô foi adotado como treinamento oficial 
+                                        da polícia japonesa e das forças armadas.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 1909 - Reconhecimento Internacional -->
+                    <div class="timeline-item zoom-in" style="--index: 3;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1909</div>
+                            <h3 class="font-subtitle text-xl font-bold text-gray-800 mb-3">
+                                Reconhecimento Internacional
+                            </h3>
+                            <p class="font-desc text-gray-600 leading-relaxed mb-4">
+                                Jigoro Kano se torna o primeiro membro asiático do Comitê Olímpico Internacional, 
+                                abrindo caminho para a internacionalização do judô. O judô começa a se espalhar 
+                                pelo mundo, levando sua filosofia e técnicas para diferentes culturas.
+                            </p>
+                            <div class="bg-yellow-50 rounded-lg p-4 border-l-4 border-yellow-500">
+                                <h4 class="font-semibold text-yellow-800 mb-2">Expansão Global:</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-yellow-700">
+                                    <div>
+                                        <strong>Europa:</strong> França, Reino Unido, Alemanha
+                                    </div>
+                                    <div>
+                                        <strong>Américas:</strong> Brasil, Estados Unidos, Argentina
+                                    </div>
+                                    <div>
+                                        <strong>Ásia:</strong> Coreia, China, Índia
+                                    </div>
+                                    <div>
+                                        <strong>Oceania:</strong> Austrália, Nova Zelândia
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 1964 - Estreia Olímpica -->
+                    <div class="timeline-item" style="--index: 4;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1964</div>
+                            <h3 class="font-subtitle text-xl font-bold text-gray-800 mb-3">
+                                Estreia nos Jogos Olímpicos
+                            </h3>
+                            <p class="font-desc text-gray-600 leading-relaxed">
+                                O judô faz sua estreia oficial nos Jogos Olímpicos de Tóquio, marcando um 
+                                momento histórico para a arte marcial. A inclusão olímpica representa o 
+                                reconhecimento mundial do judô como esporte de alto nível e sua capacidade 
+                                de unir diferentes nações através do esporte.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 1980s - Era Moderna -->
+                    <div class="timeline-item" style="--index: 5;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">1980s</div>
+                            <h3 class="font-subtitle text-xl font-bold text-gray-800 mb-3">
+                                Era Moderna do Judô
+                            </h3>
+                            <p class="font-desc text-gray-600 leading-relaxed">
+                                O judô experimenta uma evolução técnica significativa, com o desenvolvimento 
+                                de novas técnicas e estratégias de competição. A introdução de categorias 
+                                de peso e regras mais refinadas torna o esporte mais acessível e competitivo 
+                                em nível mundial.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 2000s - Tecnologia e Inovação -->
+                    <div class="timeline-item" style="--index: 6;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2000s</div>
+                            <h3 class="font-subtitle text-xl font-bold text-gray-800 mb-3">
+                                Tecnologia e Inovação
+                            </h3>
+                            <p class="font-desc text-gray-600 leading-relaxed">
+                                A era digital transforma o judô com a introdução de sistemas de pontuação 
+                                eletrônica, análise de vídeo e treinamento tecnológico. O judô se adapta 
+                                aos tempos modernos mantendo seus valores tradicionais, expandindo sua 
+                                presença global através da internet e mídias digitais.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Atualidade -->
+                    <div class="timeline-item" style="--index: 7;">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">Atualidade</div>
+                            <h3 class="font-subtitle text-xl font-bold text-gray-800 mb-3">
+                                Judô no Século XXI
+                            </h3>
+                            <p class="font-desc text-gray-600 leading-relaxed">
+                                O judô continua sua evolução como esporte olímpico e arte marcial, 
+                                mantendo o equilíbrio entre tradição e modernidade. Com milhões de 
+                                praticantes em todo o mundo, o judô representa não apenas uma atividade 
+                                física, mas uma filosofia de vida que promove valores universais de 
+                                respeito, disciplina e superação.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="font-title text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
+                    A Filosofia do Judô
+                </h2>
+                
+                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                     <!-- Seiryoku Zenyo -->
+                     <div class="philosophy-card rounded-xl p-6 shadow-lg hover-glow hover-shine relative">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-2xl">⚡</span>
+                            </div>
+                            <h3 class="font-subtitle text-xl font-bold text-gray-800 mb-2">
+                                Seiryoku Zenyo
+                            </h3>
+                            <p class="font-desc text-gray-600 text-sm">
+                                "Máxima eficiência com mínimo esforço"
+                            </p>
+                        </div>
+                        <p class="font-desc text-gray-600 leading-relaxed">
+                            Este princípio fundamental ensina que a verdadeira força não está na força bruta, 
+                            mas na inteligência e técnica. O judô mostra como usar a energia do oponente 
+                            contra ele mesmo, demonstrando que a sabedoria supera a força física.
+                        </p>
+                    </div>
+
+                                                              <!-- Jita Kyoei -->
+                     <div class="philosophy-card rounded-xl p-6 shadow-lg hover-rotate hover-color-shift">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-2xl">🤝</span>
+                            </div>
+                            <h3 class="font-subtitle text-xl font-bold text-gray-800 mb-2">
+                                Jita Kyoei
+                            </h3>
+                            <p class="font-desc text-gray-600 text-sm">
+                                "Benefício mútuo e prosperidade"
+                            </p>
+                        </div>
+                        <p class="font-desc text-gray-600 leading-relaxed">
+                            O judô ensina que o verdadeiro progresso vem através da cooperação e respeito 
+                            mútuo. Cada treino é uma oportunidade de crescimento conjunto, onde tanto o 
+                            parceiro quanto o praticante se beneficiam do aprendizado e desenvolvimento.
+                        </p>
+                    </div>
+
+                                                              <!-- Bushido -->
+                     <div class="philosophy-card rounded-xl p-6 shadow-lg hover-bounce hover-3d">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-2xl">⚔️</span>
+                            </div>
+                            <h3 class="font-subtitle text-xl font-bold text-gray-800 mb-2">
+                                Bushido
+                            </h3>
+                            <p class="font-desc text-gray-600 text-sm">
+                                "O caminho do guerreiro"
+                            </p>
+                        </div>
+                        <p class="font-desc text-gray-600 leading-relaxed">
+                            O código de conduta do samurai, adaptado ao judô moderno, enfatiza valores 
+                            como honra, lealdade, coragem e respeito. O judô não é apenas uma atividade 
+                            física, mas um caminho para desenvolver o caráter e a integridade moral.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legacy Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="font-title text-3xl md:text-4xl font-bold text-gray-800 mb-8">
+                    O Legado de Jigoro Kano
+                </h2>
+                <div class="bg-white rounded-2xl p-8 shadow-lg">
+                    <div class="flex items-center justify-center mb-6">
+                        <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center">
+                            <span class="text-4xl">👨‍🏫</span>
+                        </div>
+                    </div>
+                    <p class="font-desc text-lg text-gray-600 leading-relaxed mb-6">
+                        Jigoro Kano não criou apenas uma arte marcial, mas uma filosofia de vida que 
+                        transcendeu o tempo e as fronteiras culturais. Sua visão de um judô educacional, 
+                        que desenvolve tanto o corpo quanto o espírito, continua inspirando milhões de 
+                        praticantes em todo o mundo.
+                    </p>
+                    <p class="font-desc text-lg text-gray-600 leading-relaxed">
+                        O judô de hoje é o resultado de mais de 140 anos de evolução, mantendo vivos 
+                        os princípios fundamentais estabelecidos por Kano: respeito, disciplina, 
+                        perseverança e a busca constante pela excelência através da prática.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Técnicas Históricas -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="font-title text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12 zoom-in">
+                    Técnicas Históricas do Judô
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                                              <!-- Nage-waza -->
+                     <div class="philosophy-card rounded-xl p-6 shadow-lg flip-in hover-pulse hover-text-glow">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-2xl">🔄</span>
+                            </div>
+                            <h3 class="font-subtitle text-xl font-bold text-gray-800 mb-2">
+                                Nage-waza
+                            </h3>
+                            <p class="font-desc text-gray-600 text-sm">
+                                Técnicas de Projeção
+                            </p>
+                        </div>
+                        <p class="font-desc text-gray-600 leading-relaxed">
+                            As técnicas de projeção foram desenvolvidas por Kano a partir do jujutsu, 
+                            mas com foco na eficiência e segurança. Incluem projeções de quadril, 
+                            perna, ombro e sacrifício, cada uma demonstrando os princípios de 
+                            Seiryoku Zenyo.
+                        </p>
+                    </div>
+
+                                                              <!-- Katame-waza -->
+                     <div class="philosophy-card rounded-xl p-6 shadow-lg flip-in hover-glow hover-shine relative">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-2xl">🔒</span>
+                            </div>
+                            <h3 class="font-subtitle text-xl font-bold text-gray-800 mb-2">
+                                Katame-waza
+                            </h3>
+                            <p class="font-desc text-gray-600 text-sm">
+                                Técnicas de Controle
+                            </p>
+                        </div>
+                        <p class="font-desc text-gray-600 leading-relaxed">
+                            As técnicas de controle incluem imobilizações, estrangulamentos e 
+                            chaves de articulação. Kano manteve apenas as técnicas seguras, 
+                            eliminando aquelas que poderiam causar lesões permanentes, 
+                            demonstrando o respeito pela integridade do parceiro.
+                        </p>
+                    </div>
+
+                                                              <!-- Atemi-waza -->
+                     <div class="philosophy-card rounded-xl p-6 shadow-lg flip-in hover-rotate hover-color-shift">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-2xl">⚡</span>
+                            </div>
+                            <h3 class="font-subtitle text-xl font-bold text-gray-800 mb-2">
+                                Atemi-waza
+                            </h3>
+                            <p class="font-desc text-gray-600 text-sm">
+                                Técnicas de Golpe
+                            </p>
+                        </div>
+                        <p class="font-desc text-gray-600 leading-relaxed">
+                            Embora o judô moderno não use golpes em competição, Kano incluiu 
+                            técnicas de atemi-waza no judô tradicional para preservar o aspecto 
+                            marcial completo. Estas técnicas são ensinadas apenas em níveis avançados.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Faixas do Judô -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="font-title text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12 zoom-in">
+                    Sistema de Graduação do Judô
+                </h2>
+                <p class="font-desc text-lg text-gray-600 text-center mb-8 leading-relaxed">
+                    O sistema de faixas do judô representa a evolução do praticante, desde o iniciante até o mestre. 
+                    Cada faixa simboliza não apenas o progresso técnico, mas também o desenvolvimento mental e espiritual.
+                </p>
+                
+                <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 shadow-lg mb-8">
+                    <h3 class="font-subtitle text-2xl font-bold text-gray-800 mb-6 text-center">
+                        Sistema Básico de Graduação
+                    </h3>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="w-full bg-white rounded-lg shadow-md">
+                            <thead class="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+                                <tr>
+                                    <th class="px-6 py-4 text-left font-semibold">FAIXA</th>
+                                    <th class="px-6 py-4 text-left font-semibold">GRADUAÇÃO</th>
+                                    <th class="px-6 py-4 text-left font-semibold">IDADE MÍNIMA</th>
+                                    <th class="px-6 py-4 text-left font-semibold">CARÊNCIA MÍNIMA</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                    <td class="px-6 py-4 font-medium text-gray-900">Branca</td>
+                                    <td class="px-6 py-4 text-gray-600">Iniciante</td>
+                                    <td class="px-6 py-4 text-gray-600">---------------</td>
+                                    <td class="px-6 py-4 text-gray-600">---------------</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                    <td class="px-6 py-4 font-medium text-gray-900">Branca / Cinza</td>
+                                    <td class="px-6 py-4 text-gray-600">11º Kyû</td>
+                                    <td class="px-6 py-4 text-gray-600">4 anos</td>
+                                    <td class="px-6 py-4 text-gray-600">3 meses*</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                    <td class="px-6 py-4 font-medium text-gray-900">Cinza</td>
+                                    <td class="px-6 py-4 text-gray-600">10º Kyû</td>
+                                    <td class="px-6 py-4 text-gray-600">5 anos</td>
+                                    <td class="px-6 py-4 text-gray-600">3 meses*</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                    <td class="px-6 py-4 font-medium text-gray-900">Cinza / Azul</td>
+                                    <td class="px-6 py-4 text-gray-600">9º Kyû</td>
+                                    <td class="px-6 py-4 text-gray-600">6 anos</td>
+                                    <td class="px-6 py-4 text-gray-600">6 meses*</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                    <td class="px-6 py-4 font-medium text-gray-900">Azul</td>
+                                    <td class="px-6 py-4 text-gray-600">8º Kyû</td>
+                                    <td class="px-6 py-4 text-gray-600">7 anos</td>
+                                    <td class="px-6 py-4 text-gray-600">6 meses*</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                    <td class="px-6 py-4 font-medium text-gray-900">Azul / Amarela</td>
+                                    <td class="px-6 py-4 text-gray-600">7º Kyû</td>
+                                    <td class="px-6 py-4 text-gray-600">8 anos</td>
+                                    <td class="px-6 py-4 text-gray-600">6 meses*</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                    <td class="px-6 py-4 font-medium text-gray-900">Amarela</td>
+                                    <td class="px-6 py-4 text-gray-600">6º Kyû</td>
+                                    <td class="px-6 py-4 text-gray-600">9 anos</td>
+                                    <td class="px-6 py-4 text-gray-600">6 meses*</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                    <td class="px-6 py-4 font-medium text-gray-900">Amarela / Laranja</td>
+                                    <td class="px-6 py-4 text-gray-600">5º Kyû</td>
+                                    <td class="px-6 py-4 text-gray-600">10 anos</td>
+                                    <td class="px-6 py-4 text-gray-600">12 meses*</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="mt-6 p-4 bg-yellow-50 rounded-lg border-l-4 border-yellow-400">
+                        <p class="text-sm text-yellow-800">
+                            <strong>Nota:</strong> Os tempos de carência podem variar conforme a federação e região. 
+                            O sistema de graduação visa garantir que cada praticante desenvolva adequadamente suas 
+                            habilidades técnicas e filosóficas antes de avançar para o próximo nível.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-xl p-6 shadow-lg hover-glow">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-2xl">🥋</span>
+                            </div>
+                            <h3 class="font-subtitle text-xl font-bold text-gray-800 mb-2">
+                                Significado das Faixas
+                            </h3>
+                        </div>
+                        <p class="font-desc text-gray-600 leading-relaxed">
+                            Cada faixa representa uma etapa no desenvolvimento do judoca. A faixa branca simboliza 
+                            a pureza e a mente aberta do iniciante, enquanto as cores subsequentes representam 
+                            o crescimento técnico e filosófico do praticante.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl p-6 shadow-lg hover-glow">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-2xl">📈</span>
+                            </div>
+                            <h3 class="font-subtitle text-xl font-bold text-gray-800 mb-2">
+                                Progressão Gradual
+                            </h3>
+                        </div>
+                        <p class="font-desc text-gray-600 leading-relaxed">
+                            O sistema de graduação garante que cada judoca desenvolva suas habilidades de forma 
+                            progressiva, respeitando tanto o desenvolvimento técnico quanto o amadurecimento 
+                            físico e mental do praticante.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Sistema Intermediário e Avançado -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-10">
+                    <!-- Faixas Intermediárias -->
+                    <div class="group relative bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <div class="absolute inset-0 bg-gradient-to-br from-orange-50 to-amber-50 opacity-50"></div>
+                        <div class="relative p-6">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-orange-400 to-amber-500 rounded-xl flex items-center justify-center">
+                                        <span class="text-white text-lg font-bold">4</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-gray-900 text-lg">Faixas Intermediárias</h3>
+                                        <p class="text-gray-500 text-sm">Progressão técnica</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <!-- Laranja -->
+                                <div class="bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl p-4 border-l-4 border-orange-400">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-3 h-3 bg-orange-400 rounded-full"></div>
+                                            <span class="font-semibold text-orange-700">Laranja</span>
+                                        </div>
+                                        <span class="text-orange-600 font-medium text-sm">4º Kyû</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3 text-sm">
+                                        <div>
+                                            <span class="text-gray-500">Idade mínima:</span>
+                                            <div class="font-semibold text-gray-800">11 anos</div>
+                                        </div>
+                                        <div>
+                                            <span class="text-gray-500">Carência:</span>
+                                            <div class="font-semibold text-gray-800">12 meses</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Verde -->
+                                <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border-l-4 border-green-400">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-3 h-3 bg-green-400 rounded-full"></div>
+                                            <span class="font-semibold text-green-700">Verde</span>
+                                        </div>
+                                        <span class="text-green-600 font-medium text-sm">3º Kyû</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3 text-sm">
+                                        <div>
+                                            <span class="text-gray-500">Idade mínima:</span>
+                                            <div class="font-semibold text-gray-800">12 anos</div>
+                                        </div>
+                                        <div>
+                                            <span class="text-gray-500">Carência:</span>
+                                            <div class="font-semibold text-gray-800">12 meses</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Roxa -->
+                                <div class="bg-gradient-to-r from-purple-50 to-violet-50 rounded-xl p-4 border-l-4 border-purple-400">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-3 h-3 bg-purple-400 rounded-full"></div>
+                                            <span class="font-semibold text-purple-700">Roxa</span>
+                                        </div>
+                                        <span class="text-purple-600 font-medium text-sm">2º Kyû</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3 text-sm">
+                                        <div>
+                                            <span class="text-gray-500">Idade mínima:</span>
+                                            <div class="font-semibold text-gray-800">13 anos</div>
+                                        </div>
+                                        <div>
+                                            <span class="text-gray-500">Carência:</span>
+                                            <div class="font-semibold text-gray-800">12 meses</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Marrom -->
+                                <div class="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-4 border-l-4 border-amber-600">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-3 h-3 bg-amber-600 rounded-full"></div>
+                                            <span class="font-semibold text-amber-700">Marrom</span>
+                                        </div>
+                                        <span class="text-amber-600 font-medium text-sm">1º Kyû</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3 text-sm">
+                                        <div>
+                                            <span class="text-gray-500">Idade mínima:</span>
+                                            <div class="font-semibold text-gray-800">14 anos</div>
+                                        </div>
+                                        <div>
+                                            <span class="text-gray-500">Carência:</span>
+                                            <div class="font-semibold text-gray-800">12 meses</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Faixas Pretas -->
+                    <div class="group relative bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <div class="absolute inset-0 bg-gradient-to-br from-gray-50 to-slate-50 opacity-50"></div>
+                        <div class="relative p-6">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-gray-600 to-gray-800 rounded-xl flex items-center justify-center">
+                                        <span class="text-white text-lg font-bold">⚫</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-gray-900 text-lg">Faixas Pretas</h3>
+                                        <p class="text-gray-500 text-sm">Maestria técnica</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <!-- 1º Dan -->
+                                <div class="bg-gradient-to-r from-gray-50 to-slate-50 rounded-xl p-4 border-l-4 border-gray-400">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-3 h-3 bg-gray-400 rounded-full"></div>
+                                            <span class="font-semibold text-gray-700">Preta</span>
+                                        </div>
+                                        <span class="text-gray-600 font-medium text-sm">1º Dan</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3 text-sm">
+                                        <div>
+                                            <span class="text-gray-500">Idade mínima:</span>
+                                            <div class="font-semibold text-gray-800">16 anos</div>
+                                        </div>
+                                        <div>
+                                            <span class="text-gray-500">Carência:</span>
+                                            <div class="font-semibold text-gray-800">2 anos</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 2º Dan -->
+                                <div class="bg-gradient-to-r from-gray-50 to-slate-50 rounded-xl p-4 border-l-4 border-gray-500">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-3 h-3 bg-gray-500 rounded-full"></div>
+                                            <span class="font-semibold text-gray-700">Preta</span>
+                                        </div>
+                                        <span class="text-gray-600 font-medium text-sm">2º Dan</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3 text-sm">
+                                        <div>
+                                            <span class="text-gray-500">Idade mínima:</span>
+                                            <div class="font-semibold text-gray-800">20 anos</div>
+                                        </div>
+                                        <div>
+                                            <span class="text-gray-500">Carência:</span>
+                                            <div class="font-semibold text-gray-800">4 anos</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 3º Dan -->
+                                <div class="bg-gradient-to-r from-gray-50 to-slate-50 rounded-xl p-4 border-l-4 border-gray-600">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-3 h-3 bg-gray-600 rounded-full"></div>
+                                            <span class="font-semibold text-gray-700">Preta</span>
+                                        </div>
+                                        <span class="text-gray-600 font-medium text-sm">3º Dan</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3 text-sm">
+                                        <div>
+                                            <span class="text-gray-500">Idade mínima:</span>
+                                            <div class="font-semibold text-gray-800">25 anos</div>
+                                        </div>
+                                        <div>
+                                            <span class="text-gray-500">Carência:</span>
+                                            <div class="font-semibold text-gray-800">5 anos</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 4º Dan -->
+                                <div class="bg-gradient-to-r from-gray-50 to-slate-50 rounded-xl p-4 border-l-4 border-gray-700">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-3 h-3 bg-gray-700 rounded-full"></div>
+                                            <span class="font-semibold text-gray-700">Preta</span>
+                                        </div>
+                                        <span class="text-gray-600 font-medium text-sm">4º Dan</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3 text-sm">
+                                        <div>
+                                            <span class="text-gray-500">Idade mínima:</span>
+                                            <div class="font-semibold text-gray-800">31 anos</div>
+                                        </div>
+                                        <div>
+                                            <span class="text-gray-500">Carência:</span>
+                                            <div class="font-semibold text-gray-800">6 anos</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 5º Dan -->
+                                <div class="bg-gradient-to-r from-gray-50 to-slate-50 rounded-xl p-4 border-l-4 border-gray-800">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-3 h-3 bg-gray-800 rounded-full"></div>
+                                            <span class="font-semibold text-gray-700">Preta</span>
+                                        </div>
+                                        <span class="text-gray-600 font-medium text-sm">5º Dan</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3 text-sm">
+                                        <div>
+                                            <span class="text-gray-500">Idade mínima:</span>
+                                            <div class="font-semibold text-gray-800">37 anos</div>
+                                        </div>
+                                        <div>
+                                            <span class="text-gray-500">Carência:</span>
+                                            <div class="font-semibold text-gray-800">6 anos</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Faixas Vermelhas -->
+                    <div class="group relative bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                        <div class="absolute inset-0 bg-gradient-to-br from-red-50 to-rose-50 opacity-50"></div>
+                        <div class="relative p-6">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-rose-600 rounded-xl flex items-center justify-center">
+                                        <span class="text-white text-lg font-bold">🔴</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-gray-900 text-lg">Faixas Vermelhas</h3>
+                                        <p class="text-gray-500 text-sm">Grandes mestres</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <!-- 6º Dan -->
+                                <div class="bg-gradient-to-r from-red-50 to-rose-50 rounded-xl p-4 border-l-4 border-red-400">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-3 h-3 bg-red-400 rounded-full"></div>
+                                            <span class="font-semibold text-red-700">Vermelha e Branca</span>
+                                        </div>
+                                        <span class="text-red-600 font-medium text-sm">6º Dan</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3 text-sm">
+                                        <div>
+                                            <span class="text-gray-500">Idade mínima:</span>
+                                            <div class="font-semibold text-gray-800">44 anos</div>
+                                        </div>
+                                        <div>
+                                            <span class="text-gray-500">Carência:</span>
+                                            <div class="font-semibold text-gray-800">7 anos</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 7º Dan -->
+                                <div class="bg-gradient-to-r from-red-50 to-rose-50 rounded-xl p-4 border-l-4 border-red-500">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                            <span class="font-semibold text-red-700">Vermelha e Branca</span>
+                                        </div>
+                                        <span class="text-red-600 font-medium text-sm">7º Dan</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3 text-sm">
+                                        <div>
+                                            <span class="text-gray-500">Idade mínima:</span>
+                                            <div class="font-semibold text-gray-800">52 anos</div>
+                                        </div>
+                                        <div>
+                                            <span class="text-gray-500">Carência:</span>
+                                            <div class="font-semibold text-gray-800">8 anos</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 8º Dan -->
+                                <div class="bg-gradient-to-r from-red-50 to-rose-50 rounded-xl p-4 border-l-4 border-red-600">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-3 h-3 bg-red-600 rounded-full"></div>
+                                            <span class="font-semibold text-red-700">Vermelha e Branca</span>
+                                        </div>
+                                        <span class="text-red-600 font-medium text-sm">8º Dan</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3 text-sm">
+                                        <div>
+                                            <span class="text-gray-500">Idade mínima:</span>
+                                            <div class="font-semibold text-gray-800">60 anos</div>
+                                        </div>
+                                        <div>
+                                            <span class="text-gray-500">Carência:</span>
+                                            <div class="font-semibold text-gray-800">8 anos</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 9º Dan -->
+                                <div class="bg-gradient-to-r from-red-50 to-rose-50 rounded-xl p-4 border-l-4 border-red-700">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-3 h-3 bg-red-700 rounded-full"></div>
+                                            <span class="font-semibold text-red-700">Vermelha</span>
+                                        </div>
+                                        <span class="text-red-600 font-medium text-sm">9º Dan</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3 text-sm">
+                                        <div>
+                                            <span class="text-gray-500">Idade mínima:</span>
+                                            <div class="font-semibold text-gray-800">69 anos</div>
+                                        </div>
+                                        <div>
+                                            <span class="text-gray-500">Carência:</span>
+                                            <div class="font-semibold text-gray-800">9 anos</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 10º Dan -->
+                                <div class="bg-gradient-to-r from-red-50 to-rose-50 rounded-xl p-4 border-l-4 border-red-800">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-3 h-3 bg-red-800 rounded-full"></div>
+                                            <span class="font-semibold text-red-700">Vermelha</span>
+                                        </div>
+                                        <span class="text-red-600 font-medium text-sm">10º Dan</span>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3 text-sm">
+                                        <div>
+                                            <span class="text-gray-500">Idade mínima:</span>
+                                            <div class="font-semibold text-gray-800">78 anos</div>
+                                        </div>
+                                        <div>
+                                            <span class="text-gray-500">Carência:</span>
+                                            <div class="font-semibold text-gray-800">9 anos</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+                    <p class="text-sm text-blue-800">
+                        <strong>Nota:</strong> Todos os tempos de carência são mínimos e podem variar conforme a federação e região. 
+                        O sistema de graduação visa garantir que cada praticante desenvolva adequadamente suas 
+                        habilidades técnicas e filosóficas antes de avançar para o próximo nível.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Grandes Mestres -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="font-title text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12 wave-in">
+                    Grandes Mestres do Judô
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                                              <!-- Jigoro Kano -->
+                     <div class="bg-white rounded-2xl p-8 shadow-lg bounce-in hover-3d hover-glow">
+                        <div class="flex items-center mb-6">
+                            <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                <span class="text-3xl">👨‍🏫</span>
+                            </div>
+                            <div>
+                                <h3 class="font-subtitle text-2xl font-bold text-gray-800">Jigoro Kano</h3>
+                                <p class="font-desc text-gray-600">1860-1938</p>
+                            </div>
+                        </div>
+                        <p class="font-desc text-gray-600 leading-relaxed mb-4">
+                            Fundador do judô e criador do Instituto Kodokan. Kano foi um educador 
+                            visionário que transformou uma arte marcial violenta em uma prática 
+                            educacional e filosófica. Sua contribuição vai além do judô, influenciando 
+                            a educação física moderna no Japão.
+                        </p>
+                        <div class="bg-blue-50 rounded-lg p-4">
+                            <h4 class="font-semibold text-blue-800 mb-2">Legado:</h4>
+                            <ul class="text-sm text-blue-700 space-y-1">
+                                <li>• Fundação do Instituto Kodokan (1882)</li>
+                                <li>• Criação dos princípios do judô</li>
+                                <li>• Membro do Comitê Olímpico Internacional</li>
+                                <li>• Educador e reformador social</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                                                              <!-- Kyuzo Mifune -->
+                     <div class="bg-white rounded-2xl p-8 shadow-lg bounce-in hover-bounce hover-shine relative">
+                        <div class="flex items-center mb-6">
+                            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                                <span class="text-3xl">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="font-subtitle text-2xl font-bold text-gray-800">Kyuzo Mifune</h3>
+                                <p class="font-desc text-gray-600">1883-1965</p>
+                            </div>
+                        </div>
+                        <p class="font-desc text-gray-600 leading-relaxed mb-4">
+                            Conhecido como "Deus do Judô", Mifune foi um dos maiores técnicos da 
+                            história. Sua habilidade técnica era lendária, e ele desenvolveu muitas 
+                            técnicas refinadas que são usadas até hoje. Sua filosofia de "judô suave" 
+                            influenciou gerações.
+                        </p>
+                        <div class="bg-green-50 rounded-lg p-4">
+                            <h4 class="font-semibold text-green-800 mb-2">Contribuições:</h4>
+                            <ul class="text-sm text-green-700 space-y-1">
+                                <li>• Desenvolvimento de técnicas refinadas</li>
+                                <li>• Filosofia do "judô suave"</li>
+                                <li>• Autor de "The Canon of Judo"</li>
+                                <li>• Mestre de 10º dan</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-8 bg-gradient-to-r from-blue-600 to-blue-800">
+        
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-4">
+                <a href="/index/" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all hover-bounce hover-glow">
+                    Voltar ao Início
+                </a>
+                <a href="/quiz" class="bg-blue-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 transition-all hover-pulse hover-shine relative">
+                    Teste Seus Conhecimentos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Back to Top functionality
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Animações de Scroll Avançadas
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        
+                        // Adicionar delay para elementos com classe fade-delay
+                        if (entry.target.classList.contains('fade-delay')) {
+                            const delay = entry.target.style.getPropertyValue('--delay') || 0;
+                            setTimeout(() => {
+                                entry.target.classList.add('revealed');
+                            }, delay * 200);
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            // Observar todos os elementos com animações
+            const animatedElements = document.querySelectorAll(`
+                .timeline-item, 
+                .philosophy-card, 
+                .history-card,
+                .slide-left,
+                .slide-right,
+                .zoom-in,
+                .rotate-in,
+                .flip-in,
+                .bounce-in,
+                .fade-delay,
+                .parallax,
+                .wave-in
+            `);
+            
+            animatedElements.forEach((el, index) => {
+                // Adicionar delay escalonado para elementos em sequência
+                if (el.classList.contains('fade-delay')) {
+                    el.style.setProperty('--delay', index);
+                }
+                observer.observe(el);
+            });
+
+            // Animação especial para timeline items
+            document.querySelectorAll('.timeline-item').forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.3}s`;
+            });
+
+            // Efeito parallax para elementos específicos
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const parallaxElements = document.querySelectorAll('.parallax');
+                
+                parallaxElements.forEach(element => {
+                    const speed = 0.5;
+                    element.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            });
+
+            // Smooth scrolling for all internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Add hover effects to timeline items
+            document.querySelectorAll('.timeline-content').forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px) scale(1.02)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Add click effects to philosophy cards
+            document.querySelectorAll('.philosophy-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+
+            // Adicionar efeitos de hover avançados
+            document.querySelectorAll('.hover-glow').forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.transition = 'all 0.3s ease';
+                });
+            });
+
+            // Efeito de partículas para elementos com hover-shine
+            document.querySelectorAll('.hover-shine').forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    // Criar partículas de brilho
+                    for (let i = 0; i < 5; i++) {
+                        const particle = document.createElement('div');
+                        particle.style.position = 'absolute';
+                        particle.style.width = '4px';
+                        particle.style.height = '4px';
+                        particle.style.background = 'rgba(255, 255, 255, 0.8)';
+                        particle.style.borderRadius = '50%';
+                        particle.style.left = Math.random() * 100 + '%';
+                        particle.style.top = Math.random() * 100 + '%';
+                        particle.style.pointerEvents = 'none';
+                        particle.style.zIndex = '10';
+                        particle.style.animation = 'particleFloat 1s ease-out forwards';
+                        
+                        this.appendChild(particle);
+                        
+                        setTimeout(() => {
+                            if (particle.parentNode) {
+                                particle.parentNode.removeChild(particle);
+                            }
+                        }, 1000);
+                    }
+                });
+            });
+
+            // Adicionar animação de partículas
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes particleFloat {
+                    0% {
+                        opacity: 1;
+                        transform: translateY(0) scale(1);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: translateY(-50px) scale(0);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+
+            console.log('História do Judô page loaded successfully!');
+        });
+    </script>
+</body>
+</html>
