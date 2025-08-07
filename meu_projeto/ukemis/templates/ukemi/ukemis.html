@@ -44,13 +44,11 @@
         }
         .video-container {
             position: relative;
-            padding-bottom: 35%;
-            height: 0;
-            overflow: hidden;
+            width: 100%;
+            height: 250px;
             border-radius: 12px;
             box-shadow: 0 8px 20px -5px rgba(16,185,129,0.10);
-            max-width: 100%;
-            margin: 0 auto;
+            overflow: hidden;
         }
         .video-container iframe {
             position: absolute;
@@ -60,6 +58,8 @@
             height: 100%;
             border-radius: 12px;
         }
+        
+
         .section-divider {
             background: linear-gradient(90deg, transparent, #D1FAE5, transparent);
         }
@@ -69,6 +69,216 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+        
+        /* Estilos para as habilidades com animação de digitação */
+        .habilidade-item {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideInUp 0.6s ease-out forwards;
+        }
+        
+        .habilidade-item:nth-child(1) { animation-delay: 0.1s; }
+        .habilidade-item:nth-child(2) { animation-delay: 0.2s; }
+        .habilidade-item:nth-child(3) { animation-delay: 0.3s; }
+        .habilidade-item:nth-child(4) { animation-delay: 0.4s; }
+        .habilidade-item:nth-child(5) { animation-delay: 0.5s; }
+        
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Estilos para o Modal de Parabéns */
+        .modal-enter {
+            animation: modalEnter 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        
+        @keyframes modalEnter {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        /* Garantir que o modal apareça corretamente */
+        #congratulationsModal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        #congratulationsModal.hidden {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+            display: none !important;
+        }
+        
+        #congratulationsModal:not(.hidden) {
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
+            display: flex !important;
+        }
+        
+        /* Forçar exibição do modal quando necessário */
+        #congratulationsModal.show {
+            display: flex !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
+            z-index: 9999 !important;
+        }
+        
+        /* Troféu animado */
+        .trophy-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .trophy-icon {
+            font-size: 4rem;
+            animation: trophyBounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+        }
+        
+        @keyframes trophyBounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(5deg); }
+            75% { transform: translateY(-5px) rotate(-3deg); }
+        }
+        
+        .trophy-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+        }
+        
+        /* Título animado */
+        .congratulations-title {
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+        
+        @keyframes titleGlow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3)); }
+            50% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6)); }
+        }
+        
+        /* Partículas de celebração */
+        .celebration-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FF6347);
+            border-radius: 50%;
+            animation: celebrationFloat 3s ease-in-out infinite;
+            animation-delay: var(--delay);
+            left: var(--x);
+            top: var(--y);
+        }
+        
+        @keyframes celebrationFloat {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(0);
+            }
+            20% {
+                opacity: 1;
+                transform: translateY(-20px) scale(1);
+            }
+            80% {
+                opacity: 1;
+                transform: translateY(-40px) scale(1.2);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-60px) scale(0);
+            }
+        }
+        
+        /* Botões animados */
+        .continue-btn, .close-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .continue-btn::before, .close-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .continue-btn:hover::before, .close-btn:hover::before {
+            left: 100%;
+        }
+        
+        /* Estatísticas */
+        .stat-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #fbbf24;
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            animation: statCardEnter 0.6s ease-out forwards;
+            animation-delay: calc(var(--index, 0) * 0.1s);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .stat-card:nth-child(1) { --index: 1; }
+        .stat-card:nth-child(2) { --index: 2; }
+        
+        @keyframes statCardEnter {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #f59e0b;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: #92400e;
+            font-weight: 500;
+        }
+        
+        /* Estilos para a barra flutuante */
+        .floating-action {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+
     </style>
 </head>
 <body class="bg-gray-50 font-display">
@@ -94,28 +304,52 @@
             <p class="text-base font-semibold text-white">Progresso: <span id="progressText" class="text-emerald-200">0%</span></p>
         </div>
     </header>
-    <main class="max-w-6xl mx-auto px-4 py-6">
-        <!-- Card de Boas-Vindas Minimalista -->
-        <div id="welcomeCard" class="bg-white/80 border border-emerald-400 rounded-xl shadow-md p-6 mb-8 w-full flex flex-col items-center">
-            <div class="flex items-center gap-3 mb-4">
-                <span class="text-2xl text-emerald-500">🥋</span>
-                <span class="font-semibold text-emerald-700 text-xl">Bem-vindo aos Rolamentos (Ukemi)</span>
+    
+    <!-- Barra de Progresso Flutuante -->
+    <div id="floatingProgress" class="fixed top-4 left-0 right-0 mx-auto w-fit bg-white border border-gray-300 rounded-lg shadow-lg p-3 z-50 opacity-0 transition-opacity duration-300 pointer-events-none">
+        <div class="flex items-center gap-5">
+            <div class="w-80 bg-gray-200 rounded-full h-3">
+                <div id="floatingProgressBar" class="bg-gradient-to-r from-emerald-400 to-emerald-600 h-3 rounded-full transition-all duration-500 shadow-sm" style="width: 0%"></div>
             </div>
-            <div class="text-center">
-                <div class="font-bold text-emerald-600 text-lg mb-2">Por que aprender Ukemi?</div>
-                <div class="text-sm text-emerald-700">
-                    <div>• Segurança nas quedas</div>
-                    <div>• Prevenção de lesões</div>
-                    <div>• Base para técnicas avançadas</div>
-                    <div>• Confiança no tatame</div>
+            <span id="floatingProgressText" class="text-base font-bold text-gray-800">0%</span>
+        </div>
+    </div>
+    
+    <main class="max-w-6xl mx-auto px-4 py-6">
+        <!-- Seção de Condições -->
+        <div class="w-full text-center mb-2">
+            <h2 class="font-bold text-gray-700 text-2xl">Condições</h2>
+            <div class="flex flex-wrap justify-center gap-4 mt-2">
+                <div class="bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500 habilidade-item">
+                    Qualquer nível de faixa
+                </div>
+                <div class="bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500 habilidade-item">
+                    Idade mínima: 6 anos de idade
                 </div>
             </div>
         </div>
-        <style>
-        #welcomeCard {
-            box-shadow: 0 2px 16px 0 rgba(16,185,129,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
-        }
-        </style>
+        
+        <!-- Seção de Habilidades -->
+        <div class="w-full text-center mb-4">
+            <h2 class="font-bold text-gray-700 text-2xl">Habilidades</h2>
+            <div id="habilidadesTyping" class="flex flex-wrap justify-center gap-4 mt-2">
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    Ushiro-ukemi (Rolamento para trás)
+                </div>
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    Yoko-ukemi (Rolamento lateral)
+                </div>
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    Mae-ukemi (Rolamento para frente)
+                </div>
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    Zenpo-kaiten-ukemi (Rolamento para frente com giro)
+                </div>
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    Koho-kaiten-ukemi (Rolamento para trás com giro)
+                </div>
+            </div>
+        </div>
         <!-- Seção de Rolamentos -->
         <section id="ukemi-section" class="mb-12">
             <div class="text-center mb-8">
@@ -127,58 +361,203 @@
                 </p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- 10 espaços para vídeos de rolamentos -->
-                {% for i in range10 %}
+                <!-- 1. Rolinho (Cambalhota) -->
                 <div class="card-hover bg-white rounded-2xl shadow-lg p-4 flex flex-col">
-                    <div class="flex items-center mb-3 gap-3">
-                        <div class="bg-emerald-100 p-2 rounded-full">
-                            <span class="text-lg">🥋</span>
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-emerald-100 p-2 rounded-full mr-3">
+                                <span class="text-lg">🔄</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">Rolinho (Cambalhota)</h3>
+                                <p class="text-emerald-700 text-sm">Rolamento básico para iniciantes</p>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="text-lg font-bold text-gray-800">Rolinho</h3>
-                            <p class="text-emerald-700 text-sm">Descrição do rolamento {{ i }}</p>
-                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="ukemi-checkbox accent-emerald-500 w-5 h-5 mr-1" />
+                            <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                        </label>
                     </div>
                     <div class="video-container mb-3">
-                        <!-- Substitua o src abaixo pelo link do vídeo desejado -->
-                        <iframe src="" title="Ukemi {{ i }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Rolinho Cambalhota" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                     <div class="bg-emerald-50 p-2 rounded-xl">
                         <h4 class="font-semibold text-emerald-800 mb-1 text-sm">💡 Dica:</h4>
-                        <p class="text-emerald-700 text-xs">Dica para o rolamento {{ i }}.</p>
+                        <p class="text-emerald-700 text-xs">Mantenha a cabeça encostada no peito e role suavemente.</p>
                     </div>
                 </div>
-                {% endfor %}
+
+                <!-- 2. Ushiro-ukemi -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4 flex flex-col">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-emerald-100 p-2 rounded-full mr-3">
+                                <span class="text-lg">🥋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">Ushiro-ukemi</h3>
+                                <p class="text-emerald-700 text-sm">Rolamento para trás</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="ukemi-checkbox accent-emerald-500 w-5 h-5 mr-1" />
+                            <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/_g7rvsxTkz8?si=VPNi6CQlzX9dJNtN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-emerald-50 p-2 rounded-xl">
+                        <h4 class="font-semibold text-emerald-800 mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-emerald-700 text-xs">Mantenha o queixo encostado no peito e bata as mãos no tatame.</p>
+                    </div>
+                </div>
+
+                <!-- 3. Zenpo-kaiten -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4 flex flex-col">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-emerald-100 p-2 rounded-full mr-3">
+                                <span class="text-lg">🔄</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">Zenpo-kaiten</h3>
+                                <p class="text-emerald-700 text-sm">Rolamento para frente com giro</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="ukemi-checkbox accent-emerald-500 w-5 h-5 mr-1" />
+                            <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/kbiLot6laks?si=f_QwxHXrYTIqKDpz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-emerald-50 p-2 rounded-xl">
+                        <h4 class="font-semibold text-emerald-800 mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-emerald-700 text-xs">Gire o corpo mantendo a linha reta e controle a queda.</p>
+                    </div>
+                </div>
+
+                <!-- 4. Mae-ukemi -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4 flex flex-col">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-emerald-100 p-2 rounded-full mr-3">
+                                <span class="text-lg">⬇️</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">Mae-ukemi</h3>
+                                <p class="text-emerald-700 text-sm">Rolamento para frente</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="ukemi-checkbox accent-emerald-500 w-5 h-5 mr-1" />
+                            <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/veM5RFdjo0U?si=hve0oKBBYWiE1KpG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-emerald-50 p-2 rounded-xl">
+                        <h4 class="font-semibold text-emerald-800 mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-emerald-700 text-xs">Proteja a cabeça e role suavemente para frente.</p>
+                    </div>
+                </div>
+
+                <!-- 5. Yoko-ukemi -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-4 flex flex-col">
+                    <div class="flex items-center mb-3 justify-between">
+                        <div class="flex items-center">
+                            <div class="bg-emerald-100 p-2 rounded-full mr-3">
+                                <span class="text-lg">↔️</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold text-gray-800">Yoko-ukemi</h3>
+                                <p class="text-emerald-700 text-sm">Rolamento lateral</p>
+                            </div>
+                        </div>
+                        <label class="flex items-center ml-2 select-none">
+                            <input type="checkbox" class="ukemi-checkbox accent-emerald-500 w-5 h-5 mr-1" />
+                            <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                        </label>
+                    </div>
+                    <div class="video-container mb-3">
+                        <iframe src="https://www.youtube.com/embed/JCwK1Ia4jsc" title="Yoko-ukemi" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="bg-emerald-50 p-2 rounded-xl">
+                        <h4 class="font-semibold text-emerald-800 mb-1 text-sm">💡 Dica:</h4>
+                        <p class="text-emerald-700 text-xs">Relaxe o corpo e role lateralmente, batendo o braço no tatame.</p>
+                    </div>
+                </div>
             </div>
 
-            <!-- Rolamentos específicos -->
-            <div class="mt-12">
-                <div>
-                    <h3 class="text-lg font-bold text-gray-800">Ushiro-ukemi</h3>
-                    <p class="text-emerald-700 text-sm">Rolamento para trás, essencial para quedas de costas.</p>
-                </div>
-                <div class="video-container mb-3">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/_g7rvsxTkz8?si=E_gq1nKw7xd-MnuU" title="Ushiro-ukemi" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-                <div class="bg-emerald-50 p-2 rounded-xl mb-8">
-                    <h4 class="font-semibold text-emerald-800 mb-1 text-sm">💡 Dica:</h4>
-                    <p class="text-emerald-700 text-xs">Mantenha o queixo encostado no peito e bata as mãos no tatame para absorver o impacto.</p>
-                </div>
 
-                <div>
-                    <h3 class="text-lg font-bold text-gray-800">Yoko-ukemi</h3>
-                    <p class="text-emerald-700 text-sm">Rolamento lateral, importante para quedas de lado.</p>
-                </div>
-                <div class="video-container mb-3">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/JCwK1Ia4jsc?si=nR8_PgylawJglF99" title="Yoko-ukemi" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-                <div class="bg-emerald-50 p-2 rounded-xl">
-                    <h4 class="font-semibold text-emerald-800 mb-1 text-sm">💡 Dica:</h4>
-                    <p class="text-emerald-700 text-xs">Relaxe o corpo e role lateralmente, batendo o braço no tatame para dissipar o impacto.</p>
-                </div>
-            </div>
         </section>
     </main>
+    
+    <!-- Modal de Parabéns -->
+    <div id="congratulationsModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] hidden items-center justify-center" style="display: none;">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-2xl mx-4 p-8 text-center relative overflow-hidden">
+            <!-- Partículas de fundo -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                <div class="celebration-particle" style="--delay: 0s; --x: 10%; --y: 20%"></div>
+                <div class="celebration-particle" style="--delay: 0.2s; --x: 80%; --y: 30%"></div>
+                <div class="celebration-particle" style="--delay: 0.4s; --x: 20%; --y: 70%"></div>
+                <div class="celebration-particle" style="--delay: 0.6s; --x: 70%; --y: 80%"></div>
+                <div class="celebration-particle" style="--delay: 0.8s; --x: 50%; --y: 10%"></div>
+                <div class="celebration-particle" style="--delay: 1s; --x: 90%; --y: 60%"></div>
+            </div>
+            
+            <!-- Conteúdo principal -->
+            <div class="relative z-10">
+                <!-- Ícone de troféu animado -->
+                <div class="trophy-container mb-6">
+                    <div class="trophy-icon">🏆</div>
+                    <div class="trophy-glow"></div>
+                </div>
+                
+                <!-- Título principal -->
+                <h1 class="congratulations-title text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 bg-clip-text text-transparent">
+                    Parabéns!
+                </h1>
+                
+                <!-- Subtítulo -->
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
+                    Você Dominou os <span class="text-gradient">Rolamentos (Ukemi)</span>!
+                </h2>
+                
+                <!-- Mensagem motivacional -->
+                <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                    Sua dedicação e prática foram fundamentais para dominar os rolamentos. 
+                    Agora você está mais seguro e preparado para evoluir no judô!
+                </p>
+                
+                <!-- Estatísticas -->
+                <div class="stats-grid grid grid-cols-2 gap-4 mb-8">
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Progresso</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Rolamentos Dominados</div>
+                    </div>
+                </div>
+                
+                <!-- Botões de ação -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button id="continueTraining" class="continue-btn bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-8 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Continuar Treinando
+                    </button>
+                    <button id="closeCongratulations" class="close-btn bg-gray-500 hover:bg-gray-600 text-white px-8 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-6 px-4 mt-8">
         <div class="max-w-6xl mx-auto text-center">
@@ -187,5 +566,277 @@
             </p>
         </div>
     </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('=== INICIANDO SCRIPT UKEMI ===');
+            
+            const ukemiCheckboxes = document.querySelectorAll('.ukemi-checkbox');
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            const floatingProgress = document.getElementById('floatingProgress');
+            const floatingProgressBar = document.getElementById('floatingProgressBar');
+            const floatingProgressText = document.getElementById('floatingProgressText');
+            const congratulationsModal = document.getElementById('congratulationsModal');
+            
+            console.log('Checkboxes encontrados:', ukemiCheckboxes.length);
+            console.log('ProgressBar encontrado:', progressBar);
+            console.log('ProgressText encontrado:', progressText);
+            console.log('FloatingProgress encontrado:', floatingProgress);
+            console.log('FloatingProgressBar encontrado:', floatingProgressBar);
+            console.log('FloatingProgressText encontrado:', floatingProgressText);
+            console.log('CongratulationsModal encontrado:', congratulationsModal);
+            
+            let hasShownCongratulations = false;
+            
+            // Função para mostrar barra de progresso flutuante
+            function showFloatingProgress(progress) {
+                // Atualizar valores da barra flutuante
+                floatingProgressBar.style.width = progress + '%';
+                floatingProgressText.textContent = Math.round(progress) + '%';
+                
+                // Mostrar a barra
+                floatingProgress.style.opacity = '1';
+                floatingProgress.style.pointerEvents = 'auto';
+                
+                // Esconder após 5 segundos
+                setTimeout(() => {
+                    floatingProgress.style.opacity = '0';
+                    floatingProgress.style.pointerEvents = 'none';
+                }, 5000);
+            }
+            
+            // Função para atualizar progresso
+            function updateProgress() {
+                const totalChecked = document.querySelectorAll('.ukemi-checkbox:checked').length;
+                const totalQuestions = ukemiCheckboxes.length;
+                const progress = (totalChecked / totalQuestions) * 100;
+                
+                console.log(`Progresso: ${totalChecked}/${totalQuestions} = ${progress}%`);
+                
+                // Atualizar barra principal
+                progressBar.style.width = progress + '%';
+                progressText.textContent = Math.round(progress) + '%';
+                
+                // Verificar se chegou a 100% e mostrar parabéns
+                if (progress >= 100 && !hasShownCongratulations) {
+                    console.log('Progresso atingiu 100% - mostrando parabéns!');
+                    setTimeout(() => {
+                        showCongratulations();
+                    }, 500);
+                } else if (progress >= 100 && hasShownCongratulations) {
+                    console.log('Progresso 100% mas parabéns já foram mostrados (hasShownCongratulations = true)');
+                } else if (progress < 100) {
+                    console.log(`Progresso ${progress}% - ainda não atingiu 100%`);
+                }
+            }
+            
+            // Função para mostrar modal de parabéns
+            function showCongratulations() {
+                console.log('=== SHOW CONGRATULATIONS ===');
+                hasShownCongratulations = true;
+                
+                const modal = document.getElementById('congratulationsModal');
+                if (!modal) {
+                    console.log('ERRO: Modal não encontrado!');
+                    return;
+                }
+                
+                console.log('Modal encontrado, mostrando...');
+                console.log('Estado inicial do modal:', {
+                    display: modal.style.display,
+                    opacity: modal.style.opacity,
+                    visibility: modal.style.visibility,
+                    classes: modal.className
+                });
+                
+                // Forçar exibição com múltiplas abordagens
+                modal.style.display = 'flex';
+                modal.style.opacity = '1';
+                modal.style.visibility = 'visible';
+                modal.style.pointerEvents = 'auto';
+                modal.style.zIndex = '9999';
+                
+                // Remover classes que podem esconder e adicionar classe show
+                modal.classList.remove('hidden');
+                modal.classList.add('flex', 'show');
+                
+                // Adicionar animação de entrada
+                const modalContent = modal.querySelector('div');
+                if (modalContent) {
+                    modalContent.classList.add('modal-enter');
+                }
+                
+                // Salvar que já mostrou parabéns
+                localStorage.setItem('ukemiCongratulationsShown', 'true');
+                
+                // Scroll suave para o topo
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                console.log('Estado final do modal:', {
+                    display: modal.style.display,
+                    opacity: modal.style.opacity,
+                    visibility: modal.style.visibility,
+                    classes: modal.className
+                });
+                console.log('Modal deve estar visível agora!');
+                console.log('=== FIM SHOW CONGRATULATIONS ===');
+                
+                // Verificar se o modal está realmente visível
+                setTimeout(() => {
+                    const computedStyle = window.getComputedStyle(modal);
+                    console.log('Computed styles do modal:', {
+                        display: computedStyle.display,
+                        opacity: computedStyle.opacity,
+                        visibility: computedStyle.visibility,
+                        zIndex: computedStyle.zIndex
+                    });
+                }, 100);
+            }
+            
+            // Função para fechar modal
+            function closeCongratulations() {
+                console.log('Fechando modal de parabéns');
+                const modal = document.getElementById('congratulationsModal');
+                if (modal) {
+                    modal.style.display = 'none';
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                    console.log('Modal fechado com sucesso');
+                } else {
+                    console.log('Modal não encontrado para fechar');
+                }
+            }
+            
+            // Event listeners para checkboxes
+            ukemiCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    updateProgress();
+                    if (this.checked) {
+                        const totalChecked = document.querySelectorAll('.ukemi-checkbox:checked').length;
+                        const totalQuestions = ukemiCheckboxes.length;
+                        const progress = (totalChecked / totalQuestions) * 100;
+                        showFloatingProgress(progress);
+                    }
+                });
+            });
+            
+            // Event listeners para botões do modal
+            document.getElementById('continueTraining')?.addEventListener('click', function() {
+                closeCongratulations();
+                // Aqui você pode adicionar redirecionamento para próxima página
+                window.location.href = '/index/';
+            });
+            
+            document.getElementById('closeCongratulations')?.addEventListener('click', function() {
+                closeCongratulations();
+            });
+            
+            // Verificar se já mostrou parabéns anteriormente
+            if (localStorage.getItem('ukemiCongratulationsShown') === 'true') {
+                hasShownCongratulations = true;
+                console.log('Parabéns já foram mostrados anteriormente');
+            } else {
+                console.log('Primeira vez - parabéns podem ser mostrados');
+            }
+            
+            // Função para limpar localStorage (remover depois)
+            window.clearStorage = function() {
+                localStorage.removeItem('ukemiCongratulationsShown');
+                hasShownCongratulations = false;
+                console.log('LocalStorage limpo - parabéns podem ser mostrados novamente');
+            };
+            
+            // Inicializar progresso
+            updateProgress();
+            
+            // Função de teste para verificar modal (remover depois)
+            window.testModal = function() {
+                console.log('Testando modal...');
+                const modal = document.getElementById('congratulationsModal');
+                console.log('Modal encontrado:', modal);
+                if (modal) {
+                    console.log('Classes do modal:', modal.className);
+                    console.log('Display atual:', modal.style.display);
+                    console.log('Opacity atual:', modal.style.opacity);
+                }
+                showCongratulations();
+            };
+            
+            // Função para forçar progresso 100% (remover depois)
+            window.force100 = function() {
+                console.log('Forçando progresso 100%...');
+                ukemiCheckboxes.forEach(checkbox => {
+                    checkbox.checked = true;
+                });
+                updateProgress();
+            };
+            
+            // Função para forçar modal (remover depois)
+            window.forceModal = function() {
+                console.log('Forçando exibição do modal...');
+                hasShownCongratulations = false;
+                showCongratulations();
+            };
+            
+            // Função para verificar modal (remover depois)
+            window.checkModal = function() {
+                const modal = document.getElementById('congratulationsModal');
+                if (modal) {
+                    console.log('Modal encontrado no DOM');
+                    console.log('HTML do modal:', modal.outerHTML);
+                    console.log('Classes:', modal.className);
+                    console.log('Styles:', {
+                        display: modal.style.display,
+                        opacity: modal.style.opacity,
+                        visibility: modal.style.visibility,
+                        zIndex: modal.style.zIndex
+                    });
+                } else {
+                    console.log('ERRO: Modal não encontrado no DOM!');
+                }
+            };
+            
+            // Função para criar modal de teste (remover depois)
+            window.createTestModal = function() {
+                const testModal = document.createElement('div');
+                testModal.id = 'testModal';
+                testModal.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.5);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 10000;
+                `;
+                testModal.innerHTML = `
+                    <div style="background: white; padding: 20px; border-radius: 10px;">
+                        <h2>Modal de Teste</h2>
+                        <p>Se você vê isso, o problema não é com modais em geral.</p>
+                        <button onclick="this.parentElement.parentElement.remove()">Fechar</button>
+                    </div>
+                `;
+                document.body.appendChild(testModal);
+                console.log('Modal de teste criado');
+            };
+            
+            // Verificar se os vídeos estão carregando
+            const iframes = document.querySelectorAll('.video-container iframe');
+            
+            iframes.forEach((iframe, index) => {
+                iframe.addEventListener('load', function() {
+                    console.log(`Vídeo ${index + 1} carregado com sucesso`);
+                });
+                
+                iframe.addEventListener('error', function() {
+                    console.log(`Erro ao carregar vídeo ${index + 1}`);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
