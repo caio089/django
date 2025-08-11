@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'ukemis',
     'quiz',
     'historia',
+    'palavras',
+    'regras',
 ]
 
 MIDDLEWARE = [

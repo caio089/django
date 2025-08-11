@@ -31,5 +31,7 @@ urlpatterns = [
     path('ukemis/', include('ukemis.urls')),
     path('quiz/', include('quiz.urls')),
     path('historia/', include('historia.urls')),
+    path('palavras/', include('palavras.urls')),  
+    path('regras/', include('regras.urls')),
 ]
 

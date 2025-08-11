@@ -1,0 +1,719 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regras de Competição - Judô</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Montserrat, Poppins, Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        judo: {
+                            gray: '#6B7280',
+                            blue: '#3B82F6',
+                            yellow: '#FBBF24',
+                            orange: '#F97316',
+                            green: '#10B981',
+                            purple: '#8B5CF6',
+                            brown: '#92400E'
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;600&family=Inter:wght@400;500;700&display=swap');
+        
+        .font-title { font-family: 'Montserrat', 'Poppins', Arial, sans-serif; }
+        .font-subtitle { font-family: 'Poppins', Arial, sans-serif; }
+        .font-desc { font-family: 'Inter', Arial, sans-serif; }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #374151 0%, #1F2937 100%);
+            min-height: 60vh;
+        }
+        
+        .rule-card {
+            transition: all 0.3s ease;
+            background: white;
+            border: 1px solid #E5E7EB;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .rule-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: #3B82F6;
+        }
+        
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .fade-in-up:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in-up:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in-up:nth-child(3) { animation-delay: 0.3s; }
+        .fade-in-up:nth-child(4) { animation-delay: 0.4s; }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .back-btn {
+            transition: all 0.3s ease;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .back-btn:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateX(-5px);
+        }
+        
+        .category-kimono { border-left: 4px solid #10B981; }
+        .category-rules { border-left: 4px solid #F59E0B; }
+        .category-penalties { border-left: 4px solid #EF4444; }
+        .category-techniques { border-left: 4px solid #8B5CF6; }
+        
+        .highlight-rule {
+            background: linear-gradient(120deg, #FEF3C7 0%, #FDE68A 100%);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: #92400E;
+        }
+        
+        .nav-section {
+            background: white;
+            border: 1px solid #E5E7EB;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-link {
+            transition: all 0.3s ease;
+            border-radius: 0.5rem;
+            border: 2px solid transparent;
+        }
+        
+        .nav-link:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .nav-link.active {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-desc">
+    <!-- Botão de voltar -->
+    <div class="fixed top-6 left-6 z-50">
+        <a href="/index/" class="back-btn inline-flex items-center px-4 py-2 rounded-lg text-blue-600 hover:text-blue-700">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            Voltar
+        </a>
+    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero-section text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="font-title text-4xl md:text-6xl font-bold mb-6 fade-in-up">
+                🥋 Regras de Competição
+            </h1>
+            <p class="font-subtitle text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+                Conheça todas as regras essenciais para competições de judô e entenda o que é permitido e proibido
+            </p>
+        </div>
+    </section>
+    
+    <!-- Container principal -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <!-- Introdução -->
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-12 fade-in-up">
+            <div class="text-center">
+                <h2 class="font-title text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                    📋 Regulamento Oficial
+                </h2>
+                <p class="font-desc text-lg text-gray-600 leading-relaxed">
+                    As competições de judô seguem regras rigorosas estabelecidas pela Federação Internacional de Judô (IJF). 
+                    Conhecer estas regras é fundamental para participar de competições e evitar penalizações. 
+                    Aqui você encontrará tudo sobre kimono, técnicas permitidas, punições e muito mais.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Navegação por seções -->
+        <div class="fade-in-up mb-12">
+            <div class="nav-section rounded-2xl p-6">
+                <h3 class="font-title text-xl font-bold text-gray-900 mb-4 text-center">📚 Navegue pelas Seções</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <button onclick="scrollToSection('kimono')" class="nav-link p-3 text-center">
+                        <div class="text-2xl mb-2">👕</div>
+                        <div class="font-subtitle text-sm text-gray-700">Kimono</div>
+                    </button>
+                    <button onclick="scrollToSection('regras')" class="nav-link p-3 text-center">
+                        <div class="text-2xl mb-2">⚔️</div>
+                        <div class="font-subtitle text-sm text-gray-700">Regras</div>
+                    </button>
+                    <button onclick="scrollToSection('punicoes')" class="nav-link p-3 text-center">
+                        <div class="text-2xl mb-2">⚠️</div>
+                        <div class="font-subtitle text-sm text-gray-700">Punições</div>
+                    </button>
+                    <button onclick="scrollToSection('tecnicas')" class="nav-link p-3 text-center">
+                        <div class="text-2xl mb-2">🥋</div>
+                        <div class="font-subtitle text-sm text-gray-700">Técnicas</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Regras do Kimono -->
+        <section id="kimono" class="mb-16">
+            <div class="fade-in-up">
+                <h3 class="font-title text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                    <span class="w-8 h-8 bg-green-400 rounded-full flex items-center justify-center mr-3">👕</span>
+                    Regras do Kimono (Judogi)
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Tamanhos -->
+                    <div class="rule-card rounded-xl p-6 category-kimono">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-ruler text-green-600 text-2xl"></i>
+                            </div>
+                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Tamanhos</h4>
+                        </div>
+                        <div class="space-y-3 text-sm text-gray-600">
+                            <div class="flex justify-between">
+                                <span>Masculino:</span>
+                                <span class="highlight-rule">1, 2, 3, 4, 5</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Feminino:</span>
+                                <span class="highlight-rule">F1, F2, F3, F4</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Infantil:</span>
+                                <span class="highlight-rule">I1, I2, I3, I4</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Material -->
+                    <div class="rule-card rounded-xl p-6 category-kimono">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-leaf text-blue-600 text-2xl"></i>
+                            </div>
+                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Material</h4>
+                        </div>
+                        <div class="space-y-3 text-sm text-gray-600">
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>100% algodão</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span class="highlight-rule">Peso mínimo: 700g</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span>Cor branca ou azul</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Medidas -->
+                    <div class="rule-card rounded-xl p-6 category-kimono">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-expand-arrows-alt text-purple-600 text-2xl"></i>
+                            </div>
+                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Medidas</h4>
+                        </div>
+                        <div class="space-y-3 text-sm text-gray-600">
+                            <div class="flex justify-between">
+                                <span>Manga:</span>
+                                <span class="highlight-rule">5-7cm do pulso</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Calça:</span>
+                                <span class="highlight-rule">5-7cm do tornozelo</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Largura:</span>
+                                <span class="highlight-rule">10-15cm do corpo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Regras Específicas do Kimono -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                    <div class="rule-card rounded-xl p-6 category-kimono">
+                        <h4 class="font-subtitle text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                            O que é PERMITIDO
+                        </h4>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                                <span>Kimono limpo e bem passado</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                                <span>Faixa (obi) de 4-5cm de largura</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                                <span>Camiseta branca por baixo (opcional)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                                <span>Calcinha/short branco por baixo</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="rule-card rounded-xl p-6 category-kimono">
+                        <h4 class="font-subtitle text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                            <i class="fas fa-times-circle text-red-500 mr-2"></i>
+                            O que é PROIBIDO
+                        </h4>
+                        <ul class="space-y-3 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-times text-red-500 mt-1 mr-3"></i>
+                                <span>Kimono rasgado ou sujo</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times text-red-500 mt-1 mr-3"></i>
+                                <span>Faixa muito longa ou curta</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times text-red-500 mt-1 mr-3"></i>
+                                <span>Camiseta colorida por baixo</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times text-red-500 mt-1 mr-3"></i>
+                                <span>Calcinha/short colorido</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Regras da Luta -->
+        <section id="regras" class="mb-16">
+            <div class="fade-in-up">
+                <h3 class="font-title text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                    <span class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center mr-3">⚔️</span>
+                    Regras da Luta
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Área de Combate -->
+                    <div class="rule-card rounded-xl p-6 category-rules">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-square text-orange-600 text-2xl"></i>
+                            </div>
+                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Área de Combate</h4>
+                        </div>
+                        <div class="space-y-3 text-sm text-gray-600">
+                            <div class="flex justify-between">
+                                <span>Tatame:</span>
+                                <span class="highlight-rule">8x8 metros</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Área segura:</span>
+                                <span class="highlight-rule">3 metros</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Cor:</span>
+                                <span class="highlight-rule">Verde ou azul</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Duração -->
+                    <div class="rule-card rounded-xl p-6 category-rules">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-clock text-yellow-600 text-2xl"></i>
+                            </div>
+                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Duração</h4>
+                        </div>
+                        <div class="space-y-3 text-sm text-gray-600">
+                            <div class="flex justify-between">
+                                <span>Sênior:</span>
+                                <span class="highlight-rule">4 minutos</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Júnior:</span>
+                                <span class="highlight-rule">4 minutos</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Cadete:</span>
+                                <span class="highlight-rule">3 minutos</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Infantil:</span>
+                                <span class="highlight-rule">2 minutos</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Golden Score -->
+                    <div class="rule-card rounded-xl p-6 category-rules">
+                        <div class="text-center mb-4">
+                            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="fas fa-star text-red-500 text-2xl"></i>
+                            </div>
+                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Golden Score</h4>
+                        </div>
+                        <div class="space-y-3 text-sm text-gray-600">
+                            <div class="flex items-center">
+                                <i class="fas fa-info text-blue-500 mr-2"></i>
+                                <span>Em caso de empate</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-info text-blue-500 mr-2"></i>
+                                <span class="highlight-rule">Primeiro ponto vence</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-info text-blue-500 mr-2"></i>
+                                <span>Sem limite de tempo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Punições -->
+        <section id="punicoes" class="mb-16">
+            <div class="fade-in-up">
+                <h3 class="font-title text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                    <span class="w-8 h-8 bg-red-400 rounded-full flex items-center justify-center mr-3">⚠️</span>
+                    Punições e Infrações
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Shido (Penalidades Leves) -->
+                    <div class="rule-card rounded-xl p-6 category-penalties">
+                        <h4 class="font-subtitle text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                            <i class="fas fa-info-circle text-yellow-500 mr-2"></i>
+                            Shido (Penalidades Leves)
+                        </h4>
+                        <div class="space-y-4">
+                            <div class="p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                                <h5 class="font-semibold text-yellow-800 mb-2">Infrações Comuns</h5>
+                                <ul class="text-sm text-yellow-700 space-y-1">
+                                    <li>• Passividade excessiva (não atacar)</li>
+                                    <li>• Sair da área de combate repetidamente</li>
+                                    <li>• Agarrar a perna sem técnica</li>
+                                    <li>• Usar técnicas perigosas</li>
+                                    <li>• Não seguir comandos do árbitro</li>
+                                </ul>
+                            </div>
+                            <div class="p-3 bg-red-50 rounded-lg border border-red-200">
+                                <p class="text-red-800 text-sm">
+                                    <strong>⚠️ Consequência:</strong> 3 shidos = hansoku-make (desqualificação)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hansoku-make (Penalidades Graves) -->
+                    <div class="rule-card rounded-xl p-6 category-penalties">
+                        <h4 class="font-subtitle text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                            <i class="fas fa-times-circle text-red-500 mr-2"></i>
+                            Hansoku-make (Desqualificação)
+                        </h4>
+                        <div class="space-y-4">
+                            <div class="p-4 bg-red-50 rounded-lg border border-red-200">
+                                <h5 class="font-semibold text-red-800 mb-2">Infrações Graves</h5>
+                                <ul class="text-sm text-red-700 space-y-1">
+                                    <li>• Golpes com mão fechada</li>
+                                    <li>• Chutes ou joelhadas</li>
+                                    <li>• Morder, arranhar ou beliscar</li>
+                                    <li>• Comportamento antidesportivo</li>
+                                    <li>• Desrespeito ao árbitro</li>
+                                    <li>• Usar substâncias proibidas</li>
+                                </ul>
+                            </div>
+                            <div class="p-3 bg-red-100 rounded-lg border border-red-300">
+                                <p class="text-red-900 text-sm">
+                                    <strong>🚫 Consequência:</strong> Desqualificação imediata da luta
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Técnicas Permitidas e Proibidas -->
+        <section id="tecnicas" class="mb-16">
+            <div class="fade-in-up">
+                <h3 class="font-title text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                    <span class="w-8 h-8 bg-purple-400 rounded-full flex items-center justify-center mr-3">🥋</span>
+                    Técnicas: O que Pode e o que Não Pode
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Técnicas Permitidas -->
+                    <div class="rule-card rounded-xl p-6 category-techniques">
+                        <h4 class="font-subtitle text-xl font-semibold text-gray-900 mb-4 flex items-center text-green-600">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            Técnicas PERMITIDAS
+                        </h4>
+                        
+                        <div class="space-y-4">
+                            <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+                                <h5 class="font-semibold text-green-800 mb-2">Nage-waza (Projeções)</h5>
+                                <ul class="text-sm text-green-700 space-y-1">
+                                    <li>• Te-waza (técnicas de braço)</li>
+                                    <li>• Ashi-waza (técnicas de perna)</li>
+                                    <li>• Koshi-waza (técnicas de quadril)</li>
+                                    <li>• Sutemi-waza (técnicas de sacrifício)</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                <h5 class="font-semibold text-blue-800 mb-2">Katame-waza (Controle)</h5>
+                                <ul class="text-sm text-blue-700 space-y-1">
+                                    <li>• Osae-komi (imobilizações)</li>
+                                    <li>• Shime-waza (estrangulamentos)</li>
+                                    <li>• Kansetsu-waza (chaves de articulação)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Técnicas Proibidas -->
+                    <div class="rule-card rounded-xl p-6 category-techniques">
+                        <h4 class="font-subtitle text-xl font-semibold text-gray-900 mb-4 flex items-center text-red-600">
+                            <i class="fas fa-times-circle mr-2"></i>
+                            Técnicas PROIBIDAS
+                        </h4>
+                        
+                        <div class="space-y-4">
+                            <div class="p-4 bg-red-50 rounded-lg border border-red-200">
+                                <h5 class="font-semibold text-red-800 mb-2">Golpes Proibidos</h5>
+                                <ul class="text-sm text-red-700 space-y-1">
+                                    <li>• Golpes com mão fechada</li>
+                                    <li>• Chutes ou joelhadas</li>
+                                    <li>• Cotoveladas ou cabeçadas</li>
+                                    <li>• Morder ou arranhar</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="p-4 bg-orange-50 rounded-lg border border-orange-200">
+                                <h5 class="font-semibold text-orange-800 mb-2">Técnicas Perigosas</h5>
+                                <ul class="text-sm text-orange-700 space-y-1">
+                                    <li>• Kawazu-gake (técnica de perna)</li>
+                                    <li>• Técnicas de pescoço perigosas</li>
+                                    <li>• Chaves em articulações pequenas</li>
+                                    <li>• Técnicas de sacrifício perigosas</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Regras Específicas por Categoria -->
+                <div class="mt-8">
+                    <div class="rule-card rounded-xl p-6 category-techniques">
+                        <h4 class="font-subtitle text-xl font-semibold text-gray-900 mb-6 text-center">
+                            <i class="fas fa-users text-purple-600 mr-2"></i>
+                            Regras por Categoria de Idade
+                        </h4>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="p-4 bg-purple-50 rounded-lg border border-purple-200">
+                                <h5 class="font-semibold text-purple-800 mb-3">Categorias Infantis (5-12 anos)</h5>
+                                <ul class="text-sm text-purple-700 space-y-2">
+                                    <li>• <strong>Proibidas:</strong> Técnicas de finalização</li>
+                                    <li>• <strong>Foco:</strong> Projeções e quedas</li>
+                                    <li>• <strong>Área:</strong> Tatame reduzido</li>
+                                    <li>• <strong>Arbitragem:</strong> Mais educativa</li>
+                                    <li>• <strong>Duração:</strong> 1-2,5 minutos</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                                <h5 class="font-semibold text-blue-800 mb-3">Categorias Adultas (13+ anos)</h5>
+                                <ul class="text-sm text-blue-700 space-y-2">
+                                    <li>• <strong>Permitidas:</strong> Todas as técnicas</li>
+                                    <li>• <strong>Finalizações:</strong> Completas</li>
+                                    <li>• <strong>Golden Score:</strong> Em caso de empate</li>
+                                    <li>• <strong>Arbitragem:</strong> Rigorosa</li>
+                                    <li>• <strong>Duração:</strong> 3-4 minutos</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dicas para Competição -->
+        <section id="dicas" class="mb-16">
+            <div class="fade-in-up">
+                <h3 class="font-title text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                    <span class="w-8 h-8 bg-blue-400 rounded-full flex items-center justify-center mr-3">💡</span>
+                    Dicas para Competição
+                </h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="rule-card rounded-xl p-6 text-center">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-brain text-yellow-600 text-2xl"></i>
+                        </div>
+                        <h4 class="font-subtitle text-xl font-semibold text-gray-900 mb-3">Mental</h4>
+                        <p class="text-gray-600 text-sm">
+                            Mantenha a calma, respire fundo e confie no seu treino. A mentalidade é fundamental para vencer!
+                        </p>
+                    </div>
+                    
+                    <div class="rule-card rounded-xl p-6 text-center">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-dumbbell text-green-600 text-2xl"></i>
+                        </div>
+                        <h4 class="font-subtitle text-xl font-semibold text-gray-900 mb-3">Físico</h4>
+                        <p class="text-gray-600 text-sm">
+                            Treine condicionamento, força e resistência. O físico faz diferença na luta, especialmente no final!
+                        </p>
+                    </div>
+                    
+                    <div class="rule-card rounded-xl p-6 text-center">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-book text-blue-600 text-2xl"></i>
+                        </div>
+                        <h4 class="font-subtitle text-xl font-semibold text-gray-900 mb-3">Técnica</h4>
+                        <p class="text-gray-600 text-sm">
+                            Domine 2-3 técnicas perfeitamente. É melhor ser especialista que generalista em competição!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- JavaScript para Interatividade -->
+    <script>
+        // Função para scroll suave para seções
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Função para destacar seção ativa na navegação
+        function highlightActiveSection() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.onclick && link.onclick.toString().includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Função para animar elementos quando entram na tela
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.rule-card');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('fade-in-up');
+                }
+            });
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Scroll events
+            window.addEventListener('scroll', highlightActiveSection);
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Animar elementos na primeira carga
+            animateOnScroll();
+            
+            // Adicionar classe de animação aos cards após carregamento
+            setTimeout(() => {
+                const cards = document.querySelectorAll('.rule-card');
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('fade-in-up');
+                    }, index * 100);
+                });
+            }, 500);
+        });
+
+        // Função para adicionar efeito de hover nos cards
+        function addCardHoverEffects() {
+            const cards = document.querySelectorAll('.rule-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-4px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        }
+
+        // Inicializar efeitos de hover
+        document.addEventListener('DOMContentLoaded', addCardHoverEffects);
+    </script>
+</body>
+</html>
