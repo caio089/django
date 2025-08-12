@@ -544,6 +544,20 @@
             margin-bottom: 0;
         }
         
+        /* Estilos para os cards de técnicas individuais */
+        .technique-individual-card {
+            transition: all 0.3s ease;
+        }
+        
+        .technique-individual-card .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .technique-individual-card .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
         .carousel-arrow-anim {
             animation: carouselArrowPulse 0.7s ease-in-out;
         }
@@ -851,6 +865,9 @@
                 <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
                     3 técnicas de Henkakuenka-waza
                 </div>
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                    3 técnicas de Kaeshi-waza
+                </div>
             </div>
         </div>
         <style>
@@ -910,6 +927,13 @@
                     <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-pulse">⚡</div>
                     <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-red-700 group-hover:scale-105">Ataques</div>
                     <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-red-600">Combinados</div>
+                </div>
+                
+                <div id="kaeshi-waza-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-pink-400 hover:bg-gradient-to-br hover:from-pink-50 hover:to-white transform hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-r from-pink-400/0 to-pink-400/0 group-hover:from-pink-400/10 group-hover:to-pink-400/5 transition-all duration-500"></div>
+                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-bounce">🔄</div>
+                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-pink-700 group-hover:scale-105">Contra</div>
+                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-pink-600">Ataques</div>
                 </div>
             </div>
         </div>
@@ -1322,122 +1346,471 @@
                     A combinação de movimentos é a chave para o sucesso no combate.
                 </p>
             </div>
-            <div class="relative">
-                <!-- Botão Esquerda -->
-                <button id="carouselHenkakuenkaLeft" type="button" class="hidden md:flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-red-600/80 hover:bg-red-600 text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                    </svg>
-                </button>
-                <!-- Carrossel -->
-                <div id="carouselHenkakuenka" class="flex overflow-x-auto gap-6 pb-4 scroll-smooth snap-x snap-mandatory hide-scrollbar">
-                    <!-- Técnica Combinada 1 -->
-                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
-                        <div class="flex items-center mb-3 justify-between">
-                            <div class="flex items-center">
-                                <div class="bg-red-100 p-2 rounded-full mr-3">
-                                    <span class="text-lg">⚡</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-bold text-gray-800">O-UCHI-GARI → TAI-OTOSHI</h3>
-                                    <p class="text-gray-600 text-sm">Combinação de gancho interno seguido de queda corporal</p>
-                                </div>
-                            </div>
-                            <label class="flex items-center ml-2 select-none">
-                                <input type="checkbox" class="henkakuenka-checkbox accent-red-500 w-5 h-5 mr-1" />
-                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                            <!-- Layout com Setas Conectando Técnicas em Linha Reta -->
+                <div class="max-w-6xl mx-auto space-y-6">
+                    
+                    <!-- Linha 1: O-UCHI-GARI → TAI-OTOSHI -->
+                    <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
+                        <!-- Técnica da Esquerda -->
+                        <div class="bg-gradient-to-r from-red-50 to-red-100 border-2 border-red-300 rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 hover:scale-105 w-48 cursor-pointer" onclick="showTechniqueCard('ouchi-gari')">
+                            <h4 class="font-bold text-red-800 text-lg mb-1">O-UCHI-GARI</h4>
+                            <p class="text-red-600 text-sm">Gancho Interno</p>
+                        </div>
+                        
+                        <!-- Seta Conectando -->
+                        <div class="flex items-center justify-center">
+                            <div class="text-3xl text-red-500 font-bold">→</div>
+                        </div>
+                        
+                        <!-- Técnica da Direita -->
+                        <div class="bg-gradient-to-r from-purple-50 to-purple-100 border-2 border-purple-300 rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 hover:scale-105 w-48 cursor-pointer" onclick="showTechniqueCard('tai-otoshi')">
+                            <h4 class="font-bold text-purple-800 text-lg mb-1">TAI-OTOSHI</h4>
+                            <p class="text-purple-600 text-sm">Queda Corporal</p>
+                        </div>
+                        
+                        <!-- Checkbox único para a combinação -->
+                        <div class="flex items-center justify-center mt-4 lg:mt-0">
+                            <label class="flex items-center select-none">
+                                <input type="checkbox" class="henkakuenka-checkbox accent-red-500 w-5 h-5 mr-2" />
+                                <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
                             </label>
                         </div>
-                        <div class="video-container mb-3">
-                            <iframe src="https://www.youtube.com/embed/4x6S3Q-Ktv8?si=sqEVNgdgaKFMxFgV" 
-                                    title="O-UCHI-GARI → TAI-OTOSHI técnica combinada" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
-                        </div>
-                        <div class="bg-red-50 p-2 rounded-xl">
-                            <h4 class="font-semibold text-red-800 mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-red-700 text-xs">Use o O-UCHI-GARI para desequilibrar e o TAI-OTOSHI para finalizar com força.</p>
-                        </div>
                     </div>
-
-                    <!-- Técnica Combinada 2 -->
-                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
-                        <div class="flex items-center mb-3 justify-between">
-                            <div class="flex items-center">
-                                <div class="bg-orange-100 p-2 rounded-full mr-3">
-                                    <span class="text-lg">⚡</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-bold text-gray-800">O-UCHI-GARI → KO-UCHI-GARI</h3>
-                                    <p class="text-gray-600 text-sm">Combinação de gancho interno seguido de gancho interno menor</p>
-                                </div>
-                            </div>
-                            <label class="flex items-center ml-2 select-none">
-                                <input type="checkbox" class="henkakuenka-checkbox accent-orange-500 w-5 h-5 mr-1" />
-                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                    
+                    <!-- Linha 2: O-UCHI-GARI → KO-UCHI-GARI -->
+                    <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
+                        <!-- Técnica da Esquerda -->
+                        <div class="bg-gradient-to-r from-blue-50 to-blue-100 border-2 border-blue-300 rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 hover:scale-105 w-48 cursor-pointer" onclick="showTechniqueCard('ouchi-gari')">
+                            <h4 class="font-bold text-blue-800 text-lg mb-1">O-UCHI-GARI</h4>
+                            <p class="text-blue-600 text-sm">Gancho Interno</p>
+                        </div>
+                        
+                        <!-- Seta Conectando -->
+                        <div class="flex items-center justify-center">
+                            <div class="text-3xl text-blue-500 font-bold">→</div>
+                        </div>
+                        
+                        <!-- Técnica da Direita -->
+                        <div class="bg-gradient-to-r from-indigo-50 to-indigo-100 border-2 border-indigo-300 rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 hover:scale-105 w-48 cursor-pointer" onclick="showTechniqueCard('ko-uchi-gari')">
+                            <h4 class="font-bold text-indigo-800 text-lg mb-1">KO-UCHI-GARI</h4>
+                            <p class="text-indigo-600 text-sm">Gancho Externo</p>
+                        </div>
+                        
+                        <!-- Checkbox único para a combinação -->
+                        <div class="flex items-center justify-center mt-4 lg:mt-0">
+                            <label class="flex items-center select-none">
+                                <input type="checkbox" class="henkakuenka-checkbox accent-blue-500 w-5 h-5 mr-2" />
+                                <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
                             </label>
                         </div>
-                        <div class="video-container mb-3">
-                            <iframe src="https://www.youtube.com/embed/3Jb3tZvr9Ng?si=1uT1iQUT5xVArgrY" 
-                                    title="O-UCHI-GARI → KO-UCHI-GARI técnica combinada" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
-                        </div>
-                        <div class="bg-orange-50 p-2 rounded-xl">
-                            <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-orange-700 text-xs">O primeiro gancho prepara o terreno, o segundo finaliza com precisão.</p>
-                        </div>
                     </div>
-
-                    <!-- Técnica Combinada 3 -->
-                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
-                        <div class="flex items-center mb-3 justify-between">
-                            <div class="flex items-center">
-                                <div class="bg-indigo-100 p-2 rounded-full mr-3">
-                                    <span class="text-lg">⚡</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-bold text-gray-800">O-UCHI-GARI → MOROTE-SEOI-NAGUE</h3>
-                                    <p class="text-gray-600 text-sm">Combinação de gancho interno seguido de projeção por costas</p>
-                                </div>
-                            </div>
-                            <label class="flex items-center ml-2 select-none">
-                                <input type="checkbox" class="henkakuenka-checkbox accent-indigo-500 w-5 h-5 mr-1" />
-                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
-                            </div>
+                    
+                    <!-- Linha 3: O-UCHI-GARI → MOROTE-SEOI-NAGUE -->
+                    <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
+                        <!-- Técnica da Esquerda -->
+                        <div class="bg-gradient-to-r from-green-50 to-green-100 border-2 border-green-300 rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 hover:scale-105 w-48 cursor-pointer" onclick="showTechniqueCard('ouchi-gari')">
+                            <h4 class="font-bold text-green-800 text-lg mb-1">O-UCHI-GARI</h4>
+                            <p class="text-green-600 text-sm">Gancho Interno</p>
                         </div>
-                        <div class="video-container mb-3">
-                            <iframe src="https://www.youtube.com/embed/bvFuhJwg6AY?si=TvKWV5Ph-Bq07WI4" 
-                                    title="O-UCHI-GARI → MOROTE-SEOI-NAGUE técnica combinada" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                        
+                        <!-- Seta Conectando -->
+                        <div class="flex items-center justify-center">
+                            <div class="text-3xl text-green-500 font-bold">→</div>
                         </div>
-                        <div class="bg-indigo-50 p-2 rounded-xl">
-                            <h4 class="font-semibold text-indigo-800 mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-indigo-700 text-xs">Use o gancho para desequilibrar e aproveite para girar e projetar por costas.</p>
+                        
+                        <!-- Técnica da Direita -->
+                        <div class="bg-gradient-to-r from-teal-50 to-teal-100 border-2 border-teal-300 rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 hover:scale-105 w-48 cursor-pointer" onclick="showTechniqueCard('morote-seoi-nague')">
+                            <h4 class="font-bold text-teal-800 text-lg mb-1">MOROTE-SEOI-NAGUE</h4>
+                            <p class="text-teal-600 text-sm">Projeção por Costas</p>
+                        </div>
+                        
+                        <!-- Checkbox único para a combinação -->
+                        <div class="flex items-center justify-center mt-4 lg:mt-0">
+                            <label class="flex items-center select-none">
+                                <input type="checkbox" class="henkakuenka-checkbox accent-green-500 w-5 h-5 mr-2" />
+                                <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                            </label>
                         </div>
                     </div>
                 </div>
-                <!-- Botão Direita -->
-                <button id="carouselHenkakuenkaRight" type="button" class="hidden md:flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-red-600/80 hover:bg-red-600 text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                    </svg>
-                </button>
-            </div>
             
             <!-- Botão Voltar ao Topo para Henkakuenka-waza -->
             <div class="text-center mt-8">
                 <button class="back-to-top-section bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-buttons transition-colors shadow-lg">
+                    ↑ Voltar ao Topo
+                </button>
+            </div>
+        </section>
+
+        <!-- Seção de Cards de Técnicas Individuais (Inicialmente Ocultos) -->
+        <section id="technique-cards-section" class="mb-12 hidden">
+            <div class="text-center mb-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                    <span class="text-gradient">Técnica Individual</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Visualize a técnica selecionada em detalhes
+                </p>
+            </div>
+
+            <!-- Botão Voltar à Seção de Ataques Combinados -->
+            <div class="text-center mb-6">
+                <button onclick="backToHenkakuenka()" class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-buttons transition-colors shadow-lg">
+                    ← Voltar aos Ataques Combinados
+                </button>
+            </div>
+
+            <!-- Container dos Cards de Técnicas -->
+            <div class="max-w-4xl mx-auto">
+                
+                <!-- Card O-UCHI-GARI -->
+                <div id="ouchi-gari-card" class="technique-individual-card hidden">
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-6">
+                        <div class="flex items-center mb-4 justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-red-100 p-3 rounded-full mr-4">
+                                    <span class="text-2xl">🥋</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-gray-800">O-UCHI-GARI</h3>
+                                    <p class="text-gray-600 text-lg">Gancho Interno</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="video-container mb-4">
+                            <iframe src="https://www.youtube.com/embed/0itJFhV9pDQ?si=KNKy8DpKjbvH_3_D" 
+                                    title="O-UCHI-GARI técnica" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-red-50 p-4 rounded-xl">
+                            <h4 class="font-semibold text-red-800 mb-2 text-lg">💡 Dica:</h4>
+                            <p class="text-red-700 text-base">Use a perna como alavanca e mantenha o equilíbrio durante a execução. Esta técnica é fundamental para ataques combinados.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card TAI-OTOSHI -->
+                <div id="tai-otoshi-card" class="technique-individual-card hidden">
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-6">
+                        <div class="flex items-center mb-4 justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-purple-100 p-3 rounded-full mr-4">
+                                    <span class="text-2xl">🥋</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-gray-800">TAI-OTOSHI</h3>
+                                    <p class="text-gray-600 text-lg">Queda Corporal</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="video-container mb-4">
+                            <iframe src="https://www.youtube.com/embed/4x6S3Q-Ktv8?si=sqEVNgdgaKFMxFgV" 
+                                    title="TAI-OTOSHI técnica" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-purple-50 p-4 rounded-xl">
+                            <h4 class="font-semibold text-purple-800 mb-2 text-lg">💡 Dica:</h4>
+                            <p class="text-purple-700 text-base">Mantenha o quadril baixo e use o peso do corpo para derrubar o oponente. Perfeita para combinações com O-UCHI-GARI.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card KO-UCHI-GARI -->
+                <div id="ko-uchi-gari-card" class="technique-individual-card hidden">
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-6">
+                        <div class="flex items-center mb-4 justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                                    <span class="text-2xl">🥋</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-gray-800">KO-UCHI-GARI</h3>
+                                    <p class="text-gray-600 text-lg">Gancho Externo</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="video-container mb-4">
+                            <iframe src="https://www.youtube.com/embed/3Jb3tZvr9Ng?si=1uT1iQUT5xVArgrY" 
+                                    title="KO-UCHI-GARI técnica" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-xl">
+                            <h4 class="font-semibold text-indigo-800 mb-2 text-lg">💡 Dica:</h4>
+                            <p class="text-indigo-700 text-base">A chave está na precisão do gancho e no desequilíbrio do oponente. Excelente para sequências com O-UCHI-GARI.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card MOROTE-SEOI-NAGUE -->
+                <div id="morote-seoi-nague-card" class="technique-individual-card hidden">
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-6">
+                        <div class="flex items-center mb-4 justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-teal-100 p-3 rounded-full mr-4">
+                                    <span class="text-2xl">🥋</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-gray-800">MOROTE-SEOI-NAGUE</h3>
+                                    <p class="text-gray-600 text-lg">Projeção por Costas</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="video-container mb-4">
+                            <iframe src="https://www.youtube.com/embed/bvFuhJwg6AY?si=TvKWV5Ph-Bq07WI4" 
+                                    title="MOROTE-SEOI-NAGUE técnica" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-teal-50 p-4 rounded-xl">
+                            <h4 class="font-semibold text-teal-800 mb-2 text-lg">💡 Dica:</h4>
+                            <p class="text-teal-700 text-base">Aproxime-se bem do oponente e use o giro do corpo para projetar. Técnica avançada para finalizar combinações.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card KOSHI-GURUMA -->
+                <div id="koshi-guruma-card" class="technique-individual-card hidden">
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-6">
+                        <div class="flex items-center mb-4 justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-violet-100 p-3 rounded-full mr-4">
+                                    <span class="text-2xl">🥋</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-gray-800">KOSHI-GURUMA</h3>
+                                    <p class="text-gray-600 text-lg">Roda do Quadril</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="video-container mb-4">
+                            <iframe src="https://www.youtube.com/embed/example1?si=example" 
+                                    title="KOSHI-GURUMA técnica" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-violet-50 p-4 rounded-xl">
+                            <h4 class="font-semibold text-violet-800 mb-2 text-lg">💡 Dica:</h4>
+                            <p class="text-violet-700 text-base">Use o movimento circular do quadril para desequilibrar o oponente. Técnica fundamental para contra-ataques.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card O-GOSHI -->
+                <div id="o-goshi-card" class="technique-individual-card hidden">
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-6">
+                        <div class="flex items-center mb-4 justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-fuchsia-100 p-3 rounded-full mr-4">
+                                    <span class="text-2xl">🥋</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-gray-800">O-GOSHI</h3>
+                                    <p class="text-gray-600 text-lg">Quadril Principal</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="video-container mb-4">
+                            <iframe src="https://www.youtube.com/embed/example2?si=example" 
+                                    title="O-GOSHI técnica" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-fuchsia-50 p-4 rounded-xl">
+                            <h4 class="font-semibold text-fuchsia-800 mb-2 text-lg">💡 Dica:</h4>
+                            <p class="text-fuchsia-700 text-base">Mantenha o quadril baixo e use o peso do corpo para projetar. Excelente para contra-ataques de quadril.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card O-SOTO-GARI -->
+                <div id="o-soto-gari-card" class="technique-individual-card hidden">
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-6">
+                        <div class="flex items-center mb-4 justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-amber-100 p-3 rounded-full mr-4">
+                                    <span class="text-2xl">🥋</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-gray-800">O-SOTO-GARI</h3>
+                                    <p class="text-gray-600 text-lg">Gancho Externo Grande</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="video-container mb-4">
+                            <iframe src="https://www.youtube.com/embed/example3?si=example" 
+                                    title="O-SOTO-GARI técnica" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-amber-50 p-4 rounded-xl">
+                            <h4 class="font-semibold text-amber-800 mb-2 text-lg">💡 Dica:</h4>
+                            <p class="text-amber-700 text-base">Use a perna como alavanca e mantenha o equilíbrio. Técnica essencial para contra-ataques de gancho.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card O-SOTO-GARI-GAESHI -->
+                <div id="o-soto-gari-gaeshi-card" class="technique-individual-card hidden">
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-6">
+                        <div class="flex items-center mb-4 justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-orange-100 p-3 rounded-full mr-4">
+                                    <span class="text-2xl">🥋</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-gray-800">O-SOTO-GARI-GAESHI</h3>
+                                    <p class="text-gray-600 text-lg">Contra Gancho Externo</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="video-container mb-4">
+                            <iframe src="https://www.youtube.com/embed/example4?si=example" 
+                                    title="O-SOTO-GARI-GAESHI técnica" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-orange-50 p-4 rounded-xl">
+                            <h4 class="font-semibold text-orange-800 mb-2 text-lg">💡 Dica:</h4>
+                            <p class="text-orange-700 text-base">Antecipe o ataque do oponente e use sua força contra ele. Técnica avançada de contra-ataque.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Divisor Visual -->
+        <div class="section-divider h-px my-8"></div>
+
+        <!-- Seção de Kaeshi-waza (Contra Ataques) -->
+        <section id="kaeshi-waza-section" class="mb-12 hidden">
+            <div class="text-center mb-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                    <span class="text-gradient">Kaeshi-waza</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Aprenda técnicas de contra-ataques que elevam seu nível no judô. 
+                    A arte de contra-atacar é essencial para dominar o combate.
+                </p>
+            </div>
+            
+            <!-- Layout com Setas Conectando Técnicas em Linha Reta -->
+            <div class="max-w-6xl mx-auto space-y-6">
+                
+                <!-- Linha 1: O-UCHI-GARI → MOROTE-SEOI-NAGUE -->
+                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda -->
+                    <div class="bg-gradient-to-r from-pink-50 to-pink-100 border-2 border-pink-300 rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 hover:scale-105 w-48 cursor-pointer" onclick="showTechniqueCard('ouchi-gari')">
+                        <h4 class="font-bold text-pink-800 text-lg mb-1">O-UCHI-GARI</h4>
+                        <p class="text-pink-600 text-sm">Gancho Interno</p>
+                    </div>
+                    
+                    <!-- Seta Conectando -->
+                    <div class="flex items-center justify-center">
+                        <div class="text-3xl text-pink-500 font-bold">→</div>
+                    </div>
+                    
+                    <!-- Técnica da Direita -->
+                    <div class="bg-gradient-to-r from-rose-50 to-rose-100 border-2 border-rose-300 rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 hover:scale-105 w-48 cursor-pointer" onclick="showTechniqueCard('morote-seoi-nague')">
+                        <h4 class="font-bold text-rose-800 text-lg mb-1">MOROTE-SEOI-NAGUE</h4>
+                        <p class="text-rose-600 text-sm">Projeção por Costas</p>
+                    </div>
+                    
+                    <!-- Checkbox único para a combinação -->
+                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                        <label class="flex items-center select-none">
+                            <input type="checkbox" class="kaeshi-waza-checkbox accent-pink-500 w-5 h-5 mr-2" />
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Linha 2: KOSHI-GURUMA → O-GOSHI -->
+                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda -->
+                    <div class="bg-gradient-to-r from-violet-50 to-violet-100 border-2 border-violet-300 rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 hover:scale-105 w-48 cursor-pointer" onclick="showTechniqueCard('koshi-guruma')">
+                        <h4 class="font-bold text-violet-800 text-lg mb-1">KOSHI-GURUMA</h4>
+                        <p class="text-violet-600 text-sm">Roda do Quadril</p>
+                    </div>
+                    
+                    <!-- Seta Conectando -->
+                    <div class="flex items-center justify-center">
+                        <div class="text-3xl text-violet-500 font-bold">→</div>
+                    </div>
+                    
+                    <!-- Técnica da Direita -->
+                    <div class="bg-gradient-to-r from-fuchsia-50 to-fuchsia-100 border-2 border-fuchsia-300 rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 hover:scale-105 w-48 cursor-pointer" onclick="showTechniqueCard('o-goshi')">
+                        <h4 class="font-bold text-fuchsia-800 text-lg mb-1">O-GOSHI</h4>
+                        <p class="text-fuchsia-600 text-sm">Quadril Principal</p>
+                    </div>
+                    
+                    <!-- Checkbox único para a combinação -->
+                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                        <label class="flex items-center select-none">
+                            <input type="checkbox" class="kaeshi-waza-checkbox accent-violet-500 w-5 h-5 mr-2" />
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Linha 3: O-SOTO-GARI → O-SOTO-GARI-GAESHI -->
+                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda -->
+                    <div class="bg-gradient-to-r from-amber-50 to-amber-100 border-2 border-amber-300 rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 hover:scale-105 w-48 cursor-pointer" onclick="showTechniqueCard('o-soto-gari')">
+                        <h4 class="font-bold text-amber-800 text-lg mb-1">O-SOTO-GARI</h4>
+                        <p class="text-amber-600 text-sm">Gancho Externo Grande</p>
+                    </div>
+                    
+                    <!-- Seta Conectando -->
+                    <div class="flex items-center justify-center">
+                        <div class="text-3xl text-amber-500 font-bold">→</div>
+                    </div>
+                    
+                    <!-- Técnica da Direita -->
+                    <div class="bg-gradient-to-r from-orange-50 to-orange-100 border-2 border-orange-300 rounded-xl p-4 text-center hover:shadow-lg transition-all duration-300 hover:scale-105 w-48 cursor-pointer" onclick="showTechniqueCard('o-soto-gari-gaeshi')">
+                        <h4 class="font-bold text-orange-800 text-lg mb-1">O-SOTO-GARI-GAESHI</h4>
+                        <p class="text-orange-600 text-sm">Contra Gancho Externo</p>
+                    </div>
+                    
+                    <!-- Checkbox único para a combinação -->
+                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                        <label class="flex items-center select-none">
+                            <input type="checkbox" class="kaeshi-waza-checkbox accent-amber-500 w-5 h-5 mr-2" />
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Botão Voltar ao Topo para Kaeshi-waza -->
+            <div class="text-center mt-8">
+                <button class="back-to-top-section bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-lg font-buttons transition-colors shadow-lg">
                     ↑ Voltar ao Topo
                 </button>
             </div>
@@ -1524,7 +1897,7 @@
                         <div class="stat-label">Progresso</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">13</div>
+                        <div class="stat-number">16</div>
                         <div class="stat-label">Técnicas Dominadas</div>
                     </div>
                 </div>
@@ -1580,6 +1953,7 @@
             const projCheckboxes = document.querySelectorAll('.proj-checkbox');
             const imobCheckboxes = document.querySelectorAll('.imob-checkbox');
             const henkakuenkaCheckboxes = document.querySelectorAll('.henkakuenka-checkbox');
+            const kaeshiWazaCheckboxes = document.querySelectorAll('.kaeshi-waza-checkbox');
             const progressBar = document.getElementById('progressBar');
             const progressText = document.getElementById('progressText');
             const floatingProgress = document.getElementById('floatingProgress');
@@ -1587,7 +1961,7 @@
             const floatingProgressText = document.getElementById('floatingProgressText');
             const backToTopBtn = document.getElementById('backToTop');
             let answeredQuestions = 0;
-            const totalQuestions = projCheckboxes.length + imobCheckboxes.length + henkakuenkaCheckboxes.length;
+            const totalQuestions = projCheckboxes.length + imobCheckboxes.length + henkakuenkaCheckboxes.length + kaeshiWazaCheckboxes.length;
             let hasShownCongratulations = false;
 
             // Função para atualizar progresso (SEM mostrar barra flutuante)
@@ -1595,8 +1969,9 @@
                 const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
                 const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
                 const totalHenkakuenkaChecked = Array.from(henkakuenkaCheckboxes).filter(cb => cb.checked).length;
-                const totalQuestions = projCheckboxes.length + imobCheckboxes.length + henkakuenkaCheckboxes.length;
-                const completedQuestions = totalProjChecked + totalImobChecked + totalHenkakuenkaChecked;
+                const totalKaeshiWazaChecked = Array.from(kaeshiWazaCheckboxes).filter(cb => cb.checked).length;
+                const totalQuestions = projCheckboxes.length + imobCheckboxes.length + henkakuenkaCheckboxes.length + kaeshiWazaCheckboxes.length;
+                const completedQuestions = totalProjChecked + totalImobChecked + totalHenkakuenkaChecked + totalKaeshiWazaChecked;
                 const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
                 
 
@@ -1611,7 +1986,8 @@
                     // Verificar se todos os checkboxes estão marcados
                     const allChecked = Array.from(projCheckboxes).every(cb => cb.checked) && 
                                      Array.from(imobCheckboxes).every(cb => cb.checked) &&
-                                     Array.from(henkakuenkaCheckboxes).every(cb => cb.checked);
+                                     Array.from(henkakuenkaCheckboxes).every(cb => cb.checked) &&
+                                     Array.from(kaeshiWazaCheckboxes).every(cb => cb.checked);
                     
                     if (allChecked) {
                         console.log('Showing congratulations!'); // Debug
@@ -1622,8 +1998,8 @@
                 }
                 
                 // Verificação adicional: se todos os checkboxes estão marcados, mostrar parabéns
-                if (completedQuestions >= 13 && !hasShownCongratulations) {
-                    console.log('Todos os 13 checkboxes marcados - mostrando parabéns!');
+                if (completedQuestions >= 16 && !hasShownCongratulations) {
+                    console.log('Todos os 16 checkboxes marcados - mostrando parabéns!');
                     setTimeout(() => {
                         showCongratulations();
                     }, 500);
@@ -1790,8 +2166,26 @@
                         const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
                         const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
                         const totalHenkakuenkaChecked = Array.from(henkakuenkaCheckboxes).filter(cb => cb.checked).length;
-                        const totalQuestions = projCheckboxes.length + imobCheckboxes.length + henkakuenkaCheckboxes.length;
-                        const completedQuestions = totalProjChecked + totalImobChecked + totalHenkakuenkaChecked;
+                        const totalKaeshiWazaChecked = Array.from(kaeshiWazaCheckboxes).filter(cb => cb.checked).length;
+                        const totalQuestions = projCheckboxes.length + imobCheckboxes.length + henkakuenkaCheckboxes.length + kaeshiWazaCheckboxes.length;
+                        const completedQuestions = totalProjChecked + totalImobChecked + totalHenkakuenkaChecked + totalKaeshiWazaChecked;
+                        const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
+                        showFloatingProgress(progress);
+                    }
+                });
+            });
+
+            kaeshiWazaCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function(e) {
+                    updateProgress();
+                    // Mostrar barra flutuante apenas quando marcar (não desmarcar)
+                    if (e.target.checked) {
+                        const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
+                        const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
+                        const totalHenkakuenkaChecked = Array.from(henkakuenkaCheckboxes).filter(cb => cb.checked).length;
+                        const totalKaeshiWazaChecked = Array.from(kaeshiWazaCheckboxes).filter(cb => cb.checked).length;
+                        const totalQuestions = projCheckboxes.length + imobCheckboxes.length + henkakuenkaCheckboxes.length + kaeshiWazaCheckboxes.length;
+                        const completedQuestions = totalProjChecked + totalImobChecked + totalHenkakuenkaChecked + totalKaeshiWazaChecked;
                         const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
                         showFloatingProgress(progress);
                     }
@@ -2113,6 +2507,7 @@
                     // Esconder todas as seções primeiro
                     document.getElementById('imobilizacoes-section').classList.add('hidden');
                     document.getElementById('henkakuenka-section').classList.add('hidden');
+                    document.getElementById('kaeshi-waza-section').classList.add('hidden');
                     // Mostrar a seção de técnicas de projeção
                     document.getElementById('nage-waza-section').classList.remove('hidden');
                     // Reinicializar botões back-to-top após mostrar a seção
@@ -2133,6 +2528,7 @@
                     // Esconder todas as seções primeiro
                     document.getElementById('nage-waza-section').classList.add('hidden');
                     document.getElementById('henkakuenka-section').classList.add('hidden');
+                    document.getElementById('kaeshi-waza-section').classList.add('hidden');
                     // Mostrar a seção de imobilizações
                     document.getElementById('imobilizacoes-section').classList.remove('hidden');
                     // Reinicializar botões back-to-top após mostrar a seção
@@ -2153,11 +2549,37 @@
                     // Esconder todas as seções primeiro
                     document.getElementById('nage-waza-section').classList.add('hidden');
                     document.getElementById('imobilizacoes-section').classList.add('hidden');
+                    document.getElementById('kaeshi-waza-section').classList.add('hidden');
                     // Mostrar a seção de ataques combinados
                     document.getElementById('henkakuenka-section').classList.remove('hidden');
                     // Reinicializar botões back-to-top após mostrar a seção
                     setTimeout(() => {
                         smoothScrollTo('henkakuenka-section', this);
+                    }, 100);
+                    
+                    // Inicializar botões após a seção estar completamente visível
+                    setTimeout(() => {
+                        initializeBackToTopButtons();
+                    }, 300);
+                });
+            }
+
+            // Navegação para Kaeshi-waza
+            const kaeshiWazaNav = document.getElementById('kaeshi-waza-nav');
+            const kaeshiWazaSection = document.getElementById('kaeshi-waza-section');
+
+            if (kaeshiWazaNav && kaeshiWazaSection) {
+                kaeshiWazaNav.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Esconder todas as seções primeiro
+                    document.getElementById('nage-waza-section').classList.add('hidden');
+                    document.getElementById('imobilizacoes-section').classList.add('hidden');
+                    document.getElementById('henkakuenka-section').classList.add('hidden');
+                    // Mostrar a seção de contra-ataques
+                    document.getElementById('kaeshi-waza-section').classList.remove('hidden');
+                    // Reinicializar botões back-to-top após mostrar a seção
+                    setTimeout(() => {
+                        smoothScrollTo('kaeshi-waza-section', this);
                     }, 100);
                     
                     // Inicializar botões após a seção estar completamente visível
@@ -2258,6 +2680,53 @@
             document.getElementById('ukemi-nav').addEventListener('click', function() {
                 window.location.href = '/ukemis/';
             });
+
+            // --- FUNÇÕES PARA CARDS DE TÉCNICAS INDIVIDUAIS ---
+            
+            // Função para mostrar o card de uma técnica específica
+            window.showTechniqueCard = function(techniqueId) {
+                // Esconder a seção de ataques combinados
+                document.getElementById('henkakuenka-section').classList.add('hidden');
+                
+                // Mostrar a seção de cards de técnicas
+                document.getElementById('technique-cards-section').classList.remove('hidden');
+                
+                // Esconder todos os cards de técnicas
+                document.querySelectorAll('.technique-individual-card').forEach(card => {
+                    card.classList.add('hidden');
+                });
+                
+                // Mostrar o card da técnica selecionada
+                const selectedCard = document.getElementById(techniqueId + '-card');
+                if (selectedCard) {
+                    selectedCard.classList.remove('hidden');
+                }
+                
+                // Scroll suave para a seção de técnicas
+                setTimeout(() => {
+                    document.getElementById('technique-cards-section').scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 100);
+            };
+            
+            // Função para voltar à seção de ataques combinados
+            window.backToHenkakuenka = function() {
+                // Esconder a seção de cards de técnicas
+                document.getElementById('technique-cards-section').classList.add('hidden');
+                
+                // Mostrar a seção de ataques combinados
+                document.getElementById('henkakuenka-section').classList.remove('hidden');
+                
+                // Scroll suave para a seção de ataques combinados
+                setTimeout(() => {
+                    document.getElementById('henkakuenka-section').scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 100);
+            };
         });
     </script>
 </body>
@@ -2266,3 +2735,5 @@
     </script>
 </body>
 </html>
+
+
