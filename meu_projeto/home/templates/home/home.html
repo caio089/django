@@ -7,27 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
-        body, html { height: 100%; }
-        .bg-judo {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            z-index: 0;
-            background: url('https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=1200&q=80') center center/cover no-repeat;
-        }
-        .bg-overlay {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            z-index: 1;
-            background: linear-gradient(to right, rgba(15,23,42,0.85) 40%, rgba(15,23,42,0.25) 80%, rgba(15,23,42,0.05) 100%);
-        }
-        .bg-blur-gradient {
-            position: fixed;
-            top: 0; left: 40vw; right: 0; bottom: 0;
-            z-index: 2;
-            pointer-events: none;
-            background: linear-gradient(to left, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.0) 100%);
-            filter: blur(18px) saturate(1.1);
-        }
         .floating-label {
             pointer-events: none;
             transition: all 0.2s;
@@ -65,12 +44,15 @@
         }
     </style>
 </head>
-<body class="h-screen w-screen flex items-center justify-start relative overflow-hidden">
-    <div class="bg-judo"></div>
-    <div class="bg-overlay"></div>
-    <div class="bg-blur-gradient"></div>
-    <div class="relative z-10 w-full flex flex-col items-start justify-center min-h-screen pl-4 md:pl-8 lg:pl-20">
-        <div id="login-card" class="bg-white/95 rounded-2xl shadow-2xl px-4 py-3 w-full max-w-md mx-auto md:mx-0 flex flex-col items-center animate-fade-in-up transition-all duration-700" style="backdrop-filter: blur(2px);">
+<body class="min-h-screen w-full flex items-center justify-start relative overflow-x-hidden overflow-y-auto touch-pan-y">
+    <!-- Fundo com imagem -->
+    <div class="fixed inset-0 z-0 bg-[url('https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=1200&q=80')] bg-center bg-cover pointer-events-none"></div>
+    <!-- Overlay escuro em gradiente -->
+    <div class="fixed inset-0 z-10 bg-gradient-to-r from-slate-900/85 via-slate-900/25 to-slate-900/5 pointer-events-none"></div>
+    <!-- Gradiente com blur e saturação na lateral -->
+    <div class="fixed inset-y-0 right-0 z-20 pointer-events-none left-[30vw] sm:left-[35vw] md:left-[40vw] bg-gradient-to-l from-white/10 to-transparent filter blur-[18px] saturate-110"></div>
+    <div class="relative z-30 w-full flex flex-col items-start justify-center min-h-screen pl-4 sm:pl-6 md:pl-8 lg:pl-20">
+        <div id="login-card" class="bg-white/95 rounded-xl sm:rounded-2xl shadow-2xl px-4 sm:px-6 py-3 sm:py-4 w-full max-w-md mx-auto md:mx-0 flex flex-col items-center animate-fade-in-up transition-all duration-700" style="backdrop-filter: blur(2px);">
             <div class="flex items-center gap-1 mb-1 animate-fade-in-down">
                 <i class="fa-solid fa-user-ninja text-blue-600 text-xl animate-bounce"></i>
                 <span class="font-bold text-base text-gray-700 tracking-wider">Judô</span>
@@ -127,7 +109,7 @@
                     <span id="login-spinner" class="hidden animate-spin"><i class="fa-solid fa-spinner" aria-hidden="true"></i></span>
                 </button>
             </form>
-            <div class="flex items-center justify-between w-full mt-2 text-xs text-gray-600 animate-fade-in-up" id="login-options" {% if show_register %}style="display:none;"{% else %}style="display:flex;"{% endif %}>
+            <div class="flex items-center justify-between w-full mt-2 text-xs text-gray-600 animate-fade-in-up gap-2 flex-wrap" id="login-options" {% if show_register %}style="display:none;"{% else %}style="display:flex;"{% endif %}>
                 <label class="flex items-center gap-1 cursor-pointer">
                     <input type="checkbox" class="accent-blue-700 transition-all duration-200" aria-label="Lembrar de mim" />
                     Lembrar de mim
