@@ -849,7 +849,7 @@
                     3 técnicas de Renrakuenka-waza
                 </div>
                 <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
-                    3 técnicas de Kaeshi-waza
+                    3 técnicas de Henkakuenka-waza
                 </div>
             </div>
         </div>
@@ -877,12 +877,12 @@
             </div>
             
             <div class="flex justify-center gap-8 mb-8">
-                <div class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-blue-400 hover:bg-gradient-to-br hover:from-blue-50 hover:to-white transform hover:-translate-y-2">
+                <a href="/palavras/" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-blue-400 hover:bg-gradient-to-br hover:from-blue-50 hover:to-white transform hover:-translate-y-2">
                     <div class="absolute inset-0 bg-gradient-to-r from-blue-400/0 to-blue-400/0 group-hover:from-blue-400/10 group-hover:to-blue-400/5 transition-all duration-500"></div>
                     <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:rotate-12">🥋</div>
                     <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-blue-700 group-hover:scale-105">Palavras</div>
                     <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-blue-600">Japonês</div>
-                </div>
+                </a>
                 
                 <div id="ukemi-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-green-400 hover:bg-gradient-to-br hover:from-green-50 hover:to-white transform hover:-translate-y-2">
                     <div class="absolute inset-0 bg-gradient-to-r from-green-400/0 to-green-400/0 group-hover:from-green-400/10 group-hover:to-green-400/5 transition-all duration-500"></div>
@@ -904,6 +904,13 @@
                     <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-purple-700 group-hover:scale-105">Imobilizações</div>
                     <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-purple-600">Osaekomi-waza</div>
                 </div>
+                
+                <div id="henkakuenka-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-red-400 hover:bg-gradient-to-br hover:from-red-50 hover:to-white transform hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-r from-red-400/0 to-red-400/0 group-hover:from-red-400/10 group-hover:to-red-400/5 transition-all duration-500"></div>
+                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-pulse">⚡</div>
+                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-red-700 group-hover:scale-105">Ataques</div>
+                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-red-600">Combinados</div>
+                </div>
             </div>
         </div>
 
@@ -911,7 +918,7 @@
         <section id="nage-waza-section" class="mb-12 hidden">
             <div class="text-center mb-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
-                    <span class="text-gradient">Técnicas de Projeção</span>
+                    <span class="text-gradient">Técnicas de Projeção </span>
                 </h2>
                 <p class="text-lg text-gray-600 max-w-3xl mx-auto">
                     Aprenda técnicas mais avançadas que elevam seu nível no judô. 
@@ -1304,6 +1311,141 @@
         <!-- Divisor Visual -->
         <div class="section-divider h-px my-8"></div>
 
+        <!-- Seção de Henkakuenka-waza (Ataques Combinados) -->
+        <section id="henkakuenka-section" class="mb-12 hidden">
+            <div class="text-center mb-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+                    <span class="text-gradient">Henkakuenka-waza</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Aprenda técnicas de ataques combinados que elevam seu nível no judô. 
+                    A combinação de movimentos é a chave para o sucesso no combate.
+                </p>
+            </div>
+            <div class="relative">
+                <!-- Botão Esquerda -->
+                <button id="carouselHenkakuenkaLeft" type="button" class="hidden md:flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-red-600/80 hover:bg-red-600 text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                </button>
+                <!-- Carrossel -->
+                <div id="carouselHenkakuenka" class="flex overflow-x-auto gap-6 pb-4 scroll-smooth snap-x snap-mandatory hide-scrollbar">
+                    <!-- Técnica Combinada 1 -->
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                        <div class="flex items-center mb-3 justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-red-100 p-2 rounded-full mr-3">
+                                    <span class="text-lg">⚡</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-800">O-UCHI-GARI → TAI-OTOSHI</h3>
+                                    <p class="text-gray-600 text-sm">Combinação de gancho interno seguido de queda corporal</p>
+                                </div>
+                            </div>
+                            <label class="flex items-center ml-2 select-none">
+                                <input type="checkbox" class="henkakuenka-checkbox accent-red-500 w-5 h-5 mr-1" />
+                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                            </label>
+                        </div>
+                        <div class="video-container mb-3">
+                            <iframe src="https://www.youtube.com/embed/4x6S3Q-Ktv8?si=sqEVNgdgaKFMxFgV" 
+                                    title="O-UCHI-GARI → TAI-OTOSHI técnica combinada" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-red-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-red-800 mb-1 text-sm">💡 Dica:</h4>
+                            <p class="text-red-700 text-xs">Use o O-UCHI-GARI para desequilibrar e o TAI-OTOSHI para finalizar com força.</p>
+                        </div>
+                    </div>
+
+                    <!-- Técnica Combinada 2 -->
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                        <div class="flex items-center mb-3 justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-orange-100 p-2 rounded-full mr-3">
+                                    <span class="text-lg">⚡</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-800">O-UCHI-GARI → KO-UCHI-GARI</h3>
+                                    <p class="text-gray-600 text-sm">Combinação de gancho interno seguido de gancho interno menor</p>
+                                </div>
+                            </div>
+                            <label class="flex items-center ml-2 select-none">
+                                <input type="checkbox" class="henkakuenka-checkbox accent-orange-500 w-5 h-5 mr-1" />
+                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                            </label>
+                        </div>
+                        <div class="video-container mb-3">
+                            <iframe src="https://www.youtube.com/embed/3Jb3tZvr9Ng?si=1uT1iQUT5xVArgrY" 
+                                    title="O-UCHI-GARI → KO-UCHI-GARI técnica combinada" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-orange-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
+                            <p class="text-orange-700 text-xs">O primeiro gancho prepara o terreno, o segundo finaliza com precisão.</p>
+                        </div>
+                    </div>
+
+                    <!-- Técnica Combinada 3 -->
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                        <div class="flex items-center mb-3 justify-between">
+                            <div class="flex items-center">
+                                <div class="bg-indigo-100 p-2 rounded-full mr-3">
+                                    <span class="text-lg">⚡</span>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-gray-800">O-UCHI-GARI → MOROTE-SEOI-NAGUE</h3>
+                                    <p class="text-gray-600 text-sm">Combinação de gancho interno seguido de projeção por costas</p>
+                                </div>
+                            </div>
+                            <label class="flex items-center ml-2 select-none">
+                                <input type="checkbox" class="henkakuenka-checkbox accent-indigo-500 w-5 h-5 mr-1" />
+                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                            </div>
+                        </div>
+                        <div class="video-container mb-3">
+                            <iframe src="https://www.youtube.com/embed/bvFuhJwg6AY?si=TvKWV5Ph-Bq07WI4" 
+                                    title="O-UCHI-GARI → MOROTE-SEOI-NAGUE técnica combinada" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-indigo-50 p-2 rounded-xl">
+                            <h4 class="font-semibold text-indigo-800 mb-1 text-sm">💡 Dica:</h4>
+                            <p class="text-indigo-700 text-xs">Use o gancho para desequilibrar e aproveite para girar e projetar por costas.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Botão Direita -->
+                <button id="carouselHenkakuenkaRight" type="button" class="hidden md:flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-red-600/80 hover:bg-red-600 text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Botão Voltar ao Topo para Henkakuenka-waza -->
+            <div class="text-center mt-8">
+                <button class="back-to-top-section bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-buttons transition-colors shadow-lg">
+                    ↑ Voltar ao Topo
+                </button>
+            </div>
+        </section>
+
+        <!-- Divisor Visual -->
+        <div class="section-divider h-px my-8"></div>
+
         <!-- Barra de Progresso Flutuante -->
         <div id="floatingProgress" class="fixed top-4 left-0 right-0 mx-auto w-fit bg-white border border-gray-300 rounded-lg shadow-lg p-3 z-50 opacity-0 transition-opacity duration-300 pointer-events-none hidden">
             <div class="flex items-center gap-5">
@@ -1382,7 +1524,7 @@
                         <div class="stat-label">Progresso</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">10</div>
+                        <div class="stat-number">13</div>
                         <div class="stat-label">Técnicas Dominadas</div>
                     </div>
                 </div>
@@ -1437,6 +1579,7 @@
             // --- PROGRESSO E ANIMAÇÃO DOS CARDS (já existente) ---
             const projCheckboxes = document.querySelectorAll('.proj-checkbox');
             const imobCheckboxes = document.querySelectorAll('.imob-checkbox');
+            const henkakuenkaCheckboxes = document.querySelectorAll('.henkakuenka-checkbox');
             const progressBar = document.getElementById('progressBar');
             const progressText = document.getElementById('progressText');
             const floatingProgress = document.getElementById('floatingProgress');
@@ -1444,15 +1587,16 @@
             const floatingProgressText = document.getElementById('floatingProgressText');
             const backToTopBtn = document.getElementById('backToTop');
             let answeredQuestions = 0;
-            const totalQuestions = projCheckboxes.length + imobCheckboxes.length;
+            const totalQuestions = projCheckboxes.length + imobCheckboxes.length + henkakuenkaCheckboxes.length;
             let hasShownCongratulations = false;
 
             // Função para atualizar progresso (SEM mostrar barra flutuante)
             function updateProgress() {
                 const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
                 const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
-                const totalQuestions = projCheckboxes.length + imobCheckboxes.length;
-                const completedQuestions = totalProjChecked + totalImobChecked;
+                const totalHenkakuenkaChecked = Array.from(henkakuenkaCheckboxes).filter(cb => cb.checked).length;
+                const totalQuestions = projCheckboxes.length + imobCheckboxes.length + henkakuenkaCheckboxes.length;
+                const completedQuestions = totalProjChecked + totalImobChecked + totalHenkakuenkaChecked;
                 const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
                 
 
@@ -1466,7 +1610,8 @@
                     
                     // Verificar se todos os checkboxes estão marcados
                     const allChecked = Array.from(projCheckboxes).every(cb => cb.checked) && 
-                                     Array.from(imobCheckboxes).every(cb => cb.checked);
+                                     Array.from(imobCheckboxes).every(cb => cb.checked) &&
+                                     Array.from(henkakuenkaCheckboxes).every(cb => cb.checked);
                     
                     if (allChecked) {
                         console.log('Showing congratulations!'); // Debug
@@ -1477,8 +1622,8 @@
                 }
                 
                 // Verificação adicional: se todos os checkboxes estão marcados, mostrar parabéns
-                if (completedQuestions >= 10 && !hasShownCongratulations) {
-                    console.log('Todos os 10 checkboxes marcados - mostrando parabéns!');
+                if (completedQuestions >= 13 && !hasShownCongratulations) {
+                    console.log('Todos os 13 checkboxes marcados - mostrando parabéns!');
                     setTimeout(() => {
                         showCongratulations();
                     }, 500);
@@ -1598,6 +1743,7 @@
             // Esconder seções inicialmente
             document.getElementById('nage-waza-section').classList.add('hidden');
             document.getElementById('imobilizacoes-section').classList.add('hidden');
+            document.getElementById('henkakuenka-section').classList.add('hidden');
             
 
             
@@ -1613,8 +1759,9 @@
                     if (e.target.checked) {
                         const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
                         const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
-                        const totalQuestions = projCheckboxes.length + imobCheckboxes.length;
-                        const completedQuestions = totalProjChecked + totalImobChecked;
+                        const totalHenkakuenkaChecked = Array.from(henkakuenkaCheckboxes).filter(cb => cb.checked).length;
+                        const totalQuestions = projCheckboxes.length + imobCheckboxes.length + henkakuenkaCheckboxes.length;
+                        const completedQuestions = totalProjChecked + totalImobChecked + totalHenkakuenkaChecked;
                         const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
                         showFloatingProgress(progress);
                     }
@@ -1627,8 +1774,24 @@
                     if (e.target.checked) {
                         const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
                         const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
-                        const totalQuestions = projCheckboxes.length + imobCheckboxes.length;
-                        const completedQuestions = totalProjChecked + totalImobChecked;
+                        const totalHenkakuenkaChecked = Array.from(henkakuenkaCheckboxes).filter(cb => cb.checked).length;
+                        const totalQuestions = projCheckboxes.length + imobCheckboxes.length + henkakuenkaCheckboxes.length;
+                        const completedQuestions = totalProjChecked + totalImobChecked + totalHenkakuenkaChecked;
+                        const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
+                        showFloatingProgress(progress);
+                    }
+                });
+            });
+            henkakuenkaCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function(e) {
+                    updateProgress();
+                    // Mostrar barra flutuante apenas quando marcar (não desmarcar)
+                    if (e.target.checked) {
+                        const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
+                        const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
+                        const totalHenkakuenkaChecked = Array.from(henkakuenkaCheckboxes).filter(cb => cb.checked).length;
+                        const totalQuestions = projCheckboxes.length + imobCheckboxes.length + henkakuenkaCheckboxes.length;
+                        const completedQuestions = totalProjChecked + totalImobChecked + totalHenkakuenkaChecked;
                         const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
                         showFloatingProgress(progress);
                     }
@@ -1939,14 +2102,17 @@
             // Navegação interna com animações visuais
             const nageWazaNav = document.getElementById('nage-waza-nav');
             const imobilizacoesNav = document.getElementById('imobilizacoes-nav');
+            const henkakuenkaNav = document.getElementById('henkakuenka-nav');
             const nageWazaSection = document.getElementById('nage-waza-section');
             const imobilizacoesSection = document.getElementById('imobilizacoes-section');
+            const henkakuenkaSection = document.getElementById('henkakuenka-section');
 
             if (nageWazaNav && nageWazaSection) {
                 nageWazaNav.addEventListener('click', function(e) {
                     e.preventDefault();
                     // Esconder todas as seções primeiro
                     document.getElementById('imobilizacoes-section').classList.add('hidden');
+                    document.getElementById('henkakuenka-section').classList.add('hidden');
                     // Mostrar a seção de técnicas de projeção
                     document.getElementById('nage-waza-section').classList.remove('hidden');
                     // Reinicializar botões back-to-top após mostrar a seção
@@ -1966,6 +2132,7 @@
                     e.preventDefault();
                     // Esconder todas as seções primeiro
                     document.getElementById('nage-waza-section').classList.add('hidden');
+                    document.getElementById('henkakuenka-section').classList.add('hidden');
                     // Mostrar a seção de imobilizações
                     document.getElementById('imobilizacoes-section').classList.remove('hidden');
                     // Reinicializar botões back-to-top após mostrar a seção
@@ -1979,12 +2146,38 @@
                     }, 300);
                 });
             }
+
+            if (henkakuenkaNav && henkakuenkaSection) {
+                henkakuenkaNav.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Esconder todas as seções primeiro
+                    document.getElementById('nage-waza-section').classList.add('hidden');
+                    document.getElementById('imobilizacoes-section').classList.add('hidden');
+                    // Mostrar a seção de ataques combinados
+                    document.getElementById('henkakuenka-section').classList.remove('hidden');
+                    // Reinicializar botões back-to-top após mostrar a seção
+                    setTimeout(() => {
+                        smoothScrollTo('henkakuenka-section', this);
+                    }, 100);
+                    
+                    // Inicializar botões após a seção estar completamente visível
+                    setTimeout(() => {
+                        initializeBackToTopButtons();
+                    }, 300);
+                });
+            }
             
             // Adicionar animação para todos os cards de navegação japonesa
             document.querySelectorAll('.japanese-nav-card').forEach(card => {
                 card.addEventListener('click', function(e) {
+                    // Verificar se é um link de navegação (não interceptar)
+                    if (this.tagName === 'A' || this.querySelector('a')) {
+                        // Permitir navegação normal para links
+                        return;
+                    }
+                    
                     // Se não for um dos cards principais, criar uma animação genérica
-                    if (!this.id || (this.id !== 'nage-waza-nav' && this.id !== 'imobilizacoes-nav')) {
+                    if (!this.id || (this.id !== 'nage-waza-nav' && this.id !== 'imobilizacoes-nav' && this.id !== 'henkakuenka-nav')) {
                         e.preventDefault();
                         
                         // Adicionar efeito visual
