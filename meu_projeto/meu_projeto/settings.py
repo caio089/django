@@ -29,9 +29,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('SECRET_KEY')
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['*']  # ou ['meusite.onrender.com'] depois que tiver o link
+
+ALLOWED_HOSTS = ['dojo-on.onrender.com']
+  # ou ['meusite.onrender.com'] depois que tiver o link
 
 CSRF_TRUSTED_ORIGINS = [
     'https://dojo-on.onrender.com',  # troque pelo seu domínio
@@ -104,6 +106,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3', 
     }
 }
+
 
 
 # Password validation
