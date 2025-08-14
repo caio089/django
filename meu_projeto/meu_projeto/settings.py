@@ -1,3 +1,4 @@
+
 """
 Django settings for meu_projeto project.
 
@@ -19,23 +20,18 @@ load_dotenv()  # carrega variáveis do arquivo .env
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(_file_).resolve().parent.parent
 
-KEY = '$jql-)42f#9o_mj#667di=puax3a!rgf+6vc8&)@)2((fzoho6'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('KEY')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.getenv('SECRET_KEY')
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
-
-# Se for no Render, ele usa o nome do app como domínio
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)  # ou ['meusite.onrender.com'] depois que tiver o link
+ALLOWED_HOSTS = ['*']  # ou ['meusite.onrender.com'] depois que tiver o link
 
 CSRF_TRUSTED_ORIGINS = [
     'https://dojo-on.onrender.com',  # troque pelo seu domínio
@@ -101,12 +97,14 @@ WSGI_APPLICATION = 'meu_projeto.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3', 
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
