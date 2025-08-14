@@ -30,10 +30,10 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['dojo-on.onrender.com']  # ou ['meusite.onrender.com'] depois que tiver o link
+ALLOWED_HOSTS = ['Dojo-on.onrender.com']  # ou ['meusite.onrender.com'] depois que tiver o link
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://dojo-on.onrender.com',  # troque pelo seu domínio
+    'https://Dojo-on.onrender.com',  # troque pelo seu domínio
 ]
 
 
