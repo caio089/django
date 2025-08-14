@@ -87,6 +87,17 @@
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
+        /* Animação para os botões de seta do carrossel */
+        .carousel-arrow-anim {
+            animation: carouselArrowPulse 0.7s ease-in-out;
+        }
+        
+        @keyframes carouselArrowPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
         /* Animação para as setas conectando técnicas */
         .text-3xl.text-indigo-500.font-bold,
         .text-3xl.text-blue-500.font-bold,
@@ -511,65 +522,69 @@
         <!-- Divs de Navegação Japonesa -->
         <div class="japanese-nav-container">
             <div class="text-center mb-4">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">🥋 Navegação Japonesa</h3>
-                <p class="text-gray-600 text-sm">Escolha uma categoria para começar sua jornada</p>
+                <h3 class="text-lg font-bold text-gray-800 mb-2">🥋 Navegação Japonesa</h3>
+                <p class="text-gray-600 text-xs">Escolha uma categoria para começar sua jornada</p>
             </div>
             
-            <div class="flex justify-center gap-8 mb-8">
-                <a href="/palavras/" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-blue-400 hover:bg-gradient-to-br hover:from-blue-50 hover:to-white transform hover:-translate-y-2">
+            <!-- Primeira linha: 4 divs -->
+            <div class="flex justify-center gap-4 mb-4">
+                <a href="/palavras/" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 h-32 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-blue-400 hover:bg-gradient-to-br hover:from-blue-50 hover:to-white transform hover:-translate-y-2">
                     <div class="absolute inset-0 bg-gradient-to-r from-blue-400/0 to-blue-400/0 group-hover:from-blue-400/10 group-hover:to-blue-400/5 transition-all duration-500"></div>
-                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:rotate-12">🥋</div>
+                    <div class="text-xl mb-1 transition-all duration-300 group-hover:scale-125 group-hover:rotate-12">🥋</div>
                     <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-blue-700 group-hover:scale-105">Palavras</div>
                     <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-blue-600">Japonês</div>
                 </a>
                 
-                <div class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-green-400 hover:bg-gradient-to-br hover:from-green-50 hover:to-white transform hover:-translate-y-2">
+                <div class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 h-32 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-green-400 hover:bg-gradient-to-br hover:from-green-50 hover:to-white transform hover:-translate-y-2">
                     <div class="absolute inset-0 bg-gradient-to-r from-green-400/0 to-green-400/0 group-hover:from-green-400/10 group-hover:to-green-400/5 transition-all duration-500"></div>
-                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-spin">🔄</div>
+                    <div class="text-xl mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-spin">🔄</div>
                     <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-green-700 group-hover:scale-105">Rolamentos</div>
                     <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-green-600">Ukemi</div>
                 </div>
                 
-                <div id="nage-waza-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-orange-400 hover:bg-gradient-to-br hover:from-orange-50 hover:to-white transform hover:-translate-y-2">
+                <div id="nage-waza-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 h-32 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-orange-400 hover:bg-gradient-to-br hover:from-orange-50 hover:to-white transform hover:-translate-y-2">
                     <div class="absolute inset-0 bg-gradient-to-r from-orange-400/0 to-orange-400/0 group-hover:from-orange-400/10 group-hover:to-orange-400/5 transition-all duration-500"></div>
-                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-pulse">💥</div>
+                    <div class="text-xl mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-pulse">💥</div>
                     <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-orange-700 group-hover:scale-105">Quedas</div>
                     <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-orange-600">Nage-waza</div>
                 </div>
                 
-                <div id="imobilizacoes-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-purple-400 hover:bg-gradient-to-br hover:from-purple-50 hover:to-white transform hover:-translate-y-2">
+                <div id="imobilizacoes-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 h-32 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-purple-400 hover:bg-gradient-to-br hover:from-purple-50 hover:to-white transform hover:-translate-y-2">
                     <div class="absolute inset-0 bg-gradient-to-r from-purple-400/0 to-purple-400/0 group-hover:from-purple-400/10 group-hover:to-purple-400/5 transition-all duration-500"></div>
-                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-bounce">🔒</div>
+                    <div class="text-xl mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-bounce">🔒</div>
                     <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-purple-700 group-hover:scale-105">Imobilizações</div>
                     <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-purple-600">Osaekomi-waza</div>
                 </div>
-                
-                <div id="chave-braco-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-red-400 hover:bg-gradient-to-br hover:from-red-50 hover:to-white transform hover:-translate-y-2">
+            </div>
+            
+            <!-- Segunda linha: 4 divs -->
+            <div class="flex justify-center gap-4">
+                <div id="chave-braco-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 h-32 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-red-400 hover:bg-gradient-to-br hover:from-red-50 hover:to-white transform hover:-translate-y-2">
                     <div class="absolute inset-0 bg-gradient-to-r from-red-400/0 to-red-400/0 group-hover:from-red-400/10 group-hover:to-red-400/5 transition-all duration-500"></div>
-                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-ping">🦴</div>
+                    <div class="text-xl mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-ping">🦴</div>
                     <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-red-700 group-hover:scale-105">Chave de Braço</div>
                     <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-red-600">Kansetsu-waza</div>
                 </div>
                 
-                <div id="estrangulamento-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-pink-400 hover:bg-gradient-to-br hover:from-pink-50 hover:to-white transform hover:-translate-y-2">
+                <div id="estrangulamento-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 h-32 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-pink-400 hover:bg-gradient-to-br hover:from-pink-50 hover:to-white transform hover:-translate-y-2">
                     <div class="absolute inset-0 bg-gradient-to-r from-pink-400/0 to-pink-400/0 group-hover:from-pink-400/10 group-hover:to-pink-400/5 transition-all duration-500"></div>
-                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-pulse">💀</div>
+                    <div class="text-xl mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-pulse">💀</div>
                     <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-pink-700 group-hover:scale-105">Estrangulamento</div>
                     <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-pink-600">Shime-waza</div>
                 </div>
-                
-                <div id="henkakuenka-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-indigo-400 hover:bg-gradient-to-br hover:from-indigo-50 hover:to-white transform hover:-translate-y-2">
+
+                <div id="henkakuenka-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 h-32 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-indigo-400 hover:bg-gradient-to-br hover:from-indigo-50 hover:to-white transform hover:-translate-y-2">
                     <div class="absolute inset-0 bg-gradient-to-r from-indigo-400/0 to-indigo-400/0 group-hover:from-indigo-400/10 group-hover:to-indigo-400/5 transition-all duration-500"></div>
-                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-pulse">⚡</div>
-                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-indigo-700 group-hover:scale-105">Ataques Combinados</div>
-                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-indigo-600">Henkakuenka-waza</div>
+                    <div class="text-xl mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-pulse">⚡</div>
+                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-indigo-700 group-hover:scale-105">Ataques</div>
+                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-indigo-600">Combinados</div>
                 </div>
-                
-                <div id="kaeshi-waza-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-teal-400 hover:bg-gradient-to-br hover:from-teal-50 hover:to-white transform hover:-translate-y-2">
-                    <div class="absolute inset-0 bg-gradient-to-r from-teal-400/0 to-teal-400/0 group-hover:from-teal-400/10 group-hover:to-teal-400/5 transition-all duration-500"></div>
-                    <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-pulse">🔄</div>
-                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-teal-700 group-hover:scale-105">Contra Ataques</div>
-                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-teal-600">Kaeshi-waza</div>
+
+                <div id="kaeshi-waza-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 h-32 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-emerald-400 hover:bg-gradient-to-br hover:from-emerald-50 hover:to-white transform hover:-translate-y-2">
+                    <div class="absolute inset-0 bg-gradient-to-r from-emerald-400/0 to-emerald-400/0 group-hover:from-emerald-400/10 group-hover:to-emerald-400/5 transition-all duration-500"></div>
+                    <div class="text-xl mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-bounce">🔄</div>
+                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-emerald-700 group-hover:scale-105">Contra</div>
+                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-emerald-600">Ataques</div>
                 </div>
             </div>
         </div>
