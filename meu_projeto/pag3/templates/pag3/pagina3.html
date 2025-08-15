@@ -950,8 +950,8 @@
                 </p>
             </div>
             <div class="relative">
-                <!-- Botão Esquerda -->
-                <button id="carouselLeft" type="button" class="hidden md:flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-orange-600/80 hover:bg-orange-600 text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
+                        <!-- Botão Esquerda -->
+        <button id="carouselLeft" type="button" class="flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-orange-600/80 hover:bg-orange-600 text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                     </svg>
@@ -1150,8 +1150,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- Botão Direita -->
-                <button id="carouselRight" type="button" class="hidden md:flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-orange-600/80 hover:bg-orange-600 text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
+                        <!-- Botão Direita -->
+        <button id="carouselRight" type="button" class="flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-orange-600/80 hover:bg-orange-600 text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                     </svg>
@@ -1180,8 +1180,8 @@
                 </p>
             </div>
             <div class="relative">
-                <!-- Botão Esquerda -->
-                <button id="carouselImobLeft" type="button" class="hidden md:flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-purple-600/80 hover:bg-purple-600 text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
+                        <!-- Botão Esquerda -->
+        <button id="carouselImobLeft" type="button" class="flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-purple-600/80 hover:bg-purple-600 text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                     </svg>
@@ -1316,8 +1316,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- Botão Direita -->
-                <button id="carouselImobRight" type="button" class="hidden md:flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-purple-600/80 hover:bg-purple-600 text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
+                        <!-- Botão Direita -->
+        <button id="carouselImobRight" type="button" class="flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-purple-600/80 hover:bg-purple-600 text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                     </svg>
@@ -2727,13 +2727,7 @@
                     projRightBtn.classList.add('carousel-arrow-anim');
                     setTimeout(() => projRightBtn.classList.remove('carousel-arrow-anim'), 700);
                 });
-                const updateProjBtns = () => {
-                    projLeftBtn.style.display = carouselProj.scrollLeft > 10 ? 'flex' : 'none';
-                    projRightBtn.style.display = (carouselProj.scrollLeft + carouselProj.offsetWidth < carouselProj.scrollWidth - 10) ? 'flex' : 'none';
-                };
-                carouselProj.addEventListener('scroll', updateProjBtns);
-                window.addEventListener('resize', updateProjBtns);
-                setTimeout(updateProjBtns, 300);
+                            // Botões sempre visíveis - removida a lógica de ocultar/mostrar
             }
 
             // --- CARROSSEL IMOBILIZAÇÃO ---
@@ -2751,13 +2745,7 @@
                     imobRightBtn.classList.add('carousel-arrow-anim');
                     setTimeout(() => imobRightBtn.classList.remove('carousel-arrow-anim'), 700);
                 });
-                const updateImobBtns = () => {
-                    imobLeftBtn.style.display = carouselImob.scrollLeft > 10 ? 'flex' : 'none';
-                    imobRightBtn.style.display = (carouselImob.scrollLeft + carouselImob.offsetWidth < carouselImob.scrollWidth - 10) ? 'flex' : 'none';
-                };
-                carouselImob.addEventListener('scroll', updateImobBtns);
-                window.addEventListener('resize', updateImobBtns);
-                setTimeout(updateImobBtns, 300);
+                            // Botões sempre visíveis - removida a lógica de ocultar/mostrar
             }
 
             // Navegação para Ukemi
