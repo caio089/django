@@ -102,6 +102,10 @@
             opacity: 0;
             transform: translateY(20px);
             animation: slideInUp 0.6s ease-out forwards;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
         
         @keyframes slideInUp {
@@ -118,6 +122,53 @@
         .habilidade-item:nth-child(4) { animation-delay: 0.4s; }
         .habilidade-item:nth-child(5) { animation-delay: 0.5s; }
         .habilidade-item:nth-child(6) { animation-delay: 0.6s; }
+        
+        /* Efeito de cursor para habilidades e condições */
+        .habilidade-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .habilidade-item:hover::before {
+            left: 100%;
+        }
+        
+        .habilidade-item:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+            background: rgba(255, 255, 255, 0.95) !important;
+        }
+        
+        /* Efeito de borda animada */
+        .habilidade-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            background: linear-gradient(45deg, #6B7280, #4B5563, #6B7280) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .habilidade-item:hover::after {
+            opacity: 1;
+        }
         
         /* Efeito de destaque especial para a barra japonesa */
         .japanese-nav-container {
@@ -409,7 +460,7 @@
             #carouselEstrang > div { min-width: 98vw; max-width: 99vw; height: 320px; }
         }
         .technique-card {
-            height: 420px;
+            height: 380px;
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -417,17 +468,17 @@
         }
         .technique-card .video-container {
             flex-shrink: 0;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
         .technique-card {
-            min-width: 450px !important;
-            max-width: 520px !important;
-            padding: 1.5rem !important;
+            min-width: 400px !important;
+            max-width: 460px !important;
+            padding: 1.25rem !important;
         }
         .technique-card .bg-orange-50,
         .technique-card .bg-green-50,
         .technique-card .bg-judo-purpleLight {
-            margin-top: auto;
+            margin-top: 0.5rem;
             margin-bottom: 0;
             flex-shrink: 0;
         }
@@ -507,7 +558,8 @@
                 <p class="text-gray-600 text-sm">Escolha uma categoria para começar sua jornada</p>
             </div>
             
-            <div class="flex justify-center gap-8 mb-8">
+            <div class="grid grid-cols-4 gap-6 mb-8 max-w-4xl mx-auto">
+                <!-- Primeira linha: 4 cards -->
                 <a href="/palavras/" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-blue-400 hover:bg-gradient-to-br hover:from-blue-50 hover:to-white transform hover:-translate-y-2">
                     <div class="absolute inset-0 bg-gradient-to-r from-blue-400/0 to-blue-400/0 group-hover:from-blue-400/10 group-hover:to-blue-400/5 transition-all duration-500"></div>
                     <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:rotate-12">🥋</div>
@@ -536,6 +588,7 @@
                     <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-purple-600">Osaekomi-waza</div>
                 </div>
                 
+                <!-- Segunda linha: 4 cards -->
                 <div id="chave-braco-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-red-400 hover:bg-gradient-to-br hover:from-red-50 hover:to-white transform hover:-translate-y-2">
                     <div class="absolute inset-0 bg-gradient-to-r from-red-400/0 to-red-400/0 group-hover:from-red-400/10 group-hover:to-red-400/5 transition-all duration-500"></div>
                     <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-ping">🦴</div>
@@ -558,7 +611,7 @@
                 </div>
                 
                 <div id="contra-ataques-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-amber-400 hover:bg-gradient-to-br hover:from-amber-50 hover:to-white transform hover:-translate-y-2">
-                    <div class="absolute inset-0 bg-gradient-to-br from-amber-400/0 to-amber-400/0 group-hover:from-amber-400/10 group-hover:to-amber-400/5 transition-all duration-500"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-amber-400/0 to-amber-400/0 group-hover:from-amber-400/10 group-hover:to-amber-400/5 transition-all duration-500"></div>
                     <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-ping">🛡️</div>
                     <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-amber-700 group-hover:scale-105">Contra Ataques</div>
                     <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-amber-600">Kaeshi-waza</div>
@@ -586,7 +639,7 @@
                 <!-- Carrossel -->
                 <div id="carouselProj" class="flex overflow-x-auto gap-4 pb-4 scroll-smooth hide-scrollbar justify-start">
                     <!-- Técnica 1 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[350px] max-w-[420px] flex-shrink-0">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[320px] max-w-[380px] flex-shrink-0">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
@@ -611,7 +664,7 @@
                         </div>
                     </div>
                     <!-- Técnica 2 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[350px] max-w-[420px] flex-shrink-0">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[320px] max-w-[380px] flex-shrink-0">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
@@ -1097,7 +1150,7 @@
                 <!-- Carrossel -->
                 <div id="carouselImob" class="flex overflow-x-auto gap-4 pb-4 scroll-smooth hide-scrollbar">
                     <!-- Imobilização 1 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[320px] max-w-[380px] flex-shrink-0">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
@@ -1122,7 +1175,7 @@
                         </div>
                     </div>
                     <!-- Imobilização 2 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[320px] max-w-[380px] flex-shrink-0">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
@@ -1147,7 +1200,7 @@
                         </div>
                     </div>
                     <!-- Imobilização 3 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[320px] max-w-[380px] flex-shrink-0">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
@@ -1172,7 +1225,7 @@
                         </div>
                     </div>
                     <!-- Imobilização 4 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
+                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[320px] max-w-[380px] flex-shrink-0">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-judo-purpleLight p-2 rounded-full mr-3">
@@ -2104,7 +2157,385 @@
             <!-- Layout com Setas Conectando Técnicas em Linha Reta -->
             <div class="max-w-6xl mx-auto space-y-6">
                 
-                <!-- Linha 1: UCHI-MATA → KO-UCHI-GARI -->
+                <!-- Linha 1: KATA-GURUMA → KO-SOTO-GARI -->
+                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda -->
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
+                        <h4 class="text-lg font-bold text-gray-800">KATA-GURUMA</h4>
+                        <p class="text-gray-600 text-sm">Roda de Ombros</p>
+                        <div class="video-container my-3">
+                            <iframe src="https://www.youtube.com/embed/bvFuhJwg6AY?si=TvKWV5Ph-Bq07WI4" 
+                                    title="KATA-GURUMA" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-indigo-50 p-2 rounded-xl">
+                            <h5 class="font-semibold text-indigo-800 mb-1 text-sm">💡 Dica:</h5>
+                            <p class="text-indigo-700 text-xs">Use o movimento circular dos ombros para desequilibrar o oponente.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Seta Conectando -->
+                    <div class="flex items-center justify-center">
+                        <div class="text-3xl text-indigo-500 font-bold">→</div>
+                    </div>
+                    
+                    <!-- Técnica da Direita -->
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
+                        <h4 class="text-lg font-bold text-gray-800">KO-SOTO-GARI</h4>
+                        <p class="text-gray-600 text-sm">Gancho Externo Pequeno</p>
+                        <div class="video-container my-3">
+                            <iframe src="https://www.youtube.com/embed/3Jb3tZvr9Ng?si=1uT1iQUT5xVArgrY" 
+                                    title="KO-SOTO-GARI" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-green-50 p-2 rounded-xl">
+                            <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
+                            <p class="text-green-700 text-xs">A chave está na precisão do gancho e no desequilíbrio do oponente.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Checkbox único para a combinação -->
+                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                        <label class="flex items-center select-none">
+                            <input type="checkbox" class="contra-ataques-checkbox accent-indigo-500 w-5 h-5 mr-2" />
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Linha 2: O-SOTO-GARI → O-SOTO-OTOSHI -->
+                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda -->
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
+                        <h4 class="text-lg font-bold text-gray-800">O-SOTO-GARI</h4>
+                        <p class="text-gray-600 text-sm">Gancho Externo Grande</p>
+                        <div class="video-container my-3">
+                            <iframe src="https://www.youtube.com/embed/92KbCm6pQeI?si=g_Y6Nf7qCSDkoLkt" 
+                                    title="O-SOTO-GARI" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-orange-50 p-2 rounded-xl">
+                            <h5 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h5>
+                            <p class="text-orange-700 text-xs">Use o quadril para girar e projetar com força.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Seta Conectando -->
+                    <div class="flex items-center justify-center">
+                        <div class="text-3xl text-blue-500 font-bold">→</div>
+                    </div>
+                    
+                    <!-- Técnica da Direita -->
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
+                        <h4 class="text-lg font-bold text-gray-800">O-SOTO-OTOSHI</h4>
+                        <p class="text-gray-600 text-sm">Queda Externa Grande</p>
+                        <div class="video-container my-3">
+                            <iframe src="https://www.youtube.com/embed/3Jb3tZvr9Ng?si=1uT1iQUT5xVArgrY" 
+                                    title="O-SOTO-OTOSHI" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-green-50 p-2 rounded-xl">
+                            <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
+                            <p class="text-green-700 text-xs">A chave está na precisão do gancho e no desequilíbrio do oponente.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Checkbox único para a combinação -->
+                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                        <label class="flex items-center select-none">
+                            <input type="checkbox" class="contra-ataques-checkbox accent-blue-500 w-5 h-5 mr-2" />
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Linha 3: O-SOTO-GARI → USHIRO-TE-GURUMA -->
+                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda -->
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
+                        <h4 class="text-lg font-bold text-gray-800">O-SOTO-GARI</h4>
+                        <p class="text-gray-600 text-sm">Gancho Externo Grande</p>
+                        <div class="video-container my-3">
+                            <iframe src="https://www.youtube.com/embed/92KbCm6pQeI?si=g_Y6Nf7qCSDkoLkt" 
+                                    title="O-SOTO-GARI" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-red-50 p-2 rounded-xl">
+                            <h5 class="font-semibold text-red-800 mb-1 text-sm">💡 Dica:</h5>
+                            <p class="text-red-700 text-xs">Use o gancho externo para desequilibrar o oponente.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Seta Conectando -->
+                    <div class="flex items-center justify-center">
+                        <div class="text-3xl text-red-500 font-bold">→</div>
+                    </div>
+                    
+                    <!-- Técnica da Direita -->
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
+                        <h4 class="text-lg font-bold text-gray-800">USHIRO-TE-GURUMA</h4>
+                        <p class="text-gray-600 text-sm">Roda de Mãos para Trás</p>
+                        <div class="video-container my-3">
+                            <iframe src="https://www.youtube.com/embed/92KbCm6pQeI?si=g_Y6Nf7qCSDkoLkt" 
+                                    title="USHIRO-TE-GURUMA" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-green-50 p-2 rounded-xl">
+                            <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
+                            <p class="text-green-700 text-xs">A chave está na precisão do gancho e no desequilíbrio do oponente.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Checkbox único para a combinação -->
+                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                        <label class="flex items-center select-none">
+                            <input type="checkbox" class="contra-ataques-checkbox accent-red-500 w-5 h-5 mr-2" />
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Linha 4: O-TSURI-GOSHI → USHIRO-GOSHI -->
+                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda -->
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
+                        <h4 class="text-lg font-bold text-gray-800">O-TSURI-GOSHI</h4>
+                        <p class="text-gray-600 text-sm">Quadril Elevado</p>
+                        <div class="video-container my-3">
+                            <iframe src="https://www.youtube.com/embed/92KbCm6pQeI?si=g_Y6Nf7qCSDkoLkt" 
+                                    title="O-TSURI-GOSHI" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-purple-50 p-2 rounded-xl">
+                            <h5 class="font-semibold text-purple-800 mb-1 text-sm">💡 Dica:</h5>
+                            <p class="text-purple-700 text-xs">Use o corpo para desequilibrar o oponente.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Seta Conectando -->
+                    <div class="flex items-center justify-center">
+                        <div class="text-3xl text-purple-500 font-bold">→</div>
+                    </div>
+                    
+                    <!-- Técnica da Direita -->
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
+                        <h4 class="text-lg font-bold text-gray-800">USHIRO-GOSHI</h4>
+                        <p class="text-gray-600 text-sm">Quadril para Trás</p>
+                        <div class="video-container my-3">
+                            <iframe src="https://www.youtube.com/embed/3Jb3tZvr9Ng?si=1uT1iQUT5xVArgrY" 
+                                    title="USHIRO-GOSHI" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-green-50 p-2 rounded-xl">
+                            <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
+                            <p class="text-green-700 text-xs">A chave está na precisão do gancho e no desequilíbrio do oponente.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Checkbox único para a combinação -->
+                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                        <label class="flex items-center select-none">
+                            <input type="checkbox" class="contra-ataques-checkbox accent-purple-500 w-5 h-5 mr-2" />
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Linha 5: MOROTE-GARI → TAWARA-GAESHI -->
+                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda -->
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
+                        <h4 class="text-lg font-bold text-gray-800">MOROTE-GARI</h4>
+                        <p class="text-gray-600 text-sm">Colheita Dupla</p>
+                        <div class="video-container my-3">
+                            <iframe src="https://www.youtube.com/embed/92KbCm6pQeI?si=g_Y6Nf7qCSDkoLkt" 
+                                    title="MOROTE-GARI" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-blue-50 p-2 rounded-xl">
+                            <h5 class="font-semibold text-blue-800 mb-1 text-sm">💡 Dica:</h5>
+                            <p class="text-blue-700 text-xs">Use a gola para desequilibrar o oponente.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Seta Conectando -->
+                    <div class="flex items-center justify-center">
+                        <div class="text-3xl text-blue-500 font-bold">→</div>
+                    </div>
+                    
+                    <!-- Técnica da Direita -->
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
+                        <h4 class="text-lg font-bold text-gray-800">TAWARA-GAESHI</h4>
+                        <p class="text-gray-600 text-sm">Contra Ataque do Fardo</p>
+                        <div class="video-container my-3">
+                            <iframe src="https://www.youtube.com/embed/3Jb3tZvr9Ng?si=1uT1iQUT5xVArgrY" 
+                                    title="TAWARA-GAESHI" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-green-50 p-2 rounded-xl">
+                            <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
+                            <p class="text-green-700 text-xs">A chave está na precisão do gancho e no desequilíbrio do oponente.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Checkbox único para a combinação -->
+                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                        <label class="flex items-center select-none">
+                            <input type="checkbox" class="contra-ataques-checkbox accent-blue-500 w-5 h-5 mr-2" />
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Linha 6: O-UCHI-GARI → UKI-WAZA -->
+                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda -->
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
+                        <h4 class="text-lg font-bold text-gray-800">O-UCHI-GARI</h4>
+                        <p class="text-gray-600 text-sm">Gancho Interno Grande</p>
+                        <div class="video-container my-3">
+                            <iframe src="https://www.youtube.com/embed/3Jb3tZvr9Ng?si=1uT1iQUT5xVArgrY" 
+                                    title="O-UCHI-GARI" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-teal-50 p-2 rounded-xl">
+                            <h5 class="font-semibold text-teal-800 mb-1 text-sm">💡 Dica:</h5>
+                            <p class="text-teal-700 text-xs">Use uma mão na gola para desequilibrar o oponente.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Seta Conectando -->
+                    <div class="flex items-center justify-center">
+                        <div class="text-3xl text-teal-500 font-bold">→</div>
+                    </div>
+                    
+                    <!-- Técnica da Direita -->
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
+                        <h4 class="text-lg font-bold text-gray-800">UKI-WAZA</h4>
+                        <p class="text-gray-600 text-sm">Técnica Flutuante</p>
+                        <div class="video-container my-3">
+                            <iframe src="https://www.youtube.com/embed/92KbCm6pQeI?si=g_Y6Nf7qCSDkoLkt" 
+                                    title="UKI-WAZA" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-green-50 p-2 rounded-xl">
+                            <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
+                            <p class="text-green-700 text-xs">A chave está na precisão do gancho e no desequilíbrio do oponente.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Checkbox único para a combinação -->
+                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                        <label class="flex items-center select-none">
+                            <input type="checkbox" class="contra-ataques-checkbox accent-teal-500 w-5 h-5 mr-2" />
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Linha 7: OKURI-DE-ASHI-HARAI → O-UCHI-GARI -->
+                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda -->
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
+                        <h4 class="text-lg font-bold text-gray-800">OKURI-DE-ASHI-HARAI</h4>
+                        <p class="text-gray-600 text-sm">Varredura dos Pés em Movimento</p>
+                        <div class="video-container my-3">
+                            <iframe src="https://www.youtube.com/embed/3Jb3tZvr9Ng?si=1uT1iQUT5xVArgrY" 
+                                    title="OKURI-DE-ASHI-HARAI" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-red-50 p-2 rounded-xl">
+                            <h5 class="font-semibold text-red-800 mb-1 text-sm">💡 Dica:</h5>
+                            <p class="text-red-700 text-xs">Use o gancho interno para desequilibrar o oponente.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Seta Conectando -->
+                    <div class="flex items-center justify-center">
+                        <div class="text-3xl text-red-500 font-bold">→</div>
+                    </div>
+                    
+                    <!-- Técnica da Direita -->
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
+                        <h4 class="text-lg font-bold text-gray-800">O-UCHI-GARI</h4>
+                        <p class="text-gray-600 text-sm">Gancho Interno Grande</p>
+                        <div class="video-container my-3">
+                            <iframe src="https://www.youtube.com/embed/92KbCm6pQeI?si=g_Y6Nf7qCSDkoLkt" 
+                                    title="O-UCHI-GARI" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-green-50 p-2 rounded-xl">
+                            <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
+                            <p class="text-green-700 text-xs">A chave está na precisão do gancho e no desequilíbrio do oponente.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Checkbox único para a combinação -->
+                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                        <label class="flex items-center select-none">
+                            <input type="checkbox" class="contra-ataques-checkbox accent-red-500 w-5 h-5 mr-2" />
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Linha 8: UCHI-MATA → USHIRO-TE-GURUMA -->
                 <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
                     <!-- Técnica da Esquerda -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
@@ -2127,16 +2558,16 @@
                     
                     <!-- Seta Conectando -->
                     <div class="flex items-center justify-center">
-                        <div class="text-3xl text-blue-500 font-bold">→</div>
+                        <div class="text-3xl text-orange-500 font-bold">→</div>
                     </div>
                     
                     <!-- Técnica da Direita -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
-                        <h4 class="text-lg font-bold text-gray-800">KO-UCHI-GARI</h4>
-                        <p class="text-gray-600 text-sm">Gancho Externo</p>
+                        <h4 class="text-lg font-bold text-gray-800">USHIRO-TE-GURUMA</h4>
+                        <p class="text-gray-600 text-sm">Roda de Mãos para Trás</p>
                         <div class="video-container my-3">
                             <iframe src="https://www.youtube.com/embed/3Jb3tZvr9Ng?si=1uT1iQUT5xVArgrY" 
-                                    title="KO-UCHI-GARI" 
+                                    title="USHIRO-TE-GURUMA" 
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
@@ -2152,7 +2583,61 @@
                     <!-- Checkbox único para a combinação -->
                     <div class="flex items-center justify-center mt-4 lg:mt-0">
                         <label class="flex items-center select-none">
-                            <input type="checkbox" class="contra-ataques-checkbox accent-blue-500 w-5 h-5 mr-2" />
+                            <input type="checkbox" class="contra-ataques-checkbox accent-orange-500 w-5 h-5 mr-2" />
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Linha 9: KOSHI-NAGUE → OBI-OTOSHI -->
+                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda -->
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
+                        <h4 class="text-lg font-bold text-gray-800">KOSHI-NAGUE</h4>
+                        <p class="text-gray-600 text-sm">Projeção do Quadril</p>
+                        <div class="video-container my-3">
+                            <iframe src="https://www.youtube.com/embed/92KbCm6pQeI?si=g_Y6Nf7qCSDkoLkt" 
+                                    title="KOSHI-NAGUE" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-amber-50 p-2 rounded-xl">
+                            <h5 class="font-semibold text-amber-800 mb-1 text-sm">💡 Dica:</h5>
+                            <p class="text-amber-700 text-xs">Use o gancho externo pequeno para desequilibrar o oponente.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Seta Conectando -->
+                    <div class="flex items-center justify-center">
+                        <div class="text-3xl text-amber-500 font-bold">→</div>
+                    </div>
+                    
+                    <!-- Técnica da Direita -->
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
+                        <h4 class="text-lg font-bold text-gray-800">OBI-OTOSHI</h4>
+                        <p class="text-gray-600 text-sm">Queda do Cinto</p>
+                        <div class="video-container my-3">
+                            <iframe src="https://www.youtube.com/embed/3Jb3tZvr9Ng?si=1uT1iQUT5xVArgrY" 
+                                    title="OBI-OTOSHI" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="bg-green-50 p-2 rounded-xl">
+                            <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
+                            <p class="text-green-700 text-xs">A chave está na precisão do gancho e no desequilíbrio do oponente.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Checkbox único para a combinação -->
+                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                        <label class="flex items-center select-none">
+                            <input type="checkbox" class="contra-ataques-checkbox accent-amber-500 w-5 h-5 mr-2" />
                             <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
                         </label>
                     </div>
@@ -2290,10 +2775,43 @@
     </footer>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // --- ANIMAÇÕES DE HABILIDADES E CONDIÇÕES ---
+            
+            // Função para animar habilidades com efeito de digitação
+            function animateHabilidades() {
+                const habilidades = document.querySelectorAll('.habilidade-item');
+                
+                // Todas as habilidades animam ao mesmo tempo
+                habilidades.forEach((habilidade, index) => {
+                    setTimeout(() => {
+                        habilidade.style.opacity = '0';
+                        habilidade.style.transform = 'translateY(20px) scale(0.9)';
+                        habilidade.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                        
+                        setTimeout(() => {
+                            habilidade.style.opacity = '1';
+                            habilidade.style.transform = 'translateY(0) scale(1)';
+                        }, 100);
+                    }, index * 150); // Delay escalonado para cada habilidade
+                });
+            }
+            
+            // Selecionar elementos de habilidades para animações
+            const habilidadesTyping = document.getElementById('habilidadesTyping');
+            const habilidadesItems = document.querySelectorAll('.habilidade-item');
+            
+            // Inicializar animações quando a página carregar
+            setTimeout(() => {
+                animateHabilidades();
+            }, 500);
+            
+            // --- PROGRESSO E ANIMAÇÃO DOS CARDS ---
             const projCheckboxes = document.querySelectorAll('.proj-checkbox');
             const imobCheckboxes = document.querySelectorAll('.imob-checkbox');
             const chaveCheckboxes = document.querySelectorAll('.chave-checkbox');
             const estrangCheckboxes = document.querySelectorAll('.estrang-checkbox');
+            const ataquesCombinadosCheckboxes = document.querySelectorAll('.ataques-combinados-checkbox');
+            const contraAtaquesCheckboxes = document.querySelectorAll('.contra-ataques-checkbox');
             const progressBar = document.getElementById('progressBar');
             const progressText = document.getElementById('progressText');
             const floatingProgress = document.getElementById('floatingProgress');
@@ -2307,8 +2825,10 @@
                 const totalImobChecked = document.querySelectorAll('.imob-checkbox:checked').length;
                 const totalChaveChecked = document.querySelectorAll('.chave-checkbox:checked').length;
                 const totalEstrangChecked = document.querySelectorAll('.estrang-checkbox:checked').length;
-                const totalQuestions = projCheckboxes.length + imobCheckboxes.length + chaveCheckboxes.length + estrangCheckboxes.length;
-                const completedQuestions = totalProjChecked + totalImobChecked + totalChaveChecked + totalEstrangChecked;
+                const totalAtaquesCombinadosChecked = document.querySelectorAll('.ataques-combinados-checkbox:checked').length;
+                const totalContraAtaquesChecked = document.querySelectorAll('.contra-ataques-checkbox:checked').length;
+                const totalQuestions = projCheckboxes.length + imobCheckboxes.length + chaveCheckboxes.length + estrangCheckboxes.length + ataquesCombinadosCheckboxes.length + contraAtaquesCheckboxes.length;
+                const completedQuestions = totalProjChecked + totalImobChecked + totalChaveChecked + totalEstrangChecked + totalAtaquesCombinadosChecked + totalContraAtaquesChecked;
                 const progress = (completedQuestions / totalQuestions) * 100;
                 progressBar.style.width = progress + '%';
                 progressText.textContent = Math.round(progress) + '%';
@@ -2321,7 +2841,9 @@
                     const allChecked = Array.from(projCheckboxes).every(cb => cb.checked) && 
                                      Array.from(imobCheckboxes).every(cb => cb.checked) &&
                                      Array.from(chaveCheckboxes).every(cb => cb.checked) &&
-                                     Array.from(estrangCheckboxes).every(cb => cb.checked);
+                                     Array.from(estrangCheckboxes).every(cb => cb.checked) &&
+                                     Array.from(ataquesCombinadosCheckboxes).every(cb => cb.checked) &&
+                                     Array.from(contraAtaquesCheckboxes).every(cb => cb.checked);
                     
                     if (allChecked) {
                         console.log('Showing congratulations!');
@@ -2332,8 +2854,9 @@
                 }
                 
                 // Verificação adicional: se todos os checkboxes estão marcados, mostrar parabéns
-                if (completedQuestions >= 37 && !hasShownCongratulations) {
-                    console.log('Todos os 37 checkboxes marcados - mostrando parabéns!');
+                const totalCheckboxes = 37 + ataquesCombinadosCheckboxes.length + contraAtaquesCheckboxes.length;
+                if (completedQuestions >= totalCheckboxes && !hasShownCongratulations) {
+                    console.log(`Todos os ${totalCheckboxes} checkboxes marcados - mostrando parabéns!`);
                     setTimeout(() => {
                         showCongratulations();
                     }, 500);
@@ -2360,7 +2883,7 @@
                 checkbox.addEventListener('change', function() {
                     updateProgress();
                     if (this.checked) {
-                        showFloatingProgress((document.querySelectorAll('.proj-checkbox:checked').length + document.querySelectorAll('.imob-checkbox:checked').length + document.querySelectorAll('.chave-checkbox:checked').length + document.querySelectorAll('.estrang-checkbox:checked').length) / (projCheckboxes.length + imobCheckboxes.length + chaveCheckboxes.length + estrangCheckboxes.length) * 100);
+                        showFloatingProgress((document.querySelectorAll('.proj-checkbox:checked').length + document.querySelectorAll('.imob-checkbox:checked').length + document.querySelectorAll('.chave-checkbox:checked').length + document.querySelectorAll('.estrang-checkbox:checked').length + document.querySelectorAll('.ataques-combinados-checkbox:checked').length + document.querySelectorAll('.contra-ataques-checkbox:checked').length) / (projCheckboxes.length + imobCheckboxes.length + chaveCheckboxes.length + estrangCheckboxes.length + ataquesCombinadosCheckboxes.length + contraAtaquesCheckboxes.length) * 100);
                     }
                 });
             });
@@ -2368,7 +2891,7 @@
                 checkbox.addEventListener('change', function() {
                     updateProgress();
                     if (this.checked) {
-                        showFloatingProgress((document.querySelectorAll('.proj-checkbox:checked').length + document.querySelectorAll('.imob-checkbox:checked').length + document.querySelectorAll('.chave-checkbox:checked').length + document.querySelectorAll('.estrang-checkbox:checked').length) / (projCheckboxes.length + imobCheckboxes.length + chaveCheckboxes.length + estrangCheckboxes.length) * 100);
+                        showFloatingProgress((document.querySelectorAll('.proj-checkbox:checked').length + document.querySelectorAll('.imob-checkbox:checked').length + document.querySelectorAll('.chave-checkbox:checked').length + document.querySelectorAll('.estrang-checkbox:checked').length + document.querySelectorAll('.ataques-combinados-checkbox:checked').length + document.querySelectorAll('.contra-ataques-checkbox:checked').length) / (projCheckboxes.length + imobCheckboxes.length + chaveCheckboxes.length + estrangCheckboxes.length + ataquesCombinadosCheckboxes.length + contraAtaquesCheckboxes.length) * 100);
                     }
                 });
             });
@@ -2376,7 +2899,7 @@
                 checkbox.addEventListener('change', function() {
                     updateProgress();
                     if (this.checked) {
-                        showFloatingProgress((document.querySelectorAll('.proj-checkbox:checked').length + document.querySelectorAll('.imob-checkbox:checked').length + document.querySelectorAll('.chave-checkbox:checked').length + document.querySelectorAll('.estrang-checkbox:checked').length) / (projCheckboxes.length + imobCheckboxes.length + chaveCheckboxes.length + estrangCheckboxes.length) * 100);
+                        showFloatingProgress((document.querySelectorAll('.proj-checkbox:checked').length + document.querySelectorAll('.imob-checkbox:checked').length + document.querySelectorAll('.chave-checkbox:checked').length + document.querySelectorAll('.estrang-checkbox:checked').length + document.querySelectorAll('.ataques-combinados-checkbox:checked').length + document.querySelectorAll('.contra-ataques-checkbox:checked').length) / (projCheckboxes.length + imobCheckboxes.length + chaveCheckboxes.length + estrangCheckboxes.length + ataquesCombinadosCheckboxes.length + contraAtaquesCheckboxes.length) * 100);
                     }
                 });
             });
@@ -2384,10 +2907,30 @@
                 checkbox.addEventListener('change', function() {
                     updateProgress();
                     if (this.checked) {
-                        showFloatingProgress((document.querySelectorAll('.proj-checkbox:checked').length + document.querySelectorAll('.imob-checkbox:checked').length + document.querySelectorAll('.chave-checkbox:checked').length + document.querySelectorAll('.estrang-checkbox:checked').length) / (projCheckboxes.length + imobCheckboxes.length + chaveCheckboxes.length + estrangCheckboxes.length) * 100);
+                        showFloatingProgress((document.querySelectorAll('.proj-checkbox:checked').length + document.querySelectorAll('.imob-checkbox:checked').length + document.querySelectorAll('.chave-checkbox:checked').length + document.querySelectorAll('.estrang-checkbox:checked').length + document.querySelectorAll('.ataques-combinados-checkbox:checked').length + document.querySelectorAll('.contra-ataques-checkbox:checked').length) / (projCheckboxes.length + imobCheckboxes.length + chaveCheckboxes.length + estrangCheckboxes.length + ataquesCombinadosCheckboxes.length + contraAtaquesCheckboxes.length) * 100);
                     }
                 });
             });
+
+            // Event listeners para os novos checkboxes
+            ataquesCombinadosCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    updateProgress();
+                    if (this.checked) {
+                        showFloatingProgress((document.querySelectorAll('.proj-checkbox:checked').length + document.querySelectorAll('.imob-checkbox:checked').length + document.querySelectorAll('.chave-checkbox:checked').length + document.querySelectorAll('.estrang-checkbox:checked').length + document.querySelectorAll('.ataques-combinados-checkbox:checked').length + document.querySelectorAll('.contra-ataques-checkbox:checked').length) / (projCheckboxes.length + imobCheckboxes.length + chaveCheckboxes.length + estrangCheckboxes.length + ataquesCombinadosCheckboxes.length + contraAtaquesCheckboxes.length) * 100);
+                    }
+                });
+            });
+
+            contraAtaquesCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    updateProgress();
+                    if (this.checked) {
+                        showFloatingProgress((document.querySelectorAll('.proj-checkbox:checked').length + document.querySelectorAll('.imob-checkbox:checked').length + document.querySelectorAll('.chave-checkbox:checked').length + document.querySelectorAll('.estrang-checkbox:checked').length + document.querySelectorAll('.ataques-combinados-checkbox:checked').length + document.querySelectorAll('.contra-ataques-checkbox:checked').length) / (projCheckboxes.length + imobCheckboxes.length + chaveCheckboxes.length + estrangCheckboxes.length + ataquesCombinadosCheckboxes.length + contraAtaquesCheckboxes.length) * 100);
+                    }
+                });
+            });
+
             updateProgress();
             
             // --- SISTEMA DE PARABÉNS ---
