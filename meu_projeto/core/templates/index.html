@@ -8,7 +8,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Montserrat, Poppins, Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -25,27 +25,27 @@
                         }
                     },
                     fontFamily: {
-                        'display': ['Inter', 'system-ui', 'sans-serif'],
+                        'display': ['DM Sans', 'system-ui', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;600&family=Inter:wght@400;500;700&display=swap');
-        @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&display=swap');
-        .font-league { font-family: 'League Spartan', system-ui, sans-serif; }
-        .font-title { font-family: 'Montserrat', 'Poppins', Arial, sans-serif; }
-        .font-subtitle { font-family: 'Poppins', Arial, sans-serif; }
-        .font-desc { font-family: 'Inter', Arial, sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+        .font-league { font-family: 'DM Sans', system-ui, sans-serif; }
+        .font-title { font-family: 'DM Sans', Arial, sans-serif; }
+        .font-subtitle { font-family: 'DM Sans', Arial, sans-serif; }
+        .font-desc { font-family: 'DM Sans', Arial, sans-serif; }
         
         .hero-section {
-            background: linear-gradient(135deg, #374151 0%, #1F2937 100%);
+            background: linear-gradient(135deg, #0c1426 0%, #1e1b4b 50%, #312e81 100%);
             min-height: 100vh;
+            padding-top: 120px;
         }
         
         .welcome-title {
-            background: linear-gradient(90deg, #FFFFFF, #F3F4F6, #E5E7EB, #D1D5DB, #9CA3AF, #F3F4F6, #FFFFFF);
+            background: linear-gradient(90deg, #f8fafc, #e2e8f0, #cbd5e1, #94a3b8, #64748b, #475569, #f8fafc);
             background-size: 400% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -62,28 +62,12 @@
             }
         }
         
-        .welcome-container {
-            will-change: transform;
-            box-shadow: 0 18px 60px 0 rgba(139,92,42,0.18), 0 4px 24px 0 rgba(139,92,42,0.13), 0 0 32px 0 rgba(255,255,255,0.08) inset;
-            border: 2px solid rgba(139,92,42,0.16);
-            perspective: 900px;
-            /* Animação única de entrada */
-            animation: welcomeContainerEnter 1.5s ease-out forwards;
-            opacity: 0;
-            transform: translateY(40px) scale(0.95);
-            /* Removido gradient-animated para evitar movimento contínuo */
+        .welcome-section {
+            opacity: 1;
+            transform: none;
+            overflow: visible;
+            min-height: 140px;
         }
-        @keyframes welcomeContainerEnter {
-            0% {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-        
 
         
         /* Typing effect */
@@ -112,32 +96,31 @@
             50% { border-color: #9CA3AF; }
         }
         
-
-        
         .faixa-card {
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            min-height: 140px;
+            min-height: 160px;
             height: 160px;
+            width: 200px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             /* Animação única de entrada */
             animation: faixaCardEnter 1.2s ease-out forwards;
-            opacity: 0;
-            transform: translateY(30px) scale(0.9);
+            opacity: 1;
+            transform: none;
         }
         @keyframes faixaCardEnter {
             0% {
                 opacity: 0;
-                transform: translateY(30px) scale(0.9);
+                transform: translateY(10px);
             }
             100% {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: translateY(0);
             }
         }
         
@@ -152,8 +135,6 @@
             font-size: 0.75rem;
             margin-top: 0.25rem;
         }
-        
-
         
         .faixa-card::before {
             content: '';
@@ -254,10 +235,6 @@
             }
         }
         
-
-        
-
-        
         .welcome-message {
             animation: fadeInUp 0.6s ease-out;
         }
@@ -274,7 +251,7 @@
         }
         
         .gradient-text {
-            background: linear-gradient(45deg, #E5E7EB, #D1D5DB);
+            background: linear-gradient(45deg, #f8fafc, #e2e8f0, #cbd5e1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -367,17 +344,50 @@
         /* Responsive adjustments for mobile */
         @media (max-width: 768px) {
             .faixa-card {
-                min-height: 120px;
-                padding: 1rem !important;
+                min-height: 100px;
+                height: 100px;
+                padding: 0.75rem !important;
             }
             
             .faixa-card .emoji {
-                font-size: 2rem !important;
+                font-size: 1.5rem !important;
             }
             
             .faixa-card div {
-                font-size: 0.875rem !important;
+                font-size: 0.75rem !important;
             }
+            
+            .welcome-section {
+                height: 100px !important;
+                min-height: 100px !important;
+                max-height: none !important;
+                overflow: visible !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+            }
+        }
+        
+        /* Garantir que a seção de boas-vindas tenha altura adequada e conteúdo visível */
+        .welcome-section {
+            box-sizing: border-box;
+            height: 160px !important;
+            min-height: 160px !important;
+            max-height: none !important;
+            overflow: visible !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            display: flex !important;
+            align-items: flex-start !important;
+            justify-content: center !important;
+        }
+        
+        /* Garantir que as faixas tenham altura correta e fiquem alinhadas */
+        .faixa-card {
+            height: 160px !important;
+            min-height: 160px !important;
+            width: 200px !important;
+            opacity: 1 !important;
+            visibility: visible !important;
         }
         
         /* Pulse effect for cards */
@@ -409,16 +419,356 @@
         }
         body {
             background:
-                linear-gradient(135deg, #e0e7ef 0%, #c7d2fe 50%, #1e293b 100%),
-                repeating-linear-gradient(0deg, rgba(255,255,255,0.08) 0 2px, transparent 2px 32px),
-                repeating-linear-gradient(90deg, rgba(255,255,255,0.08) 0 2px, transparent 2px 32px);
-            background-blend-mode: lighten, normal;
+                linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e293b 100%),
+                repeating-linear-gradient(0deg, rgba(59,130,246,0.03) 0 2px, transparent 2px 32px),
+                repeating-linear-gradient(90deg, rgba(59,130,246,0.03) 0 2px, transparent 2px 32px);
+            background-blend-mode: overlay, normal;
+        }
+        
+        /* Área de Anúncios - Barra Horizontal Compacta */
+        .advertisement-area {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            width: auto;
+            max-width: 600px;
+            min-width: 300px;
+        }
+        
+        /* Desktop - Anúncio menor e menos vivo */
+        @media (min-width: 769px) {
+            .advertisement-area {
+                max-width: 450px !important;
+                min-width: 250px !important;
+                max-height: 50px !important;
+                opacity: 0.85;
+            }
+            
+            .advertisement-area .bg-blue-600 {
+                background-color: #475569 !important; /* slate-600 menos vivo */
+            }
+            
+            .advertisement-area .bg-green-600 {
+                background-color: #64748b !important; /* slate-500 menos vivo */
+            }
+            
+            .advertisement-area .bg-purple-600 {
+                background-color: #475569 !important; /* slate-600 menos vivo */
+            }
+            
+            .advertisement-area .bg-orange-500 {
+                background-color: #64748b !important; /* slate-500 menos vivo */
+            }
+            
+            .advertisement-area .text-white {
+                color: #e2e8f0 !important; /* slate-200 menos vivo */
+            }
+            
+            .advertisement-area .text-blue-100 {
+                color: #cbd5e1 !important; /* slate-300 menos vivo */
+            }
+        }
+        
+        /* Melhorias para mobile */
+        .advertisement-area .flex {
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .advertisement-area button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+        
+        /* Responsividade para dispositivos móveis */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding-top: 120px;
+            }
+            
+            /* Botão de logout no lado esquerdo em mobile */
+            form[action*="logout"] {
+                left: 1rem !important;
+                right: auto !important;
+            }
+            
+            /* Layout mobile: mensagem em cima, faixas no meio */
+            .grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+            
+            .welcome-section {
+                height: auto !important;
+                min-height: auto !important;
+                order: 1 !important;
+                margin-top: 2rem !important;
+            }
+            
+            .welcome-section h2 {
+                font-size: 1.25rem !important;
+                line-height: 1.4 !important;
+            }
+            
+            .welcome-section p {
+                font-size: 0.875rem !important;
+                line-height: 1.3 !important;
+                margin-top: 0.5rem !important;
+            }
+            
+            /* Faixas em grid 2x2 para mobile */
+            .faixa-card {
+                height: 100px !important;
+                min-height: 100px !important;
+                width: 120px !important;
+                padding: 0.5rem !important;
+            }
+            
+            .faixa-card img {
+                height: 30px !important;
+                margin-bottom: 0.25rem !important;
+            }
+            
+            .faixa-card > div:nth-child(2) {
+                font-size: 0.625rem !important;
+                line-height: 1.1 !important;
+            }
+            
+            .faixa-card > div:nth-child(3) {
+                font-size: 0.5rem !important;
+            }
+            
+            /* Grid das faixas para mobile */
+            .grid.grid-cols-3 {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1rem !important;
+                justify-items: center !important;
+            }
+            
+            /* Faixa marrom centralizada em mobile */
+            .col-span-3 {
+                grid-column: span 2 !important;
+                justify-self: center !important;
+            }
+            
+            .col-span-3 a {
+                width: 120px !important;
+            }
+            
+            .advertisement-area {
+                bottom: 4px;
+                left: 4px;
+                right: 4px;
+                width: auto;
+                max-width: calc(100vw - 16px) !important;
+                min-width: 280px !important;
+                height: auto !important;
+                max-height: 80px !important;
+            }
+            
+            .advertisement-area .flex {
+                flex-wrap: wrap;
+                gap: 8px;
+                justify-content: center !important;
+            }
+            
+            /* Ajustes específicos para mobile */
+            .advertisement-area .flex > div:first-child {
+                order: 1;
+                margin-bottom: 0.5rem;
+            }
+            
+            .advertisement-area .flex > div:nth-child(2) {
+                order: 2;
+                margin-bottom: 0.5rem;
+            }
+            
+            .advertisement-area .flex > div:nth-child(3) {
+                order: 3;
+                margin-bottom: 0.5rem;
+            }
+            
+            .advertisement-area .flex > div:last-child {
+                order: 4;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-section {
+                padding-top: 100px;
+            }
+            
+            /* Botão de logout no lado esquerdo em mobile pequeno */
+            form[action*="logout"] {
+                left: 0.75rem !important;
+                right: auto !important;
+            }
+            
+            /* Layout mobile pequeno: mensagem em cima, faixas no meio */
+            .grid {
+                gap: 1.5rem !important;
+            }
+            
+            .welcome-section {
+                height: auto !important;
+                min-height: auto !important;
+                margin-top: 1.5rem !important;
+            }
+            
+            .welcome-section h2 {
+                font-size: 1rem !important;
+                line-height: 1.2 !important;
+            }
+            
+            .welcome-section p {
+                font-size: 0.6875rem !important;
+                line-height: 1.1 !important;
+                margin-top: 0.25rem !important;
+            }
+            
+            .faixa-card {
+                height: 90px !important;
+                min-height: 90px !important;
+                width: 100px !important;
+                padding: 0.375rem !important;
+            }
+            
+            .faixa-card img {
+                height: 25px !important;
+                margin-bottom: 0.25rem !important;
+            }
+            
+            .faixa-card > div:nth-child(2) {
+                font-size: 0.5625rem !important;
+                line-height: 1.1 !important;
+            }
+            
+            .faixa-card > div:nth-child(3) {
+                font-size: 0.4375rem !important;
+            }
+            
+            /* Grid das faixas para mobile pequeno */
+            .grid.grid-cols-3 {
+                gap: 0.75rem !important;
+                justify-items: center !important;
+            }
+            
+            .col-span-3 a {
+                width: 100px !important;
+            }
+            
+            .advertisement-area {
+                bottom: 2px;
+                left: 2px;
+                right: 2px;
+                max-width: calc(100vw - 8px) !important;
+                min-width: 250px !important;
+                max-height: 60px !important;
+            }
+            
+            .advertisement-area .space-x-4 {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            /* Ajustes para mobile pequeno */
+            .advertisement-area .flex {
+                gap: 6px !important;
+            }
+            
+            .advertisement-area .flex > div {
+                margin-bottom: 0.25rem !important;
+            }
+        }
+        
+        /* Responsividade para dispositivos muito pequenos */
+        @media (max-width: 360px) {
+            .hero-section {
+                padding-top: 80px;
+            }
+            
+            /* Botão de logout no lado esquerdo em mobile muito pequeno */
+            form[action*="logout"] {
+                left: 0.5rem !important;
+                right: auto !important;
+            }
+            
+            /* Layout mobile muito pequeno: mensagem em cima, faixas no meio */
+            .grid {
+                gap: 1rem !important;
+            }
+            
+            .welcome-section {
+                height: auto !important;
+                min-height: auto !important;
+                margin-top: 1rem !important;
+            }
+            
+            .welcome-section h2 {
+                font-size: 0.875rem !important;
+                line-height: 1.1 !important;
+            }
+            
+            .welcome-section p {
+                font-size: 0.625rem !important;
+                line-height: 1.1 !important;
+                margin-top: 0.25rem !important;
+            }
+            
+            .faixa-card {
+                height: 80px !important;
+                min-height: 80px !important;
+                width: 90px !important;
+                padding: 0.25rem !important;
+            }
+            
+            .faixa-card img {
+                height: 20px !important;
+                margin-bottom: 0.25rem !important;
+            }
+            
+            .faixa-card > div:nth-child(2) {
+                font-size: 0.5rem !important;
+                line-height: 1.1 !important;
+            }
+            
+            .faixa-card > div:nth-child(3) {
+                font-size: 0.375rem !important;
+            }
+            
+            /* Grid das faixas para mobile muito pequeno */
+            .grid.grid-cols-3 {
+                gap: 0.5rem !important;
+                justify-items: center !important;
+            }
+            
+            .col-span-3 a {
+                width: 90px !important;
+            }
+            
+            .advertisement-area {
+                max-width: calc(100vw - 8px) !important;
+                min-width: 200px !important;
+                max-height: 50px !important;
+            }
+            
+            /* Ajustes para mobile muito pequeno */
+            .advertisement-area .flex {
+                gap: 4px !important;
+                padding: 0.5rem !important;
+            }
+            
+            .advertisement-area .flex > div {
+                margin-bottom: 0.125rem !important;
+            }
+            
+            .advertisement-area .flex > div:first-child {
+                margin-bottom: 0.25rem !important;
+            }
         }
     </style>
 </head>
 <body class="font-display overflow-hidden">
     <!-- Botão de Logout -->
-    <form action="{% url 'logout' %}" method="post" class="absolute top-6 right-24 z-50">
+    <form action="{% url 'logout' %}" method="post" class="fixed top-6 right-32 lg:right-32 left-6 lg:left-auto z-50">
         {% csrf_token %}
         <button type="submit" class="px-4 py-2 rounded-lg bg-gray-200 text-gray-700 text-sm shadow hover:bg-gray-300 transition-all">Logout</button>
     </form>
@@ -494,37 +844,73 @@
         <span class="text-2xl">☰</span>
     </button>
 
+    <!-- Área de Anúncios - Barra Horizontal Compacta -->
+    <div class="advertisement-area fixed bottom-6 left-6 z-40 bg-white rounded-2xl border border-gray-200 shadow-xl">
+        <div class="flex items-center px-3 sm:px-4 py-2 sm:py-3 flex-wrap gap-2">
+            <!-- Logo/Identificação -->
+            <div class="flex items-center space-x-2 mr-3 sm:mr-6">
+                <span class="text-blue-600 text-base sm:text-lg">📢</span>
+                <span class="text-gray-700 text-xs sm:text-sm font-medium">Anúncios</span>
+            </div>
+            
+            <!-- Anúncios Horizontais -->
+            <div class="flex items-center space-x-2 sm:space-x-4 flex-wrap gap-1">
+                <div class="flex items-center space-x-1 sm:space-x-2 bg-blue-50 border border-blue-200 rounded-md px-2 sm:px-3 py-1.5 sm:py-2">
+                    <span class="text-blue-600 text-xs font-semibold">🎯 PROMO</span>
+                    <span class="text-blue-600 text-xs hidden sm:inline">Faixa nova -20%</span>
+                </div>
+                <div class="flex items-center space-x-1 sm:space-x-2 bg-green-50 border border-green-200 rounded-md px-2 sm:px-3 py-1.5 sm:py-2">
+                    <span class="text-green-600 text-xs font-semibold">🥋 GRÁTIS</span>
+                    <span class="text-green-600 text-xs hidden sm:inline">Primeira experiência</span>
+                </div>
+                <div class="flex items-center space-x-1 sm:space-x-2 bg-purple-50 border border-purple-200 rounded-md px-2 sm:px-3 py-1.5 sm:py-2">
+                    <span class="text-purple-600 text-xs font-semibold">⭐ NOVO</span>
+                    <span class="text-purple-600 text-xs hidden sm:inline">Desconto especial</span>
+                </div>
+            </div>
+            
+            <!-- Botão CTA -->
+            <div class="ml-3 sm:ml-6">
+                <button class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium px-3 py-1.5 sm:px-4 sm:py-2 rounded-md transition-colors duration-200">
+                    Ver Todas
+                </button>
+            </div>
+            
+            <!-- Botão Fechar -->
+            <button class="text-gray-400 hover:text-gray-600 text-xs transition-colors">
+                ✕
+            </button>
+        </div>
+    </div>
+
     <!-- Main Content -->
-    <div class="hero-section flex items-center justify-center min-h-screen">
-        <div class="w-full max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <div class="hero-section flex items-start justify-center min-h-screen pb-20 sm:pb-24 lg:pb-32">
+        <div class="w-full max-w-7xl mx-auto px-4 sm:px-6">
+            <!-- Desktop Layout: Welcome Section + Faixas Grid -->
+            <div class="hidden lg:grid lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 items-start">
                 
                 <!-- Left Side - Welcome Section -->
-                <div class="text-center lg:text-left welcome-section">
-                    <div class="welcome-container bg-gradient-to-br from-slate-700/90 via-gray-600/80 to-zinc-700/90 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-slate-500/30 shadow-xl relative">
+                <div class="text-center lg:text-left welcome-section flex items-start justify-center" style="height: 160px; overflow: visible;">
+                    <div class="w-full flex flex-col items-center justify-start pt-4">
                         {# Remover debug de usuário autenticado e email #}
 
 {% if nome and faixa %}
-    <div class="w-full flex flex-col items-center justify-center my-6">
-        <h2 class="font-title text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-blue-200 to-slate-400 drop-shadow-lg animate-fade-in-up text-center select-none font-league text-shadow-lg/30 style="letter-spacing: 0.5px;">
-            {{ nome }}, você está no caminho certo.
-        </h2>
-        <p class="font-desc mt-2 text-lg md:text-xl font-semibold text-slate-200 drop-shadow-xl animate-fade-in-up text-center select-none font-league" style="text-shadow: 0 2px 16px #0003;">
-            A faixa <span class="text-blue-400 font-bold text-shadow-lg">{{ faixa }}</span> é só o começo.<br>
-            Aqui você vai adquirir todo o conhecimento necessário para a próxima etapa.
-        </p>
-    </div>
+                        <h2 class="font-title text-lg sm:text-xl md:text-2xl lg:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-blue-200 to-slate-400 drop-shadow-lg animate-fade-in-up text-center select-none font-league text-shadow-lg/30" style="letter-spacing: 0.5px;">
+                            {{ nome }}, você está no caminho certo.
+                        </h2>
+                        <p class="font-desc mt-2 sm:mt-3 text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-slate-200 drop-shadow-xl animate-fade-in-up text-center select-none font-league" style="text-shadow: 0 2px 16px #0003;">
+                            A faixa <span class="text-blue-400 font-bold text-shadow-lg">{{ faixa }}</span> é só o começo.<br class="hidden sm:block">
+                            Aqui você vai adquirir todo o conhecimento necessário para a próxima etapa.
+                        </p>
 {% else %}
-    <div class="w-full flex flex-col items-center justify-center my-6">
-        <h2 class="font-title text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-gray-300 to-slate-400 drop-shadow-lg animate-fade-in-up text-center select-none font-league">
-            Sua jornada começa aqui.
-        </h2>
-        <p class="font-desc mt-2 text-lg md:text-xl font-semibold text-slate-200 drop-shadow-xl animate-fade-in-up text-center select-none font-league">
-            Faça login para liberar seu potencial!
-        </p>
-    </div>
+                        <h2 class="font-title text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-gray-300 to-slate-400 drop-shadow-lg animate-fade-in-up text-center select-none font-league">
+                            Sua jornada começa aqui.
+                        </h2>
+                        <p class="font-desc mt-3 text-lg md:text-xl font-semibold text-slate-200 drop-shadow-xl animate-fade-in-up text-center select-none font-league">
+                            Faça login para liberar seu potencial!
+                        </p>
 {% endif %}
-                        <div class="mt-8">
+                        <div class="mt-4">
                             <p class="text-white/80 text-lg final-text">
                                 Escolha sua faixa ao lado e comece sua evolução no judô!
                             </p>
@@ -533,65 +919,166 @@
                 </div>
                 
                 <!-- Right Side - Belts Grid -->
-                <div class="space-y-4">
-                    <h2 class="text-3xl font-bold text-white text-center mb-8">
-                        <span class="gradient-text">Escolha sua Faixa</span>
-                    </h2>
-                    
-                    <!-- Belts Grid - All Same Size -->
-                    <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="flex items-center justify-center">
+                    <!-- Belts Grid - Layout Original 3-3-1 -->
+                    <div class="grid grid-cols-3 gap-3 sm:gap-4 lg:gap-6 justify-items-center">
+                        <!-- Primeira linha: 3 faixas -->
                         <a href="/pagina1/" class="block">
-                            <div class="faixa-card bg-judo-gray rounded-2xl p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl relative">
-                                <img src="{% static 'faixa-cinza.png' %}" alt="Faixa Cinza" class="mx-auto mb-2" style="height: 48px; width: auto;" />
-                                <div>Faixa Cinza  Ponteira Cinza</div>
-                                <div class="text-sm opacity-80"></div>
+                            <div class="faixa-card bg-judo-gray rounded-2xl p-4 sm:p-5 lg:p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl relative">
+                                <img src="{% static 'faixa-cinza.png' %}" alt="Faixa Cinza" class="mx-auto mb-2 sm:mb-3" style="height: 40px; width: auto;" />
+                                <div class="text-sm sm:text-base">Faixa Cinza  Ponteira Cinza</div>
+                                <div class="text-xs sm:text-sm opacity-80"></div>
                             </div>
                         </a>
                         
                         <a href="/pagina2/" class="block">
-                            <div class="faixa-card bg-judo-blue rounded-2xl p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl">
-                                <img src="{% static 'faixa-azul.png' %}" alt="Faixa Azul" class="mx-auto mb-2" style="height: 48px; width: auto;" />
-                                <div>Faixa Azul  Ponteira Azul</div>
-                                <div class="text-sm opacity-80"></div>
+                            <div class="faixa-card bg-judo-blue rounded-2xl p-4 sm:p-5 lg:p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl">
+                                <img src="{% static 'faixa-azul.png' %}" alt="Faixa Azul" class="mx-auto mb-2 sm:mb-3" style="height: 40px; width: auto;" />
+                                <div class="text-sm sm:text-base">Faixa Azul  Ponteira Azul</div>
+                                <div class="text-xs sm:text-sm opacity-80"></div>
                             </div>
                         </a>
                         
                         <a href="/pagina3/" class="block">
-                            <div class="faixa-card bg-judo-yellow rounded-2xl p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl">
-                                <img src="{% static 'faixa-amarela.png' %}" alt="Faixa Amarela" class="mx-auto mb-2" style="height: 48px; width: auto;" />
-                                <div class="text-white">Faixa Amarela  Ponteira Amarela</div>
-                                <div class="text-sm opacity-80"></div>
+                            <div class="faixa-card bg-judo-yellow rounded-2xl p-4 sm:p-5 lg:p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl">
+                                <img src="{% static 'faixa-amarela.png' %}" alt="Faixa Amarela" class="mx-auto mb-2 sm:mb-3" style="height: 40px; width: auto;" />
+                                <div class="text-white text-sm sm:text-base">Faixa Amarela  Ponteira Amarela</div>
+                                <div class="text-xs sm:text-sm opacity-80"></div>
                             </div>
                         </a>
+                        
+                        <!-- Segunda linha: 3 faixas -->
                         <a href="/pagina4/" class="block">
-                        <div class="faixa-card bg-judo-orange rounded-2xl p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="window.location.href='page4.html'">
-                            <img src="{% static 'faixa-laranja.png' %}" alt="Faixa Laranja" class="mx-auto mb-2" style="height: 48px; width: auto;" />
-                            <div>Faixa Laranja  Ponteira Laranja</div>
-                            <div class="text-sm opacity-80"></div>
+                            <div class="faixa-card bg-judo-orange rounded-2xl p-4 sm:p-5 lg:p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="window.location.href='page4.html'">
+                                <img src="{% static 'faixa-laranja.png' %}" alt="Faixa Laranja" class="mx-auto mb-2 sm:mb-3" style="height: 40px; width: auto;" />
+                                <div class="text-sm sm:text-base">Faixa Laranja  Ponteira Laranja</div>
+                                <div class="text-xs sm:text-sm opacity-80"></div>
+                            </div>
+                        </a>
+                        
+                        <a href="/pagina5/" class="block">
+                            <div class="faixa-card bg-judo-green rounded-2xl p-4 sm:p-5 lg:p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="window.location.href='page5.html'">
+                                <img src="{% static 'faixa-verde.png' %}" alt="Faixa Verde" class="mx-auto mb-2 sm:mb-3" style="height: 40px; width: auto;" />
+                                <div class="text-sm sm:text-base">Faixa Verde</div>
+                                <div class="text-xs sm:text-sm opacity-80"></div>
+                            </div>
+                        </a>
+                        
+                        <a href="/pagina6/" class="block">
+                            <div class="faixa-card bg-judo-purple rounded-2xl p-4 sm:p-5 lg:p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="window.location.href='page6.html'">
+                                <img src="{% static 'faixa-roxa.png' %}" alt="Faixa Roxa" class="mx-auto mb-2 sm:mb-3" style="height: 40px; width: auto;" />
+                                <div class="text-sm sm:text-base">Faixa Roxa</div>
+                                <div class="text-xs sm:text-sm opacity-80"></div>
+                            </div>
+                        </a>
+                        
+                        <!-- Terceira linha: 1 faixa centralizada -->
+                        <div class="col-span-3 flex justify-center">
+                            <a href="/pagina7/" class="block">
+                                <div class="faixa-card bg-judo-brown rounded-2xl p-4 sm:p-5 lg:p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="window.location.href='page7.html'">
+                                    <img src="{% static 'faixa-marrom.png' %}" alt="Faixa Marrom" class="mx-auto mb-2 sm:mb-3" style="height: 40px; width: auto;" />
+                                    <div class="text-sm sm:text-base">Faixa Marrom</div>
+                                    <div class="text-xs sm:text-sm opacity-80"></div>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                    <a href="/pagina5/">
-                        <div class="faixa-card bg-judo-green rounded-2xl p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="window.location.href='page5.html'">
-                            <img src="{% static 'faixa-verde.png' %}" alt="Faixa Verde" class="mx-auto mb-2" style="height: 48px; width: auto;" />
-                            <div>Faixa Verde</div>
-                            <div class="text-sm opacity-80"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Layout: Welcome Section + Faixas Grid -->
+            <div class="lg:hidden">
+                <!-- Welcome Section para Mobile -->
+                <div class="text-center welcome-section flex items-start justify-center mb-8" style="height: auto; overflow: visible;">
+                    <div class="w-full flex flex-col items-center justify-start pt-4">
+{% if nome and faixa %}
+                        <h2 class="font-title text-lg sm:text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-blue-200 to-slate-400 drop-shadow-lg animate-fade-in-up text-center select-none font-league text-shadow-lg/30" style="letter-spacing: 0.5px;">
+                            {{ nome }}, você está no caminho certo.
+                        </h2>
+                        <p class="font-desc mt-2 sm:mt-3 text-sm sm:text-base font-semibold text-slate-200 drop-shadow-xl animate-fade-in-up text-center select-none font-league" style="text-shadow: 0 2px 16px #0003;">
+                            A faixa <span class="text-blue-400 font-bold text-shadow-lg">{{ faixa }}</span> é só o começo.<br class="hidden sm:block">
+                            Aqui você vai adquirir todo o conhecimento necessário para a próxima etapa.
+                        </p>
+{% else %}
+                        <h2 class="font-title text-xl sm:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-gray-300 to-slate-400 drop-shadow-lg animate-fade-in-up text-center select-none font-league">
+                            Sua jornada começa aqui.
+                        </h2>
+                        <p class="font-desc mt-3 text-base sm:text-lg font-semibold text-slate-200 drop-shadow-xl animate-fade-in-up text-center select-none font-league">
+                            Faça login para liberar seu potencial!
+                        </p>
+{% endif %}
+                        <div class="mt-4">
+                            <p class="text-white/80 text-base final-text">
+                                Escolha sua faixa abaixo e comece sua evolução no judô!
+                            </p>
                         </div>
-                    </a>
-                    <a href="/pagina6/">
-                        <div class="faixa-card bg-judo-purple rounded-2xl p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="window.location.href='page6.html'">
-                            <img src="{% static 'faixa-roxa.png' %}" alt="Faixa Roxa" class="mx-auto mb-2" style="height: 48px; width: auto;" />
-                            <div>Faixa Roxa</div>
-                            <div class="text-sm opacity-80"></div>
+                    </div>
+                </div>
+                
+                <!-- Faixas Grid para Mobile -->
+                <div class="flex items-center justify-center">
+                    <div class="grid grid-cols-2 gap-4 justify-items-center">
+                        <!-- Primeira linha: 2 faixas -->
+                        <a href="/pagina1/" class="block">
+                            <div class="faixa-card bg-judo-gray rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl relative">
+                                <img src="{% static 'faixa-cinza.png' %}" alt="Faixa Cinza" class="mx-auto mb-2" style="height: 30px; width: auto;" />
+                                <div class="text-xs">Faixa Cinza</div>
+                                <div class="text-xs opacity-80">Ponteira Cinza</div>
+                            </div>
+                        </a>
+                        
+                        <a href="/pagina2/" class="block">
+                            <div class="faixa-card bg-judo-blue rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl">
+                                <img src="{% static 'faixa-azul.png' %}" alt="Faixa Azul" class="mx-auto mb-2" style="height: 30px; width: auto;" />
+                                <div class="text-xs">Faixa Azul</div>
+                                <div class="text-xs opacity-80">Ponteira Azul</div>
+                            </div>
+                        </a>
+                        
+                        <!-- Segunda linha: 2 faixas -->
+                        <a href="/pagina3/" class="block">
+                            <div class="faixa-card bg-judo-yellow rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl">
+                                <img src="{% static 'faixa-amarela.png' %}" alt="Faixa Amarela" class="mx-auto mb-2" style="height: 30px; width: auto;" />
+                                <div class="text-white text-xs">Faixa Amarela</div>
+                                <div class="text-xs opacity-80">Ponteira Amarela</div>
+                            </div>
+                        </a>
+                        
+                        <a href="/pagina4/" class="block">
+                            <div class="faixa-card bg-judo-orange rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl">
+                                <img src="{% static 'faixa-laranja.png' %}" alt="Faixa Laranja" class="mx-auto mb-2" style="height: 30px; width: auto;" />
+                                <div class="text-xs">Faixa Laranja</div>
+                                <div class="text-xs opacity-80">Ponteira Laranja</div>
+                            </div>
+                        </a>
+                        
+                        <!-- Terceira linha: 2 faixas -->
+                        <a href="/pagina5/" class="block">
+                            <div class="faixa-card bg-judo-green rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl">
+                                <img src="{% static 'faixa-verde.png' %}" alt="Faixa Verde" class="mx-auto mb-2" style="height: 30px; width: auto;" />
+                                <div class="text-xs">Faixa Verde</div>
+                                <div class="text-xs opacity-80"></div>
+                            </div>
+                        </a>
+                        
+                        <a href="/pagina6/" class="block">
+                            <div class="faixa-card bg-judo-purple rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl">
+                                <img src="{% static 'faixa-roxa.png' %}" alt="Faixa Roxa" class="mx-auto mb-2" style="height: 30px; width: auto;" />
+                                <div class="text-xs">Faixa Roxa</div>
+                                <div class="text-xs opacity-80"></div>
+                            </div>
+                        </a>
+                        
+                        <!-- Quarta linha: 1 faixa centralizada -->
+                        <div class="col-span-2 flex justify-center">
+                            <a href="/pagina7/" class="block">
+                                <div class="faixa-card bg-judo-brown rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl">
+                                    <img src="{% static 'faixa-marrom.png' %}" alt="Faixa Marrom" class="mx-auto mb-2" style="height: 30px; width: auto;" />
+                                    <div class="text-xs">Faixa Marrom</div>
+                                    <div class="text-xs opacity-80"></div>
+                                </div>
+                            </a>
                         </div>
-                    </a> 
-                    <a href="/pagina7/">
-                        <div class="faixa-card bg-judo-brown rounded-2xl p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="window.location.href='page7.html'">
-                            <img src="{% static 'faixa-marrom.png' %}" alt="Faixa Marrom" class="mx-auto mb-2" style="height: 48px; width: auto;" />
-                            <div>Faixa Marrom</div>
-                            <div class="text-sm opacity-80"></div>
-                        </div>
-                    </a>
-                    <!-- Card de Rolamentos (Ukemi) apenas visual -->
                     </div>
                 </div>
             </div>
@@ -788,6 +1275,9 @@
 
             console.log('Sidebar and navigation functionality loaded successfully!');
         });
+        
+        // Área de anúncios sempre visível e fixa
+        console.log('Área de anúncios horizontal fixa carregada!');
     </script>
 </body>
 </html>
