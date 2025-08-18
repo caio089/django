@@ -427,19 +427,39 @@
         
         /* Área de Anúncios - Barra Horizontal Compacta */
         .advertisement-area {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             width: auto;
             max-width: 600px;
             min-width: 300px;
+            z-index: 1000;
         }
         
         /* Desktop - Anúncio menor e menos vivo */
         @media (min-width: 769px) {
             .advertisement-area {
-                max-width: 450px !important;
-                min-width: 250px !important;
-                max-height: 50px !important;
-                opacity: 0.85;
+                position: static !important;
+                bottom: auto !important;
+                left: auto !important;
+                right: auto !important;
+                width: 100% !important;
+                max-width: 600px !important;
+                min-width: 400px !important;
+                max-height: 60px !important;
+                opacity: 0.9;
+                z-index: auto !important;
+                margin: 1rem auto 0 auto !important;
+            }
+            
+            /* Anúncio integrado para desktop */
+            .advertisement-area-desktop {
+                display: block !important;
+            }
+            
+            .advertisement-area-mobile {
+                display: none !important;
             }
             
             .advertisement-area .bg-blue-600 {
@@ -481,7 +501,8 @@
         /* Responsividade para dispositivos móveis */
         @media (max-width: 768px) {
             .hero-section {
-                padding-top: 120px;
+                padding-top: 100px;
+                padding-bottom: 10rem !important;
             }
             
             /* Botão de logout no lado esquerdo em mobile */
@@ -500,46 +521,47 @@
                 height: auto !important;
                 min-height: auto !important;
                 order: 1 !important;
-                margin-top: 2rem !important;
+                margin-top: 1rem !important;
+                margin-bottom: 1rem !important;
             }
             
             .welcome-section h2 {
-                font-size: 1.25rem !important;
+                font-size: 1.5rem !important;
                 line-height: 1.4 !important;
             }
             
             .welcome-section p {
-                font-size: 0.875rem !important;
+                font-size: 1rem !important;
                 line-height: 1.3 !important;
-                margin-top: 0.5rem !important;
+                margin-top: 0.75rem !important;
             }
             
             /* Faixas em grid 2x2 para mobile */
             .faixa-card {
-                height: 100px !important;
-                min-height: 100px !important;
-                width: 120px !important;
-                padding: 0.5rem !important;
+                height: 130px !important;
+                min-height: 130px !important;
+                width: 150px !important;
+                padding: 0.75rem !important;
             }
             
             .faixa-card img {
-                height: 30px !important;
-                margin-bottom: 0.25rem !important;
+                height: 35px !important;
+                margin-bottom: 0.5rem !important;
             }
             
             .faixa-card > div:nth-child(2) {
-                font-size: 0.625rem !important;
-                line-height: 1.1 !important;
+                font-size: 0.75rem !important;
+                line-height: 1.2 !important;
             }
             
             .faixa-card > div:nth-child(3) {
-                font-size: 0.5rem !important;
+                font-size: 0.625rem !important;
             }
             
             /* Grid das faixas para mobile */
             .grid.grid-cols-3 {
                 grid-template-columns: repeat(2, 1fr) !important;
-                gap: 1rem !important;
+                gap: 1.5rem !important;
                 justify-items: center !important;
             }
             
@@ -550,50 +572,88 @@
             }
             
             .col-span-3 a {
-                width: 120px !important;
+                width: 150px !important;
             }
             
+            /* Área de anúncios compacta para mobile */
             .advertisement-area {
-                bottom: 4px;
-                left: 4px;
-                right: 4px;
-                width: auto;
+                position: fixed !important;
+                bottom: 8px !important;
+                left: 8px !important;
+                right: 8px !important;
+                width: auto !important;
                 max-width: calc(100vw - 16px) !important;
                 min-width: 280px !important;
                 height: auto !important;
-                max-height: 80px !important;
+                max-height: 60px !important;
+                z-index: 1000 !important;
+                opacity: 1 !important;
+            }
+            
+            /* Anúncio integrado para mobile */
+            .advertisement-area-desktop {
+                display: none !important;
+            }
+            
+            .advertisement-area-mobile {
+                display: block !important;
             }
             
             .advertisement-area .flex {
                 flex-wrap: wrap;
-                gap: 8px;
+                gap: 6px !important;
                 justify-content: center !important;
+                padding: 0.5rem !important;
             }
             
             /* Ajustes específicos para mobile */
             .advertisement-area .flex > div:first-child {
                 order: 1;
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.25rem !important;
             }
             
             .advertisement-area .flex > div:nth-child(2) {
                 order: 2;
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.25rem !important;
             }
             
             .advertisement-area .flex > div:nth-child(3) {
                 order: 3;
-                margin-bottom: 0.5rem;
+                margin-bottom: 0.25rem !important;
             }
             
             .advertisement-area .flex > div:last-child {
                 order: 4;
             }
+            
+            /* Reduzir tamanho dos elementos internos */
+            .advertisement-area .text-base {
+                font-size: 0.75rem !important;
+            }
+            
+            .advertisement-area .text-sm {
+                font-size: 0.625rem !important;
+            }
+            
+            .advertisement-area .text-xs {
+                font-size: 0.5rem !important;
+            }
+            
+            .advertisement-area .px-3 {
+                padding-left: 0.5rem !important;
+                padding-right: 0.5rem !important;
+            }
+            
+            .advertisement-area .py-2 {
+                padding-top: 0.375rem !important;
+                padding-bottom: 0.375rem !important;
+            }
         }
         
         @media (max-width: 480px) {
             .hero-section {
-                padding-top: 100px;
+                padding-top: 80px;
+                padding-bottom: 8rem !important;
             }
             
             /* Botão de logout no lado esquerdo em mobile pequeno */
@@ -614,35 +674,35 @@
             }
             
             .welcome-section h2 {
-                font-size: 1rem !important;
+                font-size: 1.25rem !important;
                 line-height: 1.2 !important;
             }
             
             .welcome-section p {
-                font-size: 0.6875rem !important;
+                font-size: 0.875rem !important;
                 line-height: 1.1 !important;
-                margin-top: 0.25rem !important;
+                margin-top: 0.5rem !important;
             }
             
             .faixa-card {
-                height: 90px !important;
-                min-height: 90px !important;
-                width: 100px !important;
-                padding: 0.375rem !important;
+                height: 110px !important;
+                min-height: 110px !important;
+                width: 130px !important;
+                padding: 0.5rem !important;
             }
             
             .faixa-card img {
-                height: 25px !important;
-                margin-bottom: 0.25rem !important;
+                height: 30px !important;
+                margin-bottom: 0.375rem !important;
             }
             
             .faixa-card > div:nth-child(2) {
-                font-size: 0.5625rem !important;
+                font-size: 0.625rem !important;
                 line-height: 1.1 !important;
             }
             
             .faixa-card > div:nth-child(3) {
-                font-size: 0.4375rem !important;
+                font-size: 0.5rem !important;
             }
             
             /* Grid das faixas para mobile pequeno */
@@ -652,37 +712,66 @@
             }
             
             .col-span-3 a {
-                width: 100px !important;
+                width: 130px !important;
             }
             
+            /* Área de anúncios ultra-compacta para mobile pequeno */
             .advertisement-area {
-                bottom: 2px;
-                left: 2px;
-                right: 2px;
-                max-width: calc(100vw - 8px) !important;
+                position: fixed !important;
+                bottom: 6px !important;
+                left: 6px !important;
+                right: 6px !important;
+                max-width: calc(100vw - 12px) !important;
                 min-width: 250px !important;
-                max-height: 60px !important;
+                max-height: 50px !important;
+                z-index: 1000 !important;
+                opacity: 1 !important;
             }
             
             .advertisement-area .space-x-4 {
                 flex-direction: column;
-                gap: 8px;
+                gap: 6px !important;
             }
             
             /* Ajustes para mobile pequeno */
             .advertisement-area .flex {
-                gap: 6px !important;
+                gap: 4px !important;
+                padding: 0.375rem !important;
             }
             
             .advertisement-area .flex > div {
-                margin-bottom: 0.25rem !important;
+                margin-bottom: 0.125rem !important;
+            }
+            
+            /* Reduzir ainda mais os tamanhos */
+            .advertisement-area .text-base {
+                font-size: 0.625rem !important;
+            }
+            
+            .advertisement-area .text-sm {
+                font-size: 0.5rem !important;
+            }
+            
+            .advertisement-area .text-xs {
+                font-size: 0.375rem !important;
+            }
+            
+            .advertisement-area .px-3 {
+                padding-left: 0.375rem !important;
+                padding-right: 0.375rem !important;
+            }
+            
+            .advertisement-area .py-2 {
+                padding-top: 0.25rem !important;
+                padding-bottom: 0.25rem !important;
             }
         }
         
         /* Responsividade para dispositivos muito pequenos */
         @media (max-width: 360px) {
             .hero-section {
-                padding-top: 80px;
+                padding-top: 60px;
+                padding-bottom: 6rem !important;
             }
             
             /* Botão de logout no lado esquerdo em mobile muito pequeno */
@@ -703,35 +792,35 @@
             }
             
             .welcome-section h2 {
-                font-size: 0.875rem !important;
+                font-size: 1rem !important;
                 line-height: 1.1 !important;
             }
             
             .welcome-section p {
-                font-size: 0.625rem !important;
+                font-size: 0.75rem !important;
                 line-height: 1.1 !important;
-                margin-top: 0.25rem !important;
+                margin-top: 0.375rem !important;
             }
             
             .faixa-card {
-                height: 80px !important;
-                min-height: 80px !important;
-                width: 90px !important;
-                padding: 0.25rem !important;
+                height: 95px !important;
+                min-height: 95px !important;
+                width: 110px !important;
+                padding: 0.375rem !important;
             }
             
             .faixa-card img {
-                height: 20px !important;
-                margin-bottom: 0.25rem !important;
+                height: 25px !important;
+                margin-bottom: 0.375rem !important;
             }
             
             .faixa-card > div:nth-child(2) {
-                font-size: 0.5rem !important;
+                font-size: 0.5625rem !important;
                 line-height: 1.1 !important;
             }
             
             .faixa-card > div:nth-child(3) {
-                font-size: 0.375rem !important;
+                font-size: 0.4375rem !important;
             }
             
             /* Grid das faixas para mobile muito pequeno */
@@ -741,19 +830,26 @@
             }
             
             .col-span-3 a {
-                width: 90px !important;
+                width: 110px !important;
             }
             
+            /* Área de anúncios ultra-compacta para mobile muito pequeno */
             .advertisement-area {
+                position: fixed !important;
+                bottom: 4px !important;
+                left: 4px !important;
+                right: 4px !important;
                 max-width: calc(100vw - 8px) !important;
                 min-width: 200px !important;
-                max-height: 50px !important;
+                max-height: 45px !important;
+                z-index: 1000 !important;
+                opacity: 1 !important;
             }
             
             /* Ajustes para mobile muito pequeno */
             .advertisement-area .flex {
-                gap: 4px !important;
-                padding: 0.5rem !important;
+                gap: 3px !important;
+                padding: 0.25rem !important;
             }
             
             .advertisement-area .flex > div {
@@ -763,10 +859,33 @@
             .advertisement-area .flex > div:first-child {
                 margin-bottom: 0.25rem !important;
             }
+            
+            /* Reduzir ao máximo os tamanhos */
+            .advertisement-area .text-base {
+                font-size: 0.5rem !important;
+            }
+            
+            .advertisement-area .text-sm {
+                font-size: 0.375rem !important;
+            }
+            
+            .advertisement-area .text-xs {
+                font-size: 0.25rem !important;
+            }
+            
+            .advertisement-area .px-3 {
+                padding-left: 0.25rem !important;
+                padding-right: 0.25rem !important;
+            }
+            
+            .advertisement-area .py-2 {
+                padding-top: 0.125rem !important;
+                padding-bottom: 0.125rem !important;
+            }
         }
     </style>
 </head>
-<body class="font-display overflow-hidden">
+<body class="font-display">
     <!-- Botão de Logout -->
     <form action="{% url 'logout' %}" method="post" class="fixed top-6 right-32 lg:right-32 left-6 lg:left-auto z-50">
         {% csrf_token %}
@@ -844,8 +963,8 @@
         <span class="text-2xl">☰</span>
     </button>
 
-    <!-- Área de Anúncios - Barra Horizontal Compacta -->
-    <div class="advertisement-area fixed bottom-6 left-6 z-40 bg-white rounded-2xl border border-gray-200 shadow-xl">
+    <!-- Área de Anúncios - Barra Horizontal Compacta (apenas mobile) -->
+    <div class="advertisement-area bg-white rounded-2xl border border-gray-200 shadow-xl hidden lg:hidden">
         <div class="flex items-center px-3 sm:px-4 py-2 sm:py-3 flex-wrap gap-2">
             <!-- Logo/Identificação -->
             <div class="flex items-center space-x-2 mr-3 sm:mr-6">
@@ -884,14 +1003,14 @@
     </div>
 
     <!-- Main Content -->
-    <div class="hero-section flex items-start justify-center min-h-screen pb-20 sm:pb-24 lg:pb-32">
+    <div class="hero-section flex items-start justify-center min-h-screen pb-16 sm:pb-20 lg:pb-32">
         <div class="w-full max-w-7xl mx-auto px-4 sm:px-6">
             <!-- Desktop Layout: Welcome Section + Faixas Grid -->
             <div class="hidden lg:grid lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 items-start">
                 
                 <!-- Left Side - Welcome Section -->
                 <div class="text-center lg:text-left welcome-section flex items-start justify-center" style="height: 160px; overflow: visible;">
-                    <div class="w-full flex flex-col items-center justify-start pt-4">
+                    <div class="w-full flex flex-col items-center justify-start pt-2">
                         {# Remover debug de usuário autenticado e email #}
 
 {% if nome and faixa %}
@@ -914,6 +1033,22 @@
                             <p class="text-white/80 text-lg final-text">
                                 Escolha sua faixa ao lado e comece sua evolução no judô!
                             </p>
+                        </div>
+                        
+                        <!-- Anúncio Desktop - Retângulo abaixo da mensagem -->
+                        <div class="advertisement-area-desktop mt-4 w-full max-w-md mx-auto">
+                            <div class="bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 shadow-lg p-3">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-blue-300 text-sm">📢</span>
+                                        <span class="text-white/90 text-xs font-medium">Anúncios</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="bg-blue-500/20 text-blue-300 text-xs px-2 py-1 rounded-md">🎯 PROMO</span>
+                                        <span class="bg-green-500/20 text-green-300 text-xs px-2 py-1 rounded-md">🥋 GRÁTIS</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -989,8 +1124,8 @@
             <!-- Mobile Layout: Welcome Section + Faixas Grid -->
             <div class="lg:hidden">
                 <!-- Welcome Section para Mobile -->
-                <div class="text-center welcome-section flex items-start justify-center mb-8" style="height: auto; overflow: visible;">
-                    <div class="w-full flex flex-col items-center justify-start pt-4">
+                <div class="text-center welcome-section flex items-start justify-center mb-2" style="height: auto; overflow: visible;">
+                    <div class="w-full flex flex-col items-center justify-start pt-1">
 {% if nome and faixa %}
                         <h2 class="font-title text-lg sm:text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-blue-200 to-slate-400 drop-shadow-lg animate-fade-in-up text-center select-none font-league text-shadow-lg/30" style="letter-spacing: 0.5px;">
                             {{ nome }}, você está no caminho certo.
@@ -1011,6 +1146,22 @@
                             <p class="text-white/80 text-base final-text">
                                 Escolha sua faixa abaixo e comece sua evolução no judô!
                             </p>
+                        </div>
+                        
+                        <!-- Anúncio Mobile - Retângulo abaixo da mensagem -->
+                        <div class="advertisement-area-mobile mt-3 w-full max-w-sm mx-auto">
+                            <div class="bg-white/10 backdrop-blur-sm rounded-lg border border-white/20 shadow-lg p-2">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-blue-300 text-xs">📢</span>
+                                        <span class="text-white/90 text-xs font-medium">Anúncios</span>
+                                    </div>
+                                    <div class="flex items-center space-x-1">
+                                        <span class="bg-blue-500/20 text-blue-300 text-xs px-1.5 py-0.5 rounded">🎯</span>
+                                        <span class="bg-green-500/20 text-green-300 text-xs px-1.5 py-0.5 rounded">🥋</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
