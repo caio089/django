@@ -854,6 +854,752 @@
             left: 100%;
         }
         
+        /* Estilos do carrossel - Copiado da página1.html */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Melhorar barra de scroll do carrossel no mobile */
+        @media (max-width: 768px) {
+            #nage-waza-section .grid::-webkit-scrollbar,
+            #imobilizacoes-section .grid::-webkit-scrollbar {
+                height: 4px !important;
+            }
+            
+            #nage-waza-section .grid::-webkit-scrollbar-track,
+            #imobilizacoes-section .grid::-webkit-scrollbar-track {
+                background: rgba(156, 163, 175, 0.1) !important;
+                border-radius: 2px !important;
+            }
+            
+            #nage-waza-section .grid::-webkit-scrollbar-thumb,
+            #imobilizacoes-section .grid::-webkit-scrollbar-thumb {
+                background: rgba(156, 163, 175, 0.4) !important;
+                border-radius: 2px !important;
+            }
+            
+            #nage-waza-section .grid::-webkit-scrollbar-thumb:hover,
+            #imobilizacoes-section .grid::-webkit-scrollbar-thumb:hover {
+                background: rgba(156, 163, 175, 0.6) !important;
+            }
+        }
+        
+        /* Responsividade para dispositivos móveis - Copiado completo da página1.html */
+        @media (max-width: 768px) {
+            /* Header responsivo */
+            header {
+                padding: 0.75rem 1rem !important;
+            }
+            
+            header h1 {
+                font-size: 1.5rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            header p {
+                font-size: 0.875rem !important;
+            }
+            
+            /* Barra de progresso mobile */
+            .progress-bar {
+                height: 0.75rem !important;
+            }
+            
+            /* Cards de habilidades mobile */
+            .habilidade-item {
+                font-size: 0.875rem !important;
+                padding: 0.75rem 1rem !important;
+                margin: 0.25rem !important;
+                min-width: calc(100% - 2rem) !important;
+                max-width: calc(100% - 2rem) !important;
+            }
+            
+            /* Seções de técnicas mobile */
+            #nage-waza-section, #imobilizacoes-section {
+                padding: 0 1rem !important;
+            }
+            
+            /* Carrossel de técnicas para mobile */
+            #nage-waza-section .grid,
+            #imobilizacoes-section .grid {
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+                gap: 1rem !important;
+                overflow-x: auto !important;
+                scroll-behavior: smooth !important;
+                padding: 0.5rem 0 !important;
+                position: relative !important;
+                scroll-snap-type: x mandatory !important;
+            }
+            
+            /* Cards do carrossel */
+            #nage-waza-section .video-card,
+            #imobilizacoes-section .video-card,
+            #nage-waza-section .card-hover,
+            #imobilizacoes-section .card-hover {
+                min-width: 320px !important;
+                max-width: 320px !important;
+                width: 320px !important;
+                flex-shrink: 0 !important;
+                scroll-snap-align: start !important;
+                border-radius: 12px !important;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+            }
+            
+            /* Indicador de scroll (gradiente sutil) */
+            #nage-waza-section .grid::after,
+            #imobilizacoes-section .grid::after {
+                content: '' !important;
+                position: absolute !important;
+                right: 0 !important;
+                top: 0 !important;
+                bottom: 0 !important;
+                width: 2rem !important;
+                background: linear-gradient(to right, transparent, rgba(156, 163, 175, 0.15)) !important;
+                pointer-events: none !important;
+                z-index: 5 !important;
+            }
+            
+            /* Texto indicativo de scroll */
+            #nage-waza-section::after,
+            #imobilizacoes-section::after {
+                content: '← Deslize para ver mais técnicas →' !important;
+                display: block !important;
+                text-align: center !important;
+                margin-top: 0.75rem !important;
+                font-size: 0.875rem !important;
+                color: #6B7280 !important;
+                font-weight: 500 !important;
+                opacity: 0.8 !important;
+            }
+            
+            .video-card,
+            .card-hover {
+                margin-bottom: 1.5rem !important;
+            }
+            
+            .video-header {
+                padding: 1rem !important;
+            }
+            
+            .video-title {
+                font-size: 1rem !important;
+            }
+            
+            .video-description {
+                font-size: 0.875rem !important;
+            }
+            
+            .video-container {
+                height: 200px !important;
+                margin: 1rem auto !important;
+            }
+            
+            .video-tip {
+                padding: 1rem !important;
+                margin: 0 1rem 1rem 1rem !important;
+            }
+            
+            .video-tip-title {
+                font-size: 0.875rem !important;
+            }
+            
+            .video-tip-text {
+                font-size: 0.75rem !important;
+            }
+            
+            /* Botões mobile */
+            .back-to-top-section {
+                padding: 0.75rem 1.5rem !important;
+                font-size: 0.875rem !important;
+            }
+            
+            /* Modal mobile */
+            #congratulationsModal .bg-white {
+                margin: 1rem !important;
+                padding: 1.5rem !important;
+                max-width: calc(100vw - 2rem) !important;
+            }
+            
+            .congratulations-title {
+                font-size: 2rem !important;
+            }
+            
+            .trophy-icon {
+                font-size: 3rem !important;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            
+            .stat-card {
+                padding: 1rem !important;
+            }
+            
+            .stat-number {
+                font-size: 1.5rem !important;
+            }
+            
+            /* Barra flutuante mobile */
+            #floatingProgress {
+                width: calc(100vw - 2rem) !important;
+                margin: 0 1rem !important;
+                padding: 0.75rem !important;
+            }
+            
+            #floatingProgress .w-80 {
+                width: calc(100% - 4rem) !important;
+            }
+            
+            /* Botão voltar ao topo mobile */
+            #backToTop {
+                bottom: 1rem !important;
+                right: 1rem !important;
+                padding: 0.75rem !important;
+            }
+            
+            #backToTop span {
+                font-size: 1.5rem !important;
+            }
+            
+            /* Container principal mobile */
+            main {
+                padding: 0.5rem !important;
+            }
+            
+            /* Títulos mobile */
+            h2 {
+                font-size: 1.5rem !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            /* Grid responsivo mobile */
+            .grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+            
+            /* Espaçamento otimizado para mobile */
+            .mb-12 {
+                margin-bottom: 2rem !important;
+            }
+            
+            .mb-8 {
+                margin-bottom: 1.5rem !important;
+            }
+            
+            .mb-4 {
+                margin-bottom: 1rem !important;
+            }
+            
+            .mb-2 {
+                margin-bottom: 0.75rem !important;
+            }
+            
+            .py-6 {
+                padding-top: 1rem !important;
+                padding-bottom: 1rem !important;
+            }
+            
+            .px-4 {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Checkboxes ainda menores para telas pequenas */
+            input[type="checkbox"] {
+                width: 0.875rem !important;
+                height: 0.875rem !important;
+                min-width: 0.875rem !important;
+                min-height: 0.875rem !important;
+            }
+            
+            /* Header muito pequeno */
+            header {
+                padding: 0.5rem !important;
+            }
+            
+            header h1 {
+                font-size: 1.25rem !important;
+            }
+            
+            header p {
+                font-size: 0.75rem !important;
+            }
+            
+            /* Cards de habilidades muito pequenos */
+            .habilidade-item {
+                font-size: 0.75rem !important;
+                padding: 0.5rem 0.75rem !important;
+                margin: 0.125rem !important;
+            }
+            
+            /* Seções mobile */
+            #nage-waza-section, #imobilizacoes-section {
+                padding: 0 0.5rem !important;
+            }
+            
+            /* Carrossel para telas muito pequenas */
+            #nage-waza-section .video-card,
+            #imobilizacoes-section .video-card,
+            #nage-waza-section .card-hover,
+            #imobilizacoes-section .card-hover {
+                min-width: 300px !important;
+                max-width: 300px !important;
+                width: 300px !important;
+            }
+            
+            #nage-waza-section .grid,
+            #imobilizacoes-section .grid {
+                gap: 0.75rem !important;
+                padding: 0.25rem 0 !important;
+            }
+            
+            /* Container principal mobile */
+            main {
+                padding: 0.5rem !important;
+            }
+            
+            /* Títulos mobile */
+            h2 {
+                font-size: 1.5rem !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            .video-card,
+            .card-hover {
+                margin-bottom: 1rem !important;
+            }
+            
+            .video-header {
+                padding: 0.75rem !important;
+            }
+            
+            .video-title {
+                font-size: 0.875rem !important;
+            }
+            
+            .video-description {
+                font-size: 0.75rem !important;
+            }
+            
+            .video-container {
+                height: 180px !important;
+                margin: 0.75rem auto !important;
+            }
+            
+            .video-tip {
+                padding: 0.75rem !important;
+                margin: 0 0.75rem 0.75rem 0.75rem !important;
+            }
+            
+            .video-tip-title {
+                font-size: 0.75rem !important;
+            }
+            
+            .video-tip-text {
+                font-size: 0.6875rem !important;
+            }
+            
+            /* Botões muito pequenos */
+            .back-to-top-section {
+                padding: 0.5rem 1rem !important;
+                font-size: 0.75rem !important;
+            }
+            
+            /* Modal muito pequeno */
+            #congratulationsModal .bg-white {
+                margin: 0.5rem !important;
+                padding: 1rem !important;
+            }
+            
+            .congratulations-title {
+                font-size: 1.5rem !important;
+            }
+            
+            .trophy-icon {
+                font-size: 2.5rem !important;
+            }
+            
+            .stat-card {
+                padding: 0.75rem !important;
+            }
+            
+            .stat-number {
+                font-size: 1.25rem !important;
+            }
+            
+            .stat-label {
+                font-size: 0.75rem !important;
+            }
+            
+            /* Barra flutuante muito pequena */
+            #floatingProgress {
+                width: calc(100vw - 1rem) !important;
+                margin: 0 0.5rem !important;
+                padding: 0.5rem !important;
+            }
+            
+            #floatingProgress .w-80 {
+                width: calc(100% - 3rem) !important;
+            }
+            
+            /* Botão voltar ao topo muito pequeno */
+            #backToTop {
+                bottom: 0.75rem !important;
+                right: 0.75rem !important;
+                padding: 0.5rem !important;
+            }
+            
+            #backToTop span {
+                font-size: 1.25rem !important;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            /* Checkboxes mínimos para telas muito pequenas */
+            input[type="checkbox"] {
+                width: 0.75rem !important;
+                height: 0.75rem !important;
+                min-width: 0.75rem !important;
+                min-height: 0.75rem !important;
+            }
+            
+            /* Dispositivos extremamente pequenos */
+            header {
+                padding: 0.25rem !important;
+            }
+            
+            main {
+                padding: 0.25rem !important;
+            }
+            
+            /* Carrossel para telas extremamente pequenas */
+            #nage-waza-section .video-card,
+            #imobilizacoes-section .video-card,
+            #nage-waza-section .card-hover,
+            #imobilizacoes-section .card-hover {
+                min-width: 280px !important;
+                max-width: 280px !important;
+                width: 280px !important;
+            }
+            
+            header h1 {
+                font-size: 1rem !important;
+            }
+            
+            header p {
+                font-size: 0.625rem !important;
+            }
+            
+            .habilidade-item {
+                font-size: 0.625rem !important;
+                padding: 0.375rem 0.5rem !important;
+            }
+            
+            h2 {
+                font-size: 1.25rem !important;
+            }
+            
+            .video-container {
+                height: 160px !important;
+            }
+            
+            .video-header {
+                padding: 0.5rem !important;
+            }
+            
+            .video-title {
+                font-size: 0.75rem !important;
+            }
+            
+            .video-description {
+                font-size: 0.625rem !important;
+            }
+            
+            .video-tip {
+                padding: 0.5rem !important;
+                margin: 0 0.5rem 0.5rem 0.5rem !important;
+            }
+            
+            .video-tip-title {
+                font-size: 0.625rem !important;
+            }
+            
+            .video-tip-text {
+                font-size: 0.5625rem !important;
+            }
+            
+            .back-to-top-section {
+                padding: 0.375rem 0.75rem !important;
+                font-size: 0.625rem !important;
+            }
+            
+            #congratulationsModal .bg-white {
+                margin: 0.25rem !important;
+                padding: 0.75rem !important;
+            }
+            
+            .congratulations-title {
+                font-size: 1.25rem !important;
+            }
+            
+            .trophy-icon {
+                font-size: 2rem !important;
+            }
+            
+            .stat-card {
+                padding: 0.5rem !important;
+            }
+            
+            .stat-number {
+                font-size: 1rem !important;
+            }
+            
+            .stat-label {
+                font-size: 0.625rem !important;
+            }
+            
+            #floatingProgress {
+                width: calc(100vw - 0.5rem) !important;
+                margin: 0 0.25rem !important;
+                padding: 0.375rem !important;
+            }
+            
+            #floatingProgress .w-80 {
+                width: calc(100% - 2rem) !important;
+            }
+            
+            #backToTop {
+                bottom: 0.5rem !important;
+                right: 0.5rem !important;
+                padding: 0.375rem !important;
+            }
+            
+            #backToTop span {
+                font-size: 1rem !important;
+            }
+        }
+        
+        /* Melhorias de usabilidade mobile - Copiado da página1.html */
+        @media (max-width: 768px) {
+            /* Checkboxes menores para mobile */
+            input[type="checkbox"] {
+                width: 1rem !important;
+                height: 1rem !important;
+                min-width: 1rem !important;
+                min-height: 1rem !important;
+            }
+            
+            /* Touch targets maiores */
+            .habilidade-item,
+            .japanese-nav-card,
+            .back-to-top-section,
+            #backToTop,
+            button,
+            label {
+                min-height: 44px !important;
+                min-width: 44px !important;
+            }
+            
+            /* Padronizar tamanhos da barra japonesa em mobile */
+            .japanese-nav-card {
+                width: 120px !important;
+                height: 80px !important;
+                min-width: 120px !important;
+                min-height: 80px !important;
+                max-width: 120px !important;
+                max-height: 80px !important;
+                flex-shrink: 0 !important;
+            }
+            
+            /* Layout horizontal com scroll para mobile */
+            .japanese-nav-container .flex {
+                gap: 0.5rem !important;
+                justify-content: flex-start !important;
+                flex-wrap: nowrap !important;
+                flex-direction: row !important;
+                overflow-x: auto !important;
+                scroll-behavior: smooth !important;
+                padding: 0.5rem 0 !important;
+                position: relative !important;
+            }
+            
+            /* Gradiente sutil no lado direito para indicar mais conteúdo */
+            .japanese-nav-container .flex::before {
+                content: '' !important;
+                position: absolute !important;
+                right: 0 !important;
+                top: 0 !important;
+                bottom: 0 !important;
+                width: 2rem !important;
+                background: linear-gradient(to right, transparent, rgba(156, 163, 175, 0.1)) !important;
+                pointer-events: none !important;
+                z-index: 5 !important;
+            }
+            
+            /* Cards sempre na mesma linha */
+            .japanese-nav-card {
+                width: 100px !important;
+                height: 80px !important;
+                min-width: 100px !important;
+                min-height: 80px !important;
+                max-width: 100px !important;
+                max-height: 80px !important;
+                flex-shrink: 0 !important;
+            }
+            
+            /* Texto indicativo de scroll para mobile */
+            .japanese-nav-container::after {
+                content: '← Deslize para ver mais →' !important;
+                display: block !important;
+                text-align: center !important;
+                margin-top: 0.75rem !important;
+                font-size: 0.875rem !important;
+                color: #6B7280 !important;
+                font-weight: 500 !important;
+                opacity: 0.8 !important;
+            }
+            
+            /* Espaçamento melhorado para touch */
+            .habilidade-item {
+                margin: 0.5rem !important;
+            }
+            
+            .japanese-nav-card {
+                margin: 0.75rem !important;
+            }
+            
+            /* Scroll suave para mobile */
+            html {
+                scroll-behavior: smooth !important;
+            }
+            
+            /* Melhor contraste para mobile */
+            .video-tip {
+                background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%) !important;
+                border-left: 4px solid #0284c7 !important;
+            }
+            
+            /* Sombras mais suaves para mobile */
+            .video-card {
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+            }
+            
+            .video-card:hover {
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+            }
+            
+            /* Animações mais suaves para mobile */
+            .habilidade-item,
+            .japanese-nav-card,
+            .video-card {
+                transition: all 0.2s ease !important;
+            }
+            
+            /* Feedback visual melhorado para mobile */
+            .habilidade-item:active,
+            .japanese-nav-card:active {
+                transform: scale(0.98) !important;
+            }
+            
+            /* Melhor legibilidade para mobile */
+            .video-title,
+            .video-description,
+            .video-tip-title,
+            .video-tip-text {
+                line-height: 1.4 !important;
+            }
+            
+            /* Espaçamento otimizado para mobile */
+            .grid {
+                gap: 1rem !important;
+            }
+            
+            /* Margens consistentes para mobile */
+            section {
+                margin-bottom: 2rem !important;
+            }
+            
+            /* Padding consistente para mobile */
+            .video-card {
+                padding: 0 !important;
+            }
+            
+            /* Melhor hierarquia visual para mobile */
+            .text-center {
+                text-align: center !important;
+            }
+            
+            /* Botões mais acessíveis para mobile */
+            .back-to-top-section {
+                border-radius: 0.5rem !important;
+                font-weight: 600 !important;
+            }
+            
+            /* Modal mais acessível para mobile */
+            #congratulationsModal .bg-white {
+                border-radius: 1rem !important;
+            }
+            
+            /* Animações otimizadas para mobile */
+            .animate-fade-in-up,
+            .animate-fade-in-down,
+            .animate-slide-in-right {
+                animation-duration: 0.5s !important;
+            }
+            
+            /* Transições mais rápidas para mobile */
+            .transition-all {
+                transition-duration: 0.2s !important;
+            }
+        }
+        
+        /* Orientação landscape para mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            header {
+                padding: 0.5rem 1rem !important;
+            }
+            
+            header h1 {
+                font-size: 1.25rem !important;
+            }
+            
+            .video-container {
+                height: 150px !important;
+            }
+        }
+        
+        /* Suporte para dispositivos com notch */
+        @media (max-width: 768px) {
+            header {
+                padding-top: max(0.75rem, env(safe-area-inset-top)) !important;
+                padding-left: max(1rem, env(safe-area-inset-left)) !important;
+                padding-right: max(1rem, env(safe-area-inset-right)) !important;
+            }
+            
+            main {
+                padding-top: max(0.5rem, env(safe-area-inset-top)) !important;
+                padding-left: max(0.5rem, env(safe-area-inset-left)) !important;
+                padding-right: max(0.5rem, env(safe-area-inset-right)) !important;
+            }
+            
+            #backToTop {
+                bottom: max(1rem, env(safe-area-inset-bottom)) !important;
+                right: max(1rem, env(safe-area-inset-right)) !important;
+            }
+            
+            #floatingProgress {
+                top: max(1rem, env(safe-area-inset-top)) !important;
+            }
+        }
+        
     </style>
 </head>
 <body class="bg-gray-50 font-sans">

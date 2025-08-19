@@ -89,6 +89,37 @@
             50% { opacity: 0.8; transform: translateY(-25px) scale(1.2); }
             100% { opacity: 0; transform: translateY(-60px) scale(0); }
         }
+        
+        /* Estilos do carrossel */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Melhorar barra de scroll do carrossel no mobile */
+        @media (max-width: 768px) {
+            #nage-waza-section .grid::-webkit-scrollbar,
+            #imobilizacoes-section .grid::-webkit-scrollbar {
+                height: 4px !important;
+            }
+            
+            #nage-waza-section .grid::-webkit-scrollbar-track,
+            #imobilizacoes-section .grid::-webkit-scrollbar-track {
+                background: rgba(156, 163, 175, 0.1) !important;
+                border-radius: 2px !important;
+            }
+            
+            #nage-waza-section .grid::-webkit-scrollbar-thumb,
+            #imobilizacoes-section .grid::-webkit-scrollbar-thumb {
+                background: rgba(156, 163, 175, 0.4) !important;
+                border-radius: 2px !important;
+            }
+            
+            #nage-waza-section .grid::-webkit-scrollbar-thumb:hover,
+            #imobilizacoes-section .grid::-webkit-scrollbar-thumb:hover {
+                background: rgba(156, 163, 175, 0.6) !important;
+            }
+        }
     </style>
     <!-- Google Fonts: DM Sans -->
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
@@ -552,7 +583,7 @@
                 padding: 0 1rem !important;
             }
             
-            /* Grid de técnicas em linha horizontal para mobile */
+            /* Carrossel de técnicas para mobile */
             #nage-waza-section .grid,
             #imobilizacoes-section .grid {
                 display: flex !important;
@@ -563,19 +594,22 @@
                 scroll-behavior: smooth !important;
                 padding: 0.5rem 0 !important;
                 position: relative !important;
+                scroll-snap-type: x mandatory !important;
             }
             
-            /* Cards de técnicas sempre na mesma linha */
+            /* Cards do carrossel */
             #nage-waza-section .video-card,
             #imobilizacoes-section .video-card {
-                min-width: 300px !important;
-                max-width: 300px !important;
-                width: 300px !important;
+                min-width: 320px !important;
+                max-width: 320px !important;
+                width: 320px !important;
                 flex-shrink: 0 !important;
-                margin-right: 0 !important;
+                scroll-snap-align: start !important;
+                border-radius: 12px !important;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
             }
             
-            /* Gradiente sutil no lado direito das seções para indicar mais conteúdo */
+            /* Indicador de scroll (gradiente sutil) */
             #nage-waza-section .grid::after,
             #imobilizacoes-section .grid::after {
                 content: '' !important;
@@ -584,10 +618,25 @@
                 top: 0 !important;
                 bottom: 0 !important;
                 width: 2rem !important;
-                background: linear-gradient(to right, transparent, rgba(156, 163, 175, 0.1)) !important;
+                background: linear-gradient(to right, transparent, rgba(156, 163, 175, 0.15)) !important;
                 pointer-events: none !important;
                 z-index: 5 !important;
             }
+            
+            /* Texto indicativo de scroll */
+            #nage-waza-section::after,
+            #imobilizacoes-section::after {
+                content: '← Deslize para ver mais técnicas →' !important;
+                display: block !important;
+                text-align: center !important;
+                margin-top: 0.75rem !important;
+                font-size: 0.875rem !important;
+                color: #6B7280 !important;
+                font-weight: 500 !important;
+                opacity: 0.8 !important;
+            }
+            
+
             
             .video-card {
                 margin-bottom: 1.5rem !important;
@@ -771,20 +820,21 @@
                 padding: 0 0.5rem !important;
             }
             
-            /* Grid de técnicas em linha horizontal para telas muito pequenas */
+            /* Carrossel para telas muito pequenas */
+            #nage-waza-section .video-card,
+            #imobilizacoes-section .video-card {
+                min-width: 300px !important;
+                max-width: 300px !important;
+                width: 300px !important;
+            }
+            
             #nage-waza-section .grid,
             #imobilizacoes-section .grid {
                 gap: 0.75rem !important;
                 padding: 0.25rem 0 !important;
             }
             
-            /* Cards de técnicas menores para telas muito pequenas */
-            #nage-waza-section .video-card,
-            #imobilizacoes-section .video-card {
-                min-width: 280px !important;
-                max-width: 280px !important;
-                width: 280px !important;
-            }
+
             
             .video-card {
                 margin-bottom: 1rem !important;
@@ -942,6 +992,14 @@
                 padding: 0.25rem !important;
             }
             
+            /* Carrossel para telas extremamente pequenas */
+            #nage-waza-section .video-card,
+            #imobilizacoes-section .video-card {
+                min-width: 280px !important;
+                max-width: 280px !important;
+                width: 280px !important;
+            }
+            
             h2 {
                 font-size: 1.25rem !important;
             }
@@ -1070,8 +1128,6 @@
                 position: relative !important;
             }
             
-
-            
             /* Gradiente sutil no lado direito para indicar mais conteúdo */
             .japanese-nav-container .flex::before {
                 content: '' !important;
@@ -1084,8 +1140,6 @@
                 pointer-events: none !important;
                 z-index: 5 !important;
             }
-            
-
             
             /* Cards sempre na mesma linha */
             .japanese-nav-card {
