@@ -527,7 +527,7 @@
             }
             
             /* Seções de técnicas mobile */
-            #nage-waza-section, #imobilizacoes-section {
+            #nage-waza-section, #imobilizacoes-section, #chave-braco-section, #estrangulamento-section, #henkakuenka-section, #renrakuenka-section, #kaeshi-waza-section {
                 padding: 0 1rem !important;
             }
             
@@ -752,7 +752,7 @@
             }
             
             /* Seções mobile */
-            #nage-waza-section, #imobilizacoes-section {
+            #nage-waza-section, #imobilizacoes-section, #chave-braco-section, #estrangulamento-section, #henkakuenka-section, #renrakuenka-section, #kaeshi-waza-section {
                 padding: 0 0.5rem !important;
             }
             
@@ -1019,27 +1019,119 @@
                 min-width: 44px !important;
             }
             
-
+            /* Padronizar tamanhos da barra japonesa em mobile */
+            .japanese-nav-card {
+                width: 120px !important;
+                height: 80px !important;
+                min-width: 120px !important;
+                min-height: 80px !important;
+                max-width: 120px !important;
+                max-height: 80px !important;
+                flex-shrink: 0 !important;
+            }
             
-
+            /* Layout horizontal com scroll para mobile */
+            .japanese-nav-container .flex {
+                gap: 0.5rem !important;
+                justify-content: flex-start !important;
+                flex-wrap: nowrap !important;
+                flex-direction: row !important;
+                overflow-x: auto !important;
+                scroll-behavior: smooth !important;
+                padding: 0.5rem 0 !important;
+                position: relative !important;
+            }
             
-
+            /* Gradiente sutil no lado direito para indicar mais conteúdo */
+            .japanese-nav-container .flex::before {
+                content: '' !important;
+                position: absolute !important;
+                right: 0 !important;
+                top: 0 !important;
+                bottom: 0 !important;
+                width: 2rem !important;
+                background: linear-gradient(to right, transparent, rgba(156, 163, 175, 0.1)) !important;
+                pointer-events: none !important;
+                z-index: 5 !important;
+            }
             
-
+            /* Cards sempre na mesma linha */
+            .japanese-nav-card {
+                width: 100px !important;
+                height: 80px !important;
+                min-width: 100px !important;
+                min-height: 80px !important;
+                max-width: 100px !important;
+                max-height: 80px !important;
+                flex-shrink: 0 !important;
+            }
             
-
+            /* Texto indicativo de scroll para mobile */
+            .japanese-nav-container::after {
+                content: '← Deslize para ver mais →' !important;
+                display: block !important;
+                text-align: center !important;
+                margin-top: 0.75rem !important;
+                font-size: 0.875rem !important;
+                color: #6B7280 !important;
+                font-weight: 500 !important;
+                opacity: 0.8 !important;
+            }
             
-
+            /* Espaçamento melhorado para touch */
+            .habilidade-item {
+                margin: 0.5rem !important;
+            }
             
-
+            .japanese-nav-card {
+                margin: 0.75rem !important;
+            }
             
-
+            /* Scroll suave para mobile */
+            html {
+                scroll-behavior: smooth !important;
+            }
             
-
+            /* Melhor contraste para mobile */
+            .video-tip {
+                background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%) !important;
+                border-left: 4px solid #0284c7 !important;
+            }
             
-
+            /* Sombras mais suaves para mobile */
+            .video-card {
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+            }
             
-
+            .video-card:hover {
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+            }
+            
+            /* Animações mais suaves para mobile */
+            .habilidade-item,
+            .japanese-nav-card,
+            .video-card {
+                transition: all 0.2s ease !important;
+            }
+            
+            /* Feedback visual melhorado para mobile */
+            .habilidade-item:active,
+            .japanese-nav-card:active {
+                transform: scale(0.98) !important;
+            }
+            
+            /* Melhor legibilidade para mobile */
+            .video-title,
+            .video-description,
+            .video-tip-title,
+            .video-tip-text {
+                line-height: 1.4 !important;
+            }
+            
+            /* Espaçamento otimizado para mobile */
+            .grid {
+                gap: 1rem !important;
+            }
             
             /* Margens consistentes para mobile */
             section {
@@ -1111,6 +1203,7 @@
             
             #backToTop {
                 bottom: max(1rem, env(safe-area-inset-bottom)) !important;
+                right: max(1rem, env(safe-area-inset-right)) !important;
             }
             
             #floatingProgress {
@@ -1123,8 +1216,6 @@
             position: relative;
             overflow: hidden;
         }
-        
-
         
         /* Melhorar barra de scroll do carrossel no mobile */
         @media (max-width: 768px) {
@@ -1474,19 +1565,25 @@
         <section id="henkakuenka-section" class="mb-12 hidden">
             <div class="text-center mb-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
-                    <span class="text-gradient">Técnicas de Ataques Combinados</span>
+                    <span class="text-gradient">Henkakuenka-waza</span>
                 </h2>
                 <p class="text-lg text-gray-600 max-w-3xl mx-auto">
-                    Aprenda técnicas avançadas que combinam movimentos para surpreender seu oponente.
+                    Aprenda técnicas de ataques combinados que elevam seu nível no judô. 
+                    A combinação de movimentos é a chave para o sucesso no combate.
                 </p>
             </div>
             
             <!-- Layout com Setas Conectando Técnicas em Linha Reta -->
             <div class="max-w-6xl mx-auto space-y-6">
                 
-                <!-- Linha 1: DE-ASHI-HARAI → KO-SOTO-GARI -->
-                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
-                    <!-- Técnica da Esquerda -->
+                <!-- Grupo 1: DE-ASHI-HARAI + KO-SOTO-GARI = Ataque Combinado -->
+                <div class="text-center mb-6">
+                    <h3 class="text-xl font-bold text-indigo-600 mb-2">🥋 Ataque Combinado #1</h3>
+                    <p class="text-gray-600 text-sm">DE-ASHI-HARAI → KO-SOTO-GARI</p>
+                </div>
+                
+                <div class="flex flex-col items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">DE-ASHI-HARAI</h4>
                         <p class="text-gray-600 text-sm">Varredura do Pé Avançado</p>
@@ -1505,12 +1602,12 @@
                         </div>
                     </div>
                     
-                    <!-- Seta Conectando -->
+                    <!-- Seta para Baixo -->
                     <div class="flex items-center justify-center">
-                        <div class="text-3xl text-indigo-500 font-bold">→</div>
+                        <div class="text-4xl text-indigo-500 font-bold">↓</div>
                     </div>
                     
-                    <!-- Técnica da Direita -->
+                    <!-- Técnica da Direita (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">KO-SOTO-GARI</h4>
                         <p class="text-gray-600 text-sm">Gancho Externo Pequeno</p>
@@ -1530,17 +1627,22 @@
                     </div>
                     
                     <!-- Checkbox único para a combinação -->
-                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                    <div class="flex items-center justify-center mt-4">
                         <label class="flex items-center select-none">
                             <input type="checkbox" class="henkakuenka-checkbox accent-indigo-500 w-5 h-5 mr-2" />
-                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi este Ataque Combinado</span>
                         </label>
                     </div>
                 </div>
                 
-                <!-- Linha 2: UCHI-MATA → KO-UCHI-GARI -->
-                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
-                    <!-- Técnica da Esquerda -->
+                <!-- Grupo 2: UCHI-MATA + KO-UCHI-GARI = Ataque Combinado -->
+                <div class="text-center mb-6 mt-8">
+                    <h3 class="text-xl font-bold text-blue-600 mb-2">🥋 Ataque Combinado #2</h3>
+                    <p class="text-gray-600 text-sm">UCHI-MATA → KO-UCHI-GARI</p>
+                </div>
+                
+                <div class="flex flex-col items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">UCHI-MATA</h4>
                         <p class="text-gray-600 text-sm">Quadril Interno</p>
@@ -1559,12 +1661,12 @@
                         </div>
                     </div>
                     
-                    <!-- Seta Conectando -->
+                    <!-- Seta para Baixo -->
                     <div class="flex items-center justify-center">
-                        <div class="text-3xl text-blue-500 font-bold">→</div>
+                        <div class="text-4xl text-blue-500 font-bold">↓</div>
                     </div>
                     
-                    <!-- Técnica da Direita -->
+                    <!-- Técnica da Direita (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">KO-UCHI-GARI</h4>
                         <p class="text-gray-600 text-sm">Gancho Externo</p>
@@ -1584,17 +1686,22 @@
                     </div>
                     
                     <!-- Checkbox único para a combinação -->
-                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                    <div class="flex items-center justify-center mt-4">
                         <label class="flex items-center select-none">
                             <input type="checkbox" class="henkakuenka-checkbox accent-blue-500 w-5 h-5 mr-2" />
-                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi este Ataque Combinado</span>
                         </label>
                     </div>
                 </div>
                 
-                <!-- Linha 3: KATA-GURUMA → KUSHIKI-TAOSHI -->
-                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
-                    <!-- Técnica da Esquerda -->
+                <!-- Grupo 3: KATA-GURUMA + KUSHIKI-TAOSHI = Ataque Combinado -->
+                <div class="text-center mb-6 mt-8">
+                    <h3 class="text-xl font-bold text-green-600 mb-2">🥋 Ataque Combinado #3</h3>
+                    <p class="text-gray-600 text-sm">KATA-GURUMA → KUSHIKI-TAOSHI</p>
+                </div>
+                
+                <div class="flex flex-col items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">KATA-GURUMA</h4>
                         <p class="text-gray-600 text-sm">Roda de Ombros</p>
@@ -1613,12 +1720,12 @@
                         </div>
                     </div>
                     
-                    <!-- Seta Conectando -->
+                    <!-- Seta para Baixo -->
                     <div class="flex items-center justify-center">
-                        <div class="text-3xl text-green-500 font-bold">→</div>
+                        <div class="text-4xl text-green-500 font-bold">↓</div>
                     </div>
                     
-                    <!-- Técnica da Direita -->
+                    <!-- Técnica da Direita (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">KUSHIKI-TAOSHI</h4>
                         <p class="text-gray-600 text-sm">Queda de Cabeça</p>
@@ -1638,17 +1745,22 @@
                     </div>
                     
                     <!-- Checkbox único para a combinação -->
-                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                    <div class="flex items-center justify-center mt-4">
                         <label class="flex items-center select-none">
                             <input type="checkbox" class="henkakuenka-checkbox accent-green-500 w-5 h-5 mr-2" />
-                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
-                        </label>
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi este Ataque Combinado</span>
+                            </label>
                     </div>
                 </div>
                 
-                <!-- Linha 4: KATA-GURUMA → KATA-OTOSHI -->
-                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
-                    <!-- Técnica da Esquerda -->
+                <!-- Grupo 4: KATA-GURUMA + KATA-OTOSHI = Ataque Combinado -->
+                <div class="text-center mb-6 mt-8">
+                    <h3 class="text-xl font-bold text-red-600 mb-2">🥋 Ataque Combinado #4</h3>
+                    <p class="text-gray-600 text-sm">KATA-GURUMA → KATA-OTOSHI</p>
+                </div>
+                
+                <div class="flex flex-col items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">KATA-GURUMA</h4>
                         <p class="text-gray-600 text-sm">Roda de Ombros</p>
@@ -1667,12 +1779,12 @@
                         </div>
                     </div>
                     
-                    <!-- Seta Conectando -->
+                    <!-- Seta para Baixo -->
                     <div class="flex items-center justify-center">
-                        <div class="text-3xl text-red-500 font-bold">→</div>
+                        <div class="text-4xl text-red-500 font-bold">↓</div>
                     </div>
                     
-                    <!-- Técnica da Direita -->
+                    <!-- Técnica da Direita (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">KATA-OTOSHI</h4>
                         <p class="text-gray-600 text-sm">Queda de Ombros</p>
@@ -1692,10 +1804,10 @@
                     </div>
                     
                     <!-- Checkbox único para a combinação -->
-                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                    <div class="flex items-center justify-center mt-4">
                         <label class="flex items-center select-none">
                             <input type="checkbox" class="henkakuenka-checkbox accent-red-500 w-5 h-5 mr-2" />
-                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi este Ataque Combinado</span>
                         </label>
                     </div>
                 </div>
@@ -1703,10 +1815,10 @@
             
             <!-- Botão Voltar ao Topo para Ataques Combinados -->
             <div class="text-center mt-8">
-                <button class="back-to-top-section bg-indigo-500 hover:bg-indigo-600 text-white px-6 py-3 rounded-lg font-buttons transition-colors shadow-lg">
+                <button class="back-to-top-section bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-buttons transition-colors shadow-lg">
                     ↑ Voltar ao Topo
                 </button>
-            </div>
+                </div>
         </section>
         
         <!-- Divisor Visual -->
@@ -1938,7 +2050,7 @@
         <section id="renrakuenka-section" class="mb-12 hidden">
             <div class="text-center mb-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
-                    <span class="text-gradient">RENRAKUENKA-WAZA</span>
+                    <span class="text-gradient">Renrakuenka-waza</span>
                 </h2>
                 <p class="text-lg text-gray-600 max-w-3xl mx-auto">
                     Aprenda técnicas de ataques combinados que elevam seu nível no judô. 
@@ -1949,9 +2061,14 @@
             <!-- Layout com Setas Conectando Técnicas em Linha Reta -->
             <div class="max-w-6xl mx-auto space-y-6">
                 
-                <!-- Linha 1: IPPON-SEOI-NAGE → KO-UCHI-GARI -->
-                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
-                    <!-- Técnica da Esquerda -->
+                <!-- Grupo 1: IPPON-SEOI-NAGE + KO-UCHI-GARI = Ataque Combinado -->
+                <div class="text-center mb-6">
+                    <h3 class="text-xl font-bold text-indigo-600 mb-2">🥋 Ataque Combinado #1</h3>
+                    <p class="text-gray-600 text-sm">IPPON-SEOI-NAGE → KO-UCHI-GARI</p>
+                </div>
+                
+                <div class="flex flex-col items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">IPPON-SEOI-NAGE</h4>
                         <p class="text-gray-600 text-sm">Projeção por Costas</p>
@@ -1961,12 +2078,12 @@
                         </div>
                     </div>
                     
-                    <!-- Seta Conectando -->
+                    <!-- Seta para Baixo -->
                     <div class="flex items-center justify-center">
-                        <div class="text-3xl text-indigo-500 font-bold">→</div>
+                        <div class="text-4xl text-indigo-500 font-bold">↓</div>
                     </div>
                     
-                    <!-- Técnica da Direita -->
+                    <!-- Técnica da Direita (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">KO-UCHI-GARI</h4>
                         <p class="text-gray-600 text-sm">Gancho Externo</p>
@@ -1977,17 +2094,22 @@
                     </div>
                     
                     <!-- Checkbox único para a combinação -->
-                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                    <div class="flex items-center justify-center mt-4">
                         <label class="flex items-center select-none">
                             <input type="checkbox" class="renrakuenka-checkbox accent-indigo-500 w-5 h-5 mr-2" />
-                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi este Ataque Combinado</span>
                         </label>
                     </div>
                 </div>
                 
-                <!-- Linha 2: KO-UCHI-GARI → O-UCHI-GARI -->
-                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
-                    <!-- Técnica da Esquerda -->
+                <!-- Grupo 2: KO-UCHI-GARI + O-UCHI-GARI = Ataque Combinado -->
+                <div class="text-center mb-6 mt-8">
+                    <h3 class="text-xl font-bold text-blue-600 mb-2">🥋 Ataque Combinado #2</h3>
+                    <p class="text-gray-600 text-sm">KO-UCHI-GARI → O-UCHI-GARI</p>
+                </div>
+                
+                <div class="flex flex-col items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">KO-UCHI-GARI</h4>
                         <p class="text-gray-600 text-sm">Gancho Externo</p>
@@ -1997,12 +2119,12 @@
                         </div>
                     </div>
                     
-                    <!-- Seta Conectando -->
+                    <!-- Seta para Baixo -->
                     <div class="flex items-center justify-center">
-                        <div class="text-3xl text-blue-500 font-bold">→</div>
+                        <div class="text-4xl text-blue-500 font-bold">↓</div>
                     </div>
                     
-                    <!-- Técnica da Direita -->
+                    <!-- Técnica da Direita (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">O-UCHI-GARI</h4>
                         <p class="text-gray-600 text-sm">Gancho Interno</p>
@@ -2013,17 +2135,22 @@
                     </div>
                     
                     <!-- Checkbox único para a combinação -->
-                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                    <div class="flex items-center justify-center mt-4">
                         <label class="flex items-center select-none">
                             <input type="checkbox" class="renrakuenka-checkbox accent-blue-500 w-5 h-5 mr-2" />
-                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi este Ataque Combinado</span>
                         </label>
                     </div>
                 </div>
                 
-                <!-- Linha 3: DE-ASHI-HARAI → TAI-OTOSHI -->
-                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
-                    <!-- Técnica da Esquerda -->
+                <!-- Grupo 3: DE-ASHI-HARAI + TAI-OTOSHI = Ataque Combinado -->
+                <div class="text-center mb-6 mt-8">
+                    <h3 class="text-xl font-bold text-red-600 mb-2">🥋 Ataque Combinado #3</h3>
+                    <p class="text-gray-600 text-sm">DE-ASHI-HARAI → TAI-OTOSHI</p>
+                </div>
+                
+                <div class="flex flex-col items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">DE-ASHI-HARAI</h4>
                         <p class="text-gray-600 text-sm">Varredura do Pé Avançado</p>
@@ -2033,12 +2160,12 @@
                         </div>
                     </div>
                     
-                    <!-- Seta Conectando -->
+                    <!-- Seta para Baixo -->
                     <div class="flex items-center justify-center">
-                        <div class="text-3xl text-red-500 font-bold">→</div>
+                        <div class="text-4xl text-red-500 font-bold">↓</div>
                     </div>
                     
-                    <!-- Técnica da Direita -->
+                    <!-- Técnica da Direita (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">TAI-OTOSHI</h4>
                         <p class="text-gray-600 text-sm">Queda Corporal</p>
@@ -2049,17 +2176,22 @@
                     </div>
                     
                     <!-- Checkbox único para a combinação -->
-                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                    <div class="flex items-center justify-center mt-4">
                         <label class="flex items-center select-none">
                             <input type="checkbox" class="renrakuenka-checkbox accent-red-500 w-5 h-5 mr-2" />
-                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi este Ataque Combinado</span>
                         </label>
                     </div>
                 </div>
                 
-                <!-- Linha 4: KUBIE-NAGUE → O-SOTO-GARI -->
-                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
-                    <!-- Técnica da Esquerda -->
+                <!-- Grupo 4: KUBIE-NAGUE + O-SOTO-GARI = Ataque Combinado -->
+                <div class="text-center mb-6 mt-8">
+                    <h3 class="text-xl font-bold text-teal-600 mb-2">🥋 Ataque Combinado #4</h3>
+                    <p class="text-gray-600 text-sm">KUBIE-NAGUE → O-SOTO-GARI</p>
+                </div>
+                
+                <div class="flex flex-col items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">KUBIE-NAGUE</h4>
                         <p class="text-gray-600 text-sm">Queda do Pescoço</p>
@@ -2069,12 +2201,12 @@
                         </div>
                     </div>
                     
-                    <!-- Seta Conectando -->
+                    <!-- Seta para Baixo -->
                     <div class="flex items-center justify-center">
-                        <div class="text-3xl text-teal-500 font-bold">→</div>
+                        <div class="text-4xl text-teal-500 font-bold">↓</div>
                     </div>
                     
-                    <!-- Técnica da Direita -->
+                    <!-- Técnica da Direita (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">O-SOTO-GARI</h4>
                         <p class="text-gray-600 text-sm">Gancho Externo Grande</p>
@@ -2085,17 +2217,22 @@
                     </div>
                     
                     <!-- Checkbox único para a combinação -->
-                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                    <div class="flex items-center justify-center mt-4">
                         <label class="flex items-center select-none">
                             <input type="checkbox" class="renrakuenka-checkbox accent-teal-500 w-5 h-5 mr-2" />
-                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi este Ataque Combinado</span>
                         </label>
                     </div>
                 </div>
                 
-                <!-- Linha 5: DE-ASHI-HARAI → O-SOTO-GARI -->
-                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
-                    <!-- Técnica da Esquerda -->
+                <!-- Grupo 5: DE-ASHI-HARAI + O-SOTO-GARI = Ataque Combinado -->
+                <div class="text-center mb-6 mt-8">
+                    <h3 class="text-xl font-bold text-cyan-600 mb-2">🥋 Ataque Combinado #5</h3>
+                    <p class="text-gray-600 text-sm">DE-ASHI-HARAI → O-SOTO-GARI</p>
+                </div>
+                
+                <div class="flex flex-col items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">DE-ASHI-HARAI</h4>
                         <p class="text-gray-600 text-sm">Varredura do Pé Avançado</p>
@@ -2105,12 +2242,12 @@
                         </div>
                     </div>
                     
-                    <!-- Seta Conectando -->
+                    <!-- Seta para Baixo -->
                     <div class="flex items-center justify-center">
-                        <div class="text-3xl text-cyan-500 font-bold">→</div>
+                        <div class="text-4xl text-cyan-500 font-bold">↓</div>
                     </div>
                     
-                    <!-- Técnica da Direita -->
+                    <!-- Técnica da Direita (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">O-SOTO-GARI</h4>
                         <p class="text-gray-600 text-sm">Gancho Externo Grande</p>
@@ -2121,17 +2258,22 @@
                     </div>
                     
                     <!-- Checkbox único para a combinação -->
-                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                    <div class="flex items-center justify-center mt-4">
                         <label class="flex items-center select-none">
                             <input type="checkbox" class="renrakuenka-checkbox accent-cyan-500 w-5 h-5 mr-2" />
-                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi este Ataque Combinado</span>
                         </label>
                     </div>
                 </div>
                 
-                <!-- Linha 6: KOSHI-GURUMA → KUBIE-NAGUE -->
-                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
-                    <!-- Técnica da Esquerda -->
+                <!-- Grupo 6: KOSHI-GURUMA + KUBIE-NAGUE = Ataque Combinado -->
+                <div class="text-center mb-6 mt-8">
+                    <h3 class="text-xl font-bold text-violet-600 mb-2">🥋 Ataque Combinado #6</h3>
+                    <p class="text-gray-600 text-sm">KOSHI-GURUMA → KUBIE-NAGUE</p>
+                </div>
+                
+                <div class="flex flex-col items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">KOSHI-GURUMA</h4>
                         <p class="text-gray-600 text-sm">Roda do Quadril</p>
@@ -2141,12 +2283,12 @@
                         </div>
                     </div>
                     
-                    <!-- Seta Conectando -->
+                    <!-- Seta para Baixo -->
                     <div class="flex items-center justify-center">
-                        <div class="text-3xl text-violet-500 font-bold">→</div>
+                        <div class="text-4xl text-violet-500 font-bold">↓</div>
                     </div>
                     
-                    <!-- Técnica da Direita -->
+                    <!-- Técnica da Direita (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">KUBIE-NAGUE</h4>
                         <p class="text-gray-600 text-sm">Queda do Pescoço</p>
@@ -2157,10 +2299,10 @@
                     </div>
                     
                     <!-- Checkbox único para a combinação -->
-                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                    <div class="flex items-center justify-center mt-4">
                         <label class="flex items-center select-none">
                             <input type="checkbox" class="renrakuenka-checkbox accent-violet-500 w-5 h-5 mr-2" />
-                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi este Ataque Combinado</span>
                         </label>
                     </div>
                 </div>
@@ -2181,7 +2323,7 @@
         <section id="kaeshi-waza-section" class="mb-12 hidden">
             <div class="text-center mb-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
-                    <span class="text-gradient">KAESHI-WAZA</span>
+                    <span class="text-gradient">Kaeshi-waza</span>
                 </h2>
                 <p class="text-lg text-gray-600 max-w-3xl mx-auto">
                     Aprenda técnicas de contra-ataques que elevam seu nível no judô. 
@@ -2192,9 +2334,14 @@
             <!-- Layout com Setas Conectando Técnicas em Linha Reta -->
             <div class="max-w-6xl mx-auto space-y-6">
                 
-                <!-- Linha 1: DE-ASHI-HARAI → TSUBAME-GAESHI -->
-                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
-                    <!-- Técnica da Esquerda -->
+                <!-- Grupo 1: DE-ASHI-HARAI + TSUBAME-GAESHI = Contra Ataque -->
+                <div class="text-center mb-6">
+                    <h3 class="text-xl font-bold text-emerald-600 mb-2">🥋 Contra Ataque #1</h3>
+                    <p class="text-gray-600 text-sm">DE-ASHI-HARAI → TSUBAME-GAESHI</p>
+                </div>
+                
+                <div class="flex flex-col items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">DE-ASHI-HARAI</h4>
                         <p class="text-gray-600 text-sm">Varredura do Pé Avançado</p>
@@ -2213,12 +2360,12 @@
                         </div>
                     </div>
                     
-                    <!-- Seta Conectando -->
+                    <!-- Seta para Baixo -->
                     <div class="flex items-center justify-center">
-                        <div class="text-3xl text-emerald-500 font-bold">→</div>
+                        <div class="text-4xl text-emerald-500 font-bold">↓</div>
                     </div>
                     
-                    <!-- Técnica da Direita -->
+                    <!-- Técnica da Direita (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">TSUBAME-GAESHI</h4>
                         <p class="text-gray-600 text-sm">Contra Andorinha</p>
@@ -2238,17 +2385,22 @@
                     </div>
                     
                     <!-- Checkbox único para a combinação -->
-                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                    <div class="flex items-center justify-center mt-4">
                         <label class="flex items-center select-none">
                             <input type="checkbox" class="kaeshi-waza-checkbox accent-emerald-500 w-5 h-5 mr-2" />
-                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi este Contra Ataque</span>
                         </label>
                     </div>
                 </div>
                 
-                <!-- Linha 2: O-SOTO-GARI → HARAI-GOSHI -->
-                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
-                    <!-- Técnica da Esquerda -->
+                <!-- Grupo 2: O-SOTO-GARI + HARAI-GOSHI = Contra Ataque -->
+                <div class="text-center mb-6 mt-8">
+                    <h3 class="text-xl font-bold text-rose-600 mb-2">🥋 Contra Ataque #2</h3>
+                    <p class="text-gray-600 text-sm">O-SOTO-GARI → HARAI-GOSHI</p>
+                </div>
+                
+                <div class="flex flex-col items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">O-SOTO-GARI</h4>
                         <p class="text-gray-600 text-sm">Gancho Externo Grande</p>
@@ -2267,12 +2419,12 @@
                         </div>
                     </div>
                     
-                    <!-- Seta Conectando -->
+                    <!-- Seta para Baixo -->
                     <div class="flex items-center justify-center">
-                        <div class="text-3xl text-rose-500 font-bold">→</div>
+                        <div class="text-4xl text-rose-500 font-bold">↓</div>
                     </div>
                     
-                    <!-- Técnica da Direita -->
+                    <!-- Técnica da Direita (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">HARAI-GOSHI</h4>
                         <p class="text-gray-600 text-sm">Varredura do Quadril</p>
@@ -2292,17 +2444,22 @@
                     </div>
                     
                     <!-- Checkbox único para a combinação -->
-                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                    <div class="flex items-center justify-center mt-4">
                         <label class="flex items-center select-none">
                             <input type="checkbox" class="kaeshi-waza-checkbox accent-rose-500 w-5 h-5 mr-2" />
-                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi este Contra Ataque</span>
                         </label>
                     </div>
                 </div>
                 
-                <!-- Linha 3: KO-UCHI-GARI → DE-ASHI-HARAI -->
-                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
-                    <!-- Técnica da Esquerda -->
+                <!-- Grupo 3: KO-UCHI-GARI + DE-ASHI-HARAI = Contra Ataque -->
+                <div class="text-center mb-6 mt-8">
+                    <h3 class="text-xl font-bold text-lime-600 mb-2">🥋 Contra Ataque #3</h3>
+                    <p class="text-gray-600 text-sm">KO-UCHI-GARI → DE-ASHI-HARAI</p>
+                </div>
+                
+                <div class="flex flex-col items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">KO-UCHI-GARI</h4>
                         <p class="text-gray-600 text-sm">Gancho Externo</p>
@@ -2321,12 +2478,12 @@
                         </div>
                     </div>
                     
-                    <!-- Seta Conectando -->
+                    <!-- Seta para Baixo -->
                     <div class="flex items-center justify-center">
-                        <div class="text-3xl text-lime-500 font-bold">→</div>
+                        <div class="text-4xl text-lime-500 font-bold">↓</div>
                     </div>
                     
-                    <!-- Técnica da Direita -->
+                    <!-- Técnica da Direita (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">DE-ASHI-HARAI</h4>
                         <p class="text-gray-600 text-sm">Varredura do Pé Avançado</p>
@@ -2346,17 +2503,22 @@
                     </div>
                     
                     <!-- Checkbox único para a combinação -->
-                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                    <div class="flex items-center justify-center mt-4">
                         <label class="flex items-center select-none">
                             <input type="checkbox" class="kaeshi-waza-checkbox accent-lime-500 w-5 h-5 mr-2" />
-                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi este Contra Ataque</span>
                         </label>
                     </div>
                 </div>
                 
-                <!-- Linha 4: KO-SOTO-GARI → UCHI-MATA -->
-                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
-                    <!-- Técnica da Esquerda -->
+                <!-- Grupo 4: KO-SOTO-GARI + UCHI-MATA = Contra Ataque -->
+                <div class="text-center mb-6 mt-8">
+                    <h3 class="text-xl font-bold text-sky-600 mb-2">🥋 Contra Ataque #4</h3>
+                    <p class="text-gray-600 text-sm">KO-SOTO-GARI → UCHI-MATA</p>
+                </div>
+                
+                <div class="flex flex-col items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">KO-SOTO-GARI</h4>
                         <p class="text-gray-600 text-sm">Gancho Externo Menor</p>
@@ -2375,12 +2537,12 @@
                         </div>
                     </div>
                     
-                    <!-- Seta Conectando -->
+                    <!-- Seta para Baixo -->
                     <div class="flex items-center justify-center">
-                        <div class="text-3xl text-sky-500 font-bold">→</div>
+                        <div class="text-4xl text-sky-500 font-bold">↓</div>
                     </div>
                     
-                    <!-- Técnica da Direita -->
+                    <!-- Técnica da Direita (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">UCHI-MATA</h4>
                         <p class="text-gray-600 text-sm">Varredura Interna da Coxa</p>
@@ -2400,17 +2562,22 @@
                     </div>
                     
                     <!-- Checkbox único para a combinação -->
-                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                    <div class="flex items-center justify-center mt-4">
                         <label class="flex items-center select-none">
                             <input type="checkbox" class="kaeshi-waza-checkbox accent-sky-500 w-5 h-5 mr-2" />
-                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi este Contra Ataque</span>
                         </label>
                     </div>
                 </div>
                 
-                <!-- Linha 5: UCHI-MATA → TAI-OTOSHI -->
-                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
-                    <!-- Técnica da Esquerda -->
+                <!-- Grupo 5: UCHI-MATA + TAI-OTOSHI = Contra Ataque -->
+                <div class="text-center mb-6 mt-8">
+                    <h3 class="text-xl font-bold text-purple-600 mb-2">🥋 Contra Ataque #5</h3>
+                    <p class="text-gray-600 text-sm">UCHI-MATA → TAI-OTOSHI</p>
+                </div>
+                
+                <div class="flex flex-col items-center justify-center gap-4">
+                    <!-- Técnica da Esquerda (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">UCHI-MATA</h4>
                         <p class="text-gray-600 text-sm">Varredura Interna da Coxa</p>
@@ -2429,12 +2596,12 @@
                         </div>
                     </div>
                     
-                    <!-- Seta Conectando -->
+                    <!-- Seta para Baixo -->
                     <div class="flex items-center justify-center">
-                        <div class="text-3xl text-purple-500 font-bold">→</div>
+                        <div class="text-4xl text-purple-500 font-bold">↓</div>
                     </div>
                     
-                    <!-- Técnica da Direita -->
+                    <!-- Técnica da Direita (card completo) -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">TAI-OTOSHI</h4>
                         <p class="text-gray-600 text-sm">Queda Corporal</p>
@@ -2454,10 +2621,10 @@
                     </div>
                     
                     <!-- Checkbox único para a combinação -->
-                    <div class="flex items-center justify-center mt-4 lg:mt-0">
+                    <div class="flex items-center justify-center mt-4">
                         <label class="flex items-center select-none">
                             <input type="checkbox" class="kaeshi-waza-checkbox accent-purple-500 w-5 h-5 mr-2" />
-                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
+                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi este Contra Ataque</span>
                         </label>
                     </div>
                 </div>
