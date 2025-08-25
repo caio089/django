@@ -154,12 +154,12 @@ button, .btn, a[href] {
 /* Efeito de destaque especial para a barra japonesa */
 .japanese-nav-container {
     position: relative;
-    background: linear-gradient(135deg, rgba(251, 191, 36, 0.03) 0%, rgba(251, 191, 36, 0.01) 100%);
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
     border-radius: 16px;
     padding: 16px;
     margin: 16px 0;
-    border: 1px solid rgba(251, 191, 36, 0.08);
-    box-shadow: 0 4px 20px rgba(251, 191, 36, 0.08);
+    border: 2px solid #f59e0b;
+    box-shadow: 0 4px 20px rgba(251, 191, 36, 0.15);
 }
 
 .japanese-nav-container::before {
@@ -188,8 +188,9 @@ button, .btn, a[href] {
 /* Melhorar o hover dos cards */
 .japanese-nav-card:hover {
     transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 20px 40px rgba(251, 191, 36, 0.15);
-    border-color: #fbbf24;
+    box-shadow: 0 20px 40px rgba(251, 191, 36, 0.25);
+    border-color: #f59e0b;
+    background: rgba(255, 255, 255, 0.2) !important;
 }
 
 /* Efeito de brilho nos cards */
@@ -1176,6 +1177,196 @@ button, .btn, a[href] {
         transform: none !important;
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
     }
+    
+    /* ===== BARRA JAPONESA IGUAL À PÁGINA1.HTML COM COR AMARELA CLARA ===== */
+    /* Container da barra japonesa - estilo igual à página1.html mas amarelo claro */
+    .japanese-nav-container {
+        position: relative !important;
+        background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(251, 191, 36, 0.05) 100%) !important;
+        border-radius: 16px !important;
+        padding: 16px !important;
+        margin: 16px 0 !important;
+        border: 1px solid rgba(251, 191, 36, 0.15) !important;
+        box-shadow: 0 4px 20px rgba(251, 191, 36, 0.1) !important;
+    }
+    
+    /* Efeito de borda brilhante - estilo igual à página1.html mas amarelo */
+    .japanese-nav-container::before {
+        content: '' !important;
+        position: absolute !important;
+        top: -2px !important;
+        left: -2px !important;
+        right: -2px !important;
+        bottom: -2px !important;
+        background: linear-gradient(45deg, #fbbf24, #f59e0b, #fbbf24) !important;
+        border-radius: 18px !important;
+        z-index: -1 !important;
+        opacity: 0.2 !important;
+        animation: borderGlow 3s ease-in-out infinite alternate !important;
+    }
+    
+    /* Cards da barra japonesa - estilo igual à página1.html */
+    .japanese-nav-card {
+        width: 120px !important;
+        height: 80px !important;
+        min-width: 120px !important;
+        min-height: 80px !important;
+        max-width: 120px !important;
+        max-height: 80px !important;
+        flex-shrink: 0 !important;
+        background: white !important;
+        border: 1px solid #d1d5db !important;
+        border-radius: 8px !important;
+        padding: 8px !important;
+        text-align: center !important;
+        cursor: pointer !important;
+        position: relative !important;
+        overflow: hidden !important;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+    
+    /* Layout horizontal com scroll para mobile - igual à página1.html */
+    .japanese-nav-container .flex {
+        gap: 0.5rem !important;
+        justify-content: flex-start !important;
+        flex-wrap: nowrap !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        scroll-behavior: smooth !important;
+        padding: 0.5rem 0 !important;
+        position: relative !important;
+    }
+    
+    /* Gradiente sutil no lado direito para indicar mais conteúdo */
+    .japanese-nav-container .flex::before {
+        content: '' !important;
+        position: absolute !important;
+        right: 0 !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        width: 2rem !important;
+        background: linear-gradient(to right, transparent, rgba(251, 191, 36, 0.1)) !important;
+        pointer-events: none !important;
+        z-index: 5 !important;
+    }
+    
+    /* Texto indicativo de scroll para mobile */
+    .japanese-nav-container::after {
+        content: '← Deslize para ver mais →' !important;
+        display: block !important;
+        text-align: center !important;
+        margin-top: 0.75rem !important;
+        font-size: 0.875rem !important;
+        color: #92400e !important;
+        font-weight: 500 !important;
+        opacity: 0.8 !important;
+    }
+    
+    /* ===== CARDS DE TÉCNICAS COM MAIS ESPAÇO PARA "APRENDI" ===== */
+    /* Aumentar largura e comprimento horizontal dos cards de técnicas */
+    .technique-individual-card .card-hover,
+    #nage-waza-section .video-card,
+    #imobilizacoes-section .video-card {
+        width: calc(100% + 4rem) !important;
+        max-width: calc(100% + 4rem) !important;
+        min-width: calc(100% + 4rem) !important;
+        margin: 0 -2rem !important;
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+    }
+    
+    /* Garantir que os cards não tenham bordas externas */
+    .technique-individual-card,
+    #nage-waza-section,
+    #imobilizacoes-section {
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        outline: none !important;
+        
+    }
+    
+    /* Aumentar largura dos cards de habilidades para acomodar texto "aprendi" */
+    .habilidade-item {
+        min-width: calc(100% - 0.5rem) !important;
+        max-width: calc(100% - 0.5rem) !important;
+        width: calc(100% - 0.5rem) !important;
+        padding: 1rem 2rem !important;
+        margin: 0.75rem !important;
+        font-size: 0.875rem !important;
+    }
+    
+    /* Aumentar espaço dos checkboxes e texto "aprendi" */
+    .video-header {
+        padding: 2rem !important;
+    }
+    
+    .video-header label {
+        min-width: 100px !important;
+        padding: 0.75rem !important;
+        margin-left: 1rem !important;
+    }
+    
+    .video-header span {
+        font-size: 0.875rem !important;
+        padding: 0.75rem 1.5rem !important;
+        white-space: nowrap !important;
+        font-weight: 600 !important;
+    }
+    
+    /* ===== EFEITOS VISUAIS DA BARRA JAPONESA - IGUAL À PÁGINA1.HTML ===== */
+    /* Hover dos cards da barra japonesa */
+    .japanese-nav-card:hover {
+        transform: translateY(-8px) scale(1.05) !important;
+        box-shadow: 0 20px 40px rgba(251, 191, 36, 0.15) !important;
+        border-color: #fbbf24 !important;
+    }
+    
+    /* Efeito de brilho nos cards */
+    .japanese-nav-card::after {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: -100% !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent) !important;
+        transition: left 0.5s !important;
+    }
+    
+    .japanese-nav-card:hover::after {
+        left: 100% !important;
+    }
+    
+    /* Efeito de clique nos cards */
+    .japanese-nav-card.clicked {
+        transform: scale(0.9) rotate(2deg) !important;
+        box-shadow: 0 0 40px rgba(251, 191, 36, 0.6) !important;
+        border-color: #f59e0b !important;
+    }
+    
+    /* Efeito de brilho durante o clique */
+    .japanese-nav-card::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        width: 0 !important;
+        height: 0 !important;
+        background: radial-gradient(circle, rgba(251, 191, 36, 0.4) 0%, transparent 70%) !important;
+        border-radius: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        z-index: -1 !important;
+    }
+    
+    .japanese-nav-card.clicked::before {
+        width: 400px !important;
+        height: 400px !important;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1185,6 +1376,22 @@ button, .btn, a[href] {
         height: 0.875rem !important;
         min-width: 0.875rem !important;
         min-height: 0.875rem !important;
+    }
+    
+    /* Barra japonesa para telas pequenas */
+    .japanese-nav-card {
+        width: 100px !important;
+        height: 70px !important;
+        min-width: 100px !important;
+        min-height: 70px !important;
+        max-width: 100px !important;
+        max-height: 70px !important;
+    }
+    
+    /* Layout horizontal com scroll para telas pequenas */
+    .japanese-nav-container .flex {
+        gap: 0.25rem !important;
+        padding: 0.25rem 0 !important;
     }
     
     /* Header muito pequeno */
@@ -1217,9 +1424,9 @@ button, .btn, a[href] {
     #imobilizacoes-section .video-card,
     #nage-waza-section .card-hover,
     #imobilizacoes-section .card-hover {
-        min-width: 300px !important;
-        max-width: 300px !important;
-        width: 300px !important;
+        min-width: 320px !important;
+        max-width: 320px !important;
+        width: 320px !important;
     }
     
     #nage-waza-section .grid,
@@ -1340,6 +1547,22 @@ button, .btn, a[href] {
         min-height: 0.75rem !important;
     }
     
+    /* Barra japonesa para telas muito pequenas */
+    .japanese-nav-card {
+        width: 80px !important;
+        height: 70px !important;
+        min-width: 80px !important;
+        min-height: 70px !important;
+        max-width: 80px !important;
+        max-height: 70px !important;
+    }
+    
+    /* Layout horizontal com scroll para telas muito pequenas */
+    .japanese-nav-container .flex {
+        gap: 0.25rem !important;
+        padding: 0.25rem 0 !important;
+    }
+    
     /* Dispositivos extremamente pequenos */
     header {
         padding: 0.25rem !important;
@@ -1354,9 +1577,9 @@ button, .btn, a[href] {
     #imobilizacoes-section .video-card,
     #nage-waza-section .card-hover,
     #imobilizacoes-section .card-hover {
-        min-width: 280px !important;
-        max-width: 280px !important;
-        width: 280px !important;
+        min-width: 300px !important;
+        max-width: 300px !important;
+        width: 300px !important;
     }
     
 

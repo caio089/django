@@ -900,4 +900,115 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Aplicando otimizações mobile...');
         disableMobileAnimations();
     }
+    
+    // ===== ANIMAÇÕES DO MODAL =====
+    // Função para animar a entrada do modal
+    function animateModalEnter(modal) {
+        if (!modal) return;
+        
+        // Reset do estado inicial
+        modal.style.opacity = '0';
+        modal.style.transform = 'scale(0.8) translateY(-20px)';
+        modal.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        
+        // Mostrar modal
+        modal.style.display = 'flex';
+        
+        // Animar entrada
+        setTimeout(() => {
+            modal.style.opacity = '1';
+            modal.style.transform = 'scale(1) translateY(0)';
+        }, 10);
+    }
+    
+    // Função para animar a saída do modal
+    function animateModalExit(modal) {
+        if (!modal) return;
+        
+        modal.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+        modal.style.opacity = '0';
+        modal.style.transform = 'scale(0.8) translateY(-20px)';
+        
+        setTimeout(() => {
+            modal.style.display = 'none';
+        }, 200);
+    }
+    
+    // Aplicar animações aos modais existentes
+    document.querySelectorAll('.modal').forEach(modal => {
+        // Adicionar classe para animação
+        modal.classList.add('modal-animated');
+        
+        // Interceptar abertura do modal
+        const openTriggers = modal.querySelectorAll('[data-modal-open]');
+        openTriggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                animateModalEnter(modal);
+            });
+        });
+        
+        // Interceptar fechamento do modal
+        const closeTriggers = modal.querySelectorAll('[data-modal-close], .close-btn');
+        closeTriggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                animateModalExit(modal);
+            });
+        });
+    });
+    
+    // ===== OTIMIZAÇÕES DE ANIMAÇÃO =====
+    // Reduzir duração das animações de scroll para barra japonesa
+    function smoothScrollToOptimized(targetId, duration = 800) {
+        const targetElement = document.getElementById(targetId);
+        if (!targetElement) return;
+        
+        const targetPosition = targetElement.offsetTop - 100;
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        const startTime = performance.now();
+        
+        function animation(currentTime) {
+            const timeElapsed = currentTime - startTime;
+            const progress = Math.min(timeElapsed / duration, 1);
+            
+            // Easing suave mas mais rápido
+            const easeProgress = 1 - Math.pow(1 - progress, 3);
+            
+            window.scrollTo(0, startPosition + (distance * easeProgress));
+            
+            if (progress < 1) {
+                requestAnimationFrame(animation);
+            }
+        }
+        
+        requestAnimationFrame(animation);
+    }
+    
+    // Reduzir duração das animações de voltar ao topo
+    function backToTopOptimized() {
+        const startPosition = window.pageYOffset;
+        const startTime = performance.now();
+        const duration = 600; // Reduzido de 1000ms para 600ms
+        
+        function animation(currentTime) {
+            const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+        
+        // Easing mais suave
+        const easeProgress = 1 - Math.pow(1 - progress, 2);
+        
+        window.scrollTo(0, startPosition * (1 - easeProgress));
+        
+        if (progress < 1) {
+            requestAnimationFrame(animation);
+        }
+    }
+    
+    requestAnimationFrame(animation);
+}
+
+// Substituir funções originais pelas otimizadas
+// (Estas serão chamadas quando necessário)
+window.smoothScrollToOptimized = smoothScrollToOptimized;
+window.backToTopOptimized = backToTopOptimized;
 });
