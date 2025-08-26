@@ -151,46 +151,26 @@ button, .btn, a[href] {
     overflow: hidden;
 }
 
-/* Efeito de destaque especial para a barra japonesa */
+/* Efeito de destaque especial para a barra japonesa - COR AMARELA MAIS ESCURA */
 .japanese-nav-container {
     position: relative;
-    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(251, 191, 36, 0.08) 100%);
     border-radius: 16px;
     padding: 16px;
     margin: 16px 0;
-    border: 2px solid #f59e0b;
+    border: 1px solid rgba(251, 191, 36, 0.25);
     box-shadow: 0 4px 20px rgba(251, 191, 36, 0.15);
 }
 
-.japanese-nav-container::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, #fbbf24, #f59e0b, #fbbf24);
-    border-radius: 18px;
-    z-index: -1;
-    opacity: 0.2;
-    animation: borderGlow 3s ease-in-out infinite alternate;
-}
+/* Contorno removido - barra japonesa limpa */
 
-@keyframes borderGlow {
-    0% {
-        opacity: 0.15;
-    }
-    100% {
-        opacity: 0.25;
-    }
-}
+/* Animação borderGlow removida - não é mais necessária */
 
-/* Melhorar o hover dos cards */
+/* Melhorar o hover dos cards - CORES AMARELAS */
 .japanese-nav-card:hover {
     transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 20px 40px rgba(251, 191, 36, 0.25);
-    border-color: #f59e0b;
-    background: rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 20px 40px rgba(251, 191, 36, 0.2);
+    border-color: #fbbf24;
 }
 
 /* Efeito de brilho nos cards */
@@ -376,29 +356,12 @@ button, .btn, a[href] {
     font-weight: 500;
 }
 
-.japanese-nav-card::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: radial-gradient(circle, rgba(251, 191, 36, 0.4) 0%, transparent 70%);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: -1;
-}
-
-.japanese-nav-card.clicked::before {
-    width: 400px;
-    height: 400px;
-}
+/* Efeito de contorno removido da versão desktop */
 
 .japanese-nav-card.clicked {
-    transform: scale(0.9) rotate(2deg);
-    box-shadow: 0 0 40px rgba(251, 191, 36, 0.6);
-    border-color: #F59E0B;
+    transform: scale(0.95);
+    box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3);
+    border-color: #fbbf24;
 }
 
 /* Efeito de brilho durante o clique */
@@ -417,7 +380,7 @@ button, .btn, a[href] {
     left: 100%;
 }
 
-/* Animação de scroll suave */
+/* Animação de scroll suave - CORES AMARELAS */
 .scroll-indicator {
     position: fixed;
     top: 50%;
@@ -461,15 +424,15 @@ button, .btn, a[href] {
 
 @keyframes destinationPulse {
     0% {
-        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+        box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7);
         transform: scale(1);
     }
     50% {
-        box-shadow: 0 0 0 20px rgba(59, 130, 246, 0.3);
+        box-shadow: 0 0 0 20px rgba(251, 191, 36, 0.3);
         transform: scale(1.02);
     }
     100% {
-        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+        box-shadow: 0 0 0 0 rgba(251, 191, 36, 0);
         transform: scale(1);
     }
 }
@@ -479,7 +442,9 @@ button, .btn, a[href] {
 .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
 .technique-card {
-    height: 420px;
+    height: 480px; /* Aumentado de 420px para 480px para acomodar todos os elementos */
+    width: 100%; /* Garantir largura total */
+    max-width: 100%; /* Garantir largura máxima */
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -493,7 +458,8 @@ button, .btn, a[href] {
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    padding: 2rem; /* Aumentado para 2rem para mais espaço horizontal */
+    width: 100%; /* Garantir largura total */
 }
 
 .technique-card .bg-blue-50,
@@ -511,6 +477,9 @@ button, .btn, a[href] {
 /* Estilos para os cards de técnicas individuais */
 .technique-individual-card {
     transition: all 0.3s ease;
+    min-height: 480px; /* Garantir altura mínima para acomodar todos os elementos */
+    width: 100%; /* Garantir largura total */
+    max-width: 100%; /* Garantir largura máxima */
 }
 
 .technique-individual-card .card-hover {
@@ -615,7 +584,7 @@ button, .btn, a[href] {
     background: #FBBF24;
     border-radius: 50%;
     animation: particleFloat 1.5s ease-out forwards;
-    box-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
     z-index: 1001;
 }
 
@@ -819,13 +788,18 @@ button, .btn, a[href] {
         height: 0.75rem !important;
     }
     
-    /* Cards de habilidades mobile - SEM ANIMAÇÕES COMPLEXAS */
+    /* Cards de habilidades mobile - IGUAL À PÁGINA2.HTML */
     .habilidade-item {
         font-size: 0.875rem !important;
         padding: 0.75rem 1rem !important;
         margin: 0.25rem !important;
-        min-width: calc(100% - 2rem) !important;
-        max-width: calc(100% - 2rem) !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+        border-radius: 8px !important;
+        background: white !important;
+        border: 1px solid #e5e7eb !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
         /* Remover animações complexas em mobile */
         transition: background-color 0.2s ease !important;
         transform: none !important;
@@ -834,6 +808,7 @@ button, .btn, a[href] {
     .habilidade-item:hover {
         transform: none !important;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        background: #f9fafb !important;
     }
     
     /* Seções de técnicas mobile */
@@ -855,20 +830,24 @@ button, .btn, a[href] {
         scroll-snap-type: x mandatory !important;
     }
     
-    /* Cards do carrossel */
+    /* Cards do carrossel - AUMENTADOS PARA CABER "APRENDI" */
     #nage-waza-section .video-card,
     #imobilizacoes-section .video-card,
     #nage-waza-section .card-hover,
     #imobilizacoes-section .card-hover {
-        min-width: 320px !important;
-        max-width: 320px !important;
-        width: 320px !important;
+        min-width: 380px !important; /* Aumentado de 320px para 380px */
+        max-width: 380px !important; /* Aumentado de 320px para 380px */
+        width: 380px !important; /* Aumentado de 320px para 380px */
         flex-shrink: 0 !important;
         scroll-snap-align: start !important;
         border-radius: 12px !important;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
         /* Simplificar animações em mobile */
         transition: box-shadow 0.2s ease !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        overflow: hidden !important;
     }
     
     .video-card:hover {
@@ -909,7 +888,8 @@ button, .btn, a[href] {
     }
     
     .video-header {
-        padding: 1rem !important;
+        padding: 2rem !important; /* Aumentado para 2rem para mais espaço horizontal */
+        margin-bottom: 0.5rem !important; /* Adicionar margem inferior */
     }
     
     .video-title {
@@ -921,12 +901,12 @@ button, .btn, a[href] {
     }
     
     .video-container {
-        height: 200px !important;
-        margin: 1rem auto !important;
+        height: 220px !important; /* Aumentado para mais espaço */
+        margin: 1.5rem auto !important; /* Aumentado para mais espaço */
     }
     
     .video-tip {
-        padding: 1rem !important;
+        padding: 1.5rem !important; /* Aumentado para mais espaço */
         margin: 0 1rem 1rem 1rem !important;
     }
     
@@ -1062,10 +1042,7 @@ button, .btn, a[href] {
         display: none !important;
     }
     
-    /* Simplificar efeitos de brilho em mobile */
-    .japanese-nav-container::before {
-        display: none !important;
-    }
+    /* Contorno amarelo já removido */
     
     /* Simplificar animações de entrada em mobile */
     .japanese-nav-card {
@@ -1083,7 +1060,7 @@ button, .btn, a[href] {
     /* Simplificar hover effects em mobile */
     .japanese-nav-card:hover {
         transform: none !important;
-        box-shadow: 0 4px 16px rgba(251, 191, 36, 0.2) !important;
+        box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2) !important;
     }
     
     /* Simplificar animações de carrossel em mobile */
@@ -1152,10 +1129,7 @@ button, .btn, a[href] {
         animation: none !important;
     }
     
-    /* Simplificar animações de border glow em mobile */
-    .japanese-nav-container::before {
-        animation: none !important;
-    }
+    /* Contorno amarelo já removido */
     
     /* Simplificar animações de click em mobile */
     .japanese-nav-card.clicked::before {
@@ -1164,7 +1138,7 @@ button, .btn, a[href] {
     
     .japanese-nav-card.clicked {
         transform: none !important;
-        box-shadow: 0 4px 16px rgba(251, 191, 36, 0.3) !important;
+        box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3) !important;
     }
     
     /* Simplificar animações de scroll em mobile */
@@ -1178,34 +1152,21 @@ button, .btn, a[href] {
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
     }
     
-    /* ===== BARRA JAPONESA IGUAL À PÁGINA1.HTML COM COR AMARELA CLARA ===== */
-    /* Container da barra japonesa - estilo igual à página1.html mas amarelo claro */
+    /* ===== BARRA JAPONESA COM COR AMARELA CLARA ===== */
+    /* Container da barra japonesa - cor amarela clara igual à versão desktop */
     .japanese-nav-container {
         position: relative !important;
-        background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(251, 191, 36, 0.05) 100%) !important;
+        background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(251, 191, 36, 0.08) 100%) !important;
         border-radius: 16px !important;
         padding: 16px !important;
         margin: 16px 0 !important;
-        border: 1px solid rgba(251, 191, 36, 0.15) !important;
-        box-shadow: 0 4px 20px rgba(251, 191, 36, 0.1) !important;
+        border: 1px solid rgba(251, 191, 36, 0.25) !important;
+        box-shadow: 0 4px 20px rgba(251, 191, 36, 0.15) !important;
     }
     
-    /* Efeito de borda brilhante - estilo igual à página1.html mas amarelo */
-    .japanese-nav-container::before {
-        content: '' !important;
-        position: absolute !important;
-        top: -2px !important;
-        left: -2px !important;
-        right: -2px !important;
-        bottom: -2px !important;
-        background: linear-gradient(45deg, #fbbf24, #f59e0b, #fbbf24) !important;
-        border-radius: 18px !important;
-        z-index: -1 !important;
-        opacity: 0.2 !important;
-        animation: borderGlow 3s ease-in-out infinite alternate !important;
-    }
+    /* Contorno azul igual à página2.html */
     
-    /* Cards da barra japonesa - estilo igual à página1.html */
+    /* Cards da barra japonesa - estilo igual à página2.html */
     .japanese-nav-card {
         width: 120px !important;
         height: 80px !important;
@@ -1225,7 +1186,7 @@ button, .btn, a[href] {
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
     
-    /* Layout horizontal com scroll para mobile - igual à página1.html */
+    /* Layout horizontal com scroll para mobile - igual à página2.html */
     .japanese-nav-container .flex {
         gap: 0.5rem !important;
         justify-content: flex-start !important;
@@ -1262,23 +1223,25 @@ button, .btn, a[href] {
         opacity: 0.8 !important;
     }
     
-    /* ===== CARDS DE TÉCNICAS COM MAIS ESPAÇO PARA "APRENDI" ===== */
-    /* Aumentar largura e comprimento horizontal dos cards de técnicas */
+    /* ===== CARDS DE TÉCNICAS IGUAL À PÁGINA5.HTML ===== */
+    /* Cards de técnicas com tamanho fixo igual à página5.html */
     .technique-individual-card .card-hover,
     #nage-waza-section .video-card,
     #imobilizacoes-section .video-card {
-        width: calc(100% + 4rem) !important;
-        max-width: calc(100% + 4rem) !important;
-        min-width: calc(100% + 4rem) !important;
-        margin: 0 -2rem !important;
+        min-width: 320px !important;
+        max-width: 320px !important;
+        width: 320px !important;
+        flex-shrink: 0 !important;
+        scroll-snap-align: start !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+        margin: 0 !important;
         padding: 0 !important;
         border: none !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-        border-radius: 8px !important;
         overflow: hidden !important;
     }
     
-    /* Garantir que os cards não tenham bordas externas */
+    /* Garantir que os cards tenham estrutura limpa */
     .technique-individual-card,
     #nage-waza-section,
     #imobilizacoes-section {
@@ -1286,43 +1249,49 @@ button, .btn, a[href] {
         margin: 0 !important;
         border: none !important;
         outline: none !important;
-        
     }
     
-    /* Aumentar largura dos cards de habilidades para acomodar texto "aprendi" */
+    /* Cards de habilidades com estrutura igual à página2.html */
     .habilidade-item {
-        min-width: calc(100% - 0.5rem) !important;
-        max-width: calc(100% - 0.5rem) !important;
-        width: calc(100% - 0.5rem) !important;
-        padding: 1rem 2rem !important;
-        margin: 0.75rem !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+        padding: 0.75rem 1rem !important;
+        margin: 0.25rem !important;
         font-size: 0.875rem !important;
+        border-radius: 8px !important;
+        background: white !important;
+        border: 1px solid #e5e7eb !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
     }
     
-    /* Aumentar espaço dos checkboxes e texto "aprendi" */
+    /* Header do vídeo com estrutura limpa */
     .video-header {
-        padding: 2rem !important;
+        padding: 1rem !important;
+        margin: 0 !important;
     }
     
     .video-header label {
-        min-width: 100px !important;
-        padding: 0.75rem !important;
-        margin-left: 1rem !important;
+        min-width: auto !important;
+        padding: 0.5rem !important;
+        margin: 0 !important;
     }
     
     .video-header span {
         font-size: 0.875rem !important;
-        padding: 0.75rem 1.5rem !important;
+        padding: 0.5rem 1rem !important;
         white-space: nowrap !important;
         font-weight: 600 !important;
+        margin: 0 !important;
     }
     
-    /* ===== EFEITOS VISUAIS DA BARRA JAPONESA - IGUAL À PÁGINA1.HTML ===== */
+    /* ===== EFEITOS VISUAIS DA BARRA JAPONESA - CORES AMARELAS ===== */
     /* Hover dos cards da barra japonesa */
     .japanese-nav-card:hover {
         transform: translateY(-8px) scale(1.05) !important;
-        box-shadow: 0 20px 40px rgba(251, 191, 36, 0.15) !important;
+        box-shadow: 0 20px 40px rgba(251, 191, 36, 0.2) !important;
         border-color: #fbbf24 !important;
+        background: white !important;
     }
     
     /* Efeito de brilho nos cards */
@@ -1343,30 +1312,12 @@ button, .btn, a[href] {
     
     /* Efeito de clique nos cards */
     .japanese-nav-card.clicked {
-        transform: scale(0.9) rotate(2deg) !important;
-        box-shadow: 0 0 40px rgba(251, 191, 36, 0.6) !important;
-        border-color: #f59e0b !important;
+        transform: scale(0.95) !important;
+        box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3) !important;
+        border-color: #fbbf24 !important;
     }
     
-    /* Efeito de brilho durante o clique */
-    .japanese-nav-card::before {
-        content: '' !important;
-        position: absolute !important;
-        top: 50% !important;
-        left: 50% !important;
-        width: 0 !important;
-        height: 0 !important;
-        background: radial-gradient(circle, rgba(251, 191, 36, 0.4) 0%, transparent 70%) !important;
-        border-radius: 50% !important;
-        transform: translate(-50%, -50%) !important;
-        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        z-index: -1 !important;
-    }
-    
-    .japanese-nav-card.clicked::before {
-        width: 400px !important;
-        height: 400px !important;
-    }
+    /* Efeito de contorno removido da versão mobile */
 }
 
 @media (max-width: 480px) {
@@ -1407,11 +1358,18 @@ button, .btn, a[href] {
         font-size: 0.75rem !important;
     }
     
-    /* Cards de habilidades muito pequenos */
+    /* Cards de habilidades muito pequenos - igual à página2.html */
     .habilidade-item {
         font-size: 0.75rem !important;
         padding: 0.5rem 0.75rem !important;
-        margin: 0.125rem !important;
+        margin: 0.25rem !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+        border-radius: 8px !important;
+        background: white !important;
+        border: 1px solid #e5e7eb !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
     }
     
     /* Seções mobile */
@@ -1419,20 +1377,29 @@ button, .btn, a[href] {
         padding: 0 0.5rem !important;
     }
     
-    /* Carrossel para telas muito pequenas */
+    /* Carrossel para telas muito pequenas - AUMENTADOS PARA CABER "APRENDI" */
     #nage-waza-section .video-card,
     #imobilizacoes-section .video-card,
     #nage-waza-section .card-hover,
     #imobilizacoes-section .card-hover {
-        min-width: 320px !important;
-        max-width: 320px !important;
-        width: 320px !important;
+        min-width: 360px !important; /* Aumentado de 300px para 360px */
+        max-width: 360px !important; /* Aumentado de 300px para 360px */
+        width: 360px !important; /* Aumentado de 300px para 360px */
+        flex-shrink: 0 !important;
+        scroll-snap-align: start !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        overflow: hidden !important;
     }
     
     #nage-waza-section .grid,
     #imobilizacoes-section .grid {
         gap: 0.75rem !important;
         padding: 0.25rem 0 !important;
+        scroll-snap-type: x mandatory !important;
     }
     
 
@@ -1454,7 +1421,7 @@ button, .btn, a[href] {
     }
     
     .video-header {
-        padding: 0.75rem !important;
+        padding: 1.5rem !important; /* Aumentado para 1.5rem para mais espaço horizontal */
     }
     
     .video-title {
@@ -1466,12 +1433,12 @@ button, .btn, a[href] {
     }
     
     .video-container {
-        height: 180px !important;
-        margin: 0.75rem auto !important;
+        height: 200px !important; /* Aumentado para mais espaço */
+        margin: 1rem auto !important; /* Aumentado para mais espaço */
     }
     
     .video-tip {
-        padding: 0.75rem !important;
+        padding: 1rem !important; /* Aumentado para mais espaço */
         margin: 0 0.75rem 0.75rem 0.75rem !important;
     }
     
@@ -1572,14 +1539,22 @@ button, .btn, a[href] {
         padding: 0.25rem !important;
     }
     
-    /* Carrossel para telas extremamente pequenas */
+    /* Carrossel para telas extremamente pequenas - AUMENTADOS PARA CABER "APRENDI" */
     #nage-waza-section .video-card,
     #imobilizacoes-section .video-card,
     #nage-waza-section .card-hover,
     #imobilizacoes-section .card-hover {
-        min-width: 300px !important;
-        max-width: 300px !important;
-        width: 300px !important;
+        min-width: 340px !important; /* Aumentado de 280px para 340px */
+        max-width: 340px !important; /* Aumentado de 280px para 340px */
+        width: 340px !important; /* Aumentado de 280px para 340px */
+        flex-shrink: 0 !important;
+        scroll-snap-align: start !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        overflow: hidden !important;
     }
     
 
@@ -1595,6 +1570,13 @@ button, .btn, a[href] {
     .habilidade-item {
         font-size: 0.625rem !important;
         padding: 0.375rem 0.5rem !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+        border-radius: 8px !important;
+        background: white !important;
+        border: 1px solid #e5e7eb !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
     }
     
     h2 {
@@ -1602,11 +1584,11 @@ button, .btn, a[href] {
     }
     
     .video-container {
-        height: 160px !important;
+        height: 180px !important; /* Aumentado para mais espaço */
     }
     
     .video-header {
-        padding: 0.5rem !important;
+        padding: 1.25rem !important; /* Aumentado para 1.25rem para mais espaço horizontal */
     }
     
     .video-title {
@@ -1618,7 +1600,7 @@ button, .btn, a[href] {
     }
     
     .video-tip {
-        padding: 0.5rem !important;
+        padding: 0.75rem !important; /* Aumentado para mais espaço */
         margin: 0 0.5rem 0.5rem 0.5rem !important;
     }
     
@@ -1740,11 +1722,11 @@ button, .btn, a[href] {
     
     /* Cards sempre na mesma linha */
     .japanese-nav-card {
-        width: 100px !important;
+        width: 120px !important; /* Aumentado de 100px para 120px */
         height: 80px !important;
-        min-width: 100px !important;
+        min-width: 120px !important; /* Aumentado de 100px para 120px */
         min-height: 80px !important;
-        max-width: 100px !important;
+        max-width: 120px !important; /* Aumentado de 100px para 120px */
         max-height: 80px !important;
         flex-shrink: 0 !important;
     }
@@ -1761,9 +1743,16 @@ button, .btn, a[href] {
         opacity: 0.8 !important;
     }
     
-    /* Espaçamento melhorado para touch */
+    /* Espaçamento melhorado para touch - IGUAL À PÁGINA2.HTML */
     .habilidade-item {
         margin: 0.5rem !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+        border-radius: 8px !important;
+        background: white !important;
+        border: 1px solid #e5e7eb !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
     }
     
     .japanese-nav-card {
