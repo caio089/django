@@ -565,11 +565,83 @@ button, .btn, a[href] {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+    /* Estilos básicos para desktop */
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1rem;
+    margin: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .habilidade-item:hover {
     transform: translateY(-3px) scale(1.03);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    background: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Efeito de cursor para habilidades e condições */
+.habilidade-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.6s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.habilidade-item:hover::before {
+    left: 100%;
+}
+
+/* Efeito de borda animada */
+.habilidade-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    background: linear-gradient(45deg, #6B7280, #4B5563, #6B7280) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.habilidade-item:hover::after {
+    opacity: 1;
+}
+
+/* ===== CONDIÇÕES E HABILIDADES PARA TODAS AS TELAS ===== */
+/* Cards de habilidades - funcionando em todas as telas */
+.habilidade-item {
+    /* Estilos básicos para todas as telas */
+    background: white !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 12px !important;
+    padding: 1rem !important;
+    margin: 0.5rem !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+    /* Efeitos básicos */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+}
+
+.habilidade-item:hover {
+    /* Efeito hover para todas as telas */
+    transform: translateY(-3px) scale(1.03) !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12) !important;
     background: rgba(255, 255, 255, 0.95) !important;
 }
 
@@ -788,28 +860,62 @@ button, .btn, a[href] {
         height: 0.75rem !important;
     }
     
+    /* ===== CONDIÇÕES E HABILIDADES IGUAL À PÁGINA2.HTML ===== */
     /* Cards de habilidades mobile - IGUAL À PÁGINA2.HTML */
     .habilidade-item {
-        font-size: 0.875rem !important;
-        padding: 0.75rem 1rem !important;
-        margin: 0.25rem !important;
+        /* Layout igual à página2.html */
         width: 100% !important;
         max-width: 100% !important;
         min-width: 100% !important;
+        padding: 0.75rem 1rem !important;
+        margin: 0.5rem !important;
+        font-size: 0.875rem !important;
         border-radius: 8px !important;
         background: white !important;
         border: 1px solid #e5e7eb !important;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
-        /* Remover animações complexas em mobile */
-        transition: background-color 0.2s ease !important;
+        /* Efeitos básicos apenas */
+        transition: background-color 0.2s ease, box-shadow 0.2s ease !important;
         transform: none !important;
+        /* Remover efeitos complexos */
+        position: relative !important;
+        overflow: visible !important;
+        /* Efeito básico de aparecer apenas */
+        animation: fadeInUp 0.5s ease-out forwards !important;
+        opacity: 0 !important;
     }
     
     .habilidade-item:hover {
+        /* Efeito simples igual à página2.html */
         transform: none !important;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
         background: #f9fafb !important;
     }
+    
+    /* Remover todos os efeitos complexos das habilidades */
+    .habilidade-item::before,
+    .habilidade-item::after {
+        display: none !important;
+    }
+    
+    @keyframes fadeInUp {
+        to {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+    }
+    
+    /* Aplicar delay para cada item aparecer sequencialmente */
+    .habilidade-item:nth-child(1) { animation-delay: 0.1s !important; }
+    .habilidade-item:nth-child(2) { animation-delay: 0.2s !important; }
+    .habilidade-item:nth-child(3) { animation-delay: 0.3s !important; }
+    .habilidade-item:nth-child(4) { animation-delay: 0.4s !important; }
+    .habilidade-item:nth-child(5) { animation-delay: 0.5s !important; }
+    .habilidade-item:nth-child(6) { animation-delay: 0.6s !important; }
+    .habilidade-item:nth-child(7) { animation-delay: 0.7s !important; }
+    .habilidade-item:nth-child(8) { animation-delay: 0.8s !important; }
+    .habilidade-item:nth-child(9) { animation-delay: 0.9s !important; }
+    .habilidade-item:nth-child(10) { animation-delay: 1.0s !important; }
     
     /* Seções de técnicas mobile */
     #nage-waza-section, #imobilizacoes-section {
@@ -1358,151 +1464,59 @@ button, .btn, a[href] {
         font-size: 0.75rem !important;
     }
     
+    /* ===== CONDIÇÕES E HABILIDADES IGUAL À PÁGINA2.HTML - TELAS PEQUENAS ===== */
     /* Cards de habilidades muito pequenos - igual à página2.html */
     .habilidade-item {
-        font-size: 0.75rem !important;
-        padding: 0.5rem 0.75rem !important;
-        margin: 0.25rem !important;
+        /* Layout igual à página2.html */
         width: 100% !important;
         max-width: 100% !important;
         min-width: 100% !important;
+        padding: 0.5rem 0.75rem !important;
+        margin: 0.5rem !important;
+        font-size: 0.75rem !important;
         border-radius: 8px !important;
         background: white !important;
         border: 1px solid #e5e7eb !important;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+        /* Efeitos básicos apenas */
+        transition: background-color 0.2s ease, box-shadow 0.2s ease !important;
+        transform: none !important;
+        /* Remover efeitos complexos */
+        position: relative !important;
+        overflow: visible !important;
     }
     
-    /* Seções mobile */
-    #nage-waza-section, #imobilizacoes-section {
-        padding: 0 0.5rem !important;
+    .habilidade-item:hover {
+        /* Efeito simples igual à página2.html */
+        transform: none !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        background: #f9fafb !important;
     }
     
-    /* Carrossel para telas muito pequenas - AUMENTADOS PARA CABER "APRENDI" */
-    #nage-waza-section .video-card,
-    #imobilizacoes-section .video-card,
-    #nage-waza-section .card-hover,
-    #imobilizacoes-section .card-hover {
-        min-width: 360px !important; /* Aumentado de 300px para 360px */
-        max-width: 360px !important; /* Aumentado de 300px para 360px */
-        width: 360px !important; /* Aumentado de 300px para 360px */
-        flex-shrink: 0 !important;
-        scroll-snap-align: start !important;
-        border-radius: 12px !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        border: none !important;
-        overflow: hidden !important;
+    /* Remover todos os efeitos complexos das habilidades */
+    .habilidade-item::before,
+    .habilidade-item::after {
+        display: none !important;
     }
     
-    #nage-waza-section .grid,
-    #imobilizacoes-section .grid {
-        gap: 0.75rem !important;
-        padding: 0.25rem 0 !important;
-        scroll-snap-type: x mandatory !important;
+    /* Efeito básico de aparecer apenas */
+    .habilidade-item {
+        animation: fadeInUp 0.5s ease-out forwards !important;
+        opacity: 0 !important;
+        transform: translateY(20px) !important;
     }
     
-
-    
-    /* Container principal mobile */
-    main {
-        padding: 0.5rem !important;
-    }
-    
-    /* Títulos mobile */
-    h2 {
-        font-size: 1.5rem !important;
-        margin-bottom: 1rem !important;
-    }
-    
-    .video-card,
-    .card-hover {
-        margin-bottom: 1rem !important;
-    }
-    
-    .video-header {
-        padding: 1.5rem !important; /* Aumentado para 1.5rem para mais espaço horizontal */
-    }
-    
-    .video-title {
-        font-size: 0.875rem !important;
-    }
-    
-    .video-description {
-        font-size: 0.75rem !important;
-    }
-    
-    .video-container {
-        height: 200px !important; /* Aumentado para mais espaço */
-        margin: 1rem auto !important; /* Aumentado para mais espaço */
-    }
-    
-    .video-tip {
-        padding: 1rem !important; /* Aumentado para mais espaço */
-        margin: 0 0.75rem 0.75rem 0.75rem !important;
-    }
-    
-    .video-tip-title {
-        font-size: 0.75rem !important;
-    }
-    
-    .video-tip-text {
-        font-size: 0.6875rem !important;
-    }
-    
-    /* Botões muito pequenos */
-    .back-to-top-section {
-        padding: 0.5rem 1rem !important;
-        font-size: 0.75rem !important;
-    }
-    
-    /* Modal muito pequeno */
-    #congratulationsModal .bg-white {
-        margin: 0.5rem !important;
-        padding: 1rem !important;
-    }
-    
-    .congratulations-title {
-        font-size: 1.5rem !important;
-    }
-    
-    .trophy-icon {
-        font-size: 2.5rem !important;
-    }
-    
-    .stat-card {
-        padding: 0.75rem !important;
-    }
-    
-    .stat-number {
-        font-size: 1.25rem !important;
-    }
-    
-    .stat-label {
-        font-size: 0.75rem !important;
-    }
-    
-    /* Barra flutuante muito pequena */
-    #floatingProgress {
-        width: calc(100vw - 1rem) !important;
-        margin: 0 0.5rem !important;
-        padding: 0.5rem !important;
-    }
-    
-    #floatingProgress .w-80 {
-        width: calc(100% - 3rem) !important;
-    }
-    
-    /* Botão voltar ao topo muito pequeno */
-    #backToTop {
-        bottom: 0.75rem !important;
-        right: 0.75rem !important;
-        padding: 0.5rem !important;
-    }
-    
-    #backToTop span {
-        font-size: 1.25rem !important;
-    }
+    /* Aplicar delay para cada item aparecer sequencialmente */
+    .habilidade-item:nth-child(1) { animation-delay: 0.1s !important; }
+    .habilidade-item:nth-child(2) { animation-delay: 0.2s !important; }
+    .habilidade-item:nth-child(3) { animation-delay: 0.3s !important; }
+    .habilidade-item:nth-child(4) { animation-delay: 0.4s !important; }
+    .habilidade-item:nth-child(5) { animation-delay: 0.5s !important; }
+    .habilidade-item:nth-child(6) { animation-delay: 0.6s !important; }
+    .habilidade-item:nth-child(7) { animation-delay: 0.7s !important; }
+    .habilidade-item:nth-child(8) { animation-delay: 0.8s !important; }
+    .habilidade-item:nth-child(9) { animation-delay: 0.9s !important; }
+    .habilidade-item:nth-child(10) { animation-delay: 1.0s !important; }
 }
 
 @media (max-width: 360px) {
@@ -1539,309 +1553,59 @@ button, .btn, a[href] {
         padding: 0.25rem !important;
     }
     
-    /* Carrossel para telas extremamente pequenas - AUMENTADOS PARA CABER "APRENDI" */
-    #nage-waza-section .video-card,
-    #imobilizacoes-section .video-card,
-    #nage-waza-section .card-hover,
-    #imobilizacoes-section .card-hover {
-        min-width: 340px !important; /* Aumentado de 280px para 340px */
-        max-width: 340px !important; /* Aumentado de 280px para 340px */
-        width: 340px !important; /* Aumentado de 280px para 340px */
-        flex-shrink: 0 !important;
-        scroll-snap-align: start !important;
-        border-radius: 12px !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        border: none !important;
-        overflow: hidden !important;
-    }
-    
-
-    
-    header h1 {
-        font-size: 1rem !important;
-    }
-    
-    header p {
-        font-size: 0.625rem !important;
-    }
-    
+    /* ===== CONDIÇÕES E HABILIDADES IGUAL À PÁGINA2.HTML - TELAS EXTREMAMENTE PEQUENAS ===== */
+    /* Cards de habilidades extremamente pequenos - igual à página2.html */
     .habilidade-item {
-        font-size: 0.625rem !important;
+        /* Layout igual à página2.html */
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
         padding: 0.375rem 0.5rem !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 100% !important;
-        border-radius: 8px !important;
-        background: white !important;
-        border: 1px solid #e5e7eb !important;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
-    }
-    
-    h2 {
-        font-size: 1.25rem !important;
-    }
-    
-    .video-container {
-        height: 180px !important; /* Aumentado para mais espaço */
-    }
-    
-    .video-header {
-        padding: 1.25rem !important; /* Aumentado para 1.25rem para mais espaço horizontal */
-    }
-    
-    .video-title {
-        font-size: 0.75rem !important;
-    }
-    
-    .video-description {
-        font-size: 0.625rem !important;
-    }
-    
-    .video-tip {
-        padding: 0.75rem !important; /* Aumentado para mais espaço */
-        margin: 0 0.5rem 0.5rem 0.5rem !important;
-    }
-    
-    .video-tip-title {
-        font-size: 0.625rem !important;
-    }
-    
-    .video-tip-text {
-        font-size: 0.5625rem !important;
-    }
-    
-    .back-to-top-section {
-        padding: 0.375rem 0.75rem !important;
-        font-size: 0.625rem !important;
-    }
-    
-    #congratulationsModal .bg-white {
-        margin: 0.25rem !important;
-        padding: 0.75rem !important;
-    }
-    
-    .congratulations-title {
-        font-size: 1.25rem !important;
-    }
-    
-    .trophy-icon {
-        font-size: 2rem !important;
-    }
-    
-    .stat-card {
-        padding: 0.5rem !important;
-    }
-    
-    .stat-number {
-        font-size: 1rem !important;
-    }
-    
-    .stat-label {
-        font-size: 0.625rem !important;
-    }
-    
-    #floatingProgress {
-        width: calc(100vw - 0.5rem) !important;
-        margin: 0 0.25rem !important;
-        padding: 0.375rem !important;
-    }
-    
-    #floatingProgress .w-80 {
-        width: calc(100% - 2rem) !important;
-    }
-    
-    #backToTop {
-        bottom: 0.5rem !important;
-        right: 0.5rem !important;
-        padding: 0.375rem !important;
-    }
-    
-    #backToTop span {
-        font-size: 1rem !important;
-    }
-}
-
-/* Melhorias de usabilidade mobile - Copiado da página1.html */
-@media (max-width: 768px) {
-    /* Checkboxes menores para mobile */
-    input[type="checkbox"] {
-        width: 1rem !important;
-        height: 1rem !important;
-        min-width: 1rem !important;
-        min-height: 1rem !important;
-    }
-    
-    /* Touch targets maiores */
-    .habilidade-item,
-    .japanese-nav-card,
-    .back-to-top-section,
-    #backToTop,
-    button,
-    label {
-        min-height: 44px !important;
-        min-width: 44px !important;
-    }
-    
-    /* Padronizar tamanhos da barra japonesa em mobile */
-    .japanese-nav-card {
-        width: 120px !important;
-        height: 80px !important;
-        min-width: 120px !important;
-        min-height: 80px !important;
-        max-width: 120px !important;
-        max-height: 80px !important;
-        flex-shrink: 0 !important;
-    }
-    
-    /* Layout horizontal com scroll para mobile */
-    .japanese-nav-container .flex {
-        gap: 0.5rem !important;
-        justify-content: flex-start !important;
-        flex-wrap: nowrap !important;
-        flex-direction: row !important;
-        overflow-x: auto !important;
-        scroll-behavior: smooth !important;
-        padding: 0.5rem 0 !important;
-        position: relative !important;
-    }
-    
-    /* Gradiente sutil no lado direito para indicar mais conteúdo */
-    .japanese-nav-container .flex::before {
-        content: '' !important;
-        position: absolute !important;
-        right: 0 !important;
-        top: 0 !important;
-        bottom: 0 !important;
-        width: 2rem !important;
-        background: linear-gradient(to right, transparent, rgba(156, 163, 175, 0.1)) !important;
-        pointer-events: none !important;
-        z-index: 5 !important;
-    }
-    
-    /* Cards sempre na mesma linha */
-    .japanese-nav-card {
-        width: 120px !important; /* Aumentado de 100px para 120px */
-        height: 80px !important;
-        min-width: 120px !important; /* Aumentado de 100px para 120px */
-        min-height: 80px !important;
-        max-width: 120px !important; /* Aumentado de 100px para 120px */
-        max-height: 80px !important;
-        flex-shrink: 0 !important;
-    }
-    
-    /* Texto indicativo de scroll para mobile */
-    .japanese-nav-container::after {
-        content: '← Deslize para ver mais →' !important;
-        display: block !important;
-        text-align: center !important;
-        margin-top: 0.75rem !important;
-        font-size: 0.875rem !important;
-        color: #6B7280 !important;
-        font-weight: 500 !important;
-        opacity: 0.8 !important;
-    }
-    
-    /* Espaçamento melhorado para touch - IGUAL À PÁGINA2.HTML */
-    .habilidade-item {
         margin: 0.5rem !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 100% !important;
+        font-size: 0.625rem !important;
         border-radius: 8px !important;
         background: white !important;
         border: 1px solid #e5e7eb !important;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+        /* Efeitos básicos apenas */
+        transition: background-color 0.2s ease, box-shadow 0.2s ease !important;
+        transform: none !important;
+        /* Remover efeitos complexos */
+        position: relative !important;
+        overflow: visible !important;
     }
     
-    .japanese-nav-card {
-        margin: 0.75rem !important;
-    }
-    
-    /* Scroll suave para mobile */
-    html {
-        scroll-behavior: smooth !important;
-    }
-    
-    /* Melhor contraste para mobile */
-    .video-tip {
-        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%) !important;
-        border-left: 4px solid #0284c7 !important;
-    }
-    
-    /* Sombras mais suaves para mobile */
-    .video-card {
+    .habilidade-item:hover {
+        /* Efeito simples igual à página2.html */
+        transform: none !important;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        background: #f9fafb !important;
     }
     
-    .video-card:hover {
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+    /* Remover todos os efeitos complexos das habilidades */
+    .habilidade-item::before,
+    .habilidade-item::after {
+        display: none !important;
     }
     
-    /* Animações mais suaves para mobile */
-    .habilidade-item,
-    .japanese-nav-card,
-    .video-card {
-        transition: all 0.2s ease !important;
+    /* Efeito básico de aparecer apenas */
+    .habilidade-item {
+        animation: fadeInUp 0.5s ease-out forwards !important;
+        opacity: 0 !important;
+        transform: translateY(20px) !important;
     }
     
-    /* Feedback visual melhorado para mobile */
-    .habilidade-item:active,
-    .japanese-nav-card:active {
-        transform: scale(0.98) !important;
-    }
-    
-    /* Melhor legibilidade para mobile */
-    .video-title,
-    .video-description,
-    .video-tip-title,
-    .video-tip-text {
-        line-height: 1.4 !important;
-    }
-    
-    /* Espaçamento otimizado para mobile */
-    .grid {
-        gap: 1rem !important;
-    }
-    
-    /* Margens consistentes para mobile */
-    section {
-        margin-bottom: 2rem !important;
-    }
-    
-    /* Padding consistente para mobile */
-    .video-card {
-        padding: 0 !important;
-    }
-    
-    /* Melhor hierarquia visual para mobile */
-    .text-center {
-        text-align: center !important;
-    }
-    
-    /* Botões mais acessíveis para mobile */
-    .back-to-top-section {
-        border-radius: 0.5rem !important;
-        font-weight: 600 !important;
-    }
-    
-    /* Modal mais acessível para mobile */
-    #congratulationsModal .bg-white {
-        border-radius: 1rem !important;
-    }
-    
-    /* Animações otimizadas para mobile */
-    .animate-fade-in-up,
-    .animate-fade-in-down,
-    .animate-slide-in-right {
-        animation-duration: 0.5s !important;
-    }
-    
-    /* Transições mais rápidas para mobile */
-    .transition-all {
-        transition-duration: 0.2s ease !important;
-    }
+    /* Aplicar delay para cada item aparecer sequencialmente */
+    .habilidade-item:nth-child(1) { animation-delay: 0.1s !important; }
+    .habilidade-item:nth-child(2) { animation-delay: 0.2s !important; }
+    .habilidade-item:nth-child(3) { animation-delay: 0.3s !important; }
+    .habilidade-item:nth-child(4) { animation-delay: 0.4s !important; }
+    .habilidade-item:nth-child(5) { animation-delay: 0.5s !important; }
+    .habilidade-item:nth-child(6) { animation-delay: 0.6s !important; }
+    .habilidade-item:nth-child(7) { animation-delay: 0.7s !important; }
+    .habilidade-item:nth-child(8) { animation-delay: 0.8s !important; }
+    .habilidade-item:nth-child(9) { animation-delay: 0.9s !important; }
+    .habilidade-item:nth-child(10) { animation-delay: 1.0s !important; }
 }
 
 /* Orientação landscape para mobile */
@@ -1881,4 +1645,274 @@ button, .btn, a[href] {
     #floatingProgress {
         top: max(1rem, env(safe-area-inset-top)) !important;
     }
+    }
+    
+    /* Touch targets maiores */
+    .habilidade-item,
+    .japanese-nav-card,
+    .back-to-top-section,
+    #backToTop,
+    button,
+    label {
+        min-height: 44px !important;
+        min-width: 44px !important;
+    }
+    
+/* Estilos específicos para telas muito pequenas (smartphones pequenos) */
+@media (max-width: 480px) {
+    /* Ajustar ainda mais os cards para telas muito pequenas - MANTENDO ESTRUTURA */
+    #nage-waza-section .card-hover,
+    #imobilizacoes-section .card-hover {
+        padding: 1rem !important;
+        min-width: 280px !important;
+        margin: 0 0.5rem !important;
+    }
+    
+    /* MANTER LAYOUT ORIGINAL para telas muito pequenas */
+    #nage-waza-section .card-hover .flex.items-center.mb-3.justify-between,
+    #imobilizacoes-section .card-hover .flex.items-center.mb-3.justify-between {
+        gap: 0.375rem !important;
+        margin-bottom: 0.75rem !important;
+        /* MANTER estrutura horizontal */
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        flex-wrap: nowrap !important;
+    }
+    
+    /* Ajustar o container do checkbox e texto "Aprendi" para telas muito pequenas - MANTENDO ESTRUTURA */
+    #nage-waza-section .card-hover label.flex.items-center.ml-2.select-none,
+    #imobilizacoes-section .card-hover label.flex.items-center.ml-2.select-none {
+        padding: 0.125rem 0 !important;
+        /* MANTER estrutura horizontal */
+        justify-content: flex-start !important;
+        margin-left: 0.25rem !important;
+        flex-shrink: 0 !important;
+        white-space: nowrap !important;
+    }
+    
+    /* Ajustar o texto "Aprendi" para telas muito pequenas - MANTENDO ESTRUTURA */
+    #nage-waza-section .card-hover label span,
+    #imobilizacoes-section .card-hover label span {
+        font-size: 0.6875rem !important;
+        padding: 0.25rem 0.375rem !important;
+        /* MANTER estrutura horizontal */
+        text-align: left !important;
+        min-width: fit-content !important;
+        flex-shrink: 0 !important;
+        white-space: nowrap !important;
+    }
+    
+    /* Ajustar o checkbox para telas muito pequenas - MANTENDO ESTRUTURA */
+    #nage-waza-section .card-hover input[type="checkbox"],
+    #imobilizacoes-section .card-hover input[type="checkbox"] {
+        width: 0.875rem !important;
+        height: 0.875rem !important;
+        min-width: 0.875rem !important;
+        min-height: 0.875rem !important;
+        margin-right: 0.375rem !important;
+        flex-shrink: 0 !important;
+    }
+    
+    /* Ajustar o título da técnica para telas muito pequenas - MANTENDO ESTRUTURA */
+    #nage-waza-section .card-hover h3,
+    #imobilizacoes-section .card-hover h3 {
+        font-size: 0.875rem !important;
+        line-height: 1.2 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+    
+    /* Ajustar a descrição da técnica para telas muito pequenas - MANTENDO ESTRUTURA */
+    #nage-waza-section .card-hover p.text-gray-600,
+    #imobilizacoes-section .card-hover p.text-gray-600 {
+        font-size: 0.6875rem !important;
+        line-height: 1.3 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+    
+    /* Ajustar container de vídeo para telas muito pequenas */
+    .video-container {
+        height: 180px !important;
+        margin: 0.75rem 0 !important;
+    }
+    
+    /* Ajustar dicas para telas muito pequenas */
+    .bg-blue-50,
+    .bg-green-50,
+    .bg-orange-50,
+    .bg-purple-50,
+    .bg-indigo-50,
+    .bg-teal-50,
+    .bg-cyan-50 {
+        padding: 0.75rem !important;
+        margin: 0.25rem 0 !important;
+    }
+    
+    /* Ajustar títulos das dicas para telas muito pequenas */
+    .bg-blue-50 h4,
+    .bg-green-50 h4,
+    .bg-orange-50 h4,
+    .bg-purple-50 h4,
+    .bg-indigo-50 h4,
+    .bg-teal-50 h4,
+    .bg-cyan-50 h4 {
+        font-size: 0.75rem !important;
+        margin-bottom: 0.375rem !important;
+    }
+    
+    /* Ajustar texto das dicas para telas muito pequenas */
+    .bg-blue-50 p,
+    .bg-green-50 p,
+    .bg-orange-50 p,
+    .bg-purple-50 p,
+    .bg-indigo-50 p,
+    .bg-teal-50 p,
+    .bg-cyan-50 p {
+        font-size: 0.6875rem !important;
+        line-height: 1.3 !important;
+    }
+    
+    /* Ajustar botões de navegação para telas muito pequenas */
+    #carouselLeft,
+    #carouselRight,
+    #carouselImobLeft,
+    #carouselImobRight {
+        width: 2rem !important;
+        height: 2rem !important;
+    }
+    
+    /* Ajustar ícones dos botões para telas muito pequenas */
+    #carouselLeft svg,
+    #carouselRight svg,
+    #carouselImobLeft svg,
+    #carouselImobRight svg {
+        width: 1rem !important;
+        height: 1rem !important;
+    }
+    
+    /* Ajustar gap do carrossel para telas muito pequenas */
+    #carouselProj,
+    #carouselImob {
+        gap: 0.75rem !important;
+    }
+}
+
+/* Ajustar o container do checkbox e texto "Aprendi" para telas extremamente pequenas */
+#nage-waza-section .card-hover label.flex.items-center.ml-2.select-none,
+#imobilizacoes-section .card-hover label.flex.items-center.ml-2.select-none {
+    /* MANTER estrutura horizontal */
+    justify-content: flex-start !important;
+    margin-left: 0.125rem !important;
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    /* Ajustar gap interno para separar checkbox e texto */
+    gap: 0.25rem !important;
+    /* Garantir alinhamento vertical */
+    align-items: center !important;
+    padding: 0.125rem 0 !important;
+}
+
+/* Ajustar o texto "Aprendi" para telas extremamente pequenas */
+#nage-waza-section .card-hover label span,
+#imobilizacoes-section .card-hover label span {
+    font-size: 0.5rem !important; /* Diminuído de 0.625rem para 0.5rem */
+    padding: 0.125rem 0.1875rem !important; /* Diminuído de 0.1875rem 0.25rem para 0.125rem 0.1875rem */
+    /* MANTER estrutura horizontal */
+    text-align: left !important;
+    min-width: fit-content !important;
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    /* Garantir margem à esquerda do texto */
+    margin-left: 0.125rem !important;
+}
+
+/* Ajustar o checkbox para telas extremamente pequenas */
+#nage-waza-section .card-hover input[type="checkbox"],
+#imobilizacoes-section .card-hover input[type="checkbox"] {
+    width: 0.75rem !important;
+    height: 0.75rem !important;
+    min-width: 0.75rem !important;
+    min-height: 0.75rem !important;
+    /* Garantir margem à direita para separar do texto */
+    margin-right: 0.375rem !important;
+    flex-shrink: 0 !important;
+    /* Garantir posicionamento correto */
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+
+/* Ajustar o texto "Aprendi" no mobile - MANTENDO ESTRUTURA */
+#nage-waza-section .card-hover label span,
+#imobilizacoes-section .card-hover label span {
+    /* Garantir que o texto seja totalmente visível */
+    white-space: nowrap !important;
+    overflow: visible !important;
+    /* Ajustar tamanho e espaçamento - DIMINUINDO PARA NÃO SOBREPOR */
+    font-size: 0.625rem !important; /* Diminuído de 0.75rem para 0.625rem */
+    padding: 0.25rem 0.375rem !important; /* Diminuído de 0.375rem 0.5rem para 0.25rem 0.375rem */
+    /* Melhorar contraste */
+    background-color: #fef3c7 !important;
+    color: #92400e !important;
+    border-radius: 0.375rem !important;
+        font-weight: 600 !important;
+    /* Garantir que não quebre */
+    flex-shrink: 0 !important;
+    min-width: fit-content !important;
+    /* Garantir margem à esquerda do texto */
+    margin-left: 0.25rem !important;
+}
+
+/* Ajustar o checkbox no mobile - MANTENDO ESTRUTURA */
+#nage-waza-section .card-hover input[type="checkbox"],
+#imobilizacoes-section .card-hover input[type="checkbox"] {
+    /* Garantir que o checkbox seja visível e acessível */
+    margin-right: 0.5rem !important;
+    /* Ajustar tamanho para mobile */
+    width: 1rem !important;
+    height: 1rem !important;
+    min-width: 1rem !important;
+    min-height: 1rem !important;
+    /* Garantir que não quebre */
+    flex-shrink: 0 !important;
+    /* Garantir margem à direita para separar do texto */
+    margin-right: 0.75rem !important;
+    /* Garantir posicionamento correto */
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+}
+
+/* Ajustar o texto "Aprendi" para telas muito pequenas - MANTENDO ESTRUTURA */
+#nage-waza-section .card-hover label span,
+#imobilizacoes-section .card-hover label span {
+    font-size: 0.5625rem !important; /* Diminuído de 0.6875rem para 0.5625rem */
+    padding: 0.1875rem 0.25rem !important; /* Diminuído de 0.25rem 0.375rem para 0.1875rem 0.25rem */
+    /* MANTER estrutura horizontal */
+    text-align: left !important;
+    min-width: fit-content !important;
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    /* Garantir margem à esquerda do texto */
+    margin-left: 0.125rem !important;
+}
+
+/* Ajustar o checkbox para telas muito pequenas - MANTENDO ESTRUTURA */
+#nage-waza-section .card-hover input[type="checkbox"],
+#imobilizacoes-section .card-hover input[type="checkbox"] {
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+    min-width: 0.875rem !important;
+    min-height: 0.875rem !important;
+    /* Garantir margem à direita para separar do texto */
+    margin-right: 0.5rem !important;
+    flex-shrink: 0 !important;
+    /* Garantir posicionamento correto */
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
 }
