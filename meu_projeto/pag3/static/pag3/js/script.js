@@ -1,4 +1,37 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // --- FUNÇÃO PARA MOSTRAR/ESCONDER SEÇÕES ---
+    window.showSection = function(sectionId) {
+        console.log('Mostrando seção:', sectionId);
+        
+        // Esconder todas as seções primeiro
+        const allSections = [
+            'nage-waza-section',
+            'imobilizacoes-section', 
+            'henkakuenka-section',
+            'technique-cards-section',
+            'kaeshi-waza-section'
+        ];
+        
+        allSections.forEach(id => {
+            const section = document.getElementById(id);
+            if (section) {
+                section.classList.add('hidden');
+            }
+        });
+        
+        // Mostrar a seção selecionada
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+            targetSection.classList.remove('hidden');
+            
+            // Scroll suave para a seção
+            targetSection.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }
+    };
+    
     // --- DETECÇÃO DE DISPOSITIVO MÓVEL ---
     let isMobile = window.innerWidth <= 768;
     
@@ -684,6 +717,12 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 initializeBackToTopButtons();
             }, 300);
+            
+            // Forçar inicialização das setas para Nage-waza
+            setTimeout(() => {
+                console.log('🔄 Forçando inicialização das setas para Nage-waza...');
+                initializeCarouselArrows();
+            }, 500);
         });
     }
 
@@ -789,29 +828,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // --- CARROSSEL PROJEÇÃO ---
-    const carouselProj = document.getElementById('carouselProj');
-    const projLeftBtn = document.getElementById('carouselLeft');
-    const projRightBtn = document.getElementById('carouselRight');
-    if (carouselProj && projLeftBtn && projRightBtn) {
-        projLeftBtn.addEventListener('click', () => {
-            carouselProj.scrollBy({ left: -carouselProj.offsetWidth * 0.8, behavior: 'smooth' });
-            // Animação apenas em desktop
-            if (!isMobile) {
-                projLeftBtn.classList.add('carousel-arrow-anim');
-                setTimeout(() => projLeftBtn.classList.remove('carousel-arrow-anim'), 700);
-            }
-        });
-        projRightBtn.addEventListener('click', () => {
-            carouselProj.scrollBy({ left: carouselProj.offsetWidth * 0.8, behavior: 'smooth' });
-            // Animação apenas em desktop
-            if (!isMobile) {
-                projRightBtn.classList.add('carousel-arrow-anim');
-                setTimeout(() => projRightBtn.classList.remove('carousel-arrow-anim'), 700);
-            }
-        });
-                    // Botões sempre visíveis - removida a lógica de ocultar/mostrar
-    }
+
+
+    
     // --- CARROSSEL IMOBILIZAÇÃO ---
     const carouselImob = document.getElementById('carouselImob');
     const imobLeftBtn = document.getElementById('carouselImobLeft');
@@ -1011,4 +1030,568 @@ document.addEventListener('DOMContentLoaded', function() {
 // (Estas serão chamadas quando necessário)
 window.smoothScrollToOptimized = smoothScrollToOptimized;
 window.backToTopOptimized = backToTopOptimized;
+
+// ===== SETAS DE NAVEGAÇÃO DO CARROSSEL - DESKTOP E MOBILE =====
+
+// Função para inicializar as setas de navegação do carrossel
+function initializeCarouselArrows() {
+    console.log('🔍 Inicializando setas do carrossel...');
+    
+    // Selecionar todos os containers de carrossel
+    const carouselContainers = [
+        { id: 'nage-waza-section', selector: '#carouselProj' },
+        { id: 'imobilizacoes-section', selector: '.grid' },
+        { id: 'henkakuenka-section', selector: '.max-w-6xl' },
+        { id: 'kaeshi-waza-section', selector: '.max-w-6xl' }
+    ];
+    
+    carouselContainers.forEach(container => {
+        console.log(`🔍 Verificando container: ${container.id} com seletor: ${container.selector}`);
+        
+        const section = document.getElementById(container.id);
+        if (!section) {
+            console.log(`❌ Seção ${container.id} não encontrada`);
+            return;
+        }
+        
+        console.log(`✅ Seção ${container.id} encontrada`);
+        
+        const carousel = section.querySelector(container.selector);
+        if (!carousel) {
+            console.log(`❌ Carrossel não encontrado em ${container.id}`);
+            return;
+        }
+        
+        console.log(`✅ Carrossel encontrado em ${container.id}`);
+        
+        // Verificar se já existem setas para evitar duplicação
+        const existingArrows = section.querySelectorAll('.carousel-arrow-left, .carousel-arrow-right');
+        if (existingArrows.length > 0) {
+            console.log(`⚠️ Setas já existem em ${container.id}, removendo antigas...`);
+            existingArrows.forEach(arrow => arrow.remove());
+        }
+        
+        // Criar setas de navegação
+        const leftArrow = document.createElement('button');
+        const rightArrow = document.createElement('button');
+        
+        leftArrow.className = 'carousel-arrow-left';
+        rightArrow.className = 'carousel-arrow-right';
+        
+        // Adicionar texto às setas como fallback
+        leftArrow.innerHTML = '‹';
+        rightArrow.innerHTML = '›';
+        
+        // Adicionar setas ao container
+        section.appendChild(leftArrow);
+        section.appendChild(rightArrow);
+        
+        console.log(`✅ Setas criadas para ${container.id}`);
+        console.log(`📍 Posição das setas:`, {
+            left: leftArrow.getBoundingClientRect(),
+            right: rightArrow.getBoundingClientRect(),
+            section: section.getBoundingClientRect()
+        });
+        
+        // Função para verificar se as setas devem estar visíveis
+        function updateArrowVisibility() {
+            const isAtStart = carousel.scrollLeft <= 0;
+            const isAtEnd = carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth;
+            const hasScroll = carousel.scrollWidth > carousel.clientWidth;
+            
+            // Para debug: sempre mostrar as setas inicialmente
+            if (container.id === 'nage-waza-section') {
+                leftArrow.classList.remove('hidden');
+                rightArrow.classList.remove('hidden');
+                console.log(`🎯 Setas de projeção sempre visíveis para debug`);
+            } else {
+                leftArrow.classList.toggle('hidden', isAtStart);
+                rightArrow.classList.toggle('hidden', isAtEnd);
+            }
+            
+            console.log(`🔄 Visibilidade das setas em ${container.id}: Esquerda=${!isAtStart}, Direita=${!isAtEnd}, HasScroll=${hasScroll}`);
+        }
+        
+        // Event listeners para as setas
+        leftArrow.addEventListener('click', () => {
+            console.log(`⬅️ Seta esquerda clicada em ${container.id}`);
+            const scrollAmount = carousel.clientWidth * 0.8;
+            carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            
+            // Atualizar visibilidade após scroll
+            setTimeout(updateArrowVisibility, 500);
+        });
+        
+        rightArrow.addEventListener('click', () => {
+            console.log(`➡️ Seta direita clicada em ${container.id}`);
+            const scrollAmount = carousel.clientWidth * 0.8;
+            carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            
+            // Atualizar visibilidade após scroll
+            setTimeout(updateArrowVisibility, 500);
+        });
+        
+        // Adicionar classe específica para identificação
+        leftArrow.setAttribute('data-section', container.id);
+        rightArrow.setAttribute('data-section', container.id);
+        
+        // Atualizar visibilidade inicial
+        updateArrowVisibility();
+        
+        // Atualizar visibilidade durante scroll
+        carousel.addEventListener('scroll', updateArrowVisibility);
+        
+        // Atualizar visibilidade quando a tela é redimensionada
+        window.addEventListener('resize', updateArrowVisibility);
+        
+        // Log adicional para debug
+        console.log(`🎯 Setas configuradas para ${container.id}:`, {
+            carouselWidth: carousel.clientWidth,
+            scrollWidth: carousel.scrollWidth,
+            hasScroll: carousel.scrollWidth > carousel.clientWidth
+        });
+    });
+    
+    console.log('✅ Inicialização das setas concluída');
+}
+
+}); // End of DOMContentLoaded
+
+// Inicializar setas de navegação quando o DOM estiver carregado
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 DOM carregado, aguardando inicialização das setas...');
+    // Aguardar um pouco para garantir que todas as seções estejam carregadas
+    setTimeout(() => {
+        console.log('⏰ Inicializando setas após delay...');
+        initializeCarouselArrows();
+    }, 1000);
 });
+
+// Inicializar setas quando uma seção é mostrada
+window.showSection = function(sectionId) {
+    console.log('Mostrando seção:', sectionId);
+    
+    // Esconder todas as seções primeiro
+    const allSections = [
+        'nage-waza-section',
+        'imobilizacoes-section', 
+        'henkakuenka-section',
+        'technique-cards-section',
+        'kaeshi-waza-section'
+    ];
+    
+    allSections.forEach(id => {
+        const section = document.getElementById(id);
+        if (section) {
+            section.classList.add('hidden');
+        }
+    });
+    
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) {
+        targetSection.classList.remove('hidden');
+        
+        targetSection.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+        });
+        
+        // Inicializar setas para a seção mostrada
+        setTimeout(() => {
+            console.log('🎯 Inicializando setas para seção:', sectionId);
+            initializeCarouselArrows();
+            
+            // Se for a seção de projeção, também testar as setas
+            if (sectionId === 'nage-waza-section') {
+                setTimeout(() => {
+                    console.log('🎯 Testando setas para seção de projeção...');
+                    forceProjectionArrows(); // Usar a função forçada
+                }, 200);
+            }
+        }, 500);
+    }
+};
+
+// Função específica para testar setas de projeção
+window.testProjectionArrows = function() {
+    console.log('🧪 Testando setas de projeção...');
+    
+    const section = document.getElementById('nage-waza-section');
+    const carousel = document.getElementById('carouselProj');
+    
+    if (!section) {
+        console.log('❌ Seção nage-waza-section não encontrada');
+        return;
+    }
+    
+    if (!carousel) {
+        console.log('❌ Carrossel carouselProj não encontrado');
+        return;
+    }
+    
+    console.log('✅ Elementos encontrados');
+    console.log('📊 Estado atual:', {
+        sectionVisible: !section.classList.contains('hidden'),
+        carouselWidth: carousel.clientWidth,
+        scrollWidth: carousel.scrollWidth,
+        hasArrows: section.querySelectorAll('.carousel-arrow-left, .carousel-arrow-right').length
+    });
+    
+    // Forçar criação das setas
+    const existingArrows = section.querySelectorAll('.carousel-arrow-left, .carousel-arrow-right');
+    existingArrows.forEach(arrow => arrow.remove());
+    
+    const leftArrow = document.createElement('button');
+    const rightArrow = document.createElement('button');
+    
+    leftArrow.className = 'carousel-arrow-left';
+    rightArrow.className = 'carousel-arrow-right';
+    leftArrow.innerHTML = '‹';
+    rightArrow.innerHTML = '›';
+    
+    // Estilos inline para garantir visibilidade
+    leftArrow.style.cssText = `
+        position: absolute !important; 
+        left: -1.5rem !important; 
+        top: 50% !important; 
+        transform: translateY(-50%) !important; 
+        z-index: 999 !important; 
+        background: rgba(249, 115, 22, 0.9) !important; 
+        border: none !important; 
+        border-radius: 50% !important; 
+        width: 3rem !important; 
+        height: 3rem !important; 
+        color: white !important; 
+        font-size: 2rem !important; 
+        cursor: pointer !important; 
+        display: flex !important; 
+        align-items: center !important; 
+        justify-content: center !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    `;
+    
+    rightArrow.style.cssText = `
+        position: absolute !important; 
+        right: -1.5rem !important; 
+        top: 50% !important; 
+        transform: translateY(-50%) !important; 
+        z-index: 999 !important; 
+        background: rgba(249, 115, 22, 0.9) !important; 
+        border: none !important; 
+        border-radius: 50% !important; 
+        width: 3rem !important; 
+        height: 3rem !important; 
+        color: white !important; 
+        font-size: 2rem !important; 
+        cursor: pointer !important; 
+        display: flex !important; 
+        align-items: center !important; 
+        justify-content: center !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    `;
+    
+    leftArrow.addEventListener('click', () => {
+        console.log('⬅️ Seta esquerda clicada');
+        carousel.scrollBy({ left: -carousel.clientWidth * 0.8, behavior: 'smooth' });
+    });
+    
+    rightArrow.addEventListener('click', () => {
+        console.log('➡️ Seta direita clicada');
+        carousel.scrollBy({ left: carousel.clientWidth * 0.8, behavior: 'smooth' });
+    });
+    
+    section.appendChild(leftArrow);
+    section.appendChild(rightArrow);
+    
+    console.log('🎯 Setas de teste criadas com sucesso!');
+    console.log('📍 Setas criadas:', {
+        left: leftArrow,
+        right: rightArrow,
+        leftVisible: leftArrow.offsetParent !== null,
+        rightVisible: rightArrow.offsetParent !== null
+    });
+};
+
+// Função para adicionar setas diretamente no HTML
+window.addArrowsToHTML = function() {
+    console.log('🔧 Adicionando setas diretamente no HTML...');
+    
+    const section = document.getElementById('nage-waza-section');
+    if (!section) {
+        console.log('❌ Seção não encontrada');
+        return;
+    }
+    
+    console.log('📊 Estado da seção:', {
+        section: section,
+        sectionVisible: !section.classList.contains('hidden'),
+        sectionPosition: section.getBoundingClientRect(),
+        sectionStyle: window.getComputedStyle(section)
+    });
+    
+    // Remover setas existentes primeiro
+    const existingArrows = section.querySelectorAll('.carousel-arrow-left, .carousel-arrow-right');
+    existingArrows.forEach(arrow => {
+        console.log('🗑️ Removendo seta existente:', arrow);
+        arrow.remove();
+    });
+    
+    // Adicionar setas diretamente no HTML com estilos mais explícitos
+    const arrowsHTML = `
+        <button class="carousel-arrow-left" style="
+            position: absolute !important; 
+            left: -1.5rem !important; 
+            top: 50% !important; 
+            transform: translateY(-50%) !important; 
+            z-index: 9999 !important; 
+            background: rgba(249, 115, 22, 1) !important; 
+            border: 2px solid white !important; 
+            border-radius: 50% !important; 
+            width: 3rem !important; 
+            height: 3rem !important; 
+            color: white !important; 
+            font-size: 2rem !important; 
+            font-weight: bold !important;
+            cursor: pointer !important; 
+            display: flex !important; 
+            align-items: center !important; 
+            justify-content: center !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        ">‹</button>
+        <button class="carousel-arrow-right" style="
+            position: absolute !important; 
+            right: -1.5rem !important; 
+            top: 50% !important; 
+            transform: translateY(-50%) !important; 
+            z-index: 9999 !important; 
+            background: rgba(249, 115, 22, 1) !important; 
+            border: 2px solid white !important; 
+            border-radius: 50% !important; 
+            width: 3rem !important; 
+            height: 3rem !important; 
+            color: white !important; 
+            font-size: 2rem !important; 
+            font-weight: bold !important;
+            cursor: pointer !important; 
+            display: flex !important; 
+            align-items: center !important; 
+            justify-content: center !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        ">›</button>
+    `;
+    
+    section.insertAdjacentHTML('beforeend', arrowsHTML);
+    
+    // Verificar se as setas foram criadas
+    const leftArrow = section.querySelector('.carousel-arrow-left');
+    const rightArrow = section.querySelector('.carousel-arrow-right');
+    const carousel = document.getElementById('carouselProj');
+    
+    console.log('🔍 Setas criadas:', {
+        leftArrow: leftArrow,
+        rightArrow: rightArrow,
+        leftVisible: leftArrow ? leftArrow.offsetParent !== null : false,
+        rightVisible: rightArrow ? rightArrow.offsetParent !== null : false,
+        leftStyle: leftArrow ? window.getComputedStyle(leftArrow) : null,
+        rightStyle: rightArrow ? window.getComputedStyle(rightArrow) : null
+    });
+    
+    if (leftArrow && rightArrow && carousel) {
+        leftArrow.addEventListener('click', () => {
+            console.log('⬅️ Seta esquerda clicada');
+            carousel.scrollBy({ left: -carousel.clientWidth * 0.8, behavior: 'smooth' });
+        });
+        
+        rightArrow.addEventListener('click', () => {
+            console.log('➡️ Seta direita clicada');
+            carousel.scrollBy({ left: carousel.clientWidth * 0.8, behavior: 'smooth' });
+        });
+        
+        console.log('✅ Setas adicionadas ao HTML com sucesso!');
+        
+        // Forçar reflow para garantir visibilidade
+        leftArrow.offsetHeight;
+        rightArrow.offsetHeight;
+        
+        // Adicionar classe de debug
+        leftArrow.classList.add('debug-arrow');
+        rightArrow.classList.add('debug-arrow');
+        
+            } else {
+            console.log('❌ Erro ao criar setas:', { leftArrow, rightArrow, carousel });
+        }
+    };
+
+// Função de teste que adiciona setas no body para debug
+window.testArrowsInBody = function() {
+    console.log('🧪 Testando setas no body...');
+    
+    // Remover setas existentes do body
+    const existingBodyArrows = document.querySelectorAll('.test-arrow');
+    existingBodyArrows.forEach(arrow => arrow.remove());
+    
+    // Criar setas de teste no body
+    const leftArrow = document.createElement('button');
+    const rightArrow = document.createElement('button');
+    
+    leftArrow.className = 'test-arrow';
+    rightArrow.className = 'test-arrow';
+    
+    leftArrow.innerHTML = '‹';
+    rightArrow.innerHTML = '›';
+    
+    // Estilos inline para teste
+    leftArrow.style.cssText = `
+        position: fixed !important;
+        left: 20px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        z-index: 10000 !important;
+        background: red !important;
+        border: 2px solid white !important;
+        border-radius: 50% !important;
+        width: 4rem !important;
+        height: 4rem !important;
+        color: white !important;
+        font-size: 2rem !important;
+        font-weight: bold !important;
+        cursor: pointer !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+    `;
+    
+    rightArrow.style.cssText = `
+        position: fixed !important;
+        right: 20px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        z-index: 10000 !important;
+        background: blue !important;
+        border: 2px solid white !important;
+        border-radius: 50% !important;
+        width: 4rem !important;
+        height: 4rem !important;
+        color: white !important;
+        font-size: 2rem !important;
+        font-weight: bold !important;
+        cursor: pointer !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+    `;
+    
+    document.body.appendChild(leftArrow);
+    document.body.appendChild(rightArrow);
+    
+    console.log('🎯 Setas de teste criadas no body!');
+    console.log('🔴 Seta vermelha à esquerda, 🔵 Seta azul à direita');
+    
+    // Adicionar event listeners de teste
+    leftArrow.addEventListener('click', () => {
+        console.log('🔴 Seta vermelha clicada!');
+        alert('Seta vermelha funcionando!');
+    });
+    
+    rightArrow.addEventListener('click', () => {
+        console.log('🔵 Seta azul clicada!');
+        alert('Seta azul funcionando!');
+    });
+};
+
+// Função que força a criação das setas na seção de projeção
+window.forceProjectionArrows = function() {
+    console.log('💪 Forçando criação das setas de projeção...');
+    
+    const section = document.getElementById('nage-waza-section');
+    if (!section) {
+        console.log('❌ Seção nage-waza-section não encontrada');
+        return;
+    }
+    
+    // Verificar se a seção está visível
+    if (section.classList.contains('hidden')) {
+        console.log('⚠️ Seção está oculta, removendo classe hidden...');
+        section.classList.remove('hidden');
+    }
+    
+    // Verificar se o carrossel existe
+    const carousel = document.getElementById('carouselProj');
+    if (!carousel) {
+        console.log('❌ Carrossel carouselProj não encontrado');
+        return;
+    }
+    
+    // Remover setas existentes
+    const existingArrows = section.querySelectorAll('.carousel-arrow-left, .carousel-arrow-right, .force-arrow');
+    existingArrows.forEach(arrow => arrow.remove());
+    
+    // Criar setas com ID único
+    const leftArrow = document.createElement('button');
+    const rightArrow = document.createElement('button');
+    
+    leftArrow.id = 'forceLeftArrow';
+    rightArrow.id = 'forceRightArrow';
+    leftArrow.className = 'force-arrow';
+    rightArrow.className = 'force-arrow';
+    
+    leftArrow.innerHTML = '‹';
+    rightArrow.innerHTML = '›';
+    
+    // Estilos inline ultra-específicos
+    const arrowStyles = `
+        position: absolute !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        z-index: 99999 !important;
+        background: rgba(249, 115, 22, 1) !important;
+        border: 3px solid white !important;
+        border-radius: 50% !important;
+        width: 4rem !important;
+        height: 4rem !important;
+        color: white !important;
+        font-size: 2.5rem !important;
+        font-weight: bold !important;
+        cursor: pointer !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6) !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    `;
+    
+    leftArrow.style.cssText = arrowStyles + 'left: -2rem !important;';
+    rightArrow.style.cssText = arrowStyles + 'right: -2rem !important;';
+    
+    // Adicionar ao DOM
+    section.appendChild(leftArrow);
+    section.appendChild(rightArrow);
+    
+    console.log('🎯 Setas forçadas criadas:', {
+        leftArrow: leftArrow,
+        rightArrow: rightArrow,
+        leftVisible: leftArrow.offsetParent !== null,
+        rightVisible: rightArrow.offsetParent !== null
+    });
+    
+    // Adicionar event listeners
+    leftArrow.addEventListener('click', () => {
+        console.log('⬅️ Seta esquerda forçada clicada!');
+        carousel.scrollBy({ left: -carousel.clientWidth * 0.8, behavior: 'smooth' });
+    });
+    
+    rightArrow.addEventListener('click', () => {
+        console.log('➡️ Seta direita forçada clicada!');
+        carousel.scrollBy({ left: carousel.clientWidth * 0.8, behavior: 'smooth' });
+    });
+    
+    console.log('✅ Setas forçadas criadas com sucesso!');
+};

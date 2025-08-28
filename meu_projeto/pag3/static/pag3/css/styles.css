@@ -1,37 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+
+/* ===== ESTILOS BASE ===== */
 body {
     font-family: 'Open Sans', system-ui, sans-serif !important;
-
 }
 
-/* Aplicar Montserrat para títulos - moderna e impactante */
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', system-ui, sans-serif !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1.3 !important;
 }
 
-/* Aplicar Roboto para botões - clara e acessível */
 button, .btn, input[type="button"], input[type="submit"], input[type="reset"] {
     font-family: 'Roboto', system-ui, sans-serif !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.01em !important;
 }
 
-/* Melhorar legibilidade para descrições */
 p, span, div {
     font-family: 'Open Sans', system-ui, sans-serif !important;
     line-height: 1.6 !important;
 }
 
-/* Títulos com melhor contraste e espaçamento */
-h1, h2, h3, h4, h5, h6 {
-    letter-spacing: -0.02em !important;
-    line-height: 1.3 !important;
-}
-
-/* Botões com melhor legibilidade */
-button, .btn, input[type="button"], input[type="submit"], input[type="reset"] {
-    font-weight: 500 !important;
-    letter-spacing: 0.01em !important;
-}
-
+/* ===== COMPONENTES PRINCIPAIS ===== */
 .gradient-bg {
     background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
 }
@@ -47,14 +38,12 @@ button, .btn, input[type="button"], input[type="submit"], input[type="reset"] {
 
 .video-container {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
     border-radius: 8px 8px 0 0;
     max-width: 100%;
 }
-
-
 
 .video-container iframe {
     position: absolute;
@@ -65,93 +54,33 @@ button, .btn, input[type="button"], input[type="submit"], input[type="reset"] {
     border-radius: 12px;
 }
 
-.option-card {
-    transition: all 0.2s ease;
-    cursor: pointer;
-    border: 2px solid transparent;
-}
-
-.option-card:hover {
-    border-color: #FBBF24;
-    background-color: #FEF3C7;
-    transform: scale(1.02);
-}
-
-.option-card.correct {
-    background-color: #D1FAE5;
-    border-color: #10B981;
-    color: #065F46;
-}
-
-.option-card.incorrect {
-    background-color: #FEE2E2;
-    border-color: #EF4444;
-    color: #991B1B;
-}
-
 .progress-bar {
     transition: width 0.5s ease;
 }
 
-.section-divider {
-    background: linear-gradient(90deg, transparent, #E5E7EB, transparent);
-}
-
-.floating-action {
-    animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-}
-
-.text-gradient {
-    background: linear-gradient(45deg, #FBBF24, #F59E0B);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-/* Melhorar acessibilidade e legibilidade */
-.text-gradient {
-    font-weight: 600 !important;
-}
-
-/* Melhorar contraste para títulos */
-h1, h2, h3 {
-    color: #1f2937 !important;
-}
-
-/* Melhorar legibilidade de textos pequenos */
-.text-xs, .text-sm {
-    line-height: 1.5 !important;
-}
-
-/* Melhorar acessibilidade de botões */
-button, .btn, a[href] {
+/* ===== HABILIDADES E CONDIÇÕES ===== */
+.habilidade-item {
+    background: white !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 12px !important;
+    padding: 1rem !important;
+    margin: 0.5rem !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+    overflow: hidden !important;
     cursor: pointer !important;
+    opacity: 1 !important;
+    transform: none !important;
 }
 
-/* Melhorar espaçamento para leitura */
-.card-hover p, .card-hover div {
-    line-height: 1.7 !important;
+.habilidade-item:hover {
+    transform: translateY(-3px) scale(1.03) !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
 }
 
-.japanese-nav-card {
-    position: relative;
-    z-index: 10;
-    cursor: pointer !important;
-}
-
-/* Animações para transição japonesa - Página 3 */
-.japanese-nav-card {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-/* Efeito de destaque especial para a barra japonesa - COR AMARELA MAIS ESCURA */
+/* ===== BARRA JAPONESA ===== */
 .japanese-nav-container {
     position: relative;
     background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(251, 191, 36, 0.08) 100%);
@@ -162,686 +91,36 @@ button, .btn, a[href] {
     box-shadow: 0 4px 20px rgba(251, 191, 36, 0.15);
 }
 
-/* Contorno removido - barra japonesa limpa */
+.japanese-nav-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
 
-/* Animação borderGlow removida - não é mais necessária */
-
-/* Melhorar o hover dos cards - CORES AMARELAS */
 .japanese-nav-card:hover {
     transform: translateY(-8px) scale(1.05);
     box-shadow: 0 20px 40px rgba(251, 191, 36, 0.2);
     border-color: #fbbf24;
 }
 
-/* Efeito de brilho nos cards */
-.japanese-nav-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    transition: left 0.5s;
-}
-
-.japanese-nav-card:hover::after {
-    left: 100%;
-}
-
-/* Animações do Modal de Parabéns */
-.modal-enter {
-    animation: modalEnter 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-@keyframes modalEnter {
-    0% {
-        opacity: 0;
-        transform: scale(0.8) translateY(50px);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-}
-
-/* Garantir que o modal apareça corretamente */
-#congratulationsModal {
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-#congratulationsModal.hidden {
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-}
-
-#congratulationsModal:not(.hidden) {
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-}
-
-/* Troféu animado */
-.trophy-container {
-    position: relative;
-    display: inline-block;
-}
-
-.trophy-icon {
-    font-size: 4rem;
-    animation: trophyBounce 2s ease-in-out infinite;
-    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
-}
-
-@keyframes trophyBounce {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    25% { transform: translateY(-10px) rotate(5deg); }
-    75% { transform: translateY(-5px) rotate(-3deg); }
-}
-
-.trophy-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 120px;
-    height: 120px;
-    background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    animation: glowPulse 2s ease-in-out infinite;
-}
-
-@keyframes glowPulse {
-    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
-}
-
-/* Título animado */
-.congratulations-title {
-    animation: titleGlow 3s ease-in-out infinite;
-}
-
-@keyframes titleGlow {
-    0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3)); }
-    50% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6)); }
-}
-
-/* Partículas de celebração */
-.celebration-particle {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: linear-gradient(45deg, #FFD700, #FFA500, #FF6347);
-    border-radius: 50%;
-    animation: celebrationFloat 3s ease-in-out infinite;
-    animation-delay: var(--delay);
-    left: var(--x);
-    top: var(--y);
-}
-
-@keyframes celebrationFloat {
-    0% {
-        opacity: 0;
-        transform: translateY(0) scale(0);
-    }
-    20% {
-        opacity: 1;
-        transform: translateY(-20px) scale(1);
-    }
-    80% {
-        opacity: 1;
-        transform: translateY(-40px) scale(1.2);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-60px) scale(0);
-    }
-}
-
-/* Botões animados */
-.continue-btn, .close-btn {
-    position: relative;
-    overflow: hidden;
-}
-
-.continue-btn::before, .close-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    transition: left 0.5s ease;
-}
-
-.continue-btn:hover::before, .close-btn:hover::before {
-    left: 100%;
-}
-
-/* Estatísticas */
-.stat-card {
-    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-    border: 2px solid #fbbf24;
-    border-radius: 16px;
-    padding: 1.5rem;
-    transition: all 0.3s ease;
-    animation: statCardEnter 0.6s ease-out forwards;
-    animation-delay: calc(var(--index, 0) * 0.1s);
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-.stat-card:nth-child(1) { --index: 1; }
-.stat-card:nth-child(2) { --index: 2; }
-
-@keyframes statCardEnter {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.stat-number {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #92400e;
-    margin-bottom: 0.5rem;
-}
-
-.stat-label {
-    font-size: 0.875rem;
-    color: #92400e;
-    font-weight: 500;
-}
-
-/* Efeito de contorno removido da versão desktop */
-
-.japanese-nav-card.clicked {
-    transform: scale(0.95);
-    box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3);
-    border-color: #fbbf24;
-}
-
-/* Efeito de brilho durante o clique */
-.japanese-nav-card::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    transition: left 0.6s ease;
-}
-
-.japanese-nav-card.clicked::after {
-    left: 100%;
-}
-
-/* Animação de scroll suave - CORES AMARELAS */
-.scroll-indicator {
-    position: fixed;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-    background: rgba(251, 191, 36, 0.9);
-    color: white;
-    padding: 12px 16px;
-    border-radius: 25px;
-    font-size: 14px;
-    font-weight: 600;
-    z-index: 1002;
-    opacity: 0;
-    transition: all 0.3s ease;
-    pointer-events: none;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px rgba(251, 191, 36, 0.3);
-}
-
-.scroll-indicator.show {
-    opacity: 1;
-}
-
-.scroll-indicator::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: -8px;
-    width: 0;
-    height: 0;
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-    border-right: 8px solid rgba(251, 191, 36, 0.9);
-    transform: translateY(-50%);
-}
-
-/* Animação de destaque no destino */
-.destination-highlight {
-    animation: destinationPulse 2s ease-out;
-}
-
-@keyframes destinationPulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7);
-        transform: scale(1);
-    }
-    50% {
-        box-shadow: 0 0 0 20px rgba(251, 191, 36, 0.3);
-        transform: scale(1.02);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(251, 191, 36, 0);
-        transform: scale(1);
-    }
-}
-
-/* CSS para carrosséis horizontais */
-.hide-scrollbar::-webkit-scrollbar { display: none; }
-.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-.technique-card {
-    height: 480px; /* Aumentado de 420px para 480px para acomodar todos os elementos */
-    width: 100%; /* Garantir largura total */
-    max-width: 100%; /* Garantir largura máxima */
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-}
-
-.technique-card .video-container {
-    flex-shrink: 0;
-}
-
-.technique-card .p-4 {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 2rem; /* Aumentado para 2rem para mais espaço horizontal */
-    width: 100%; /* Garantir largura total */
-}
-
-.technique-card .bg-blue-50,
-.technique-card .bg-green-50,
-.technique-card .bg-orange-50,
-.technique-card .bg-purple-50,
-.technique-card .bg-indigo-50,
-.technique-card .bg-teal-50,
-.technique-card .bg-cyan-50,
-.technique-card .bg-rose-50 {
-    margin-top: auto;
-    margin-bottom: 0;
-}
-
-/* Estilos para os cards de técnicas individuais */
-.technique-individual-card {
-    transition: all 0.3s ease;
-    min-height: 480px; /* Garantir altura mínima para acomodar todos os elementos */
-    width: 100%; /* Garantir largura total */
-    max-width: 100%; /* Garantir largura máxima */
-}
-
-.technique-individual-card .card-hover {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.technique-individual-card .card-hover:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-}
-
-.carousel-arrow-anim {
-    animation: carouselArrowPulse 0.7s ease-in-out;
-}
-
-@keyframes carouselArrowPulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-
-/* Efeito de partículas douradas */
-.scroll-particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 999;
-}
-
-/* Efeito de cursor para habilidades e condições */
-.habilidade-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    transition: left 0.6s ease;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.habilidade-item:hover::before {
-    left: 100%;
-}
-
-.habilidade-item:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    background: rgba(255, 255, 255, 0.9) !important;
-}
-
-/* Efeito de borda animada */
-.habilidade-item::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: 2px solid transparent;
-    border-radius: 12px;
-    background: linear-gradient(45deg, #6B7280, #4B5563, #6B7280) border-box;
-    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: destination-out;
-    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.habilidade-item:hover::after {
-    opacity: 1;
-}
-
-/* Animação sutil para habilidades e condições */
-.habilidade-item {
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-    /* Estilos básicos para desktop */
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 1rem;
-    margin: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.habilidade-item:hover {
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-    background: rgba(255, 255, 255, 0.95) !important;
-}
-
-/* Efeito de cursor para habilidades e condições */
-.habilidade-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    transition: left 0.6s ease;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.habilidade-item:hover::before {
-    left: 100%;
-}
-
-/* Efeito de borda animada */
-.habilidade-item::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: 2px solid transparent;
-    border-radius: 12px;
-    background: linear-gradient(45deg, #6B7280, #4B5563, #6B7280) border-box;
-    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: destination-out;
-    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.habilidade-item:hover::after {
-    opacity: 1;
-}
-
-/* ===== CONDIÇÕES E HABILIDADES PARA TODAS AS TELAS ===== */
-/* Cards de habilidades - funcionando em todas as telas */
-.habilidade-item {
-    /* Estilos básicos para todas as telas */
-    background: white !important;
-    border: 1px solid #e5e7eb !important;
-    border-radius: 12px !important;
-    padding: 1rem !important;
-    margin: 0.5rem !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
-    /* Efeitos básicos */
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    position: relative !important;
-    overflow: hidden !important;
-    cursor: pointer !important;
-}
-
-.habilidade-item:hover {
-    /* Efeito hover para todas as telas */
-    transform: translateY(-3px) scale(1.03) !important;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12) !important;
-    background: rgba(255, 255, 255, 0.95) !important;
-}
-
-
-
-
-
-.particle {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: #FBBF24;
-    border-radius: 50%;
-    animation: particleFloat 1.5s ease-out forwards;
-    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
-    z-index: 1001;
-}
-
-@keyframes particleFloat {
-    0% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-    50% {
-        opacity: 0.8;
-        transform: translateY(-50px) scale(1.2);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-100px) scale(0);
-    }
-}
-
-
-
-/* Garantir que a barra flutuante fique completamente escondida */
-#floatingProgress.hidden {
-    display: none !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-}
-
-/* Animação para botão Voltar ao Topo */
-.back-to-top-section {
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateY(0);
-    animation: slideInFromBottom 0.6s ease-out;
-}
-
-.back-to-top-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-    transition: left 0.8s ease;
-    z-index: 1;
-}
-
-.back-to-top-section:hover::before {
-    left: 100%;
-}
-
-/* Efeito de brilho adicional */
-.back-to-top-section::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 2;
-}
-
-.back-to-top-section:hover::after {
-    opacity: 1;
-}
-
-.back-to-top-section:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
-    animation: pulse 1s infinite;
-}
-
-.back-to-top-section:active {
-    transform: translateY(-1px) scale(0.95);
-    transition: all 0.1s ease;
-}
-
-/* Animação de destaque quando o botão aparece */
-.back-to-top-section.animate-in {
-    animation: buttonAppear 0.8s ease-out;
-}
-
-@keyframes buttonAppear {
-    0% {
-        opacity: 0;
-        transform: translateY(30px) scale(0.8);
-    }
-    50% {
-        opacity: 0.8;
-        transform: translateY(-5px) scale(1.05);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-@keyframes slideInFromBottom {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
-    }
-    70% {
-        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-    }
-}
-
-/* Partículas para o botão voltar ao topo */
-.back-to-top-particle {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
-    pointer-events: none;
-    animation: backToTopParticle 1.2s ease-out forwards;
-    z-index: 1000;
-}
-
-@keyframes backToTopParticle {
-    0% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-    50% {
-        opacity: 0.8;
-        transform: translateY(-25px) scale(1.2);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-60px) scale(0);
-    }
-}
-
-/* Estilos do carrossel - Copiado da página1.html */
+/* ===== CARROSSEL ===== */
 .carousel-container {
     position: relative;
     overflow: hidden;
 }
 
-/* Melhorar barra de scroll do carrossel no mobile */
-@media (max-width: 768px) {
-    #nage-waza-section .grid::-webkit-scrollbar,
-    #imobilizacoes-section .grid::-webkit-scrollbar {
-        height: 4px !important;
-    }
-    
-    #nage-waza-section .grid::-webkit-scrollbar-track,
-    #imobilizacoes-section .grid::-webkit-scrollbar-track {
-        background: rgba(156, 163, 175, 0.1) !important;
-        border-radius: 2px !important;
-    }
-    
-    #nage-waza-section .grid::-webkit-scrollbar-thumb,
-    #imobilizacoes-section .grid::-webkit-scrollbar-thumb {
-        background: rgba(156, 163, 175, 0.4) !important;
-        border-radius: 2px !important;
-    }
-    
-    #nage-waza-section .grid::-webkit-scrollbar-thumb:hover,
-    #imobilizacoes-section .grid::-webkit-scrollbar-thumb:hover {
-        background: rgba(156, 163, 175, 0.6) !important;
-    }
+.hide-scrollbar::-webkit-scrollbar { 
+    display: none; 
 }
 
-/* Responsividade para dispositivos móveis - ANIMAÇÕES OTIMIZADAS */
+.hide-scrollbar { 
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+}
+
+/* ===== RESPONSIVIDADE MOBILE - ESTRUTURA IGUAL À PÁGINA 2 ===== */
 @media (max-width: 768px) {
-    /* Header responsivo */
+    /* Header mobile */
     header {
         padding: 0.75rem 1rem !important;
     }
@@ -855,15 +134,8 @@ button, .btn, a[href] {
         font-size: 0.875rem !important;
     }
     
-    /* Barra de progresso mobile */
-    .progress-bar {
-        height: 0.75rem !important;
-    }
-    
-    /* ===== CONDIÇÕES E HABILIDADES IGUAL À PÁGINA2.HTML ===== */
-    /* Cards de habilidades mobile - IGUAL À PÁGINA2.HTML */
+    /* Habilidades mobile - ESTRUTURA IGUAL À PÁGINA 2 */
     .habilidade-item {
-        /* Layout igual à página2.html */
         width: 100% !important;
         max-width: 100% !important;
         min-width: 100% !important;
@@ -874,55 +146,167 @@ button, .btn, a[href] {
         background: white !important;
         border: 1px solid #e5e7eb !important;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
-        /* Efeitos básicos apenas */
         transition: background-color 0.2s ease, box-shadow 0.2s ease !important;
         transform: none !important;
-        /* Remover efeitos complexos */
         position: relative !important;
         overflow: visible !important;
-        /* Efeito básico de aparecer apenas */
-        animation: fadeInUp 0.5s ease-out forwards !important;
-        opacity: 0 !important;
+        opacity: 1 !important;
     }
     
     .habilidade-item:hover {
-        /* Efeito simples igual à página2.html */
         transform: none !important;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
         background: #f9fafb !important;
     }
     
-    /* Remover todos os efeitos complexos das habilidades */
     .habilidade-item::before,
     .habilidade-item::after {
         display: none !important;
     }
     
-    @keyframes fadeInUp {
-        to {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
+    /* CARDS DE TÉCNICAS - ESTRUTURA IGUAL À PÁGINA 2 */
+    .card-hover {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+        padding: 1rem !important;
+        margin: 0.5rem 0 !important;
+        border-radius: 12px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        transition: box-shadow 0.2s ease !important;
+        background: white !important;
+        border: 1px solid #e5e7eb !important;
     }
     
-    /* Aplicar delay para cada item aparecer sequencialmente */
-    .habilidade-item:nth-child(1) { animation-delay: 0.1s !important; }
-    .habilidade-item:nth-child(2) { animation-delay: 0.2s !important; }
-    .habilidade-item:nth-child(3) { animation-delay: 0.3s !important; }
-    .habilidade-item:nth-child(4) { animation-delay: 0.4s !important; }
-    .habilidade-item:nth-child(5) { animation-delay: 0.5s !important; }
-    .habilidade-item:nth-child(6) { animation-delay: 0.6s !important; }
-    .habilidade-item:nth-child(7) { animation-delay: 0.7s !important; }
-    .habilidade-item:nth-child(8) { animation-delay: 0.8s !important; }
-    .habilidade-item:nth-child(9) { animation-delay: 0.9s !important; }
-    .habilidade-item:nth-child(10) { animation-delay: 1.0s !important; }
+    .card-hover:hover {
+        transform: none !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+    }
+    
+    /* Layout dos cards - Grid responsivo igual à página 2 */
+    .grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    
+    /* Container de vídeo mobile - ESTRUTURA IGUAL À PÁGINA 2 */
+    .video-container {
+        height: 200px !important;
+        margin: 0.75rem 0 !important;
+        border-radius: 8px !important;
+    }
+    
+    /* Header dos cards - ESTRUTURA IGUAL À PÁGINA 2 */
+    .card-hover .flex.items-center.mb-3 {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        margin-bottom: 0.75rem !important;
+        padding: 0 !important;
+    }
+    
+    .card-hover h3 {
+        font-size: 1rem !important;
+        font-weight: 600 !important;
+        color: #1f2937 !important;
+        line-height: 1.4 !important;
+    }
+    
+    .card-hover p {
+        font-size: 0.875rem !important;
+        color: #6b7280 !important;
+        line-height: 1.4 !important;
+    }
+    
+    /* Ícones dos cards - ESTRUTURA IGUAL À PÁGINA 2 */
+    .card-hover .bg-blue-100,
+    .card-hover .bg-green-100,
+    .card-hover .bg-orange-100,
+    .card-hover .bg-purple-100,
+    .card-hover .bg-indigo-100,
+    .card-hover .bg-teal-100,
+    .card-hover .bg-cyan-50 {
+        padding: 0.5rem !important;
+        border-radius: 50% !important;
+        margin-right: 0.75rem !important;
+    }
+    
+    .card-hover .bg-blue-100 span,
+    .card-hover .bg-green-100 span,
+    .card-hover .bg-orange-100 span,
+    .card-hover .bg-purple-100 span,
+    .card-hover .bg-indigo-100 span,
+    .card-hover .bg-teal-100 span {
+        font-size: 1rem !important;
+    }
+    
+    /* Checkboxes e labels - ESTRUTURA IGUAL À PÁGINA 2 */
+    .card-hover label {
+        flex-shrink: 0 !important;
+        margin-left: 0.5rem !important;
+        min-height: 44px !important;
+        min-width: 44px !important;
+    }
+    
+    .card-hover input[type="checkbox"] {
+        width: 1rem !important;
+        height: 1rem !important;
+        min-width: 1rem !important;
+        min-height: 1rem !important;
+        margin-right: 0.25rem !important;
+    }
+    
+    .card-hover .text-xs {
+        font-size: 0.75rem !important;
+        font-weight: 600 !important;
+        padding: 0.25rem 0.5rem !important;
+        border-radius: 0.375rem !important;
+        line-height: 1.4 !important;
+    }
+    
+    /* Dicas dos cards - ESTRUTURA IGUAL À PÁGINA 2 */
+    .card-hover .bg-blue-50,
+    .card-hover .bg-green-50,
+    .card-hover .bg-orange-50,
+    .card-hover .bg-purple-50,
+    .card-hover .bg-indigo-50,
+    .card-hover .bg-teal-50,
+    .card-hover .bg-cyan-50 {
+        padding: 0.75rem !important;
+        margin: 0.75rem 0 0 0 !important;
+        border-radius: 0.75rem !important;
+    }
+    
+    .card-hover .bg-blue-50 h4,
+    .card-hover .bg-green-50 h4,
+    .card-hover .bg-orange-50 h4,
+    .card-hover .bg-purple-50 h4,
+    .card-hover .bg-indigo-50 h4,
+    .card-hover .bg-teal-50 h4,
+    .card-hover .bg-cyan-50 h4 {
+        font-size: 0.875rem !important;
+        font-weight: 600 !important;
+        margin-bottom: 0.25rem !important;
+        line-height: 1.4 !important;
+    }
+    
+    .card-hover .bg-blue-50 p,
+    .card-hover .bg-green-50 p,
+    .card-hover .bg-orange-50 p,
+    .card-hover .bg-purple-50 p,
+    .card-hover .bg-indigo-50 p,
+    .card-hover .bg-teal-50 p,
+    .card-hover .bg-cyan-50 p {
+        font-size: 0.75rem !important;
+        line-height: 1.4 !important;
+    }
     
     /* Seções de técnicas mobile */
     #nage-waza-section, #imobilizacoes-section {
         padding: 0 1rem !important;
     }
     
-    /* Carrossel de técnicas para mobile */
+    /* Carrossel de técnicas para mobile - ESTRUTURA IGUAL À PÁGINA 2 */
     #nage-waza-section .grid,
     #imobilizacoes-section .grid {
         display: flex !important;
@@ -936,29 +320,18 @@ button, .btn, a[href] {
         scroll-snap-type: x mandatory !important;
     }
     
-    /* Cards do carrossel - AUMENTADOS PARA CABER "APRENDI" */
+    /* Cards do carrossel */
     #nage-waza-section .video-card,
     #imobilizacoes-section .video-card,
     #nage-waza-section .card-hover,
     #imobilizacoes-section .card-hover {
-        min-width: 380px !important; /* Aumentado de 320px para 380px */
-        max-width: 380px !important; /* Aumentado de 320px para 380px */
-        width: 380px !important; /* Aumentado de 320px para 380px */
+        min-width: 320px !important;
+        max-width: 320px !important;
+        width: 320px !important;
         flex-shrink: 0 !important;
         scroll-snap-align: start !important;
         border-radius: 12px !important;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-        /* Simplificar animações em mobile */
-        transition: box-shadow 0.2s ease !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        border: none !important;
-        overflow: hidden !important;
-    }
-    
-    .video-card:hover {
-        transform: none !important;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
     }
     
     /* Indicador de scroll (gradiente sutil) */
@@ -988,96 +361,81 @@ button, .btn, a[href] {
         opacity: 0.8 !important;
     }
     
-    .video-card,
-    .card-hover {
-        margin-bottom: 1.5rem !important;
+    /* Melhorar barra de scroll do carrossel no mobile */
+    #nage-waza-section .grid::-webkit-scrollbar,
+    #imobilizacoes-section .grid::-webkit-scrollbar {
+        height: 4px !important;
     }
     
-    .video-header {
-        padding: 2rem !important; /* Aumentado para 2rem para mais espaço horizontal */
-        margin-bottom: 0.5rem !important; /* Adicionar margem inferior */
+    #nage-waza-section .grid::-webkit-scrollbar-track,
+    #imobilizacoes-section .grid::-webkit-scrollbar-track {
+        background: rgba(156, 163, 175, 0.1) !important;
+        border-radius: 2px !important;
     }
     
-    .video-title {
-        font-size: 1rem !important;
+    #nage-waza-section .grid::-webkit-scrollbar-thumb,
+    #imobilizacoes-section .grid::-webkit-scrollbar-thumb {
+        background: rgba(156, 163, 175, 0.4) !important;
+        border-radius: 2px !important;
     }
     
-    .video-description {
+    #nage-waza-section .grid::-webkit-scrollbar-thumb:hover,
+    #imobilizacoes-section .grid::-webkit-scrollbar-thumb:hover {
+        background: rgba(156, 163, 175, 0.6) !important;
+    }
+    
+    /* Barra japonesa mobile - ESTRUTURA IGUAL À PÁGINA 2 */
+    .japanese-nav-card {
+        width: 120px !important;
+        height: 80px !important;
+        min-width: 120px !important;
+        min-height: 80px !important;
+        max-width: 120px !important;
+        max-height: 80px !important;
+        flex-shrink: 0 !important;
+        background: white !important;
+        border: 1px solid #d1d5db !important;
+        border-radius: 8px !important;
+        padding: 8px !important;
+        text-align: center !important;
+        cursor: pointer !important;
+        position: relative !important;
+        overflow: hidden !important;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+    
+    .japanese-nav-container .flex {
+        gap: 0.5rem !important;
+        justify-content: flex-start !important;
+        flex-wrap: nowrap !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        scroll-behavior: smooth !important;
+        padding: 0.5rem 0 !important;
+        position: relative !important;
+    }
+    
+    .japanese-nav-container .flex::before {
+        content: '' !important;
+        position: absolute !important;
+        right: 0 !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        width: 2rem !important;
+        background: linear-gradient(to right, transparent, rgba(251, 191, 36, 0.1)) !important;
+        pointer-events: none !important;
+        z-index: 5 !important;
+    }
+    
+    .japanese-nav-container::after {
+        content: '← Deslize para ver mais →' !important;
+        display: block !important;
+        text-align: center !important;
+        margin-top: 0.75rem !important;
         font-size: 0.875rem !important;
-    }
-    
-    .video-container {
-        height: 220px !important; /* Aumentado para mais espaço */
-        margin: 1.5rem auto !important; /* Aumentado para mais espaço */
-    }
-    
-    .video-tip {
-        padding: 1.5rem !important; /* Aumentado para mais espaço */
-        margin: 0 1rem 1rem 1rem !important;
-    }
-    
-    .video-tip-title {
-        font-size: 0.875rem !important;
-    }
-    
-    .video-tip-text {
-        font-size: 0.75rem !important;
-    }
-    
-    /* Botões mobile */
-    .back-to-top-section {
-        padding: 0.75rem 1.5rem !important;
-        font-size: 0.875rem !important;
-    }
-    
-    /* Modal mobile */
-    #congratulationsModal .bg-white {
-        margin: 1rem !important;
-        padding: 1.5rem !important;
-        max-width: calc(100vw - 2rem) !important;
-    }
-    
-    .congratulations-title {
-        font-size: 2rem !important;
-    }
-    
-    .trophy-icon {
-        font-size: 3rem !important;
-    }
-    
-    .stats-grid {
-        grid-template-columns: 1fr !important;
-        gap: 1rem !important;
-    }
-    
-    .stat-card {
-        padding: 1rem !important;
-    }
-    
-    .stat-number {
-        font-size: 1.5rem !important;
-    }
-    
-    /* Barra flutuante mobile */
-    #floatingProgress {
-        width: calc(100vw - 2rem) !important;
-        margin: 0 1rem !important;
-        padding: 0.75rem !important;
-    }
-    
-    #floatingProgress .w-80 {
-        width: calc(100% - 4rem) !important;
-    }
-    
-    /* Botão voltar ao topo mobile */
-    #backToTop {
-        bottom: 1rem !important;
-        right: 1rem !important;
-        padding: 0.75rem !important;
-    }
-    
-    #backToTop span {
-        font-size: 1.5rem !important;
+        color: #92400e !important;
+        font-weight: 500 !important;
+        opacity: 0.8 !important;
     }
     
     /* Container principal mobile */
@@ -1089,12 +447,6 @@ button, .btn, a[href] {
     h2 {
         font-size: 1.5rem !important;
         margin-bottom: 1rem !important;
-    }
-    
-    /* Grid responsivo mobile */
-    .grid {
-        grid-template-columns: 1fr !important;
-        gap: 1rem !important;
     }
     
     /* Espaçamento otimizado para mobile */
@@ -1124,318 +476,62 @@ button, .btn, a[href] {
         padding-right: 1rem !important;
     }
     
-    /* ===== OTIMIZAÇÕES DE ANIMAÇÃO PARA MOBILE ===== */
-    
-    /* DESABILITAR ANIMAÇÕES COMPLEXAS EM MOBILE */
-    .japanese-nav-card::before,
-    .japanese-nav-card::after {
-        display: none !important;
+    /* Touch targets maiores - ESTRUTURA IGUAL À PÁGINA 2 */
+    .habilidade-item,
+    .japanese-nav-card,
+    .back-to-top-section,
+    #backToTop,
+    button,
+    label {
+        min-height: 44px !important;
+        min-width: 44px !important;
     }
     
-    .habilidade-item::before,
-    .habilidade-item::after {
-        display: none !important;
+    /* Checkboxes menores para mobile - ESTRUTURA IGUAL À PÁGINA 2 */
+    input[type="checkbox"] {
+        width: 1rem !important;
+        height: 1rem !important;
+        min-width: 1rem !important;
+        min-height: 1rem !important;
     }
     
-    .back-to-top-section::before,
-    .back-to-top-section::after {
-        display: none !important;
+    /* Animações otimizadas para mobile */
+    .animate-fade-in-up,
+    .animate-fade-in-down,
+    .animate-slide-in-right {
+        animation-duration: 0.5s !important;
     }
     
-    /* Simplificar partículas em mobile */
-    .particle,
-    .back-to-top-particle {
-        display: none !important;
+    /* Transições mais rápidas para mobile */
+    .transition-all {
+        transition-duration: 0.2s !important;
     }
     
-    /* Contorno amarelo já removido */
-    
-    /* Simplificar animações de entrada em mobile */
-    .japanese-nav-card {
-        opacity: 1 !important;
-        transform: none !important;
-        animation: none !important;
+    /* Feedback visual melhorado para mobile */
+    .habilidade-item:active,
+    .japanese-nav-card:active {
+        transform: scale(0.98) !important;
     }
     
-    .habilidade-item {
-        opacity: 1 !important;
-        transform: none !important;
-        animation: none !important;
+    /* Melhor legibilidade para mobile */
+    .video-title,
+    .video-description {
+        line-height: 1.4 !important;
     }
     
-    /* Simplificar hover effects em mobile */
-    .japanese-nav-card:hover {
-        transform: none !important;
-        box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2) !important;
+    /* Margens consistentes para mobile */
+    section {
+        margin-bottom: 2rem !important;
     }
     
-    /* Simplificar animações de carrossel em mobile */
-    .carousel-arrow-anim {
-        animation: none !important;
-    }
-    
-    /* Simplificar animações de modal em mobile */
-    .modal-enter {
-        animation: none !important;
-    }
-    
-    /* Simplificar animações de estatísticas em mobile */
-    .stat-card {
-        animation: none !important;
-        opacity: 1 !important;
-        transform: none !important;
-    }
-    
-    /* Simplificar animações de partículas em mobile */
-    .scroll-particles {
-        display: none !important;
-    }
-    
-    /* Simplificar animações de scroll em mobile */
-    .scroll-indicator {
-        transition: opacity 0.2s ease !important;
-    }
-    
-    /* Simplificar animações de destaque em mobile */
-    .destination-highlight {
-        animation: none !important;
-    }
-    
-    /* Simplificar animações de troféu em mobile */
-    .trophy-container {
-        animation: none !important;
-    }
-    
-    .trophy-icon {
-        animation: none !important;
-    }
-    
-    .trophy-glow {
-        display: none !important;
-    }
-    
-    /* Simplificar animações de título em mobile */
-    .congratulations-title {
-        animation: none !important;
-    }
-    
-    /* Simplificar animações de partículas de celebração em mobile */
-    .celebration-particle {
-        display: none !important;
-    }
-    
-    /* Simplificar animações de botões em mobile */
-    .continue-btn::before,
-    .close-btn::before {
-        display: none !important;
-    }
-    
-    /* Simplificar animações de float em mobile */
-    .floating-action {
-        animation: none !important;
-    }
-    
-    /* Contorno amarelo já removido */
-    
-    /* Simplificar animações de click em mobile */
-    .japanese-nav-card.clicked::before {
-        display: none !important;
-    }
-    
-    .japanese-nav-card.clicked {
-        transform: none !important;
-        box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3) !important;
-    }
-    
-    /* Simplificar animações de scroll em mobile */
-    .scroll-indicator.show {
-        transition: opacity 0.2s ease !important;
-    }
-    
-    /* Simplificar animações de carrossel em mobile */
-    .technique-individual-card .card-hover:hover {
-        transform: none !important;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
-    }
-    
-    /* ===== BARRA JAPONESA COM COR AMARELA CLARA ===== */
-    /* Container da barra japonesa - cor amarela clara igual à versão desktop */
-    .japanese-nav-container {
-        position: relative !important;
-        background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(251, 191, 36, 0.08) 100%) !important;
-        border-radius: 16px !important;
-        padding: 16px !important;
-        margin: 16px 0 !important;
-        border: 1px solid rgba(251, 191, 36, 0.25) !important;
-        box-shadow: 0 4px 20px rgba(251, 191, 36, 0.15) !important;
-    }
-    
-    /* Contorno azul igual à página2.html */
-    
-    /* Cards da barra japonesa - estilo igual à página2.html */
-    .japanese-nav-card {
-        width: 120px !important;
-        height: 80px !important;
-        min-width: 120px !important;
-        min-height: 80px !important;
-        max-width: 120px !important;
-        max-height: 80px !important;
-        flex-shrink: 0 !important;
-        background: white !important;
-        border: 1px solid #d1d5db !important;
-        border-radius: 8px !important;
-        padding: 8px !important;
-        text-align: center !important;
-        cursor: pointer !important;
-        position: relative !important;
-        overflow: hidden !important;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    }
-    
-    /* Layout horizontal com scroll para mobile - igual à página2.html */
-    .japanese-nav-container .flex {
-        gap: 0.5rem !important;
-        justify-content: flex-start !important;
-        flex-wrap: nowrap !important;
-        flex-direction: row !important;
-        overflow-x: auto !important;
-        scroll-behavior: smooth !important;
-        padding: 0.5rem 0 !important;
-        position: relative !important;
-    }
-    
-    /* Gradiente sutil no lado direito para indicar mais conteúdo */
-    .japanese-nav-container .flex::before {
-        content: '' !important;
-        position: absolute !important;
-        right: 0 !important;
-        top: 0 !important;
-        bottom: 0 !important;
-        width: 2rem !important;
-        background: linear-gradient(to right, transparent, rgba(251, 191, 36, 0.1)) !important;
-        pointer-events: none !important;
-        z-index: 5 !important;
-    }
-    
-    /* Texto indicativo de scroll para mobile */
-    .japanese-nav-container::after {
-        content: '← Deslize para ver mais →' !important;
-        display: block !important;
-        text-align: center !important;
-        margin-top: 0.75rem !important;
-        font-size: 0.875rem !important;
-        color: #92400e !important;
-        font-weight: 500 !important;
-        opacity: 0.8 !important;
-    }
-    
-    /* ===== CARDS DE TÉCNICAS IGUAL À PÁGINA5.HTML ===== */
-    /* Cards de técnicas com tamanho fixo igual à página5.html */
-    .technique-individual-card .card-hover,
-    #nage-waza-section .video-card,
-    #imobilizacoes-section .video-card {
-        min-width: 320px !important;
-        max-width: 320px !important;
-        width: 320px !important;
-        flex-shrink: 0 !important;
-        scroll-snap-align: start !important;
-        border-radius: 12px !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        border: none !important;
-        overflow: hidden !important;
-    }
-    
-    /* Garantir que os cards tenham estrutura limpa */
-    .technique-individual-card,
-    #nage-waza-section,
-    #imobilizacoes-section {
-        padding: 0 !important;
-        margin: 0 !important;
-        border: none !important;
-        outline: none !important;
-    }
-    
-    /* Cards de habilidades com estrutura igual à página2.html */
-    .habilidade-item {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 100% !important;
-        padding: 0.75rem 1rem !important;
-        margin: 0.25rem !important;
-        font-size: 0.875rem !important;
-        border-radius: 8px !important;
-        background: white !important;
-        border: 1px solid #e5e7eb !important;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
-    }
-    
-    /* Header do vídeo com estrutura limpa */
-    .video-header {
-        padding: 1rem !important;
-        margin: 0 !important;
-    }
-    
-    .video-header label {
-        min-width: auto !important;
-        padding: 0.5rem !important;
-        margin: 0 !important;
-    }
-    
-    .video-header span {
-        font-size: 0.875rem !important;
-        padding: 0.5rem 1rem !important;
-        white-space: nowrap !important;
+    /* Botões mais acessíveis para mobile */
+    .back-to-top-section {
+        border-radius: 0.5rem !important;
         font-weight: 600 !important;
-        margin: 0 !important;
     }
-    
-    /* ===== EFEITOS VISUAIS DA BARRA JAPONESA - CORES AMARELAS ===== */
-    /* Hover dos cards da barra japonesa */
-    .japanese-nav-card:hover {
-        transform: translateY(-8px) scale(1.05) !important;
-        box-shadow: 0 20px 40px rgba(251, 191, 36, 0.2) !important;
-        border-color: #fbbf24 !important;
-        background: white !important;
-    }
-    
-    /* Efeito de brilho nos cards */
-    .japanese-nav-card::after {
-        content: '' !important;
-        position: absolute !important;
-        top: 0 !important;
-        left: -100% !important;
-        width: 100% !important;
-        height: 100% !important;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent) !important;
-        transition: left 0.5s !important;
-    }
-    
-    .japanese-nav-card:hover::after {
-        left: 100% !important;
-    }
-    
-    /* Efeito de clique nos cards */
-    .japanese-nav-card.clicked {
-        transform: scale(0.95) !important;
-        box-shadow: 0 8px 25px rgba(251, 191, 36, 0.3) !important;
-        border-color: #fbbf24 !important;
-    }
-    
-    /* Efeito de contorno removido da versão mobile */
 }
 
 @media (max-width: 480px) {
-    /* Checkboxes ainda menores para telas pequenas */
-    input[type="checkbox"] {
-        width: 0.875rem !important;
-        height: 0.875rem !important;
-        min-width: 0.875rem !important;
-        min-height: 0.875rem !important;
-    }
-    
-    /* Barra japonesa para telas pequenas */
     .japanese-nav-card {
         width: 100px !important;
         height: 70px !important;
@@ -1445,13 +541,11 @@ button, .btn, a[href] {
         max-height: 70px !important;
     }
     
-    /* Layout horizontal com scroll para telas pequenas */
     .japanese-nav-container .flex {
         gap: 0.25rem !important;
         padding: 0.25rem 0 !important;
     }
     
-    /* Header muito pequeno */
     header {
         padding: 0.5rem !important;
     }
@@ -1464,10 +558,7 @@ button, .btn, a[href] {
         font-size: 0.75rem !important;
     }
     
-    /* ===== CONDIÇÕES E HABILIDADES IGUAL À PÁGINA2.HTML - TELAS PEQUENAS ===== */
-    /* Cards de habilidades muito pequenos - igual à página2.html */
     .habilidade-item {
-        /* Layout igual à página2.html */
         width: 100% !important;
         max-width: 100% !important;
         min-width: 100% !important;
@@ -1478,57 +569,124 @@ button, .btn, a[href] {
         background: white !important;
         border: 1px solid #e5e7eb !important;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
-        /* Efeitos básicos apenas */
         transition: background-color 0.2s ease, box-shadow 0.2s ease !important;
         transform: none !important;
-        /* Remover efeitos complexos */
         position: relative !important;
         overflow: visible !important;
+        opacity: 1 !important;
     }
     
     .habilidade-item:hover {
-        /* Efeito simples igual à página2.html */
         transform: none !important;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
         background: #f9fafb !important;
     }
     
-    /* Remover todos os efeitos complexos das habilidades */
     .habilidade-item::before,
     .habilidade-item::after {
         display: none !important;
     }
     
-    /* Efeito básico de aparecer apenas */
-    .habilidade-item {
-        animation: fadeInUp 0.5s ease-out forwards !important;
-        opacity: 0 !important;
-        transform: translateY(20px) !important;
+    /* CARDS DE TÉCNICAS - ESTRUTURA IGUAL À PÁGINA 2 */
+    .card-hover {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+        padding: 0.75rem !important;
+        margin: 0.5rem 0 !important;
+        border-radius: 12px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        transition: box-shadow 0.2s ease !important;
+        background: white !important;
+        border: 1px solid #e5e7eb !important;
     }
     
-    /* Aplicar delay para cada item aparecer sequencialmente */
-    .habilidade-item:nth-child(1) { animation-delay: 0.1s !important; }
-    .habilidade-item:nth-child(2) { animation-delay: 0.2s !important; }
-    .habilidade-item:nth-child(3) { animation-delay: 0.3s !important; }
-    .habilidade-item:nth-child(4) { animation-delay: 0.4s !important; }
-    .habilidade-item:nth-child(5) { animation-delay: 0.5s !important; }
-    .habilidade-item:nth-child(6) { animation-delay: 0.6s !important; }
-    .habilidade-item:nth-child(7) { animation-delay: 0.7s !important; }
-    .habilidade-item:nth-child(8) { animation-delay: 0.8s !important; }
-    .habilidade-item:nth-child(9) { animation-delay: 0.9s !important; }
-    .habilidade-item:nth-child(10) { animation-delay: 1.0s !important; }
+    .card-hover:hover {
+        transform: none !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+    }
+    
+    /* Container de vídeo mobile - ESTRUTURA IGUAL À PÁGINA 2 */
+    .video-container {
+        height: 180px !important;
+        margin: 0.5rem 0 !important;
+        border-radius: 8px !important;
+    }
+    
+    /* Header dos cards - ESTRUTURA IGUAL À PÁGINA 2 */
+    .card-hover .flex.items-center.mb-3 {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        margin-bottom: 0.5rem !important;
+        padding: 0 !important;
+    }
+    
+    .card-hover h3 {
+        font-size: 0.875rem !important;
+        font-weight: 600 !important;
+        color: #1f2937 !important;
+        line-height: 1.4 !important;
+    }
+    
+    .card-hover p {
+        font-size: 0.75rem !important;
+        color: #6b7280 !important;
+        line-height: 1.4 !important;
+    }
+    
+    /* Dicas dos cards - ESTRUTURA IGUAL À PÁGINA 2 */
+    .card-hover .bg-blue-50,
+    .card-hover .bg-green-50,
+    .card-hover .bg-orange-50,
+    .card-hover .bg-purple-50,
+    .card-hover .bg-indigo-50,
+    .card-hover .bg-teal-50,
+    .card-hover .bg-cyan-50 {
+        padding: 0.5rem !important;
+        margin: 0.5rem 0 0 0 !important;
+        border-radius: 0.5rem !important;
+    }
+    
+    .card-hover .bg-blue-50 h4,
+    .card-hover .bg-green-50 h4,
+    .card-hover .bg-orange-50 h4,
+    .card-hover .bg-purple-50 h4,
+    .card-hover .bg-indigo-50 h4,
+    .card-hover .bg-teal-50 h4,
+    .card-hover .bg-cyan-50 h4 {
+        font-size: 0.75rem !important;
+        font-weight: 600 !important;
+        margin-bottom: 0.25rem !important;
+        line-height: 1.4 !important;
+    }
+    
+    .card-hover .bg-blue-50 p,
+    .card-hover .bg-green-50 p,
+    .card-hover .bg-orange-50 p,
+    .card-hover .bg-purple-50 p,
+    .card-hover .bg-indigo-50 p,
+    .card-hover .bg-teal-50 p,
+    .card-hover .bg-cyan-50 p {
+        font-size: 0.6875rem !important;
+        line-height: 1.4 !important;
+    }
+    
+    #nage-waza-section, #imobilizacoes-section {
+        padding: 0 0.5rem !important;
+    }
+    
+    main {
+        padding: 0.5rem !important;
+    }
+    
+    h2 {
+        font-size: 1.5rem !important;
+        margin-bottom: 1rem !important;
+    }
 }
 
 @media (max-width: 360px) {
-    /* Checkboxes mínimos para telas muito pequenas */
-    input[type="checkbox"] {
-        width: 0.75rem !important;
-        height: 0.75rem !important;
-        min-width: 0.75rem !important;
-        min-height: 0.75rem !important;
-    }
-    
-    /* Barra japonesa para telas muito pequenas */
     .japanese-nav-card {
         width: 80px !important;
         height: 70px !important;
@@ -1538,13 +696,11 @@ button, .btn, a[href] {
         max-height: 70px !important;
     }
     
-    /* Layout horizontal com scroll para telas muito pequenas */
     .japanese-nav-container .flex {
         gap: 0.25rem !important;
         padding: 0.25rem 0 !important;
     }
     
-    /* Dispositivos extremamente pequenos */
     header {
         padding: 0.25rem !important;
     }
@@ -1553,10 +709,7 @@ button, .btn, a[href] {
         padding: 0.25rem !important;
     }
     
-    /* ===== CONDIÇÕES E HABILIDADES IGUAL À PÁGINA2.HTML - TELAS EXTREMAMENTE PEQUENAS ===== */
-    /* Cards de habilidades extremamente pequenos - igual à página2.html */
     .habilidade-item {
-        /* Layout igual à página2.html */
         width: 100% !important;
         max-width: 100% !important;
         min-width: 100% !important;
@@ -1567,45 +720,120 @@ button, .btn, a[href] {
         background: white !important;
         border: 1px solid #e5e7eb !important;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
-        /* Efeitos básicos apenas */
         transition: background-color 0.2s ease, box-shadow 0.2s ease !important;
         transform: none !important;
-        /* Remover efeitos complexos */
         position: relative !important;
         overflow: visible !important;
+        opacity: 1 !important;
     }
     
     .habilidade-item:hover {
-        /* Efeito simples igual à página2.html */
         transform: none !important;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
         background: #f9fafb !important;
     }
     
-    /* Remover todos os efeitos complexos das habilidades */
     .habilidade-item::before,
     .habilidade-item::after {
         display: none !important;
     }
     
-    /* Efeito básico de aparecer apenas */
-    .habilidade-item {
-        animation: fadeInUp 0.5s ease-out forwards !important;
-        opacity: 0 !important;
-        transform: translateY(20px) !important;
+    /* CARDS DE TÉCNICAS - ESTRUTURA IGUAL À PÁGINA 2 */
+    .card-hover {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+        padding: 0.5rem !important;
+        margin: 0.5rem 0 !important;
+        border-radius: 12px !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+        transition: box-shadow 0.2s ease !important;
+        background: white !important;
+        border: 1px solid #e5e7eb !important;
     }
     
-    /* Aplicar delay para cada item aparecer sequencialmente */
-    .habilidade-item:nth-child(1) { animation-delay: 0.1s !important; }
-    .habilidade-item:nth-child(2) { animation-delay: 0.2s !important; }
-    .habilidade-item:nth-child(3) { animation-delay: 0.3s !important; }
-    .habilidade-item:nth-child(4) { animation-delay: 0.4s !important; }
-    .habilidade-item:nth-child(5) { animation-delay: 0.5s !important; }
-    .habilidade-item:nth-child(6) { animation-delay: 0.6s !important; }
-    .habilidade-item:nth-child(7) { animation-delay: 0.7s !important; }
-    .habilidade-item:nth-child(8) { animation-delay: 0.8s !important; }
-    .habilidade-item:nth-child(9) { animation-delay: 0.9s !important; }
-    .habilidade-item:nth-child(10) { animation-delay: 1.0s !important; }
+    .card-hover:hover {
+        transform: none !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+    }
+    
+    /* Container de vídeo mobile - ESTRUTURA IGUAL À PÁGINA 2 */
+    .video-container {
+        height: 160px !important;
+        margin: 0.5rem 0 !important;
+        border-radius: 8px !important;
+    }
+    
+    /* Header dos cards - ESTRUTURA IGUAL À PÁGINA 2 */
+    .card-hover .flex.items-center.mb-3 {
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        margin-bottom: 0.5rem !important;
+        padding: 0 !important;
+    }
+    
+    .card-hover h3 {
+        font-size: 0.75rem !important;
+        font-weight: 600 !important;
+        color: #1f2937 !important;
+        line-height: 1.4 !important;
+    }
+    
+    .card-hover p {
+        font-size: 0.625rem !important;
+        color: #6b7280 !important;
+        line-height: 1.4 !important;
+    }
+    
+    /* Dicas dos cards - ESTRUTURA IGUAL À PÁGINA 2 */
+    .card-hover .bg-blue-50,
+    .card-hover .bg-green-50,
+    .card-hover .bg-orange-50,
+    .card-hover .bg-purple-50,
+    .card-hover .bg-indigo-50,
+    .card-hover .bg-teal-50,
+    .card-hover .bg-cyan-50 {
+        padding: 0.375rem !important;
+        margin: 0.375rem 0 0 0 !important;
+        border-radius: 0.375rem !important;
+    }
+    
+    .card-hover .bg-blue-50 h4,
+    .card-hover .bg-green-50 h4,
+    .card-hover .bg-orange-50 h4,
+    .card-hover .bg-purple-50 h4,
+    .card-hover .bg-indigo-50 h4,
+    .card-hover .bg-teal-50 h4,
+    .card-hover .bg-cyan-50 h4 {
+        font-size: 0.625rem !important;
+        font-weight: 600 !important;
+        margin-bottom: 0.25rem !important;
+        line-height: 1.4 !important;
+    }
+    
+    .card-hover .bg-blue-50 p,
+    .card-hover .bg-green-50 p,
+    .card-hover .bg-orange-50 p,
+    .card-hover .bg-purple-50 p,
+    .card-hover .bg-indigo-50 p,
+    .card-hover .bg-teal-50 p,
+    .card-hover .bg-cyan-50 p {
+        font-size: 0.5625rem !important;
+        line-height: 1.4 !important;
+    }
+    
+    header h1 {
+        font-size: 1rem !important;
+    }
+    
+    header p {
+        font-size: 0.625rem !important;
+    }
+    
+    h2 {
+        font-size: 1.25rem !important;
+    }
 }
 
 /* Orientação landscape para mobile */
@@ -1622,7 +850,6 @@ button, .btn, a[href] {
         height: 150px !important;
     }
 }
-
 /* Suporte para dispositivos com notch */
 @media (max-width: 768px) {
     header {
@@ -1645,274 +872,1369 @@ button, .btn, a[href] {
     #floatingProgress {
         top: max(1rem, env(safe-area-inset-top)) !important;
     }
+}
+
+/* ===== CSS ESPECÍFICO DA PÁGINA 3 - TÉCNICAS DE PROJEÇÃO, ATAQUES COMBINADOS E CONTRA-ATAQUES ===== */
+
+@media (max-width: 768px) {
+    /* Layout mobile para técnicas de projeção - Cards lado a lado como carrossel horizontal */
+    #nage-waza-section .relative {
+        position: relative !important;
+        overflow: hidden !important;
     }
     
-    /* Touch targets maiores */
-    .habilidade-item,
-    .japanese-nav-card,
-    .back-to-top-section,
-    #backToTop,
-    button,
-    label {
-        min-height: 44px !important;
-        min-width: 44px !important;
-    }
-    
-/* Estilos específicos para telas muito pequenas (smartphones pequenos) */
-@media (max-width: 480px) {
-    /* Ajustar ainda mais os cards para telas muito pequenas - MANTENDO ESTRUTURA */
-    #nage-waza-section .card-hover,
-    #imobilizacoes-section .card-hover {
-        padding: 1rem !important;
-        min-width: 280px !important;
-        margin: 0 0.5rem !important;
-    }
-    
-    /* MANTER LAYOUT ORIGINAL para telas muito pequenas */
-    #nage-waza-section .card-hover .flex.items-center.mb-3.justify-between,
-    #imobilizacoes-section .card-hover .flex.items-center.mb-3.justify-between {
-        gap: 0.375rem !important;
-        margin-bottom: 0.75rem !important;
-        /* MANTER estrutura horizontal */
+    #carouselProj {
+        display: flex !important;
         flex-direction: row !important;
-        align-items: center !important;
-        justify-content: space-between !important;
         flex-wrap: nowrap !important;
+        gap: 1rem !important;
+        overflow: hidden !important;
+        padding: 0.5rem 0 !important;
+        position: relative !important;
+        scroll-snap-type: none !important;
+        width: 100% !important;
     }
     
-    /* Ajustar o container do checkbox e texto "Aprendi" para telas muito pequenas - MANTENDO ESTRUTURA */
-    #nage-waza-section .card-hover label.flex.items-center.ml-2.select-none,
-    #imobilizacoes-section .card-hover label.flex.items-center.ml-2.select-none {
-        padding: 0.125rem 0 !important;
-        /* MANTER estrutura horizontal */
-        justify-content: flex-start !important;
-        margin-left: 0.25rem !important;
+    /* Cards das técnicas de projeção no mobile - organizados horizontalmente */
+    #carouselProj .card-hover {
+        min-width: 320px !important;
+        max-width: 320px !important;
+        width: 320px !important;
         flex-shrink: 0 !important;
-        white-space: nowrap !important;
+        scroll-snap-align: unset !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
     }
     
-    /* Ajustar o texto "Aprendi" para telas muito pequenas - MANTENDO ESTRUTURA */
-    #nage-waza-section .card-hover label span,
-    #imobilizacoes-section .card-hover label span {
-        font-size: 0.6875rem !important;
-        padding: 0.25rem 0.375rem !important;
-        /* MANTER estrutura horizontal */
-        text-align: left !important;
-        min-width: fit-content !important;
+
+    
+    /* Carrossel para outras seções (imobilizações) */
+    #carouselImob {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        gap: 1rem !important;
+        overflow-x: auto !important;
+        scroll-behavior: smooth !important;
+        padding: 0.5rem 0 !important;
+        position: relative !important;
+        scroll-snap-type: x mandatory !important;
+    }
+    
+    /* Cards do carrossel de imobilizações */
+    #carouselImob .card-hover {
+        min-width: 320px !important;
+        max-width: 320px !important;
+        width: 320px !important;
         flex-shrink: 0 !important;
-        white-space: nowrap !important;
+        scroll-snap-align: start !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
     }
     
-    /* Ajustar o checkbox para telas muito pequenas - MANTENDO ESTRUTURA */
-    #nage-waza-section .card-hover input[type="checkbox"],
-    #imobilizacoes-section .card-hover input[type="checkbox"] {
-        width: 0.875rem !important;
-        height: 0.875rem !important;
-        min-width: 0.875rem !important;
-        min-height: 0.875rem !important;
-        margin-right: 0.375rem !important;
+    /* Layout vertical para seções de ataques combinados e contra-ataques (igual à página 4) */
+    #henkakuenka-section .max-w-6xl,
+    #kaeshi-waza-section .max-w-6xl {
+        display: block !important;
+        overflow: visible !important;
+        padding: 0.5rem 0 !important;
+        position: relative !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* Forçar layout vertical para ataques combinados */
+    #henkakuenka-section,
+    #kaeshi-waza-section {
+        overflow: visible !important;
+    }
+    
+    #henkakuenka-section .space-y-6,
+    #kaeshi-waza-section .space-y-6 {
+        display: block !important;
+        width: 100% !important;
+    }
+    
+    /* Cards das seções de ataques combinados (layout vertical igual à página 4) */
+    #henkakuenka-section .card-hover,
+    #kaeshi-waza-section .card-hover {
+        min-width: 300px !important;
+        max-width: 440px !important;
+        width: auto !important;
         flex-shrink: 0 !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
     }
     
-    /* Ajustar o título da técnica para telas muito pequenas - MANTENDO ESTRUTURA */
-    #nage-waza-section .card-hover h3,
-    #imobilizacoes-section .card-hover h3 {
+    /* Layout vertical no desktop e mobile para ataques combinados (igual à página 4) */
+    #henkakuenka-section .flex.flex-col,
+    #kaeshi-waza-section .flex.flex-col {
+        flex-direction: column !important;
+        gap: 1rem !important;
+        overflow: visible !important;
+        padding: 0.5rem 0 !important;
+        width: 100% !important;
+        align-items: center !important;
+    }
+    
+    /* Forçar layout vertical para todos os grupos de técnicas */
+    #henkakuenka-section .text-center,
+    #kaeshi-waza-section .text-center {
+        width: 100% !important;
+        margin-bottom: 1.5rem !important;
+    }
+    
+    /* Garantir que os cards fiquem centralizados e um embaixo do outro */
+    #henkakuenka-section .card-hover,
+    #kaeshi-waza-section .card-hover {
+        margin: 0 auto !important;
+        display: block !important;
+    }
+    
+    /* Centralizar as setas entre os cards */
+    #henkakuenka-section .text-4xl,
+    #kaeshi-waza-section .text-4xl {
+        text-align: center !important;
+        margin: 1rem 0 !important;
+        display: block !important;
+        width: 100% !important;
+    }
+    
+    /* Garantir que os checkboxes fiquem centralizados */
+    #henkakuenka-section .flex.items-center.justify-center,
+    #kaeshi-waza-section .flex.items-center.justify-center {
+        width: 100% !important;
+        text-align: center !important;
+        margin-top: 1rem !important;
+    }
+    
+    /* Layout vertical para ataques combinados - sem indicadores de scroll */
+    #henkakuenka-section .max-w-6xl::after,
+    #kaeshi-waza-section .max-w-6xl::after {
+        display: none !important;
+    }
+    
+    /* Remover qualquer scroll horizontal das seções de ataques combinados */
+    #henkakuenka-section *,
+    #kaeshi-waza-section * {
+        overflow-x: hidden !important;
+        overflow-y: visible !important;
+    }
+    
+    /* Garantir que as seções tenham largura total */
+    #henkakuenka-section,
+    #kaeshi-waza-section {
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: visible !important;
+    }
+    
+    /* ===== CSS ESPECÍFICO PARA RESPONSIVIDADE DAS SEÇÕES ===== */
+    
+    /* Forçar layout responsivo para ataques combinados */
+    @media (max-width: 768px) {
+        #henkakuenka-section,
+        #kaeshi-waza-section {
+            padding: 0 0.5rem !important;
+            margin: 0 auto !important;
+            width: 100% !important;
+        }
+        
+        #henkakuenka-section .max-w-6xl,
+        #kaeshi-waza-section .max-w-6xl {
+            width: 100% !important;
+            max-width: 100% !important;
+            padding: 0 !important;
+            margin: 0 auto !important;
+        }
+        
+        #henkakuenka-section .space-y-6,
+        #kaeshi-waza-section .space-y-6 {
+            width: 100% !important;
+            margin: 0 auto !important;
+        }
+    }
+    
+    /* Responsividade para telas muito pequenas */
+    @media (max-width: 480px) {
+        #henkakuenka-section,
+        #kaeshi-waza-section {
+            padding: 0 0.25rem !important;
+        }
+        
+        #henkakuenka-section .card-hover,
+        #kaeshi-waza-section .card-hover {
+            padding: 0.75rem !important;
+            margin: 0.5rem auto !important;
+        }
+    }
+    
+    /* Responsividade para telas extremamente pequenas */
+    @media (max-width: 360px) {
+        #henkakuenka-section,
+        #kaeshi-waza-section {
+            padding: 0 0.125rem !important;
+        }
+        
+        #henkakuenka-section .card-hover,
+        #kaeshi-waza-section .card-hover {
+            padding: 0.5rem !important;
+            margin: 0.25rem auto !important;
+        }
+    }
+    
+    /* CSS com maior especificidade para forçar layout vertical */
+    body #henkakuenka-section .max-w-6xl,
+    body #kaeshi-waza-section .max-w-6xl {
+        display: block !important;
+        overflow: visible !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    body #henkakuenka-section .flex.flex-col,
+    body #kaeshi-waza-section .flex.flex-col {
+        flex-direction: column !important;
+        width: 100% !important;
+        align-items: center !important;
+    }
+    
+    body #henkakuenka-section .card-hover,
+    body #kaeshi-waza-section .card-hover {
+        width: 100% !important;
+        max-width: 440px !important;
+        margin: 0 auto !important;
+        display: block !important;
+    }
+    
+    /* Regra com máxima especificidade para garantir layout vertical */
+    html body #henkakuenka-section .max-w-6xl,
+    html body #kaeshi-waza-section .max-w-6xl {
+        display: block !important;
+        overflow: visible !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        flex-direction: unset !important;
+        flex-wrap: unset !important;
+    }
+    
+    html body #henkakuenka-section .flex.flex-col,
+    html body #kaeshi-waza-section .flex.flex-col {
+        flex-direction: column !important;
+        width: 100% !important;
+        align-items: center !important;
+        overflow: visible !important;
+    }
+    
+    /* Texto indicativo para técnicas de projeção */
+    #nage-waza-section::after {
+        content: '← Deslize para ver mais técnicas →' !important;
+        display: block !important;
+        text-align: center !important;
+        margin-top: 0.75rem !important;
         font-size: 0.875rem !important;
-        line-height: 1.2 !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
+        color: #6B7280 !important;
+        font-weight: 500 !important;
+        opacity: 0.8 !important;
     }
     
-    /* Ajustar a descrição da técnica para telas muito pequenas - MANTENDO ESTRUTURA */
-    #nage-waza-section .card-hover p.text-gray-600,
-    #imobilizacoes-section .card-hover p.text-gray-600 {
-        font-size: 0.6875rem !important;
-        line-height: 1.3 !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
+    /* Texto indicativo para outras seções */
+    #imobilizacoes-section::after {
+        content: '← Deslize para ver mais técnicas →' !important;
+        display: block !important;
+        text-align: center !important;
+        margin-top: 0.75rem !important;
+        font-size: 0.875rem !important;
+        color: #6B7280 !important;
+        font-weight: 500 !important;
+        opacity: 0.8 !important;
     }
     
-    /* Ajustar container de vídeo para telas muito pequenas */
-    .video-container {
-        height: 180px !important;
-        margin: 0.75rem 0 !important;
+    /* Layout vertical para ataques combinados - sem texto indicativo */
+    #henkakuenka-section::after,
+    #kaeshi-waza-section::after {
+        display: none !important;
     }
     
-    /* Ajustar dicas para telas muito pequenas */
-    .bg-blue-50,
-    .bg-green-50,
-    .bg-orange-50,
-    .bg-purple-50,
-    .bg-indigo-50,
-    .bg-teal-50,
-    .bg-cyan-50 {
-        padding: 0.75rem !important;
-        margin: 0.25rem 0 !important;
+    /* Melhorar barra de scroll do carrossel no mobile */
+    #carouselImob::-webkit-scrollbar {
+        height: 4px !important;
     }
     
-    /* Ajustar títulos das dicas para telas muito pequenas */
-    .bg-blue-50 h4,
-    .bg-green-50 h4,
-    .bg-orange-50 h4,
-    .bg-purple-50 h4,
-    .bg-indigo-50 h4,
-    .bg-teal-50 h4,
-    .bg-cyan-50 h4 {
-        font-size: 0.75rem !important;
-        margin-bottom: 0.375rem !important;
+    #carouselImob::-webkit-scrollbar-track {
+        background: rgba(156, 163, 175, 0.1) !important;
+        border-radius: 2px !important;
     }
     
-    /* Ajustar texto das dicas para telas muito pequenas */
-    .bg-blue-50 p,
-    .bg-green-50 p,
-    .bg-orange-50 p,
-    .bg-purple-50 p,
-    .bg-indigo-50 p,
-    .bg-teal-50 p,
-    .bg-cyan-50 p {
-        font-size: 0.6875rem !important;
-        line-height: 1.3 !important;
+    #carouselImob::-webkit-scrollbar-thumb {
+        background: rgba(156, 163, 175, 0.4) !important;
+        border-radius: 2px !important;
     }
     
-    /* Ajustar botões de navegação para telas muito pequenas */
-    #carouselLeft,
-    #carouselRight,
-    #carouselImobLeft,
-    #carouselImobRight {
+    #carouselImob::-webkit-scrollbar-thumb:hover {
+        background: rgba(156, 163, 175, 0.6) !important;
+    }
+}
+
+/* ===== ESTILOS DESKTOP PARA CARROSSEL ===== */
+#carouselProj {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 1rem 0;
+    position: relative;
+    scroll-snap-type: x mandatory;
+    width: 100%;
+}
+
+#carouselProj .card-hover {
+    min-width: 370px;
+    max-width: 440px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+}
+
+/* Botões de navegação desktop */
+#carouselLeft,
+#carouselRight {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background: rgba(249, 115, 22, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* Esconder scrollbar do carrossel */
+#carouselProj::-webkit-scrollbar {
+    display: none;
+}
+
+#carouselProj {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Container relativo para posicionamento dos botões */
+#nage-waza-section .relative {
+    position: relative;
+    overflow: hidden;
+}
+
+/* ===== LAYOUT DESKTOP PARA CARROSSEL DE TÉCNICAS - IGUAL À PÁGINA 2 ===== */
+
+/* Carrossel horizontal no desktop para todas as seções de técnicas */
+#nage-waza-section .grid,
+#imobilizacoes-section .grid,
+#henkakuenka-section .max-w-6xl,
+#kaeshi-waza-section .max-w-6xl {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 1.5rem !important;
+    overflow-x: auto !important;
+    scroll-behavior: smooth !important;
+    padding: 1rem 0 !important;
+    position: relative !important;
+    scroll-snap-type: x mandatory !important;
+    width: 100% !important;
+}
+
+/* Cards das técnicas no desktop - tamanho fixo para carrossel */
+#nage-waza-section .card-hover,
+#imobilizacoes-section .card-hover,
+#henkakuenka-section .card-hover,
+#kaeshi-waza-section .card-hover {
+    min-width: 400px !important;
+    max-width: 400px !important;
+    width: 400px !important;
+    flex-shrink: 0 !important;
+    scroll-snap-align: start !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Indicador de scroll no desktop (gradiente sutil) */
+#nage-waza-section .grid::after,
+#imobilizacoes-section .grid::after,
+#henkakuenka-section .max-w-6xl::after,
+#kaeshi-waza-section .max-w-6xl::after {
+    content: '' !important;
+    position: absolute !important;
+    right: 0 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    width: 3rem !important;
+    background: linear-gradient(to right, transparent, rgba(156, 163, 175, 0.1)) !important;
+    pointer-events: none !important;
+    z-index: 5 !important;
+}
+
+/* Esconder scrollbar do carrossel no desktop */
+#nage-waza-section .grid::-webkit-scrollbar,
+#imobilizacoes-section .grid::-webkit-scrollbar {
+    height: 6px !important;
+}
+
+#nage-waza-section .grid::-webkit-scrollbar-track,
+#imobilizacoes-section .grid::-webkit-scrollbar-track {
+    background: rgba(156, 163, 175, 0.1) !important;
+    border-radius: 3px !important;
+}
+
+#nage-waza-section .grid::-webkit-scrollbar-thumb,
+#imobilizacoes-section .grid::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.3) !important;
+    border-radius: 3px !important;
+}
+
+#nage-waza-section .grid::-webkit-scrollbar-thumb:hover,
+#imobilizacoes-section .grid::-webkit-scrollbar-thumb:hover {
+    background: rgba(156, 163, 175, 0.5) !important;
+}
+
+/* Suporte para navegadores que não usam webkit */
+#nage-waza-section .grid,
+#imobilizacoes-section .grid {
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(156, 163, 175, 0.3) rgba(156, 163, 175, 0.1) !important;
+}
+
+/* ===== SETAS DE NAVEGAÇÃO DO CARROSSEL - DESKTOP E MOBILE ===== */
+
+
+
+/* Container relativo para posicionamento das setas */
+#nage-waza-section,
+#imobilizacoes-section,
+#henkakuenka-section,
+#kaeshi-waza-section {
+    position: relative !important;
+}
+
+/* Setas de navegação - Desktop e Mobile */
+.carousel-arrow-left,
+.carousel-arrow-right {
+    display: flex !important;
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 20 !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 3rem !important;
+    height: 3rem !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    color: white !important;
+    font-size: 1.5rem !important;
+    font-weight: bold !important;
+}
+
+/* Setas específicas para a seção de projeção (cor laranja) */
+#nage-waza-section .carousel-arrow-left,
+#nage-waza-section .carousel-arrow-right {
+    background: rgba(249, 115, 22, 0.9) !important; /* Laranja com transparência */
+    display: flex !important; /* Garantir que estejam visíveis */
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+#nage-waza-section .carousel-arrow-left:hover,
+#nage-waza-section .carousel-arrow-right:hover {
+    background: rgba(249, 115, 22, 1) !important; /* Laranja sólido no hover */
+}
+
+/* Debug: forçar visibilidade das setas de projeção */
+#nage-waza-section .carousel-arrow-left.hidden,
+#nage-waza-section .carousel-arrow-right.hidden {
+    display: flex !important; /* Override do .hidden para debug */
+}
+
+/* Regra ultra-específica para setas de projeção */
+html body #nage-waza-section .carousel-arrow-left,
+html body #nage-waza-section .carousel-arrow-right {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: rgba(249, 115, 22, 0.9) !important;
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 999 !important;
+}
+
+/* Override para qualquer elemento com essas classes na seção de projeção */
+#nage-waza-section button.carousel-arrow-left,
+#nage-waza-section button.carousel-arrow-right {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: absolute !important;
+    z-index: 999 !important;
+}
+
+/* CSS para setas de debug */
+.debug-arrow {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: absolute !important;
+    z-index: 9999 !important;
+    background: rgba(249, 115, 22, 1) !important;
+    border: 2px solid white !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Forçar visibilidade das setas na seção de projeção */
+#nage-waza-section .debug-arrow {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* CSS para setas forçadas */
+.force-arrow {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: absolute !important;
+    z-index: 99999 !important;
+    background: rgba(249, 115, 22, 1) !important;
+    border: 3px solid white !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6) !important;
+    pointer-events: auto !important;
+}
+
+/* Override para setas forçadas na seção de projeção */
+#nage-waza-section .force-arrow {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: absolute !important;
+    z-index: 99999 !important;
+}
+
+.carousel-arrow-left {
+    left: -1.5rem !important;
+}
+
+.carousel-arrow-right {
+    right: -1.5rem !important;
+}
+
+/* Hover effects para as setas */
+.carousel-arrow-left:hover,
+.carousel-arrow-right:hover {
+    background: rgba(0, 0, 0, 0.9) !important;
+    transform: translateY(-50%) scale(1.1) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Ícones das setas */
+.carousel-arrow-left::before {
+    content: '‹' !important;
+    font-size: 2rem !important;
+    line-height: 1 !important;
+}
+
+.carousel-arrow-right::before {
+    content: '›' !important;
+    font-size: 2rem !important;
+    line-height: 1 !important;
+}
+
+/* Esconder setas quando não há scroll (exceto para projeção) */
+.carousel-arrow-left.hidden:not([data-section="nage-waza-section"]),
+.carousel-arrow-right.hidden:not([data-section="nage-waza-section"]) {
+    display: none !important;
+}
+
+/* Responsividade das setas - Desktop */
+@media (max-width: 1024px) {
+    .carousel-arrow-left,
+    .carousel-arrow-right {
+        width: 2.5rem !important;
+        height: 2.5rem !important;
+        font-size: 1.25rem !important;
+    }
+    
+    .carousel-arrow-left {
+        left: -1.25rem !important;
+    }
+    
+    .carousel-arrow-right {
+        right: -1.25rem !important;
+    }
+}
+
+/* Responsividade das setas - Mobile */
+@media (max-width: 768px) {
+    .carousel-arrow-left,
+    .carousel-arrow-right {
         width: 2rem !important;
         height: 2rem !important;
+        font-size: 1rem !important;
     }
     
-    /* Ajustar ícones dos botões para telas muito pequenas */
-    #carouselLeft svg,
-    #carouselRight svg,
-    #carouselImobLeft svg,
-    #carouselImobRight svg {
-        width: 1rem !important;
-        height: 1rem !important;
+    .carousel-arrow-left {
+        left: -1rem !important;
     }
     
-    /* Ajustar gap do carrossel para telas muito pequenas */
-    #carouselProj,
-    #carouselImob {
-        gap: 0.75rem !important;
+    .carousel-arrow-right {
+        right: -1rem !important;
     }
 }
 
-/* Ajustar o container do checkbox e texto "Aprendi" para telas extremamente pequenas */
-#nage-waza-section .card-hover label.flex.items-center.ml-2.select-none,
-#imobilizacoes-section .card-hover label.flex.items-center.ml-2.select-none {
-    /* MANTER estrutura horizontal */
-    justify-content: flex-start !important;
-    margin-left: 0.125rem !important;
-    flex-shrink: 0 !important;
-    white-space: nowrap !important;
-    /* Ajustar gap interno para separar checkbox e texto */
-    gap: 0.25rem !important;
-    /* Garantir alinhamento vertical */
-    align-items: center !important;
-    padding: 0.125rem 0 !important;
+/* ===== RESPONSIVIDADE COMPLETA PARA MOBILE - PADRÃO PÁGINA 2 ===== */
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    /* Header responsivo */
+    header {
+        padding: 0.75rem 1rem !important;
+    }
+    
+    header h1 {
+        font-size: 1.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    header p {
+        font-size: 0.875rem !important;
+    }
+    
+    /* Barra de progresso mobile */
+    .progress-bar {
+        height: 0.75rem !important;
+    }
+    
+    /* Cards de habilidades mobile */
+    .habilidade-item {
+        font-size: 0.875rem !important;
+        padding: 0.75rem 1rem !important;
+        margin: 0.25rem !important;
+        min-width: calc(100% - 2rem) !important;
+        max-width: calc(100% - 2rem) !important;
+    }
+    
+    /* Seções de técnicas mobile */
+    #nage-waza-section, #imobilizacoes-section {
+        padding: 0 1rem !important;
+    }
+    
+    /* Carrossel de técnicas para mobile */
+#nage-waza-section .grid,
+#nage-waza-section #carouselProj,
+#imobilizacoes-section .grid {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        gap: 1rem !important;
+        overflow-x: auto !important;
+        scroll-behavior: smooth !important;
+        padding: 0.5rem 0 !important;
+        position: relative !important;
+        scroll-snap-type: x mandatory !important;
+    }
+    
+    /* Cards do carrossel */
+    #nage-waza-section .video-card,
+    #imobilizacoes-section .video-card,
+    #nage-waza-section .card-hover,
+    #imobilizacoes-section .card-hover {
+        min-width: 320px !important;
+        max-width: 320px !important;
+        width: 320px !important;
+        flex-shrink: 0 !important;
+        scroll-snap-align: start !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    /* Indicador de scroll (gradiente sutil) */
+    #nage-waza-section .grid::after,
+    #imobilizacoes-section .grid::after {
+        content: '' !important;
+        position: absolute !important;
+        right: 0 !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        width: 2rem !important;
+        background: linear-gradient(to right, transparent, rgba(156, 163, 175, 0.15)) !important;
+        pointer-events: none !important;
+        z-index: 5 !important;
+    }
+    
+    /* Texto indicativo de scroll */
+    #nage-waza-section::after,
+    #imobilizacoes-section::after {
+        content: '← Deslize para ver mais técnicas →' !important;
+        display: block !important;
+        text-align: center !important;
+        margin-top: 0.75rem !important;
+        font-size: 0.875rem !important;
+        color: #6B7280 !important;
+        font-weight: 500 !important;
+        opacity: 0.8 !important;
+    }
+    
+    /* Seções de ataques combinados e contra ataque mobile */
+    #henkakuenka-section, #kaeshi-waza-section {
+        padding: 0 1rem !important;
+        width: 100% !important;
+        overflow: visible !important;
+    }
+    
+    /* Layout vertical para ataques combinados no mobile */
+    #henkakuenka-section .max-w-6xl,
+    #kaeshi-waza-section .max-w-6xl {
+        display: block !important;
+        overflow: visible !important;
+        width: 100% !important;
+        padding: 0.5rem 0 !important;
+        margin: 0 auto !important;
+    }
+    
+    #henkakuenka-section .flex.flex-col,
+    #kaeshi-waza-section .flex.flex-col {
+        flex-direction: column !important;
+        width: 100% !important;
+        align-items: center !important;
+        gap: 1rem !important;
+        justify-content: center !important;
+    }
+    
+    /* Cards de ataques combinados mobile - CENTRALIZADOS */
+    #henkakuenka-section .card-hover,
+    #kaeshi-waza-section .card-hover {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        padding: 1rem !important;
+        display: block !important;
+        text-align: center !important;
+    }
+    
+    /* Centralizar todos os elementos dentro dos cards */
+    #henkakuenka-section .card-hover *,
+    #kaeshi-waza-section .card-hover * {
+        text-align: center !important;
+    }
+    
+    /* Centralizar títulos dos cards */
+    #henkakuenka-section .card-hover h4,
+    #kaeshi-waza-section .card-hover h4 {
+        text-align: center !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+    }
+    
+    /* Centralizar descrições dos cards */
+    #henkakuenka-section .card-hover p,
+    #kaeshi-waza-section .card-hover p {
+        text-align: center !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+    }
+    
+    /* Títulos mobile - PERFEITAMENTE CENTRALIZADOS */
+    #henkakuenka-section h2,
+    #kaeshi-waza-section h2 {
+        font-size: 1.5rem !important;
+        margin-bottom: 1rem !important;
+        text-align: center !important;
+        width: 100% !important;
+    }
+    
+    #henkakuenka-section h3,
+    #kaeshi-waza-section h3 {
+        font-size: 1.25rem !important;
+        margin-bottom: 0.75rem !important;
+        text-align: center !important;
+        width: 100% !important;
+    }
+    
+    /* Grupos de técnicas centralizados */
+    #henkakuenka-section .text-center,
+    #kaeshi-waza-section .text-center {
+        width: 100% !important;
+        text-align: center !important;
+        margin: 0 auto !important;
+    }
+    
+    /* Espaçamento entre grupos otimizado */
+    #henkakuenka-section .text-center.mb-6,
+    #kaeshi-waza-section .text-center.mb-6 {
+        margin-bottom: 1.5rem !important;
+        padding: 0 1rem !important;
+    }
+    
+    /* Vídeos mobile - CENTRALIZADOS E RESPONSIVOS */
+    .video-container {
+        height: 200px !important;
+        margin: 1rem auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        display: block !important;
+    }
+    
+    /* Iframes dos vídeos centralizados */
+    .video-container iframe {
+        width: 100% !important;
+        height: 100% !important;
+        margin: 0 auto !important;
+        display: block !important;
+    }
+    
+    /* Dicas dos cards centralizadas */
+    #henkakuenka-section .bg-blue-50,
+    #henkakuenka-section .bg-purple-50,
+    #henkakuenka-section .bg-green-50,
+    #henkakuenka-section .bg-orange-50,
+    #kaeshi-waza-section .bg-blue-50,
+    #kaeshi-waza-section .bg-purple-50,
+    #kaeshi-waza-section .bg-green-50,
+    #kaeshi-waza-section .bg-orange-50 {
+        text-align: center !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+    }
+    
+    /* Setas mobile - PERFEITAMENTE CENTRALIZADAS */
+    #henkakuenka-section .text-4xl,
+    #kaeshi-waza-section .text-4xl {
+        font-size: 2rem !important;
+        margin: 0.75rem 0 !important;
+        text-align: center !important;
+        width: 100% !important;
+        display: block !important;
+    }
+    
+    /* Container das setas - centralizado */
+    #henkakuenka-section .flex.items-center.justify-center:has(.text-4xl),
+    #kaeshi-waza-section .flex.items-center.justify-center:has(.text-4xl) {
+        width: 100% !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    
+    /* Checkboxes mobile - PERFEITAMENTE CENTRALIZADOS */
+    #henkakuenka-section .flex.items-center.justify-center,
+    #kaeshi-waza-section .flex.items-center.justify-center {
+        padding: 0.5rem !important;
+        font-size: 0.875rem !important;
+        width: 100% !important;
+        text-align: center !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    
+    /* Labels dos checkboxes centralizados */
+    #henkakuenka-section .flex.items-center.justify-center label,
+    #kaeshi-waza-section .flex.items-center.justify-center label {
+        text-align: center !important;
+        width: 100% !important;
+        justify-content: center !important;
+    }
+    
+    /* Botões mobile */
+    .back-to-top-section {
+        padding: 0.75rem 1.5rem !important;
+        font-size: 0.875rem !important;
+    }
+    
+    /* Container principal mobile */
+    main {
+        padding: 0.5rem !important;
+    }
+    
+    /* Grid responsivo mobile */
+    .grid {
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+    
+    /* Espaçamento otimizado para mobile */
+    .mb-12 {
+        margin-bottom: 2rem !important;
+    }
+    
+    .mb-8 {
+        margin-bottom: 1.5rem !important;
+    }
+    
+    .mb-4 {
+        margin-bottom: 1rem !important;
+    }
+    
+    .mb-2 {
+        margin-bottom: 0.75rem !important;
+    }
 }
 
-/* Ajustar o texto "Aprendi" para telas extremamente pequenas */
-#nage-waza-section .card-hover label span,
-#imobilizacoes-section .card-hover label span {
-    font-size: 0.5rem !important; /* Diminuído de 0.625rem para 0.5rem */
-    padding: 0.125rem 0.1875rem !important; /* Diminuído de 0.1875rem 0.25rem para 0.125rem 0.1875rem */
-    /* MANTER estrutura horizontal */
-    text-align: left !important;
-    min-width: fit-content !important;
-    flex-shrink: 0 !important;
-    white-space: nowrap !important;
-    /* Garantir margem à esquerda do texto */
-    margin-left: 0.125rem !important;
+/* Responsividade para dispositivos muito pequenos */
+@media (max-width: 480px) {
+    /* Header muito pequeno */
+    header h1 {
+        font-size: 1.25rem !important;
+    }
+    
+    header p {
+        font-size: 0.75rem !important;
+    }
+    
+    /* Cards de habilidades muito pequenos */
+    .habilidade-item {
+        font-size: 0.75rem !important;
+        padding: 0.5rem 0.75rem !important;
+        margin: 0.125rem !important;
+    }
+    
+    /* Seções com padding reduzido */
+    #nage-waza-section, #imobilizacoes-section,
+    #henkakuenka-section, #kaeshi-waza-section {
+        padding: 0 0.5rem !important;
+    }
+    
+    /* Cards de ataques combinados muito pequenos - CENTRALIZADOS */
+    #henkakuenka-section .card-hover,
+    #kaeshi-waza-section .card-hover {
+        width: 100% !important;
+        padding: 0.75rem !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+    }
+    
+    /* Centralizar elementos em telas pequenas */
+    #henkakuenka-section .flex.flex-col,
+    #kaeshi-waza-section .flex.flex-col {
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+    }
+    
+    /* Títulos muito pequenos */
+    #henkakuenka-section h2,
+    #kaeshi-waza-section h2 {
+        font-size: 1.25rem !important;
+    }
+    
+    #henkakuenka-section h3,
+    #kaeshi-waza-section h3 {
+        font-size: 1rem !important;
+    }
+    
+    /* Vídeos muito pequenos */
+    .video-container {
+        height: 180px !important;
+    }
+    
+    /* Setas muito pequenas */
+    #henkakuenka-section .text-4xl,
+    #kaeshi-waza-section .text-4xl {
+        font-size: 1.5rem !important;
+    }
+    
+    /* Botões muito pequenos */
+    .back-to-top-section {
+        padding: 0.5rem 1rem !important;
+        font-size: 0.75rem !important;
+    }
 }
 
-/* Ajustar o checkbox para telas extremamente pequenas */
-#nage-waza-section .card-hover input[type="checkbox"],
-#imobilizacoes-section .card-hover input[type="checkbox"] {
-    width: 0.75rem !important;
-    height: 0.75rem !important;
-    min-width: 0.75rem !important;
-    min-height: 0.75rem !important;
-    /* Garantir margem à direita para separar do texto */
-    margin-right: 0.375rem !important;
-    flex-shrink: 0 !important;
-    /* Garantir posicionamento correto */
-    position: relative !important;
-    top: 0 !important;
-    left: 0 !important;
+/* Responsividade para dispositivos extremamente pequenos */
+@media (max-width: 360px) {
+    /* Header extremamente pequeno */
+    header h1 {
+        font-size: 1.125rem !important;
+    }
+    
+    header p {
+        font-size: 0.625rem !important;
+    }
+    
+    /* Cards de habilidades extremamente pequenos */
+    .habilidade-item {
+        font-size: 0.625rem !important;
+        padding: 0.375rem 0.5rem !important;
+    }
+    
+    /* Seções com padding mínimo */
+    #nage-waza-section, #imobilizacoes-section,
+    #henkakuenka-section, #kaeshi-waza-section {
+        padding: 0 0.25rem !important;
+    }
+    
+    /* Cards de ataques combinados extremamente pequenos - CENTRALIZADOS */
+    #henkakuenka-section .card-hover,
+    #kaeshi-waza-section .card-hover {
+        width: 100% !important;
+        padding: 0.5rem !important;
+        margin: 0 auto !important;
+        text-align: center !important;
+    }
+    
+    /* Centralizar elementos em telas extremamente pequenas */
+    #henkakuenka-section .flex.flex-col,
+    #kaeshi-waza-section .flex.flex-col {
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+    }
+    
+    /* Títulos extremamente pequenos */
+    #henkakuenka-section h2,
+    #kaeshi-waza-section h2 {
+        font-size: 1.125rem !important;
+    }
+    
+    #henkakuenka-section h3,
+    #kaeshi-waza-section h3 {
+        font-size: 0.875rem !important;
+    }
+    
+    /* Vídeos extremamente pequenos */
+    .video-container {
+        height: 160px !important;
+    }
+    
+    /* Setas extremamente pequenas */
+    #henkakuenka-section .text-4xl,
+    #kaeshi-waza-section .text-4xl {
+        font-size: 1.25rem !important;
+    }
+    
+    /* Botões extremamente pequenos */
+    .back-to-top-section {
+        padding: 0.375rem 0.75rem !important;
+        font-size: 0.625rem !important;
+    }
 }
 
-/* Ajustar o texto "Aprendi" no mobile - MANTENDO ESTRUTURA */
-#nage-waza-section .card-hover label span,
-#imobilizacoes-section .card-hover label span {
-    /* Garantir que o texto seja totalmente visível */
-    white-space: nowrap !important;
+/* ===== CSS ESPECÍFICO PARA ATAQUES COMBINADOS - LAYOUT VERTICAL CENTRALIZADO ===== */
+
+/* ===== CARDS COM MESMO TAMANHO DA PÁGINA 4 - APENAS MOBILE ===== */
+
+/* ===== BARRA JAPONESA RESPONSIVA - MESMA ESTRUTURA DA PÁGINA 2 ===== */
+@media (max-width: 768px) {
+    /* Layout horizontal com scroll para mobile */
+    .japanese-nav-container .flex {
+        gap: 0.5rem !important;
+        justify-content: flex-start !important;
+        flex-wrap: nowrap !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        scroll-behavior: smooth !important;
+        padding: 0.5rem 0 !important;
+        position: relative !important;
+    }
+    
+    /* Gradiente sutil no lado direito para indicar mais conteúdo */
+    .japanese-nav-container .flex::before {
+        content: '' !important;
+        position: absolute !important;
+        right: 0 !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        width: 2rem !important;
+        background: linear-gradient(to right, transparent, rgba(156, 163, 175, 0.1)) !important;
+        pointer-events: none !important;
+        z-index: 5 !important;
+    }
+    
+    /* Cards sempre na mesma linha com tamanho fixo */
+    .japanese-nav-card {
+        width: 100px !important;
+        height: 80px !important;
+        min-width: 100px !important;
+        min-height: 80px !important;
+        max-width: 100px !important;
+        max-height: 80px !important;
+        flex-shrink: 0 !important;
+        padding: 0.5rem !important;
+    }
+    
+    /* Texto indicativo de scroll para mobile */
+    .japanese-nav-container::after {
+        content: '← Deslize para ver mais →' !important;
+        display: block !important;
+        text-align: center !important;
+        margin-top: 0.75rem !important;
+        font-size: 0.875rem !important;
+        color: #6B7280 !important;
+        font-weight: 500 !important;
+        opacity: 0.8 !important;
+    }
+    
+    /* Espaçamento melhorado para touch */
+    .japanese-nav-card {
+        margin: 0.75rem !important;
+    }
+    
+    /* Scroll suave para mobile */
+    html {
+        scroll-behavior: smooth !important;
+    }
+    
+    /* Animações mais suaves para mobile */
+    .japanese-nav-card {
+        transition: all 0.2s ease !important;
+    }
+    
+    /* Feedback visual melhorado para mobile */
+    .japanese-nav-card:active {
+        transform: scale(0.98) !important;
+    }
+}
+
+/* ===== BARRA JAPONESA PARA TELAS MUITO PEQUENAS ===== */
+@media (max-width: 480px) {
+    /* Cards ainda menores para telas pequenas */
+    .japanese-nav-card {
+        width: 90px !important;
+        height: 70px !important;
+        min-width: 90px !important;
+        min-height: 70px !important;
+        max-width: 90px !important;
+        max-height: 70px !important;
+        padding: 0.375rem !important;
+    }
+    
+    /* Texto dos cards otimizado para telas pequenas */
+    .japanese-nav-card .font-bold {
+        font-size: 0.75rem !important;
+    }
+    
+    .japanese-nav-card .text-gray-600 {
+        font-size: 0.625rem !important;
+    }
+    
+    /* Emoji menor para telas pequenas */
+    .japanese-nav-card .text-lg {
+        font-size: 0.875rem !important;
+    }
+}
+
+@media (max-width: 360px) {
+    /* Cards ultra-compactos para telas muito pequenas */
+    .japanese-nav-card {
+        width: 80px !important;
+        height: 60px !important;
+        min-width: 80px !important;
+        min-height: 60px !important;
+        max-width: 80px !important;
+        max-height: 60px !important;
+        padding: 0.25rem !important;
+    }
+    
+    /* Texto ultra-compacto */
+    .japanese-nav-card .font-bold {
+        font-size: 0.625rem !important;
+    }
+    
+    .japanese-nav-card .text-gray-600 {
+        font-size: 0.5rem !important;
+    }
+    
+    /* Emoji ultra-compacto */
+    .japanese-nav-card .text-lg {
+        font-size: 0.75rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Cards de ataques combinados - mesmo tamanho da página 4 */
+    #henkakuenka-section .card-hover,
+    #kaeshi-waza-section .card-hover {
+        width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
+        max-width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
+        min-width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
+        margin: 0 auto !important;
+        padding: 1rem !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Container dos grupos de técnicas */
+    #henkakuenka-section .flex.flex-col,
+    #kaeshi-waza-section .flex.flex-col {
+        width: 100% !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 1.5rem !important;
+    }
+    
+    /* Títulos dos grupos centralizados */
+    #henkakuenka-section .text-center.mb-6,
+    #kaeshi-waza-section .text-center.mb-6 {
+        width: 100% !important;
+        text-align: center !important;
+        margin-bottom: 1.5rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Cards mantêm o mesmo tamanho em telas pequenas */
+    #henkakuenka-section .card-hover,
+    #kaeshi-waza-section .card-hover {
+        width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
+        max-width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
+        min-width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
+        padding: 0.75rem !important;
+    }
+}
+
+@media (max-width: 360px) {
+    /* Cards mantêm o mesmo tamanho em telas muito pequenas */
+    #henkakuenka-section .card-hover,
+    #kaeshi-waza-section .card-hover {
+        width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
+        max-width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
+        min-width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
+        padding: 0.5rem !important;
+    }
+}
+
+/* Garantir que as seções sejam exibidas quando não estiverem hidden */
+#henkakuenka-section:not(.hidden),
+#kaeshi-waza-section:not(.hidden) {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    animation: fadeInUp 0.5s ease-out !important;
+}
+
+/* Garantir que as seções sejam escondidas quando tiverem a classe hidden */
+#henkakuenka-section.hidden,
+#kaeshi-waza-section.hidden {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+/* Animação de entrada para as seções */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Regras com máxima especificidade para ataques combinados */
+html body #henkakuenka-section,
+html body #kaeshi-waza-section {
+    width: 100% !important;
+    max-width: 100% !important;
     overflow: visible !important;
-    /* Ajustar tamanho e espaçamento - DIMINUINDO PARA NÃO SOBREPOR */
-    font-size: 0.625rem !important; /* Diminuído de 0.75rem para 0.625rem */
-    padding: 0.25rem 0.375rem !important; /* Diminuído de 0.375rem 0.5rem para 0.25rem 0.375rem */
-    /* Melhorar contraste */
-    background-color: #fef3c7 !important;
-    color: #92400e !important;
-    border-radius: 0.375rem !important;
-        font-weight: 600 !important;
-    /* Garantir que não quebre */
-    flex-shrink: 0 !important;
-    min-width: fit-content !important;
-    /* Garantir margem à esquerda do texto */
-    margin-left: 0.25rem !important;
+    display: block !important;
+    transition: all 0.3s ease-in-out !important;
 }
 
-/* Ajustar o checkbox no mobile - MANTENDO ESTRUTURA */
-#nage-waza-section .card-hover input[type="checkbox"],
-#imobilizacoes-section .card-hover input[type="checkbox"] {
-    /* Garantir que o checkbox seja visível e acessível */
-    margin-right: 0.5rem !important;
-    /* Ajustar tamanho para mobile */
-    width: 1rem !important;
-    height: 1rem !important;
-    min-width: 1rem !important;
-    min-height: 1rem !important;
-    /* Garantir que não quebre */
-    flex-shrink: 0 !important;
-    /* Garantir margem à direita para separar do texto */
-    margin-right: 0.75rem !important;
-    /* Garantir posicionamento correto */
-    position: relative !important;
-    top: 0 !important;
-    left: 0 !important;
+html body #henkakuenka-section .max-w-6xl,
+html body #kaeshi-waza-section .max-w-6xl {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    padding: 1rem !important; /* PADDING PARA MELHOR CENTRALIZAÇÃO */
+    margin: 0 auto !important;
 }
 
-/* Ajustar o texto "Aprendi" para telas muito pequenas - MANTENDO ESTRUTURA */
-#nage-waza-section .card-hover label span,
-#imobilizacoes-section .card-hover label span {
-    font-size: 0.5625rem !important; /* Diminuído de 0.6875rem para 0.5625rem */
-    padding: 0.1875rem 0.25rem !important; /* Diminuído de 0.25rem 0.375rem para 0.1875rem 0.25rem */
-    /* MANTER estrutura horizontal */
-    text-align: left !important;
-    min-width: fit-content !important;
-    flex-shrink: 0 !important;
-    white-space: nowrap !important;
-    /* Garantir margem à esquerda do texto */
-    margin-left: 0.125rem !important;
+html body #henkakuenka-section .flex.flex-col,
+html body #kaeshi-waza-section .flex.flex-col {
+    flex-direction: column !important;
+    width: 100% !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 1.5rem !important; /* MAIS ESPAÇO ENTRE ELEMENTOS */
+    margin: 0 auto !important;
 }
 
-/* Ajustar o checkbox para telas muito pequenas - MANTENDO ESTRUTURA */
-#nage-waza-section .card-hover input[type="checkbox"],
-#imobilizacoes-section .card-hover input[type="checkbox"] {
-    width: 0.875rem !important;
-    height: 0.875rem !important;
-    min-width: 0.875rem !important;
-    min-height: 0.875rem !important;
-    /* Garantir margem à direita para separar do texto */
-    margin-right: 0.5rem !important;
-    flex-shrink: 0 !important;
-    /* Garantir posicionamento correto */
-    position: relative !important;
-    top: 0 !important;
-    left: 0 !important;
+html body #henkakuenka-section .card-hover,
+html body #kaeshi-waza-section .card-hover {
+    width: 100% !important;
+    max-width: 320px !important; /* CARDS MENORES */
+    margin: 0 auto !important;
+    display: block !important;
+    text-align: center !important;
 }
+
+/* CSS responsivo específico para ataques combinados */
+@media (max-width: 768px) {
+    html body #henkakuenka-section,
+    html body #kaeshi-waza-section {
+        padding: 0 1rem !important;
+        width: 100% !important;
+    }
+    
+    html body #henkakuenka-section .max-w-6xl,
+    html body #kaeshi-waza-section .max-w-6xl {
+        width: 100% !important;
+        padding: 0 !important;
+    }
+    
+    html body #henkakuenka-section .card-hover,
+    html body #kaeshi-waza-section .card-hover {
+        width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
+        max-width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
+        margin: 0 auto !important;
+        padding: 1rem !important;
+    }
+    
+    html body #henkakuenka-section .flex.flex-col,
+    html body #kaeshi-waza-section .flex.flex-col {
+        width: 100% !important;
+        align-items: center !important;
+    }
+}
+
+@media (max-width: 480px) {
+    html body #henkakuenka-section,
+    html body #kaeshi-waza-section {
+        padding: 0 0.5rem !important;
+    }
+    
+    html body #henkakuenka-section .card-hover,
+    html body #kaeshi-waza-section .card-hover {
+        width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
+        max-width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
+        padding: 0.75rem !important;
+    }
+}
+
+@media (max-width: 360px) {
+    html body #henkakuenka-section,
+    html body #kaeshi-waza-section {
+        padding: 0 0.25rem !important;
+    }
+    
+    html body #henkakuenka-section .card-hover,
+    html body #kaeshi-waza-section .card-hover {
+        width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
+        max-width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
+        padding: 0.5rem !important;
+    }
+}
+
