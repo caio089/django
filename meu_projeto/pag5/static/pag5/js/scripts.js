@@ -1,9 +1,40 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // --- PROGRESSO (já existente) ---
+    // --- ANIMAÇÕES DE HABILIDADES E CONDIÇÕES ---
+    
+    // Função para animar habilidades com efeito de digitação
+    function animateHabilidades() {
+        const habilidades = document.querySelectorAll('.habilidade-item');
+        
+        // Todas as habilidades animam ao mesmo tempo
+        habilidades.forEach((habilidade, index) => {
+            setTimeout(() => {
+                habilidade.style.opacity = '0';
+                habilidade.style.transform = 'translateY(20px) scale(0.9)';
+                habilidade.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                
+                setTimeout(() => {
+                    habilidade.style.opacity = '1';
+                    habilidade.style.transform = 'translateY(0) scale(1)';
+                }, 100);
+            }, index * 150); // Delay escalonado para cada habilidade
+        });
+    }
+    
+    // Selecionar elementos de habilidades para animações
+    const habilidadesTyping = document.getElementById('habilidadesTyping');
+    const habilidadesItems = document.querySelectorAll('.habilidade-item');
+    
+    // Inicializar animações quando a página carregar
+    setTimeout(() => {
+        animateHabilidades();
+    }, 500);
+    
+    // --- PROGRESSO E ANIMAÇÃO DOS CARDS ---
     const projCheckboxes = document.querySelectorAll('.proj-checkbox');
     const imobCheckboxes = document.querySelectorAll('.imob-checkbox');
     const chaveCheckboxes = document.querySelectorAll('.chave-checkbox');
-    const renrakuenkaCheckboxes = document.querySelectorAll('.renrakuenka-checkbox');
+    const estrangCheckboxes = document.querySelectorAll('.estrang-checkbox');
+    const henkakuenkaCheckboxes = document.querySelectorAll('.henkakuenka-checkbox');
     const kaeshiWazaCheckboxes = document.querySelectorAll('.kaeshi-waza-checkbox');
     const progressBar = document.getElementById('progressBar');
     const progressText = document.getElementById('progressText');
@@ -13,14 +44,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let hasShownCongratulations = false;
     
+    // Função para atualizar progresso
     function updateProgress() {
         const totalProjChecked = document.querySelectorAll('.proj-checkbox:checked').length;
         const totalImobChecked = document.querySelectorAll('.imob-checkbox:checked').length;
         const totalChaveChecked = document.querySelectorAll('.chave-checkbox:checked').length;
-        const totalRenrakuenkaChecked = document.querySelectorAll('.renrakuenka-checkbox:checked').length;
+        const totalEstrangChecked = document.querySelectorAll('.estrang-checkbox:checked').length;
+        const totalHenkakuenkaChecked = document.querySelectorAll('.henkakuenka-checkbox:checked').length;
         const totalKaeshiWazaChecked = document.querySelectorAll('.kaeshi-waza-checkbox:checked').length;
-        const totalQuestions = projCheckboxes.length + imobCheckboxes.length + chaveCheckboxes.length + renrakuenkaCheckboxes.length + kaeshiWazaCheckboxes.length;
-        const completedQuestions = totalProjChecked + totalImobChecked + totalChaveChecked + totalRenrakuenkaChecked + totalKaeshiWazaChecked;
+        const totalQuestions = projCheckboxes.length + imobCheckboxes.length + chaveCheckboxes.length + estrangCheckboxes.length + henkakuenkaCheckboxes.length + kaeshiWazaCheckboxes.length;
+        const completedQuestions = totalProjChecked + totalImobChecked + totalChaveChecked + totalEstrangChecked + totalHenkakuenkaChecked + totalKaeshiWazaChecked;
         const progress = (completedQuestions / totalQuestions) * 100;
         progressBar.style.width = progress + '%';
         progressText.textContent = Math.round(progress) + '%';
@@ -36,7 +69,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const allChecked = Array.from(projCheckboxes).every(cb => cb.checked) && 
                              Array.from(imobCheckboxes).every(cb => cb.checked) &&
                              Array.from(chaveCheckboxes).every(cb => cb.checked) &&
-                             Array.from(renrakuenkaCheckboxes).every(cb => cb.checked) &&
+                             Array.from(estrangCheckboxes).every(cb => cb.checked) &&
+                             Array.from(henkakuenkaCheckboxes).every(cb => cb.checked) &&
                              Array.from(kaeshiWazaCheckboxes).every(cb => cb.checked);
             
             if (allChecked) {
@@ -48,8 +82,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Verificação adicional: se todos os checkboxes estão marcados, mostrar parabéns
-        if (completedQuestions >= 31 && !hasShownCongratulations) {
-            console.log('Todos os 31 checkboxes marcados - mostrando parabéns!');
+        if (completedQuestions >= 39 && !hasShownCongratulations) {
+            console.log('Todos os 39 checkboxes marcados - mostrando parabéns!');
             setTimeout(() => {
                 showCongratulations();
             }, 500);
@@ -57,29 +91,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Função para mostrar barra de progresso flutuante
-    let floatingProgressTimeout;
     function showFloatingProgress(progress) {
+        // Atualizar valores da barra flutuante
         floatingProgressBar.style.width = progress + '%';
         floatingProgressText.textContent = Math.round(progress) + '%';
-        floatingProgress.classList.remove('hidden');
+        
+        // Mostrar a barra
         floatingProgress.style.opacity = '1';
         floatingProgress.style.pointerEvents = 'auto';
-        if (floatingProgressTimeout) clearTimeout(floatingProgressTimeout);
-        if (progress === 0) {
-            floatingProgress.style.opacity = '0';
-            floatingProgress.style.pointerEvents = 'none';
+        
+        // Esconder após 5 segundos
         setTimeout(() => {
-                floatingProgress.classList.add('hidden');
-            }, 300);
-        } else {
-            floatingProgressTimeout = setTimeout(() => {
             floatingProgress.style.opacity = '0';
             floatingProgress.style.pointerEvents = 'none';
-                setTimeout(() => {
-                    floatingProgress.classList.add('hidden');
-                }, 300);
-            }, 3000);
-        }
+        }, 5000);
     }
     
     projCheckboxes.forEach(checkbox => {
@@ -91,7 +116,10 @@ document.addEventListener('DOMContentLoaded', function() {
     chaveCheckboxes.forEach(checkbox => {
         checkbox.addEventListener('change', updateProgress);
     });
-    renrakuenkaCheckboxes.forEach(checkbox => {
+    estrangCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateProgress);
+    });
+    henkakuenkaCheckboxes.forEach(checkbox => {
         checkbox.addEventListener('change', updateProgress);
     });
     kaeshiWazaCheckboxes.forEach(checkbox => {
@@ -262,29 +290,8 @@ document.addEventListener('DOMContentLoaded', function() {
             card.style.transform = 'translateY(0)';
         }, 200 + (index * 100)); // Delay escalonado para cada card
     });
-
-    // Atualizar navegação japonesa para mostrar/ocultar seções corretamente
-    const nageWazaNav = document.getElementById('nage-waza-nav');
-    const imobilizacoesNav = document.getElementById('imobilizacoes-nav');
-    const chaveBracoNav = document.getElementById('chave-braco-nav');
-    const estrangulamentoNav = document.getElementById('estrangulamento-nav');
-    const henkakuenkaNav = document.getElementById('henkakuenka-nav');
-    const kaeshiWazaNav = document.getElementById('kaeshi-waza-nav');
-    const nageWazaSection = document.getElementById('nage-waza-section');
-    const imobilizacoesSection = document.getElementById('imobilizacoes-section');
-    const chaveBracoSection = document.getElementById('chave-braco-section');
-    const estrangulamentoSection = document.getElementById('estrangulamento-section');
-    const henkakuenkaSection = document.getElementById('henkakuenka-section');
-    const kaeshiWazaSection = document.getElementById('kaeshi-waza-section');
-    function hideAllSections() {
-      if (nageWazaSection) nageWazaSection.classList.add('hidden');
-      if (imobilizacoesSection) imobilizacoesSection.classList.add('hidden');
-      if (chaveBracoSection) chaveBracoSection.classList.add('hidden');
-      if (estrangulamentoSection) estrangulamentoSection.classList.add('hidden');
-      if (henkakuenkaSection) henkakuenkaSection.classList.add('hidden');
-      if (kaeshiWazaSection) kaeshiWazaSection.classList.add('hidden');
-    }
-    // Copiar animações de clique e ida até os cards da pagina3.html (efeito de destaque, partículas, indicador de scroll, etc)
+    
+    // Função para criar partículas
     function createParticles(x, y, count = 8) {
         const particlesContainer = document.getElementById('scrollParticles');
         for (let i = 0; i < count; i++) {
@@ -301,14 +308,164 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 1500);
         }
     }
-    // Substituir smoothScrollTo pela versão completa da página 3
-    function smoothScrollTo(element, cardElement) {
-        const targetElement = document.getElementById(element);
+
+    // Navegação interna
+    const nageWazaNav = document.getElementById('nage-waza-nav');
+    const imobilizacoesNav = document.getElementById('imobilizacoes-nav');
+    const chaveBracoNav = document.getElementById('chave-braco-nav');
+    const estrangulamentoNav = document.getElementById('estrangulamento-nav');
+    const henkakuenkaNav = document.getElementById('henkakuenka-nav');
+    const kaeshiWazaNav = document.getElementById('kaeshi-waza-nav');
+    
+    const nageWazaSection = document.getElementById('nage-waza-section');
+    const imobilizacoesSection = document.getElementById('imobilizacoes-section');
+    const chaveBracoSection = document.getElementById('chave-braco-section');
+    const estrangulamentoSection = document.getElementById('estrangulamento-section');
+    const henkakuenkaSection = document.getElementById('henkakuenka-section');
+    const kaeshiWazaSection = document.getElementById('kaeshi-waza-section');
+
+    if (nageWazaNav && nageWazaSection) {
+        nageWazaNav.addEventListener('click', function(e) {
+            hideAllSections();
+            showSectionWithAnimation(nageWazaSection);
+            setTimeout(() => smoothScrollToSection('nage-waza-section', this), 300);
+        });
+    }
+
+    if (imobilizacoesNav && imobilizacoesSection) {
+        imobilizacoesNav.addEventListener('click', function(e) {
+            hideAllSections();
+            showSectionWithAnimation(imobilizacoesSection);
+            setTimeout(() => smoothScrollToSection('imobilizacoes-section', this), 300);
+        });
+    }
+
+    if (chaveBracoNav && chaveBracoSection) {
+        chaveBracoNav.addEventListener('click', function(e) {
+            hideAllSections();
+            showSectionWithAnimation(chaveBracoSection);
+            setTimeout(() => smoothScrollToSection('chave-braco-section', this), 300);
+        });
+    }
+
+    if (estrangulamentoNav && estrangulamentoSection) {
+        estrangulamentoNav.addEventListener('click', function(e) {
+            hideAllSections();
+            showSectionWithAnimation(estrangulamentoSection);
+            setTimeout(() => smoothScrollToSection('estrangulamento-section', this), 300);
+        });
+    }
+
+    if (henkakuenkaNav && henkakuenkaSection) {
+        henkakuenkaNav.addEventListener('click', function(e) {
+            hideAllSections();
+            showSectionWithAnimation(henkakuenkaSection);
+            setTimeout(() => smoothScrollToSection('henkakuenka-section', this), 300);
+        });
+    }
+
+    if (kaeshiWazaNav && kaeshiWazaSection) {
+        kaeshiWazaNav.addEventListener('click', function(e) {
+            hideAllSections();
+            showSectionWithAnimation(kaeshiWazaSection);
+            setTimeout(() => smoothScrollToSection('kaeshi-waza-section', this), 300);
+        });
+    }
+
+    // --- CARROSSEL PROJEÇÃO ---
+    const carouselProj = document.getElementById('carouselProj');
+    const projLeftBtn = document.getElementById('carouselLeft');
+    const projRightBtn = document.getElementById('carouselRight');
+    if (carouselProj && projLeftBtn && projRightBtn) {
+        projLeftBtn.addEventListener('click', () => {
+            carouselProj.scrollBy({ left: -carouselProj.offsetWidth * 0.8, behavior: 'smooth' });
+            projLeftBtn.classList.add('carousel-arrow-anim');
+            setTimeout(() => projLeftBtn.classList.remove('carousel-arrow-anim'), 700);
+        });
+        projRightBtn.addEventListener('click', () => {
+            carouselProj.scrollBy({ left: carouselProj.offsetWidth * 0.8, behavior: 'smooth' });
+            projRightBtn.classList.add('carousel-arrow-anim');
+            setTimeout(() => projRightBtn.classList.remove('carousel-arrow-anim'), 700);
+        });
+        // Botões sempre visíveis - removida a lógica de ocultar/mostrar
+    }
+
+    // --- CARROSSEL IMOBILIZAÇÃO ---
+    const carouselImob = document.getElementById('carouselImob');
+    const imobLeftBtn = document.getElementById('carouselImobLeft');
+    const imobRightBtn = document.getElementById('carouselImobRight');
+    if (carouselImob && imobLeftBtn && imobRightBtn) {
+        imobLeftBtn.addEventListener('click', () => {
+            carouselImob.scrollBy({ left: -carouselImob.offsetWidth * 0.8, behavior: 'smooth' });
+            imobLeftBtn.classList.add('carousel-arrow-anim');
+            setTimeout(() => imobLeftBtn.classList.remove('carousel-arrow-anim'), 700);
+        });
+        imobRightBtn.addEventListener('click', () => {
+            carouselImob.scrollBy({ left: carouselImob.offsetWidth * 0.8, behavior: 'smooth' });
+            imobRightBtn.classList.add('carousel-arrow-anim');
+            setTimeout(() => imobRightBtn.classList.remove('carousel-arrow-anim'), 700);
+        });
+                    // Botões sempre visíveis - removida a lógica de ocultar/mostrar
+    }
+
+    // --- CARROSSEL CHAVE DE BRAÇO ---
+    const carouselChave = document.getElementById('carouselChave');
+    const chaveLeftBtn = document.getElementById('carouselChaveLeft');
+    const chaveRightBtn = document.getElementById('carouselChaveRight');
+    if (carouselChave && chaveLeftBtn && chaveRightBtn) {
+        chaveLeftBtn.addEventListener('click', () => {
+            carouselChave.scrollBy({ left: -carouselChave.offsetWidth * 0.8, behavior: 'smooth' });
+            chaveLeftBtn.classList.add('carousel-arrow-anim');
+            setTimeout(() => chaveLeftBtn.classList.remove('carousel-arrow-anim'), 700);
+        });
+        chaveRightBtn.addEventListener('click', () => {
+            carouselChave.scrollBy({ left: carouselChave.offsetWidth * 0.8, behavior: 'smooth' });
+            chaveRightBtn.classList.add('carousel-arrow-anim');
+            setTimeout(() => chaveRightBtn.classList.remove('carousel-arrow-anim'), 700);
+        });
+                    // Botões sempre visíveis - removida a lógica de ocultar/mostrar
+    }
+
+    // --- CARROSSEL ESTRANGULAMENTO ---
+    const carouselEstrang = document.getElementById('carouselEstrang');
+    const estrangLeftBtn = document.getElementById('carouselEstrangLeft');
+    const estrangRightBtn = document.getElementById('carouselEstrangRight');
+    if (carouselEstrang && estrangLeftBtn && estrangRightBtn) {
+        estrangLeftBtn.addEventListener('click', () => {
+            carouselEstrang.scrollBy({ left: -carouselEstrang.offsetWidth * 0.8, behavior: 'smooth' });
+            estrangLeftBtn.classList.add('carousel-arrow-anim');
+            setTimeout(() => estrangLeftBtn.classList.remove('carousel-arrow-anim'), 700);
+        });
+        estrangRightBtn.addEventListener('click', () => {
+            carouselEstrang.scrollBy({ left: carouselEstrang.offsetWidth * 0.8, behavior: 'smooth' });
+            estrangRightBtn.classList.add('carousel-arrow-anim');
+            setTimeout(() => estrangRightBtn.classList.remove('carousel-arrow-anim'), 700);
+        });
+                    // Botões sempre visíveis - removida a lógica de ocultar/mostrar
+    }
+
+    function hideAllSections() {
+      nageWazaSection.classList.add('hidden');
+      imobilizacoesSection.classList.add('hidden');
+      chaveBracoSection.classList.add('hidden');
+      estrangulamentoSection.classList.add('hidden');
+      if (henkakuenkaSection) henkakuenkaSection.classList.add('hidden');
+      if (kaeshiWazaSection) kaeshiWazaSection.classList.add('hidden');
+    }
+    function showSectionWithAnimation(section) {
+      section.classList.remove('hidden');
+      section.classList.add('animate-fade-in');
+      setTimeout(() => section.classList.remove('animate-fade-in'), 1300);
+    }
+    function smoothScrollToSection(sectionId, cardElement) {
+        const targetElement = document.getElementById(sectionId);
         if (!targetElement) return;
         cardElement.classList.add('clicked');
+        
         // Criar partículas no ponto de clique
         const rect = cardElement.getBoundingClientRect();
         createParticles(rect.left + rect.width / 2, rect.top + rect.height / 2);
+        
         // Calcular posição de destino
         const targetPosition = targetElement.offsetTop - 100;
         const startPosition = window.pageYOffset;
@@ -338,128 +495,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         requestAnimationFrame(animation);
     }
-    function showSectionWithAnimation(section) {
-      section.classList.remove('hidden');
-      section.classList.add('animate-fade-in');
-      setTimeout(() => section.classList.remove('animate-fade-in'), 1300);
-    }
-    // Adicionar animação de clique nas barras japonesas
-    function animateJapaneseNavCard(card) {
-      card.classList.add('clicked');
-      setTimeout(() => card.classList.remove('clicked'), 800);
-    }
-    if (nageWazaNav && nageWazaSection) {
-      nageWazaNav.addEventListener('click', function(e) {
-        animateJapaneseNavCard(this);
-        hideAllSections();
-        showSectionWithAnimation(nageWazaSection);
-        setTimeout(() => smoothScrollTo('nage-waza-section', this), 300);
-        });
-    }
-    if (imobilizacoesNav && imobilizacoesSection) {
-      imobilizacoesNav.addEventListener('click', function(e) {
-        animateJapaneseNavCard(this);
-        hideAllSections();
-        showSectionWithAnimation(imobilizacoesSection);
-        setTimeout(() => smoothScrollTo('imobilizacoes-section', this), 300);
-        });
-    }
-    if (chaveBracoNav && chaveBracoSection) {
-      chaveBracoNav.addEventListener('click', function(e) {
-        animateJapaneseNavCard(this);
-        hideAllSections();
-        showSectionWithAnimation(chaveBracoSection);
-        setTimeout(() => smoothScrollTo('chave-braco-section', this), 300);
-        });
-    }
-    if (estrangulamentoNav && estrangulamentoSection) {
-      estrangulamentoNav.addEventListener('click', function(e) {
-        animateJapaneseNavCard(this);
-        hideAllSections();
-        showSectionWithAnimation(estrangulamentoSection);
-        setTimeout(() => smoothScrollTo('estrangulamento-section', this), 300);
-        });
-    }
-    
-    if (henkakuenkaNav && henkakuenkaSection) {
-      henkakuenkaNav.addEventListener('click', function(e) {
-        animateJapaneseNavCard(this);
-        hideAllSections();
-        showSectionWithAnimation(henkakuenkaSection);
-        setTimeout(() => smoothScrollTo('henkakuenka-section', this), 300);
-        });
-    }
-    
-    if (kaeshiWazaNav && kaeshiWazaSection) {
-      kaeshiWazaNav.addEventListener('click', function(e) {
-        animateJapaneseNavCard(this);
-        hideAllSections();
-        showSectionWithAnimation(kaeshiWazaSection);
-        setTimeout(() => smoothScrollTo('kaeshi-waza-section', this), 300);
-        });
-    }
-    
-
-
-    // --- CARROSSEL PROJEÇÃO ---
-    const carouselProj = document.getElementById('carouselProj');
-    const projLeftBtn = document.getElementById('carouselLeft');
-    const projRightBtn = document.getElementById('carouselRight');
-    if (carouselProj && projLeftBtn && projRightBtn) {
-        projLeftBtn.addEventListener('click', () => {
-            carouselProj.scrollBy({ left: -carouselProj.offsetWidth * 0.8, behavior: 'smooth' });
-            projLeftBtn.classList.add('carousel-arrow-anim');
-            setTimeout(() => projLeftBtn.classList.remove('carousel-arrow-anim'), 700);
-        });
-        projRightBtn.addEventListener('click', () => {
-            carouselProj.scrollBy({ left: carouselProj.offsetWidth * 0.8, behavior: 'smooth' });
-            projRightBtn.classList.add('carousel-arrow-anim');
-            setTimeout(() => projRightBtn.classList.remove('carousel-arrow-anim'), 700);
-        });
-        // Função para atualizar visibilidade dos botões (sempre visíveis agora)
-        const updateProjBtns = () => {
-            // Botões sempre visíveis
-            projLeftBtn.style.display = 'flex';
-            projRightBtn.style.display = 'flex';
-        };
-        // Aplicar visibilidade imediatamente
-        updateProjBtns();
-        window.addEventListener('resize', updateProjBtns);
-    }
-
-    // --- CARROSSEL IMOBILIZAÇÃO ---
-    const carouselImob = document.getElementById('carouselImob');
-    const imobLeftBtn = document.getElementById('carouselImobLeft');
-    const imobRightBtn = document.getElementById('carouselImobRight');
-    if (carouselImob && imobLeftBtn && imobRightBtn) {
-        imobLeftBtn.addEventListener('click', () => {
-            carouselImob.scrollBy({ left: -carouselImob.offsetWidth * 0.8, behavior: 'smooth' });
-            imobLeftBtn.classList.add('carousel-arrow-anim');
-            setTimeout(() => imobLeftBtn.classList.remove('carousel-arrow-anim'), 700);
-        });
-        imobRightBtn.addEventListener('click', () => {
-            carouselImob.scrollBy({ left: carouselImob.offsetWidth * 0.8, behavior: 'smooth' });
-            imobRightBtn.classList.add('carousel-arrow-anim');
-            setTimeout(() => imobRightBtn.classList.remove('carousel-arrow-anim'), 700);
-        });
-        // Função para atualizar visibilidade dos botões (sempre visíveis agora)
-        const updateImobBtns = () => {
-            // Botões sempre visíveis
-            imobLeftBtn.style.display = 'flex';
-            imobRightBtn.style.display = 'flex';
-        };
-        // Aplicar visibilidade imediatamente
-        updateImobBtns();
-        window.addEventListener('resize', updateImobBtns);
-    }
-    
-
-
-
-
-    // Inicializar botão flutuante
-    backToTopBtn.removeEventListener('click', backToTopHandler);
-    backToTopBtn.addEventListener('click', backToTopHandler);
     // Inicializar botões das seções
     function initializeBackToTopSectionButtons() {
         document.querySelectorAll('.back-to-top-section').forEach(button => {
