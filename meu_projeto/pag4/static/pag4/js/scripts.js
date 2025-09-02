@@ -1,119 +1,111 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // --- PROGRESSO (já existente) ---
-    const projCheckboxes = document.querySelectorAll('.proj-checkbox');
-    const imobCheckboxes = document.querySelectorAll('.imob-checkbox');
-    const chaveCheckboxes = document.querySelectorAll('.chave-checkbox');
-    const renrakuenkaCheckboxes = document.querySelectorAll('.renrakuenka-checkbox');
-    const kaeshiWazaCheckboxes = document.querySelectorAll('.kaeshi-waza-checkbox');
-    const progressBar = document.getElementById('progressBar');
-    const progressText = document.getElementById('progressText');
-    const floatingProgress = document.getElementById('floatingProgress');
-    const floatingProgressBar = document.getElementById('floatingProgressBar');
-    const floatingProgressText = document.getElementById('floatingProgressText');
+    // ===== LAZY LOADING PARA VÍDEOS =====
+    function initLazyLoading() {
+        const iframes = document.querySelectorAll('iframe[data-src]');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const iframe = entry.target;
+                    if (iframe.dataset.src) {
+                        iframe.src = iframe.dataset.src;
+                        iframe.removeAttribute('data-src');
+                        observer.unobserve(iframe);
+                    }
+                }
+            });
+        }, {
+            rootMargin: '50px 0px',
+            threshold: 0.1
+        });
+
+        iframes.forEach(iframe => {
+            observer.observe(iframe);
+        });
+    }
+
+    // Inicializar lazy loading
+    initLazyLoading();
+
+    // ===== CONFIGURAÇÕES GLOBAIS OTIMIZADAS =====
+    const elements = {
+        progressBar: document.getElementById('progressBar'),
+        progressText: document.getElementById('progressText'),
+        floatingProgress: document.getElementById('floatingProgress'),
+        floatingProgressBar: document.getElementById('floatingProgressBar'),
+        floatingProgressText: document.getElementById('floatingProgressText'),
+        backToTopBtn: document.getElementById('backToTop')
+    };
+    
+    const checkboxes = {
+        proj: document.querySelectorAll('.proj-checkbox'),
+        imob: document.querySelectorAll('.imob-checkbox'),
+        chave: document.querySelectorAll('.chave-checkbox'),
+        renrakuenka: document.querySelectorAll('.renrakuenka-checkbox'),
+        kaeshiWaza: document.querySelectorAll('.kaeshi-waza-checkbox')
+    };
     
     let hasShownCongratulations = false;
     
+    // ===== SISTEMA DE PROGRESSO OTIMIZADO =====
     function updateProgress() {
-        const totalProjChecked = document.querySelectorAll('.proj-checkbox:checked').length;
-        const totalImobChecked = document.querySelectorAll('.imob-checkbox:checked').length;
-        const totalChaveChecked = document.querySelectorAll('.chave-checkbox:checked').length;
-        const totalRenrakuenkaChecked = document.querySelectorAll('.renrakuenka-checkbox:checked').length;
-        const totalKaeshiWazaChecked = document.querySelectorAll('.kaeshi-waza-checkbox:checked').length;
-        const totalQuestions = projCheckboxes.length + imobCheckboxes.length + chaveCheckboxes.length + renrakuenkaCheckboxes.length + kaeshiWazaCheckboxes.length;
-        const completedQuestions = totalProjChecked + totalImobChecked + totalChaveChecked + totalRenrakuenkaChecked + totalKaeshiWazaChecked;
+        const totalQuestions = Object.values(checkboxes).reduce((total, checkboxList) => total + checkboxList.length, 0);
+        const completedQuestions = Object.values(checkboxes).reduce((total, checkboxList) => 
+            total + Array.from(checkboxList).filter(cb => cb.checked).length, 0);
         const progress = (completedQuestions / totalQuestions) * 100;
-        progressBar.style.width = progress + '%';
-        progressText.textContent = Math.round(progress) + '%';
         
-        // Mostrar barra de progresso flutuante
+        elements.progressBar.style.width = progress + '%';
+        elements.progressText.textContent = Math.round(progress) + '%';
+        
         showFloatingProgress(progress);
         
-        // Verificar se chegou a 100% e mostrar parabéns
         if (progress >= 100 && !hasShownCongratulations) {
-            console.log('Progress is 100% - checking for congratulations');
-            
-            // Verificar se todos os checkboxes estão marcados
-            const allChecked = Array.from(projCheckboxes).every(cb => cb.checked) && 
-                             Array.from(imobCheckboxes).every(cb => cb.checked) &&
-                             Array.from(chaveCheckboxes).every(cb => cb.checked) &&
-                             Array.from(renrakuenkaCheckboxes).every(cb => cb.checked) &&
-                             Array.from(kaeshiWazaCheckboxes).every(cb => cb.checked);
-            
-            if (allChecked) {
-                console.log('Showing congratulations!');
-                setTimeout(() => {
-                    showCongratulations();
-                }, 500);
-            }
-        }
-        
-        // Verificação adicional: se todos os checkboxes estão marcados, mostrar parabéns
-        if (completedQuestions >= 31 && !hasShownCongratulations) {
-            console.log('Todos os 31 checkboxes marcados - mostrando parabéns!');
-            setTimeout(() => {
-                showCongratulations();
-            }, 500);
+            hasShownCongratulations = true;
+            setTimeout(() => showCongratulations(), 500);
         }
     }
 
-    // Função para mostrar barra de progresso flutuante
+    // ===== BARRA DE PROGRESSO FLUTUANTE OTIMIZADA =====
     let floatingProgressTimeout;
     function showFloatingProgress(progress) {
-        floatingProgressBar.style.width = progress + '%';
-        floatingProgressText.textContent = Math.round(progress) + '%';
-        floatingProgress.classList.remove('hidden');
-        floatingProgress.style.opacity = '1';
-        floatingProgress.style.pointerEvents = 'auto';
+        elements.floatingProgressBar.style.width = progress + '%';
+        elements.floatingProgressText.textContent = Math.round(progress) + '%';
+        elements.floatingProgress.classList.remove('hidden');
+        elements.floatingProgress.style.opacity = '1';
+        elements.floatingProgress.style.pointerEvents = 'auto';
+        
         if (floatingProgressTimeout) clearTimeout(floatingProgressTimeout);
+        
         if (progress === 0) {
-            floatingProgress.style.opacity = '0';
-            floatingProgress.style.pointerEvents = 'none';
-        setTimeout(() => {
-                floatingProgress.classList.add('hidden');
-            }, 300);
+            elements.floatingProgress.style.opacity = '0';
+            elements.floatingProgress.style.pointerEvents = 'none';
+            setTimeout(() => elements.floatingProgress.classList.add('hidden'), 300);
         } else {
             floatingProgressTimeout = setTimeout(() => {
-            floatingProgress.style.opacity = '0';
-            floatingProgress.style.pointerEvents = 'none';
-                setTimeout(() => {
-                    floatingProgress.classList.add('hidden');
-                }, 300);
+                elements.floatingProgress.style.opacity = '0';
+                elements.floatingProgress.style.pointerEvents = 'none';
+                setTimeout(() => elements.floatingProgress.classList.add('hidden'), 300);
             }, 3000);
         }
     }
     
-    projCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', updateProgress);
-    });
-    imobCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', updateProgress);
-    });
-    chaveCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', updateProgress);
-    });
-    renrakuenkaCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', updateProgress);
-    });
-    kaeshiWazaCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', updateProgress);
-    });
+    // ===== EVENT LISTENERS CONSOLIDADOS =====
+    function addCheckboxListeners() {
+        Object.values(checkboxes).forEach(checkboxList => {
+            checkboxList.forEach(checkbox => {
+                checkbox.addEventListener('change', updateProgress);
+            });
+        });
+    }
+    
+    addCheckboxListeners();
     updateProgress();
     
-    // --- SISTEMA DE PARABÉNS ---
-    
-    // Função para mostrar modal de parabéns
+    // ===== SISTEMA DE PARABÉNS OTIMIZADO =====
     function showCongratulations() {
-        console.log('=== SHOW CONGRATULATIONS ===');
-        
         const modal = document.getElementById('congratulationsModal');
-        if (!modal) {
-            console.log('ERRO: Modal não encontrado!');
-            return;
-        }
+        if (!modal) return;
         
-        console.log('Modal encontrado, mostrando...');
-        
-        // Forçar exibição
         modal.style.display = 'flex';
         modal.classList.remove('hidden');
         modal.classList.add('flex');
@@ -121,137 +113,54 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.style.visibility = 'visible';
         modal.style.pointerEvents = 'auto';
         
-        hasShownCongratulations = true;
-        
-        // Adicionar animação de entrada
         const modalContent = modal.querySelector('div');
         if (modalContent) {
             modalContent.classList.add('modal-enter');
         }
         
-        // Salvar que já mostrou parabéns
         localStorage.setItem('congratulationsShown', 'true');
-        
-        // Scroll suave para o topo
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        
-        console.log('Modal deve estar visível agora!');
-        console.log('=== FIM SHOW CONGRATULATIONS ===');
     }
     
-    // Função para fechar modal
     function closeCongratulations() {
-        console.log('Closing congratulations modal');
         const modal = document.getElementById('congratulationsModal');
         if (modal) {
             modal.style.display = 'none';
             modal.classList.add('hidden');
             modal.classList.remove('flex');
-            console.log('Modal closed successfully');
-        } else {
-            console.log('Modal not found for closing');
         }
     }
     
     // Event listeners para botões do modal
-    function initializeCongratulationsButtons() {
-        const continueBtn = document.getElementById('continueTraining');
-        const closeBtn = document.getElementById('closeCongratulations');
-        
-        console.log('Initializing congratulations buttons');
-        console.log('Continue button found:', !!continueBtn);
-        console.log('Close button found:', !!closeBtn);
-        
-        if (continueBtn) {
-            continueBtn.addEventListener('click', function() {
-                console.log('Continue training clicked');
-                closeCongratulations();
-                // Aqui você pode adicionar lógica para continuar treinando
-            });
-        }
-        
-        if (closeBtn) {
-            closeBtn.addEventListener('click', function() {
-                console.log('Close congratulations clicked');
-                closeCongratulations();
-            });
-        }
+    const continueBtn = document.getElementById('continueTraining');
+    const closeBtn = document.getElementById('closeCongratulations');
+    
+    if (continueBtn) {
+        continueBtn.addEventListener('click', closeCongratulations);
     }
     
-    // Inicializar botões do modal
-    initializeCongratulationsButtons();
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeCongratulations);
+    }
 
-    // Botão voltar ao topo
-    const backToTopBtn = document.getElementById('backToTop');
+    // ===== SCROLL E BOTÃO VOLTAR AO TOPO OTIMIZADO =====
     window.addEventListener('scroll', function() {
         if (window.pageYOffset > 300) {
-            backToTopBtn.classList.remove('hidden');
+            elements.backToTopBtn.classList.remove('hidden');
         } else {
-            backToTopBtn.classList.add('hidden');
+            elements.backToTopBtn.classList.add('hidden');
         }
     });
-    // Função para criar partículas no botão voltar ao topo
-    function createBackToTopParticles(button) {
-        const rect = button.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        for (let i = 0; i < 12; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'back-to-top-particle';
-            particle.style.left = centerX + (Math.random() - 0.5) * 60 + 'px';
-            particle.style.top = centerY + (Math.random() - 0.5) * 60 + 'px';
-            particle.style.background = `rgba(255, 255, 255, ${0.7 + Math.random() * 0.3})`;
-            particle.style.position = 'fixed';
-            particle.style.width = '10px';
-            particle.style.height = '10px';
-            particle.style.borderRadius = '50%';
-            particle.style.pointerEvents = 'none';
-            particle.style.zIndex = 9999;
-            particle.style.transition = 'opacity 0.8s';
-            document.body.appendChild(particle);
-            setTimeout(() => {
-                particle.style.opacity = 0;
-                setTimeout(() => {
-                    if (particle.parentNode) {
-                        particle.parentNode.removeChild(particle);
-                    }
-                }, 400);
-            }, 800);
-        }
-    }
-    // Handler para o botão voltar ao topo
+    
     function backToTopHandler() {
-        createBackToTopParticles(this);
-        this.style.transform = 'scale(0.95)';
-        this.style.transition = 'transform 0.1s ease';
-        const startPosition = window.pageYOffset;
-        const duration = 1000;
-        let start = null;
-        function easeInOutCubic(t) {
-            return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-        }
-        function animation(currentTime) {
-            if (start === null) start = currentTime;
-            const timeElapsed = currentTime - start;
-            const progress = Math.min(timeElapsed / duration, 1);
-            const easedProgress = easeInOutCubic(progress);
-            window.scrollTo(0, startPosition * (1 - easedProgress));
-            if (progress < 1) {
-                requestAnimationFrame(animation);
-            } else {
-                setTimeout(() => {
-                    backToTopBtn.style.transform = 'scale(1)';
-                    backToTopBtn.style.transition = 'transform 0.3s ease';
-                }, 100);
-            }
-        }
-        requestAnimationFrame(animation);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    // Inicializar botão flutuante
-    backToTopBtn.removeEventListener('click', backToTopHandler);
-    backToTopBtn.addEventListener('click', backToTopHandler);
+    
+    if (elements.backToTopBtn) {
+        elements.backToTopBtn.addEventListener('click', backToTopHandler);
+    }
 
-    // Animação para as divs de navegação japonesa
+    // ===== ANIMAÇÕES DE NAVEGAÇÃO JAPONESA OTIMIZADAS =====
     document.querySelectorAll('.japanese-nav-card').forEach((card, index) => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';
@@ -260,225 +169,89 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             card.style.opacity = '1';
             card.style.transform = 'translateY(0)';
-        }, 200 + (index * 100)); // Delay escalonado para cada card
+        }, 200 + (index * 100));
     });
 
-    // Atualizar navegação japonesa para mostrar/ocultar seções corretamente
-    const nageWazaNav = document.getElementById('nage-waza-nav');
-    const imobilizacoesNav = document.getElementById('imobilizacoes-nav');
-    const chaveBracoNav = document.getElementById('chave-braco-nav');
-    const estrangulamentoNav = document.getElementById('estrangulamento-nav');
-    const henkakuenkaNav = document.getElementById('henkakuenka-nav');
-    const kaeshiWazaNav = document.getElementById('kaeshi-waza-nav');
-    const nageWazaSection = document.getElementById('nage-waza-section');
-    const imobilizacoesSection = document.getElementById('imobilizacoes-section');
-    const chaveBracoSection = document.getElementById('chave-braco-section');
-    const estrangulamentoSection = document.getElementById('estrangulamento-section');
-    const henkakuenkaSection = document.getElementById('henkakuenka-section');
-    const kaeshiWazaSection = document.getElementById('kaeshi-waza-section');
+    // ===== NAVEGAÇÃO JAPONESA OTIMIZADA =====
+    const sections = {
+        nageWaza: { nav: 'nage-waza-nav', section: 'nage-waza-section' },
+        imobilizacoes: { nav: 'imobilizacoes-nav', section: 'imobilizacoes-section' },
+        chaveBraco: { nav: 'chave-braco-nav', section: 'chave-braco-section' },
+        estrangulamento: { nav: 'estrangulamento-nav', section: 'estrangulamento-section' },
+        henkakuenka: { nav: 'henkakuenka-nav', section: 'henkakuenka-section' },
+        kaeshiWaza: { nav: 'kaeshi-waza-nav', section: 'kaeshi-waza-section' }
+    };
+    
     function hideAllSections() {
-      if (nageWazaSection) nageWazaSection.classList.add('hidden');
-      if (imobilizacoesSection) imobilizacoesSection.classList.add('hidden');
-      if (chaveBracoSection) chaveBracoSection.classList.add('hidden');
-      if (estrangulamentoSection) estrangulamentoSection.classList.add('hidden');
-      if (henkakuenkaSection) henkakuenkaSection.classList.add('hidden');
-      if (kaeshiWazaSection) kaeshiWazaSection.classList.add('hidden');
+        Object.values(sections).forEach(({ section }) => {
+            const element = document.getElementById(section);
+            if (element) element.classList.add('hidden');
+        });
     }
-    // Copiar animações de clique e ida até os cards da pagina3.html (efeito de destaque, partículas, indicador de scroll, etc)
-    function createParticles(x, y, count = 8) {
-        const particlesContainer = document.getElementById('scrollParticles');
-        for (let i = 0; i < count; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = x + Math.random() * 40 - 20 + 'px';
-            particle.style.top = y + Math.random() * 40 - 20 + 'px';
-            particle.style.animationDelay = Math.random() * 0.5 + 's';
-            particlesContainer.appendChild(particle);
-            setTimeout(() => {
-                if (particle.parentNode) {
-                    particle.parentNode.removeChild(particle);
-                }
-            }, 1500);
-        }
-    }
-    // Substituir smoothScrollTo pela versão completa da página 3
-    function smoothScrollTo(element, cardElement) {
+    // ===== FUNÇÕES DE NAVEGAÇÃO SIMPLIFICADAS =====
+    function smoothScrollTo(element) {
         const targetElement = document.getElementById(element);
-        if (!targetElement) return;
-        cardElement.classList.add('clicked');
-        // Criar partículas no ponto de clique
-        const rect = cardElement.getBoundingClientRect();
-        createParticles(rect.left + rect.width / 2, rect.top + rect.height / 2);
-        // Calcular posição de destino
-        const targetPosition = targetElement.offsetTop - 100;
-        const startPosition = window.pageYOffset;
-        const distance = targetPosition - startPosition;
-        const duration = 1200;
-        let start = null;
-        function easeInOutCubic(t) {
-            return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-        function animation(currentTime) {
-            if (start === null) start = currentTime;
-            const timeElapsed = currentTime - start;
-            const progress = Math.min(timeElapsed / duration, 1);
-            const easedProgress = easeInOutCubic(progress);
-            window.scrollTo(0, startPosition + distance * easedProgress);
-            if (progress < 1) {
-                requestAnimationFrame(animation);
-            } else {
-                setTimeout(() => {
-                    cardElement.classList.remove('clicked');
-                    targetElement.classList.add('destination-highlight');
-                    setTimeout(() => {
-                        targetElement.classList.remove('destination-highlight');
-                    }, 2000);
-                }, 300);
-            }
-        }
-        requestAnimationFrame(animation);
     }
+    
     function showSectionWithAnimation(section) {
-      section.classList.remove('hidden');
-      section.classList.add('animate-fade-in');
-      setTimeout(() => section.classList.remove('animate-fade-in'), 1300);
+        section.classList.remove('hidden');
+        section.classList.add('animate-fade-in');
+        setTimeout(() => section.classList.remove('animate-fade-in'), 1300);
     }
-    // Adicionar animação de clique nas barras japonesas
+    
     function animateJapaneseNavCard(card) {
-      card.classList.add('clicked');
-      setTimeout(() => card.classList.remove('clicked'), 800);
+        card.classList.add('clicked');
+        setTimeout(() => card.classList.remove('clicked'), 800);
     }
-    if (nageWazaNav && nageWazaSection) {
-      nageWazaNav.addEventListener('click', function(e) {
-        animateJapaneseNavCard(this);
-        hideAllSections();
-        showSectionWithAnimation(nageWazaSection);
-        setTimeout(() => smoothScrollTo('nage-waza-section', this), 300);
-        });
-    }
-    if (imobilizacoesNav && imobilizacoesSection) {
-      imobilizacoesNav.addEventListener('click', function(e) {
-        animateJapaneseNavCard(this);
-        hideAllSections();
-        showSectionWithAnimation(imobilizacoesSection);
-        setTimeout(() => smoothScrollTo('imobilizacoes-section', this), 300);
-        });
-    }
-    if (chaveBracoNav && chaveBracoSection) {
-      chaveBracoNav.addEventListener('click', function(e) {
-        animateJapaneseNavCard(this);
-        hideAllSections();
-        showSectionWithAnimation(chaveBracoSection);
-        setTimeout(() => smoothScrollTo('chave-braco-section', this), 300);
-        });
-    }
-    if (estrangulamentoNav && estrangulamentoSection) {
-      estrangulamentoNav.addEventListener('click', function(e) {
-        animateJapaneseNavCard(this);
-        hideAllSections();
-        showSectionWithAnimation(estrangulamentoSection);
-        setTimeout(() => smoothScrollTo('estrangulamento-section', this), 300);
-        });
-    }
-    
-    if (henkakuenkaNav && henkakuenkaSection) {
-      henkakuenkaNav.addEventListener('click', function(e) {
-        animateJapaneseNavCard(this);
-        hideAllSections();
-        showSectionWithAnimation(henkakuenkaSection);
-        setTimeout(() => smoothScrollTo('henkakuenka-section', this), 300);
-        });
-    }
-    
-    if (kaeshiWazaNav && kaeshiWazaSection) {
-      kaeshiWazaNav.addEventListener('click', function(e) {
-        animateJapaneseNavCard(this);
-        hideAllSections();
-        showSectionWithAnimation(kaeshiWazaSection);
-        setTimeout(() => smoothScrollTo('kaeshi-waza-section', this), 300);
-        });
-    }
-    
-
-
-    // --- CARROSSEL PROJEÇÃO ---
-    const carouselProj = document.getElementById('carouselProj');
-    const projLeftBtn = document.getElementById('carouselLeft');
-    const projRightBtn = document.getElementById('carouselRight');
-    if (carouselProj && projLeftBtn && projRightBtn) {
-        projLeftBtn.addEventListener('click', () => {
-            carouselProj.scrollBy({ left: -carouselProj.offsetWidth * 0.8, behavior: 'smooth' });
-            projLeftBtn.classList.add('carousel-arrow-anim');
-            setTimeout(() => projLeftBtn.classList.remove('carousel-arrow-anim'), 700);
-        });
-        projRightBtn.addEventListener('click', () => {
-            carouselProj.scrollBy({ left: carouselProj.offsetWidth * 0.8, behavior: 'smooth' });
-            projRightBtn.classList.add('carousel-arrow-anim');
-            setTimeout(() => projRightBtn.classList.remove('carousel-arrow-anim'), 700);
-        });
-        // Função para atualizar visibilidade dos botões (sempre visíveis agora)
-        const updateProjBtns = () => {
-            // Botões sempre visíveis
-            projLeftBtn.style.display = 'flex';
-            projRightBtn.style.display = 'flex';
-        };
-        // Aplicar visibilidade imediatamente
-        updateProjBtns();
-        window.addEventListener('resize', updateProjBtns);
-    }
-
-    // --- CARROSSEL IMOBILIZAÇÃO ---
-    const carouselImob = document.getElementById('carouselImob');
-    const imobLeftBtn = document.getElementById('carouselImobLeft');
-    const imobRightBtn = document.getElementById('carouselImobRight');
-    if (carouselImob && imobLeftBtn && imobRightBtn) {
-        imobLeftBtn.addEventListener('click', () => {
-            carouselImob.scrollBy({ left: -carouselImob.offsetWidth * 0.8, behavior: 'smooth' });
-            imobLeftBtn.classList.add('carousel-arrow-anim');
-            setTimeout(() => imobLeftBtn.classList.remove('carousel-arrow-anim'), 700);
-        });
-        imobRightBtn.addEventListener('click', () => {
-            carouselImob.scrollBy({ left: carouselImob.offsetWidth * 0.8, behavior: 'smooth' });
-            imobRightBtn.classList.add('carousel-arrow-anim');
-            setTimeout(() => imobRightBtn.classList.remove('carousel-arrow-anim'), 700);
-        });
-        // Função para atualizar visibilidade dos botões (sempre visíveis agora)
-        const updateImobBtns = () => {
-            // Botões sempre visíveis
-            imobLeftBtn.style.display = 'flex';
-            imobRightBtn.style.display = 'flex';
-        };
-        // Aplicar visibilidade imediatamente
-        updateImobBtns();
-        window.addEventListener('resize', updateImobBtns);
-    }
-    
-
-
-
-
-    // Inicializar botão flutuante
-    backToTopBtn.removeEventListener('click', backToTopHandler);
-    backToTopBtn.addEventListener('click', backToTopHandler);
-    // Inicializar botões das seções
-    function initializeBackToTopSectionButtons() {
-        document.querySelectorAll('.back-to-top-section').forEach(button => {
-            if (!button.hasAttribute('data-initialized')) {
-                button.removeEventListener('click', backToTopHandler);
-                button.classList.add('animate-in');
-                button.addEventListener('click', backToTopHandler);
-                button.setAttribute('data-initialized', 'true');
-            }
-        });
-    }
-    initializeBackToTopSectionButtons();
-    setInterval(() => {
-        const buttons = document.querySelectorAll('.back-to-top-section');
-        const uninitializedButtons = Array.from(buttons).filter(button => {
-            return !button.hasAttribute('data-initialized');
-        });
-        if (uninitializedButtons.length > 0) {
-            initializeBackToTopSectionButtons();
+    // ===== EVENT LISTENERS DE NAVEGAÇÃO CONSOLIDADOS =====
+    Object.values(sections).forEach(({ nav, section }) => {
+        const navElement = document.getElementById(nav);
+        const sectionElement = document.getElementById(section);
+        
+        if (navElement && sectionElement) {
+            navElement.addEventListener('click', function() {
+                animateJapaneseNavCard(this);
+                hideAllSections();
+                showSectionWithAnimation(sectionElement);
+                setTimeout(() => smoothScrollTo(section), 300);
+            });
         }
-    }, 2000);
-});
+    });
+    
+
+
+    // ===== CARROSSÉIS OTIMIZADOS =====
+    const carousels = [
+        { carousel: 'carouselProj', left: 'carouselLeft', right: 'carouselRight' },
+        { carousel: 'carouselImob', left: 'carouselImobLeft', right: 'carouselImobRight' }
+    ];
+    
+    carousels.forEach(({ carousel, left, right }) => {
+        const carouselElement = document.getElementById(carousel);
+        const leftBtn = document.getElementById(left);
+        const rightBtn = document.getElementById(right);
+        
+        if (carouselElement && leftBtn && rightBtn) {
+            leftBtn.addEventListener('click', () => {
+                carouselElement.scrollBy({ left: -carouselElement.offsetWidth * 0.8, behavior: 'smooth' });
+            });
+            
+            rightBtn.addEventListener('click', () => {
+                carouselElement.scrollBy({ left: carouselElement.offsetWidth * 0.8, behavior: 'smooth' });
+            });
+        }
+    });
+    
+
+
+
+
+    // ===== BOTÕES VOLTAR AO TOPO DAS SEÇÕES =====
+    document.querySelectorAll('.back-to-top-section').forEach(button => {
+        button.addEventListener('click', backToTopHandler);
+    });
+    
+}); // Fim do DOMContentLoaded

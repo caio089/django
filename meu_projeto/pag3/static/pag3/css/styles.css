@@ -507,51 +507,55 @@ p, span, div {
     
     #carouselProj {
         display: flex !important;
-        flex-direction: row !important;
+        flex-direction: column !important;
         flex-wrap: nowrap !important;
-        gap: 1rem !important;
-        overflow: hidden !important;
+        gap: 1.5rem !important;
+        overflow: visible !important;
         padding: 0.5rem 0 !important;
         position: relative !important;
         scroll-snap-type: none !important;
         width: 100% !important;
+        align-items: center !important;
     }
     
-    /* Cards das técnicas de projeção no mobile - organizados horizontalmente */
+    /* Cards das técnicas de projeção no mobile - organizados verticalmente */
     #carouselProj .card-hover {
-        min-width: 320px !important;
-        max-width: 320px !important;
-        width: 320px !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        width: 100% !important;
         flex-shrink: 0 !important;
         scroll-snap-align: unset !important;
         border-radius: 12px !important;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+        margin: 0 auto !important;
     }
     
 
     
-    /* Carrossel para outras seções (imobilizações) */
+    /* Layout vertical para imobilizações no mobile */
     #carouselImob {
         display: flex !important;
-        flex-direction: row !important;
+        flex-direction: column !important;
         flex-wrap: nowrap !important;
-        gap: 1rem !important;
-        overflow-x: auto !important;
+        gap: 1.5rem !important;
+        overflow: visible !important;
         scroll-behavior: smooth !important;
         padding: 0.5rem 0 !important;
         position: relative !important;
-        scroll-snap-type: x mandatory !important;
+        scroll-snap-type: none !important;
+        align-items: center !important;
     }
     
-    /* Cards do carrossel de imobilizações */
+    /* Cards das imobilizações no mobile - layout vertical */
     #carouselImob .card-hover {
-        min-width: 320px !important;
-        max-width: 320px !important;
-        width: 320px !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        width: 100% !important;
         flex-shrink: 0 !important;
-        scroll-snap-align: start !important;
+        scroll-snap-align: unset !important;
         border-radius: 12px !important;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+        margin: 0 auto !important;
     }
     
     /* Layout vertical para seções de ataques combinados e contra-ataques (igual à página 4) */
@@ -819,24 +823,10 @@ p, span, div {
     scroll-snap-align: start;
 }
 
-/* Botões de navegação desktop */
+/* Botões de navegação desktop removidos */
 #carouselLeft,
 #carouselRight {
-    display: flex;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    background: rgba(249, 115, 22, 0.9);
-    border: none;
-    border-radius: 50%;
-    width: 2.5rem;
-    height: 2.5rem;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: none !important;
 }
 
 
@@ -895,71 +885,15 @@ p, span, div {
     position: relative !important;
 }
 
-/* Setas de navegação - Desktop e Mobile */
+/* Setas de navegação removidas - layout vertical no mobile */
 .carousel-arrow-left,
 .carousel-arrow-right {
-    display: flex !important;
-    position: absolute !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    z-index: 20 !important;
-    background: rgba(0, 0, 0, 0.7) !important;
-    border: none !important;
-    border-radius: 50% !important;
-    width: 3rem !important;
-    height: 3rem !important;
-    align-items: center !important;
-    justify-content: center !important;
-    cursor: pointer !important;
-    transition: all 0.3s ease !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
-    color: white !important;
-    font-size: 1.5rem !important;
-    font-weight: bold !important;
+    display: none !important;
 }
 
-/* Setas específicas para a seção de projeção (cor laranja) */
-#nage-waza-section .carousel-arrow-left,
-#nage-waza-section .carousel-arrow-right {
-    background: rgba(249, 115, 22, 0.9) !important; /* Laranja com transparência */
-    display: flex !important; /* Garantir que estejam visíveis */
-    visibility: visible !important;
-    opacity: 1 !important;
-}
+/* Setas específicas removidas - layout vertical */
 
-#nage-waza-section .carousel-arrow-left:hover,
-#nage-waza-section .carousel-arrow-right:hover {
-    background: rgba(249, 115, 22, 1) !important; /* Laranja sólido no hover */
-}
-
-/* Debug: forçar visibilidade das setas de projeção */
-#nage-waza-section .carousel-arrow-left.hidden,
-#nage-waza-section .carousel-arrow-right.hidden {
-    display: flex !important; /* Override do .hidden para debug */
-}
-
-/* Regra ultra-específica para setas de projeção */
-html body #nage-waza-section .carousel-arrow-left,
-html body #nage-waza-section .carousel-arrow-right {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    background: rgba(249, 115, 22, 0.9) !important;
-    position: absolute !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    z-index: 999 !important;
-}
-
-/* Override para qualquer elemento com essas classes na seção de projeção */
-#nage-waza-section button.carousel-arrow-left,
-#nage-waza-section button.carousel-arrow-right {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: absolute !important;
-    z-index: 999 !important;
-}
+/* Todas as regras específicas das setas removidas */
 
 /* CSS para setas de debug */
 .debug-arrow {
@@ -1002,76 +936,9 @@ html body #nage-waza-section .carousel-arrow-right {
     z-index: 99999 !important;
 }
 
-.carousel-arrow-left {
-    left: -1.5rem !important;
-}
+/* Todas as regras de posicionamento e hover das setas removidas */
 
-.carousel-arrow-right {
-    right: -1.5rem !important;
-}
-
-/* Hover effects para as setas */
-.carousel-arrow-left:hover,
-.carousel-arrow-right:hover {
-    background: rgba(0, 0, 0, 0.9) !important;
-    transform: translateY(-50%) scale(1.1) !important;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
-}
-
-/* Ícones das setas */
-.carousel-arrow-left::before {
-    content: '‹' !important;
-    font-size: 2rem !important;
-    line-height: 1 !important;
-}
-
-.carousel-arrow-right::before {
-    content: '›' !important;
-    font-size: 2rem !important;
-    line-height: 1 !important;
-}
-
-/* Esconder setas quando não há scroll (exceto para projeção) */
-.carousel-arrow-left.hidden:not([data-section="nage-waza-section"]),
-.carousel-arrow-right.hidden:not([data-section="nage-waza-section"]) {
-    display: none !important;
-}
-
-/* Responsividade das setas - Desktop */
-@media (max-width: 1024px) {
-    .carousel-arrow-left,
-    .carousel-arrow-right {
-        width: 2.5rem !important;
-        height: 2.5rem !important;
-        font-size: 1.25rem !important;
-    }
-    
-    .carousel-arrow-left {
-        left: -1.25rem !important;
-    }
-    
-    .carousel-arrow-right {
-        right: -1.25rem !important;
-    }
-}
-
-/* Responsividade das setas - Mobile */
-@media (max-width: 768px) {
-    .carousel-arrow-left,
-    .carousel-arrow-right {
-        width: 2rem !important;
-        height: 2rem !important;
-        font-size: 1rem !important;
-    }
-    
-    .carousel-arrow-left {
-        left: -1rem !important;
-    }
-    
-    .carousel-arrow-right {
-        right: -1rem !important;
-    }
-}
+/* Media queries das setas removidas - layout vertical */
 
 /* ===== RESPONSIVIDADE MOBILE OTIMIZADA ===== */
 @media (max-width: 768px) {
@@ -1108,33 +975,55 @@ html body #nage-waza-section .carousel-arrow-right {
         padding: 0 1rem !important;
     }
     
-    /* Carrossel de técnicas para mobile */
-    #nage-waza-section .grid,
-    #nage-waza-section #carouselProj,
-    #imobilizacoes-section .grid {
+    /* Layout vertical para técnicas de projeção no mobile */
+#nage-waza-section .grid,
+    #nage-waza-section #carouselProj {
         display: flex !important;
-        flex-direction: row !important;
+        flex-direction: column !important;
         flex-wrap: nowrap !important;
-        gap: 1rem !important;
-        overflow-x: auto !important;
+        gap: 1.5rem !important;
+        overflow: visible !important;
         scroll-behavior: smooth !important;
         padding: 0.5rem 0 !important;
         position: relative !important;
-        scroll-snap-type: x mandatory !important;
+        scroll-snap-type: none !important;
+        align-items: center !important;
     }
     
-    /* Cards do carrossel */
+    /* Layout vertical para imobilizações no mobile */
+#imobilizacoes-section .grid {
+        display: flex !important;
+        flex-direction: column !important;
+        flex-wrap: nowrap !important;
+        gap: 1.5rem !important;
+        overflow: visible !important;
+        scroll-behavior: smooth !important;
+        padding: 0.5rem 0 !important;
+        position: relative !important;
+        scroll-snap-type: none !important;
+        align-items: center !important;
+    }
+    
+    /* Cards das técnicas de projeção - layout vertical */
     #nage-waza-section .video-card,
+    #nage-waza-section .card-hover {
+        min-width: 100% !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+    }
+    
+    /* Cards das imobilizações - layout vertical */
     #imobilizacoes-section .video-card,
-    #nage-waza-section .card-hover,
     #imobilizacoes-section .card-hover {
-        min-width: 320px !important;
-        max-width: 320px !important;
-        width: 320px !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        width: 100% !important;
         flex-shrink: 0 !important;
-        scroll-snap-align: start !important;
+        scroll-snap-align: unset !important;
         border-radius: 12px !important;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+        margin: 0 auto !important;
     }
     
     /* Indicador de scroll */
