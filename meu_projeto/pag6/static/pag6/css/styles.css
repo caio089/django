@@ -247,31 +247,32 @@
          
          .trophy-icon {
              font-size: 4rem;
-             animation: trophyBounce 2s ease-in-out infinite;
-             filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+             animation: trophyBounce 3s ease-in-out infinite;
+             filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));
+             will-change: transform;
          }
          
          @keyframes trophyBounce {
              0%, 100% { transform: translateY(0) rotate(0deg); }
-             25% { transform: translateY(-10px) rotate(5deg); }
-             75% { transform: translateY(-5px) rotate(-3deg); }
+             50% { transform: translateY(-8px) rotate(2deg); }
          }
          
          .trophy-glow {
              position: absolute;
              top: 50%;
              left: 50%;
-             width: 120px;
-             height: 120px;
-             background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+             width: 100px;
+             height: 100px;
+             background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
              border-radius: 50%;
              transform: translate(-50%, -50%);
-             animation: glowPulse 2s ease-in-out infinite;
+             animation: glowPulse 3s ease-in-out infinite;
+             will-change: transform, opacity;
          }
          
          @keyframes glowPulse {
-             0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
-             50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+             0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+             50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
          }
          
          /* Título animado */
@@ -284,36 +285,25 @@
              50% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6)); }
          }
          
-         /* Partículas de celebração */
+         /* Partículas de celebração otimizadas */
          .celebration-particle {
              position: absolute;
-             width: 8px;
-             height: 8px;
-             background: linear-gradient(45deg, #FFD700, #FFA500, #FF6347);
+             width: 6px;
+             height: 6px;
+             background: #FFD700;
              border-radius: 50%;
-             animation: celebrationFloat 3s ease-in-out infinite;
+             animation: celebrationFloat 2.5s ease-in-out infinite;
              animation-delay: var(--delay);
              left: var(--x);
              top: var(--y);
+             will-change: transform, opacity;
          }
          
          @keyframes celebrationFloat {
-             0% {
-                 opacity: 0;
-                 transform: translateY(0) scale(0);
-             }
-             20% {
-                 opacity: 1;
-                 transform: translateY(-20px) scale(1);
-             }
-             80% {
-                 opacity: 1;
-                 transform: translateY(-40px) scale(1.2);
-             }
-             100% {
-                 opacity: 0;
-                 transform: translateY(-60px) scale(0);
-             }
+             0% { opacity: 0; transform: translateY(0) scale(0); }
+             20% { opacity: 1; transform: translateY(-15px) scale(1); }
+             80% { opacity: 1; transform: translateY(-30px) scale(1.1); }
+             100% { opacity: 0; transform: translateY(-45px) scale(0); }
          }
          
          /* Botões animados */
@@ -461,11 +451,70 @@
              line-height: 1.3;
          }
          
-         /* Responsividade para dispositivos móveis - Copiado da página5.html */
+         /* Animação para os botões de seta do carrossel */
+         .carousel-arrow-anim {
+             animation: carouselArrowPulse 0.7s ease-in-out;
+         }
+         
+         @keyframes carouselArrowPulse {
+             0% { transform: scale(1); }
+             50% { transform: scale(1.1); }
+             100% { transform: scale(1); }
+         }
+         
+         /* Estilos para lazy loading automático de vídeos */
+         .lazy-video {
+             position: relative;
+             width: 100%;
+             height: 100%;
+             background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+             border-radius: 12px;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             transition: all 0.3s ease;
+         }
+         
+         .video-placeholder {
+             text-align: center;
+             color: #6b7280;
+         }
+         
+         .loading-spinner {
+             width: 40px;
+             height: 40px;
+             border: 4px solid #e5e7eb;
+             border-top: 4px solid #7c3aed;
+             border-radius: 50%;
+             animation: spin 1s linear infinite;
+             margin: 0 auto 1rem auto;
+         }
+         
+         @keyframes spin {
+             0% { transform: rotate(0deg); }
+             100% { transform: rotate(360deg); }
+         }
+         
+         .video-placeholder p {
+             font-size: 1rem;
+             font-weight: 500;
+             margin: 0;
+             color: #7c3aed;
+         }
+         
+         /* === RESPONSIVIDADE MOBILE OTIMIZADA === */
          @media (max-width: 768px) {
-             /* Header responsivo */
+             /* Variáveis CSS para consistência */
+             :root {
+                 --mobile-padding: 1rem;
+                 --mobile-padding-sm: 0.75rem;
+                 --mobile-font-sm: 0.875rem;
+                 --mobile-gap: 1rem;
+             }
+             
+             /* Layout base mobile */
              header {
-                 padding: 0.75rem 1rem !important;
+                 padding: var(--mobile-padding-sm) var(--mobile-padding) !important;
              }
              
              header h1 {
@@ -474,35 +523,34 @@
              }
              
              header p {
-                 font-size: 0.875rem !important;
+                 font-size: var(--mobile-font-sm) !important;
              }
              
-             /* Barra de progresso mobile */
+             /* Componentes mobile */
              .progress-bar {
                  height: 0.75rem !important;
              }
              
-             /* Cards de habilidades mobile */
              .habilidade-item {
-                 font-size: 0.875rem !important;
-                 padding: 0.75rem 1rem !important;
+                 font-size: var(--mobile-font-sm) !important;
+                 padding: var(--mobile-padding-sm) var(--mobile-padding) !important;
                  margin: 0.25rem !important;
                  min-width: calc(100% - 2rem) !important;
                  max-width: calc(100% - 2rem) !important;
              }
              
-             /* Padronizar tamanhos da barra japonesa em mobile */
+             /* Navegação japonesa mobile */
              .japanese-nav-card {
-                 width: 120px !important;
+                 width: 100px !important;
                  height: 80px !important;
-                 min-width: 120px !important;
+                 min-width: 100px !important;
                  min-height: 80px !important;
-                 max-width: 120px !important;
+                 max-width: 100px !important;
                  max-height: 80px !important;
                  flex-shrink: 0 !important;
+                 margin: 0.75rem !important;
              }
              
-             /* Layout horizontal com scroll para mobile */
              .japanese-nav-container .flex {
                  gap: 0.5rem !important;
                  justify-content: flex-start !important;
@@ -514,7 +562,6 @@
                  position: relative !important;
              }
              
-             /* Gradiente sutil no lado direito para indicar mais conteúdo */
              .japanese-nav-container .flex::before {
                  content: '' !important;
                  position: absolute !important;
@@ -527,82 +574,76 @@
                  z-index: 5 !important;
              }
              
-             /* Cards sempre na mesma linha */
-             .japanese-nav-card {
-                 width: 100px !important;
-                 height: 80px !important;
-                 min-width: 100px !important;
-                 min-height: 80px !important;
-                 max-width: 100px !important;
-                 max-height: 80px !important;
-                 flex-shrink: 0 !important;
-             }
-             
-             /* Texto indicativo de scroll para mobile */
              .japanese-nav-container::after {
                  content: '← Deslize para ver mais →' !important;
                  display: block !important;
                  text-align: center !important;
                  margin-top: 0.75rem !important;
-                 font-size: 0.875rem !important;
+                 font-size: var(--mobile-font-sm) !important;
                  color: #6B7280 !important;
                  font-weight: 500 !important;
                  opacity: 0.8 !important;
+                 background: linear-gradient(135deg, #7c3aed, #4c1d95) !important;
+                 -webkit-background-clip: text !important;
+                 -webkit-text-fill-color: transparent !important;
+                 background-clip: text !important;
              }
              
-             /* Espaçamento melhorado para touch */
-             .habilidade-item {
-                 margin: 0.5rem !important;
-             }
-             
-             .japanese-nav-card {
-                 margin: 0.75rem !important;
-             }
-             
-             /* Scroll suave para mobile */
-             html {
-                 scroll-behavior: smooth !important;
-             }
-             
-             /* Melhor contraste para mobile */
+             /* Melhorias visuais */
              .video-tip {
                  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%) !important;
                  border-left: 4px solid #0284c7 !important;
              }
              
-             /* Sombras mais suaves para mobile */
              .video-card {
                  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+                 transition: all 0.2s ease !important;
              }
              
              .video-card:hover {
                  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
              }
              
-             /* Animações mais suaves para mobile */
              .habilidade-item,
-             .japanese-nav-card,
-             .video-card {
+             .japanese-nav-card {
                  transition: all 0.2s ease !important;
              }
              
-             /* Feedback visual melhorado para mobile */
              .japanese-nav-card:active {
                  transform: scale(0.95) !important;
              }
              
-             /* Melhor espaçamento para touch */
              .japanese-nav-container {
-                 padding: 1rem !important;
-                 margin: 1rem 0 !important;
+                 padding: var(--mobile-padding) !important;
+                 margin: var(--mobile-padding) 0 !important;
              }
              
-             /* Indicador de scroll mais visível */
-             .japanese-nav-container::after {
-                 background: linear-gradient(135deg, #7c3aed, #4c1d95) !important;
-                 -webkit-background-clip: text !important;
-                 -webkit-text-fill-color: transparent !important;
-                 background-clip: text !important;
-                 font-weight: 600 !important;
+             html {
+                 scroll-behavior: smooth !important;
+             }
+             
+             /* Layout vertical para carrosséis no mobile */
+             .flex.overflow-x-auto {
+                 display: grid !important;
+                 grid-template-columns: 1fr !important;
+                 gap: var(--mobile-gap) !important;
+                 overflow: visible !important;
+                 scroll-snap-type: none !important;
+                 flex-direction: column !important;
+                 align-items: stretch !important;
+             }
+             
+             .technique-card {
+                 width: 100% !important;
+                 max-width: none !important;
+                 min-width: auto !important;
+                 flex-shrink: 0 !important;
+                 scroll-snap-align: none !important;
+                 margin: 0 0 1rem 0 !important;
+             }
+             
+             /* Esconder botões do carrossel no mobile */
+             .relative button[id*="carousel"] {
+                 display: none !important;
              }
          }

@@ -27,6 +27,34 @@
     </script>
   <link rel="stylesheet" href="{% static 'pag5/css/styles.css' %}">
      <script src="{% static 'pag5/js/scripts.js' %}"></script>
+    <style>
+        /* Estilos para lazy loading */
+        .lazy-video {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .lazy-video:hover {
+            transform: scale(1.02);
+        }
+        
+        .video-placeholder {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            border: 2px dashed #d1d5db;
+        }
+        
+        .lazy-video.loaded .video-placeholder {
+            display: none;
+        }
+        
+        .lazy-video iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+        }
+    </style>
 </head>
 <body class="bg-gray-50 font-display">
     <!-- Header com Progresso -->
@@ -35,7 +63,7 @@
             <div class="flex items-center justify-between mb-4">
                 <div>
                     <h1 class="text-3xl md:text-4xl font-bold mb-2 flex items-center gap-3">
-                        <img src="{% static 'faixa-verde.png' %}" alt="Faixa Verde" class="w-12 h-8 object-contain">
+                        <img src="{% static 'faixa-verde.png' %}" alt="Faixa Verde" class="w-12 h-8 object-contain" loading="eager">
                         Faixa Verde
                     </h1>
                     <p class="text-green-100 text-lg">Seu quinto passo na jornada do judô</p>
@@ -193,7 +221,18 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/MnNG67pF_a0?si=h7wKWSO9m0OKDIZ1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <div class="lazy-video" data-src="https://www.youtube.com/embed/MnNG67pF_a0?si=h7wKWSO9m0OKDIZ1" data-title="YouTube video player">
+                                <div class="video-placeholder bg-gray-200 rounded-lg flex items-center justify-center h-full">
+                                    <div class="text-center">
+                                        <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                                            <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M8 5v14l11-7z"/>
+                                            </svg>
+                                        </div>
+                                        <p class="text-gray-600 text-sm">Clique para carregar vídeo</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
@@ -219,7 +258,18 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/cnHRhSy8yi4?si=EkNpBgh8AdQUd_cR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <div class="lazy-video" data-src="https://www.youtube.com/embed/cnHRhSy8yi4?si=EkNpBgh8AdQUd_cR" data-title="YouTube video player">
+                                <div class="video-placeholder bg-gray-200 rounded-lg flex items-center justify-center h-full">
+                                    <div class="text-center">
+                                        <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                                            <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M8 5v14l11-7z"/>
+                                            </svg>
+                                        </div>
+                                        <p class="text-gray-600 text-sm">Clique para carregar vídeo</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
@@ -1542,6 +1592,147 @@
             </p>
         </div>
     </footer>
+
+    <!-- Script de Lazy Loading Otimizado -->
+    <script>
+        // Sistema de lazy loading para vídeos
+        class LazyVideoLoader {
+            constructor() {
+                this.loadedVideos = new Set();
+                this.init();
+            }
+            
+            init() {
+                // Converter todos os iframes existentes para lazy loading
+                this.convertExistingVideos();
+                
+                // Carregar vídeos visíveis na tela
+                this.loadVisibleVideos();
+                
+                // Observer para carregar vídeos quando ficarem visíveis
+                if ('IntersectionObserver' in window) {
+                    this.observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                this.loadVideo(entry.target);
+                            }
+                        });
+                    }, {
+                        rootMargin: '100px 0px', // Carregar 100px antes de ficar visível
+                        threshold: 0.1
+                    });
+                    
+                    document.querySelectorAll('.lazy-video').forEach(video => {
+                        this.observer.observe(video);
+                    });
+                }
+                
+                // Fallback: carregar ao clicar
+                document.addEventListener('click', (e) => {
+                    const lazyVideo = e.target.closest('.lazy-video');
+                    if (lazyVideo && !lazyVideo.classList.contains('loaded')) {
+                        this.loadVideo(lazyVideo);
+                    }
+                });
+            }
+            
+            convertExistingVideos() {
+                const iframes = document.querySelectorAll('iframe[src*="youtube.com"]');
+                iframes.forEach(iframe => {
+                    const container = iframe.parentElement;
+                    const src = iframe.src;
+                    const title = iframe.title;
+                    
+                    // Criar estrutura lazy
+                    const lazyDiv = document.createElement('div');
+                    lazyDiv.className = 'lazy-video';
+                    lazyDiv.dataset.src = src;
+                    lazyDiv.dataset.title = title;
+                    
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'video-placeholder bg-gray-200 rounded-lg flex items-center justify-center h-full';
+                    placeholder.innerHTML = `
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                            <p class="text-gray-600 text-sm">Clique para carregar vídeo</p>
+                        </div>
+                    `;
+                    
+                    lazyDiv.appendChild(placeholder);
+                    container.replaceChild(lazyDiv, iframe);
+                });
+            }
+            
+            loadVisibleVideos() {
+                document.querySelectorAll('.lazy-video:not(.loaded)').forEach(video => {
+                    const rect = video.getBoundingClientRect();
+                    const isVisible = rect.top < window.innerHeight + 200 && rect.bottom > -200;
+                    
+                    if (isVisible) {
+                        this.loadVideo(video);
+                    }
+                });
+            }
+            
+            loadVideo(videoElement) {
+                if (this.loadedVideos.has(videoElement)) return;
+                
+                const src = videoElement.dataset.src;
+                const title = videoElement.dataset.title;
+                
+                if (!src) return;
+                
+                // Criar iframe
+                const iframe = document.createElement('iframe');
+                iframe.src = src;
+                iframe.title = title;
+                iframe.frameBorder = '0';
+                iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+                iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+                iframe.allowFullscreen = true;
+                
+                // Adicionar iframe ao container
+                videoElement.appendChild(iframe);
+                videoElement.classList.add('loaded');
+                
+                // Marcar como carregado
+                this.loadedVideos.add(videoElement);
+                
+                // Parar de observar este vídeo
+                if (this.observer) {
+                    this.observer.unobserve(videoElement);
+                }
+            }
+        }
+        
+        // Inicializar quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', () => {
+            new LazyVideoLoader();
+        });
+        
+        // Otimização para mobile: carregar apenas vídeos próximos ao scroll
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                const videos = document.querySelectorAll('.lazy-video:not(.loaded)');
+                videos.forEach(video => {
+                    const rect = video.getBoundingClientRect();
+                    const distance = Math.abs(rect.top - window.innerHeight);
+                    
+                    // Carregar se estiver próximo (300px) do viewport
+                    if (distance < 300) {
+                        const loader = new LazyVideoLoader();
+                        loader.loadVideo(video);
+                    }
+                });
+            }, 150); // Debounce de 150ms
+        });
+    </script>
 
 </body>
 </html>

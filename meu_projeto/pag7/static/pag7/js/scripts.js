@@ -1,29 +1,22 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // ===== NAVEGAÇÃO JAPONESA =====
-    const nageWazaNav = document.getElementById('nage-waza-nav');
-    const imobilizacoesNav = document.getElementById('imobilizacoes-nav');
-    const chaveBracoNav = document.getElementById('chave-braco-nav');
-    const estrangulamentoNav = document.getElementById('estrangulamento-nav');
-    const ataqueCombinadoNav = document.getElementById('ataque-combinado-nav');
-    const contraAtaqueNav = document.getElementById('contra-ataque-nav');
-    const nageWazaSection = document.getElementById('nage-waza-section');
-    const imobilizacoesSection = document.getElementById('imobilizacoes-section');
-    const chaveBracoSection = document.getElementById('chave-braco-section');
-    const estrangulamentoSection = document.getElementById('estrangulamento-section');
-    const ataqueCombinadoSection = document.getElementById('ataque-combinado-section');
-    const contraAtaqueSection = document.getElementById('contra-ataque-section');
-    const navs = [nageWazaNav, imobilizacoesNav, chaveBracoNav, estrangulamentoNav, ataqueCombinadoNav, contraAtaqueNav];
+    // ===== NAVEGAÇÃO JAPONESA OTIMIZADA =====
+    const navigationConfig = [
+        { navId: 'nage-waza-nav', sectionId: 'nage-waza-section' },
+        { navId: 'imobilizacoes-nav', sectionId: 'imobilizacoes-section' },
+        { navId: 'chave-braco-nav', sectionId: 'chave-braco-section' },
+        { navId: 'estrangulamento-nav', sectionId: 'estrangulamento-section' },
+        { navId: 'ataque-combinado-nav', sectionId: 'ataque-combinado-section' },
+        { navId: 'contra-ataque-nav', sectionId: 'contra-ataque-section' }
+    ];
+    
+    const sections = navigationConfig.map(config => document.getElementById(config.sectionId));
     
     function hideAllSections() {
-        nageWazaSection.classList.add('hidden');
-        imobilizacoesSection.classList.add('hidden');
-        chaveBracoSection.classList.add('hidden');
-        estrangulamentoSection.classList.add('hidden');
-        ataqueCombinadoSection.classList.add('hidden');
-        contraAtaqueSection.classList.add('hidden');
+        sections.forEach(section => section && section.classList.add('hidden'));
     }
     
     function showSectionWithAnimation(section) {
+        if (!section) return;
         section.classList.remove('hidden');
         section.classList.add('animate-fade-in');
         setTimeout(() => section.classList.remove('animate-fade-in'), 1300);
@@ -32,90 +25,35 @@ document.addEventListener('DOMContentLoaded', function() {
     function smoothScrollToSection(sectionId, cardElement) {
         const targetElement = document.getElementById(sectionId);
         if (!targetElement) return;
+        
         cardElement.classList.add('clicked');
-        // Calcular posição de destino
+        
+        // Usar scroll nativo para melhor performance
         const targetPosition = targetElement.offsetTop - 100;
-        const startPosition = window.pageYOffset;
-        const distance = targetPosition - startPosition;
-        const duration = 1200;
-        let start = null;
-        function easeInOutCubic(t) {
-            return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+        
+        setTimeout(() => {
+            cardElement.classList.remove('clicked');
+            targetElement.classList.add('destination-highlight');
+            setTimeout(() => targetElement.classList.remove('destination-highlight'), 2000);
+        }, 1000);
+    }
+    
+    // Configurar navegação de forma otimizada
+    navigationConfig.forEach(config => {
+        const nav = document.getElementById(config.navId);
+        const section = document.getElementById(config.sectionId);
+        
+        if (nav && section) {
+            nav.addEventListener('click', function(e) {
+                hideAllSections();
+                showSectionWithAnimation(section);
+                setTimeout(() => smoothScrollToSection(config.sectionId, this), 300);
+            });
         }
-        function animation(currentTime) {
-            if (start === null) start = currentTime;
-            const timeElapsed = currentTime - start;
-            const progress = Math.min(timeElapsed / duration, 1);
-            const easedProgress = easeInOutCubic(progress);
-            window.scrollTo(0, startPosition + distance * easedProgress);
-            if (progress < 1) {
-                requestAnimationFrame(animation);
-            } else {
-                setTimeout(() => {
-                    cardElement.classList.remove('clicked');
-                    targetElement.classList.add('destination-highlight');
-                    setTimeout(() => {
-                        targetElement.classList.remove('destination-highlight');
-                    }, 2000);
-                }, 300);
-            }
-        }
-        requestAnimationFrame(animation);
-    }
-    
-    function removeClickedFromAll() {
-        navs.forEach(nav => nav && nav.classList.remove('clicked'));
-    }
-    
-    if (nageWazaNav && nageWazaSection) {
-        nageWazaNav.addEventListener('click', function(e) {
-            hideAllSections();
-            showSectionWithAnimation(nageWazaSection);
-            setTimeout(() => smoothScrollToSection('nage-waza-section', this), 300);
-        });
-    }
-    
-    if (imobilizacoesNav && imobilizacoesSection) {
-        imobilizacoesNav.addEventListener('click', function(e) {
-            hideAllSections();
-            showSectionWithAnimation(imobilizacoesSection);
-            setTimeout(() => smoothScrollToSection('imobilizacoes-section', this), 300);
-        });
-    }
-    
-    if (chaveBracoNav && chaveBracoSection) {
-        chaveBracoNav.addEventListener('click', function(e) {
-            hideAllSections();
-            showSectionWithAnimation(chaveBracoSection);
-            setTimeout(() => smoothScrollToSection('chave-braco-section', this), 300);
-        });
-    }
-    
-    if (estrangulamentoNav && estrangulamentoSection) {
-        estrangulamentoNav.addEventListener('click', function(e) {
-            hideAllSections();
-            showSectionWithAnimation(estrangulamentoSection);
-            setTimeout(() => smoothScrollToSection('estrangulamento-section', this), 300);
-        });
-    }
-    
-    if (ataqueCombinadoNav && ataqueCombinadoSection) {
-        ataqueCombinadoNav.addEventListener('click', function(e) {
-            hideAllSections();
-            showSectionWithAnimation(ataqueCombinadoSection);
-            setTimeout(() => smoothScrollToSection('ataque-combinado-section', this), 300);
-        });
-    }
-    
-    if (contraAtaqueNav && contraAtaqueSection) {
-        contraAtaqueNav.addEventListener('click', function(e) {
-            hideAllSections();
-            showSectionWithAnimation(contraAtaqueSection);
-            setTimeout(() => smoothScrollToSection('contra-ataque-section', this), 300);
-        });
-    }
+    });
 
-    // ===== CARROSSEIS =====
+    // ===== CARROSSEIS OTIMIZADOS =====
     
     // Função genérica para configurar carrossel
     function setupCarousel(carouselId, leftBtnId, rightBtnId) {
@@ -123,14 +61,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const leftBtn = document.getElementById(leftBtnId);
         const rightBtn = document.getElementById(rightBtnId);
         
-        console.log(`Configurando carrossel: ${carouselId}`, { carousel, leftBtn, rightBtn });
+        if (!carousel || !leftBtn || !rightBtn) return;
         
-        if (!carousel || !leftBtn || !rightBtn) {
-            console.log(`Elementos não encontrados para: ${carouselId}`);
-            return;
-        }
-        
-        // Função para rolar
+        // Função para rolar com animação otimizada
         function scrollCarousel(direction) {
             const scrollAmount = carousel.offsetWidth * 0.8;
             carousel.scrollBy({ 
@@ -138,23 +71,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 behavior: 'smooth' 
             });
             
-            // Animação da seta clicada usando Tailwind
+            // Animação da seta clicada
             const clickedBtn = direction === 'left' ? leftBtn : rightBtn;
-            clickedBtn.classList.add('scale-110', 'transition-transform', 'duration-200');
-            setTimeout(() => {
-                clickedBtn.classList.remove('scale-110', 'transition-transform', 'duration-200');
-            }, 200);
+            clickedBtn.style.transform = 'scale(0.95)';
+            setTimeout(() => clickedBtn.style.transform = 'scale(1)', 150);
         }
         
-        // Event listeners
-        leftBtn.addEventListener('click', () => {
-            console.log(`Clicou na seta esquerda do ${carouselId}`);
-            scrollCarousel('left');
-        });
-        rightBtn.addEventListener('click', () => {
-            console.log(`Clicou na seta direita do ${carouselId}`);
-            scrollCarousel('right');
-        });
+        // Event listeners otimizados
+        leftBtn.addEventListener('click', () => scrollCarousel('left'));
+        rightBtn.addEventListener('click', () => scrollCarousel('right'));
         
         // Função para atualizar visibilidade das setas
         function updateArrowVisibility() {
@@ -174,22 +99,27 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Configurar todos os carrosséis
-    console.log('Configurando carrosséis...');
-    setupCarousel('carouselProj', 'carouselLeft', 'carouselRight');
-    setupCarousel('carouselImob', 'imobLeft', 'imobRight');
-    setupCarousel('carouselChave', 'carouselChaveLeft', 'carouselChaveRight');
-    setupCarousel('carouselEstrang', 'carouselEstrangLeft', 'carouselEstrangRight');
-    setupCarousel('carouselAtaqueCombinado', 'carouselAtaqueCombinadoLeft', 'carouselAtaqueCombinadoRight');
-    setupCarousel('carouselContraAtaque', 'carouselContraAtaqueLeft', 'carouselContraAtaqueRight');
-    console.log('Carrosséis configurados!');
+    const carouselConfigs = [
+        { id: 'carouselProj', left: 'carouselLeft', right: 'carouselRight' },
+        { id: 'carouselImob', left: 'imobLeft', right: 'imobRight' },
+        { id: 'carouselChave', left: 'carouselChaveLeft', right: 'carouselChaveRight' },
+        { id: 'carouselEstrang', left: 'carouselEstrangLeft', right: 'carouselEstrangRight' },
+        { id: 'carouselAtaqueCombinado', left: 'carouselAtaqueCombinadoLeft', right: 'carouselAtaqueCombinadoRight' },
+        { id: 'carouselContraAtaque', left: 'carouselContraAtaqueLeft', right: 'carouselContraAtaqueRight' }
+    ];
     
-    // ===== PROGRESSO =====
-    const projCheckboxes = document.querySelectorAll('.proj-checkbox');
-    const imobCheckboxes = document.querySelectorAll('.imob-checkbox');
-    const chaveCheckboxes = document.querySelectorAll('.chave-checkbox');
-    const estrangCheckboxes = document.querySelectorAll('.estrang-checkbox');
-    const ataqueCombinadoCheckboxes = document.querySelectorAll('.ataque-combinado-checkbox');
-    const contraAtaqueCheckboxes = document.querySelectorAll('.contra-ataque-checkbox');
+    carouselConfigs.forEach(config => setupCarousel(config.id, config.left, config.right));
+    
+    // ===== PROGRESSO OTIMIZADO =====
+    const checkboxTypes = [
+        '.proj-checkbox',
+        '.imob-checkbox', 
+        '.chave-checkbox',
+        '.estrang-checkbox',
+        '.ataque-combinado-checkbox',
+        '.contra-ataque-checkbox'
+    ];
+    
     const progressBar = document.getElementById('progressBar');
     const progressText = document.getElementById('progressText');
     const floatingProgress = document.getElementById('floatingProgress');
@@ -199,57 +129,27 @@ document.addEventListener('DOMContentLoaded', function() {
     let hasShownCongratulations = false;
     
     function updateProgress() {
-        const totalProjChecked = document.querySelectorAll('.proj-checkbox:checked').length;
-        const totalImobChecked = document.querySelectorAll('.imob-checkbox:checked').length;
-        const totalChaveChecked = document.querySelectorAll('.chave-checkbox:checked').length;
-        const totalEstrangChecked = document.querySelectorAll('.estrang-checkbox:checked').length;
-        const totalAtaqueCombinadoChecked = document.querySelectorAll('.ataque-combinado-checkbox:checked').length;
-        const totalContraAtaqueChecked = document.querySelectorAll('.contra-ataque-checkbox:checked').length;
-        const totalQuestions = projCheckboxes.length + imobCheckboxes.length + chaveCheckboxes.length + estrangCheckboxes.length + ataqueCombinadoCheckboxes.length + contraAtaqueCheckboxes.length;
-        const completedQuestions = totalProjChecked + totalImobChecked + totalChaveChecked + totalEstrangChecked + totalAtaqueCombinadoChecked + totalContraAtaqueChecked;
-        const progress = (completedQuestions / totalQuestions) * 100;
+        let totalChecked = 0;
+        let totalQuestions = 0;
         
-        console.log('=== DEBUG PROGRESS ===');
-        console.log('Proj checked:', totalProjChecked, '/', projCheckboxes.length);
-        console.log('Imob checked:', totalImobChecked, '/', imobCheckboxes.length);
-        console.log('Chave checked:', totalChaveChecked, '/', chaveCheckboxes.length);
-        console.log('Estrang checked:', totalEstrangChecked, '/', estrangCheckboxes.length);
-        console.log('Ataque Combinado checked:', totalAtaqueCombinadoChecked, '/', ataqueCombinadoCheckboxes.length);
-        console.log('Contra Ataque checked:', totalContraAtaqueChecked, '/', contraAtaqueCheckboxes.length);
-        console.log('Total completed:', completedQuestions, '/', totalQuestions);
-        console.log('Progress:', progress + '%');
-        console.log('Has shown congratulations:', hasShownCongratulations);
-        console.log('=== END DEBUG ===');
+        // Calcular progresso de forma otimizada
+        checkboxTypes.forEach(selector => {
+            const checkboxes = document.querySelectorAll(selector);
+            const checked = document.querySelectorAll(`${selector}:checked`);
+            totalChecked += checked.length;
+            totalQuestions += checkboxes.length;
+        });
         
-        progressBar.style.width = progress + '%';
-        progressText.textContent = Math.round(progress) + '%';
+        const progress = totalQuestions > 0 ? (totalChecked / totalQuestions) * 100 : 0;
+        
+        // Atualizar barra de progresso
+        if (progressBar) progressBar.style.width = progress + '%';
+        if (progressText) progressText.textContent = Math.round(progress) + '%';
         
         // Verificar se chegou a 100% e mostrar parabéns
         if (progress >= 100 && !hasShownCongratulations) {
-            console.log('Progress is 100% - checking for congratulations');
-            
-            // Verificar se todos os checkboxes estão marcados
-            const allChecked = Array.from(projCheckboxes).every(cb => cb.checked) && 
-                             Array.from(imobCheckboxes).every(cb => cb.checked) &&
-                             Array.from(chaveCheckboxes).every(cb => cb.checked) &&
-                             Array.from(estrangCheckboxes).every(cb => cb.checked) &&
-                             Array.from(ataqueCombinadoCheckboxes).every(cb => cb.checked) &&
-                             Array.from(contraAtaqueCheckboxes).every(cb => cb.checked);
-            
-            if (allChecked) {
-                console.log('Showing congratulations!');
-                setTimeout(() => {
-                    showCongratulations();
-                }, 500);
-            }
-        }
-        
-        // Verificação adicional: se todos os checkboxes estão marcados, mostrar parabéns
-        if (completedQuestions >= 75 && !hasShownCongratulations) {
-            console.log('Todos os 75 checkboxes marcados - mostrando parabéns!');
-            setTimeout(() => {
-                showCongratulations();
-            }, 500);
+            hasShownCongratulations = true;
+            setTimeout(() => showCongratulations(), 500);
         }
         
         // Mostrar barra de progresso flutuante
@@ -257,6 +157,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function showFloatingProgress(progress) {
+        if (!floatingProgress || !floatingProgressBar || !floatingProgressText) return;
+        
         floatingProgressBar.style.width = progress + '%';
         floatingProgressText.textContent = Math.round(progress) + '%';
         
@@ -269,24 +171,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
     
-    // Event listeners para checkboxes
-    console.log('=== DEBUG CHECKBOXES ===');
-    console.log('Proj checkboxes encontrados:', projCheckboxes.length);
-    console.log('Imob checkboxes encontrados:', imobCheckboxes.length);
-    console.log('Chave checkboxes encontrados:', chaveCheckboxes.length);
-    console.log('Estrang checkboxes encontrados:', estrangCheckboxes.length);
-    console.log('Ataque Combinado checkboxes encontrados:', ataqueCombinadoCheckboxes.length);
-    console.log('Contra Ataque checkboxes encontrados:', contraAtaqueCheckboxes.length);
-    console.log('=== FIM DEBUG CHECKBOXES ===');
+    // Event listeners otimizados para checkboxes
+    function addCheckboxListeners() {
+        checkboxTypes.forEach(selector => {
+            document.querySelectorAll(selector).forEach(checkbox => {
+                checkbox.addEventListener('change', updateProgress);
+            });
+        });
+    }
     
-    projCheckboxes.forEach(checkbox => checkbox.addEventListener('change', updateProgress));
-    imobCheckboxes.forEach(checkbox => checkbox.addEventListener('change', updateProgress));
-    chaveCheckboxes.forEach(checkbox => checkbox.addEventListener('change', updateProgress));
-    estrangCheckboxes.forEach(checkbox => checkbox.addEventListener('change', updateProgress));
-    ataqueCombinadoCheckboxes.forEach(checkbox => checkbox.addEventListener('change', updateProgress));
-    contraAtaqueCheckboxes.forEach(checkbox => checkbox.addEventListener('change', updateProgress));
-    
-    // Inicializar progresso
+    addCheckboxListeners();
     updateProgress();
     
     // ===== BOTÃO VOLTAR AO TOPO =====
@@ -322,42 +216,33 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Handler para o botão voltar ao topo
+    // Handler otimizado para o botão voltar ao topo
     function backToTopHandler() {
         const button = this;
         createBackToTopParticles(button);
         button.style.transform = 'scale(0.95)';
         button.style.transition = 'transform 0.1s ease';
-        const startPosition = window.pageYOffset;
-        const duration = 1000;
-        let start = null;
-        function easeInOutCubic(t) {
-            return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-        }
-        function animation(currentTime) {
-            if (start === null) start = currentTime;
-            const timeElapsed = currentTime - start;
-            const progress = Math.min(timeElapsed / duration, 1);
-            const easedProgress = easeInOutCubic(progress);
-            window.scrollTo(0, startPosition * (1 - easedProgress));
-            if (progress < 1) {
-                requestAnimationFrame(animation);
-            } else {
-                setTimeout(() => {
-                    button.style.transform = 'scale(1)';
-                    button.style.transition = 'transform 0.3s ease';
-                }, 100);
-            }
-        }
-        requestAnimationFrame(animation);
+        
+        // Usar scroll nativo para melhor performance
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        setTimeout(() => {
+            button.style.transform = 'scale(1)';
+            button.style.transition = 'transform 0.3s ease';
+        }, 1000);
     }
     
+    // Scroll listener otimizado com debounce
+    let scrollTimeout;
     window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-            backToTopBtn.classList.remove('hidden');
-        } else {
-            backToTopBtn.classList.add('hidden');
-        }
+        if (scrollTimeout) clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.remove('hidden');
+            } else {
+                backToTopBtn.classList.add('hidden');
+            }
+        }, 100);
     });
     
     // Inicializar botão flutuante
@@ -375,15 +260,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     initializeBackToTopSectionButtons();
-    setInterval(() => {
-        const buttons = document.querySelectorAll('.back-to-top-section');
-        const uninitializedButtons = Array.from(buttons).filter(button => {
-            return !button.hasAttribute('data-initialized');
-        });
-        if (uninitializedButtons.length > 0) {
-            initializeBackToTopSectionButtons();
-        }
-    }, 2000);
+    // Removido loop infinito - inicialização única é suficiente
     
     // ===== ANIMAÇÕES DE CARDS =====
     document.querySelectorAll('.japanese-nav-card').forEach((card, index) => {
@@ -485,4 +362,92 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Inicializar botões do modal
     initializeCongratulationsButtons();
+    
+    // ===== LAZY LOADING DE VÍDEOS =====
+    function setupLazyVideos() {
+        console.log('Configurando lazy loading de vídeos...');
+        
+        // Aguardar DOM estar pronto
+        setTimeout(() => {
+            const videos = document.querySelectorAll('iframe[src*="youtube.com"]');
+            console.log('Total de vídeos encontrados:', videos.length);
+            
+            if (videos.length === 0) {
+                console.log('Nenhum vídeo encontrado, tentando novamente em 2 segundos...');
+                setTimeout(setupLazyVideos, 2000);
+                return;
+            }
+            
+            // Processar cada vídeo
+            videos.forEach((video, index) => {
+                console.log(`Vídeo ${index + 1}:`, video.src);
+                
+                // Criar placeholder
+                const container = video.parentElement;
+                const placeholder = document.createElement('div');
+                placeholder.className = 'lazy-video';
+                placeholder.innerHTML = `
+                    <div class="video-placeholder">
+                        <div class="loading-spinner"></div>
+                        <p>Carregando vídeo...</p>
+                    </div>
+                `;
+                
+                // Salvar dados originais
+                placeholder.dataset.src = video.src;
+                placeholder.dataset.title = video.title;
+                placeholder.dataset.allow = video.allow;
+                placeholder.dataset.allowfullscreen = video.allowFullscreen;
+                placeholder.dataset.referrerpolicy = video.referrerPolicy;
+                
+                // Substituir iframe pelo placeholder
+                container.replaceChild(placeholder, video);
+                
+                // Configurar observer para este placeholder
+                if ('IntersectionObserver' in window) {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                console.log('Vídeo visível, carregando:', entry.target.dataset.src);
+                                loadVideo(entry.target);
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, {
+                        rootMargin: '50px 0px',
+                        threshold: 0.1
+                    });
+                    
+                    observer.observe(placeholder);
+                } else {
+                    // Sem IntersectionObserver, carregar imediatamente
+                    console.log('Carregando vídeo imediatamente (sem IntersectionObserver)');
+                    loadVideo(placeholder);
+                }
+            });
+            
+            console.log('Lazy loading configurado para', videos.length, 'vídeos');
+        }, 1500);
+    }
+    
+    function loadVideo(placeholder) {
+        const container = placeholder.parentElement;
+        const iframe = document.createElement('iframe');
+        
+        // Configurar iframe
+        iframe.src = placeholder.dataset.src;
+        iframe.title = placeholder.dataset.title || 'YouTube video player';
+        iframe.frameBorder = '0';
+        iframe.allow = placeholder.dataset.allow || 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.referrerPolicy = placeholder.dataset.referrerpolicy || 'strict-origin-when-cross-origin';
+        iframe.allowFullscreen = placeholder.dataset.allowfullscreen !== 'false';
+        iframe.className = 'w-full h-full border-0 rounded-lg';
+        
+        // Substituir placeholder pelo iframe
+        container.replaceChild(iframe, placeholder);
+        console.log('✅ Vídeo carregado:', iframe.src);
+    }
+    
+    // Inicializar lazy loading
+    setupLazyVideos();
 });

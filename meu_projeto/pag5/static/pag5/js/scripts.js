@@ -1,22 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
     // --- ANIMAÇÕES DE HABILIDADES E CONDIÇÕES ---
     
-    // Função para animar habilidades com efeito de digitação
+    // Função otimizada para animar habilidades (versão mais leve)
     function animateHabilidades() {
         const habilidades = document.querySelectorAll('.habilidade-item');
         
-        // Todas as habilidades animam ao mesmo tempo
+        // Animação mais simples e eficiente
         habilidades.forEach((habilidade, index) => {
+            habilidade.style.opacity = '0';
+            habilidade.style.transform = 'translateY(10px)';
+            habilidade.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            
             setTimeout(() => {
-                habilidade.style.opacity = '0';
-                habilidade.style.transform = 'translateY(20px) scale(0.9)';
-                habilidade.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-                
-                setTimeout(() => {
-                    habilidade.style.opacity = '1';
-                    habilidade.style.transform = 'translateY(0) scale(1)';
-                }, 100);
-            }, index * 150); // Delay escalonado para cada habilidade
+                habilidade.style.opacity = '1';
+                habilidade.style.transform = 'translateY(0)';
+            }, index * 100); // Delay reduzido
         });
     }
     
@@ -44,46 +42,45 @@ document.addEventListener('DOMContentLoaded', function() {
     
     let hasShownCongratulations = false;
     
-    // Função para atualizar progresso
+    // Função otimizada para atualizar progresso
     function updateProgress() {
-        const totalProjChecked = document.querySelectorAll('.proj-checkbox:checked').length;
-        const totalImobChecked = document.querySelectorAll('.imob-checkbox:checked').length;
-        const totalChaveChecked = document.querySelectorAll('.chave-checkbox:checked').length;
-        const totalEstrangChecked = document.querySelectorAll('.estrang-checkbox:checked').length;
-        const totalHenkakuenkaChecked = document.querySelectorAll('.henkakuenka-checkbox:checked').length;
-        const totalKaeshiWazaChecked = document.querySelectorAll('.kaeshi-waza-checkbox:checked').length;
-        const totalQuestions = projCheckboxes.length + imobCheckboxes.length + chaveCheckboxes.length + estrangCheckboxes.length + henkakuenkaCheckboxes.length + kaeshiWazaCheckboxes.length;
-        const completedQuestions = totalProjChecked + totalImobChecked + totalChaveChecked + totalEstrangChecked + totalHenkakuenkaChecked + totalKaeshiWazaChecked;
+        // Calcular progresso de forma mais eficiente
+        const checkboxTypes = [
+            { selector: '.proj-checkbox', elements: projCheckboxes },
+            { selector: '.imob-checkbox', elements: imobCheckboxes },
+            { selector: '.chave-checkbox', elements: chaveCheckboxes },
+            { selector: '.estrang-checkbox', elements: estrangCheckboxes },
+            { selector: '.henkakuenka-checkbox', elements: henkakuenkaCheckboxes },
+            { selector: '.kaeshi-waza-checkbox', elements: kaeshiWazaCheckboxes }
+        ];
+        
+        let totalQuestions = 0;
+        let completedQuestions = 0;
+        let allChecked = true;
+        
+        checkboxTypes.forEach(type => {
+            const checked = document.querySelectorAll(`${type.selector}:checked`).length;
+            totalQuestions += type.elements.length;
+            completedQuestions += checked;
+            
+            // Verificar se todos estão marcados
+            if (checked !== type.elements.length) {
+                allChecked = false;
+            }
+        });
+        
         const progress = (completedQuestions / totalQuestions) * 100;
+        
+        // Atualizar barra de progresso
         progressBar.style.width = progress + '%';
         progressText.textContent = Math.round(progress) + '%';
         
         // Mostrar barra de progresso flutuante
         showFloatingProgress(progress);
         
-        // Verificar se chegou a 100% e mostrar parabéns
-        if (progress >= 100 && !hasShownCongratulations) {
-            console.log('Progress is 100% - checking for congratulations');
-            
-            // Verificar se todos os checkboxes estão marcados
-            const allChecked = Array.from(projCheckboxes).every(cb => cb.checked) && 
-                             Array.from(imobCheckboxes).every(cb => cb.checked) &&
-                             Array.from(chaveCheckboxes).every(cb => cb.checked) &&
-                             Array.from(estrangCheckboxes).every(cb => cb.checked) &&
-                             Array.from(henkakuenkaCheckboxes).every(cb => cb.checked) &&
-                             Array.from(kaeshiWazaCheckboxes).every(cb => cb.checked);
-            
-            if (allChecked) {
-                console.log('Showing congratulations!');
-                setTimeout(() => {
-                    showCongratulations();
-                }, 500);
-            }
-        }
-        
-        // Verificação adicional: se todos os checkboxes estão marcados, mostrar parabéns
-        if (completedQuestions >= 39 && !hasShownCongratulations) {
-            console.log('Todos os 39 checkboxes marcados - mostrando parabéns!');
+        // Verificar se chegou a 100% e mostrar parabéns (verificação única)
+        if (progress >= 100 && allChecked && !hasShownCongratulations) {
+            console.log('Progress is 100% - showing congratulations!');
             setTimeout(() => {
                 showCongratulations();
             }, 500);
@@ -107,24 +104,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
     
-    projCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', updateProgress);
-    });
-    imobCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', updateProgress);
-    });
-    chaveCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', updateProgress);
-    });
-    estrangCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', updateProgress);
-    });
-    henkakuenkaCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', updateProgress);
-    });
-    kaeshiWazaCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', updateProgress);
-    });
+    // Função centralizada para adicionar event listeners
+    function addCheckboxListeners() {
+        const allCheckboxes = [
+            ...projCheckboxes,
+            ...imobCheckboxes,
+            ...chaveCheckboxes,
+            ...estrangCheckboxes,
+            ...henkakuenkaCheckboxes,
+            ...kaeshiWazaCheckboxes
+        ];
+        
+        allCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateProgress);
+        });
+    }
+    
+    // Inicializar listeners e progresso
+    addCheckboxListeners();
     updateProgress();
     
     // --- SISTEMA DE PARABÉNS ---
@@ -218,96 +215,132 @@ document.addEventListener('DOMContentLoaded', function() {
             backToTopBtn.classList.add('hidden');
         }
     });
-    // Função para criar partículas no botão voltar ao topo
+    // Sistema de partículas otimizado (reutiliza elementos)
+    const particlePool = [];
+    const maxParticles = 20;
+    
+    // Criar pool de partículas reutilizáveis
+    function createParticlePool() {
+        for (let i = 0; i < maxParticles; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'back-to-top-particle';
+            particle.style.position = 'fixed';
+            particle.style.width = '8px';
+            particle.style.height = '8px';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.zIndex = 9999;
+            particle.style.opacity = '0';
+            particle.style.transition = 'opacity 0.6s ease';
+            document.body.appendChild(particle);
+            particlePool.push(particle);
+        }
+    }
+    
+    // Função otimizada para criar partículas
     function createBackToTopParticles(button) {
         const rect = button.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
-        for (let i = 0; i < 12; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'back-to-top-particle';
-            particle.style.left = centerX + (Math.random() - 0.5) * 60 + 'px';
-            particle.style.top = centerY + (Math.random() - 0.5) * 60 + 'px';
-            particle.style.background = `rgba(255, 255, 255, ${0.7 + Math.random() * 0.3})`;
-            particle.style.position = 'fixed';
-            particle.style.width = '10px';
-            particle.style.height = '10px';
-            particle.style.borderRadius = '50%';
-            particle.style.pointerEvents = 'none';
-            particle.style.zIndex = 9999;
-            particle.style.transition = 'opacity 0.8s';
-            document.body.appendChild(particle);
-            setTimeout(() => {
-                particle.style.opacity = 0;
+        const particleCount = Math.min(8, particlePool.length); // Reduzido de 12 para 8
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = particlePool[i];
+            if (particle) {
+                particle.style.left = centerX + (Math.random() - 0.5) * 40 + 'px';
+                particle.style.top = centerY + (Math.random() - 0.5) * 40 + 'px';
+                particle.style.background = `rgba(255, 255, 255, ${0.6 + Math.random() * 0.4})`;
+                particle.style.opacity = '1';
+                
                 setTimeout(() => {
-                    if (particle.parentNode) {
-                        particle.parentNode.removeChild(particle);
-                    }
-                }, 400);
-            }, 800);
+                    particle.style.opacity = '0';
+                }, 600);
+            }
         }
     }
-    // Handler para o botão voltar ao topo
+    
+    // Inicializar pool de partículas
+    createParticlePool();
+    // Handler otimizado para o botão voltar ao topo
     function backToTopHandler() {
         createBackToTopParticles(this);
         this.style.transform = 'scale(0.95)';
         this.style.transition = 'transform 0.1s ease';
-        const startPosition = window.pageYOffset;
-        const duration = 1000;
-        let start = null;
-        function easeInOutCubic(t) {
-            return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-        }
-        function animation(currentTime) {
-            if (start === null) start = currentTime;
-            const timeElapsed = currentTime - start;
-            const progress = Math.min(timeElapsed / duration, 1);
-            const easedProgress = easeInOutCubic(progress);
-            window.scrollTo(0, startPosition * (1 - easedProgress));
-            if (progress < 1) {
-                requestAnimationFrame(animation);
-            } else {
-                setTimeout(() => {
-                    backToTopBtn.style.transform = 'scale(1)';
-                    backToTopBtn.style.transition = 'transform 0.3s ease';
-                }, 100);
-            }
-        }
-        requestAnimationFrame(animation);
+        
+        // Scroll otimizado usando scrollTo nativo
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        
+        // Resetar transformação
+        setTimeout(() => {
+            this.style.transform = 'scale(1)';
+            this.style.transition = 'transform 0.2s ease';
+        }, 200);
     }
     // Inicializar botão flutuante
     backToTopBtn.removeEventListener('click', backToTopHandler);
     backToTopBtn.addEventListener('click', backToTopHandler);
 
-    // Animação para as divs de navegação japonesa
+    // Animação otimizada para as divs de navegação japonesa
     document.querySelectorAll('.japanese-nav-card').forEach((card, index) => {
         card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        card.style.transform = 'translateY(10px)';
+        card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
         
         setTimeout(() => {
             card.style.opacity = '1';
             card.style.transform = 'translateY(0)';
-        }, 200 + (index * 100)); // Delay escalonado para cada card
+        }, 100 + (index * 50)); // Delay reduzido
     });
     
-    // Função para criar partículas
-    function createParticles(x, y, count = 8) {
+    // Sistema de partículas para navegação otimizado
+    const navParticlePool = [];
+    const maxNavParticles = 15;
+    
+    // Criar pool de partículas para navegação
+    function createNavParticlePool() {
         const particlesContainer = document.getElementById('scrollParticles');
-        for (let i = 0; i < count; i++) {
+        if (!particlesContainer) return;
+        
+        for (let i = 0; i < maxNavParticles; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
-            particle.style.left = x + Math.random() * 40 - 20 + 'px';
-            particle.style.top = y + Math.random() * 40 - 20 + 'px';
-            particle.style.animationDelay = Math.random() * 0.5 + 's';
+            particle.style.position = 'absolute';
+            particle.style.width = '6px';
+            particle.style.height = '6px';
+            particle.style.background = 'linear-gradient(45deg, #22c55e, #15803d)';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.zIndex = '9999';
+            particle.style.opacity = '0';
+            particle.style.transition = 'opacity 0.8s ease';
             particlesContainer.appendChild(particle);
-            setTimeout(() => {
-                if (particle.parentNode) {
-                    particle.parentNode.removeChild(particle);
-                }
-            }, 1500);
+            navParticlePool.push(particle);
         }
     }
+    
+    // Função otimizada para criar partículas de navegação
+    function createParticles(x, y, count = 6) {
+        const particleCount = Math.min(count, navParticlePool.length);
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = navParticlePool[i];
+            if (particle) {
+                particle.style.left = x + Math.random() * 30 - 15 + 'px';
+                particle.style.top = y + Math.random() * 30 - 15 + 'px';
+                particle.style.opacity = '1';
+                
+                setTimeout(() => {
+                    particle.style.opacity = '0';
+                }, 1000);
+            }
+        }
+    }
+    
+    // Inicializar pool de partículas de navegação
+    createNavParticlePool();
 
     // Navegação interna
     const nageWazaNav = document.getElementById('nage-waza-nav');
@@ -324,125 +357,63 @@ document.addEventListener('DOMContentLoaded', function() {
     const henkakuenkaSection = document.getElementById('henkakuenka-section');
     const kaeshiWazaSection = document.getElementById('kaeshi-waza-section');
 
-    if (nageWazaNav && nageWazaSection) {
-        nageWazaNav.addEventListener('click', function(e) {
-            hideAllSections();
-            showSectionWithAnimation(nageWazaSection);
-            setTimeout(() => smoothScrollToSection('nage-waza-section', this), 300);
+    // Função centralizada para navegação
+    function setupNavigation() {
+        const navItems = [
+            { nav: nageWazaNav, section: nageWazaSection, sectionId: 'nage-waza-section' },
+            { nav: imobilizacoesNav, section: imobilizacoesSection, sectionId: 'imobilizacoes-section' },
+            { nav: chaveBracoNav, section: chaveBracoSection, sectionId: 'chave-braco-section' },
+            { nav: estrangulamentoNav, section: estrangulamentoSection, sectionId: 'estrangulamento-section' },
+            { nav: henkakuenkaNav, section: henkakuenkaSection, sectionId: 'henkakuenka-section' },
+            { nav: kaeshiWazaNav, section: kaeshiWazaSection, sectionId: 'kaeshi-waza-section' }
+        ];
+        
+        navItems.forEach(item => {
+            if (item.nav && item.section) {
+                item.nav.addEventListener('click', function(e) {
+                    hideAllSections();
+                    showSectionWithAnimation(item.section);
+                    setTimeout(() => smoothScrollToSection(item.sectionId, this), 300);
+                });
+            }
         });
     }
+    
+    // Inicializar navegação
+    setupNavigation();
 
-    if (imobilizacoesNav && imobilizacoesSection) {
-        imobilizacoesNav.addEventListener('click', function(e) {
-            hideAllSections();
-            showSectionWithAnimation(imobilizacoesSection);
-            setTimeout(() => smoothScrollToSection('imobilizacoes-section', this), 300);
+    // --- SISTEMA DE CARROSSÉIS OTIMIZADO ---
+    // Função reutilizável para inicializar carrosséis
+    function initializeCarousel(carouselId, leftBtnId, rightBtnId) {
+        const carousel = document.getElementById(carouselId);
+        const leftBtn = document.getElementById(leftBtnId);
+        const rightBtn = document.getElementById(rightBtnId);
+        
+        if (!carousel || !leftBtn || !rightBtn) return;
+        
+        // Função para animar botão
+        function animateButton(btn) {
+            btn.classList.add('carousel-arrow-anim');
+            setTimeout(() => btn.classList.remove('carousel-arrow-anim'), 700);
+        }
+        
+        // Event listeners otimizados
+        leftBtn.addEventListener('click', () => {
+            carousel.scrollBy({ left: -carousel.offsetWidth * 0.8, behavior: 'smooth' });
+            animateButton(leftBtn);
+        });
+        
+        rightBtn.addEventListener('click', () => {
+            carousel.scrollBy({ left: carousel.offsetWidth * 0.8, behavior: 'smooth' });
+            animateButton(rightBtn);
         });
     }
-
-    if (chaveBracoNav && chaveBracoSection) {
-        chaveBracoNav.addEventListener('click', function(e) {
-            hideAllSections();
-            showSectionWithAnimation(chaveBracoSection);
-            setTimeout(() => smoothScrollToSection('chave-braco-section', this), 300);
-        });
-    }
-
-    if (estrangulamentoNav && estrangulamentoSection) {
-        estrangulamentoNav.addEventListener('click', function(e) {
-            hideAllSections();
-            showSectionWithAnimation(estrangulamentoSection);
-            setTimeout(() => smoothScrollToSection('estrangulamento-section', this), 300);
-        });
-    }
-
-    if (henkakuenkaNav && henkakuenkaSection) {
-        henkakuenkaNav.addEventListener('click', function(e) {
-            hideAllSections();
-            showSectionWithAnimation(henkakuenkaSection);
-            setTimeout(() => smoothScrollToSection('henkakuenka-section', this), 300);
-        });
-    }
-
-    if (kaeshiWazaNav && kaeshiWazaSection) {
-        kaeshiWazaNav.addEventListener('click', function(e) {
-            hideAllSections();
-            showSectionWithAnimation(kaeshiWazaSection);
-            setTimeout(() => smoothScrollToSection('kaeshi-waza-section', this), 300);
-        });
-    }
-
-    // --- CARROSSEL PROJEÇÃO ---
-    const carouselProj = document.getElementById('carouselProj');
-    const projLeftBtn = document.getElementById('carouselLeft');
-    const projRightBtn = document.getElementById('carouselRight');
-    if (carouselProj && projLeftBtn && projRightBtn) {
-        projLeftBtn.addEventListener('click', () => {
-            carouselProj.scrollBy({ left: -carouselProj.offsetWidth * 0.8, behavior: 'smooth' });
-            projLeftBtn.classList.add('carousel-arrow-anim');
-            setTimeout(() => projLeftBtn.classList.remove('carousel-arrow-anim'), 700);
-        });
-        projRightBtn.addEventListener('click', () => {
-            carouselProj.scrollBy({ left: carouselProj.offsetWidth * 0.8, behavior: 'smooth' });
-            projRightBtn.classList.add('carousel-arrow-anim');
-            setTimeout(() => projRightBtn.classList.remove('carousel-arrow-anim'), 700);
-        });
-        // Botões sempre visíveis - removida a lógica de ocultar/mostrar
-    }
-
-    // --- CARROSSEL IMOBILIZAÇÃO ---
-    const carouselImob = document.getElementById('carouselImob');
-    const imobLeftBtn = document.getElementById('carouselImobLeft');
-    const imobRightBtn = document.getElementById('carouselImobRight');
-    if (carouselImob && imobLeftBtn && imobRightBtn) {
-        imobLeftBtn.addEventListener('click', () => {
-            carouselImob.scrollBy({ left: -carouselImob.offsetWidth * 0.8, behavior: 'smooth' });
-            imobLeftBtn.classList.add('carousel-arrow-anim');
-            setTimeout(() => imobLeftBtn.classList.remove('carousel-arrow-anim'), 700);
-        });
-        imobRightBtn.addEventListener('click', () => {
-            carouselImob.scrollBy({ left: carouselImob.offsetWidth * 0.8, behavior: 'smooth' });
-            imobRightBtn.classList.add('carousel-arrow-anim');
-            setTimeout(() => imobRightBtn.classList.remove('carousel-arrow-anim'), 700);
-        });
-                    // Botões sempre visíveis - removida a lógica de ocultar/mostrar
-    }
-
-    // --- CARROSSEL CHAVE DE BRAÇO ---
-    const carouselChave = document.getElementById('carouselChave');
-    const chaveLeftBtn = document.getElementById('carouselChaveLeft');
-    const chaveRightBtn = document.getElementById('carouselChaveRight');
-    if (carouselChave && chaveLeftBtn && chaveRightBtn) {
-        chaveLeftBtn.addEventListener('click', () => {
-            carouselChave.scrollBy({ left: -carouselChave.offsetWidth * 0.8, behavior: 'smooth' });
-            chaveLeftBtn.classList.add('carousel-arrow-anim');
-            setTimeout(() => chaveLeftBtn.classList.remove('carousel-arrow-anim'), 700);
-        });
-        chaveRightBtn.addEventListener('click', () => {
-            carouselChave.scrollBy({ left: carouselChave.offsetWidth * 0.8, behavior: 'smooth' });
-            chaveRightBtn.classList.add('carousel-arrow-anim');
-            setTimeout(() => chaveRightBtn.classList.remove('carousel-arrow-anim'), 700);
-        });
-                    // Botões sempre visíveis - removida a lógica de ocultar/mostrar
-    }
-
-    // --- CARROSSEL ESTRANGULAMENTO ---
-    const carouselEstrang = document.getElementById('carouselEstrang');
-    const estrangLeftBtn = document.getElementById('carouselEstrangLeft');
-    const estrangRightBtn = document.getElementById('carouselEstrangRight');
-    if (carouselEstrang && estrangLeftBtn && estrangRightBtn) {
-        estrangLeftBtn.addEventListener('click', () => {
-            carouselEstrang.scrollBy({ left: -carouselEstrang.offsetWidth * 0.8, behavior: 'smooth' });
-            estrangLeftBtn.classList.add('carousel-arrow-anim');
-            setTimeout(() => estrangLeftBtn.classList.remove('carousel-arrow-anim'), 700);
-        });
-        estrangRightBtn.addEventListener('click', () => {
-            carouselEstrang.scrollBy({ left: carouselEstrang.offsetWidth * 0.8, behavior: 'smooth' });
-            estrangRightBtn.classList.add('carousel-arrow-anim');
-            setTimeout(() => estrangRightBtn.classList.remove('carousel-arrow-anim'), 700);
-        });
-                    // Botões sempre visíveis - removida a lógica de ocultar/mostrar
-    }
+    
+    // Inicializar todos os carrosséis
+    initializeCarousel('carouselProj', 'carouselLeft', 'carouselRight');
+    initializeCarousel('carouselImob', 'carouselImobLeft', 'carouselImobRight');
+    initializeCarousel('carouselChave', 'carouselChaveLeft', 'carouselChaveRight');
+    initializeCarousel('carouselEstrang', 'carouselEstrangLeft', 'carouselEstrangRight');
 
     function hideAllSections() {
       nageWazaSection.classList.add('hidden');
@@ -462,40 +433,27 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!targetElement) return;
         cardElement.classList.add('clicked');
         
-        // Criar partículas no ponto de clique
+        // Criar partículas no ponto de clique (otimizado)
         const rect = cardElement.getBoundingClientRect();
-        createParticles(rect.left + rect.width / 2, rect.top + rect.height / 2);
+        createParticles(rect.left + rect.width / 2, rect.top + rect.height / 2, 4); // Reduzido de 8 para 4
         
-        // Calcular posição de destino
+        // Scroll suave otimizado usando scrollTo nativo
         const targetPosition = targetElement.offsetTop - 100;
-        const startPosition = window.pageYOffset;
-        const distance = targetPosition - startPosition;
-        const duration = 1200;
-        let start = null;
-        function easeInOutCubic(t) {
-            return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-        }
-        function animation(currentTime) {
-            if (start === null) start = currentTime;
-            const timeElapsed = currentTime - start;
-            const progress = Math.min(timeElapsed / duration, 1);
-            const easedProgress = easeInOutCubic(progress);
-            window.scrollTo(0, startPosition + distance * easedProgress);
-            if (progress < 1) {
-                requestAnimationFrame(animation);
-            } else {
-                setTimeout(() => {
-                    cardElement.classList.remove('clicked');
-                    targetElement.classList.add('destination-highlight');
-                    setTimeout(() => {
-                        targetElement.classList.remove('destination-highlight');
-                    }, 2000);
-                }, 300);
-            }
-        }
-        requestAnimationFrame(animation);
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+        
+        // Limpar classes após animação
+        setTimeout(() => {
+            cardElement.classList.remove('clicked');
+            targetElement.classList.add('destination-highlight');
+            setTimeout(() => {
+                targetElement.classList.remove('destination-highlight');
+            }, 1500); // Reduzido de 2000 para 1500
+        }, 800); // Reduzido de 300 para 800
     }
-    // Inicializar botões das seções
+    // Inicializar botões das seções (otimizado - sem loop infinito)
     function initializeBackToTopSectionButtons() {
         document.querySelectorAll('.back-to-top-section').forEach(button => {
             if (!button.hasAttribute('data-initialized')) {
@@ -507,13 +465,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     initializeBackToTopSectionButtons();
-    setInterval(() => {
-        const buttons = document.querySelectorAll('.back-to-top-section');
-        const uninitializedButtons = Array.from(buttons).filter(button => {
-            return !button.hasAttribute('data-initialized');
-        });
-        if (uninitializedButtons.length > 0) {
-            initializeBackToTopSectionButtons();
-        }
-    }, 2000);
 });

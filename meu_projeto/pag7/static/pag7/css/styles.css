@@ -1,24 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Variáveis CSS para cores e transições */
+:root {
+    --judo-brown: #8B5C2A;
+    --judo-brown-light: #E6D3B7;
+    --judo-brown-dark: #4E2E0E;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-card: 0 8px 20px -5px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
 .gradient-bg {
-    background: linear-gradient(135deg, #D2B48C 0%, #8B5C2A 100%);
+    background: linear-gradient(135deg, var(--judo-brown-light) 0%, var(--judo-brown) 100%);
 }
+
 .card-hover {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: var(--transition-smooth);
 }
+
 .card-hover:hover {
     transform: translateY(-8px);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--shadow-hover);
 }
+/* Container de vídeo otimizado */
 .video-container {
     position: relative;
     padding-bottom: 35%;
     height: 0;
     overflow: hidden;
     border-radius: 12px;
-    box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-card);
     max-width: 100%;
     margin: 0 auto;
 }
+
 .video-container iframe {
     position: absolute;
     top: 0;
@@ -27,21 +42,30 @@
     height: 100%;
     border-radius: 12px;
 }
+
+/* Barra de progresso */
 .progress-bar {
     transition: width 0.5s ease;
 }
+
+/* Divisor de seção */
 .section-divider {
-    background: linear-gradient(90deg, transparent, #8B5C2A, transparent);
+    background: linear-gradient(90deg, transparent, var(--judo-brown), transparent);
 }
+
+/* Animação flutuante otimizada */
 .floating-action {
     animation: float 3s ease-in-out infinite;
 }
+
 @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
 }
+
+/* Texto com gradiente */
 .text-gradient {
-    background: linear-gradient(45deg, #D2B48C, #8B5C2A);
+    background: linear-gradient(45deg, var(--judo-brown-light), var(--judo-brown));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -124,16 +148,20 @@
     color: #92400e;
     font-weight: 500;
 }
+/* Animações otimizadas */
 @keyframes fade-in {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
 .animate-fade-in {
     animation: fade-in 1.2s cubic-bezier(0.4,0,0.2,1);
 }
+
 .destination-highlight {
     animation: destination-highlight 2s ease-in-out;
 }
+
 @keyframes destination-highlight {
     0%, 100% { 
         box-shadow: 0 0 0 0 rgba(139, 92, 42, 0);
@@ -148,12 +176,12 @@
 /* Efeito de destaque simplificado para a barra japonesa */
 .japanese-nav-container {
     position: relative;
-    background: rgba(139, 92, 42, 0.02);
+    background: var(--judo-brown-light);
     border-radius: 16px;
     padding: 16px;
     margin: 16px 0;
-    border: 1px solid rgba(139, 92, 42, 0.08);
-    box-shadow: 0 2px 8px rgba(139, 92, 42, 0.08);
+    border: 1px solid var(--judo-brown);
+    box-shadow: 0 2px 8px rgba(139, 92, 42, 0.15);
 }
 
 /* Hover simplificado dos cards */
@@ -241,7 +269,7 @@
 
 /* Responsividade otimizada para dispositivos móveis */
 @media (max-width: 768px) {
-    /* Header simplificado */
+    /* Header mobile */
     header {
         padding: 0.75rem 1rem !important;
     }
@@ -266,9 +294,10 @@
         margin: 0.25rem !important;
         min-width: calc(100% - 2rem) !important;
         max-width: calc(100% - 2rem) !important;
+        transition: transform 0.2s ease !important;
     }
     
-    /* Barra japonesa otimizada para mobile */
+    /* Barra japonesa mobile */
     .japanese-nav-card {
         width: 100px !important;
         height: 80px !important;
@@ -277,6 +306,12 @@
         max-width: 100px !important;
         max-height: 80px !important;
         flex-shrink: 0 !important;
+        margin: 0.75rem !important;
+        transition: transform 0.2s ease !important;
+    }
+    
+    .japanese-nav-card:active {
+        transform: scale(0.98) !important;
     }
     
     /* Layout horizontal com scroll para mobile */
@@ -288,7 +323,7 @@
         padding: 0.5rem 0 !important;
     }
     
-    /* Indicador de scroll simples */
+    /* Indicador de scroll */
     .japanese-nav-container::after {
         content: '← Deslize para ver mais →' !important;
         display: block !important;
@@ -299,29 +334,104 @@
         font-weight: 500 !important;
     }
     
-    /* Espaçamento otimizado */
-    .habilidade-item {
-        margin: 0.5rem !important;
-    }
-    
-    .japanese-nav-card {
-        margin: 0.75rem !important;
-    }
-    
     /* Container principal */
     .japanese-nav-container {
         padding: 1rem !important;
         margin: 1rem 0 !important;
     }
     
-    /* Animações simplificadas */
-    .habilidade-item,
-    .japanese-nav-card {
-        transition: transform 0.2s ease !important;
+    /* Layout vertical para cards de técnicas no mobile */
+    .flex.overflow-x-auto {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        overflow: visible !important;
+        scroll-snap-type: none !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
     }
     
-    /* Feedback touch básico */
-    .japanese-nav-card:active {
-        transform: scale(0.98) !important;
+    .technique-card {
+        width: 100% !important;
+        max-width: none !important;
+        min-width: auto !important;
+        flex-shrink: 0 !important;
+        scroll-snap-align: none !important;
+        margin: 0 0 1rem 0 !important;
+        display: block !important;
     }
+    
+    /* Ocultar botões de carrossel no mobile */
+    .relative button[id*="carousel"] {
+        display: none !important;
+    }
+    
+    /* Forçar layout vertical para carrosséis específicos */
+    #carouselProj,
+    #carouselImob,
+    #carouselChave,
+    #carouselEstrang,
+    #carouselAtaqueCombinado,
+    #carouselContraAtaque {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        overflow: visible !important;
+        scroll-snap-type: none !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+    
+    #carouselProj > div,
+    #carouselImob > div,
+    #carouselChave > div,
+    #carouselEstrang > div,
+    #carouselAtaqueCombinado > div,
+    #carouselContraAtaque > div {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: auto !important;
+        flex-shrink: 0 !important;
+        margin: 0 0 1rem 0 !important;
+    }
+}
+
+/* Estilos para lazy loading de vídeos */
+.lazy-video {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.video-placeholder {
+    text-align: center;
+    color: #6b7280;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e5e7eb;
+    border-top: 4px solid var(--judo-brown);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.video-placeholder p {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+    color: var(--judo-brown);
 }
