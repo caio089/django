@@ -1,4 +1,32 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // ===== LAZY LOADING PARA VÍDEOS =====
+    function initLazyLoading() {
+        const iframes = document.querySelectorAll('iframe[data-src]');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const iframe = entry.target;
+                    if (iframe.dataset.src) {
+                        iframe.src = iframe.dataset.src;
+                        iframe.removeAttribute('data-src');
+                        observer.unobserve(iframe);
+                    }
+                }
+            });
+        }, {
+            rootMargin: '50px 0px',
+            threshold: 0.1
+        });
+        
+        iframes.forEach(iframe => {
+            observer.observe(iframe);
+        });
+    }
+    
+    // Inicializar lazy loading
+    initLazyLoading();
+    
     // ===== CONFIGURAÇÕES GLOBAIS OTIMIZADAS =====
     const isMobile = window.innerWidth <= 768;
     
