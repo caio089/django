@@ -118,7 +118,7 @@ p, span, div {
     scrollbar-width: none; 
 }
 
-/* ===== RESPONSIVIDADE MOBILE - ESTRUTURA IGUAL À PÁGINA 2 ===== */
+/* ===== RESPONSIVIDADE MOBILE OTIMIZADA ===== */
 @media (max-width: 768px) {
     /* Header mobile */
     header {
@@ -134,11 +134,9 @@ p, span, div {
         font-size: 0.875rem !important;
     }
     
-    /* Habilidades mobile - ESTRUTURA IGUAL À PÁGINA 2 */
+    /* Habilidades mobile otimizadas */
     .habilidade-item {
         width: 100% !important;
-        max-width: 100% !important;
-        min-width: 100% !important;
         padding: 0.75rem 1rem !important;
         margin: 0.5rem !important;
         font-size: 0.875rem !important;
@@ -146,29 +144,19 @@ p, span, div {
         background: white !important;
         border: 1px solid #e5e7eb !important;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
-        transition: background-color 0.2s ease, box-shadow 0.2s ease !important;
+        transition: background-color 0.2s ease !important;
         transform: none !important;
-        position: relative !important;
-        overflow: visible !important;
         opacity: 1 !important;
     }
     
     .habilidade-item:hover {
-        transform: none !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
         background: #f9fafb !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
     }
     
-    .habilidade-item::before,
-    .habilidade-item::after {
-        display: none !important;
-    }
-    
-    /* CARDS DE TÉCNICAS - ESTRUTURA IGUAL À PÁGINA 2 */
+    /* Cards otimizados */
     .card-hover {
         width: 100% !important;
-        max-width: 100% !important;
-        min-width: 100% !important;
         padding: 1rem !important;
         margin: 0.5rem 0 !important;
         border-radius: 12px !important;
@@ -179,32 +167,23 @@ p, span, div {
     }
     
     .card-hover:hover {
-        transform: none !important;
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
     }
     
-    /* Layout dos cards - Grid responsivo igual à página 2 */
+    /* Grid responsivo */
     .grid {
         grid-template-columns: 1fr !important;
         gap: 1rem !important;
     }
     
-    /* Container de vídeo mobile - ESTRUTURA IGUAL À PÁGINA 2 */
+    /* Container de vídeo mobile */
     .video-container {
         height: 200px !important;
         margin: 0.75rem 0 !important;
         border-radius: 8px !important;
     }
     
-    /* Header dos cards - ESTRUTURA IGUAL À PÁGINA 2 */
-    .card-hover .flex.items-center.mb-3 {
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        margin-bottom: 0.75rem !important;
-        padding: 0 !important;
-    }
-    
+    /* Tipografia otimizada */
     .card-hover h3 {
         font-size: 1rem !important;
         font-weight: 600 !important;
@@ -218,87 +197,11 @@ p, span, div {
         line-height: 1.4 !important;
     }
     
-    /* Ícones dos cards - ESTRUTURA IGUAL À PÁGINA 2 */
-    .card-hover .bg-blue-100,
-    .card-hover .bg-green-100,
-    .card-hover .bg-orange-100,
-    .card-hover .bg-purple-100,
-    .card-hover .bg-indigo-100,
-    .card-hover .bg-teal-100,
-    .card-hover .bg-cyan-50 {
-        padding: 0.5rem !important;
-        border-radius: 50% !important;
-        margin-right: 0.75rem !important;
-    }
-    
-    .card-hover .bg-blue-100 span,
-    .card-hover .bg-green-100 span,
-    .card-hover .bg-orange-100 span,
-    .card-hover .bg-purple-100 span,
-    .card-hover .bg-indigo-100 span,
-    .card-hover .bg-teal-100 span {
-        font-size: 1rem !important;
-    }
-    
-    /* Checkboxes e labels - ESTRUTURA IGUAL À PÁGINA 2 */
-    .card-hover label {
-        flex-shrink: 0 !important;
-        margin-left: 0.5rem !important;
-        min-height: 44px !important;
-        min-width: 44px !important;
-    }
-    
+    /* Checkboxes otimizados */
     .card-hover input[type="checkbox"] {
         width: 1rem !important;
         height: 1rem !important;
-        min-width: 1rem !important;
-        min-height: 1rem !important;
         margin-right: 0.25rem !important;
-    }
-    
-    .card-hover .text-xs {
-        font-size: 0.75rem !important;
-        font-weight: 600 !important;
-        padding: 0.25rem 0.5rem !important;
-        border-radius: 0.375rem !important;
-        line-height: 1.4 !important;
-    }
-    
-    /* Dicas dos cards - ESTRUTURA IGUAL À PÁGINA 2 */
-    .card-hover .bg-blue-50,
-    .card-hover .bg-green-50,
-    .card-hover .bg-orange-50,
-    .card-hover .bg-purple-50,
-    .card-hover .bg-indigo-50,
-    .card-hover .bg-teal-50,
-    .card-hover .bg-cyan-50 {
-        padding: 0.75rem !important;
-        margin: 0.75rem 0 0 0 !important;
-        border-radius: 0.75rem !important;
-    }
-    
-    .card-hover .bg-blue-50 h4,
-    .card-hover .bg-green-50 h4,
-    .card-hover .bg-orange-50 h4,
-    .card-hover .bg-purple-50 h4,
-    .card-hover .bg-indigo-50 h4,
-    .card-hover .bg-teal-50 h4,
-    .card-hover .bg-cyan-50 h4 {
-        font-size: 0.875rem !important;
-        font-weight: 600 !important;
-        margin-bottom: 0.25rem !important;
-        line-height: 1.4 !important;
-    }
-    
-    .card-hover .bg-blue-50 p,
-    .card-hover .bg-green-50 p,
-    .card-hover .bg-orange-50 p,
-    .card-hover .bg-purple-50 p,
-    .card-hover .bg-indigo-50 p,
-    .card-hover .bg-teal-50 p,
-    .card-hover .bg-cyan-50 p {
-        font-size: 0.75rem !important;
-        line-height: 1.4 !important;
     }
     
     /* Seções de técnicas mobile */
@@ -306,7 +209,7 @@ p, span, div {
         padding: 0 1rem !important;
     }
     
-    /* Carrossel de técnicas para mobile - ESTRUTURA IGUAL À PÁGINA 2 */
+    /* Carrossel otimizado */
     #nage-waza-section .grid,
     #imobilizacoes-section .grid {
         display: flex !important;
@@ -316,13 +219,10 @@ p, span, div {
         overflow-x: auto !important;
         scroll-behavior: smooth !important;
         padding: 0.5rem 0 !important;
-        position: relative !important;
         scroll-snap-type: x mandatory !important;
     }
     
     /* Cards do carrossel */
-    #nage-waza-section .video-card,
-    #imobilizacoes-section .video-card,
     #nage-waza-section .card-hover,
     #imobilizacoes-section .card-hover {
         min-width: 320px !important;
@@ -332,20 +232,6 @@ p, span, div {
         scroll-snap-align: start !important;
         border-radius: 12px !important;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-    }
-    
-    /* Indicador de scroll (gradiente sutil) */
-    #nage-waza-section .grid::after,
-    #imobilizacoes-section .grid::after {
-        content: '' !important;
-        position: absolute !important;
-        right: 0 !important;
-        top: 0 !important;
-        bottom: 0 !important;
-        width: 2rem !important;
-        background: linear-gradient(to right, transparent, rgba(156, 163, 175, 0.15)) !important;
-        pointer-events: none !important;
-        z-index: 5 !important;
     }
     
     /* Texto indicativo de scroll */
@@ -361,37 +247,10 @@ p, span, div {
         opacity: 0.8 !important;
     }
     
-    /* Melhorar barra de scroll do carrossel no mobile */
-    #nage-waza-section .grid::-webkit-scrollbar,
-    #imobilizacoes-section .grid::-webkit-scrollbar {
-        height: 4px !important;
-    }
-    
-    #nage-waza-section .grid::-webkit-scrollbar-track,
-    #imobilizacoes-section .grid::-webkit-scrollbar-track {
-        background: rgba(156, 163, 175, 0.1) !important;
-        border-radius: 2px !important;
-    }
-    
-    #nage-waza-section .grid::-webkit-scrollbar-thumb,
-    #imobilizacoes-section .grid::-webkit-scrollbar-thumb {
-        background: rgba(156, 163, 175, 0.4) !important;
-        border-radius: 2px !important;
-    }
-    
-    #nage-waza-section .grid::-webkit-scrollbar-thumb:hover,
-    #imobilizacoes-section .grid::-webkit-scrollbar-thumb:hover {
-        background: rgba(156, 163, 175, 0.6) !important;
-    }
-    
-    /* Barra japonesa mobile - ESTRUTURA IGUAL À PÁGINA 2 */
+    /* Barra japonesa mobile otimizada - AUMENTADO PARA NOMES COMPLETOS */
     .japanese-nav-card {
-        width: 120px !important;
-        height: 80px !important;
-        min-width: 120px !important;
-        min-height: 80px !important;
-        max-width: 120px !important;
-        max-height: 80px !important;
+        width: 140px !important;
+        height: 100px !important;
         flex-shrink: 0 !important;
         background: white !important;
         border: 1px solid #d1d5db !important;
@@ -399,9 +258,23 @@ p, span, div {
         padding: 8px !important;
         text-align: center !important;
         cursor: pointer !important;
-        position: relative !important;
-        overflow: hidden !important;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        transition: all 0.2s ease !important;
+    }
+    
+    /* Texto dos cards otimizado para nomes completos */
+    .japanese-nav-card .font-bold {
+        font-size: 0.75rem !important;
+        line-height: 1.1 !important;
+        word-wrap: break-word !important;
+        hyphens: auto !important;
+        display: block !important;
+        margin-bottom: 2px !important;
+    }
+    
+    .japanese-nav-card .text-gray-600 {
+        font-size: 0.625rem !important;
+        line-height: 1.1 !important;
+        display: block !important;
     }
     
     .japanese-nav-container .flex {
@@ -412,19 +285,6 @@ p, span, div {
         overflow-x: auto !important;
         scroll-behavior: smooth !important;
         padding: 0.5rem 0 !important;
-        position: relative !important;
-    }
-    
-    .japanese-nav-container .flex::before {
-        content: '' !important;
-        position: absolute !important;
-        right: 0 !important;
-        top: 0 !important;
-        bottom: 0 !important;
-        width: 2rem !important;
-        background: linear-gradient(to right, transparent, rgba(251, 191, 36, 0.1)) !important;
-        pointer-events: none !important;
-        z-index: 5 !important;
     }
     
     .japanese-nav-container::after {
@@ -449,101 +309,48 @@ p, span, div {
         margin-bottom: 1rem !important;
     }
     
-    /* Espaçamento otimizado para mobile */
-    .mb-12 {
-        margin-bottom: 2rem !important;
-    }
-    
-    .mb-8 {
-        margin-bottom: 1.5rem !important;
-    }
-    
-    .mb-4 {
-        margin-bottom: 1rem !important;
-    }
-    
-    .mb-2 {
-        margin-bottom: 0.75rem !important;
-    }
-    
-    .py-6 {
-        padding-top: 1rem !important;
-        padding-bottom: 1rem !important;
-    }
-    
-    .px-4 {
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
-    }
-    
-    /* Touch targets maiores - ESTRUTURA IGUAL À PÁGINA 2 */
+    /* Touch targets otimizados */
     .habilidade-item,
     .japanese-nav-card,
-    .back-to-top-section,
-    #backToTop,
     button,
     label {
         min-height: 44px !important;
         min-width: 44px !important;
     }
     
-    /* Checkboxes menores para mobile - ESTRUTURA IGUAL À PÁGINA 2 */
+    /* Checkboxes otimizados */
     input[type="checkbox"] {
         width: 1rem !important;
         height: 1rem !important;
-        min-width: 1rem !important;
-        min-height: 1rem !important;
     }
     
-    /* Animações otimizadas para mobile */
-    .animate-fade-in-up,
-    .animate-fade-in-down,
-    .animate-slide-in-right {
-        animation-duration: 0.5s !important;
-    }
-    
-    /* Transições mais rápidas para mobile */
+    /* Transições otimizadas para mobile */
     .transition-all {
         transition-duration: 0.2s !important;
     }
     
-    /* Feedback visual melhorado para mobile */
+    /* Feedback visual melhorado */
     .habilidade-item:active,
     .japanese-nav-card:active {
         transform: scale(0.98) !important;
-    }
-    
-    /* Melhor legibilidade para mobile */
-    .video-title,
-    .video-description {
-        line-height: 1.4 !important;
-    }
-    
-    /* Margens consistentes para mobile */
-    section {
-        margin-bottom: 2rem !important;
-    }
-    
-    /* Botões mais acessíveis para mobile */
-    .back-to-top-section {
-        border-radius: 0.5rem !important;
-        font-weight: 600 !important;
     }
 }
 
 @media (max-width: 480px) {
     .japanese-nav-card {
-        width: 100px !important;
-        height: 70px !important;
-        min-width: 100px !important;
-        min-height: 70px !important;
-        max-width: 100px !important;
-        max-height: 70px !important;
+        width: 130px !important;
+        height: 90px !important;
     }
     
-    .japanese-nav-container .flex {
-        gap: 0.25rem !important;
-        padding: 0.25rem 0 !important;
+    /* Texto dos cards otimizado para telas pequenas */
+    .japanese-nav-card .font-bold {
+        font-size: 0.7rem !important;
+        line-height: 1.1 !important;
+    }
+    
+    .japanese-nav-card .text-gray-600 {
+        font-size: 0.6rem !important;
+        line-height: 1.1 !important;
     }
     
     header {
@@ -559,117 +366,24 @@ p, span, div {
     }
     
     .habilidade-item {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 100% !important;
         padding: 0.5rem 0.75rem !important;
-        margin: 0.5rem !important;
         font-size: 0.75rem !important;
-        border-radius: 8px !important;
-        background: white !important;
-        border: 1px solid #e5e7eb !important;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
-        transition: background-color 0.2s ease, box-shadow 0.2s ease !important;
-        transform: none !important;
-        position: relative !important;
-        overflow: visible !important;
-        opacity: 1 !important;
     }
     
-    .habilidade-item:hover {
-        transform: none !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-        background: #f9fafb !important;
-    }
-    
-    .habilidade-item::before,
-    .habilidade-item::after {
-        display: none !important;
-    }
-    
-    /* CARDS DE TÉCNICAS - ESTRUTURA IGUAL À PÁGINA 2 */
     .card-hover {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 100% !important;
         padding: 0.75rem !important;
-        margin: 0.5rem 0 !important;
-        border-radius: 12px !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-        transition: box-shadow 0.2s ease !important;
-        background: white !important;
-        border: 1px solid #e5e7eb !important;
-    }
-    
-    .card-hover:hover {
-        transform: none !important;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
-    }
-    
-    /* Container de vídeo mobile - ESTRUTURA IGUAL À PÁGINA 2 */
-    .video-container {
-        height: 180px !important;
-        margin: 0.5rem 0 !important;
-        border-radius: 8px !important;
-    }
-    
-    /* Header dos cards - ESTRUTURA IGUAL À PÁGINA 2 */
-    .card-hover .flex.items-center.mb-3 {
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        margin-bottom: 0.5rem !important;
-        padding: 0 !important;
     }
     
     .card-hover h3 {
         font-size: 0.875rem !important;
-        font-weight: 600 !important;
-        color: #1f2937 !important;
-        line-height: 1.4 !important;
     }
     
     .card-hover p {
         font-size: 0.75rem !important;
-        color: #6b7280 !important;
-        line-height: 1.4 !important;
     }
     
-    /* Dicas dos cards - ESTRUTURA IGUAL À PÁGINA 2 */
-    .card-hover .bg-blue-50,
-    .card-hover .bg-green-50,
-    .card-hover .bg-orange-50,
-    .card-hover .bg-purple-50,
-    .card-hover .bg-indigo-50,
-    .card-hover .bg-teal-50,
-    .card-hover .bg-cyan-50 {
-        padding: 0.5rem !important;
-        margin: 0.5rem 0 0 0 !important;
-        border-radius: 0.5rem !important;
-    }
-    
-    .card-hover .bg-blue-50 h4,
-    .card-hover .bg-green-50 h4,
-    .card-hover .bg-orange-50 h4,
-    .card-hover .bg-purple-50 h4,
-    .card-hover .bg-indigo-50 h4,
-    .card-hover .bg-teal-50 h4,
-    .card-hover .bg-cyan-50 h4 {
-        font-size: 0.75rem !important;
-        font-weight: 600 !important;
-        margin-bottom: 0.25rem !important;
-        line-height: 1.4 !important;
-    }
-    
-    .card-hover .bg-blue-50 p,
-    .card-hover .bg-green-50 p,
-    .card-hover .bg-orange-50 p,
-    .card-hover .bg-purple-50 p,
-    .card-hover .bg-indigo-50 p,
-    .card-hover .bg-teal-50 p,
-    .card-hover .bg-cyan-50 p {
-        font-size: 0.6875rem !important;
-        line-height: 1.4 !important;
+    .video-container {
+        height: 180px !important;
     }
     
     #nage-waza-section, #imobilizacoes-section {
@@ -681,146 +395,29 @@ p, span, div {
     }
     
     h2 {
-        font-size: 1.5rem !important;
-        margin-bottom: 1rem !important;
+        font-size: 1.25rem !important;
     }
 }
 
 @media (max-width: 360px) {
     .japanese-nav-card {
-        width: 80px !important;
-        height: 70px !important;
-        min-width: 80px !important;
-        min-height: 70px !important;
-        max-width: 80px !important;
-        max-height: 70px !important;
+        width: 120px !important;
+        height: 80px !important;
     }
     
-    .japanese-nav-container .flex {
-        gap: 0.25rem !important;
-        padding: 0.25rem 0 !important;
+    /* Texto dos cards otimizado para telas muito pequenas */
+    .japanese-nav-card .font-bold {
+        font-size: 0.65rem !important;
+        line-height: 1.1 !important;
+    }
+    
+    .japanese-nav-card .text-gray-600 {
+        font-size: 0.55rem !important;
+        line-height: 1.1 !important;
     }
     
     header {
         padding: 0.25rem !important;
-    }
-    
-    main {
-        padding: 0.25rem !important;
-    }
-    
-    .habilidade-item {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 100% !important;
-        padding: 0.375rem 0.5rem !important;
-        margin: 0.5rem !important;
-        font-size: 0.625rem !important;
-        border-radius: 8px !important;
-        background: white !important;
-        border: 1px solid #e5e7eb !important;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
-        transition: background-color 0.2s ease, box-shadow 0.2s ease !important;
-        transform: none !important;
-        position: relative !important;
-        overflow: visible !important;
-        opacity: 1 !important;
-    }
-    
-    .habilidade-item:hover {
-        transform: none !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-        background: #f9fafb !important;
-    }
-    
-    .habilidade-item::before,
-    .habilidade-item::after {
-        display: none !important;
-    }
-    
-    /* CARDS DE TÉCNICAS - ESTRUTURA IGUAL À PÁGINA 2 */
-    .card-hover {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 100% !important;
-        padding: 0.5rem !important;
-        margin: 0.5rem 0 !important;
-        border-radius: 12px !important;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-        transition: box-shadow 0.2s ease !important;
-        background: white !important;
-        border: 1px solid #e5e7eb !important;
-    }
-    
-    .card-hover:hover {
-        transform: none !important;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
-    }
-    
-    /* Container de vídeo mobile - ESTRUTURA IGUAL À PÁGINA 2 */
-    .video-container {
-        height: 160px !important;
-        margin: 0.5rem 0 !important;
-        border-radius: 8px !important;
-    }
-    
-    /* Header dos cards - ESTRUTURA IGUAL À PÁGINA 2 */
-    .card-hover .flex.items-center.mb-3 {
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-        margin-bottom: 0.5rem !important;
-        padding: 0 !important;
-    }
-    
-    .card-hover h3 {
-        font-size: 0.75rem !important;
-        font-weight: 600 !important;
-        color: #1f2937 !important;
-        line-height: 1.4 !important;
-    }
-    
-    .card-hover p {
-        font-size: 0.625rem !important;
-        color: #6b7280 !important;
-        line-height: 1.4 !important;
-    }
-    
-    /* Dicas dos cards - ESTRUTURA IGUAL À PÁGINA 2 */
-    .card-hover .bg-blue-50,
-    .card-hover .bg-green-50,
-    .card-hover .bg-orange-50,
-    .card-hover .bg-purple-50,
-    .card-hover .bg-indigo-50,
-    .card-hover .bg-teal-50,
-    .card-hover .bg-cyan-50 {
-        padding: 0.375rem !important;
-        margin: 0.375rem 0 0 0 !important;
-        border-radius: 0.375rem !important;
-    }
-    
-    .card-hover .bg-blue-50 h4,
-    .card-hover .bg-green-50 h4,
-    .card-hover .bg-orange-50 h4,
-    .card-hover .bg-purple-50 h4,
-    .card-hover .bg-indigo-50 h4,
-    .card-hover .bg-teal-50 h4,
-    .card-hover .bg-cyan-50 h4 {
-        font-size: 0.625rem !important;
-        font-weight: 600 !important;
-        margin-bottom: 0.25rem !important;
-        line-height: 1.4 !important;
-    }
-    
-    .card-hover .bg-blue-50 p,
-    .card-hover .bg-green-50 p,
-    .card-hover .bg-orange-50 p,
-    .card-hover .bg-purple-50 p,
-    .card-hover .bg-indigo-50 p,
-    .card-hover .bg-teal-50 p,
-    .card-hover .bg-cyan-50 p {
-        font-size: 0.5625rem !important;
-        line-height: 1.4 !important;
     }
     
     header h1 {
@@ -831,8 +428,33 @@ p, span, div {
         font-size: 0.625rem !important;
     }
     
+    main {
+        padding: 0.25rem !important;
+    }
+    
+    .habilidade-item {
+        padding: 0.375rem 0.5rem !important;
+        font-size: 0.625rem !important;
+    }
+    
+    .card-hover {
+        padding: 0.5rem !important;
+    }
+    
+    .card-hover h3 {
+        font-size: 0.75rem !important;
+    }
+    
+    .card-hover p {
+        font-size: 0.625rem !important;
+    }
+    
+    .video-container {
+        height: 160px !important;
+    }
+    
     h2 {
-        font-size: 1.25rem !important;
+        font-size: 1.125rem !important;
     }
 }
 
@@ -1235,13 +857,10 @@ p, span, div {
     overflow: hidden;
 }
 
-/* ===== LAYOUT DESKTOP PARA CARROSSEL DE TÉCNICAS - IGUAL À PÁGINA 2 ===== */
-
-/* Carrossel horizontal no desktop para todas as seções de técnicas */
+/* ===== LAYOUT DESKTOP OTIMIZADO ===== */
+/* Carrossel desktop */
 #nage-waza-section .grid,
-#imobilizacoes-section .grid,
-#henkakuenka-section .max-w-6xl,
-#kaeshi-waza-section .max-w-6xl {
+#imobilizacoes-section .grid {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
@@ -1249,16 +868,12 @@ p, span, div {
     overflow-x: auto !important;
     scroll-behavior: smooth !important;
     padding: 1rem 0 !important;
-    position: relative !important;
     scroll-snap-type: x mandatory !important;
-    width: 100% !important;
 }
 
-/* Cards das técnicas no desktop - tamanho fixo para carrossel */
+/* Cards desktop */
 #nage-waza-section .card-hover,
-#imobilizacoes-section .card-hover,
-#henkakuenka-section .card-hover,
-#kaeshi-waza-section .card-hover {
+#imobilizacoes-section .card-hover {
     min-width: 400px !important;
     max-width: 400px !important;
     width: 400px !important;
@@ -1266,52 +881,6 @@ p, span, div {
     scroll-snap-align: start !important;
     border-radius: 12px !important;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-}
-
-/* Indicador de scroll no desktop (gradiente sutil) */
-#nage-waza-section .grid::after,
-#imobilizacoes-section .grid::after,
-#henkakuenka-section .max-w-6xl::after,
-#kaeshi-waza-section .max-w-6xl::after {
-    content: '' !important;
-    position: absolute !important;
-    right: 0 !important;
-    top: 0 !important;
-    bottom: 0 !important;
-    width: 3rem !important;
-    background: linear-gradient(to right, transparent, rgba(156, 163, 175, 0.1)) !important;
-    pointer-events: none !important;
-    z-index: 5 !important;
-}
-
-/* Esconder scrollbar do carrossel no desktop */
-#nage-waza-section .grid::-webkit-scrollbar,
-#imobilizacoes-section .grid::-webkit-scrollbar {
-    height: 6px !important;
-}
-
-#nage-waza-section .grid::-webkit-scrollbar-track,
-#imobilizacoes-section .grid::-webkit-scrollbar-track {
-    background: rgba(156, 163, 175, 0.1) !important;
-    border-radius: 3px !important;
-}
-
-#nage-waza-section .grid::-webkit-scrollbar-thumb,
-#imobilizacoes-section .grid::-webkit-scrollbar-thumb {
-    background: rgba(156, 163, 175, 0.3) !important;
-    border-radius: 3px !important;
-}
-
-#nage-waza-section .grid::-webkit-scrollbar-thumb:hover,
-#imobilizacoes-section .grid::-webkit-scrollbar-thumb:hover {
-    background: rgba(156, 163, 175, 0.5) !important;
-}
-
-/* Suporte para navegadores que não usam webkit */
-#nage-waza-section .grid,
-#imobilizacoes-section .grid {
-    scrollbar-width: thin !important;
-    scrollbar-color: rgba(156, 163, 175, 0.3) rgba(156, 163, 175, 0.1) !important;
 }
 
 /* ===== SETAS DE NAVEGAÇÃO DO CARROSSEL - DESKTOP E MOBILE ===== */
@@ -1504,11 +1073,9 @@ html body #nage-waza-section .carousel-arrow-right {
     }
 }
 
-/* ===== RESPONSIVIDADE COMPLETA PARA MOBILE - PADRÃO PÁGINA 2 ===== */
-
-/* Responsividade para dispositivos móveis */
+/* ===== RESPONSIVIDADE MOBILE OTIMIZADA ===== */
 @media (max-width: 768px) {
-    /* Header responsivo */
+    /* Header mobile */
     header {
         padding: 0.75rem 1rem !important;
     }
@@ -1542,9 +1109,9 @@ html body #nage-waza-section .carousel-arrow-right {
     }
     
     /* Carrossel de técnicas para mobile */
-#nage-waza-section .grid,
-#nage-waza-section #carouselProj,
-#imobilizacoes-section .grid {
+    #nage-waza-section .grid,
+    #nage-waza-section #carouselProj,
+    #imobilizacoes-section .grid {
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: nowrap !important;
@@ -1570,7 +1137,7 @@ html body #nage-waza-section .carousel-arrow-right {
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
     }
     
-    /* Indicador de scroll (gradiente sutil) */
+    /* Indicador de scroll */
     #nage-waza-section .grid::after,
     #imobilizacoes-section .grid::after {
         content: '' !important;
@@ -1930,189 +1497,7 @@ html body #nage-waza-section .carousel-arrow-right {
     }
 }
 
-/* ===== CSS ESPECÍFICO PARA ATAQUES COMBINADOS - LAYOUT VERTICAL CENTRALIZADO ===== */
-
-/* ===== CARDS COM MESMO TAMANHO DA PÁGINA 4 - APENAS MOBILE ===== */
-
-/* ===== BARRA JAPONESA RESPONSIVA - MESMA ESTRUTURA DA PÁGINA 2 ===== */
-@media (max-width: 768px) {
-    /* Layout horizontal com scroll para mobile */
-    .japanese-nav-container .flex {
-        gap: 0.5rem !important;
-        justify-content: flex-start !important;
-        flex-wrap: nowrap !important;
-        flex-direction: row !important;
-        overflow-x: auto !important;
-        scroll-behavior: smooth !important;
-        padding: 0.5rem 0 !important;
-        position: relative !important;
-    }
-    
-    /* Gradiente sutil no lado direito para indicar mais conteúdo */
-    .japanese-nav-container .flex::before {
-        content: '' !important;
-        position: absolute !important;
-        right: 0 !important;
-        top: 0 !important;
-        bottom: 0 !important;
-        width: 2rem !important;
-        background: linear-gradient(to right, transparent, rgba(156, 163, 175, 0.1)) !important;
-        pointer-events: none !important;
-        z-index: 5 !important;
-    }
-    
-    /* Cards sempre na mesma linha com tamanho fixo */
-    .japanese-nav-card {
-        width: 100px !important;
-        height: 80px !important;
-        min-width: 100px !important;
-        min-height: 80px !important;
-        max-width: 100px !important;
-        max-height: 80px !important;
-        flex-shrink: 0 !important;
-        padding: 0.5rem !important;
-    }
-    
-    /* Texto indicativo de scroll para mobile */
-    .japanese-nav-container::after {
-        content: '← Deslize para ver mais →' !important;
-        display: block !important;
-        text-align: center !important;
-        margin-top: 0.75rem !important;
-        font-size: 0.875rem !important;
-        color: #6B7280 !important;
-        font-weight: 500 !important;
-        opacity: 0.8 !important;
-    }
-    
-    /* Espaçamento melhorado para touch */
-    .japanese-nav-card {
-        margin: 0.75rem !important;
-    }
-    
-    /* Scroll suave para mobile */
-    html {
-        scroll-behavior: smooth !important;
-    }
-    
-    /* Animações mais suaves para mobile */
-    .japanese-nav-card {
-        transition: all 0.2s ease !important;
-    }
-    
-    /* Feedback visual melhorado para mobile */
-    .japanese-nav-card:active {
-        transform: scale(0.98) !important;
-    }
-}
-
-/* ===== BARRA JAPONESA PARA TELAS MUITO PEQUENAS ===== */
-@media (max-width: 480px) {
-    /* Cards ainda menores para telas pequenas */
-    .japanese-nav-card {
-        width: 90px !important;
-        height: 70px !important;
-        min-width: 90px !important;
-        min-height: 70px !important;
-        max-width: 90px !important;
-        max-height: 70px !important;
-        padding: 0.375rem !important;
-    }
-    
-    /* Texto dos cards otimizado para telas pequenas */
-    .japanese-nav-card .font-bold {
-        font-size: 0.75rem !important;
-    }
-    
-    .japanese-nav-card .text-gray-600 {
-        font-size: 0.625rem !important;
-    }
-    
-    /* Emoji menor para telas pequenas */
-    .japanese-nav-card .text-lg {
-        font-size: 0.875rem !important;
-    }
-}
-
-@media (max-width: 360px) {
-    /* Cards ultra-compactos para telas muito pequenas */
-    .japanese-nav-card {
-        width: 80px !important;
-        height: 60px !important;
-        min-width: 80px !important;
-        min-height: 60px !important;
-        max-width: 80px !important;
-        max-height: 60px !important;
-        padding: 0.25rem !important;
-    }
-    
-    /* Texto ultra-compacto */
-    .japanese-nav-card .font-bold {
-        font-size: 0.625rem !important;
-    }
-    
-    .japanese-nav-card .text-gray-600 {
-        font-size: 0.5rem !important;
-    }
-    
-    /* Emoji ultra-compacto */
-    .japanese-nav-card .text-lg {
-        font-size: 0.75rem !important;
-    }
-}
-
-@media (max-width: 768px) {
-    /* Cards de ataques combinados - mesmo tamanho da página 4 */
-    #henkakuenka-section .card-hover,
-    #kaeshi-waza-section .card-hover {
-        width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
-        max-width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
-        min-width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
-        margin: 0 auto !important;
-        padding: 1rem !important;
-        box-sizing: border-box !important;
-    }
-    
-    /* Container dos grupos de técnicas */
-    #henkakuenka-section .flex.flex-col,
-    #kaeshi-waza-section .flex.flex-col {
-        width: 100% !important;
-        align-items: center !important;
-        justify-content: center !important;
-        gap: 1.5rem !important;
-    }
-    
-    /* Títulos dos grupos centralizados */
-    #henkakuenka-section .text-center.mb-6,
-    #kaeshi-waza-section .text-center.mb-6 {
-        width: 100% !important;
-        text-align: center !important;
-        margin-bottom: 1.5rem !important;
-    }
-}
-
-@media (max-width: 480px) {
-    /* Cards mantêm o mesmo tamanho em telas pequenas */
-    #henkakuenka-section .card-hover,
-    #kaeshi-waza-section .card-hover {
-        width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
-        max-width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
-        min-width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
-        padding: 0.75rem !important;
-    }
-}
-
-@media (max-width: 360px) {
-    /* Cards mantêm o mesmo tamanho em telas muito pequenas */
-    #henkakuenka-section .card-hover,
-    #kaeshi-waza-section .card-hover {
-        width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
-        max-width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
-        min-width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
-        padding: 0.5rem !important;
-    }
-}
-
+/* ===== CSS ESPECÍFICO PARA ATAQUES COMBINADOS ===== */
 /* Garantir que as seções sejam exibidas quando não estiverem hidden */
 #henkakuenka-section:not(.hidden),
 #kaeshi-waza-section:not(.hidden) {
@@ -2158,7 +1543,7 @@ html body #kaeshi-waza-section .max-w-6xl {
     width: 100% !important;
     max-width: 100% !important;
     overflow: visible !important;
-    padding: 1rem !important; /* PADDING PARA MELHOR CENTRALIZAÇÃO */
+    padding: 1rem !important;
     margin: 0 auto !important;
 }
 
@@ -2168,73 +1553,16 @@ html body #kaeshi-waza-section .flex.flex-col {
     width: 100% !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 1.5rem !important; /* MAIS ESPAÇO ENTRE ELEMENTOS */
+    gap: 1.5rem !important;
     margin: 0 auto !important;
 }
 
 html body #henkakuenka-section .card-hover,
 html body #kaeshi-waza-section .card-hover {
     width: 100% !important;
-    max-width: 320px !important; /* CARDS MENORES */
+    max-width: 320px !important;
     margin: 0 auto !important;
     display: block !important;
     text-align: center !important;
-}
-
-/* CSS responsivo específico para ataques combinados */
-@media (max-width: 768px) {
-    html body #henkakuenka-section,
-    html body #kaeshi-waza-section {
-        padding: 0 1rem !important;
-        width: 100% !important;
-    }
-    
-    html body #henkakuenka-section .max-w-6xl,
-    html body #kaeshi-waza-section .max-w-6xl {
-        width: 100% !important;
-        padding: 0 !important;
-    }
-    
-    html body #henkakuenka-section .card-hover,
-    html body #kaeshi-waza-section .card-hover {
-        width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
-        max-width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
-        margin: 0 auto !important;
-        padding: 1rem !important;
-    }
-    
-    html body #henkakuenka-section .flex.flex-col,
-    html body #kaeshi-waza-section .flex.flex-col {
-        width: 100% !important;
-        align-items: center !important;
-    }
-}
-
-@media (max-width: 480px) {
-    html body #henkakuenka-section,
-    html body #kaeshi-waza-section {
-        padding: 0 0.5rem !important;
-    }
-    
-    html body #henkakuenka-section .card-hover,
-    html body #kaeshi-waza-section .card-hover {
-        width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
-        max-width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
-        padding: 0.75rem !important;
-    }
-}
-
-@media (max-width: 360px) {
-    html body #henkakuenka-section,
-    html body #kaeshi-waza-section {
-        padding: 0 0.25rem !important;
-    }
-    
-    html body #henkakuenka-section .card-hover,
-    html body #kaeshi-waza-section .card-hover {
-        width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
-        max-width: 300px !important; /* MESMO TAMANHO DA PÁGINA 4 */
-        padding: 0.5rem !important;
-    }
 }
 
