@@ -130,40 +130,115 @@
             background: rgba(59, 130, 246, 0.15);
             border-color: rgba(59, 130, 246, 0.4);
         }
+        
+        /* Melhorias de responsividade para mobile */
+        @media (max-width: 640px) {
+            .hero-section {
+                min-height: 40vh;
+            }
+            
+            .word-card {
+                margin-bottom: 0.75rem;
+            }
+            
+            .word-card h4 {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+            
+            .word-card p {
+                font-size: 0.875rem;
+                line-height: 1.5;
+            }
+            
+            .highlight-word {
+                font-size: 0.75rem;
+                padding: 1px 6px;
+            }
+            
+            .nav-link {
+                padding: 0.5rem;
+            }
+            
+            .nav-link div:first-child {
+                font-size: 1.25rem;
+            }
+            
+            .nav-link div:last-child {
+                font-size: 0.75rem;
+            }
+        }
+        
+        /* Melhorias para tablets */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .word-card {
+                padding: 1rem 1.5rem;
+            }
+            
+            .nav-link {
+                padding: 0.75rem;
+            }
+        }
+        
+        /* Melhorias para telas muito pequenas */
+        @media (max-width: 480px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .word-card {
+                padding: 0.75rem;
+            }
+            
+            .word-card h4 {
+                font-size: 0.9rem;
+            }
+            
+            .word-card p {
+                font-size: 0.8rem;
+            }
+            
+            .highlight-word {
+                font-size: 0.7rem;
+                padding: 1px 4px;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-desc">
-    <!-- Botão de voltar -->
-    <div class="fixed top-6 left-6 z-50">
-        <a href="/index/" class="back-btn inline-flex items-center px-4 py-2 rounded-lg text-blue-600 hover:text-blue-700">
-            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <!-- Botão de voltar responsivo -->
+    <div class="fixed top-4 left-4 sm:top-6 sm:left-6 z-50">
+        <a href="/index/" class="back-btn inline-flex items-center px-3 py-2 sm:px-4 sm:py-2 rounded-lg text-blue-600 hover:text-blue-700 text-sm sm:text-base">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
             </svg>
-            Voltar
+            <span class="hidden sm:inline">Voltar</span>
+            <span class="sm:hidden">←</span>
         </a>
     </div>
     
-    <!-- Hero Section -->
-    <section class="hero-section text-white py-20">
+    <!-- Hero Section responsivo -->
+    <section class="hero-section text-white py-12 sm:py-16 md:py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="font-title text-4xl md:text-6xl font-bold mb-6 fade-in-up">
+            <h1 class="font-title text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-4 sm:mb-6 fade-in-up">
                 🇯🇵 Vocabulário do Judô
             </h1>
-            <p class="font-subtitle text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+            <p class="font-subtitle text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto px-4">
                 Descubra as palavras essenciais em japonês que formam a base desta arte marcial milenar
             </p>
         </div>
     </section>
     
-    <!-- Container principal -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <!-- Introdução -->
-        <div class="bg-white rounded-2xl shadow-lg p-8 mb-12 fade-in-up">
+    <!-- Container principal responsivo -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
+        <!-- Introdução responsiva -->
+        <div class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 md:p-8 mb-8 sm:mb-12 fade-in-up">
             <div class="text-center">
-                <h2 class="font-title text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                <h2 class="font-title text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
                     🥋 A Linguagem do Judô
                 </h2>
-                <p class="font-desc text-lg text-gray-600 leading-relaxed">
+                <p class="font-desc text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed px-2">
                     O judô não é apenas uma arte marcial, é uma filosofia de vida. Cada palavra em japonês carrega 
                     consigo séculos de sabedoria e tradição. Conhecer este vocabulário é essencial para compreender 
                     a essência do judô e se conectar com sua rica herança cultural.
@@ -171,43 +246,43 @@
             </div>
         </div>
         
-        <!-- Navegação por seções -->
-        <div class="fade-in-up mb-12">
-            <div class="nav-section rounded-2xl p-6">
-                <h3 class="font-title text-xl font-bold text-gray-900 mb-4 text-center">📚 Navegue pelas Seções</h3>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <button data-section="basico" class="nav-link p-3 text-center">
-                        <div class="text-2xl mb-2">🟢</div>
-                        <div class="font-subtitle text-sm text-gray-700">Básico</div>
+        <!-- Navegação por seções responsiva -->
+        <div class="fade-in-up mb-8 sm:mb-12">
+            <div class="nav-section rounded-2xl p-4 sm:p-6">
+                <h3 class="font-title text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4 text-center">📚 Navegue pelas Seções</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4">
+                    <button data-section="basico" class="nav-link p-2 sm:p-3 text-center">
+                        <div class="text-xl sm:text-2xl mb-1 sm:mb-2">🟢</div>
+                        <div class="font-subtitle text-xs sm:text-sm text-gray-700">Básico</div>
                     </button>
-                    <button data-section="tecnico" class="nav-link p-3 text-center">
-                        <div class="text-2xl mb-2">🟡</div>
-                        <div class="font-subtitle text-sm text-gray-700">Técnico</div>
+                    <button data-section="tecnico" class="nav-link p-2 sm:p-3 text-center">
+                        <div class="text-xl sm:text-2xl mb-1 sm:mb-2">🟡</div>
+                        <div class="font-subtitle text-xs sm:text-sm text-gray-700">Técnico</div>
                     </button>
-                    <button data-section="avancado" class="nav-link p-3 text-center">
-                        <div class="text-2xl mb-2">🔴</div>
-                        <div class="font-subtitle text-sm text-gray-700">Avançado</div>
+                    <button data-section="avancado" class="nav-link p-2 sm:p-3 text-center">
+                        <div class="text-xl sm:text-2xl mb-1 sm:mb-2">🔴</div>
+                        <div class="font-subtitle text-xs sm:text-sm text-gray-700">Avançado</div>
                     </button>
-                    <button data-section="filosofia" class="nav-link p-3 text-center">
-                        <div class="text-2xl mb-2">🟣</div>
-                        <div class="font-subtitle text-sm text-gray-700">Filosofia</div>
+                    <button data-section="filosofia" class="nav-link p-2 sm:p-3 text-center">
+                        <div class="text-xl sm:text-2xl mb-1 sm:mb-2">🟣</div>
+                        <div class="font-subtitle text-xs sm:text-sm text-gray-700">Filosofia</div>
                     </button>
                 </div>
             </div>
         </div>
         
-        <!-- Barra de Busca -->
-        <div class="fade-in-up mb-12">
-            <div class="max-w-2xl mx-auto">
+        <!-- Barra de Busca responsiva -->
+        <div class="fade-in-up mb-8 sm:mb-12">
+            <div class="max-w-2xl mx-auto px-2">
                 <div class="relative">
                     <input 
                         type="text" 
                         id="searchInput"
-                        placeholder="🔍 Buscar palavras em japonês, português ou romaji..."
-                        class="w-full px-6 py-4 text-lg bg-white border-2 border-gray-300 rounded-2xl focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/30 transition-all duration-300 placeholder-gray-400 text-gray-900"
+                        placeholder="🔍 Buscar palavras..."
+                        class="w-full px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-lg bg-white border-2 border-gray-300 rounded-2xl focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/30 transition-all duration-300 placeholder-gray-400 text-gray-900"
                     >
-                    <div class="absolute right-4 top-1/2 transform -translate-y-1/2">
-                        <span class="text-gray-500 text-sm">Enter para buscar</span>
+                    <div class="absolute right-3 sm:right-4 top-1/2 transform -translate-y-1/2">
+                        <span class="text-gray-500 text-xs sm:text-sm hidden sm:inline">Enter para buscar</span>
                     </div>
                 </div>
                 <div id="searchResults" class="mt-4 hidden">
@@ -216,25 +291,25 @@
             </div>
         </div>
         
-        <!-- Categorias de palavras -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <!-- Categorias de palavras responsivas -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-12">
             
-            <!-- Palavras Básicas -->
+            <!-- Palavras Básicas responsivas -->
             <div class="fade-in-up" id="basico">
-                <h3 class="font-title text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                    <span class="w-8 h-8 bg-green-400 rounded-full flex items-center justify-center mr-3">🟢</span>
+                <h3 class="font-title text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 flex items-center">
+                    <span class="w-6 h-6 sm:w-8 sm:h-8 bg-green-400 rounded-full flex items-center justify-center mr-2 sm:mr-3 text-sm sm:text-base">🟢</span>
                     Palavras Básicas
                 </h3>
-                <div class="space-y-4">
-                    <div class="word-card rounded-xl p-6 category-basic relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Judo (柔道)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Jūdō</span>
+                <div class="space-y-3 sm:space-y-4">
+                    <div class="word-card rounded-xl p-4 sm:p-6 category-basic relative overflow-hidden">
+                        <div class="flex justify-between items-start mb-2 sm:mb-3">
+                            <h4 class="font-subtitle text-lg sm:text-xl font-semibold text-gray-900">Judo (柔道)</h4>
+                            <span class="text-xs sm:text-sm text-gray-500 font-mono">Jūdō</span>
                         </div>
-                        <p class="font-desc text-gray-600 mb-3">
+                        <p class="font-desc text-sm sm:text-base text-gray-600 mb-2 sm:mb-3">
                             <span class="highlight-word">Caminho Suave</span> - A arte marcial fundada por Jigoro Kano
                         </p>
-                        <div class="text-sm text-gray-500">
+                        <div class="text-xs sm:text-sm text-gray-500">
                             <strong>Significado:</strong> "Ju" (suave) + "Do" (caminho)
                         </div>
                     </div>
@@ -410,10 +485,10 @@
                 </div>
             </div>
             
-            <!-- Palavras Técnicas -->
+            <!-- Palavras Técnicas responsivas -->
             <div class="fade-in-up" id="tecnico">
-                <h3 class="font-title text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                    <span class="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center mr-3">🟡</span>
+                <h3 class="font-title text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 flex items-center">
+                    <span class="w-6 h-6 sm:w-8 sm:h-8 bg-yellow-400 rounded-full flex items-center justify-center mr-2 sm:mr-3 text-sm sm:text-base">🟡</span>
                     Termos Técnicos
                 </h3>
                 <div class="space-y-4">
@@ -604,13 +679,13 @@
         
 
         
-        <!-- Segunda linha de categorias -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <!-- Segunda linha de categorias responsivas -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-12">
             
-            <!-- Palavras Avançadas -->
+            <!-- Palavras Avançadas responsivas -->
             <div class="fade-in-up" id="avancado">
-                <h3 class="font-title text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                    <span class="w-8 h-8 bg-red-400 rounded-full flex items-center justify-center mr-3">🔴</span>
+                <h3 class="font-title text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 flex items-center">
+                    <span class="w-6 h-6 sm:w-8 sm:h-8 bg-red-400 rounded-full flex items-center justify-center mr-2 sm:mr-3 text-sm sm:text-base">🔴</span>
                     Termos Avançados
                 </h3>
                 <div class="space-y-4">
@@ -681,10 +756,10 @@
                 </div>
             </div>
             
-            <!-- Filosofia do Judô -->
+            <!-- Filosofia do Judô responsiva -->
             <div class="fade-in-up" id="filosofia">
-                <h3 class="font-title text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                    <span class="w-8 h-8 bg-purple-400 rounded-full flex items-center justify-center mr-3">🟣</span>
+                <h3 class="font-title text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 flex items-center">
+                    <span class="w-6 h-6 sm:w-8 sm:h-8 bg-purple-400 rounded-full flex items-center justify-center mr-2 sm:mr-3 text-sm sm:text-base">🟣</span>
                     Filosofia do Judô
                 </h3>
                 <div class="space-y-4">
@@ -743,22 +818,22 @@
             </div>
         </div>
         
-        <!-- Disciplina para Crianças -->
-        <div class="fade-in-up mb-12">
-            <h3 class="font-title text-2xl font-bold text-gray-900 mb-6 text-center flex items-center justify-center">
-                <span class="w-8 h-8 bg-pink-400 rounded-full flex items-center justify-center mr-3">👶</span>
+        <!-- Disciplina para Crianças responsiva -->
+        <div class="fade-in-up mb-8 sm:mb-12">
+            <h3 class="font-title text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 text-center flex items-center justify-center">
+                <span class="w-6 h-6 sm:w-8 sm:h-8 bg-pink-400 rounded-full flex items-center justify-center mr-2 sm:mr-3 text-sm sm:text-base">👶</span>
                 Disciplina para Crianças
             </h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="word-card rounded-xl p-6 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-3">
-                        <h4 class="font-subtitle text-xl font-semibold text-gray-900">Ganbare (頑張れ)</h4>
-                        <span class="text-sm text-gray-500 font-mono">Ganbare</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <div class="word-card rounded-xl p-4 sm:p-6 relative overflow-hidden">
+                    <div class="flex justify-between items-start mb-2 sm:mb-3">
+                        <h4 class="font-subtitle text-lg sm:text-xl font-semibold text-gray-900">Ganbare (頑張れ)</h4>
+                        <span class="text-xs sm:text-sm text-gray-500 font-mono">Ganbare</span>
                     </div>
-                    <p class="font-desc text-gray-600 mb-3">
+                    <p class="font-desc text-sm sm:text-base text-gray-600 mb-2 sm:mb-3">
                         <span class="highlight-word">Vamos! Força!</span> - Incentivo para persistir
                     </p>
-                    <div class="text-sm text-gray-500">
+                    <div class="text-xs sm:text-sm text-gray-500">
                         <strong>Uso:</strong> Motivação durante treinos
                     </div>
                 </div>
@@ -830,13 +905,13 @@
             </div>
         </div>
         
-        <!-- Comandos de Treino -->
-        <div class="fade-in-up mb-12">
-            <h3 class="font-title text-2xl font-bold text-gray-900 mb-6 text-center flex items-center justify-center">
-                <span class="w-8 h-8 bg-blue-400 rounded-full flex items-center justify-center mr-3">🔵</span>
+        <!-- Comandos de Treino responsivos -->
+        <div class="fade-in-up mb-8 sm:mb-12">
+            <h3 class="font-title text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 text-center flex items-center justify-center">
+                <span class="w-6 h-6 sm:w-8 sm:h-8 bg-blue-400 rounded-full flex items-center justify-center mr-2 sm:mr-3 text-sm sm:text-base">🔵</span>
                 Comandos de Treino
             </h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 <div class="word-card rounded-xl p-6 relative overflow-hidden">
                     <div class="flex justify-between items-start mb-3">
                         <h4 class="font-subtitle text-xl font-semibold text-gray-900">Hajime (始め)</h4>
@@ -917,17 +992,17 @@
             </div>
         </div>
         
-        <!-- Números em Japonês -->
-        <div class="fade-in-up mb-12">
-            <h3 class="font-title text-2xl font-bold text-gray-900 mb-6 text-center flex items-center justify-center">
-                <span class="w-8 h-8 bg-indigo-400 rounded-full flex items-center justify-center mr-3">🔢</span>
+        <!-- Números em Japonês responsivos -->
+        <div class="fade-in-up mb-8 sm:mb-12">
+            <h3 class="font-title text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 text-center flex items-center justify-center">
+                <span class="w-6 h-6 sm:w-8 sm:h-8 bg-indigo-400 rounded-full flex items-center justify-center mr-2 sm:mr-3 text-sm sm:text-base">🔢</span>
                 Contando em Japonês (1-10)
             </h3>
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-                <div class="word-card rounded-xl p-4 relative overflow-hidden text-center">
-                    <h4 class="font-subtitle text-3xl font-bold text-gray-900 mb-2">一</h4>
-                    <p class="font-mono text-lg text-blue-600 mb-1">Ichi</p>
-                    <p class="font-desc text-sm text-gray-500">1</p>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
+                <div class="word-card rounded-xl p-3 sm:p-4 relative overflow-hidden text-center">
+                    <h4 class="font-subtitle text-2xl sm:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">一</h4>
+                    <p class="font-mono text-sm sm:text-lg text-blue-600 mb-1">Ichi</p>
+                    <p class="font-desc text-xs sm:text-sm text-gray-500">1</p>
                 </div>
                 <div class="word-card rounded-xl p-4 relative overflow-hidden text-center">
                     <h4 class="font-subtitle text-3xl font-bold text-gray-900 mb-2">二</h4>
@@ -977,13 +1052,13 @@
             </div>
         </div>
         
-        <!-- Roupas e Equipamentos -->
-        <div class="fade-in-up mb-12">
-            <h3 class="font-title text-2xl font-bold text-gray-900 mb-6 text-center flex items-center justify-center">
-                <span class="w-8 h-8 bg-pink-400 rounded-full flex items-center justify-center mr-3">👕</span>
+        <!-- Roupas e Equipamentos responsivos -->
+        <div class="fade-in-up mb-8 sm:mb-12">
+            <h3 class="font-title text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 text-center flex items-center justify-center">
+                <span class="w-6 h-6 sm:w-8 sm:h-8 bg-pink-400 rounded-full flex items-center justify-center mr-2 sm:mr-3 text-sm sm:text-base">👕</span>
                 Roupas e Equipamentos do Judô
             </h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 <div class="word-card rounded-xl p-6 relative overflow-hidden">
                     <div class="flex justify-between items-start mb-3">
                         <h4 class="font-subtitle text-xl font-semibold text-gray-900">Judogi (柔道着)</h4>
@@ -1064,21 +1139,21 @@
             </div>
         </div>
         
-        <!-- Footer -->
+        <!-- Footer responsivo -->
         <div class="text-center fade-in-up">
-            <div class="bg-white rounded-2xl shadow-lg p-8">
-                <h3 class="font-title text-2xl font-bold text-gray-900 mb-4">
+            <div class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 md:p-8">
+                <h3 class="font-title text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
                     🌟 Continue Aprendendo
                 </h3>
-                <p class="font-desc text-lg text-gray-600 mb-6">
+                <p class="font-desc text-sm sm:text-base md:text-lg text-gray-600 mb-4 sm:mb-6 px-2">
                     O conhecimento das palavras em japonês é apenas o começo. 
                     Continue praticando e mergulhando na rica cultura do judô.
                 </p>
-                <div class="flex justify-center space-x-4">
-                    <a href="/quiz" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+                    <a href="/quiz" class="px-4 sm:px-6 py-2 sm:py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm sm:text-base">
                         Fazer Quiz
                     </a>
-                    <a href="/ukemis" class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                    <a href="/ukemis" class="px-4 sm:px-6 py-2 sm:py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm sm:text-base">
                         Aprender Ukemis
                     </a>
                 </div>

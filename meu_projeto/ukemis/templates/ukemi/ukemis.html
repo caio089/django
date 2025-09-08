@@ -47,10 +47,43 @@
         .video-container {
             position: relative;
             width: 100%;
-            height: 250px;
+            height: 200px;
             border-radius: 12px;
             box-shadow: 0 8px 20px -5px rgba(5,150,105,0.10);
             overflow: hidden;
+        }
+        
+        /* Melhorias de responsividade para mobile */
+        @media (max-width: 640px) {
+            .video-container {
+                height: 180px;
+            }
+            
+            .card-hover {
+                margin-bottom: 1rem;
+            }
+            
+            .card-hover h3 {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+            
+            .card-hover p {
+                font-size: 0.75rem;
+                line-height: 1.3;
+            }
+        }
+        
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .video-container {
+                height: 220px;
+            }
+        }
+        
+        @media (min-width: 1025px) {
+            .video-container {
+                height: 250px;
+            }
         }
         .video-container iframe {
             position: absolute;
@@ -294,211 +327,186 @@
     </style>
 </head>
 <body class="bg-gray-50 font-display">
-    <!-- Header com Progresso -->
-    <header class="gradient-bg text-white py-4 px-4">
+    <!-- Header com Progresso responsivo -->
+    <header class="gradient-bg text-white py-3 sm:py-4 px-4">
         <div class="max-w-6xl mx-auto">
-            <div class="flex items-center justify-between mb-4">
-                <div>
-                    <h1 class="text-3xl md:text-4xl font-bold mb-2 flex items-center gap-3">
-                        <img src="{% static 'rolamento.png' %}" alt="Rolamento" class="w-12 h-12 object-contain">
-                        Rolamentos (Ukemi)
+            <div class="flex items-center justify-between mb-3 sm:mb-4">
+                <div class="flex-1">
+                    <h1 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-1 sm:mb-2 flex items-center gap-2 sm:gap-3">
+                        <img src="{% static 'rolamento.png' %}" alt="Rolamento" class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 object-contain">
+                        <span class="text-white">Rolamentos (Ukemi)</span>
                     </h1>
-                    <p class="text-white text-lg font-medium">A base da segurança e evolução no judô</p>
+                    <p class="text-white text-sm sm:text-base md:text-lg font-medium">A base da segurança e evolução no judô</p>
                 </div>
-                <a href="/index/" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors">
+                <a href="/index/" class="bg-white/20 hover:bg-white/30 px-3 py-2 sm:px-4 sm:py-2 rounded-lg transition-colors text-sm sm:text-base ml-2">
                     ← Voltar
                 </a>
             </div>
-            <!-- Barra de Progresso -->
-            <div class="bg-white/20 rounded-full h-5 mb-3 shadow-inner">
-                <div class="progress-bar bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full h-5 shadow-lg transition-all duration-500" style="width: 0%" id="progressBar"></div>
+            <!-- Barra de Progresso responsiva -->
+            <div class="bg-white/20 rounded-full h-3 sm:h-4 md:h-5 mb-2 sm:mb-3 shadow-inner">
+                <div class="progress-bar bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-full h-3 sm:h-4 md:h-5 shadow-lg transition-all duration-500" style="width: 0%" id="progressBar"></div>
             </div>
-            <p class="text-base font-semibold text-white">Progresso: <span id="progressText" class="text-white font-bold">0%</span></p>
+            <p class="text-sm sm:text-base font-semibold text-white">Progresso: <span id="progressText" class="text-white font-bold">0%</span></p>
         </div>
     </header>
     
-    <!-- Barra de Progresso Flutuante -->
-    <div id="floatingProgress" class="fixed top-4 left-0 right-0 mx-auto w-fit bg-white border border-gray-300 rounded-lg shadow-lg p-3 z-50 opacity-0 transition-opacity duration-300 pointer-events-none">
-        <div class="flex items-center gap-5">
-            <div class="w-80 bg-gray-200 rounded-full h-3">
-                <div id="floatingProgressBar" class="bg-gradient-to-r from-emerald-400 to-emerald-600 h-3 rounded-full transition-all duration-500 shadow-sm" style="width: 0%"></div>
+    <!-- Barra de Progresso Flutuante responsiva -->
+    <div id="floatingProgress" class="fixed top-4 left-4 right-4 sm:left-0 sm:right-0 sm:mx-auto sm:w-fit bg-white border border-gray-300 rounded-lg shadow-lg p-2 sm:p-3 z-50 opacity-0 transition-opacity duration-300 pointer-events-none">
+        <div class="flex items-center gap-2 sm:gap-5">
+            <div class="w-48 sm:w-80 bg-gray-200 rounded-full h-2 sm:h-3">
+                <div id="floatingProgressBar" class="bg-gradient-to-r from-emerald-400 to-emerald-600 h-2 sm:h-3 rounded-full transition-all duration-500 shadow-sm" style="width: 0%"></div>
             </div>
-            <span id="floatingProgressText" class="text-base font-bold text-gray-800">0%</span>
+            <span id="floatingProgressText" class="text-sm sm:text-base font-bold text-gray-800">0%</span>
         </div>
     </div>
     
-    <main class="max-w-6xl mx-auto px-4 py-6">
-        <!-- Seção de Condições -->
+    <main class="max-w-6xl mx-auto px-4 py-4 sm:py-6">
+        <!-- Seção de Condições responsiva -->
         <div class="w-full text-center mb-2">
-            <h2 class="font-bold text-gray-700 text-2xl">Condições</h2>
-            <div class="flex flex-wrap justify-center gap-4 mt-2">
-                <div class="bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500 habilidade-item">
+            <h2 class="font-bold text-gray-700 text-xl sm:text-2xl">Condições</h2>
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mt-2">
+                <div class="bg-white/70 backdrop-blur-sm rounded-xl px-3 py-2 sm:px-4 sm:py-2 shadow-md text-sm sm:text-base md:text-lg text-gray-700 font-medium flex items-center transition-all duration-500 habilidade-item">
                     Qualquer nível de faixa
                 </div>
-                <div class="bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500 habilidade-item">
+                <div class="bg-white/70 backdrop-blur-sm rounded-xl px-3 py-2 sm:px-4 sm:py-2 shadow-md text-sm sm:text-base md:text-lg text-gray-700 font-medium flex items-center transition-all duration-500 habilidade-item">
                     Idade mínima: 6 anos de idade
                 </div>
             </div>
         </div>
         
-        <!-- Seção de Habilidades -->
+        <!-- Seção de Habilidades responsiva -->
         <div class="w-full text-center mb-4">
-            <h2 class="font-bold text-gray-700 text-2xl">Habilidades</h2>
-            <div id="habilidadesTyping" class="flex flex-wrap justify-center gap-4 mt-2">
-                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+            <h2 class="font-bold text-gray-700 text-xl sm:text-2xl">Habilidades</h2>
+            <div id="habilidadesTyping" class="flex flex-wrap justify-center gap-2 sm:gap-4 mt-2">
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-3 py-2 sm:px-4 sm:py-2 shadow-md text-sm sm:text-base md:text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
                     Ushiro-ukemi (Rolamento para trás)
                 </div>
-                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-3 py-2 sm:px-4 sm:py-2 shadow-md text-sm sm:text-base md:text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
                     Yoko-ukemi (Rolamento lateral)
                 </div>
-                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-3 py-2 sm:px-4 sm:py-2 shadow-md text-sm sm:text-base md:text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
                     Mae-ukemi (Rolamento para frente)
                 </div>
-                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-3 py-2 sm:px-4 sm:py-2 shadow-md text-sm sm:text-base md:text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
                     Zenpo-kaiten-ukemi (Rolamento para frente com giro)
                 </div>
-                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-4 py-2 shadow-md text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
+                <div class="habilidade-item bg-white/70 backdrop-blur-sm rounded-xl px-3 py-2 sm:px-4 sm:py-2 shadow-md text-sm sm:text-base md:text-lg text-gray-700 font-medium flex items-center transition-all duration-500">
                     Koho-kaiten-ukemi (Rolamento para trás com giro)
                 </div>
             </div>
         </div>
-        <!-- Seção de Rolamentos -->
-        <section id="ukemi-section" class="mb-12">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
+        <!-- Seção de Rolamentos responsiva -->
+        <section id="ukemi-section" class="mb-8 sm:mb-12">
+            <div class="text-center mb-6 sm:mb-8">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2 sm:mb-3">
                     <span class="text-gradient">Rolamentos Fundamentais do Judô</span>
                 </h2>
-                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                <p class="text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto px-4">
                     Aprenda e pratique os principais rolamentos (ukemi) para garantir sua segurança e evolução no judô.
                 </p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- 1. Rolinho (Cambalhota) -->
-                <div class="card-hover bg-white rounded-2xl shadow-lg p-4 flex flex-col">
-                    <div class="flex items-center mb-3 justify-between">
-                        <div class="flex items-center">
-                            <div class="bg-emerald-100 p-2 rounded-full mr-3">
-                                <span class="text-lg">🔄</span>
-                            </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-gray-800">Rolinho (Cambalhota)</h3>
-                                <p class="text-emerald-700 text-sm font-medium">Rolamento básico para iniciantes</p>
-                            </div>
-                        </div>
-                        <label class="flex items-center ml-2 select-none">
-                            <input type="checkbox" class="ukemi-checkbox accent-emerald-500 w-5 h-5 mr-1" />
-                            <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
-                        </label>
-                    </div>
-                    <div class="video-container mb-3">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Rolinho Cambalhota" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                    </div>
-                    <div class="bg-emerald-50 p-2 rounded-xl">
-                        <h4 class="font-semibold text-emerald-800 mb-1 text-sm">💡 Dica:</h4>
-                        <p class="text-emerald-700 text-xs">Mantenha a cabeça encostada no peito e role suavemente.</p>
-                    </div>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
 
-                <!-- 2. Ushiro-ukemi -->
-                <div class="card-hover bg-white rounded-2xl shadow-lg p-4 flex flex-col">
-                    <div class="flex items-center mb-3 justify-between">
-                        <div class="flex items-center">
-                            <div class="bg-emerald-100 p-2 rounded-full mr-3">
-                                <span class="text-lg">🥋</span>
+                <!-- 1. Ushiro-ukemi responsivo -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-3 sm:p-4 flex flex-col">
+                    <div class="flex items-center mb-2 sm:mb-3 justify-between">
+                        <div class="flex items-center flex-1">
+                            <div class="bg-emerald-100 p-1.5 sm:p-2 rounded-full mr-2 sm:mr-3">
+                                <span class="text-base sm:text-lg">🥋</span>
                             </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-gray-800">Ushiro-ukemi</h3>
-                                <p class="text-emerald-600 text-sm font-medium">Rolamento para trás</p>
+                            <div class="flex-1">
+                                <h3 class="text-base sm:text-lg font-bold text-gray-800">Ushiro-ukemi</h3>
+                                <p class="text-emerald-600 text-xs sm:text-sm font-medium">Rolamento para trás</p>
                             </div>
                         </div>
-                        <label class="flex items-center ml-2 select-none">
-                            <input type="checkbox" class="ukemi-checkbox accent-emerald-500 w-5 h-5 mr-1" />
-                            <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                        <label class="flex items-center ml-2 select-none flex-shrink-0">
+                            <input type="checkbox" class="ukemi-checkbox accent-emerald-500 w-4 h-4 sm:w-5 sm:h-5 mr-1" />
+                            <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-1.5 sm:px-2 py-1 rounded-md">Aprendi</span>
                         </label>
                     </div>
-                    <div class="video-container mb-3">
+                    <div class="video-container mb-2 sm:mb-3">
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/_g7rvsxTkz8?si=VPNi6CQlzX9dJNtN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="bg-emerald-50 p-2 rounded-xl">
-                        <h4 class="font-semibold text-emerald-800 mb-1 text-sm">💡 Dica:</h4>
+                        <h4 class="font-semibold text-emerald-800 mb-1 text-xs sm:text-sm">💡 Dica:</h4>
                         <p class="text-emerald-700 text-xs">Mantenha o queixo encostado no peito e bata as mãos no tatame.</p>
                     </div>
                 </div>
 
-                <!-- 3. Zenpo-kaiten -->
-                <div class="card-hover bg-white rounded-2xl shadow-lg p-4 flex flex-col">
-                    <div class="flex items-center mb-3 justify-between">
-                        <div class="flex items-center">
-                            <div class="bg-emerald-100 p-2 rounded-full mr-3">
-                                <span class="text-lg">🔄</span>
+                <!-- 2. Zenpo-kaiten responsivo -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-3 sm:p-4 flex flex-col">
+                    <div class="flex items-center mb-2 sm:mb-3 justify-between">
+                        <div class="flex items-center flex-1">
+                            <div class="bg-emerald-100 p-1.5 sm:p-2 rounded-full mr-2 sm:mr-3">
+                                <span class="text-base sm:text-lg">🔄</span>
                             </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-gray-800">Zenpo-kaiten</h3>
-                                <p class="text-emerald-600 text-sm font-medium">Rolamento para frente com giro</p>
+                            <div class="flex-1">
+                                <h3 class="text-base sm:text-lg font-bold text-gray-800">Zenpo-kaiten</h3>
+                                <p class="text-emerald-600 text-xs sm:text-sm font-medium">Rolamento para frente com giro</p>
                             </div>
                         </div>
-                        <label class="flex items-center ml-2 select-none">
-                            <input type="checkbox" class="ukemi-checkbox accent-emerald-500 w-5 h-5 mr-1" />
-                            <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                        <label class="flex items-center ml-2 select-none flex-shrink-0">
+                            <input type="checkbox" class="ukemi-checkbox accent-emerald-500 w-4 h-4 sm:w-5 sm:h-5 mr-1" />
+                            <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-1.5 sm:px-2 py-1 rounded-md">Aprendi</span>
                         </label>
                     </div>
-                    <div class="video-container mb-3">
+                    <div class="video-container mb-2 sm:mb-3">
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/kbiLot6laks?si=f_QwxHXrYTIqKDpz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="bg-emerald-50 p-2 rounded-xl">
-                        <h4 class="font-semibold text-emerald-800 mb-1 text-sm">💡 Dica:</h4>
+                        <h4 class="font-semibold text-emerald-800 mb-1 text-xs sm:text-sm">💡 Dica:</h4>
                         <p class="text-emerald-700 text-xs">Gire o corpo mantendo a linha reta e controle a queda.</p>
                     </div>
                 </div>
 
-                <!-- 4. Mae-ukemi -->
-                <div class="card-hover bg-white rounded-2xl shadow-lg p-4 flex flex-col">
-                    <div class="flex items-center mb-3 justify-between">
-                        <div class="flex items-center">
-                            <div class="bg-emerald-100 p-2 rounded-full mr-3">
-                                <span class="text-lg">⬇️</span>
+                <!-- 3. Mae-ukemi responsivo -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-3 sm:p-4 flex flex-col">
+                    <div class="flex items-center mb-2 sm:mb-3 justify-between">
+                        <div class="flex items-center flex-1">
+                            <div class="bg-emerald-100 p-1.5 sm:p-2 rounded-full mr-2 sm:mr-3">
+                                <span class="text-base sm:text-lg">⬇️</span>
                             </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-gray-800">Mae-ukemi</h3>
-                                <p class="text-emerald-600 text-sm font-medium">Rolamento para frente</p>
+                            <div class="flex-1">
+                                <h3 class="text-base sm:text-lg font-bold text-gray-800">Mae-ukemi</h3>
+                                <p class="text-emerald-600 text-xs sm:text-sm font-medium">Rolamento para frente</p>
                             </div>
                         </div>
-                        <label class="flex items-center ml-2 select-none">
-                            <input type="checkbox" class="ukemi-checkbox accent-emerald-500 w-5 h-5 mr-1" />
-                            <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                        <label class="flex items-center ml-2 select-none flex-shrink-0">
+                            <input type="checkbox" class="ukemi-checkbox accent-emerald-500 w-4 h-4 sm:w-5 sm:h-5 mr-1" />
+                            <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-1.5 sm:px-2 py-1 rounded-md">Aprendi</span>
                         </label>
                     </div>
-                    <div class="video-container mb-3">
+                    <div class="video-container mb-2 sm:mb-3">
                         <iframe width="560" height="315" src="https://www.youtube.com/embed/veM5RFdjo0U?si=hve0oKBBYWiE1KpG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="bg-emerald-50 p-2 rounded-xl">
-                        <h4 class="font-semibold text-emerald-800 mb-1 text-sm">💡 Dica:</h4>
+                        <h4 class="font-semibold text-emerald-800 mb-1 text-xs sm:text-sm">💡 Dica:</h4>
                         <p class="text-emerald-700 text-xs">Proteja a cabeça e role suavemente para frente.</p>
                     </div>
                 </div>
 
-                <!-- 5. Yoko-ukemi -->
-                <div class="card-hover bg-white rounded-2xl shadow-lg p-4 flex flex-col">
-                    <div class="flex items-center mb-3 justify-between">
-                        <div class="flex items-center">
-                            <div class="bg-emerald-100 p-2 rounded-full mr-3">
-                                <span class="text-lg">↔️</span>
+                <!-- 4. Yoko-ukemi responsivo -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg p-3 sm:p-4 flex flex-col">
+                    <div class="flex items-center mb-2 sm:mb-3 justify-between">
+                        <div class="flex items-center flex-1">
+                            <div class="bg-emerald-100 p-1.5 sm:p-2 rounded-full mr-2 sm:mr-3">
+                                <span class="text-base sm:text-lg">↔️</span>
                             </div>
-                            <div>
-                                <h3 class="text-lg font-bold text-gray-800">Yoko-ukemi</h3>
-                                <p class="text-emerald-700 text-sm">Rolamento lateral</p>
+                            <div class="flex-1">
+                                <h3 class="text-base sm:text-lg font-bold text-gray-800">Yoko-ukemi</h3>
+                                <p class="text-emerald-700 text-xs sm:text-sm">Rolamento lateral</p>
                             </div>
                         </div>
-                        <label class="flex items-center ml-2 select-none">
-                            <input type="checkbox" class="ukemi-checkbox accent-emerald-500 w-5 h-5 mr-1" />
-                            <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
+                        <label class="flex items-center ml-2 select-none flex-shrink-0">
+                            <input type="checkbox" class="ukemi-checkbox accent-emerald-500 w-4 h-4 sm:w-5 sm:h-5 mr-1" />
+                            <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-1.5 sm:px-2 py-1 rounded-md">Aprendi</span>
                         </label>
                     </div>
-                    <div class="video-container mb-3">
+                    <div class="video-container mb-2 sm:mb-3">
                         <iframe src="https://www.youtube.com/embed/JCwK1Ia4jsc" title="Yoko-ukemi" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
                     <div class="bg-emerald-50 p-2 rounded-xl">
-                        <h4 class="font-semibold text-emerald-800 mb-1 text-sm">💡 Dica:</h4>
+                        <h4 class="font-semibold text-emerald-800 mb-1 text-xs sm:text-sm">💡 Dica:</h4>
                         <p class="text-emerald-700 text-xs">Relaxe o corpo e role lateralmente, batendo o braço no tatame.</p>
                     </div>
                 </div>
@@ -508,9 +516,9 @@
         </section>
     </main>
     
-    <!-- Modal de Parabéns -->
-    <div id="congratulationsModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] hidden items-center justify-center">
-        <div class="bg-white rounded-3xl shadow-2xl max-w-2xl mx-4 p-8 text-center relative overflow-hidden">
+    <!-- Modal de Parabéns responsivo -->
+    <div id="congratulationsModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl shadow-2xl max-w-2xl w-full mx-4 p-4 sm:p-6 md:p-8 text-center relative overflow-hidden">
             <!-- Partículas de fundo -->
             <div class="absolute inset-0 overflow-hidden pointer-events-none">
                 <div class="celebration-particle" style="--delay: 0s; --x: 10%; --y: 20%"></div>
@@ -529,40 +537,40 @@
                     <div class="trophy-glow"></div>
                 </div>
                 
-                <!-- Título principal -->
-                <h1 class="congratulations-title text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 bg-clip-text text-transparent">
+                <!-- Título principal responsivo -->
+                <h1 class="congratulations-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-emerald-500 via-green-500 to-teal-500 bg-clip-text text-transparent">
                     Parabéns!
                 </h1>
                 
-                <!-- Subtítulo -->
-                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
+                <!-- Subtítulo responsivo -->
+                <h2 class="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 mb-4 sm:mb-6">
                     Você Dominou os <span class="text-gradient">Rolamentos (Ukemi)</span>!
                 </h2>
                 
-                <!-- Mensagem motivacional -->
-                <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                <!-- Mensagem motivacional responsiva -->
+                <p class="text-sm sm:text-base md:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed px-2">
                     Sua dedicação e prática foram fundamentais para dominar os rolamentos. 
                     Agora você está mais seguro e preparado para evoluir no judô!
                 </p>
                 
-                <!-- Estatísticas -->
-                <div class="stats-grid grid grid-cols-2 gap-4 mb-8">
+                <!-- Estatísticas responsivas -->
+                <div class="stats-grid grid grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
                     <div class="stat-card">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Progresso</div>
+                        <div class="stat-number text-xl sm:text-2xl">100%</div>
+                        <div class="stat-label text-xs sm:text-sm">Progresso</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">5</div>
-                        <div class="stat-label">Rolamentos Dominados</div>
+                        <div class="stat-number text-xl sm:text-2xl">4</div>
+                        <div class="stat-label text-xs sm:text-sm">Rolamentos Dominados</div>
                     </div>
                 </div>
                 
-                <!-- Botões de ação -->
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button id="continueTraining" class="continue-btn bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-8 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                <!-- Botões de ação responsivos -->
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                    <button id="continueTraining" class="continue-btn bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg text-sm sm:text-base">
                         Continuar Treinando
                     </button>
-                    <button id="closeCongratulations" class="close-btn bg-gray-500 hover:bg-gray-600 text-white px-8 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    <button id="closeCongratulations" class="close-btn bg-gray-500 hover:bg-gray-600 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg text-sm sm:text-base">
                         Fechar
                     </button>
                 </div>
@@ -570,10 +578,10 @@
         </div>
     </div>
     
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6 px-4 mt-8">
+    <!-- Footer responsivo -->
+    <footer class="bg-gray-800 text-white py-4 sm:py-6 px-4 mt-6 sm:mt-8">
         <div class="max-w-6xl mx-auto text-center">
-            <p class="text-gray-300">
+            <p class="text-gray-300 text-sm sm:text-base">
                 © 2024 Academia de Judô - Rolamentos (Ukemi) - Desenvolvido por Caio Campos
             </p>
         </div>

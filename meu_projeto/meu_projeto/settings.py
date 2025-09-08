@@ -83,7 +83,21 @@ USE_TZ = True
 # Estáticos
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Configuração para encontrar arquivos estáticos em desenvolvimento
+# Esta configuração diz ao Django onde procurar por arquivos estáticos
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
+# Configuração do WhiteNoise para servir arquivos estáticos
+# Em desenvolvimento, o Django serve os arquivos estáticos automaticamente
+# Em produção, o WhiteNoise é responsável por servir esses arquivos
+if not DEBUG:
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+else:
+    # Em desenvolvimento, usar o storage padrão do Django
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

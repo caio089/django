@@ -28,6 +28,74 @@
    <link rel="stylesheet" href="{% static 'pag6/css/styles.css' %}">
    <script src="{% static 'pag6/js/scripts.js' %}"></script>
     
+    <style>
+        /* Estilos para carregamento sob demanda de vídeos */
+        .video-thumbnail-container {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .video-thumbnail-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .video-thumbnail-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .video-thumbnail-container:hover img {
+            opacity: 0.9;
+        }
+        
+        .video-thumbnail-container .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .video-thumbnail-container:hover .play-button {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        
+        .video-loaded {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .video-loaded iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+            border-radius: 12px;
+        }
+        
+        /* Animação de loading */
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .loading-spinner {
+            animation: spin 1s linear infinite;
+        }
+    </style>
+    
 </head>
 <body class="bg-gray-50 font-display">
     <!-- Header com Progresso -->

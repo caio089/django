@@ -363,9 +363,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar botões do modal
     initializeCongratulationsButtons();
     
-    // ===== LAZY LOADING DE VÍDEOS =====
+    // ===== SISTEMA DE CARREGAMENTO SOB DEMANDA (CLIQUE) =====
     function setupLazyVideos() {
-        console.log('Configurando lazy loading de vídeos...');
+        console.log('Configurando carregamento sob demanda...');
         
         // Aguardar DOM estar pronto
         setTimeout(() => {
@@ -382,70 +382,173 @@ document.addEventListener('DOMContentLoaded', function() {
             videos.forEach((video, index) => {
                 console.log(`Vídeo ${index + 1}:`, video.src);
                 
-                // Criar placeholder
+                // Criar thumbnail clicável
                 const container = video.parentElement;
-                const placeholder = document.createElement('div');
-                placeholder.className = 'lazy-video';
-                placeholder.innerHTML = `
-                    <div class="video-placeholder">
-                        <div class="loading-spinner"></div>
-                        <p>Carregando vídeo...</p>
-                    </div>
-                `;
+                const thumbnailContainer = createVideoThumbnail(video);
                 
-                // Salvar dados originais
-                placeholder.dataset.src = video.src;
-                placeholder.dataset.title = video.title;
-                placeholder.dataset.allow = video.allow;
-                placeholder.dataset.allowfullscreen = video.allowFullscreen;
-                placeholder.dataset.referrerpolicy = video.referrerPolicy;
-                
-                // Substituir iframe pelo placeholder
-                container.replaceChild(placeholder, video);
-                
-                // Configurar observer para este placeholder
-                if ('IntersectionObserver' in window) {
-                    const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                console.log('Vídeo visível, carregando:', entry.target.dataset.src);
-                                loadVideo(entry.target);
-                                observer.unobserve(entry.target);
-                            }
-                        });
-                    }, {
-                        rootMargin: '50px 0px',
-                        threshold: 0.1
-                    });
-                    
-                    observer.observe(placeholder);
-                } else {
-                    // Sem IntersectionObserver, carregar imediatamente
-                    console.log('Carregando vídeo imediatamente (sem IntersectionObserver)');
-                    loadVideo(placeholder);
-                }
+                // Substituir iframe pelo thumbnail
+                container.replaceChild(thumbnailContainer, video);
             });
             
-            console.log('Lazy loading configurado para', videos.length, 'vídeos');
+            console.log('✅ Carregamento sob demanda configurado para', videos.length, 'vídeos');
         }, 1500);
     }
     
-    function loadVideo(placeholder) {
-        const container = placeholder.parentElement;
-        const iframe = document.createElement('iframe');
+    // Função para criar thumbnail clicável do vídeo
+    function createVideoThumbnail(iframe) {
+        const src = iframe.getAttribute('src');
+        const title = iframe.getAttribute('title') || 'Vídeo do YouTube';
         
-        // Configurar iframe
-        iframe.src = placeholder.dataset.src;
-        iframe.title = placeholder.dataset.title || 'YouTube video player';
-        iframe.frameBorder = '0';
-        iframe.allow = placeholder.dataset.allow || 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-        iframe.referrerPolicy = placeholder.dataset.referrerpolicy || 'strict-origin-when-cross-origin';
-        iframe.allowFullscreen = placeholder.dataset.allowfullscreen !== 'false';
-        iframe.className = 'w-full h-full border-0 rounded-lg';
+        // Extrair ID do vídeo do YouTube
+        const videoId = extractVideoId(src);
+        const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
         
-        // Substituir placeholder pelo iframe
-        container.replaceChild(iframe, placeholder);
-        console.log('✅ Vídeo carregado:', iframe.src);
+        // Criar container do thumbnail
+        const thumbnailContainer = document.createElement('div');
+        thumbnailContainer.className = 'video-thumbnail-container';
+        thumbnailContainer.style.cssText = `
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #8B5C2A 0%, #4E2E0E 100%);
+            border-radius: 12px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        `;
+        
+        // Adicionar efeito hover
+        thumbnailContainer.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.02)';
+            this.style.boxShadow = '0 10px 25px rgba(0,0,0,0.2)';
+        });
+        
+        thumbnailContainer.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+            this.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
+        });
+        
+        // Criar imagem de thumbnail
+        const thumbnailImg = document.createElement('img');
+        thumbnailImg.src = thumbnailUrl;
+        thumbnailImg.alt = title;
+        thumbnailImg.style.cssText = `
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        `;
+        
+        // Criar overlay com botão de play
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        `;
+        
+        // Botão de play
+        const playButton = document.createElement('div');
+        playButton.innerHTML = `
+            <div style="
+                width: 60px;
+                height: 60px;
+                background: rgba(255, 255, 255, 0.9);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+                transition: transform 0.3s ease;
+            ">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#8B5C2A">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+            </div>
+        `;
+        
+        // Adicionar efeito hover no botão
+        playButton.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.1)';
+        });
+        
+        playButton.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+        });
+        
+        // Adicionar elementos ao container
+        overlay.appendChild(playButton);
+        thumbnailContainer.appendChild(thumbnailImg);
+        thumbnailContainer.appendChild(overlay);
+        
+        // Adicionar evento de clique para carregar vídeo
+        thumbnailContainer.addEventListener('click', function() {
+            loadVideo(thumbnailContainer, iframe);
+        });
+        
+        return thumbnailContainer;
+    }
+    
+    // Função para extrair ID do vídeo do YouTube
+    function extractVideoId(url) {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11) ? match[2] : null;
+    }
+    
+    // Função para carregar vídeo quando clicado
+    function loadVideo(thumbnailContainer, originalIframe) {
+        // Adicionar indicador de carregamento
+        const loadingSpinner = document.createElement('div');
+        loadingSpinner.style.cssText = `
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e5e7eb;
+            border-top: 4px solid #8B5C2A;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            z-index: 10;
+        `;
+        
+        // Adicionar CSS para animação de spin se não existir
+        if (!document.querySelector('#spin-animation')) {
+            const style = document.createElement('style');
+            style.id = 'spin-animation';
+            style.textContent = `
+                @keyframes spin {
+                    0% { transform: translate(-50%, -50%) rotate(0deg); }
+                    100% { transform: translate(-50%, -50%) rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        thumbnailContainer.appendChild(loadingSpinner);
+        
+        // Simular carregamento (opcional - pode ser removido para carregamento instantâneo)
+        setTimeout(() => {
+            // Substituir thumbnail pelo iframe original
+            thumbnailContainer.parentNode.replaceChild(originalIframe, thumbnailContainer);
+            
+            // Adicionar classe para indicar que foi carregado
+            originalIframe.classList.add('video-loaded');
+            
+            console.log('✅ Vídeo carregado:', originalIframe.src);
+        }, 500); // Delay de 500ms para mostrar o loading
     }
     
     // Inicializar lazy loading
