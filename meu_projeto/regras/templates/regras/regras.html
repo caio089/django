@@ -47,7 +47,13 @@
         
         .hero-section {
             background: linear-gradient(135deg, #374151 0%, #1F2937 100%);
-            min-height: 60vh;
+            min-height: 40vh;
+        }
+        
+        @media (min-width: 641px) {
+            .hero-section {
+                min-height: 60vh;
+            }
         }
         
         .rule-card {
@@ -128,40 +134,115 @@
             background: rgba(59, 130, 246, 0.15);
             border-color: rgba(59, 130, 246, 0.4);
         }
+        
+        /* Melhorias de responsividade para mobile */
+        @media (max-width: 640px) {
+            .hero-section {
+                min-height: 40vh;
+            }
+            
+            .rule-card {
+                margin-bottom: 1rem;
+            }
+            
+            .rule-card h4 {
+                font-size: 1rem;
+                line-height: 1.4;
+            }
+            
+            .rule-card p, .rule-card span {
+                font-size: 0.75rem;
+                line-height: 1.3;
+            }
+            
+            .highlight-rule {
+                font-size: 0.7rem;
+                padding: 1px 6px;
+            }
+            
+            .nav-link {
+                padding: 0.5rem;
+            }
+            
+            .nav-link div:first-child {
+                font-size: 1.25rem;
+            }
+            
+            .nav-link div:last-child {
+                font-size: 0.75rem;
+            }
+        }
+        
+        /* Melhorias para tablets */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .rule-card {
+                padding: 1rem 1.5rem;
+            }
+            
+            .nav-link {
+                padding: 0.75rem;
+            }
+        }
+        
+        /* Melhorias para telas muito pequenas */
+        @media (max-width: 480px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
+            .rule-card {
+                padding: 0.75rem;
+            }
+            
+            .rule-card h4 {
+                font-size: 0.9rem;
+            }
+            
+            .rule-card p, .rule-card span {
+                font-size: 0.7rem;
+            }
+            
+            .highlight-rule {
+                font-size: 0.65rem;
+                padding: 1px 4px;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-desc">
-    <!-- Botão de voltar -->
-    <div class="fixed top-6 left-6 z-50">
-        <a href="/index/" class="back-btn inline-flex items-center px-4 py-2 rounded-lg text-blue-600 hover:text-blue-700">
-            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <!-- Botão de voltar responsivo -->
+    <div class="fixed top-4 left-4 sm:top-6 sm:left-6 z-50">
+        <a href="/index/" class="back-btn inline-flex items-center px-3 py-2 sm:px-4 sm:py-2 rounded-lg text-blue-600 hover:text-blue-700 text-sm sm:text-base">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
             </svg>
-            Voltar
+            <span class="hidden sm:inline">Voltar</span>
+            <span class="sm:hidden">←</span>
         </a>
     </div>
     
-    <!-- Hero Section -->
-    <section class="hero-section text-white py-20">
+    <!-- Hero Section responsiva -->
+    <section class="hero-section text-white py-12 sm:py-16 md:py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="font-title text-4xl md:text-6xl font-bold mb-6 fade-in-up">
+            <h1 class="font-title text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-4 sm:mb-6 fade-in-up">
                 🥋 Regras de Competição
             </h1>
-            <p class="font-subtitle text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+            <p class="font-subtitle text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto px-4">
                 Conheça todas as regras essenciais para competições de judô e entenda o que é permitido e proibido
             </p>
         </div>
     </section>
     
-    <!-- Container principal -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <!-- Introdução -->
-        <div class="bg-white rounded-2xl shadow-lg p-8 mb-12 fade-in-up">
+    <!-- Container principal responsivo -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
+        <!-- Introdução responsiva -->
+        <div class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 md:p-8 mb-8 sm:mb-12 fade-in-up">
             <div class="text-center">
-                <h2 class="font-title text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+                <h2 class="font-title text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
                     📋 Regulamento Oficial
                 </h2>
-                <p class="font-desc text-lg text-gray-600 leading-relaxed">
+                <p class="font-desc text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed px-2">
                     As competições de judô seguem regras rigorosas estabelecidas pela Federação Internacional de Judô (IJF). 
                     Conhecer estas regras é fundamental para participar de competições e evitar penalizações. 
                     Aqui você encontrará tudo sobre kimono, técnicas permitidas, punições e muito mais.
@@ -169,49 +250,49 @@
             </div>
         </div>
         
-        <!-- Navegação por seções -->
-        <div class="fade-in-up mb-12">
-            <div class="nav-section rounded-2xl p-6">
-                <h3 class="font-title text-xl font-bold text-gray-900 mb-4 text-center">📚 Navegue pelas Seções</h3>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <button onclick="scrollToSection('kimono')" class="nav-link p-3 text-center">
-                        <div class="text-2xl mb-2">👕</div>
-                        <div class="font-subtitle text-sm text-gray-700">Kimono</div>
+        <!-- Navegação por seções responsiva -->
+        <div class="fade-in-up mb-8 sm:mb-12">
+            <div class="nav-section rounded-2xl p-4 sm:p-6">
+                <h3 class="font-title text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4 text-center">📚 Navegue pelas Seções</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4">
+                    <button onclick="scrollToSection('kimono')" class="nav-link p-2 sm:p-3 text-center">
+                        <div class="text-xl sm:text-2xl mb-1 sm:mb-2">👕</div>
+                        <div class="font-subtitle text-xs sm:text-sm text-gray-700">Kimono</div>
                     </button>
-                    <button onclick="scrollToSection('regras')" class="nav-link p-3 text-center">
-                        <div class="text-2xl mb-2">⚔️</div>
-                        <div class="font-subtitle text-sm text-gray-700">Regras</div>
+                    <button onclick="scrollToSection('regras')" class="nav-link p-2 sm:p-3 text-center">
+                        <div class="text-xl sm:text-2xl mb-1 sm:mb-2">⚔️</div>
+                        <div class="font-subtitle text-xs sm:text-sm text-gray-700">Regras</div>
                     </button>
-                    <button onclick="scrollToSection('punicoes')" class="nav-link p-3 text-center">
-                        <div class="text-2xl mb-2">⚠️</div>
-                        <div class="font-subtitle text-sm text-gray-700">Punições</div>
+                    <button onclick="scrollToSection('punicoes')" class="nav-link p-2 sm:p-3 text-center">
+                        <div class="text-xl sm:text-2xl mb-1 sm:mb-2">⚠️</div>
+                        <div class="font-subtitle text-xs sm:text-sm text-gray-700">Punições</div>
                     </button>
-                    <button onclick="scrollToSection('tecnicas')" class="nav-link p-3 text-center">
-                        <div class="text-2xl mb-2">🥋</div>
-                        <div class="font-subtitle text-sm text-gray-700">Técnicas</div>
+                    <button onclick="scrollToSection('tecnicas')" class="nav-link p-2 sm:p-3 text-center">
+                        <div class="text-xl sm:text-2xl mb-1 sm:mb-2">🥋</div>
+                        <div class="font-subtitle text-xs sm:text-sm text-gray-700">Técnicas</div>
                     </button>
                 </div>
             </div>
         </div>
         
-        <!-- Regras do Kimono -->
-        <section id="kimono" class="mb-16">
+        <!-- Regras do Kimono responsivas -->
+        <section id="kimono" class="mb-12 sm:mb-16">
             <div class="fade-in-up">
-                <h3 class="font-title text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                    <span class="w-8 h-8 bg-green-400 rounded-full flex items-center justify-center mr-3">👕</span>
+                <h3 class="font-title text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 flex items-center">
+                    <span class="w-6 h-6 sm:w-8 sm:h-8 bg-green-400 rounded-full flex items-center justify-center mr-2 sm:mr-3 text-sm sm:text-base">👕</span>
                     Regras do Kimono (Judogi)
                 </h3>
                 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Tamanhos -->
-                    <div class="rule-card rounded-xl p-6 category-kimono">
-                        <div class="text-center mb-4">
-                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <i class="fas fa-ruler text-green-600 text-2xl"></i>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                    <!-- Tamanhos responsivos -->
+                    <div class="rule-card rounded-xl p-4 sm:p-6 category-kimono">
+                        <div class="text-center mb-3 sm:mb-4">
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3">
+                                <i class="fas fa-ruler text-green-600 text-lg sm:text-2xl"></i>
                             </div>
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Tamanhos</h4>
+                            <h4 class="font-subtitle text-lg sm:text-xl font-semibold text-gray-900">Tamanhos</h4>
                         </div>
-                        <div class="space-y-3 text-sm text-gray-600">
+                        <div class="space-y-2 sm:space-y-3 text-xs sm:text-sm text-gray-600">
                             <div class="flex justify-between">
                                 <span>Masculino:</span>
                                 <span class="highlight-rule">1, 2, 3, 4, 5</span>
@@ -227,39 +308,39 @@
                         </div>
                     </div>
                     
-                    <!-- Material -->
-                    <div class="rule-card rounded-xl p-6 category-kimono">
-                        <div class="text-center mb-4">
-                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <i class="fas fa-leaf text-blue-600 text-2xl"></i>
+                    <!-- Material responsivo -->
+                    <div class="rule-card rounded-xl p-4 sm:p-6 category-kimono">
+                        <div class="text-center mb-3 sm:mb-4">
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3">
+                                <i class="fas fa-leaf text-blue-600 text-lg sm:text-2xl"></i>
                             </div>
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Material</h4>
+                            <h4 class="font-subtitle text-lg sm:text-xl font-semibold text-gray-900">Material</h4>
                         </div>
-                        <div class="space-y-3 text-sm text-gray-600">
+                        <div class="space-y-2 sm:space-y-3 text-xs sm:text-sm text-gray-600">
                             <div class="flex items-center">
-                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <i class="fas fa-check text-green-500 mr-2 text-xs sm:text-sm"></i>
                                 <span>100% algodão</span>
                             </div>
                             <div class="flex items-center">
-                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <i class="fas fa-check text-green-500 mr-2 text-xs sm:text-sm"></i>
                                 <span class="highlight-rule">Peso mínimo: 700g</span>
                             </div>
                             <div class="flex items-center">
-                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <i class="fas fa-check text-green-500 mr-2 text-xs sm:text-sm"></i>
                                 <span>Cor branca ou azul</span>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Medidas -->
-                    <div class="rule-card rounded-xl p-6 category-kimono">
-                        <div class="text-center mb-4">
-                            <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                                <i class="fas fa-expand-arrows-alt text-purple-600 text-2xl"></i>
+                    <!-- Medidas responsivas -->
+                    <div class="rule-card rounded-xl p-4 sm:p-6 category-kimono">
+                        <div class="text-center mb-3 sm:mb-4">
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2 sm:mb-3">
+                                <i class="fas fa-expand-arrows-alt text-purple-600 text-lg sm:text-2xl"></i>
                             </div>
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Medidas</h4>
+                            <h4 class="font-subtitle text-lg sm:text-xl font-semibold text-gray-900">Medidas</h4>
                         </div>
-                        <div class="space-y-3 text-sm text-gray-600">
+                        <div class="space-y-2 sm:space-y-3 text-xs sm:text-sm text-gray-600">
                             <div class="flex justify-between">
                                 <span>Manga:</span>
                                 <span class="highlight-rule">5-7cm do pulso</span>
@@ -276,49 +357,49 @@
                     </div>
                 </div>
                 
-                <!-- Regras Específicas do Kimono -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-                    <div class="rule-card rounded-xl p-6 category-kimono">
-                        <h4 class="font-subtitle text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                            <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                <!-- Regras Específicas do Kimono responsivas -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mt-6 sm:mt-8">
+                    <div class="rule-card rounded-xl p-4 sm:p-6 category-kimono">
+                        <h4 class="font-subtitle text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4 flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2 text-sm sm:text-base"></i>
                             O que é PERMITIDO
                         </h4>
-                        <ul class="space-y-3 text-gray-600">
+                        <ul class="space-y-2 sm:space-y-3 text-xs sm:text-sm text-gray-600">
                             <li class="flex items-start">
-                                <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                                <i class="fas fa-check text-green-500 mt-1 mr-2 sm:mr-3 text-xs sm:text-sm"></i>
                                 <span>Kimono limpo e bem passado</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                                <i class="fas fa-check text-green-500 mt-1 mr-2 sm:mr-3 text-xs sm:text-sm"></i>
                                 <span>Faixa (obi) de 4-5cm de largura</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                                <i class="fas fa-check text-green-500 mt-1 mr-2 sm:mr-3 text-xs sm:text-sm"></i>
                                 <span>Camiseta branca por baixo (opcional)</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                                <i class="fas fa-check text-green-500 mt-1 mr-2 sm:mr-3 text-xs sm:text-sm"></i>
                                 <span>Calcinha/short branco por baixo</span>
                             </li>
                         </ul>
                     </div>
                     
-                    <div class="rule-card rounded-xl p-6 category-kimono">
-                        <h4 class="font-subtitle text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                            <i class="fas fa-times-circle text-red-500 mr-2"></i>
+                    <div class="rule-card rounded-xl p-4 sm:p-6 category-kimono">
+                        <h4 class="font-subtitle text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4 flex items-center">
+                            <i class="fas fa-times-circle text-red-500 mr-2 text-sm sm:text-base"></i>
                             O que é PROIBIDO
                         </h4>
-                        <ul class="space-y-3 text-gray-600">
+                        <ul class="space-y-2 sm:space-y-3 text-xs sm:text-sm text-gray-600">
                             <li class="flex items-start">
-                                <i class="fas fa-times text-red-500 mt-1 mr-3"></i>
+                                <i class="fas fa-times text-red-500 mt-1 mr-2 sm:mr-3 text-xs sm:text-sm"></i>
                                 <span>Kimono rasgado ou sujo</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-times text-red-500 mt-1 mr-3"></i>
+                                <i class="fas fa-times text-red-500 mt-1 mr-2 sm:mr-3 text-xs sm:text-sm"></i>
                                 <span>Faixa muito longa ou curta</span>
                             </li>
                             <li class="flex items-start">
-                                <i class="fas fa-times text-red-500 mt-1 mr-3"></i>
+                                <i class="fas fa-times text-red-500 mt-1 mr-2 sm:mr-3 text-xs sm:text-sm"></i>
                                 <span>Camiseta colorida por baixo</span>
                             </li>
                             <li class="flex items-start">

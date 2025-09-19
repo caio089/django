@@ -1,0 +1,899 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* ===== ESTILOS BASE OTIMIZADOS ===== */
+.gradient-bg {
+    background: linear-gradient(135deg, #FDBA74 0%, #F97316 100%);
+}
+
+.card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.video-container {
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto 1rem auto;
+    aspect-ratio: 16/9;
+    background: #eee;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 12px;
+    display: block;
+}
+
+.progress-bar {
+    transition: width 0.5s ease;
+}
+
+.section-divider {
+    background: linear-gradient(90deg, transparent, #F97316, transparent);
+}
+
+.text-gradient {
+    background: linear-gradient(45deg, #FDBA74, #F97316);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+#welcomeCard {
+    box-shadow: 0 2px 16px 0 rgba(251,191,36,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
+}
+
+#welcomeCard:hover {
+    box-shadow: 0 0 24px 4px #FDBA74, 0 2px 16px 0 rgba(251,191,36,0.12);
+}
+
+.details {
+    transition-property: opacity, max-height, transform, margin-top;
+}
+
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+/* ===== ANIMAÇÕES SIMPLIFICADAS ===== */
+.destination-highlight {
+    animation: destinationPulse 2s ease-in-out;
+}
+
+@keyframes destinationPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7); }
+    50% { box-shadow: 0 0 0 20px rgba(251, 191, 36, 0); }
+}
+        
+/* ===== MODAL DE PARABÉNS OTIMIZADO ===== */
+.modal-enter {
+    animation: modalEnter 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes modalEnter {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+#congratulationsModal {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#congratulationsModal.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+#congratulationsModal:not(.hidden) {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+        
+/* ===== TROFÉU SIMPLIFICADO ===== */
+.trophy-container {
+    position: relative;
+    display: inline-block;
+}
+
+.trophy-icon {
+    font-size: 4rem;
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+}
+
+.congratulations-title {
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
+}
+        
+/* ===== BOTÕES SIMPLIFICADOS ===== */
+.continue-btn, .close-btn {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.continue-btn:hover, .close-btn:hover {
+    transform: scale(1.05);
+}
+        
+/* ===== ESTATÍSTICAS SIMPLIFICADAS ===== */
+.stat-card {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border: 2px solid #fbbf24;
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #f59e0b;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: #92400e;
+    font-weight: 500;
+}
+/* ===== CARDS DE TÉCNICA OTIMIZADOS ===== */
+.technique-card {
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.technique-card .video-container {
+    flex-shrink: 0;
+}
+
+.technique-card .p-4 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.technique-card .bg-orange-50 {
+    margin-top: auto;
+    margin-bottom: 0;
+}
+
+.animate-fade-in {
+    animation: fade-in 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+        
+/* ===== HABILIDADES SIMPLIFICADAS ===== */
+.habilidade-item {
+    opacity: 1;
+    transform: translateY(0);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.habilidade-item:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    background: rgba(255, 255, 255, 0.95);
+}
+/* ===== NAVEGAÇÃO JAPONESA SIMPLIFICADA ===== */
+.japanese-nav-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.japanese-nav-card.clicked {
+    transform: scale(0.9);
+    box-shadow: 0 0 40px rgba(251, 191, 36, 0.6);
+    border-color: #F59E0B;
+}
+
+.japanese-nav-container {
+    position: relative;
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.03) 0%, rgba(251, 191, 36, 0.01) 100%);
+    border-radius: 16px;
+    padding: 16px;
+    margin: 16px 0;
+    border: 1px solid rgba(251, 191, 36, 0.08);
+    box-shadow: 0 4px 20px rgba(251, 191, 36, 0.08);
+}
+
+.japanese-nav-card:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(251, 191, 36, 0.15);
+    border-color: #fbbf24;
+}
+        
+/* ===== CARROSSEL SIMPLIFICADO ===== */
+.carousel-arrow-anim {
+    animation: carouselArrowClick 0.7s ease-out;
+}
+
+@keyframes carouselArrowClick {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
+/* ===== SETAS DO CARROSSEL REMOVIDAS ===== */
+.carousel-arrow-left,
+.carousel-arrow-right,
+#carouselLeft,
+#carouselRight,
+#carouselImobLeft,
+#carouselImobRight {
+    display: none !important;
+}
+        
+/* ===== RESPONSIVIDADE MOBILE OTIMIZADA ===== */
+@media (max-width: 768px) {
+    /* Header responsivo */
+    header {
+        padding: 0.75rem 1rem;
+    }
+    
+    header h1 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    header p {
+        font-size: 0.875rem;
+    }
+    
+    /* Barra de progresso mobile */
+    .progress-bar {
+        height: 0.75rem;
+    }
+    
+    /* Cards de habilidades mobile */
+    .habilidade-item {
+        font-size: 0.875rem;
+        padding: 0.75rem 1rem;
+        margin: 0.25rem;
+        min-width: calc(100% - 2rem);
+        max-width: calc(100% - 2rem);
+    }
+    
+    /* Seções de técnicas mobile */
+    #nage-waza-section, #imobilizacoes-section, #chave-braco-section, #estrangulamento-section, #henkakuenka-section, #renrakuenka-section, #kaeshi-waza-section {
+        padding: 0 1rem;
+    }
+    
+    /* Layout vertical para técnicas no mobile */
+    #carouselProj,
+    #carouselImob {
+        display: flex !important;
+        flex-direction: column !important;
+        flex-wrap: nowrap !important;
+        gap: 1.5rem !important;
+        overflow: visible !important;
+        scroll-behavior: smooth !important;
+        padding: 0.5rem 0 !important;
+        position: relative !important;
+        scroll-snap-type: none !important;
+        align-items: center !important;
+    }
+    
+    /* Cards das técnicas - layout vertical */
+    #carouselProj .technique-card,
+    #carouselImob .technique-card {
+        min-width: 100% !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .video-card,
+    .card-hover {
+        margin-bottom: 1.5rem;
+    }
+    
+    .video-header {
+        padding: 1rem;
+    }
+    
+    .video-title {
+        font-size: 1rem;
+    }
+    
+    .video-description {
+        font-size: 0.875rem;
+    }
+    
+    .video-container {
+        height: 200px;
+        margin: 1rem auto;
+    }
+    
+    .video-tip {
+        padding: 1rem;
+        margin: 0 1rem 1rem 1rem;
+    }
+    
+    .video-tip-title {
+        font-size: 0.875rem;
+    }
+    
+    .video-tip-text {
+        font-size: 0.75rem;
+    }
+    
+    /* Botões mobile */
+    .back-to-top-section {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.875rem;
+    }
+    
+    /* Modal mobile */
+    #congratulationsModal .bg-white {
+        margin: 1rem;
+        padding: 1.5rem;
+        max-width: calc(100vw - 2rem);
+    }
+    
+    .congratulations-title {
+        font-size: 2rem;
+    }
+    
+    .trophy-icon {
+        font-size: 3rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .stat-card {
+        padding: 1rem;
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    /* Barra flutuante mobile */
+    #floatingProgress {
+        width: calc(100vw - 2rem);
+        margin: 0 1rem;
+        padding: 0.75rem;
+    }
+    
+    #floatingProgress .w-80 {
+        width: calc(100% - 4rem);
+    }
+    
+    /* Botão voltar ao topo mobile */
+    #backToTop {
+        bottom: 1rem;
+        right: 1rem;
+        padding: 0.75rem;
+    }
+    
+    #backToTop span {
+        font-size: 1.5rem;
+    }
+    
+    /* Container principal mobile */
+    main {
+        padding: 0.5rem;
+    }
+    
+    /* Títulos mobile */
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* Grid responsivo mobile */
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    /* Espaçamento otimizado para mobile */
+    .mb-12 { margin-bottom: 2rem; }
+    .mb-8 { margin-bottom: 1.5rem; }
+    .mb-4 { margin-bottom: 1rem; }
+    .mb-2 { margin-bottom: 0.75rem; }
+    .py-6 { padding-top: 1rem; padding-bottom: 1rem; }
+    .px-4 { padding-left: 1rem; padding-right: 1rem; }
+}
+        
+/* ===== MEDIA QUERY 480px CONSOLIDADA ===== */
+@media (max-width: 480px) {
+    /* Checkboxes menores */
+    input[type="checkbox"] {
+        width: 0.875rem;
+        height: 0.875rem;
+        min-width: 0.875rem;
+        min-height: 0.875rem;
+    }
+    
+    /* Header menor */
+    header {
+        padding: 0.5rem;
+    }
+    
+    header h1 {
+        font-size: 1.25rem;
+    }
+    
+    header p {
+        font-size: 0.75rem;
+    }
+    
+    /* Cards de habilidades menores */
+    .habilidade-item {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.75rem;
+        margin: 0.125rem;
+    }
+    
+    /* Seções menores */
+    #nage-waza-section, #imobilizacoes-section, #chave-braco-section, #estrangulamento-section, #henkakuenka-section, #renrakuenka-section, #kaeshi-waza-section {
+        padding: 0 0.5rem;
+    }
+    
+    /* Layout vertical mantido para telas pequenas */
+    #carouselProj .technique-card,
+    #carouselImob .technique-card {
+        min-width: 100% !important;
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+    
+    #carouselProj,
+    #carouselImob {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1rem !important;
+        padding: 0.25rem 0 !important;
+    }
+    
+    /* Container principal menor */
+    main {
+        padding: 0.5rem;
+    }
+    
+    /* Títulos menores */
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .video-card,
+    .card-hover {
+        margin-bottom: 1rem;
+    }
+    
+    .video-header {
+        padding: 0.75rem;
+    }
+    
+    .video-title {
+        font-size: 0.875rem;
+    }
+    
+    .video-description {
+        font-size: 0.75rem;
+    }
+    
+    .video-container {
+        height: 180px;
+        margin: 0.75rem auto;
+    }
+    
+    .video-tip {
+        padding: 0.75rem;
+        margin: 0 0.75rem 0.75rem 0.75rem;
+    }
+    
+    .video-tip-title {
+        font-size: 0.75rem;
+    }
+    
+    .video-tip-text {
+        font-size: 0.6875rem;
+    }
+    
+    /* Botões menores */
+    .back-to-top-section {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+    }
+    
+    /* Modal menor */
+    #congratulationsModal .bg-white {
+        margin: 0.5rem;
+        padding: 1rem;
+    }
+    
+    .congratulations-title {
+        font-size: 1.5rem;
+    }
+    
+    .trophy-icon {
+        font-size: 2.5rem;
+    }
+    
+    .stat-card {
+        padding: 0.75rem;
+    }
+    
+    .stat-number {
+        font-size: 1.25rem;
+    }
+    
+    .stat-label {
+        font-size: 0.75rem;
+    }
+    
+    /* Barra flutuante menor */
+    #floatingProgress {
+        width: calc(100vw - 1rem);
+        margin: 0 0.5rem;
+        padding: 0.5rem;
+    }
+    
+    #floatingProgress .w-80 {
+        width: calc(100% - 3rem);
+    }
+    
+    /* Botão voltar ao topo menor */
+    #backToTop {
+        bottom: 0.75rem;
+        right: 0.75rem;
+        padding: 0.5rem;
+    }
+    
+    #backToTop span {
+        font-size: 1.25rem;
+    }
+}
+        
+/* ===== MEDIA QUERY 360px CONSOLIDADA ===== */
+@media (max-width: 360px) {
+    /* Checkboxes mínimos */
+    input[type="checkbox"] {
+        width: 0.75rem;
+        height: 0.75rem;
+        min-width: 0.75rem;
+        min-height: 0.75rem;
+    }
+    
+    /* Dispositivos extremamente pequenos */
+    header {
+        padding: 0.25rem;
+    }
+    
+    main {
+        padding: 0.25rem;
+    }
+    
+    /* Layout vertical para telas extremamente pequenas */
+    #carouselProj .technique-card,
+    #carouselImob .technique-card {
+        min-width: 100% !important;
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+    
+    #carouselProj,
+    #carouselImob {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.75rem !important;
+    }
+    
+    header h1 {
+        font-size: 1rem;
+    }
+    
+    header p {
+        font-size: 0.625rem;
+    }
+    
+    .habilidade-item {
+        font-size: 0.625rem;
+        padding: 0.375rem 0.5rem;
+    }
+    
+    h2 {
+        font-size: 1.25rem;
+    }
+    
+    .video-container {
+        height: 160px;
+    }
+    
+    .video-header {
+        padding: 0.5rem;
+    }
+    
+    .video-title {
+        font-size: 0.75rem;
+    }
+    
+    .video-description {
+        font-size: 0.625rem;
+    }
+    
+    .video-tip {
+        padding: 0.5rem;
+        margin: 0 0.5rem 0.5rem 0.5rem;
+    }
+    
+    .video-tip-title {
+        font-size: 0.625rem;
+    }
+    
+    .video-tip-text {
+        font-size: 0.5625rem;
+    }
+    
+    .back-to-top-section {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.625rem;
+    }
+    
+    #congratulationsModal .bg-white {
+        margin: 0.25rem;
+        padding: 0.75rem;
+    }
+    
+    .congratulations-title {
+        font-size: 1.25rem;
+    }
+    
+    .trophy-icon {
+        font-size: 2rem;
+    }
+    
+    .stat-card {
+        padding: 0.5rem;
+    }
+    
+    .stat-number {
+        font-size: 1rem;
+    }
+    
+    .stat-label {
+        font-size: 0.625rem;
+    }
+    
+    #floatingProgress {
+        width: calc(100vw - 0.5rem);
+        margin: 0 0.25rem;
+        padding: 0.375rem;
+    }
+    
+    #floatingProgress .w-80 {
+        width: calc(100% - 2rem);
+    }
+    
+    #backToTop {
+        bottom: 0.5rem;
+        right: 0.5rem;
+        padding: 0.375rem;
+    }
+    
+    #backToTop span {
+        font-size: 1rem;
+    }
+}
+        
+/* ===== MELHORIAS DE USABILIDADE MOBILE ===== */
+@media (max-width: 768px) {
+    /* Touch targets maiores */
+    .habilidade-item,
+    .japanese-nav-card,
+    .back-to-top-section,
+    #backToTop,
+    button,
+    label {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Padronizar tamanhos da barra japonesa em mobile */
+    .japanese-nav-card {
+        width: 120px;
+        height: 80px;
+        min-width: 120px;
+        min-height: 80px;
+        max-width: 120px;
+        max-height: 80px;
+        flex-shrink: 0;
+    }
+    
+    /* Layout horizontal com scroll para mobile */
+    .japanese-nav-container .flex {
+        gap: 0.5rem;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding: 0.5rem 0;
+        position: relative;
+    }
+    
+    /* Texto indicativo de scroll para mobile */
+    .japanese-nav-container::after {
+        content: '← Deslize para ver mais →';
+        display: block;
+        text-align: center;
+        margin-top: 0.75rem;
+        font-size: 0.875rem;
+        color: #6B7280;
+        font-weight: 500;
+        opacity: 0.8;
+    }
+    
+    /* Espaçamento melhorado para touch */
+    .habilidade-item {
+        margin: 0.5rem;
+    }
+    
+    .japanese-nav-card {
+        margin: 0.75rem;
+    }
+    
+    /* Scroll suave para mobile */
+    html {
+        scroll-behavior: smooth;
+    }
+    
+    /* Melhor contraste para mobile */
+    .video-tip {
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        border-left: 4px solid #0284c7;
+    }
+    
+    /* Sombras mais suaves para mobile */
+    .video-card {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .video-card:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* Animações mais suaves para mobile */
+    .habilidade-item,
+    .japanese-nav-card,
+    .video-card {
+        transition: all 0.2s ease;
+    }
+    
+    /* Feedback visual melhorado para mobile */
+    .habilidade-item:active,
+    .japanese-nav-card:active {
+        transform: scale(0.98);
+    }
+    
+    /* Melhor legibilidade para mobile */
+    .video-title,
+    .video-description,
+    .video-tip-title,
+    .video-tip-text {
+        line-height: 1.4;
+    }
+    
+    /* Espaçamento otimizado para mobile */
+    .grid {
+        gap: 1rem;
+    }
+    
+    /* Margens consistentes para mobile */
+    section {
+        margin-bottom: 2rem;
+    }
+    
+    /* Padding consistente para mobile */
+    .video-card {
+        padding: 0;
+    }
+    
+    /* Melhor hierarquia visual para mobile */
+    .text-center {
+        text-align: center;
+    }
+    
+    /* Botões mais acessíveis para mobile */
+    .back-to-top-section {
+        border-radius: 0.5rem;
+        font-weight: 600;
+       
+
+    }
+    
+    /* Modal mais acessível para mobile */
+    #congratulationsModal .bg-white {
+        border-radius: 1rem;
+    }
+    
+    /* Animações otimizadas para mobile */
+    .animate-fade-in-up,
+    .animate-fade-in-down,
+    .animate-slide-in-right {
+        animation-duration: 0.5s;
+    }
+    
+    /* Transições mais rápidas para mobile */
+    .transition-all {
+        transition-duration: 0.2s ease;
+    }
+    
+    /* Orientação landscape para mobile */
+    @media (orientation: landscape) {
+        header {
+            padding: 0.5rem 1rem;
+        }
+        
+        header h1 {
+            font-size: 1.25rem;
+        }
+        
+        .video-container {
+            height: 150px;
+        }
+    }
+    
+    /* Suporte para dispositivos com notch */
+    header {
+        padding-top: max(0.75rem, env(safe-area-inset-top));
+        padding-left: max(1rem, env(safe-area-inset-left));
+        padding-right: max(1rem, env(safe-area-inset-right));
+    }
+    
+    main {
+        padding-top: max(0.5rem, env(safe-area-inset-top));
+        padding-left: max(0.5rem, env(safe-area-inset-left));
+        padding-right: max(0.5rem, env(safe-area-inset-right));
+    }
+    
+    #backToTop {
+        bottom: max(1rem, env(safe-area-inset-bottom));
+        right: max(1rem, env(safe-area-inset-right));
+    }
+    
+    #floatingProgress {
+        top: max(1rem, env(safe-area-inset-top));
+    }
+    
+    /* Layout vertical - sem necessidade de scrollbar horizontal */
+}

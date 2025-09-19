@@ -1,0 +1,649 @@
+ /* 
+         * NOTA: Todos os botões de navegação dos carrosséis estão sempre visíveis (classe 'flex')
+         * para melhorar a experiência do usuário, permitindo navegação fácil em qualquer momento.
+         */
+         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+         .gradient-bg {
+             background: linear-gradient(135deg, #a78bfa 0%, #7c3aed 100%);
+         }
+         .card-hover {
+             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+         }
+         .card-hover:hover {
+             transform: translateY(-8px);
+             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+         }
+         .video-container {
+             position: relative;
+             padding-bottom: 35%;
+             height: 0;
+             overflow: hidden;
+             border-radius: 12px;
+             box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.1);
+             max-width: 100%;
+             margin: 0 auto;
+         }
+         .video-container iframe {
+             position: absolute;
+             top: 0;
+             left: 0;
+             width: 100%;
+             height: 100%;
+             border-radius: 12px;
+         }
+         .progress-bar {
+             transition: width 0.5s ease;
+         }
+         .section-divider {
+             background: linear-gradient(90deg, transparent, #7c3aed, transparent);
+         }
+         .floating-action {
+             animation: float 3s ease-in-out infinite;
+         }
+         @keyframes float {
+             0%, 100% { transform: translateY(0px); }
+             50% { transform: translateY(-10px); }
+         }
+         .text-gradient {
+             background: linear-gradient(45deg, #a78bfa, #7c3aed);
+             -webkit-background-clip: text;
+             -webkit-text-fill-color: transparent;
+             background-clip: text;
+         }
+         #welcomeCard {
+             box-shadow: 0 2px 16px 0 rgba(124,58,237,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
+         }
+         #welcomeCard:hover {
+             box-shadow: 0 0 24px 4px #a78bfa, 0 2px 16px 0 rgba(124,58,237,0.12);
+         }
+         .details {
+             transition-property: opacity, max-height, transform, margin-top;
+         }
+         .japanese-nav-card.clicked::before {
+             width: 400px;
+             height: 400px;
+         }
+         .japanese-nav-card.clicked {
+             transform: scale(0.9) rotate(2deg);
+             box-shadow: 0 0 40px rgba(124, 58, 237, 0.6);
+             border-color: #7c3aed;
+         }
+         
+         /* Estilos para as habilidades com animação de digitação */
+         .habilidade-item {
+             opacity: 0;
+             transform: translateY(20px);
+             animation: slideInUp 0.6s ease-out forwards;
+             cursor: pointer;
+             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+             position: relative;
+             overflow: hidden;
+         }
+         
+         @keyframes slideInUp {
+             to {
+                 opacity: 1;
+                 transform: translateY(0);
+             }
+         }
+         
+         /* Aplicar delay escalonado para as habilidades */
+         .habilidade-item:nth-child(1) { animation-delay: 0.1s; }
+         .habilidade-item:nth-child(2) { animation-delay: 0.2s; }
+         .habilidade-item:nth-child(3) { animation-delay: 0.3s; }
+         .habilidade-item:nth-child(4) { animation-delay: 0.4s; }
+         .habilidade-item:nth-child(5) { animation-delay: 0.5s; }
+         .habilidade-item:nth-child(6) { animation-delay: 0.6s; }
+         
+         /* Efeito de cursor para habilidades e condições */
+         .habilidade-item::before {
+             content: '';
+             position: absolute;
+             top: 0;
+             left: -100%;
+             width: 100%;
+             height: 100%;
+             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+             transition: left 0.6s ease;
+             pointer-events: none;
+             z-index: 1;
+         }
+         
+         .habilidade-item:hover::before {
+             left: 100%;
+         }
+         
+         .habilidade-item:hover {
+             transform: translateY(-3px) scale(1.03);
+             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+             background: rgba(255, 255, 255, 0.95) !important;
+         }
+         
+         /* Efeito de borda animada */
+         .habilidade-item::after {
+             content: '';
+             position: absolute;
+             top: 0;
+             left: 0;
+             right: 0;
+             bottom: 0;
+             border: 2px solid transparent;
+             border-radius: 12px;
+             background: linear-gradient(45deg, #6B7280, #4B5563, #6B7280) border-box;
+             -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+             -webkit-mask-composite: destination-out;
+             mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+             mask-composite: exclude;
+             opacity: 0;
+             transition: opacity 0.3s ease;
+         }
+         
+         .habilidade-item:hover::after {
+             opacity: 1;
+         }
+         
+         /* Efeito de destaque especial para a barra japonesa */
+         .japanese-nav-container {
+             position: relative;
+             background: linear-gradient(135deg, rgba(124, 58, 237, 0.03) 0%, rgba(124, 58, 237, 0.01) 100%);
+             border-radius: 16px;
+             padding: 16px;
+             margin: 16px 0;
+             border: 1px solid rgba(124, 58, 237, 0.08);
+             box-shadow: 0 4px 20px rgba(124, 58, 237, 0.08);
+         }
+         
+         .japanese-nav-container::before {
+             content: '';
+             position: absolute;
+             top: -2px;
+             left: -2px;
+             right: -2px;
+             bottom: -2px;
+             background: linear-gradient(45deg, #7c3aed, #4c1d95, #7c3aed);
+             border-radius: 18px;
+             z-index: -1;
+             opacity: 0.2;
+             animation: borderGlow 3s ease-in-out infinite alternate;
+         }
+         
+         @keyframes borderGlow {
+             0% {
+                 opacity: 0.15;
+             }
+             100% {
+                 opacity: 0.25;
+             }
+         }
+         
+         /* Melhorar o hover dos cards */
+         .japanese-nav-card:hover {
+             transform: translateY(-8px) scale(1.05);
+             box-shadow: 0 20px 40px rgba(124, 58, 237, 0.15);
+             border-color: #7c3aed;
+         }
+         
+         /* Efeito de brilho nos cards */
+         .japanese-nav-card::after {
+             content: '';
+             position: absolute;
+             top: 0;
+             left: -100%;
+             width: 100%;
+             height: 100%;
+             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+             transition: left 0.5s;
+         }
+         
+         .japanese-nav-card:hover::after {
+             left: 100%;
+         }
+         
+         /* Animações para transição japonesa */
+         .japanese-nav-card {
+             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+             position: relative;
+             overflow: hidden;
+         }
+         
+         /* Animações do Modal de Parabéns */
+         .modal-enter {
+             animation: modalEnter 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+         }
+         
+         @keyframes modalEnter {
+             0% {
+                 opacity: 0;
+                 transform: scale(0.8) translateY(50px);
+             }
+             100% {
+                 opacity: 1;
+                 transform: scale(1) translateY(0);
+             }
+         }
+         
+         /* Garantir que o modal apareça corretamente */
+         #congratulationsModal {
+             transition: opacity 0.3s ease, visibility 0.3s ease;
+         }
+         
+         #congratulationsModal.hidden {
+             opacity: 0 !important;
+             visibility: hidden !important;
+             pointer-events: none !important;
+         }
+         
+         #congratulationsModal:not(.hidden) {
+             opacity: 1 !important;
+             visibility: visible !important;
+             pointer-events: auto !important;
+         }
+         
+         /* Troféu animado */
+         .trophy-container {
+             position: relative;
+             display: inline-block;
+         }
+         
+         .trophy-icon {
+             font-size: 4rem;
+             animation: trophyBounce 3s ease-in-out infinite;
+             filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));
+             will-change: transform;
+         }
+         
+         @keyframes trophyBounce {
+             0%, 100% { transform: translateY(0) rotate(0deg); }
+             50% { transform: translateY(-8px) rotate(2deg); }
+         }
+         
+         .trophy-glow {
+             position: absolute;
+             top: 50%;
+             left: 50%;
+             width: 100px;
+             height: 100px;
+             background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+             border-radius: 50%;
+             transform: translate(-50%, -50%);
+             animation: glowPulse 3s ease-in-out infinite;
+             will-change: transform, opacity;
+         }
+         
+         @keyframes glowPulse {
+             0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+             50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
+         }
+         
+         /* Título animado */
+         .congratulations-title {
+             animation: titleGlow 3s ease-in-out infinite;
+         }
+         
+         @keyframes titleGlow {
+             0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3)); }
+             50% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6)); }
+         }
+         
+         /* Partículas de celebração otimizadas */
+         .celebration-particle {
+             position: absolute;
+             width: 6px;
+             height: 6px;
+             background: #FFD700;
+             border-radius: 50%;
+             animation: celebrationFloat 2.5s ease-in-out infinite;
+             animation-delay: var(--delay);
+             left: var(--x);
+             top: var(--y);
+             will-change: transform, opacity;
+         }
+         
+         @keyframes celebrationFloat {
+             0% { opacity: 0; transform: translateY(0) scale(0); }
+             20% { opacity: 1; transform: translateY(-15px) scale(1); }
+             80% { opacity: 1; transform: translateY(-30px) scale(1.1); }
+             100% { opacity: 0; transform: translateY(-45px) scale(0); }
+         }
+         
+         /* Botões animados */
+         .continue-btn, .close-btn {
+             position: relative;
+             overflow: hidden;
+         }
+         
+         .continue-btn::before, .close-btn::before {
+             content: '';
+             position: absolute;
+             top: 0;
+             left: -100%;
+             width: 100%;
+             height: 100%;
+             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+             transition: left 0.5s ease;
+         }
+         
+         .continue-btn:hover::before, .close-btn:hover::before {
+             left: 100%;
+         }
+         
+         /* Estatísticas */
+         .stat-card {
+             background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+             border: 2px solid #fbbf24;
+             border-radius: 16px;
+             padding: 1.5rem;
+             transition: all 0.3s ease;
+             animation: statCardEnter 0.6s ease-out forwards;
+             animation-delay: calc(var(--index, 0) * 0.1s);
+             opacity: 0;
+             transform: translateY(20px);
+         }
+         
+         .stat-card:nth-child(1) { --index: 1; }
+         .stat-card:nth-child(2) { --index: 2; }
+         
+         @keyframes statCardEnter {
+             to {
+                 opacity: 1;
+                 transform: translateY(0);
+             }
+         }
+         
+         .stat-number {
+             font-size: 2rem;
+             font-weight: bold;
+             color: #f59e0b;
+             margin-bottom: 0.5rem;
+         }
+         
+         .stat-label {
+             font-size: 0.875rem;
+             color: #92400e;
+             font-weight: 500;
+         }
+         @keyframes fade-in {
+             from { opacity: 0; transform: translateY(30px); }
+             to { opacity: 1; transform: translateY(0); }
+         }
+         .animate-fade-in {
+             animation: fade-in 1.2s cubic-bezier(0.4,0,0.2,1);
+         }
+         .destination-highlight {
+             animation: destination-highlight 2s ease-in-out;
+         }
+         @keyframes destination-highlight {
+             0%, 100% { 
+                 box-shadow: 0 0 0 0 rgba(124, 58, 237, 0);
+                 transform: scale(1);
+             }
+             50% { 
+                 box-shadow: 0 0 0 20px rgba(124, 58, 237, 0.3);
+                 transform: scale(1.02);
+             }
+         }
+         #carouselEstrang {
+             scroll-behavior: smooth;
+             -webkit-overflow-scrolling: touch;
+             transition: box-shadow 0.3s;
+             padding-right: 20px; /* Adicionar padding para permitir scroll completo */
+         }
+         #carouselEstrang > div {
+             min-width: 350px;
+             max-width: 420px;
+             flex: 0 0 auto;
+             height: 380px;
+             display: flex;
+             flex-direction: column;
+             justify-content: flex-start;
+             align-items: stretch;
+             transition: transform 0.35s cubic-bezier(.68,-0.55,.27,1.55), box-shadow 0.3s, filter 0.3s, opacity 0.3s;
+             box-shadow: 0 2px 16px 0 rgba(124,58,237,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
+             opacity: 1;
+             filter: blur(0px);
+             margin-right: 12px;
+         }
+         #carouselEstrang > div:last-child {
+             margin-right: 0;
+             padding-right: 40px; /* Aumentar padding para garantir que a última div seja visível */
+         }
+         #carouselEstrang > div.active,
+         #carouselEstrang > div:hover {
+             transform: none;
+             box-shadow: 0 2px 16px 0 rgba(124,58,237,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
+             opacity: 1;
+             filter: blur(0px);
+         }
+         #carouselEstrang > div:not(.active) {
+             opacity: 1;
+             filter: blur(0px);
+         }
+         @media (max-width: 700px) {
+             #carouselEstrang > div { min-width: 98vw; max-width: 99vw; height: 320px; }
+         }
+         .technique-card {
+             height: 380px;
+             display: flex;
+             flex-direction: column;
+             overflow: hidden;
+             justify-content: space-between;
+         }
+         .technique-card .video-container {
+             flex-shrink: 0;
+             margin-bottom: 0.75rem;
+         }
+         .technique-card {
+             min-width: 400px !important;
+             max-width: 460px !important;
+             padding: 1.25rem !important;
+         }
+         .technique-card .bg-orange-50,
+         .technique-card .bg-green-50,
+         .technique-card .bg-judo-purpleLight {
+             margin-top: 0.5rem;
+             margin-bottom: 0;
+             flex-shrink: 0;
+         }
+         .technique-card h3 {
+             line-height: 1.2;
+         }
+         .technique-card p {
+             line-height: 1.3;
+         }
+         
+         /* Animação para os botões de seta do carrossel */
+         .carousel-arrow-anim {
+             animation: carouselArrowPulse 0.7s ease-in-out;
+         }
+         
+         @keyframes carouselArrowPulse {
+             0% { transform: scale(1); }
+             50% { transform: scale(1.1); }
+             100% { transform: scale(1); }
+         }
+         
+         /* Estilos para lazy loading automático de vídeos */
+         .lazy-video {
+             position: relative;
+             width: 100%;
+             height: 100%;
+             background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+             border-radius: 12px;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             transition: all 0.3s ease;
+         }
+         
+         .video-placeholder {
+             text-align: center;
+             color: #6b7280;
+         }
+         
+         .loading-spinner {
+             width: 40px;
+             height: 40px;
+             border: 4px solid #e5e7eb;
+             border-top: 4px solid #7c3aed;
+             border-radius: 50%;
+             animation: spin 1s linear infinite;
+             margin: 0 auto 1rem auto;
+         }
+         
+         @keyframes spin {
+             0% { transform: rotate(0deg); }
+             100% { transform: rotate(360deg); }
+         }
+         
+         .video-placeholder p {
+             font-size: 1rem;
+             font-weight: 500;
+             margin: 0;
+             color: #7c3aed;
+         }
+         
+         /* === RESPONSIVIDADE MOBILE OTIMIZADA === */
+         @media (max-width: 768px) {
+             /* Variáveis CSS para consistência */
+             :root {
+                 --mobile-padding: 1rem;
+                 --mobile-padding-sm: 0.75rem;
+                 --mobile-font-sm: 0.875rem;
+                 --mobile-gap: 1rem;
+             }
+             
+             /* Layout base mobile */
+             header {
+                 padding: var(--mobile-padding-sm) var(--mobile-padding) !important;
+             }
+             
+             header h1 {
+                 font-size: 1.5rem !important;
+                 margin-bottom: 0.5rem !important;
+             }
+             
+             header p {
+                 font-size: var(--mobile-font-sm) !important;
+             }
+             
+             /* Componentes mobile */
+             .progress-bar {
+                 height: 0.75rem !important;
+             }
+             
+             .habilidade-item {
+                 font-size: var(--mobile-font-sm) !important;
+                 padding: var(--mobile-padding-sm) var(--mobile-padding) !important;
+                 margin: 0.25rem !important;
+                 min-width: calc(100% - 2rem) !important;
+                 max-width: calc(100% - 2rem) !important;
+             }
+             
+             /* Navegação japonesa mobile */
+             .japanese-nav-card {
+                 width: 100px !important;
+                 height: 80px !important;
+                 min-width: 100px !important;
+                 min-height: 80px !important;
+                 max-width: 100px !important;
+                 max-height: 80px !important;
+                 flex-shrink: 0 !important;
+                 margin: 0.75rem !important;
+             }
+             
+             .japanese-nav-container .flex {
+                 gap: 0.5rem !important;
+                 justify-content: flex-start !important;
+                 flex-wrap: nowrap !important;
+                 flex-direction: row !important;
+                 overflow-x: auto !important;
+                 scroll-behavior: smooth !important;
+                 padding: 0.5rem 0 !important;
+                 position: relative !important;
+             }
+             
+             .japanese-nav-container .flex::before {
+                 content: '' !important;
+                 position: absolute !important;
+                 right: 0 !important;
+                 top: 0 !important;
+                 bottom: 0 !important;
+                 width: 2rem !important;
+                 background: linear-gradient(to right, transparent, rgba(156, 163, 175, 0.1)) !important;
+                 pointer-events: none !important;
+                 z-index: 5 !important;
+             }
+             
+             .japanese-nav-container::after {
+                 content: '← Deslize para ver mais →' !important;
+                 display: block !important;
+                 text-align: center !important;
+                 margin-top: 0.75rem !important;
+                 font-size: var(--mobile-font-sm) !important;
+                 color: #6B7280 !important;
+                 font-weight: 500 !important;
+                 opacity: 0.8 !important;
+                 background: linear-gradient(135deg, #7c3aed, #4c1d95) !important;
+                 -webkit-background-clip: text !important;
+                 -webkit-text-fill-color: transparent !important;
+                 background-clip: text !important;
+             }
+             
+             /* Melhorias visuais */
+             .video-tip {
+                 background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%) !important;
+                 border-left: 4px solid #0284c7 !important;
+             }
+             
+             .video-card {
+                 box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+                 transition: all 0.2s ease !important;
+             }
+             
+             .video-card:hover {
+                 box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+             }
+             
+             .habilidade-item,
+             .japanese-nav-card {
+                 transition: all 0.2s ease !important;
+             }
+             
+             .japanese-nav-card:active {
+                 transform: scale(0.95) !important;
+             }
+             
+             .japanese-nav-container {
+                 padding: var(--mobile-padding) !important;
+                 margin: var(--mobile-padding) 0 !important;
+             }
+             
+             html {
+                 scroll-behavior: smooth !important;
+             }
+             
+             /* Layout vertical para carrosséis no mobile */
+             .flex.overflow-x-auto {
+                 display: grid !important;
+                 grid-template-columns: 1fr !important;
+                 gap: var(--mobile-gap) !important;
+                 overflow: visible !important;
+                 scroll-snap-type: none !important;
+                 flex-direction: column !important;
+                 align-items: stretch !important;
+             }
+             
+             .technique-card {
+                 width: 100% !important;
+                 max-width: none !important;
+                 min-width: auto !important;
+                 flex-shrink: 0 !important;
+                 scroll-snap-align: none !important;
+                 margin: 0 0 1rem 0 !important;
+             }
+             
+             /* Esconder botões do carrossel no mobile */
+             .relative button[id*="carousel"] {
+                 display: none !important;
+             }
+         }

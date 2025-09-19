@@ -1,0 +1,640 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* === VARIÁVEIS CSS === */
+:root {
+    --judo-green: #22c55e;
+    --judo-green-light: #86efac;
+    --judo-green-dark: #047857;
+    --judo-brown: #8B5C2A;
+    --judo-brown-light: #D2B48C;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-card: 0 8px 20px -5px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --mobile-padding: 1rem;
+    --mobile-padding-sm: 0.75rem;
+    --mobile-font-sm: 0.875rem;
+    --mobile-gap: 1rem;
+}
+
+/* === ESTILOS BASE === */
+.gradient-bg {
+    background: linear-gradient(135deg, var(--judo-green) 0%, var(--judo-green-dark) 100%);
+}
+
+.card-hover {
+    transition: var(--transition-smooth);
+}
+
+.card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.text-gradient {
+    background: linear-gradient(45deg, var(--judo-green-light), var(--judo-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* === CONTAINERS DE VÍDEO === */
+.video-container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto 1rem auto;
+    aspect-ratio: 16/9;
+    background: #eee;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Tamanho fixo para todos os vídeos */
+    height: 270px;
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 12px;
+    display: block;
+}
+
+/* === THUMBNAILS DE VÍDEO === */
+.video-thumbnail-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    /* Tamanho fixo igual aos vídeos */
+    height: 270px;
+}
+
+.video-thumbnail-container:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.video-thumbnail-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.video-thumbnail-container:hover img {
+    transform: scale(1.05);
+}
+
+.video-thumbnail-container .play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    transition: background 0.3s ease;
+}
+
+.video-thumbnail-container:hover .play-overlay {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.video-thumbnail-container .play-button {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transition: var(--transition-smooth);
+}
+
+.video-thumbnail-container:hover .play-button {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+}
+
+.video-thumbnail-container .play-button svg {
+    width: 32px;
+    height: 32px;
+    fill: var(--judo-brown);
+    margin-left: 4px;
+}
+
+/* === VÍDEOS CARREGADOS === */
+.video-container iframe.video-loaded {
+    animation: fadeInVideo 0.5s ease-in-out;
+}
+
+@keyframes fadeInVideo {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* === LOADING SPINNER === */
+.video-loading-spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e5e7eb;
+    border-top: 4px solid var(--judo-brown);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 10;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* === ELEMENTOS DE INTERFACE === */
+.progress-bar {
+    transition: width 0.5s ease;
+}
+
+.section-divider {
+    background: linear-gradient(90deg, transparent, var(--judo-green), transparent);
+}
+
+.floating-action {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+/* === CARDS E MODAIS === */
+#welcomeCard {
+    box-shadow: 0 2px 16px 0 rgba(34, 197, 94, 0.08), 0 1.5px 8px 0 rgba(0, 0, 0, 0.04);
+}
+
+#welcomeCard:hover {
+    box-shadow: 0 0 24px 4px var(--judo-green-light), 0 2px 16px 0 rgba(34, 197, 94, 0.12);
+}
+
+.details {
+    transition-property: opacity, max-height, transform, margin-top;
+}
+
+/* === NAVEGAÇÃO JAPONESA === */
+.japanese-nav-container {
+    background: var(--judo-green-light) !important;
+    border: 1px solid var(--judo-green) !important;
+}
+
+.japanese-nav-card.clicked::before {
+    width: 400px;
+    height: 400px;
+}
+
+.japanese-nav-card.clicked {
+    transform: scale(0.9) rotate(2deg);
+    box-shadow: 0 0 40px rgba(34, 197, 94, 0.6);
+    border-color: var(--judo-green);
+}
+
+.japanese-nav-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(34, 197, 94, 0.15);
+    border-color: var(--judo-green);
+}
+
+.japanese-nav-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* === HABILIDADES === */
+.habilidade-item {
+    opacity: 1;
+    transform: none;
+    animation: none;
+}
+
+/* === MODAL DE PARABÉNS === */
+#congratulationsModal {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#congratulationsModal.hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+#congratulationsModal:not(.hidden) {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+/* === TROFÉU === */
+.trophy-container {
+    position: relative;
+    display: inline-block;
+}
+
+.trophy-icon {
+    font-size: 4rem;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
+}
+
+/* === ESTATÍSTICAS === */
+.stat-card {
+    background: #fef3c7;
+    border: 2px solid #fbbf24;
+    border-radius: 16px;
+    padding: 1.5rem;
+    opacity: 1;
+    transform: none;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #f59e0b;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: #92400e;
+    font-weight: 500;
+}
+
+/* === ANIMAÇÕES === */
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fade-in 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.destination-highlight {
+    animation: destination-highlight 2s ease-in-out;
+}
+
+@keyframes destination-highlight {
+    0%, 100% { 
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+        transform: scale(1);
+    }
+    50% { 
+        box-shadow: 0 0 0 20px rgba(34, 197, 94, 0.3);
+        transform: scale(1.02);
+    }
+}
+
+/* === CARROSSÉIS === */
+#carouselEstrang {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    transition: box-shadow 0.3s;
+    padding-right: 20px;
+}
+
+#carouselEstrang > div {
+    min-width: 350px;
+    max-width: 420px;
+    flex: 0 0 auto;
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    transition: transform 0.35s cubic-bezier(.68, -0.55, .27, 1.55), box-shadow 0.3s, filter 0.3s, opacity 0.3s;
+    box-shadow: 0 2px 16px 0 rgba(34, 197, 94, 0.08), 0 1.5px 8px 0 rgba(0, 0, 0, 0.04);
+    opacity: 1;
+    filter: blur(0px);
+    margin-right: 12px;
+}
+
+#carouselEstrang > div:last-child {
+    margin-right: 0;
+    padding-right: 40px;
+}
+
+#carouselEstrang > div.active,
+#carouselEstrang > div:hover {
+    transform: none;
+    box-shadow: 0 2px 16px 0 rgba(34, 197, 94, 0.08), 0 1.5px 8px 0 rgba(0, 0, 0, 0.04);
+    opacity: 1;
+    filter: blur(0px);
+}
+
+#carouselEstrang > div:not(.active) {
+    opacity: 1;
+    filter: blur(0px);
+}
+
+/* === CARDS DE TÉCNICA === */
+.technique-card {
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    justify-content: space-between;
+    min-width: 450px !important;
+    max-width: 520px !important;
+    padding: 1.5rem !important;
+}
+
+.technique-card .video-container {
+    flex-shrink: 0;
+    margin-bottom: 1rem;
+}
+
+.technique-card .bg-orange-50,
+.technique-card .bg-green-50,
+.technique-card .bg-judo-brownLight,
+.technique-card .bg-brown-50 {
+    margin-top: auto;
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+
+.technique-card h3 {
+    line-height: 1.2;
+}
+
+.technique-card p {
+    line-height: 1.3;
+}
+
+/* === SCROLLBARS PERSONALIZADOS === */
+.flex.overflow-x-auto::-webkit-scrollbar {
+    height: 8px;
+}
+
+.flex.overflow-x-auto::-webkit-scrollbar-track {
+    background: rgba(156, 163, 175, 0.1);
+    border-radius: 4px;
+}
+
+.flex.overflow-x-auto::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.3);
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.flex.overflow-x-auto::-webkit-scrollbar-thumb:hover {
+    background: rgba(156, 163, 175, 0.6);
+}
+
+/* === RESPONSIVIDADE MOBILE === */
+@media (max-width: 768px) {
+    /* Header mobile */
+    header {
+        padding: var(--mobile-padding-sm) var(--mobile-padding) !important;
+    }
+    
+    header h1 {
+        font-size: 1.5rem !important;
+    }
+    
+    header p {
+        font-size: var(--mobile-font-sm) !important;
+    }
+    
+    /* Barra de progresso mobile */
+    .progress-bar {
+        height: 0.75rem !important;
+    }
+    
+    /* Cards de habilidades mobile */
+    .habilidade-item {
+        font-size: var(--mobile-font-sm) !important;
+        padding: var(--mobile-padding-sm) var(--mobile-padding) !important;
+        margin: 0.25rem !important;
+        min-width: calc(100% - 2rem) !important;
+        max-width: calc(100% - 2rem) !important;
+        transition: transform 0.2s ease !important;
+    }
+    
+    /* Navegação japonesa mobile */
+    .japanese-nav-card {
+        width: 100px !important;
+        height: 80px !important;
+        min-width: 100px !important;
+        min-height: 80px !important;
+        max-width: 100px !important;
+        max-height: 80px !important;
+        flex-shrink: 0 !important;
+        margin: 0.75rem !important;
+        transition: transform 0.2s ease !important;
+    }
+    
+    .japanese-nav-card:active {
+        transform: scale(0.98) !important;
+    }
+    
+    /* Layout horizontal com scroll para mobile */
+    .japanese-nav-container .flex {
+        gap: 0.5rem !important;
+        justify-content: flex-start !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        padding: 0.5rem 0 !important;
+    }
+    
+    /* Indicador de scroll */
+    .japanese-nav-container::after {
+        content: '← Deslize para ver mais →' !important;
+        display: block !important;
+        text-align: center !important;
+        margin-top: 0.75rem !important;
+        font-size: var(--mobile-font-sm) !important;
+        color: #6B7280 !important;
+        font-weight: 500 !important;
+    }
+    
+    /* Container principal */
+    .japanese-nav-container {
+        padding: var(--mobile-padding) !important;
+        margin: var(--mobile-padding) 0 !important;
+    }
+    
+    /* Layout vertical para cards de técnicas no mobile */
+    .flex.overflow-x-auto {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: var(--mobile-gap) !important;
+        overflow: visible !important;
+        scroll-snap-type: none !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+    
+    .technique-card {
+        width: 100% !important;
+        max-width: none !important;
+        min-width: auto !important;
+        flex-shrink: 0 !important;
+        scroll-snap-align: none !important;
+        margin: 0 0 var(--mobile-gap) 0 !important;
+        display: block !important;
+    }
+    
+    /* Ocultar botões de carrossel no mobile */
+    .relative button[id*="carousel"] {
+        display: none !important;
+    }
+    
+    /* Forçar layout vertical para carrosséis específicos */
+    #carouselProj,
+    #carouselImob,
+    #carouselChave,
+    #carouselEstrang,
+    #carouselAtaqueCombinado,
+    #carouselContraAtaque {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: var(--mobile-gap) !important;
+        overflow: visible !important;
+        scroll-snap-type: none !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+    
+    #carouselProj > div,
+    #carouselImob > div,
+    #carouselChave > div,
+    #carouselEstrang > div,
+    #carouselAtaqueCombinado > div,
+    #carouselContraAtaque > div {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: auto !important;
+        flex-shrink: 0 !important;
+        margin: 0 0 var(--mobile-gap) 0 !important;
+    }
+    
+    /* Touch targets otimizados */
+    .habilidade-item,
+    .japanese-nav-card,
+    .back-to-top-section,
+    #backToTop,
+    button,
+    label {
+        min-height: 44px !important;
+        min-width: 44px !important;
+    }
+    
+    /* Thumbnails de vídeo para mobile */
+    .video-thumbnail-container {
+        min-height: 44px !important;
+        cursor: pointer !important;
+    }
+    
+    .video-thumbnail-container .play-button {
+        width: 70px !important;
+        height: 70px !important;
+        min-height: 44px !important;
+        min-width: 44px !important;
+    }
+    
+    .video-thumbnail-container .play-button svg {
+        width: 28px !important;
+        height: 28px !important;
+    }
+    
+    /* Containers de vídeo mobile - mantém proporção mas reduz altura */
+    .video-container {
+        height: 200px !important;
+        max-width: 100% !important;
+    }
+    
+    .video-thumbnail-container {
+        height: 200px !important;
+    }
+    
+    .video-thumbnail-container .play-button {
+        width: 60px !important;
+        height: 60px !important;
+    }
+    
+    .video-thumbnail-container .play-button svg {
+        width: 24px !important;
+        height: 24px !important;
+    }
+    
+    /* Botão back to top mobile */
+    #backToTop {
+        bottom: 1rem !important;
+        right: 1rem !important;
+        width: 3.5rem !important;
+        height: 3.5rem !important;
+    }
+    
+    #backToTop span {
+        font-size: 1rem !important;
+    }
+}
+
+/* === ORIENTAÇÃO LANDSCAPE MOBILE === */
+@media (max-width: 768px) and (orientation: landscape) {
+    header {
+        padding: 0.5rem var(--mobile-padding) !important;
+    }
+    
+    header h1 {
+        font-size: 1.25rem !important;
+    }
+    
+    .video-container {
+        height: 180px !important;
+    }
+    
+    .video-thumbnail-container {
+        height: 180px !important;
+    }
+}
+
+/* === SUPORTE PARA DISPOSITIVOS COM NOTCH === */
+@media (max-width: 768px) {
+    header {
+        padding-top: max(0.75rem, env(safe-area-inset-top)) !important;
+        padding-left: max(var(--mobile-padding), env(safe-area-inset-left)) !important;
+        padding-right: max(var(--mobile-padding), env(safe-area-inset-right)) !important;
+    }
+    
+    main {
+        padding-top: max(0.5rem, env(safe-area-inset-top)) !important;
+        padding-left: max(0.5rem, env(safe-area-inset-left)) !important;
+        padding-right: max(0.5rem, env(safe-area-inset-right)) !important;
+    }
+}

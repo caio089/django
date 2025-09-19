@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,4 +36,10 @@ urlpatterns = [
     path('palavras/', include('palavras.urls')),  
     path('regras/', include('regras.urls')),
 ]
+
+# Configuração para servir arquivos estáticos durante o desenvolvimento
+# Esta configuração permite que o Django sirva arquivos estáticos (CSS, JS, imagens)
+# diretamente durante o desenvolvimento local
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

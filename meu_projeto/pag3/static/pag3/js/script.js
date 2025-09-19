@@ -1,355 +1,193 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // --- DETECÇÃO DE DISPOSITIVO MÓVEL ---
-    let isMobile = window.innerWidth <= 768;
-    
-    // Função para atualizar estado mobile quando a tela é redimensionada
-    function updateMobileState() {
-        const wasMobile = isMobile;
-        isMobile = window.innerWidth <= 768;
+    // ===== LAZY LOADING PARA VÍDEOS =====
+    function initLazyLoading() {
+        const iframes = document.querySelectorAll('iframe[data-src]');
         
-        // Se mudou de desktop para mobile, desabilitar animações
-        if (wasMobile !== isMobile && isMobile) {
-            console.log('Mudou para mobile - desabilitando animações');
-            disableMobileAnimations();
-        }
-        // Se mudou de mobile para desktop, reabilitar animações
-        else if (wasMobile !== isMobile && !isMobile) {
-            console.log('Mudou para desktop - reabilitando animações');
-            enableDesktopAnimations();
-        }
-    }
-    
-    // Função para desabilitar animações em mobile
-    function disableMobileAnimations() {
-        // Remover classes de animação ativas
-        document.querySelectorAll('.carousel-arrow-anim').forEach(el => {
-            el.classList.remove('carousel-arrow-anim');
-        });
-        
-        // Resetar transformações
-        document.querySelectorAll('.japanese-nav-card, .habilidade-item').forEach(el => {
-            el.style.transform = 'none';
-            el.style.opacity = '1';
-        });
-    }
-    
-    // Função para reabilitar animações em desktop
-    function enableDesktopAnimations() {
-        // Reabilitar animações de entrada se necessário
-        if (document.readyState === 'complete') {
-            document.querySelectorAll('.japanese-nav-card').forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                
-                setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, 200 + (index * 100));
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const iframe = entry.target;
+                    if (iframe.dataset.src) {
+                        iframe.src = iframe.dataset.src;
+                        iframe.removeAttribute('data-src');
+                        observer.unobserve(iframe);
+                    }
+                }
             });
-        }
-    }
-    
-    // Listener para mudanças de tamanho de tela
-    window.addEventListener('resize', updateMobileState);
-    
-    // --- ANIMAÇÕES DE HABILIDADES E CONDIÇÕES ---
-    
-    // Função para animar habilidades com efeito de digitação (APENAS EM DESKTOP)
-    function animateHabilidades() {
-        if (isMobile) return; // Pular animações em mobile
+        }, {
+            rootMargin: '50px 0px',
+            threshold: 0.1
+        });
         
-        const habilidades = document.querySelectorAll('.habilidade-item');
-        
-        // Todas as habilidades animam ao mesmo tempo
-        habilidades.forEach((habilidade, index) => {
-            setTimeout(() => {
-                habilidade.style.opacity = '0';
-                habilidade.style.transform = 'translateY(20px) scale(0.9)';
-                habilidade.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-                
-                setTimeout(() => {
-                    habilidade.style.opacity = '1';
-                    habilidade.style.transform = 'translateY(0) scale(1)';
-                }, 100);
-            }, index * 150); // Delay escalonado para cada habilidade
+        iframes.forEach(iframe => {
+            observer.observe(iframe);
         });
     }
     
-    // Selecionar elementos de habilidades para animações
-    const habilidadesTyping = document.getElementById('habilidadesTyping');
-    const habilidadesItems = document.querySelectorAll('.habilidade-item');
+    // Inicializar lazy loading
+    initLazyLoading();
     
-    // Inicializar animações quando a página carregar (APENAS EM DESKTOP)
-    if (!isMobile) {
-        setTimeout(() => {
-            animateHabilidades();
-        }, 500);
-    }
+    // ===== CONFIGURAÇÕES GLOBAIS OTIMIZADAS =====
+    const isMobile = window.innerWidth <= 768;
+    
+    // Cache de elementos DOM para evitar queries repetidas
+    const elements = {
+        progressBar: document.getElementById('progressBar'),
+        progressText: document.getElementById('progressText'),
+        floatingProgress: document.getElementById('floatingProgress'),
+        floatingProgressBar: document.getElementById('floatingProgressBar'),
+        floatingProgressText: document.getElementById('floatingProgressText'),
+        backToTopBtn: document.getElementById('backToTop')
+    };
+    
+    // ===== FUNÇÃO PARA MOSTRAR/ESCONDER SEÇÕES =====
+    window.showSection = function(sectionId) {
+        const allSections = [
+            'nage-waza-section',
+            'imobilizacoes-section', 
+            'henkakuenka-section',
+            'technique-cards-section',
+            'kaeshi-waza-section'
+        ];
+        
+        allSections.forEach(id => {
+            const section = document.getElementById(id);
+            if (section) section.classList.add('hidden');
+        });
+        
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+            targetSection.classList.remove('hidden');
+            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
     
 
     
-    // --- PROGRESSO E ANIMAÇÃO DOS CARDS (já existente) ---
+    // ===== SISTEMA DE PROGRESSO OTIMIZADO =====
     const projCheckboxes = document.querySelectorAll('.proj-checkbox');
     const imobCheckboxes = document.querySelectorAll('.imob-checkbox');
     const henkakuenkaCheckboxes = document.querySelectorAll('.henkakuenka-checkbox');
     const kaeshiWazaCheckboxes = document.querySelectorAll('.kaeshi-waza-checkbox');
-    const progressBar = document.getElementById('progressBar');
-    const progressText = document.getElementById('progressText');
-    const floatingProgress = document.getElementById('floatingProgress');
-    const floatingProgressBar = document.getElementById('floatingProgressBar');
-    const floatingProgressText = document.getElementById('floatingProgressText');
-    const backToTopBtn = document.getElementById('backToTop');
-    let answeredQuestions = 0;
-    const totalQuestions = projCheckboxes.length + imobCheckboxes.length + henkakuenkaCheckboxes.length + kaeshiWazaCheckboxes.length;
     let hasShownCongratulations = false;
 
-    // Função para atualizar progresso (SEM mostrar barra flutuante)
+    // Função otimizada para atualizar progresso
     function updateProgress() {
-        const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
-        const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
-        const totalHenkakuenkaChecked = Array.from(henkakuenkaCheckboxes).filter(cb => cb.checked).length;
-        const totalKaeshiWazaChecked = Array.from(kaeshiWazaCheckboxes).filter(cb => cb.checked).length;
         const totalQuestions = projCheckboxes.length + imobCheckboxes.length + henkakuenkaCheckboxes.length + kaeshiWazaCheckboxes.length;
-        const completedQuestions = totalProjChecked + totalImobChecked + totalHenkakuenkaChecked + totalKaeshiWazaChecked;
+        const completedQuestions = Array.from(projCheckboxes).filter(cb => cb.checked).length +
+                                 Array.from(imobCheckboxes).filter(cb => cb.checked).length +
+                                 Array.from(henkakuenkaCheckboxes).filter(cb => cb.checked).length +
+                                 Array.from(kaeshiWazaCheckboxes).filter(cb => cb.checked).length;
         const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
         
-
+        if (elements.progressBar) elements.progressBar.style.width = progress + '%';
+        if (elements.progressText) elements.progressText.textContent = Math.round(progress) + '%';
         
-        progressBar.style.width = progress + '%';
-        progressText.textContent = Math.round(progress) + '%';
-        
-        // Verificar se chegou a 100% e mostrar parabéns
+        // Mostrar parabéns quando completar
         if (progress >= 100 && !hasShownCongratulations) {
-            console.log('Progress is 100% - checking for congratulations'); // Debug
-            
-            // Verificar se todos os checkboxes estão marcados
-            const allChecked = Array.from(projCheckboxes).every(cb => cb.checked) && 
-                             Array.from(imobCheckboxes).every(cb => cb.checked) &&
-                             Array.from(henkakuenkaCheckboxes).every(cb => cb.checked) &&
-                             Array.from(kaeshiWazaCheckboxes).every(cb => cb.checked);
-            
-            if (allChecked) {
-                console.log('Showing congratulations!'); // Debug
-                setTimeout(() => {
-                    showCongratulations();
-                }, 500);
-            }
-        }
-        
-        // Verificação adicional: se todos os checkboxes estão marcados, mostrar parabéns
-        if (completedQuestions >= 16 && !hasShownCongratulations) {
-            console.log('Todos os 16 checkboxes marcados - mostrando parabéns!');
-            setTimeout(() => {
-                showCongratulations();
-            }, 500);
+            hasShownCongratulations = true;
+            setTimeout(() => showCongratulations(), 500);
         }
     }
     
-    // --- SISTEMA DE PARABÉNS ---
-    
-    // Função para mostrar modal de parabéns
+    // ===== SISTEMA DE PARABÉNS OTIMIZADO =====
     function showCongratulations() {
-        console.log('=== SHOW CONGRATULATIONS ===');
-        
         const modal = document.getElementById('congratulationsModal');
-        if (!modal) {
-            console.log('ERRO: Modal não encontrado!');
-            return;
-        }
+        if (!modal) return;
         
-        console.log('Modal encontrado, mostrando...');
-        
-        // Forçar exibição
         modal.style.display = 'flex';
         modal.classList.remove('hidden');
-        modal.classList.add('flex');
         modal.style.opacity = '1';
         modal.style.visibility = 'visible';
         modal.style.pointerEvents = 'auto';
         
-        hasShownCongratulations = true;
-        
-        // Adicionar animação de entrada
-        const modalContent = modal.querySelector('div');
-        if (modalContent) {
-            modalContent.classList.add('modal-enter');
-        }
-        
-        // Salvar que já mostrou parabéns
         localStorage.setItem('congratulationsShown', 'true');
-        
-        // Scroll suave para o topo
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        
-        console.log('Modal deve estar visível agora!');
-        console.log('=== FIM SHOW CONGRATULATIONS ===');
     }
     
-    // Função para fechar modal
     function closeCongratulations() {
-        console.log('Closing congratulations modal'); // Debug
         const modal = document.getElementById('congratulationsModal');
         if (modal) {
             modal.style.display = 'none';
             modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            console.log('Modal closed successfully'); // Debug
-        } else {
-            console.log('Modal not found for closing'); // Debug
-        }
-    }
-    
-    // Event listeners para botões do modal
-    function initializeCongratulationsButtons() {
-        const continueBtn = document.getElementById('continueTraining');
-        const closeBtn = document.getElementById('closeCongratulations');
-        
-        console.log('Initializing congratulations buttons'); // Debug
-        console.log('Continue button found:', !!continueBtn); // Debug
-        console.log('Close button found:', !!closeBtn); // Debug
-        
-        if (continueBtn) {
-            continueBtn.addEventListener('click', function() {
-                console.log('Continue training clicked'); // Debug
-                closeCongratulations();
-                // Aqui você pode adicionar lógica para continuar treinando
-            });
-        }
-        
-        if (closeBtn) {
-            closeBtn.addEventListener('click', function() {
-                console.log('Close congratulations clicked'); // Debug
-                closeCongratulations();
-            });
         }
     }
     
     // Inicializar botões de parabéns
-    initializeCongratulationsButtons();
+        const continueBtn = document.getElementById('continueTraining');
+        const closeBtn = document.getElementById('closeCongratulations');
+        
+    if (continueBtn) continueBtn.addEventListener('click', closeCongratulations);
+    if (closeBtn) closeBtn.addEventListener('click', closeCongratulations);
 
-    // Função para mostrar barra de progresso flutuante
+    // Função otimizada para barra de progresso flutuante
     function showFloatingProgress(progress) {
-        // Atualizar valores da barra flutuante
-        floatingProgressBar.style.width = progress + '%';
-        floatingProgressText.textContent = Math.round(progress) + '%';
+        if (!elements.floatingProgress || !elements.floatingProgressBar || !elements.floatingProgressText) return;
         
-        // Mostrar a barra
-        floatingProgress.classList.remove('hidden');
-        floatingProgress.style.opacity = '1';
-        floatingProgress.style.pointerEvents = 'auto';
+        elements.floatingProgressBar.style.width = progress + '%';
+        elements.floatingProgressText.textContent = Math.round(progress) + '%';
         
-        // Esconder após 3 segundos (tempo mais adequado)
+        elements.floatingProgress.classList.remove('hidden');
+        elements.floatingProgress.style.opacity = '1';
+        
         setTimeout(() => {
-            floatingProgress.style.opacity = '0';
-            floatingProgress.style.pointerEvents = 'none';
-            setTimeout(() => {
-                floatingProgress.classList.add('hidden');
-            }, 300); // Aguarda a transição de opacity
-        }, 3000);
+            elements.floatingProgress.style.opacity = '0';
+            setTimeout(() => elements.floatingProgress.classList.add('hidden'), 300);
+        }, 2000);
     }
 
-    // Garantir que a barra flutuante comece escondida
-    floatingProgress.classList.add('hidden');
-    floatingProgress.style.opacity = '0';
-    floatingProgress.style.pointerEvents = 'none';
+    // Inicializar barra flutuante
+    if (elements.floatingProgress) {
+        elements.floatingProgress.classList.add('hidden');
+        elements.floatingProgress.style.opacity = '0';
+    }
     
 
     
     // Esconder seções inicialmente
-    document.getElementById('nage-waza-section').classList.add('hidden');
-    document.getElementById('imobilizacoes-section').classList.add('hidden');
-    document.getElementById('henkakuenka-section').classList.add('hidden');
-    
-
-    
-
-    
-
-
-    // Event listeners para as opções
-    projCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function(e) {
-            updateProgress();
-            // Mostrar barra flutuante apenas quando marcar (não desmarcar)
-            if (e.target.checked) {
-                const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
-                const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
-                const totalHenkakuenkaChecked = Array.from(henkakuenkaCheckboxes).filter(cb => cb.checked).length;
-                const totalQuestions = projCheckboxes.length + imobCheckboxes.length + henkakuenkaCheckboxes.length;
-                const completedQuestions = totalProjChecked + totalImobChecked + totalHenkakuenkaChecked;
-                const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
-                showFloatingProgress(progress);
-            }
-        });
+    const sectionsToHide = ['nage-waza-section', 'imobilizacoes-section', 'henkakuenka-section'];
+    sectionsToHide.forEach(id => {
+        const section = document.getElementById(id);
+        if (section) section.classList.add('hidden');
     });
-    imobCheckboxes.forEach(checkbox => {
+    
+    // ===== EVENT LISTENERS OTIMIZADOS =====
+    function addCheckboxListeners(checkboxes) {
+        checkboxes.forEach(checkbox => {
         checkbox.addEventListener('change', function(e) {
             updateProgress();
-            // Mostrar barra flutuante apenas quando marcar (não desmarcar)
             if (e.target.checked) {
-                const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
-                const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
-                const totalHenkakuenkaChecked = Array.from(henkakuenkaCheckboxes).filter(cb => cb.checked).length;
-                const totalQuestions = projCheckboxes.length + imobCheckboxes.length + henkakuenkaCheckboxes.length;
-                const completedQuestions = totalProjChecked + totalImobChecked + totalHenkakuenkaChecked;
-                const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
-                showFloatingProgress(progress);
-            }
-        });
-    });
-    henkakuenkaCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function(e) {
-            updateProgress();
-            // Mostrar barra flutuante apenas quando marcar (não desmarcar)
-            if (e.target.checked) {
-                const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
-                const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
-                const totalHenkakuenkaChecked = Array.from(henkakuenkaCheckboxes).filter(cb => cb.checked).length;
-                const totalKaeshiWazaChecked = Array.from(kaeshiWazaCheckboxes).filter(cb => cb.checked).length;
                 const totalQuestions = projCheckboxes.length + imobCheckboxes.length + henkakuenkaCheckboxes.length + kaeshiWazaCheckboxes.length;
-                const completedQuestions = totalProjChecked + totalImobChecked + totalHenkakuenkaChecked + totalKaeshiWazaChecked;
+                    const completedQuestions = Array.from(projCheckboxes).filter(cb => cb.checked).length +
+                                             Array.from(imobCheckboxes).filter(cb => cb.checked).length +
+                                             Array.from(henkakuenkaCheckboxes).filter(cb => cb.checked).length +
+                                             Array.from(kaeshiWazaCheckboxes).filter(cb => cb.checked).length;
                 const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
                 showFloatingProgress(progress);
             }
         });
     });
-
-    kaeshiWazaCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function(e) {
-            updateProgress();
-            // Mostrar barra flutuante apenas quando marcar (não desmarcar)
-            if (e.target.checked) {
-                const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
-                const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
-                const totalHenkakuenkaChecked = Array.from(henkakuenkaCheckboxes).filter(cb => cb.checked).length;
-                const totalKaeshiWazaChecked = Array.from(kaeshiWazaCheckboxes).filter(cb => cb.checked).length;
-                const totalQuestions = projCheckboxes.length + imobCheckboxes.length + henkakuenkaCheckboxes.length + kaeshiWazaCheckboxes.length;
-                const completedQuestions = totalProjChecked + totalImobChecked + totalHenkakuenkaChecked + totalKaeshiWazaChecked;
-                const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
-                showFloatingProgress(progress);
-            }
-        });
-    });
+    }
+    
+    // Adicionar listeners para todos os checkboxes
+    addCheckboxListeners(projCheckboxes);
+    addCheckboxListeners(imobCheckboxes);
+    addCheckboxListeners(henkakuenkaCheckboxes);
+    addCheckboxListeners(kaeshiWazaCheckboxes);
+    // ===== SCROLL OTIMIZADO =====
+    if (elements.backToTopBtn) {
     window.addEventListener('scroll', function() {
         if (window.pageYOffset > 300) {
-            backToTopBtn.classList.remove('hidden');
+                elements.backToTopBtn.classList.remove('hidden');
         } else {
-            backToTopBtn.classList.add('hidden');
+                elements.backToTopBtn.classList.add('hidden');
         }
     });
-    backToTopBtn.addEventListener('click', function() {
+        
+        elements.backToTopBtn.addEventListener('click', function() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
+    }
 
     // Animação para as divs de navegação japonesa (OTIMIZADA PARA MOBILE)
     document.querySelectorAll('.japanese-nav-card').forEach((card, index) => {
@@ -423,79 +261,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Função para animação de scroll com efeitos (OTIMIZADA PARA MOBILE)
+    // ===== FUNÇÃO DE SCROLL OTIMIZADA =====
     function smoothScrollTo(element, cardElement) {
         const targetElement = document.getElementById(element);
-        const scrollIndicator = document.getElementById('scrollIndicator');
-        const scrollText = document.getElementById('scrollText');
-        
         if (!targetElement) return;
         
-        // Adicionar classe clicked ao card (APENAS EM DESKTOP)
-        if (!isMobile) {
-            cardElement.classList.add('clicked');
-            
-            // Criar partículas no ponto de clique (APENAS EM DESKTOP)
-            const rect = cardElement.getBoundingClientRect();
-            createParticles(rect.left + rect.width / 2, rect.top + rect.height / 2);
-        }
-        
-        // Mostrar indicador de scroll
-        scrollText.textContent = 'Navegando...';
-        scrollIndicator.classList.add('show');
-        
-        // Calcular posição de destino
-        const targetPosition = targetElement.offsetTop - 100;
-        const startPosition = window.pageYOffset;
-        const distance = targetPosition - startPosition;
-        
-        // Duração mais rápida em mobile
-        const duration = isMobile ? 600 : 1200;
-        let start = null;
-        
-        // Função de easing personalizada
-        function easeInOutCubic(t) {
-            return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-        }
-        
-        // Função de animação
-        function animation(currentTime) {
-            if (start === null) start = currentTime;
-            const timeElapsed = currentTime - start;
-            const progress = Math.min(timeElapsed / duration, 1);
-            const easedProgress = easeInOutCubic(progress);
-            
-            window.scrollTo(0, startPosition + distance * easedProgress);
-            
-            // Atualizar texto do indicador (APENAS EM DESKTOP)
-            if (!isMobile) {
-                if (progress < 0.5) {
-                    scrollText.textContent = 'Navegando...';
-                } else {
-                    scrollText.textContent = 'Chegando...';
-                }
-            }
-            
-            if (progress < 1) {
-                requestAnimationFrame(animation);
-            } else {
-                // Animação concluída
-                setTimeout(() => {
-                    scrollIndicator.classList.remove('show');
-                    if (!isMobile) {
-                        cardElement.classList.remove('clicked');
-                        
-                        // Adicionar destaque no destino (APENAS EM DESKTOP)
-                        targetElement.classList.add('destination-highlight');
-                        setTimeout(() => {
-                            targetElement.classList.remove('destination-highlight');
-                        }, 2000);
-                    }
-                }, isMobile ? 100 : 300);
-            }
-        }
-        
-        requestAnimationFrame(animation);
+        // Scroll simples e rápido
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     
     // Função para inicializar animações dos botões back-to-top
@@ -577,182 +349,27 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar botões back-to-top
     initializeBackToTopButtons();
     
-    // Verificar periodicamente se há botões não inicializados
-    setInterval(() => {
-        const buttons = document.querySelectorAll('.back-to-top-section');
-        const uninitializedButtons = Array.from(buttons).filter(button => {
-            const isVisible = button.offsetParent !== null;
-            return isVisible && !button.hasAttribute('data-initialized');
-        });
-        
-        if (uninitializedButtons.length > 0) {
-            console.log('Encontrados botões não inicializados:', uninitializedButtons.length);
-            initializeBackToTopButtons();
-        }
-    }, 2000);
+    // LOOP INFINITO REMOVIDO - Era o principal problema de performance!
 
-    // Função para animação de scroll com efeitos (copiada da página2.html)
-    function smoothScrollTo(element, cardElement) {
-        const targetElement = document.getElementById(element);
-        const scrollIndicator = document.getElementById('scrollIndicator');
-        const scrollText = document.getElementById('scrollText');
-        
-        if (!targetElement) return;
-        
-        // Adicionar classe clicked ao card
-        cardElement.classList.add('clicked');
-        
-        // Criar partículas no ponto de clique
-        const rect = cardElement.getBoundingClientRect();
-        createParticles(rect.left + rect.width / 2, rect.top + rect.height / 2);
-        
-        // Mostrar indicador de scroll
-        scrollText.textContent = 'Navegando...';
-        scrollIndicator.classList.add('show');
-        
-        // Calcular posição de destino
-        const targetPosition = targetElement.offsetTop - 100;
-        const startPosition = window.pageYOffset;
-        const distance = targetPosition - startPosition;
-        const duration = 1200; // 1.2 segundos
-        let start = null;
-        
-        // Função de easing personalizada
-        function easeInOutCubic(t) {
-            return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-        }
-        
-        // Função de animação
-        function animation(currentTime) {
-            if (start === null) start = currentTime;
-            const timeElapsed = currentTime - start;
-            const progress = Math.min(timeElapsed / duration, 1);
-            const easedProgress = easeInOutCubic(progress);
-            
-            window.scrollTo(0, startPosition + distance * easedProgress);
-            
-            // Atualizar texto do indicador
-            if (progress < 0.5) {
-                scrollText.textContent = 'Navegando...';
-            } else {
-                scrollText.textContent = 'Chegando...';
-            }
-            
-            if (progress < 1) {
-                requestAnimationFrame(animation);
-            } else {
-                // Animação concluída
-                setTimeout(() => {
-                    scrollIndicator.classList.remove('show');
-                    cardElement.classList.remove('clicked');
-                    
-                    // Adicionar destaque no destino
-                    targetElement.classList.add('destination-highlight');
-                    setTimeout(() => {
-                        targetElement.classList.remove('destination-highlight');
-                    }, 2000);
-                }, 300);
-            }
-        }
-        
-        requestAnimationFrame(animation);
-    }
+
     
-    // Navegação interna com animações visuais
-    const nageWazaNav = document.getElementById('nage-waza-nav');
-    const imobilizacoesNav = document.getElementById('imobilizacoes-nav');
-    const henkakuenkaNav = document.getElementById('henkakuenka-nav');
-    const nageWazaSection = document.getElementById('nage-waza-section');
-    const imobilizacoesSection = document.getElementById('imobilizacoes-section');
-    const henkakuenkaSection = document.getElementById('henkakuenka-section');
-
-    if (nageWazaNav && nageWazaSection) {
-        nageWazaNav.addEventListener('click', function(e) {
+    // ===== NAVEGAÇÃO OTIMIZADA =====
+    const navItems = [
+        { nav: 'nage-waza-nav', section: 'nage-waza-section' },
+        { nav: 'imobilizacoes-nav', section: 'imobilizacoes-section' },
+        { nav: 'henkakuenka-nav', section: 'henkakuenka-section' },
+        { nav: 'kaeshi-waza-nav', section: 'kaeshi-waza-section' }
+    ];
+    
+    navItems.forEach(item => {
+        const navElement = document.getElementById(item.nav);
+        if (navElement) {
+            navElement.addEventListener('click', function(e) {
             e.preventDefault();
-            // Esconder todas as seções primeiro
-            document.getElementById('imobilizacoes-section').classList.add('hidden');
-            document.getElementById('henkakuenka-section').classList.add('hidden');
-            document.getElementById('kaeshi-waza-section').classList.add('hidden');
-            // Mostrar a seção de técnicas de projeção
-            document.getElementById('nage-waza-section').classList.remove('hidden');
-            // Reinicializar botões back-to-top após mostrar a seção
-            setTimeout(() => {
-                smoothScrollTo('nage-waza-section', this);
-            }, 100);
-            
-            // Inicializar botões após a seção estar completamente visível
-            setTimeout(() => {
-                initializeBackToTopButtons();
-            }, 300);
-        });
-    }
-
-    if (imobilizacoesNav && imobilizacoesSection) {
-        imobilizacoesNav.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Esconder todas as seções primeiro
-            document.getElementById('nage-waza-section').classList.add('hidden');
-            document.getElementById('henkakuenka-section').classList.add('hidden');
-            document.getElementById('kaeshi-waza-section').classList.add('hidden');
-            // Mostrar a seção de imobilizações
-            document.getElementById('imobilizacoes-section').classList.remove('hidden');
-            // Reinicializar botões back-to-top após mostrar a seção
-            setTimeout(() => {
-                smoothScrollTo('imobilizacoes-section', this);
-            }, 100);
-            
-            // Inicializar botões após a seção estar completamente visível
-            setTimeout(() => {
-                initializeBackToTopButtons();
-            }, 300);
-        });
-    }
-
-    if (henkakuenkaNav && henkakuenkaSection) {
-        henkakuenkaNav.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Esconder todas as seções primeiro
-            document.getElementById('nage-waza-section').classList.add('hidden');
-            document.getElementById('imobilizacoes-section').classList.add('hidden');
-            document.getElementById('kaeshi-waza-section').classList.add('hidden');
-            // Mostrar a seção de ataques combinados
-            document.getElementById('henkakuenka-section').classList.remove('hidden');
-            // Reinicializar botões back-to-top após mostrar a seção
-            setTimeout(() => {
-                smoothScrollTo('henkakuenka-section', this);
-            }, 100);
-            
-            // Inicializar botões após a seção estar completamente visível
-            setTimeout(() => {
-                initializeBackToTopButtons();
-            }, 300);
-        });
-    }
-
-    // Navegação para Kaeshi-waza
-    const kaeshiWazaNav = document.getElementById('kaeshi-waza-nav');
-    const kaeshiWazaSection = document.getElementById('kaeshi-waza-section');
-
-    if (kaeshiWazaNav && kaeshiWazaSection) {
-        kaeshiWazaNav.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Esconder todas as seções primeiro
-            document.getElementById('nage-waza-section').classList.add('hidden');
-            document.getElementById('imobilizacoes-section').classList.add('hidden');
-            document.getElementById('henkakuenka-section').classList.add('hidden');
-            // Mostrar a seção de contra-ataques
-            document.getElementById('kaeshi-waza-section').classList.remove('hidden');
-            // Reinicializar botões back-to-top após mostrar a seção
-            setTimeout(() => {
-                smoothScrollTo('kaeshi-waza-section', this);
-            }, 100);
-            
-            // Inicializar botões após a seção estar completamente visível
-            setTimeout(() => {
-                initializeBackToTopButtons();
-            }, 300);
-        });
-    }
+                showSection(item.section);
+            });
+        }
+    });
     
     // Adicionar animação para todos os cards de navegação japonesa
     document.querySelectorAll('.japanese-nav-card').forEach(card => {
@@ -789,29 +406,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // --- CARROSSEL PROJEÇÃO ---
-    const carouselProj = document.getElementById('carouselProj');
-    const projLeftBtn = document.getElementById('carouselLeft');
-    const projRightBtn = document.getElementById('carouselRight');
-    if (carouselProj && projLeftBtn && projRightBtn) {
-        projLeftBtn.addEventListener('click', () => {
-            carouselProj.scrollBy({ left: -carouselProj.offsetWidth * 0.8, behavior: 'smooth' });
-            // Animação apenas em desktop
-            if (!isMobile) {
-                projLeftBtn.classList.add('carousel-arrow-anim');
-                setTimeout(() => projLeftBtn.classList.remove('carousel-arrow-anim'), 700);
-            }
-        });
-        projRightBtn.addEventListener('click', () => {
-            carouselProj.scrollBy({ left: carouselProj.offsetWidth * 0.8, behavior: 'smooth' });
-            // Animação apenas em desktop
-            if (!isMobile) {
-                projRightBtn.classList.add('carousel-arrow-anim');
-                setTimeout(() => projRightBtn.classList.remove('carousel-arrow-anim'), 700);
-            }
-        });
-                    // Botões sempre visíveis - removida a lógica de ocultar/mostrar
-    }
+
+
+    
     // --- CARROSSEL IMOBILIZAÇÃO ---
     const carouselImob = document.getElementById('carouselImob');
     const imobLeftBtn = document.getElementById('carouselImobLeft');
@@ -1011,4 +608,234 @@ document.addEventListener('DOMContentLoaded', function() {
 // (Estas serão chamadas quando necessário)
 window.smoothScrollToOptimized = smoothScrollToOptimized;
 window.backToTopOptimized = backToTopOptimized;
+
+// ===== SETAS DE NAVEGAÇÃO DO CARROSSEL - DESKTOP E MOBILE =====
+
+// Função para inicializar as setas de navegação do carrossel
+function initializeCarouselArrows() {
+    console.log('🔍 Inicializando setas do carrossel...');
+    
+    // Selecionar todos os containers de carrossel
+    const carouselContainers = [
+        { id: 'nage-waza-section', selector: '#carouselProj' },
+        { id: 'imobilizacoes-section', selector: '.grid' },
+        { id: 'henkakuenka-section', selector: '.max-w-6xl' },
+        { id: 'kaeshi-waza-section', selector: '.max-w-6xl' }
+    ];
+    
+    carouselContainers.forEach(container => {
+        console.log(`🔍 Verificando container: ${container.id} com seletor: ${container.selector}`);
+        
+        const section = document.getElementById(container.id);
+        if (!section) {
+            console.log(`❌ Seção ${container.id} não encontrada`);
+            return;
+        }
+        
+        console.log(`✅ Seção ${container.id} encontrada`);
+        
+        const carousel = section.querySelector(container.selector);
+        if (!carousel) {
+            console.log(`❌ Carrossel não encontrado em ${container.id}`);
+            return;
+        }
+        
+        console.log(`✅ Carrossel encontrado em ${container.id}`);
+        
+        // Verificar se já existem setas para evitar duplicação
+        const existingArrows = section.querySelectorAll('.carousel-arrow-left, .carousel-arrow-right');
+        if (existingArrows.length > 0) {
+            console.log(`⚠️ Setas já existem em ${container.id}, removendo antigas...`);
+            existingArrows.forEach(arrow => arrow.remove());
+        }
+        
+        // Criar setas de navegação
+        const leftArrow = document.createElement('button');
+        const rightArrow = document.createElement('button');
+        
+        leftArrow.className = 'carousel-arrow-left';
+        rightArrow.className = 'carousel-arrow-right';
+        
+        // Adicionar texto às setas como fallback
+        leftArrow.innerHTML = '‹';
+        rightArrow.innerHTML = '›';
+        
+        // Adicionar setas ao container
+        section.appendChild(leftArrow);
+        section.appendChild(rightArrow);
+        
+        console.log(`✅ Setas criadas para ${container.id}`);
+        console.log(`📍 Posição das setas:`, {
+            left: leftArrow.getBoundingClientRect(),
+            right: rightArrow.getBoundingClientRect(),
+            section: section.getBoundingClientRect()
+        });
+        
+        // Função para verificar se as setas devem estar visíveis
+        function updateArrowVisibility() {
+            const isAtStart = carousel.scrollLeft <= 0;
+            const isAtEnd = carousel.scrollLeft >= carousel.scrollWidth - carousel.clientWidth;
+            const hasScroll = carousel.scrollWidth > carousel.clientWidth;
+            
+            // Para debug: sempre mostrar as setas inicialmente
+            if (container.id === 'nage-waza-section') {
+                leftArrow.classList.remove('hidden');
+                rightArrow.classList.remove('hidden');
+                console.log(`🎯 Setas de projeção sempre visíveis para debug`);
+            } else {
+                leftArrow.classList.toggle('hidden', isAtStart);
+                rightArrow.classList.toggle('hidden', isAtEnd);
+            }
+            
+            console.log(`🔄 Visibilidade das setas em ${container.id}: Esquerda=${!isAtStart}, Direita=${!isAtEnd}, HasScroll=${hasScroll}`);
+        }
+        
+        // Event listeners para as setas
+        leftArrow.addEventListener('click', () => {
+            console.log(`⬅️ Seta esquerda clicada em ${container.id}`);
+            const scrollAmount = carousel.clientWidth * 0.8;
+            carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            
+            // Atualizar visibilidade após scroll
+            setTimeout(updateArrowVisibility, 500);
+        });
+        
+        rightArrow.addEventListener('click', () => {
+            console.log(`➡️ Seta direita clicada em ${container.id}`);
+            const scrollAmount = carousel.clientWidth * 0.8;
+            carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            
+            // Atualizar visibilidade após scroll
+            setTimeout(updateArrowVisibility, 500);
+        });
+        
+        // Adicionar classe específica para identificação
+        leftArrow.setAttribute('data-section', container.id);
+        rightArrow.setAttribute('data-section', container.id);
+        
+        // Atualizar visibilidade inicial
+        updateArrowVisibility();
+        
+        // Atualizar visibilidade durante scroll
+        carousel.addEventListener('scroll', updateArrowVisibility);
+        
+        // Atualizar visibilidade quando a tela é redimensionada
+        window.addEventListener('resize', updateArrowVisibility);
+        
+        // Log adicional para debug
+        console.log(`🎯 Setas configuradas para ${container.id}:`, {
+            carouselWidth: carousel.clientWidth,
+            scrollWidth: carousel.scrollWidth,
+            hasScroll: carousel.scrollWidth > carousel.clientWidth
+        });
+    });
+    
+    console.log('✅ Inicialização das setas concluída');
+}
+
+}); // End of DOMContentLoaded
+
+// Inicializar setas de navegação quando o DOM estiver carregado
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 DOM carregado, aguardando inicialização das setas...');
+    // Aguardar um pouco para garantir que todas as seções estejam carregadas
+    setTimeout(() => {
+        console.log('⏰ Inicializando setas após delay...');
+        initializeCarouselArrows();
+    }, 1000);
 });
+
+// Inicializar setas quando uma seção é mostrada
+window.showSection = function(sectionId) {
+    console.log('Mostrando seção:', sectionId);
+    
+    // Esconder todas as seções primeiro
+    const allSections = [
+        'nage-waza-section',
+        'imobilizacoes-section', 
+        'henkakuenka-section',
+        'technique-cards-section',
+        'kaeshi-waza-section'
+    ];
+    
+    allSections.forEach(id => {
+        const section = document.getElementById(id);
+        if (section) {
+            section.classList.add('hidden');
+        }
+    });
+    
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) {
+        targetSection.classList.remove('hidden');
+        
+        targetSection.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+        });
+        
+        // Inicializar setas para a seção mostrada
+        setTimeout(() => {
+            console.log('🎯 Inicializando setas para seção:', sectionId);
+            initializeCarouselArrows();
+            
+            // Se for a seção de projeção, também testar as setas
+            if (sectionId === 'nage-waza-section') {
+                setTimeout(() => {
+                    console.log('🎯 Testando setas para seção de projeção...');
+                    forceProjectionArrows(); // Usar a função forçada
+                }, 200);
+            }
+        }, 500);
+    }
+};
+
+
+
+
+
+    // ===== FUNÇÕES DE TÉCNICAS INDIVIDUAIS =====
+    window.showTechniqueCard = function(techniqueId) {
+        document.getElementById('henkakuenka-section').classList.add('hidden');
+        document.getElementById('technique-cards-section').classList.remove('hidden');
+        
+        document.querySelectorAll('.technique-individual-card').forEach(card => {
+            card.classList.add('hidden');
+        });
+        
+        const selectedCard = document.getElementById(techniqueId + '-card');
+        if (selectedCard) {
+            selectedCard.classList.remove('hidden');
+        }
+        
+        setTimeout(() => {
+            document.getElementById('technique-cards-section').scrollIntoView({ 
+                behavior: 'smooth', block: 'start' 
+            });
+        }, 100);
+    };
+    
+    window.backToHenkakuenka = function() {
+        document.getElementById('technique-cards-section').classList.add('hidden');
+        document.getElementById('henkakuenka-section').classList.remove('hidden');
+        
+        setTimeout(() => {
+            document.getElementById('henkakuenka-section').scrollIntoView({ 
+                behavior: 'smooth', block: 'start' 
+            });
+        }, 100);
+    };
+    
+    // Navegação para Ukemi
+    const ukemiNav = document.getElementById('ukemi-nav');
+    if (ukemiNav) {
+        ukemiNav.addEventListener('click', function() {
+            window.location.href = '/ukemis/';
+        });
+    }
+    
+    // ===== INICIALIZAÇÃO FINAL =====
+    console.log('✅ Script da Página 3 otimizado carregado!');
+    console.log('📱 Mobile:', isMobile);
+    
+ // Fim do DOMContentLoaded

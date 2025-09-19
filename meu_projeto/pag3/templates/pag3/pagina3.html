@@ -34,13 +34,9 @@
             }
         }
     </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
-        
-        /* Aplicar Open Sans como fonte padrão para o corpo - altamente legível */
-  
-        
-    </style>
+    
+
+
 </head>
 <body class="bg-gray-50 font-sans">
     <!-- Header com Progresso -->
@@ -49,7 +45,7 @@
             <div class="flex items-center justify-between mb-4">
                 <div>
                     <h1 class="text-3xl md:text-4xl font-bold mb-2 flex items-center gap-3 text-white">
-                        <img src="{% static 'faixa-amarela.png' %}" alt="Faixa Amarela" class="w-12 h-8 object-contain">
+                        <img src="{% static 'faixa-amarela.png' %}" alt="Faixa Amarela" class="w-12 h-8 object-contain" loading="lazy">
                         Faixa Amarela
                     </h1>
                     <p class="text-yellow-100 text-lg">Seu terceiro passo na jornada do judô</p>
@@ -108,21 +104,7 @@
                 </div>
             </div>
         </div>
-        <style>
-        #welcomeCard {
-            box-shadow: 0 2px 16px 0 rgba(251,191,36,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
-        }
-        </style>
 
-        <style>
-        @keyframes fade-in {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-            animation: fade-in 1.2s cubic-bezier(0.4,0,0.2,1);
-        }
-        </style>
 
         <!-- Divs de Navegação Japonesa -->
         <div class="japanese-nav-container">
@@ -139,39 +121,39 @@
                     <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-blue-600">Japonês</div>
                 </a>
                 
-                <div id="ukemi-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-green-400 hover:bg-gradient-to-br hover:from-green-50 hover:to-white transform hover:-translate-y-2">
+                <div id="ukemi-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-green-400 hover:bg-gradient-to-br hover:from-green-50 hover:to-white transform hover:-translate-y-2" onclick="showSection('ukemi-section')">
                     <div class="absolute inset-0 bg-gradient-to-r from-green-400/0 to-green-400/0 group-hover:from-green-400/10 group-hover:to-green-400/5 transition-all duration-500"></div>
                     <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-spin">🔄</div>
                     <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-green-700 group-hover:scale-105">Rolamentos</div>
                     <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-green-600">Ukemi</div>
                 </div>
                 
-                <div id="nage-waza-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-orange-400 hover:bg-gradient-to-br hover:from-orange-50 hover:to-white transform hover:-translate-y-2">
+                <div id="nage-waza-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-orange-400 hover:bg-gradient-to-br hover:from-orange-50 hover:to-white transform hover:-translate-y-2" onclick="showSection('nage-waza-section')">
                     <div class="absolute inset-0 bg-gradient-to-r from-orange-400/0 to-orange-400/0 group-hover:from-orange-400/10 group-hover:to-orange-400/5 transition-all duration-500"></div>
                     <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-pulse">💥</div>
                     <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-orange-700 group-hover:scale-105">Quedas</div>
                     <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-orange-600">Nage-waza</div>
                 </div>
                 
-                <div id="imobilizacoes-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-purple-400 hover:bg-gradient-to-br hover:from-purple-50 hover:to-white transform hover:-translate-y-2">
+                <div id="imobilizacoes-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-purple-400 hover:bg-gradient-to-br hover:from-purple-50 hover:to-white transform hover:-translate-y-2" onclick="showSection('imobilizacoes-section')">
                     <div class="absolute inset-0 bg-gradient-to-r from-purple-400/0 to-purple-400/0 group-hover:from-purple-400/10 group-hover:to-purple-400/5 transition-all duration-500"></div>
                     <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-bounce">🔒</div>
                     <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-purple-700 group-hover:scale-105">Imobilizações</div>
                     <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-purple-600">Osaekomi-waza</div>
                 </div>
                 
-                <div id="henkakuenka-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-red-400 hover:bg-gradient-to-br hover:from-red-50 hover:to-white transform hover:-translate-y-2">
+                <div id="henkakuenka-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-red-400 hover:bg-gradient-to-br hover:from-red-50 hover:to-white transform hover:-translate-y-2" onclick="showSection('henkakuenka-section')">
                     <div class="absolute inset-0 bg-gradient-to-r from-red-400/0 to-red-400/0 group-hover:from-red-400/10 group-hover:to-red-400/5 transition-all duration-500"></div>
                     <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-pulse">⚡</div>
-                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-red-700 group-hover:scale-105">Ataques</div>
-                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-red-600">Combinados</div>
+                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-red-700 group-hover:scale-105">Ataques Combinados</div>
+                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-red-600">Henkakuenka-waza</div>
                 </div>
                 
-                <div id="kaeshi-waza-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-pink-400 hover:bg-gradient-to-br hover:from-pink-50 hover:to-white transform hover:-translate-y-2">
+                <div id="kaeshi-waza-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-pink-400 hover:bg-gradient-to-br hover:from-pink-50 hover:to-white transform hover:-translate-y-2" onclick="showSection('kaeshi-waza-section')">
                     <div class="absolute inset-0 bg-gradient-to-r from-pink-400/0 to-pink-400/0 group-hover:from-pink-400/10 group-hover:to-pink-400/5 transition-all duration-500"></div>
                     <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-bounce">🔄</div>
-                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-pink-700 group-hover:scale-105">Contra</div>
-                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-pink-600">Ataques</div>
+                    <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-pink-700 group-hover:scale-105">Contra Ataques</div>
+                    <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-pink-600">Kaeshi-waza</div>
                 </div>
             </div>
         </div>
@@ -188,16 +170,10 @@
                 </p>
             </div>
             <div class="relative">
-                        <!-- Botão Esquerda -->
-        <button id="carouselLeft" type="button" class="flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-orange-600/80 hover:bg-orange-600 text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                    </svg>
-                </button>
                 <!-- Carrossel -->
                 <div id="carouselProj" class="flex overflow-x-auto gap-6 pb-4 scroll-smooth snap-x snap-mandatory hide-scrollbar">
                     <!-- Técnica 1 -->
-                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 ">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-blue-100 p-2 rounded-full mr-3">
@@ -214,9 +190,9 @@
                             </label>
                         </div>
                         <div class="video-container mb-3">
-                            <iframe src="https://www.youtube.com/embed/0itJFhV9pDQ?si=KNKy8DpKjbvH_3_D" 
+                            <iframe data-src="https://www.youtube.com/embed/0itJFhV9pDQ?si=KNKy8DpKjbvH_3_D" 
                                     title="O-UCHI-GARI técnica" 
-                                    frameborder="0" 
+                                    loading="lazy"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
                                     allowfullscreen>
@@ -229,7 +205,7 @@
                     </div>
 
                     <!-- Técnica 2 -->
-                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 ">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-green-100 p-2 rounded-full mr-3">
@@ -246,9 +222,9 @@
                             </label>
                         </div>
                         <div class="video-container mb-3">
-                            <iframe src="https://www.youtube.com/embed/3Jb3tZvr9Ng?si=1uT1iQUT5xVArgrY" 
+                            <iframe data-src="https://www.youtube.com/embed/3Jb3tZvr9Ng?si=1uT1iQUT5xVArgrY" 
                                     title="KO-UCHI-GARI técnica" 
-                                    frameborder="0" 
+                                    loading="lazy"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
                                     allowfullscreen>
@@ -261,7 +237,7 @@
                     </div>
 
                     <!-- Técnica 3 -->
-                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 ">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-orange-100 p-2 rounded-full mr-3">
@@ -278,9 +254,9 @@
                             </label>
                         </div>
                         <div class="video-container mb-3">
-                            <iframe src="https://www.youtube.com/embed/bvFuhJwg6AY?si=TvKWV5Ph-Bq07WI4" 
+                            <iframe data-src="https://www.youtube.com/embed/bvFuhJwg6AY?si=TvKWV5Ph-Bq07WI4" 
                                     title="MOROTE-SEOI-NAGUE técnica" 
-                                    frameborder="0" 
+                                    loading="lazy"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
                                     allowfullscreen>
@@ -289,11 +265,11 @@
                         <div class="bg-orange-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
                             <p class="text-orange-700 text-xs">Aproxime-se bem do oponente e use o giro do corpo para projetar.</p>
-                        </div>
-                    </div>
-
+                </div>
+            </div>
+            
                     <!-- Técnica 4 -->
-                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 ">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-purple-100 p-2 rounded-full mr-3">
@@ -310,9 +286,9 @@
                             </label>
                         </div>
                         <div class="video-container mb-3">
-                            <iframe src="https://www.youtube.com/embed/4x6S3Q-Ktv8?si=sqEVNgdgaKFMxFgV" 
+                            <iframe data-src="https://www.youtube.com/embed/4x6S3Q-Ktv8?si=sqEVNgdgaKFMxFgV" 
                                     title="TAI-OTOSHI técnica" 
-                                    frameborder="0" 
+                                    loading="lazy"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
                                     allowfullscreen>
@@ -325,7 +301,7 @@
                     </div>
 
                     <!-- Técnica 5 -->
-                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 ">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-indigo-100 p-2 rounded-full mr-3">
@@ -342,9 +318,9 @@
                             </label>
                         </div>
                         <div class="video-container mb-3">
-                            <iframe src="https://www.youtube.com/embed/bPKwtB4lyOQ?si=H-AXO5f-qVPB5627" 
+                            <iframe data-src="https://www.youtube.com/embed/bPKwtB4lyOQ?si=H-AXO5f-qVPB5627" 
                                     title="UKI-GOSHI técnica" 
-                                    frameborder="0" 
+                                    loading="lazy"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
                                     allowfullscreen>
@@ -357,7 +333,7 @@
                     </div>
 
                     <!-- Técnica 6 -->
-                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 ">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-teal-100 p-2 rounded-full mr-3">
@@ -374,9 +350,9 @@
                             </label>
                         </div>
                         <div class="video-container mb-3">
-                            <iframe src="https://www.youtube.com/embed/i9h733xXNyU?si=HubpiDyNDDBFSQwE" 
+                            <iframe data-src="https://www.youtube.com/embed/i9h733xXNyU?si=HubpiDyNDDBFSQwE" 
                                     title="IPPON-ERI-SEOI-NAGUE técnica" 
-                                    frameborder="0" 
+                                    loading="lazy"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
                                     allowfullscreen>
@@ -388,12 +364,6 @@
                         </div>
                     </div>
                 </div>
-                        <!-- Botão Direita -->
-        <button id="carouselRight" type="button" class="flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-orange-600/80 hover:bg-orange-600 text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                    </svg>
-                </button>
             </div>
             
             <!-- Botão Voltar ao Topo para Técnicas de Projeção -->
@@ -418,8 +388,8 @@
                 </p>
             </div>
             <div class="relative">
-                        <!-- Botão Esquerda -->
-        <button id="carouselImobLeft" type="button" class="flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-purple-600/80 hover:bg-purple-600 text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
+                <!-- Botão Esquerda -->
+                <button id="carouselImobLeft" type="button" class="flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-purple-600/80 hover:bg-purple-600 text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                     </svg>
@@ -427,7 +397,7 @@
                 <!-- Carrossel -->
                 <div id="carouselImob" class="flex overflow-x-auto gap-6 pb-4 scroll-smooth snap-x snap-mandatory hide-scrollbar">
                     <!-- Imobilização 1 -->
-                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 ">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-indigo-100 p-2 rounded-full mr-3">
@@ -444,9 +414,9 @@
                             </label>
                         </div>
                         <div class="video-container mb-3">
-                            <iframe src="https://www.youtube.com/embed/NDaQuJOFBYk?si=mUcnSH1vUZ7J6NHH" 
+                            <iframe data-src="https://www.youtube.com/embed/NDaQuJOFBYk?si=mUcnSH1vUZ7J6NHH" 
                                     title="TATÊ-SHIHO-GATAME técnica" 
-                                    frameborder="0" 
+                                    loading="lazy"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
                                     allowfullscreen>
@@ -459,7 +429,7 @@
                     </div>
 
                     <!-- Imobilização 2 -->
-                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 ">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-teal-100 p-2 rounded-full mr-3">
@@ -476,9 +446,9 @@
                             </label>
                         </div>
                         <div class="video-container mb-3">
-                            <iframe src="https://www.youtube.com/embed/TT7XJVSEQxA?si=y4zqjOqjyM4leinj" 
+                            <iframe data-src="https://www.youtube.com/embed/TT7XJVSEQxA?si=y4zqjOqjyM4leinj" 
                                     title="KUSURE-KESA-GATAME técnica" 
-                                    frameborder="0" 
+                                    loading="lazy"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
                                     allowfullscreen>
@@ -491,7 +461,7 @@
                     </div>
 
                     <!-- Imobilização 3 -->
-                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 ">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-cyan-100 p-2 rounded-full mr-3">
@@ -508,9 +478,9 @@
                             </label>
                         </div>
                         <div class="video-container mb-3">
-                            <iframe src="https://www.youtube.com/embed/HFuMjOv0WN8?si=j4_TOSpJdpm8ACXN" 
+                            <iframe data-src="https://www.youtube.com/embed/HFuMjOv0WN8?si=j4_TOSpJdpm8ACXN" 
                                     title="KUZURE-YOKO-SHIHO-GATAME técnica" 
-                                    frameborder="0" 
+                                    loading="lazy"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
                                     allowfullscreen>
@@ -523,7 +493,7 @@
                     </div>
 
                     <!-- Imobilização 4 -->
-                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 min-w-[370px] max-w-[440px] flex-shrink-0 snap-center">
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 ">
                         <div class="flex items-center mb-3 justify-between">
                             <div class="flex items-center">
                                 <div class="bg-rose-100 p-2 rounded-full mr-3">
@@ -540,9 +510,9 @@
                             </label>
                         </div>
                         <div class="video-container mb-3">
-                            <iframe src="https://www.youtube.com/embed/NDaQuJOFBYk?si=mUcnSH1vUZ7J6NHH" 
+                            <iframe data-src="https://www.youtube.com/embed/NDaQuJOFBYk?si=mUcnSH1vUZ7J6NHH" 
                                     title="KUZURE-KAMI-SHIHO-GATAME técnica" 
-                                    frameborder="0" 
+                                    loading="lazy"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
                                     allowfullscreen>
@@ -554,8 +524,8 @@
                         </div>
                     </div>
                 </div>
-                        <!-- Botão Direita -->
-        <button id="carouselImobRight" type="button" class="flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-purple-600/80 hover:bg-purple-600 text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
+                <!-- Botão Direita -->
+                <button id="carouselImobRight" type="button" class="flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-purple-600/80 hover:bg-purple-600 text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                     </svg>
@@ -595,11 +565,17 @@
                     
                     <div class="flex flex-col items-center justify-center gap-4">
                         <!-- Técnica da Esquerda (card completo) -->
-                        <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px] cursor-pointer" onclick="showTechniqueCard('ouchi-gari')">
+                        <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                             <h4 class="text-lg font-bold text-gray-800">O-UCHI-GARI</h4>
                             <p class="text-gray-600 text-sm">Gancho Interno</p>
                             <div class="video-container my-3">
-                                <iframe src="https://www.youtube.com/embed/0itJFhV9pDQ?si=KNKy8DpKjbvH_3_D" title="O-UCHI-GARI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                <iframe data-src="https://www.youtube.com/embed/0itJFhV9pDQ?si=KNKy8DpKjbvH_3_D" 
+                                        title="O-UCHI-GARI" 
+                                        loading="lazy"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                        referrerpolicy="strict-origin-when-cross-origin" 
+                                        allowfullscreen>
+                                </iframe>
                             </div>
                             <div class="bg-blue-50 p-2 rounded-xl">
                                 <h5 class="font-semibold text-blue-800 mb-1 text-sm">💡 Dica:</h5>
@@ -613,11 +589,17 @@
                         </div>
                         
                         <!-- Técnica da Direita (card completo) -->
-                        <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px] cursor-pointer" onclick="showTechniqueCard('tai-otoshi')">
+                        <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                             <h4 class="text-lg font-bold text-gray-800">TAI-OTOSHI</h4>
                             <p class="text-gray-600 text-sm">Queda Corporal</p>
                             <div class="video-container my-3">
-                                <iframe src="https://www.youtube.com/embed/4x6S3Q-Ktv8?si=sqEVNgdgaKFMxFgV" title="TAI-OTOSHI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                <iframe data-src="https://www.youtube.com/embed/4x6S3Q-Ktv8?si=sqEVNgdgaKFMxFgV" 
+                                        title="TAI-OTOSHI" 
+                                        loading="lazy"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                        referrerpolicy="strict-origin-when-cross-origin" 
+                                        allowfullscreen>
+                                </iframe>
                             </div>
                             <div class="bg-purple-50 p-2 rounded-xl">
                                 <h5 class="font-semibold text-purple-800 mb-1 text-sm">💡 Dica:</h5>
@@ -643,11 +625,17 @@
                     
                     <div class="flex flex-col items-center justify-center gap-4">
                         <!-- Técnica da Esquerda (card completo) -->
-                        <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px] cursor-pointer" onclick="showTechniqueCard('ouchi-gari')">
+                        <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                             <h4 class="text-lg font-bold text-gray-800">O-UCHI-GARI</h4>
                             <p class="text-gray-600 text-sm">Gancho Interno</p>
                             <div class="video-container my-3">
-                                <iframe src="https://www.youtube.com/embed/0itJFhV9pDQ?si=KNKy8DpKjbvH_3_D" title="O-UCHI-GARI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                <iframe data-src="https://www.youtube.com/embed/0itJFhV9pDQ?si=KNKy8DpKjbvH_3_D" 
+                                        title="O-UCHI-GARI" 
+                                        loading="lazy"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                        referrerpolicy="strict-origin-when-cross-origin" 
+                                        allowfullscreen>
+                                </iframe>
                             </div>
                             <div class="bg-blue-50 p-2 rounded-xl">
                                 <h5 class="font-semibold text-blue-800 mb-1 text-sm">💡 Dica:</h5>
@@ -661,11 +649,17 @@
                         </div>
                         
                         <!-- Técnica da Direita (card completo) -->
-                        <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px] cursor-pointer" onclick="showTechniqueCard('ko-uchi-gari')">
+                        <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                             <h4 class="text-lg font-bold text-gray-800">KO-UCHI-GARI</h4>
                             <p class="text-gray-600 text-sm">Gancho Externo</p>
                             <div class="video-container my-3">
-                                <iframe src="https://www.youtube.com/embed/3Jb3tZvr9Ng?si=1uT1iQUT5xVArgrY" title="KO-UCHI-GARI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                <iframe data-src="https://www.youtube.com/embed/3Jb3tZvr9Ng?si=1uT1iQUT5xVArgrY" 
+                                        title="KO-UCHI-GARI" 
+                                        loading="lazy"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                        referrerpolicy="strict-origin-when-cross-origin" 
+                                        allowfullscreen>
+                                </iframe>
                             </div>
                             <div class="bg-green-50 p-2 rounded-xl">
                                 <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
@@ -690,11 +684,17 @@
                     
                     <div class="flex flex-col items-center justify-center gap-4">
                         <!-- Técnica da Esquerda (card completo) -->
-                        <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px] cursor-pointer" onclick="showTechniqueCard('ouchi-gari')">
+                        <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                             <h4 class="text-lg font-bold text-gray-800">O-UCHI-GARI</h4>
                             <p class="text-gray-600 text-sm">Gancho Interno</p>
                             <div class="video-container my-3">
-                                <iframe src="https://www.youtube.com/embed/0itJFhV9pDQ?si=KNKy8DpKjbvH_3_D" title="O-UCHI-GARI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                <iframe data-src="https://www.youtube.com/embed/0itJFhV9pDQ?si=KNKy8DpKjbvH_3_D" 
+                                        title="O-UCHI-GARI" 
+                                        loading="lazy"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                        referrerpolicy="strict-origin-when-cross-origin" 
+                                        allowfullscreen>
+                                </iframe>
                             </div>
                             <div class="bg-blue-50 p-2 rounded-xl">
                                 <h5 class="font-semibold text-blue-800 mb-1 text-sm">💡 Dica:</h5>
@@ -708,11 +708,17 @@
                         </div>
                         
                         <!-- Técnica da Direita (card completo) -->
-                        <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px] cursor-pointer" onclick="showTechniqueCard('morote-seoi-nague')">
+                        <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                             <h4 class="text-lg font-bold text-gray-800">MOROTE-SEOI-NAGUE</h4>
                             <p class="text-gray-600 text-sm">Projeção por Costas</p>
                             <div class="video-container my-3">
-                                <iframe src="https://www.youtube.com/embed/bvFuhJwg6AY?si=TvKWV5Ph-Bq07WI4" title="MOROTE-SEOI-NAGUE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                <iframe data-src="https://www.youtube.com/embed/bvFuhJwg6AY?si=TvKWV5Ph-Bq07WI4" 
+                                        title="MOROTE-SEOI-NAGUE" 
+                                        loading="lazy"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                        referrerpolicy="strict-origin-when-cross-origin" 
+                                        allowfullscreen>
+                                </iframe>
                             </div>
                             <div class="bg-orange-50 p-2 rounded-xl">
                                 <h5 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h5>
@@ -760,7 +766,7 @@
             <div class="max-w-4xl mx-auto">
                 
                 <!-- Card O-UCHI-GARI -->
-                <div id="ouchi-gari-card" class="technique-individual-card hidden">
+                <div id="ouchi-gari-card" class="technique-individual-card">
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-6">
                         <div class="flex items-center mb-4 justify-between">
                             <div class="flex items-center">
@@ -774,9 +780,9 @@
                             </div>
                         </div>
                         <div class="video-container mb-4">
-                            <iframe src="https://www.youtube.com/embed/0itJFhV9pDQ?si=KNKy8DpKjbvH_3_D" 
+                            <iframe data-src="https://www.youtube.com/embed/0itJFhV9pDQ?si=KNKy8DpKjbvH_3_D" 
                                     title="O-UCHI-GARI técnica" 
-                                    frameborder="0" 
+                                    loading="lazy"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
                                     allowfullscreen>
@@ -790,7 +796,7 @@
                 </div>
 
                 <!-- Card TAI-OTOSHI -->
-                <div id="tai-otoshi-card" class="technique-individual-card hidden">
+                <div id="tai-otoshi-card" class="technique-individual-card">
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-6">
                         <div class="flex items-center mb-4 justify-between">
                             <div class="flex items-center">
@@ -804,9 +810,9 @@
                             </div>
                         </div>
                         <div class="video-container mb-4">
-                            <iframe src="https://www.youtube.com/embed/4x6S3Q-Ktv8?si=sqEVNgdgaKFMxFgV" 
+                            <iframe data-src="https://www.youtube.com/embed/4x6S3Q-Ktv8?si=sqEVNgdgaKFMxFgV" 
                                     title="TAI-OTOSHI técnica" 
-                                    frameborder="0" 
+                                    loading="lazy"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
                                     allowfullscreen>
@@ -820,7 +826,7 @@
                 </div>
 
                 <!-- Card KO-UCHI-GARI -->
-                <div id="ko-uchi-gari-card" class="technique-individual-card hidden">
+                <div id="ko-uchi-gari-card" class="technique-individual-card">
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-6">
                         <div class="flex items-center mb-4 justify-between">
                             <div class="flex items-center">
@@ -834,9 +840,9 @@
                             </div>
                         </div>
                         <div class="video-container mb-4">
-                            <iframe src="https://www.youtube.com/embed/3Jb3tZvr9Ng?si=1uT1iQUT5xVArgrY" 
+                            <iframe data-src="https://www.youtube.com/embed/3Jb3tZvr9Ng?si=1uT1iQUT5xVArgrY" 
                                     title="KO-UCHI-GARI técnica" 
-                                    frameborder="0" 
+                                    loading="lazy"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
                                     allowfullscreen>
@@ -850,7 +856,7 @@
                 </div>
 
                 <!-- Card MOROTE-SEOI-NAGUE -->
-                <div id="morote-seoi-nague-card" class="technique-individual-card hidden">
+                <div id="morote-seoi-nague-card" class="technique-individual-card">
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-6">
                         <div class="flex items-center mb-4 justify-between">
                             <div class="flex items-center">
@@ -864,9 +870,9 @@
                             </div>
                         </div>
                         <div class="video-container mb-4">
-                            <iframe src="https://www.youtube.com/embed/bvFuhJwg6AY?si=TvKWV5Ph-Bq07WI4" 
+                            <iframe data-src="https://www.youtube.com/embed/bvFuhJwg6AY?si=TvKWV5Ph-Bq07WI4" 
                                     title="MOROTE-SEOI-NAGUE técnica" 
-                                    frameborder="0" 
+                                    loading="lazy"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
                                     allowfullscreen>
@@ -880,7 +886,7 @@
                 </div>
 
                 <!-- Card KOSHI-GURUMA -->
-                <div id="koshi-guruma-card" class="technique-individual-card hidden">
+                <div id="koshi-guruma-card" class="technique-individual-card">
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-6">
                         <div class="flex items-center mb-4 justify-between">
                             <div class="flex items-center">
@@ -894,9 +900,9 @@
                             </div>
                         </div>
                         <div class="video-container mb-4">
-                            <iframe src="https://www.youtube.com/embed/example1?si=example" 
+                            <iframe data-src="https://www.youtube.com/embed/example1?si=example" 
                                     title="KOSHI-GURUMA técnica" 
-                                    frameborder="0" 
+                                    loading="lazy"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
                                     allowfullscreen>
@@ -910,7 +916,7 @@
                 </div>
 
                 <!-- Card O-GOSHI -->
-                <div id="o-goshi-card" class="technique-individual-card hidden">
+                <div id="o-goshi-card" class="technique-individual-card">
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-6">
                         <div class="flex items-center mb-4 justify-between">
                             <div class="flex items-center">
@@ -924,9 +930,9 @@
                             </div>
                         </div>
                         <div class="video-container mb-4">
-                            <iframe src="https://www.youtube.com/embed/example2?si=example" 
+                            <iframe data-src="https://www.youtube.com/embed/example2?si=example" 
                                     title="O-GOSHI técnica" 
-                                    frameborder="0" 
+                                    loading="lazy"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
                                     allowfullscreen>
@@ -940,7 +946,7 @@
                 </div>
 
                 <!-- Card O-SOTO-GARI -->
-                <div id="o-soto-gari-card" class="technique-individual-card hidden">
+                <div id="o-soto-gari-card" class="technique-individual-card">
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-6">
                         <div class="flex items-center mb-4 justify-between">
                             <div class="flex items-center">
@@ -954,9 +960,9 @@
                             </div>
                         </div>
                         <div class="video-container mb-4">
-                            <iframe src="https://www.youtube.com/embed/example3?si=example" 
+                            <iframe data-src="https://www.youtube.com/embed/example3?si=example" 
                                     title="O-SOTO-GARI técnica" 
-                                    frameborder="0" 
+                                    loading="lazy"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
                                     allowfullscreen>
@@ -970,7 +976,7 @@
                 </div>
 
                 <!-- Card O-SOTO-GARI-GAESHI -->
-                <div id="o-soto-gari-gaeshi-card" class="technique-individual-card hidden">
+                <div id="o-soto-gari-gaeshi-card" class="technique-individual-card">
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-6">
                         <div class="flex items-center mb-4 justify-between">
                             <div class="flex items-center">
@@ -984,9 +990,9 @@
                             </div>
                         </div>
                         <div class="video-container mb-4">
-                            <iframe src="https://www.youtube.com/embed/example4?si=example" 
+                            <iframe data-src="https://www.youtube.com/embed/example4?si=example" 
                                     title="O-SOTO-GARI-GAESHI técnica" 
-                                    frameborder="0" 
+                                    loading="lazy"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
                                     allowfullscreen>
@@ -1027,11 +1033,17 @@
                 
                 <div class="flex flex-col items-center justify-center gap-4">
                     <!-- Técnica da Esquerda (card completo) -->
-                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px] cursor-pointer" onclick="showTechniqueCard('ouchi-gari')">
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">O-UCHI-GARI</h4>
                         <p class="text-gray-600 text-sm">Gancho Interno</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/0itJFhV9pDQ?si=KNKy8DpKjbvH_3_D" title="O-UCHI-GARI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe data-src="https://www.youtube.com/embed/0itJFhV9pDQ?si=KNKy8DpKjbvH_3_D" 
+                                    title="O-UCHI-GARI" 
+                                    loading="lazy"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
                         </div>
                         <div class="bg-blue-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-blue-800 mb-1 text-sm">💡 Dica:</h5>
@@ -1045,11 +1057,17 @@
                     </div>
                     
                     <!-- Técnica da Direita (card completo) -->
-                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px] cursor-pointer" onclick="showTechniqueCard('morote-seoi-nague')">
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">MOROTE-SEOI-NAGUE</h4>
                         <p class="text-gray-600 text-sm">Projeção por Costas</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/bvFuhJwg6AY?si=TvKWV5Ph-Bq07WI4" title="MOROTE-SEOI-NAGUE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe data-src="https://www.youtube.com/embed/bvFuhJwg6AY?si=TvKWV5Ph-Bq07WI4" 
+                                    title="MOROTE-SEOI-NAGUE" 
+                                    loading="lazy"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
                         </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h5>
@@ -1074,11 +1092,17 @@
                 
                 <div class="flex flex-col items-center justify-center gap-4">
                     <!-- Técnica da Esquerda (card completo) -->
-                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px] cursor-pointer" onclick="showTechniqueCard('koshi-guruma')">
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">KOSHI-GURUMA</h4>
                         <p class="text-gray-600 text-sm">Roda do Quadril</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/example1?si=example" title="KOSHI-GURUMA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe data-src="https://www.youtube.com/embed/example1?si=example" 
+                                    title="KOSHI-GURUMA" 
+                                    loading="lazy"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
                         </div>
                         <div class="bg-violet-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-violet-800 mb-1 text-sm">💡 Dica:</h5>
@@ -1089,14 +1113,20 @@
                     <!-- Seta para Baixo -->
                     <div class="flex items-center justify-center">
                         <div class="text-4xl text-violet-500 font-bold">↓</div>
-                    </div>
+                        </div>
                     
                     <!-- Técnica da Direita (card completo) -->
-                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px] cursor-pointer" onclick="showTechniqueCard('o-goshi')">
+                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">O-GOSHI</h4>
                         <p class="text-gray-600 text-sm">Quadril Principal</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/example2?si=example" title="O-GOSHI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe data-src="https://www.youtube.com/embed/example2?si=example" 
+                                    title="O-GOSHI" 
+                                    loading="lazy"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                    referrerpolicy="strict-origin-when-cross-origin" 
+                                    allowfullscreen>
+                            </iframe>
                         </div>
                         <div class="bg-fuchsia-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-fuchsia-800 mb-1 text-sm">💡 Dica:</h5>
@@ -1125,7 +1155,7 @@
                         <h4 class="text-lg font-bold text-gray-800">O-SOTO-GARI</h4>
                         <p class="text-gray-600 text-sm">Gancho Externo Grande</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/example3?si=example" title="O-SOTO-GARI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe data-src="https://www.youtube.com/embed/example3?si=example" title="O-SOTO-GARI" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-amber-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-amber-800 mb-1 text-sm">💡 Dica:</h5>
@@ -1143,7 +1173,7 @@
                         <h4 class="text-lg font-bold text-gray-800">O-SOTO-GARI-GAESHI</h4>
                         <p class="text-gray-600 text-sm">Contra Gancho Externo</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/example4?si=example" title="O-SOTO-GARI-GAESHI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe data-src="https://www.youtube.com/embed/example4?si=example" title="O-SOTO-GARI-GAESHI" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h5>
@@ -1161,12 +1191,6 @@
                 </div>
             </div>
             
-            <!-- Botão Voltar ao Topo para Kaeshi-waza -->
-            <div class="text-center mt-8">
-                <button class="back-to-top-section bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-lg font-buttons transition-colors shadow-lg">
-                    ↑ Voltar ao Topo
-                </button>
-            </div>
         </section>
 
         <!-- Divisor Visual -->
@@ -1184,16 +1208,23 @@
 
         <!-- Indicador de Scroll -->
         <div id="scrollIndicator" class="scroll-indicator">
-            <span id="scrollText">Navegando...</span>
+            <span id="scrollText"></span>
         </div>
         
         <!-- Container de Partículas -->
         <div id="scrollParticles" class="scroll-particles"></div>
-        
+
         <!-- Botão Flutuante de Voltar ao Topo -->
         <button id="backToTop" class="fixed bottom-8 right-8 bg-yellow-600 hover:bg-yellow-700 text-white p-4 rounded-full shadow-lg floating-action transition-colors hidden font-buttons">
             <span class="text-2xl">↑</span>
         </button>
+
+        <!-- Botão Voltar ao Topo Centralizado -->
+        <div class="text-center mt-12 mb-8">
+            <button class="back-to-top-section bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-4 rounded-xl font-buttons transition-all duration-300 transform hover:scale-105 shadow-lg">
+                ↑ Voltar ao Topo da Página
+            </button>
+        </div>
 
     </main>
 
@@ -1269,7 +1300,6 @@
     </div>
 
     <script src="{% static 'pag3/js/script.js' %}"></script>
-    <script src="{% static 'pag3/css/styles.css' %}"></script>
 </body>
 </html>
 

@@ -1,0 +1,437 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Variáveis CSS para cores e transições */
+:root {
+    --judo-brown: #8B5C2A;
+    --judo-brown-light: #E6D3B7;
+    --judo-brown-dark: #4E2E0E;
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-card: 0 8px 20px -5px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, var(--judo-brown-light) 0%, var(--judo-brown) 100%);
+}
+
+.card-hover {
+    transition: var(--transition-smooth);
+}
+
+.card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+/* Container de vídeo otimizado */
+.video-container {
+    position: relative;
+    padding-bottom: 35%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: var(--shadow-card);
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+}
+
+/* Barra de progresso */
+.progress-bar {
+    transition: width 0.5s ease;
+}
+
+/* Divisor de seção */
+.section-divider {
+    background: linear-gradient(90deg, transparent, var(--judo-brown), transparent);
+}
+
+/* Animação flutuante otimizada */
+.floating-action {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Texto com gradiente */
+.text-gradient {
+    background: linear-gradient(45deg, var(--judo-brown-light), var(--judo-brown));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+#welcomeCard {
+    box-shadow: 0 2px 16px 0 rgba(139,92,42,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
+}
+#welcomeCard:hover {
+    box-shadow: 0 0 24px 4px #D2B48C, 0 2px 16px 0 rgba(139,92,42,0.12);
+}
+.details {
+    transition-property: opacity, max-height, transform, margin-top;
+}
+.japanese-nav-card.clicked::before {
+    width: 400px;
+    height: 400px;
+}
+.japanese-nav-card.clicked {
+    transform: scale(0.9) rotate(2deg);
+    box-shadow: 0 0 40px rgba(139, 92, 42, 0.6);
+    border-color: #8B5C2A;
+}
+
+/* Estilos simplificados para as habilidades */
+.habilidade-item {
+    opacity: 1;
+    transform: none;
+    animation: none;
+}
+
+
+
+/* Modal de Parabéns simplificado */
+#congratulationsModal {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#congratulationsModal.hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+#congratulationsModal:not(.hidden) {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+/* Troféu simplificado */
+.trophy-container {
+    position: relative;
+    display: inline-block;
+}
+
+.trophy-icon {
+    font-size: 4rem;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
+}
+
+/* Estatísticas simplificadas */
+.stat-card {
+    background: #fef3c7;
+    border: 2px solid #fbbf24;
+    border-radius: 16px;
+    padding: 1.5rem;
+    opacity: 1;
+    transform: none;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #f59e0b;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: #92400e;
+    font-weight: 500;
+}
+/* Animações otimizadas */
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+    animation: fade-in 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+.destination-highlight {
+    animation: destination-highlight 2s ease-in-out;
+}
+
+@keyframes destination-highlight {
+    0%, 100% { 
+        box-shadow: 0 0 0 0 rgba(139, 92, 42, 0);
+        transform: scale(1);
+    }
+    50% { 
+        box-shadow: 0 0 0 20px rgba(139, 92, 42, 0.3);
+        transform: scale(1.02);
+    }
+}
+
+/* Efeito de destaque simplificado para a barra japonesa */
+.japanese-nav-container {
+    position: relative;
+    background: var(--judo-brown-light);
+    border-radius: 16px;
+    padding: 16px;
+    margin: 16px 0;
+    border: 1px solid var(--judo-brown);
+    box-shadow: 0 2px 8px rgba(139, 92, 42, 0.15);
+}
+
+/* Hover simplificado dos cards */
+.japanese-nav-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(139, 92, 42, 0.15);
+    border-color: #8B5C2A;
+}
+
+/* Animações simplificadas para transição japonesa */
+.japanese-nav-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+#carouselEstrang {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    transition: box-shadow 0.3s;
+    padding-right: 20px; /* Adicionar padding para permitir scroll completo */
+}
+#carouselEstrang > div {
+    min-width: 350px;
+    max-width: 420px;
+    flex: 0 0 auto;
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    transition: transform 0.35s cubic-bezier(.68,-0.55,.27,1.55), box-shadow 0.3s, filter 0.3s, opacity 0.3s;
+    box-shadow: 0 2px 16px 0 rgba(139,92,42,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
+    opacity: 1;
+    filter: blur(0px);
+    margin-right: 12px;
+}
+#carouselEstrang > div:last-child {
+    margin-right: 0;
+    padding-right: 40px; /* Aumentar padding para garantir que a última div seja visível */
+}
+#carouselEstrang > div.active,
+#carouselEstrang > div:hover {
+    transform: none;
+    box-shadow: 0 2px 16px 0 rgba(139,92,42,0.08), 0 1.5px 8px 0 rgba(0,0,0,0.04);
+    opacity: 1;
+    filter: blur(0px);
+}
+#carouselEstrang > div:not(.active) {
+    opacity: 1;
+    filter: blur(0px);
+}
+@media (max-width: 700px) {
+    #carouselEstrang > div { min-width: 98vw; max-width: 99vw; height: 320px; }
+}
+.technique-card {
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    justify-content: space-between;
+}
+.technique-card .video-container {
+    flex-shrink: 0;
+    margin-bottom: 1rem;
+}
+.technique-card {
+    min-width: 450px !important;
+    max-width: 520px !important;
+    padding: 1.5rem !important;
+}
+.technique-card .bg-orange-50,
+.technique-card .bg-green-50,
+.technique-card .bg-judo-brownLight,
+.technique-card .bg-brown-50 {
+    margin-top: auto;
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+.technique-card h3 {
+    line-height: 1.2;
+}
+.technique-card p {
+    line-height: 1.3;
+}
+
+/* Responsividade otimizada para dispositivos móveis */
+@media (max-width: 768px) {
+    /* Header mobile */
+    header {
+        padding: 0.75rem 1rem !important;
+    }
+    
+    header h1 {
+        font-size: 1.5rem !important;
+    }
+    
+    header p {
+        font-size: 0.875rem !important;
+    }
+    
+    /* Barra de progresso mobile */
+    .progress-bar {
+        height: 0.75rem !important;
+    }
+    
+    /* Cards de habilidades mobile */
+    .habilidade-item {
+        font-size: 0.875rem !important;
+        padding: 0.75rem 1rem !important;
+        margin: 0.25rem !important;
+        min-width: calc(100% - 2rem) !important;
+        max-width: calc(100% - 2rem) !important;
+        transition: transform 0.2s ease !important;
+    }
+    
+    /* Barra japonesa mobile */
+    .japanese-nav-card {
+        width: 100px !important;
+        height: 80px !important;
+        min-width: 100px !important;
+        min-height: 80px !important;
+        max-width: 100px !important;
+        max-height: 80px !important;
+        flex-shrink: 0 !important;
+        margin: 0.75rem !important;
+        transition: transform 0.2s ease !important;
+    }
+    
+    .japanese-nav-card:active {
+        transform: scale(0.98) !important;
+    }
+    
+    /* Layout horizontal com scroll para mobile */
+    .japanese-nav-container .flex {
+        gap: 0.5rem !important;
+        justify-content: flex-start !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        padding: 0.5rem 0 !important;
+    }
+    
+    /* Indicador de scroll */
+    .japanese-nav-container::after {
+        content: '← Deslize para ver mais →' !important;
+        display: block !important;
+        text-align: center !important;
+        margin-top: 0.75rem !important;
+        font-size: 0.875rem !important;
+        color: #6B7280 !important;
+        font-weight: 500 !important;
+    }
+    
+    /* Container principal */
+    .japanese-nav-container {
+        padding: 1rem !important;
+        margin: 1rem 0 !important;
+    }
+    
+    /* Layout vertical para cards de técnicas no mobile */
+    .flex.overflow-x-auto {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        overflow: visible !important;
+        scroll-snap-type: none !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+    
+    .technique-card {
+        width: 100% !important;
+        max-width: none !important;
+        min-width: auto !important;
+        flex-shrink: 0 !important;
+        scroll-snap-align: none !important;
+        margin: 0 0 1rem 0 !important;
+        display: block !important;
+    }
+    
+    /* Ocultar botões de carrossel no mobile */
+    .relative button[id*="carousel"] {
+        display: none !important;
+    }
+    
+    /* Forçar layout vertical para carrosséis específicos */
+    #carouselProj,
+    #carouselImob,
+    #carouselChave,
+    #carouselEstrang,
+    #carouselAtaqueCombinado,
+    #carouselContraAtaque {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        overflow: visible !important;
+        scroll-snap-type: none !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+    
+    #carouselProj > div,
+    #carouselImob > div,
+    #carouselChave > div,
+    #carouselEstrang > div,
+    #carouselAtaqueCombinado > div,
+    #carouselContraAtaque > div {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: auto !important;
+        flex-shrink: 0 !important;
+        margin: 0 0 1rem 0 !important;
+    }
+}
+
+/* Estilos para lazy loading de vídeos */
+.lazy-video {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.video-placeholder {
+    text-align: center;
+    color: #6b7280;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e5e7eb;
+    border-top: 4px solid var(--judo-brown);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.video-placeholder p {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+    color: var(--judo-brown);
+}
