@@ -862,25 +862,21 @@
         
         /* Melhorar barra de scroll do carrossel no mobile */
         @media (max-width: 768px) {
-            #nage-waza-section .grid::-webkit-scrollbar,
-            #imobilizacoes-section .grid::-webkit-scrollbar {
+            #nage-waza-section .grid::-webkit-scrollbar {
                 height: 4px !important;
             }
             
-            #nage-waza-section .grid::-webkit-scrollbar-track,
-            #imobilizacoes-section .grid::-webkit-scrollbar-track {
+            #nage-waza-section .grid::-webkit-scrollbar-track {
                 background: rgba(156, 163, 175, 0.1) !important;
                 border-radius: 2px !important;
             }
             
-            #nage-waza-section .grid::-webkit-scrollbar-thumb,
-            #imobilizacoes-section .grid::-webkit-scrollbar-thumb {
+            #nage-waza-section .grid::-webkit-scrollbar-thumb {
                 background: rgba(156, 163, 175, 0.4) !important;
                 border-radius: 2px !important;
             }
             
-            #nage-waza-section .grid::-webkit-scrollbar-thumb:hover,
-            #imobilizacoes-section .grid::-webkit-scrollbar-thumb:hover {
+            #nage-waza-section .grid::-webkit-scrollbar-thumb:hover {
                 background: rgba(156, 163, 175, 0.6) !important;
             }
         }
@@ -920,60 +916,57 @@
                 padding: 0 1rem !important;
             }
             
-            /* Carrossel de técnicas para mobile */
-            #nage-waza-section .grid,
-            #imobilizacoes-section .grid {
-                display: flex !important;
-                flex-direction: row !important;
-                flex-wrap: nowrap !important;
+            /* Layout vertical para projeções em mobile */
+            #nage-waza-section .grid {
+                display: grid !important;
+                grid-template-columns: 1fr !important;
+                grid-template-rows: auto !important;
                 gap: 1rem !important;
-                overflow-x: auto !important;
-                scroll-behavior: smooth !important;
                 padding: 0.5rem 0 !important;
-                position: relative !important;
-                scroll-snap-type: x mandatory !important;
+                overflow: visible !important;
+                flex-direction: column !important;
             }
             
-            /* Cards do carrossel */
+            /* Layout vertical para imobilizações em mobile */
+            #imobilizacoes-section .grid {
+                display: grid !important;
+                grid-template-columns: 1fr !important;
+                grid-template-rows: auto !important;
+                gap: 1rem !important;
+                padding: 0.5rem 0 !important;
+                overflow: visible !important;
+                flex-direction: column !important;
+            }
+            
+            /* Cards de projeção em layout vertical */
             #nage-waza-section .video-card,
-            #imobilizacoes-section .video-card,
-            #nage-waza-section .card-hover,
-            #imobilizacoes-section .card-hover {
-                min-width: 320px !important;
-                max-width: 320px !important;
-                width: 320px !important;
-                flex-shrink: 0 !important;
-                scroll-snap-align: start !important;
+            #nage-waza-section .card-hover {
+                width: 100% !important;
+                max-width: none !important;
+                min-width: auto !important;
                 border-radius: 12px !important;
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-            }
-            
-            /* Indicador de scroll (gradiente sutil) */
-            #nage-waza-section .grid::after,
-            #imobilizacoes-section .grid::after {
-                content: '' !important;
-                position: absolute !important;
-                right: 0 !important;
-                top: 0 !important;
-                bottom: 0 !important;
-                width: 2rem !important;
-                background: linear-gradient(to right, transparent, rgba(156, 163, 175, 0.15)) !important;
-                pointer-events: none !important;
-                z-index: 5 !important;
-            }
-            
-            /* Texto indicativo de scroll */
-            #nage-waza-section::after,
-            #imobilizacoes-section::after {
-                content: '← Deslize para ver mais técnicas →' !important;
                 display: block !important;
-                text-align: center !important;
-                margin-top: 0.75rem !important;
-                font-size: 0.875rem !important;
-                color: #6B7280 !important;
-                font-weight: 500 !important;
-                opacity: 0.8 !important;
+                float: none !important;
+                clear: both !important;
+                margin-bottom: 1rem !important;
             }
+            
+            /* Cards de imobilização em layout vertical */
+            #imobilizacoes-section .video-card,
+            #imobilizacoes-section .card-hover {
+                width: 100% !important;
+                max-width: none !important;
+                min-width: auto !important;
+                border-radius: 12px !important;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+                display: block !important;
+                float: none !important;
+                clear: both !important;
+                margin-bottom: 1rem !important;
+            }
+            
+            
             
             .video-card,
             .card-hover {
@@ -1145,20 +1138,48 @@
                 padding: 0 0.5rem !important;
             }
             
-            /* Carrossel para telas muito pequenas */
+            /* Cards de projeção em telas muito pequenas */
             #nage-waza-section .video-card,
-            #imobilizacoes-section .video-card,
-            #nage-waza-section .card-hover,
-            #imobilizacoes-section .card-hover {
-                min-width: 300px !important;
-                max-width: 300px !important;
-                width: 300px !important;
+            #nage-waza-section .card-hover {
+                width: 100% !important;
+                max-width: none !important;
+                min-width: auto !important;
+                display: block !important;
+                float: none !important;
+                clear: both !important;
+                margin-bottom: 0.75rem !important;
             }
             
-            #nage-waza-section .grid,
+            /* Cards de imobilização em telas muito pequenas */
+            #imobilizacoes-section .video-card,
+            #imobilizacoes-section .card-hover {
+                width: 100% !important;
+                max-width: none !important;
+                min-width: auto !important;
+                display: block !important;
+                float: none !important;
+                clear: both !important;
+                margin-bottom: 0.75rem !important;
+            }
+            
+            #nage-waza-section .grid {
+                gap: 0.75rem !important;
+                padding: 0.25rem 0 !important;
+                display: grid !important;
+                grid-template-columns: 1fr !important;
+                grid-template-rows: auto !important;
+                overflow: visible !important;
+                flex-direction: column !important;
+            }
+            
             #imobilizacoes-section .grid {
                 gap: 0.75rem !important;
                 padding: 0.25rem 0 !important;
+                display: grid !important;
+                grid-template-columns: 1fr !important;
+                grid-template-rows: auto !important;
+                overflow: visible !important;
+                flex-direction: column !important;
             }
             
             /* Container principal mobile */
@@ -1280,14 +1301,28 @@
                 padding: 0.25rem !important;
             }
             
-            /* Carrossel para telas extremamente pequenas */
+            /* Cards de projeção em telas extremamente pequenas */
             #nage-waza-section .video-card,
+            #nage-waza-section .card-hover {
+                width: 100% !important;
+                max-width: none !important;
+                min-width: auto !important;
+                display: block !important;
+                float: none !important;
+                clear: both !important;
+                margin-bottom: 0.5rem !important;
+            }
+            
+            /* Cards de imobilização em telas extremamente pequenas */
             #imobilizacoes-section .video-card,
-            #nage-waza-section .card-hover,
             #imobilizacoes-section .card-hover {
-                min-width: 280px !important;
-                max-width: 280px !important;
-                width: 280px !important;
+                width: 100% !important;
+                max-width: none !important;
+                min-width: auto !important;
+                display: block !important;
+                float: none !important;
+                clear: both !important;
+                margin-bottom: 0.5rem !important;
             }
             
             header h1 {
@@ -1608,7 +1643,7 @@
         <div class="max-w-6xl mx-auto">
             <div class="flex items-center justify-between mb-3.5">
                 <div>
-                    <h1 class="text-2xl md:text-3xl font-bold mb-1.5 flex items-center gap-2">
+                    <h1 class="text-2xl md:text-3xl font-bold mb-1.5 flex items-center gap-2 text-white">
                         <img src="{% static 'faixa-azul.png' %}" alt="Faixa Azul" class="w-11 h-7 object-contain">
                         Faixa Azul
                     </h1>
@@ -1723,7 +1758,7 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 gap-6 max-w-4xl mx-auto">
                 <!-- Técnica 1 -->
                 <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
                     <div class="flex items-center mb-3">
@@ -1875,7 +1910,7 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 gap-6 max-w-4xl mx-auto">
                 <!-- Imobilização 1 -->
                 <div class="card-hover bg-white rounded-2xl shadow-lg p-4">
                     <div class="flex items-center mb-3">

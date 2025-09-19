@@ -231,8 +231,49 @@
   </header>
 
   <main class="max-w-4xl mx-auto px-4 py-4 sm:py-6 md:py-8">
+    <!-- Tela de Seleção de Dificuldade -->
+    <div id="difficulty-selection" class="text-center fade-in">
+      <div class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-6 sm:p-8 md:p-10 border border-blue-200 max-w-2xl mx-auto">
+        <div class="mb-6 sm:mb-8">
+          <div class="text-4xl sm:text-5xl mb-4">🥋</div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-gradient mb-3">Escolha o Nível de Dificuldade</h2>
+          <p class="text-gray-600 text-sm sm:text-base">Selecione o nível que melhor se adequa ao seu conhecimento sobre judô</p>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
+          <button onclick="selectDifficulty('easy')" 
+                  class="difficulty-btn bg-green-50 hover:bg-green-100 border-2 border-green-200 hover:border-green-400 rounded-xl p-4 sm:p-6 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+            <div class="text-3xl sm:text-4xl mb-2">🟢</div>
+            <h3 class="text-lg sm:text-xl font-bold text-green-700 mb-2">Fácil</h3>
+            <p class="text-sm text-green-600">15 perguntas básicas</p>
+          </button>
+          
+          <button onclick="selectDifficulty('medium')" 
+                  class="difficulty-btn bg-yellow-50 hover:bg-yellow-100 border-2 border-yellow-200 hover:border-yellow-400 rounded-xl p-4 sm:p-6 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+            <div class="text-3xl sm:text-4xl mb-2">🟡</div>
+            <h3 class="text-lg sm:text-xl font-bold text-yellow-700 mb-2">Médio</h3>
+            <p class="text-sm text-yellow-600">15 perguntas intermediárias</p>
+          </button>
+          
+          <button onclick="selectDifficulty('hard')" 
+                  class="difficulty-btn bg-red-50 hover:bg-red-100 border-2 border-red-200 hover:border-red-400 rounded-xl p-4 sm:p-6 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+            <div class="text-3xl sm:text-4xl mb-2">🔴</div>
+            <h3 class="text-lg sm:text-xl font-bold text-red-700 mb-2">Difícil</h3>
+            <p class="text-sm text-red-600">15 perguntas avançadas</p>
+          </button>
+          
+          <button onclick="selectDifficulty('all')" 
+                  class="difficulty-btn bg-purple-50 hover:bg-purple-100 border-2 border-purple-200 hover:border-purple-400 rounded-xl p-4 sm:p-6 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+            <div class="text-3xl sm:text-4xl mb-2">🟣</div>
+            <h3 class="text-lg sm:text-xl font-bold text-purple-700 mb-2">Todas</h3>
+            <p class="text-sm text-purple-600">45 perguntas misturadas</p>
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- Quiz Container -->
-    <div id="quiz-container" class="space-y-6"></div>
+    <div id="quiz-container" class="space-y-6 hidden"></div>
 
     <!-- Finalização responsiva -->
     <div id="result" class="hidden text-center mt-8 sm:mt-12 fade-in">
@@ -271,243 +312,292 @@
   </main>
 
   <script>
-    // Array original de perguntas
-    const originalQuestions = [
-      {
-        question: "Quem criou o judô?",
-        answers: ["Jigoro Kano", "Mitsuyo Maeda", "Kyuzo Mifune", "Masahiko Kimura"],
-        correct: 0,
-        explanation: "Jigoro Kano criou o judô em 1882, fundando o Instituto Kodokan em Tóquio."
-      },
-      {
-        question: "Qual é o significado da palavra 'judo'?",
-        answers: ["Caminho da força", "Arte da guerra", "Caminho suave", "Arte marcial"],
-        correct: 2,
-        explanation: "'Ju' significa suave e 'do' significa caminho, formando 'caminho suave'."
-      },
-      {
-        question: "Qual é o princípio fundamental do judô?",
-        answers: ["Máxima eficiência com mínimo esforço", "Força bruta", "Velocidade máxima", "Técnica perfeita"],
-        correct: 0,
-        explanation: "O princípio fundamental é 'Seiryoku Zenyo' - máxima eficiência com mínimo esforço."
-      },
-      {
-        question: "Qual é a cor da faixa mais alta no judô?",
-        answers: ["Vermelha", "Preta", "Branca", "Dourada"],
-        correct: 0,
-        explanation: "A faixa vermelha é a mais alta, seguida da branca e vermelha, e depois da branca."
-      },
-      {
-        question: "O que significa 'Rei' no judô?",
-        answers: ["Respeito", "Força", "Técnica", "Vitória"],
-        correct: 0,
-        explanation: "'Rei' significa respeito e é fundamental na etiqueta do judô."
-      },
-      {
-        question: "Qual é o nome do local onde se pratica judô?",
-        answers: ["Dojo", "Tatame", "Academia", "Ginásio"],
-        correct: 0,
-        explanation: "Dojo é o local sagrado onde se pratica judô e outras artes marciais."
-      },
-      {
-        question: "Qual é a técnica mais básica do judô?",
-        answers: ["Uke-goshi", "Seoi-nage", "O-goshi", "Tai-otoshi"],
-        correct: 2,
-        explanation: "O-goshi (grande quadril) é considerada uma das técnicas mais fundamentais."
-      },
-      {
-        question: "O que significa 'Ukemi' no judô?",
-        answers: ["Técnica de projeção", "Técnica de imobilização", "Técnica de queda", "Técnica de estrangulamento"],
-        correct: 2,
-        explanation: "Ukemi são as técnicas de queda que protegem o praticante durante as projeções."
-      },
-      {
-        question: "Qual é o objetivo principal do judô?",
-        answers: ["Derrotar o oponente", "Desenvolver corpo e mente", "Ganhar competições", "Aprender autodefesa"],
-        correct: 1,
-        explanation: "O judô visa o desenvolvimento físico, mental e moral através da prática."
-      },
-      {
-        question: "Qual é o nome do uniforme usado no judô?",
-        answers: ["Kimono", "Gi", "Judogi", "Hakama"],
-        correct: 2,
-        explanation: "Judogi é o nome correto do uniforme usado no judô."
-      },
-      {
-        question: "Quantas faixas coloridas existem antes da faixa preta no judô?",
-        answers: ["4", "5", "6", "7"],
-        correct: 2,
-        explanation: "Existem 6 faixas coloridas: branca, amarela, laranja, verde, azul e marrom."
-      },
-      {
-        question: "Qual é a idade mínima para obter a faixa preta no judô?",
-        answers: ["14 anos", "16 anos", "18 anos", "Não há idade mínima"],
-        correct: 1,
-        explanation: "A idade mínima para obter a faixa preta (1º dan) é 16 anos."
-      },
-      {
-        question: "O que significa 'Kata' no judô?",
-        answers: ["Luta livre", "Forma ou padrão", "Competição", "Treino físico"],
-        correct: 1,
-        explanation: "Kata são sequências formais de técnicas executadas em padrões específicos."
-      },
-      {
-        question: "Qual é o nome da técnica de estrangulamento mais conhecida?",
-        answers: ["Hadaka-jime", "Okuri-eri-jime", "Kata-juji-jime", "Sankaku-jime"],
-        correct: 0,
-        explanation: "Hadaka-jime (estrangulamento nu) é uma das técnicas de estrangulamento mais fundamentais."
-      },
-      {
-        question: "Em que ano o judô se tornou esporte olímpico?",
-        answers: ["1964", "1972", "1980", "1988"],
-        correct: 0,
-        explanation: "O judô se tornou esporte olímpico em 1964, nos Jogos de Tóquio."
-      },
-      {
-        question: "Qual é o nome da técnica de imobilização mais básica?",
-        answers: ["Kesa-gatame", "Kami-shiho-gatame", "Yoko-shiho-gatame", "Tate-shiho-gatame"],
-        correct: 0,
-        explanation: "Kesa-gatame (imobilização em diagonal) é considerada a mais básica das imobilizações."
-      },
-      {
-        question: "O que significa 'Randori' no judô?",
-        answers: ["Treino livre", "Competição", "Kata", "Aquecimento"],
-        correct: 0,
-        explanation: "Randori é o treino livre onde os praticantes aplicam técnicas sem resistência excessiva."
-      },
-      {
-        question: "Qual é a duração de uma luta de judô em competição?",
-        answers: ["3 minutos", "4 minutos", "5 minutos", "6 minutos"],
-        correct: 2,
-        explanation: "Uma luta de judô em competição dura 5 minutos para adultos."
-      },
-      {
-        question: "O que significa 'Ippon' no judô?",
-        answers: ["Ponto completo", "Ponto parcial", "Penalidade", "Empate"],
-        correct: 0,
-        explanation: "Ippon é o ponto completo que encerra imediatamente a luta."
-      },
-      {
-        question: "Qual é o nome da técnica de projeção com quadril?",
-        answers: ["Seoi-nage", "Tai-otoshi", "Uke-goshi", "O-soto-gari"],
-        correct: 2,
-        explanation: "Uke-goshi é uma técnica de projeção que utiliza o quadril como ponto de apoio."
-      },
-      {
-        question: "O que significa 'Waza-ari' no judô?",
-        answers: ["Ponto completo", "Ponto parcial", "Penalidade", "Aviso"],
-        correct: 1,
-        explanation: "Waza-ari é um ponto parcial, dois waza-ari equivalem a um ippon."
-      },
-      {
-        question: "Qual é o nome da técnica de projeção com perna?",
-        answers: ["O-goshi", "Seoi-nage", "O-soto-gari", "Tai-otoshi"],
-        correct: 2,
-        explanation: "O-soto-gari é uma técnica de projeção que utiliza a perna para derrubar o oponente."
-      },
-      {
-        question: "O que significa 'Shido' no judô?",
-        answers: ["Ponto", "Penalidade leve", "Penalidade grave", "Desqualificação"],
-        correct: 1,
-        explanation: "Shido é uma penalidade leve por infrações menores durante a luta."
-      },
-      {
-        question: "Qual é o nome da técnica de projeção com ombro?",
-        answers: ["O-goshi", "Seoi-nage", "Uke-goshi", "Tai-otoshi"],
-        correct: 1,
-        explanation: "Seoi-nage é uma técnica de projeção que utiliza o ombro como ponto de apoio."
-      },
-      {
-        question: "O que significa 'Hansoku-make' no judô?",
-        answers: ["Ponto completo", "Penalidade leve", "Penalidade grave", "Desqualificação"],
-        correct: 3,
-        explanation: "Hansoku-make é a desqualificação por infrações graves ou acumulação de penalidades."
-      },
-      {
-        question: "Qual é o nome da técnica de projeção com corpo?",
-        answers: ["O-goshi", "Seoi-nage", "Tai-otoshi", "Uke-goshi"],
-        correct: 2,
-        explanation: "Tai-otoshi é uma técnica de projeção que utiliza o corpo como alavanca."
-      },
-      {
-        question: "O que significa 'Osae-komi' no judô?",
-        answers: ["Imobilização", "Projeção", "Estrangulamento", "Chave de braço"],
-        correct: 0,
-        explanation: "Osae-komi é o anúncio de que uma imobilização está sendo aplicada."
-      },
-      {
-        question: "Qual é o nome da técnica de estrangulamento com gola?",
-        answers: ["Hadaka-jime", "Okuri-eri-jime", "Kata-juji-jime", "Sankaku-jime"],
-        correct: 1,
-        explanation: "Okuri-eri-jime é uma técnica de estrangulamento que utiliza a gola do judogi."
-      },
-      {
-        question: "O que significa 'Toketa' no judô?",
-        answers: ["Imobilização", "Imobilização quebrada", "Projeção", "Estrangulamento"],
-        correct: 1,
-        explanation: "Toketa é o anúncio de que uma imobilização foi quebrada pelo oponente."
-      },
-      {
-        question: "Qual é o nome da técnica de projeção com sacrifício?",
-        answers: ["Tomoe-nage", "Seoi-nage", "O-goshi", "Tai-otoshi"],
-        correct: 0,
-        explanation: "Tomoe-nage é uma técnica de projeção com sacrifício onde o atacante se joga ao chão."
-      },
-      {
-        question: "O que significa 'Sonomama' no judô?",
-        answers: ["Continue", "Pare", "Lute", "Descanso"],
-        correct: 1,
-        explanation: "Sonomama é o comando para parar a luta e manter a posição atual."
-      },
-      {
-        question: "Qual é o nome da técnica de estrangulamento com triângulo?",
-        answers: ["Hadaka-jime", "Okuri-eri-jime", "Kata-juji-jime", "Sankaku-jime"],
-        correct: 3,
-        explanation: "Sankaku-jime é uma técnica de estrangulamento que utiliza as pernas em formato de triângulo."
-      },
-      {
-        question: "O que significa 'Yoshi' no judô?",
-        answers: ["Pare", "Continue", "Lute", "Descanso"],
-        correct: 1,
-        explanation: "Yoshi é o comando para continuar a luta após uma pausa."
-      },
-      {
-        question: "Qual é o nome da técnica de projeção com joelho?",
-        answers: ["Hiza-guruma", "Seoi-nage", "O-goshi", "Tai-otoshi"],
-        correct: 0,
-        explanation: "Hiza-guruma é uma técnica de projeção que utiliza o joelho como ponto de apoio."
-      },
-      {
-        question: "O que significa 'Mate' no judô?",
-        answers: ["Continue", "Pare", "Lute", "Descanso"],
-        correct: 1,
-        explanation: "Mate é o comando para parar a luta temporariamente."
-      },
-      {
-        question: "Qual é o nome da técnica de estrangulamento com cruz?",
-        answers: ["Hadaka-jime", "Okuri-eri-jime", "Kata-juji-jime", "Sankaku-jime"],
-        correct: 2,
-        explanation: "Kata-juji-jime é uma técnica de estrangulamento que utiliza os braços em formato de cruz."
-      },
-      {
-        question: "O que significa 'Hajime' no judô?",
-        answers: ["Pare", "Continue", "Comece", "Descanso"],
-        correct: 2,
-        explanation: "Hajime é o comando para começar a luta."
-      },
-      {
-        question: "Qual é o nome da técnica de projeção com tornozelo?",
-        answers: ["Ashi-guruma", "Seoi-nage", "O-goshi", "Tai-otoshi"],
-        correct: 0,
-        explanation: "Ashi-guruma é uma técnica de projeção que utiliza o tornozelo como ponto de apoio."
-      },
-      {
-        question: "O que significa 'Sore-made' no judô?",
-        answers: ["Continue", "Pare", "Lute", "Fim da luta"],
-        correct: 3,
-        explanation: "Sore-made é o comando que indica o fim da luta."
-      }
-    ];
+    // Array original de perguntas classificadas por dificuldade
+    const questionsByDifficulty = {
+      easy: [
+        {
+          question: "Quem criou o judô?",
+          answers: ["Jigoro Kano", "Mitsuyo Maeda", "Kyuzo Mifune", "Masahiko Kimura"],
+          correct: 0,
+          explanation: "Jigoro Kano criou o judô em 1882, fundando o Instituto Kodokan em Tóquio."
+        },
+        {
+          question: "Qual é o significado da palavra 'judo'?",
+          answers: ["Caminho da força", "Arte da guerra", "Caminho suave", "Arte marcial"],
+          correct: 2,
+          explanation: "'Ju' significa suave e 'do' significa caminho, formando 'caminho suave'."
+        },
+        {
+          question: "Qual é o nome do uniforme usado no judô?",
+          answers: ["Kimono", "Gi", "Judogi", "Hakama"],
+          correct: 2,
+          explanation: "Judogi é o nome correto do uniforme usado no judô."
+        },
+        {
+          question: "Qual é o nome do local onde se pratica judô?",
+          answers: ["Dojo", "Tatame", "Academia", "Ginásio"],
+          correct: 0,
+          explanation: "Dojo é o local sagrado onde se pratica judô e outras artes marciais."
+        },
+        {
+          question: "O que significa 'Rei' no judô?",
+          answers: ["Respeito", "Força", "Técnica", "Vitória"],
+          correct: 0,
+          explanation: "'Rei' significa respeito e é fundamental na etiqueta do judô."
+        },
+        {
+          question: "Qual é a cor da faixa mais alta no judô?",
+          answers: ["Vermelha", "Preta", "Branca", "Dourada"],
+          correct: 0,
+          explanation: "A faixa vermelha é a mais alta, seguida da branca e vermelha, e depois da preta."
+        },
+        {
+          question: "Quantas faixas coloridas existem antes da faixa preta no judô?",
+          answers: ["4", "5", "6", "7"],
+          correct: 2,
+          explanation: "Existem 6 faixas coloridas: branca, amarela, laranja, verde, azul e marrom."
+        },
+        {
+          question: "O que significa 'Ukemi' no judô?",
+          answers: ["Técnica de projeção", "Técnica de imobilização", "Técnica de queda", "Técnica de estrangulamento"],
+          correct: 2,
+          explanation: "Ukemi são as técnicas de queda que protegem o praticante durante as projeções."
+        },
+        {
+          question: "Qual é o objetivo principal do judô?",
+          answers: ["Derrotar o oponente", "Desenvolver corpo e mente", "Ganhar competições", "Aprender autodefesa"],
+          correct: 1,
+          explanation: "O judô visa o desenvolvimento físico, mental e moral através da prática."
+        },
+        {
+          question: "Qual é a idade mínima para obter a faixa preta no judô?",
+          answers: ["14 anos", "16 anos", "18 anos", "Não há idade mínima"],
+          correct: 1,
+          explanation: "A idade mínima para obter a faixa preta (1º dan) é 16 anos."
+        },
+        {
+          question: "Em que ano o judô se tornou esporte olímpico?",
+          answers: ["1964", "1972", "1980", "1988"],
+          correct: 0,
+          explanation: "O judô se tornou esporte olímpico em 1964, nos Jogos de Tóquio."
+        },
+        {
+          question: "Qual é a duração de uma luta de judô em competição?",
+          answers: ["3 minutos", "4 minutos", "5 minutos", "6 minutos"],
+          correct: 2,
+          explanation: "Uma luta de judô em competição dura 5 minutos para adultos."
+        },
+        {
+          question: "O que significa 'Ippon' no judô?",
+          answers: ["Ponto completo", "Ponto parcial", "Penalidade", "Empate"],
+          correct: 0,
+          explanation: "Ippon é o ponto completo que encerra imediatamente a luta."
+        },
+        {
+          question: "O que significa 'Waza-ari' no judô?",
+          answers: ["Ponto completo", "Ponto parcial", "Penalidade", "Aviso"],
+          correct: 1,
+          explanation: "Waza-ari é um ponto parcial, dois waza-ari equivalem a um ippon."
+        },
+        {
+          question: "O que significa 'Shido' no judô?",
+          answers: ["Ponto", "Penalidade leve", "Penalidade grave", "Desqualificação"],
+          correct: 1,
+          explanation: "Shido é uma penalidade leve por infrações menores durante a luta."
+        }
+      ],
+      medium: [
+        {
+          question: "Qual é o princípio fundamental do judô?",
+          answers: ["Máxima eficiência com mínimo esforço", "Força bruta", "Velocidade máxima", "Técnica perfeita"],
+          correct: 0,
+          explanation: "O princípio fundamental é 'Seiryoku Zenyo' - máxima eficiência com mínimo esforço."
+        },
+        {
+          question: "Qual é a técnica mais básica do judô?",
+          answers: ["Uke-goshi", "Seoi-nage", "O-goshi", "Tai-otoshi"],
+          correct: 2,
+          explanation: "O-goshi (grande quadril) é considerada uma das técnicas mais fundamentais."
+        },
+        {
+          question: "O que significa 'Kata' no judô?",
+          answers: ["Luta livre", "Forma ou padrão", "Competição", "Treino físico"],
+          correct: 1,
+          explanation: "Kata são sequências formais de técnicas executadas em padrões específicos."
+        },
+        {
+          question: "Qual é o nome da técnica de imobilização mais básica?",
+          answers: ["Kesa-gatame", "Kami-shiho-gatame", "Yoko-shiho-gatame", "Tate-shiho-gatame"],
+          correct: 0,
+          explanation: "Kesa-gatame (imobilização em diagonal) é considerada a mais básica das imobilizações."
+        },
+        {
+          question: "O que significa 'Randori' no judô?",
+          answers: ["Treino livre", "Competição", "Kata", "Aquecimento"],
+          correct: 0,
+          explanation: "Randori é o treino livre onde os praticantes aplicam técnicas sem resistência excessiva."
+        },
+        {
+          question: "Qual é o nome da técnica de projeção com quadril?",
+          answers: ["Seoi-nage", "Tai-otoshi", "Uke-goshi", "O-soto-gari"],
+          correct: 2,
+          explanation: "Uke-goshi é uma técnica de projeção que utiliza o quadril como ponto de apoio."
+        },
+        {
+          question: "Qual é o nome da técnica de projeção com perna?",
+          answers: ["O-goshi", "Seoi-nage", "O-soto-gari", "Tai-otoshi"],
+          correct: 2,
+          explanation: "O-soto-gari é uma técnica de projeção que utiliza a perna para derrubar o oponente."
+        },
+        {
+          question: "Qual é o nome da técnica de projeção com ombro?",
+          answers: ["O-goshi", "Seoi-nage", "Uke-goshi", "Tai-otoshi"],
+          correct: 1,
+          explanation: "Seoi-nage é uma técnica de projeção que utiliza o ombro como ponto de apoio."
+        },
+        {
+          question: "Qual é o nome da técnica de projeção com corpo?",
+          answers: ["O-goshi", "Seoi-nage", "Tai-otoshi", "Uke-goshi"],
+          correct: 2,
+          explanation: "Tai-otoshi é uma técnica de projeção que utiliza o corpo como alavanca."
+        },
+        {
+          question: "O que significa 'Osae-komi' no judô?",
+          answers: ["Imobilização", "Projeção", "Estrangulamento", "Chave de braço"],
+          correct: 0,
+          explanation: "Osae-komi é o anúncio de que uma imobilização está sendo aplicada."
+        },
+        {
+          question: "O que significa 'Toketa' no judô?",
+          answers: ["Imobilização", "Imobilização quebrada", "Projeção", "Estrangulamento"],
+          correct: 1,
+          explanation: "Toketa é o anúncio de que uma imobilização foi quebrada pelo oponente."
+        },
+        {
+          question: "O que significa 'Sonomama' no judô?",
+          answers: ["Continue", "Pare", "Lute", "Descanso"],
+          correct: 1,
+          explanation: "Sonomama é o comando para parar a luta e manter a posição atual."
+        },
+        {
+          question: "O que significa 'Yoshi' no judô?",
+          answers: ["Pare", "Continue", "Lute", "Descanso"],
+          correct: 1,
+          explanation: "Yoshi é o comando para continuar a luta após uma pausa."
+        },
+        {
+          question: "O que significa 'Mate' no judô?",
+          answers: ["Continue", "Pare", "Lute", "Descanso"],
+          correct: 1,
+          explanation: "Mate é o comando para parar a luta temporariamente."
+        },
+        {
+          question: "O que significa 'Hajime' no judô?",
+          answers: ["Pare", "Continue", "Comece", "Descanso"],
+          correct: 2,
+          explanation: "Hajime é o comando para começar a luta."
+        }
+      ],
+      hard: [
+        {
+          question: "Qual é o nome da técnica de estrangulamento mais conhecida?",
+          answers: ["Hadaka-jime", "Okuri-eri-jime", "Kata-juji-jime", "Sankaku-jime"],
+          correct: 0,
+          explanation: "Hadaka-jime (estrangulamento nu) é uma das técnicas de estrangulamento mais fundamentais."
+        },
+        {
+          question: "Qual é o nome da técnica de estrangulamento com gola?",
+          answers: ["Hadaka-jime", "Okuri-eri-jime", "Kata-juji-jime", "Sankaku-jime"],
+          correct: 1,
+          explanation: "Okuri-eri-jime é uma técnica de estrangulamento que utiliza a gola do judogi."
+        },
+        {
+          question: "Qual é o nome da técnica de estrangulamento com cruz?",
+          answers: ["Hadaka-jime", "Okuri-eri-jime", "Kata-juji-jime", "Sankaku-jime"],
+          correct: 2,
+          explanation: "Kata-juji-jime é uma técnica de estrangulamento que utiliza os braços em formato de cruz."
+        },
+        {
+          question: "Qual é o nome da técnica de estrangulamento com triângulo?",
+          answers: ["Hadaka-jime", "Okuri-eri-jime", "Kata-juji-jime", "Sankaku-jime"],
+          correct: 3,
+          explanation: "Sankaku-jime é uma técnica de estrangulamento que utiliza as pernas em formato de triângulo."
+        },
+        {
+          question: "Qual é o nome da técnica de projeção com sacrifício?",
+          answers: ["Tomoe-nage", "Seoi-nage", "O-goshi", "Tai-otoshi"],
+          correct: 0,
+          explanation: "Tomoe-nage é uma técnica de projeção com sacrifício onde o atacante se joga ao chão."
+        },
+        {
+          question: "Qual é o nome da técnica de projeção com joelho?",
+          answers: ["Hiza-guruma", "Seoi-nage", "O-goshi", "Tai-otoshi"],
+          correct: 0,
+          explanation: "Hiza-guruma é uma técnica de projeção que utiliza o joelho como ponto de apoio."
+        },
+        {
+          question: "Qual é o nome da técnica de projeção com tornozelo?",
+          answers: ["Ashi-guruma", "Seoi-nage", "O-goshi", "Tai-otoshi"],
+          correct: 0,
+          explanation: "Ashi-guruma é uma técnica de projeção que utiliza o tornozelo como ponto de apoio."
+        },
+        {
+          question: "O que significa 'Hansoku-make' no judô?",
+          answers: ["Ponto completo", "Penalidade leve", "Penalidade grave", "Desqualificação"],
+          correct: 3,
+          explanation: "Hansoku-make é a desqualificação por infrações graves ou acumulação de penalidades."
+        },
+        {
+          question: "O que significa 'Sore-made' no judô?",
+          answers: ["Continue", "Pare", "Lute", "Fim da luta"],
+          correct: 3,
+          explanation: "Sore-made é o comando que indica o fim da luta."
+        },
+        {
+          question: "Qual é o nome da técnica de imobilização lateral de quatro pontos?",
+          answers: ["Kesa-gatame", "Kami-shiho-gatame", "Yoko-shiho-gatame", "Tate-shiho-gatame"],
+          correct: 2,
+          explanation: "Yoko-shiho-gatame é uma imobilização lateral que utiliza quatro pontos de contato."
+        },
+        {
+          question: "Qual é o nome da técnica de imobilização superior de quatro pontos?",
+          answers: ["Kesa-gatame", "Kami-shiho-gatame", "Yoko-shiho-gatame", "Tate-shiho-gatame"],
+          correct: 1,
+          explanation: "Kami-shiho-gatame é uma imobilização superior que utiliza quatro pontos de contato."
+        },
+        {
+          question: "Qual é o nome da técnica de imobilização vertical de quatro pontos?",
+          answers: ["Kesa-gatame", "Kami-shiho-gatame", "Yoko-shiho-gatame", "Tate-shiho-gatame"],
+          correct: 3,
+          explanation: "Tate-shiho-gatame é uma imobilização vertical que utiliza quatro pontos de contato."
+        },
+        {
+          question: "Qual é o nome da técnica de projeção com quadril em diagonal?",
+          answers: ["Koshi-guruma", "Seoi-nage", "O-goshi", "Tai-otoshi"],
+          correct: 0,
+          explanation: "Koshi-guruma é uma técnica de projeção que utiliza o quadril em movimento diagonal."
+        },
+        {
+          question: "Qual é o nome da técnica de projeção com quadril em grande movimento?",
+          answers: ["O-goshi", "Koshi-guruma", "Uke-goshi", "Tai-otoshi"],
+          correct: 0,
+          explanation: "O-goshi é uma técnica de projeção que utiliza o quadril em grande movimento circular."
+        },
+        {
+          question: "Qual é o nome da técnica de projeção com quadril em movimento de apoio?",
+          answers: ["O-goshi", "Koshi-guruma", "Uke-goshi", "Tai-otoshi"],
+          correct: 2,
+          explanation: "Uke-goshi é uma técnica de projeção que utiliza o quadril como ponto de apoio estático."
+        }
+      ]
+    };
+
+    // Variáveis globais
+    let questions = [];
+    let currentQuestion = 0;
+    let score = 0;
+    let answered = false;
+    let selectedDifficulty = '';
 
     // Função para randomizar array (Fisher-Yates shuffle)
     function shuffleArray(array) {
@@ -519,12 +609,28 @@
       return shuffled;
     }
     
-    // Função para randomizar perguntas e alternativas
-    function randomizeQuiz() {
-      // Randomizar ordem das perguntas
-      questions = shuffleArray(originalQuestions);
+    // Função para selecionar dificuldade
+    function selectDifficulty(difficulty) {
+      selectedDifficulty = difficulty;
       
-      // Para cada pergunta, randomizar as alternativas
+      if (difficulty === 'all') {
+        // Para "Todas as Perguntas", misturar todas as perguntas de todos os níveis
+        const allEasyQuestions = questionsByDifficulty.easy;
+        const allMediumQuestions = questionsByDifficulty.medium;
+        const allHardQuestions = questionsByDifficulty.hard;
+        
+        // Combinar todas as perguntas
+        const combinedQuestions = [...allEasyQuestions, ...allMediumQuestions, ...allHardQuestions];
+        
+        // Selecionar 45 perguntas misturadas (ou todas se houver menos de 45)
+        questions = shuffleArray(combinedQuestions).slice(0, 45);
+      } else {
+        // Selecionar 15 perguntas da dificuldade escolhida
+        const allQuestions = questionsByDifficulty[difficulty];
+        questions = shuffleArray(allQuestions).slice(0, 15);
+      }
+      
+      // Randomizar alternativas de cada pergunta
       questions.forEach((question, questionIndex) => {
         const originalAnswers = [...question.answers];
         const correctAnswer = originalAnswers[question.correct];
@@ -542,11 +648,14 @@
           correct: newCorrectIndex
         };
       });
+      
+      // Esconder seleção de dificuldade e mostrar quiz
+      document.getElementById('difficulty-selection').classList.add('hidden');
+      document.getElementById('quiz-container').classList.remove('hidden');
+      
+      // Inicializar quiz
+      initQuiz();
     }
-    
-    let currentQuestion = 0;
-    let score = 0;
-    let answered = false;
 
     const quizContainer = document.getElementById("quiz-container");
     const statusElement = document.getElementById("status");
@@ -706,8 +815,11 @@
       resultElement.classList.remove("hidden");
       resultElement.classList.add("bounce-in");
       
-      // Scroll para o resultado
-      resultElement.scrollIntoView({ behavior: 'smooth' });
+      // Centralizar o modal na tela
+      resultElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      
+      // Garantir que a barra de progresso chegue a 100%
+      progressBar.style.width = '100%';
     }
 
     function restartQuiz() {
@@ -717,22 +829,26 @@
       quizContainer.innerHTML = "";
       resultElement.classList.add("hidden");
       
-      // Randomizar novamente o quiz
-      randomizeQuiz();
+      // Voltar para seleção de dificuldade
+      document.getElementById('difficulty-selection').classList.remove('hidden');
+      document.getElementById('quiz-container').classList.add('hidden');
       
-      updateStatus();
-      createQuestionCard();
+      // Resetar barra de progresso
+      progressBar.style.width = '0%';
     }
 
     function initQuiz() {
-      // Randomizar o quiz na inicialização
-      randomizeQuiz();
       updateStatus();
       createQuestionCard();
     }
 
-    // Inicializar quiz quando a página carregar
-    document.addEventListener('DOMContentLoaded', initQuiz);
+    // Inicializar apenas a tela de seleção quando a página carregar
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mostrar apenas a seleção de dificuldade inicialmente
+      document.getElementById('difficulty-selection').classList.remove('hidden');
+      document.getElementById('quiz-container').classList.add('hidden');
+      document.getElementById('result').classList.add('hidden');
+    });
   </script>
 </body>
 </html>

@@ -108,29 +108,6 @@
             color: #92400E;
         }
         
-        .nav-section {
-            background: white;
-            border: 1px solid #E5E7EB;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-        
-        .nav-link {
-            transition: all 0.3s ease;
-            border-radius: 0.5rem;
-            border: 2px solid transparent;
-        }
-        
-        .nav-link:hover {
-            background: rgba(59, 130, 246, 0.1);
-            border-color: rgba(59, 130, 246, 0.3);
-            transform: translateY(-2px);
-        }
-        
-        .nav-link.active {
-            background: rgba(59, 130, 246, 0.15);
-            border-color: rgba(59, 130, 246, 0.4);
-        }
-        
         /* Melhorias de responsividade para mobile */
         @media (max-width: 640px) {
             .hero-section {
@@ -155,54 +132,6 @@
                 font-size: 0.75rem;
                 padding: 1px 6px;
             }
-            
-            .nav-link {
-                padding: 0.5rem;
-            }
-            
-            .nav-link div:first-child {
-                font-size: 1.25rem;
-            }
-            
-            .nav-link div:last-child {
-                font-size: 0.75rem;
-            }
-        }
-        
-        /* Melhorias para tablets */
-        @media (min-width: 641px) and (max-width: 1024px) {
-            .word-card {
-                padding: 1rem 1.5rem;
-            }
-            
-            .nav-link {
-                padding: 0.75rem;
-            }
-        }
-        
-        /* Melhorias para telas muito pequenas */
-        @media (max-width: 480px) {
-            .container {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
-            
-            .word-card {
-                padding: 0.75rem;
-            }
-            
-            .word-card h4 {
-                font-size: 0.9rem;
-            }
-            
-            .word-card p {
-                font-size: 0.8rem;
-            }
-            
-            .highlight-word {
-                font-size: 0.7rem;
-                padding: 1px 4px;
-            }
         }
     </style>
 </head>
@@ -225,1281 +154,278 @@
                 🇯🇵 Vocabulário do Judô
             </h1>
             <p class="font-subtitle text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto px-4">
-                Descubra as palavras essenciais em japonês que formam a base desta arte marcial milenar
+                Escolha sua faixa e aprenda as palavras essenciais para seu nível
             </p>
         </div>
     </section>
     
     <!-- Container principal responsivo -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
-        <!-- Introdução responsiva -->
-        <div class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 md:p-8 mb-8 sm:mb-12 fade-in-up">
-            <div class="text-center">
-                <h2 class="font-title text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
-                    🥋 A Linguagem do Judô
-                </h2>
-                <p class="font-desc text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed px-2">
-                    O judô não é apenas uma arte marcial, é uma filosofia de vida. Cada palavra em japonês carrega 
-                    consigo séculos de sabedoria e tradição. Conhecer este vocabulário é essencial para compreender 
-                    a essência do judô e se conectar com sua rica herança cultural.
-                </p>
-            </div>
-        </div>
-        
-        <!-- Navegação por seções responsiva -->
-        <div class="fade-in-up mb-8 sm:mb-12">
-            <div class="nav-section rounded-2xl p-4 sm:p-6">
-                <h3 class="font-title text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4 text-center">📚 Navegue pelas Seções</h3>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4">
-                    <button data-section="basico" class="nav-link p-2 sm:p-3 text-center">
-                        <div class="text-xl sm:text-2xl mb-1 sm:mb-2">🟢</div>
-                        <div class="font-subtitle text-xs sm:text-sm text-gray-700">Básico</div>
+        <!-- Tela de Seleção de Faixas -->
+        <div id="belt-selection" class="fade-in-up">
+            <div class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 md:p-8 mb-8 sm:mb-12">
+                <div class="text-center mb-8">
+                    <h2 class="font-title text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4">
+                        🥋 Escolha Sua Faixa
+                    </h2>
+                    <p class="font-desc text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed px-2">
+                        Selecione sua faixa atual para aprender as palavras essenciais do seu nível. 
+                        Cada faixa tem vocabulário específico para sua evolução no judô.
+                    </p>
+                </div>
+                
+                <!-- Grid de Faixas -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4 sm:gap-6">
+                    <!-- Faixa Cinza -->
+                    <button onclick="selectBelt('gray')" class="belt-btn bg-gray-50 hover:bg-gray-100 border-2 border-gray-200 hover:border-gray-400 rounded-xl p-4 sm:p-6 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                        <div class="text-center">
+                            <div class="w-16 h-4 bg-gray-500 rounded mx-auto mb-3"></div>
+                            <h3 class="font-subtitle text-lg font-bold text-gray-700 mb-2">Cinza</h3>
+                            <p class="text-sm text-gray-600">10 palavras básicas</p>
+                        </div>
                     </button>
-                    <button data-section="tecnico" class="nav-link p-2 sm:p-3 text-center">
-                        <div class="text-xl sm:text-2xl mb-1 sm:mb-2">🟡</div>
-                        <div class="font-subtitle text-xs sm:text-sm text-gray-700">Técnico</div>
+                    
+                    <!-- Faixa Azul -->
+                    <button onclick="selectBelt('blue')" class="belt-btn bg-blue-50 hover:bg-blue-100 border-2 border-blue-200 hover:border-blue-400 rounded-xl p-4 sm:p-6 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                        <div class="text-center">
+                            <div class="w-16 h-4 bg-blue-400 rounded mx-auto mb-3"></div>
+                            <h3 class="font-subtitle text-lg font-bold text-blue-700 mb-2">Azul</h3>
+                            <p class="text-sm text-blue-600">10 palavras essenciais</p>
+                        </div>
                     </button>
-                    <button data-section="avancado" class="nav-link p-2 sm:p-3 text-center">
-                        <div class="text-xl sm:text-2xl mb-1 sm:mb-2">🔴</div>
-                        <div class="font-subtitle text-xs sm:text-sm text-gray-700">Avançado</div>
+                    
+                    <!-- Faixa Amarela -->
+                    <button onclick="selectBelt('yellow')" class="belt-btn bg-yellow-50 hover:bg-yellow-100 border-2 border-yellow-200 hover:border-yellow-400 rounded-xl p-4 sm:p-6 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                        <div class="text-center">
+                            <div class="w-16 h-4 bg-yellow-400 rounded mx-auto mb-3"></div>
+                            <h3 class="font-subtitle text-lg font-bold text-yellow-700 mb-2">Amarela</h3>
+                            <p class="text-sm text-yellow-600">10 palavras importantes</p>
+                        </div>
                     </button>
-                    <button data-section="filosofia" class="nav-link p-2 sm:p-3 text-center">
-                        <div class="text-xl sm:text-2xl mb-1 sm:mb-2">🟣</div>
-                        <div class="font-subtitle text-xs sm:text-sm text-gray-700">Filosofia</div>
+                    
+                    <!-- Faixa Verde -->
+                    <button onclick="selectBelt('green')" class="belt-btn bg-green-50 hover:bg-green-100 border-2 border-green-200 hover:border-green-400 rounded-xl p-4 sm:p-6 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                        <div class="text-center">
+                            <div class="w-16 h-4 bg-green-400 rounded mx-auto mb-3"></div>
+                            <h3 class="font-subtitle text-lg font-bold text-green-700 mb-2">Verde</h3>
+                            <p class="text-sm text-green-600">10 palavras técnicas</p>
+                        </div>
+                    </button>
+                    
+                    <!-- Faixa Roxa -->
+                    <button onclick="selectBelt('purple')" class="belt-btn bg-purple-50 hover:bg-purple-100 border-2 border-purple-200 hover:border-purple-400 rounded-xl p-4 sm:p-6 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                        <div class="text-center">
+                            <div class="w-16 h-4 bg-purple-400 rounded mx-auto mb-3"></div>
+                            <h3 class="font-subtitle text-lg font-bold text-purple-700 mb-2">Roxa</h3>
+                            <p class="text-sm text-purple-600">Todas as palavras</p>
+                        </div>
+                    </button>
+                    
+                    <!-- Faixa Marrom -->
+                    <button onclick="selectBelt('brown')" class="belt-btn bg-amber-50 hover:bg-amber-100 border-2 border-amber-200 hover:border-amber-400 rounded-xl p-4 sm:p-6 transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                        <div class="text-center">
+                            <div class="w-16 h-4 bg-amber-600 rounded mx-auto mb-3"></div>
+                            <h3 class="font-subtitle text-lg font-bold text-amber-700 mb-2">Marrom</h3>
+                            <p class="text-sm text-amber-600">Todas as palavras</p>
+                        </div>
                     </button>
                 </div>
             </div>
         </div>
         
-        <!-- Barra de Busca responsiva -->
-        <div class="fade-in-up mb-8 sm:mb-12">
-            <div class="max-w-2xl mx-auto px-2">
-                <div class="relative">
-                    <input 
-                        type="text" 
-                        id="searchInput"
-                        placeholder="🔍 Buscar palavras..."
-                        class="w-full px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-lg bg-white border-2 border-gray-300 rounded-2xl focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/30 transition-all duration-300 placeholder-gray-400 text-gray-900"
-                    >
-                    <div class="absolute right-3 sm:right-4 top-1/2 transform -translate-y-1/2">
-                        <span class="text-gray-500 text-xs sm:text-sm hidden sm:inline">Enter para buscar</span>
-                    </div>
-                </div>
-                <div id="searchResults" class="mt-4 hidden">
-                    <!-- Resultados da busca aparecerão aqui -->
+        <!-- Container de Palavras (inicialmente oculto) -->
+        <div id="words-container" class="hidden">
+            <!-- Cabeçalho da Faixa Selecionada -->
+            <div id="belt-header" class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 md:p-8 mb-8 fade-in-up">
+                <div class="text-center">
+                    <div id="belt-icon" class="text-4xl sm:text-5xl mb-4"></div>
+                    <h2 id="belt-title" class="font-title text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-3 sm:mb-4"></h2>
+                    <p id="belt-description" class="font-desc text-sm sm:text-base md:text-lg text-gray-600 leading-relaxed px-2"></p>
+                    <button onclick="backToBeltSelection()" class="mt-4 bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-lg transition-colors text-sm">
+                        ← Voltar para Seleção de Faixas
+                    </button>
                 </div>
             </div>
-        </div>
-        
-        <!-- Categorias de palavras responsivas -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-12">
             
-            <!-- Palavras Básicas responsivas -->
-            <div class="fade-in-up" id="basico">
-                <h3 class="font-title text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 flex items-center">
-                    <span class="w-6 h-6 sm:w-8 sm:h-8 bg-green-400 rounded-full flex items-center justify-center mr-2 sm:mr-3 text-sm sm:text-base">🟢</span>
-                    Palavras Básicas
-                </h3>
-                <div class="space-y-3 sm:space-y-4">
-                    <div class="word-card rounded-xl p-4 sm:p-6 category-basic relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-2 sm:mb-3">
-                            <h4 class="font-subtitle text-lg sm:text-xl font-semibold text-gray-900">Judo (柔道)</h4>
-                            <span class="text-xs sm:text-sm text-gray-500 font-mono">Jūdō</span>
-                        </div>
-                        <p class="font-desc text-sm sm:text-base text-gray-600 mb-2 sm:mb-3">
-                            <span class="highlight-word">Caminho Suave</span> - A arte marcial fundada por Jigoro Kano
-                        </p>
-                        <div class="text-xs sm:text-sm text-gray-500">
-                            <strong>Significado:</strong> "Ju" (suave) + "Do" (caminho)
+            <!-- Barra de Busca responsiva -->
+            <div class="fade-in-up mb-8 sm:mb-12">
+                <div class="max-w-2xl mx-auto px-2">
+                    <div class="relative">
+                        <input 
+                            type="text" 
+                            id="searchInput"
+                            placeholder="🔍 Buscar palavras..."
+                            class="w-full px-4 sm:px-6 py-3 sm:py-4 text-sm sm:text-lg bg-white border-2 border-gray-300 rounded-2xl focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/30 transition-all duration-300 placeholder-gray-400 text-gray-900"
+                        >
+                        <div class="absolute right-3 sm:right-4 top-1/2 transform -translate-y-1/2">
+                            <span class="text-gray-500 text-xs sm:text-sm hidden sm:inline">Enter para buscar</span>
                         </div>
                     </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-basic relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Dojo (道場)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Dōjō</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Local de Treino</span> - O espaço sagrado para prática
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Do" (caminho) + "Jo" (lugar)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-basic relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Sensei (先生)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Sensei</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Professor</span> - Aquele que veio antes
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Sen" (antes) + "Sei" (nascido)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-basic relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Kumi-kata (組み方)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Kumi-kata</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Pegadas</span> - Forma de segurar o judogi
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Kumi" (agarrar) + "Kata" (forma)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-basic relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Migi (右)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Migi</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Direita</span> - Lado direito do corpo
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Migi" (direita)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-basic relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Hidari (左)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Hidari</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Esquerda</span> - Lado esquerdo do corpo
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Hidari" (esquerda)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-basic relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Mae (前)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Mae</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Frente</span> - Direção para frente
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Mae" (frente)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-basic relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Ushiro (後)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Ushiro</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Trás</span> - Direção para trás
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Ushiro" (trás)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-basic relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Tori (取り)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Tori</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Quem Executa</span> - Aquele que aplica a técnica
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Tori" (pegar/executar)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-basic relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Uke (受け)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Uke</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Quem Recebe</span> - Aquele que recebe a técnica
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Uke" (receber)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-basic relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Shizentai (自然体)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Shizentai</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Postura Natural</span> - Posição básica de combate
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Shizen" (natural) + "Tai" (corpo)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-basic relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Jigo-tai (自護体)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Jigo-tai</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Postura Defensiva</span> - Posição de proteção
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Jigo" (autoproteção) + "Tai" (corpo)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-basic relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Ayumi-ashi (歩み足)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Ayumi-ashi</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Passo Normal</span> - Movimento natural de caminhada
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Ayumi" (passo) + "Ashi" (pé)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-basic relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Tsugi-ashi (継ぎ足)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Tsugi-ashi</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Passo Deslizante</span> - Movimento de deslizamento
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Tsugi" (continuar) + "Ashi" (pé)
-                        </div>
+                    <div id="searchResults" class="mt-4 hidden">
+                        <!-- Resultados da busca aparecerão aqui -->
                     </div>
                 </div>
             </div>
             
-            <!-- Palavras Técnicas responsivas -->
-            <div class="fade-in-up" id="tecnico">
-                <h3 class="font-title text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 flex items-center">
-                    <span class="w-6 h-6 sm:w-8 sm:h-8 bg-yellow-400 rounded-full flex items-center justify-center mr-2 sm:mr-3 text-sm sm:text-base">🟡</span>
-                    Termos Técnicos
-                </h3>
-                <div class="space-y-4">
-                    <div class="word-card rounded-xl p-6 category-technical relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Ukemi (受身)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Ukemi</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Técnicas de Queda</span> - Como cair com segurança
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Uke" (receber) + "Mi" (corpo)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-technical relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Tachi-waza (立ち技)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Tachi-waza</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Técnicas em Pé</span> - Projeções executadas em posição ereta
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Tachi" (em pé) + "Waza" (técnica)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-technical relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Ne-waza (寝技)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Ne-waza</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Técnicas no Solo</span> - Luta de chão e imobilizações
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Ne" (deitar) + "Waza" (técnica)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-technical relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Katame-waza (固技)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Katame-waza</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Técnicas de Imobilização</span> - Controle e domínio no solo
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Katame" (fixar) + "Waza" (técnica)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-technical relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Shime-waza (絞技)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Shime-waza</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Técnicas de Estrangulamento</span> - Controle pela respiração
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Shime" (apertar) + "Waza" (técnica)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-technical relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Kansetsu-waza (関節技)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Kansetsu-waza</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Técnicas de Articulação</span> - Chaves e alavancas
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Kansetsu" (articulação) + "Waza" (técnica)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-technical relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Randori (乱取り)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Randori</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Treino Livre</span> - Prática de combate não estruturado
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Ran" (desordenado) + "Tori" (pegar)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-technical relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Uchi-komi (打ち込み)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Uchi-komi</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Repetição de Técnica</span> - Treino de entrada sem projeção
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Uchi" (bater) + "Komi" (entrar)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-technical relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Nage-komi (投げ込み)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Nage-komi</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Projeção Completa</span> - Treino de técnica com queda
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Nage" (arremesso) + "Komi" (entrar)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-technical relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Yaku-soku-geiko (約束稽古)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Yaku-soku-geiko</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Treino Combinado</span> - Prática com movimentos predefinidos
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Yaku" (promessa) + "Soku" (acordo) + "Geiko" (treino)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-technical relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Kata (形)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Kata</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Forma/Sequência</span> - Sequência predefinida de técnicas
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Kata" (forma/modelo)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-technical relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Shiai (試合)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Shiai</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Competição</span> - Luta oficial com regras
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Shi" (testar) + "Ai" (encontro)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-technical relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Ippon (一本)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Ippon</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Ponto Completo</span> - Vitória por técnica perfeita
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "I" (um) + "Pon" (ponto)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-technical relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Waza-ari (技あり)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Waza-ari</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Meio Ponto</span> - Técnica quase perfeita
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Waza" (técnica) + "Ari" (existe)
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-
-        
-        <!-- Segunda linha de categorias responsivas -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-12">
-            
-            <!-- Palavras Avançadas responsivas -->
-            <div class="fade-in-up" id="avancado">
-                <h3 class="font-title text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 flex items-center">
-                    <span class="w-6 h-6 sm:w-8 sm:h-8 bg-red-400 rounded-full flex items-center justify-center mr-2 sm:mr-3 text-sm sm:text-base">🔴</span>
-                    Termos Avançados
-                </h3>
-                <div class="space-y-4">
-                    <div class="word-card rounded-xl p-6 category-advanced relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Kuzushi (崩し)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Kuzushi</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Desequilíbrio</span> - Primeiro princípio da técnica
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Kuzu" (quebrar) + "Shi" (fazer)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-advanced relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Tsukuri (作り)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Tsukuri</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Posicionamento</span> - Segundo princípio da técnica
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Tsuku" (fazer) + "Ri" (resultado)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-advanced relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Kake (掛け)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Kake</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Execução</span> - Terceiro princípio da técnica
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Kake" (aplicar/executar)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-advanced relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Tai-sabaki (体捌き)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Tai-sabaki</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Movimento Corporal</span> - Técnica de esquiva e posicionamento
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Tai" (corpo) + "Sabaki" (manejo)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-advanced relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Ma-ai (間合い)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Ma-ai</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Distância de Combate</span> - Espaçamento ideal entre lutadores
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Ma" (espaço) + "Ai" (ajustar)
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Filosofia do Judô responsiva -->
-            <div class="fade-in-up" id="filosofia">
-                <h3 class="font-title text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 flex items-center">
-                    <span class="w-6 h-6 sm:w-8 sm:h-8 bg-purple-400 rounded-full flex items-center justify-center mr-2 sm:mr-3 text-sm sm:text-base">🟣</span>
-                    Filosofia do Judô
-                </h3>
-                <div class="space-y-4">
-                    <div class="word-card rounded-xl p-6 category-philosophy relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Seiryoku Zenyo (精力善用)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Seiryoku Zen'yō</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Uso Eficiente da Energia</span> - Primeiro princípio filosófico
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Seiryoku" (energia) + "Zenyo" (uso eficiente)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-philosophy relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Jita Kyoei (自他共栄)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Jita Kyōei</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Bem-estar Mútuo</span> - Segundo princípio filosófico
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Jita" (eu e outros) + "Kyoei" (prosperidade)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-philosophy relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Rei (礼)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Rei</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Respeito e Cortesia</span> - Base da etiqueta do judô
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Rei" (respeito/cortesia)
-                        </div>
-                    </div>
-                    
-                    <div class="word-card rounded-xl p-6 category-philosophy relative overflow-hidden">
-                        <div class="flex justify-between items-start mb-3">
-                            <h4 class="font-subtitle text-xl font-semibold text-gray-900">Shin (信)</h4>
-                            <span class="text-sm text-gray-500 font-mono">Shin</span>
-                        </div>
-                        <p class="font-desc text-gray-600 mb-3">
-                            <span class="highlight-word">Confiança e Honestidade</span> - Virtude fundamental
-                        </p>
-                        <div class="text-sm text-gray-500">
-                            <strong>Significado:</strong> "Shin" (confiança/verdade)
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Disciplina para Crianças responsiva -->
-        <div class="fade-in-up mb-8 sm:mb-12">
-            <h3 class="font-title text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 text-center flex items-center justify-center">
-                <span class="w-6 h-6 sm:w-8 sm:h-8 bg-pink-400 rounded-full flex items-center justify-center mr-2 sm:mr-3 text-sm sm:text-base">👶</span>
-                Disciplina para Crianças
-            </h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                <div class="word-card rounded-xl p-4 sm:p-6 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-2 sm:mb-3">
-                        <h4 class="font-subtitle text-lg sm:text-xl font-semibold text-gray-900">Ganbare (頑張れ)</h4>
-                        <span class="text-xs sm:text-sm text-gray-500 font-mono">Ganbare</span>
-                    </div>
-                    <p class="font-desc text-sm sm:text-base text-gray-600 mb-2 sm:mb-3">
-                        <span class="highlight-word">Vamos! Força!</span> - Incentivo para persistir
-                    </p>
-                    <div class="text-xs sm:text-sm text-gray-500">
-                        <strong>Uso:</strong> Motivação durante treinos
-                    </div>
-                </div>
-                
-                <div class="word-card rounded-xl p-6 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-3">
-                        <h4 class="font-subtitle text-xl font-semibold text-gray-900">Yoku Dekimashita (よくできました)</h4>
-                        <span class="text-sm text-gray-500 font-mono">Yoku Dekimashita</span>
-                    </div>
-                    <p class="font-desc text-gray-600 mb-3">
-                        <span class="highlight-word">Muito Bem!</span> - Elogio por boa execução
-                    </p>
-                    <div class="text-sm text-gray-500">
-                        <strong>Uso:</strong> Reconhecimento de esforço
-                    </div>
-                </div>
-                
-                <div class="word-card rounded-xl p-6 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-3">
-                        <h4 class="font-subtitle text-xl font-semibold text-gray-900">Motto (もっと)</h4>
-                        <span class="text-sm text-gray-500 font-mono">Motto</span>
-                    </div>
-                    <p class="font-desc text-gray-600 mb-3">
-                        <span class="highlight-word">Mais!</span> - Incentivo para melhorar
-                    </p>
-                    <div class="text-sm text-gray-500">
-                        <strong>Uso:</strong> Motivação para superar limites
-                    </div>
-                </div>
-                
-                <div class="word-card rounded-xl p-6 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-3">
-                        <h4 class="font-subtitle text-xl font-semibold text-gray-900">Sugoi (すごい)</h4>
-                        <span class="text-sm text-gray-500 font-mono">Sugoi</span>
-                    </div>
-                    <p class="font-desc text-gray-600 mb-3">
-                        <span class="highlight-word">Incrível!</span> - Expressão de admiração
-                    </p>
-                    <div class="text-sm text-gray-500">
-                        <strong>Uso:</strong> Celebração de conquistas
-                    </div>
-                </div>
-                
-                <div class="word-card rounded-xl p-6 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-3">
-                        <h4 class="font-subtitle text-xl font-semibold text-gray-900">Kawaii (かわいい)</h4>
-                        <span class="text-sm text-gray-500 font-mono">Kawaii</span>
-                    </div>
-                    <p class="font-desc text-gray-600 mb-3">
-                        <span class="highlight-word">Fofo!</span> - Carinho para crianças pequenas
-                    </p>
-                    <div class="text-sm text-gray-500">
-                        <strong>Uso:</strong> Afeto e carinho
-                    </div>
-                </div>
-                
-                <div class="word-card rounded-xl p-6 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-3">
-                        <h4 class="font-subtitle text-xl font-semibold text-gray-900">Yasashiku (優しく)</h4>
-                        <span class="text-sm text-gray-500 font-mono">Yasashiku</span>
-                    </div>
-                    <p class="font-desc text-gray-600 mb-3">
-                        <span class="highlight-word">Gentilmente</span> - Lembrança de ser suave
-                    </p>
-                    <div class="text-sm text-gray-500">
-                        <strong>Uso:</strong> Ensino de respeito
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Comandos de Treino responsivos -->
-        <div class="fade-in-up mb-8 sm:mb-12">
-            <h3 class="font-title text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 text-center flex items-center justify-center">
-                <span class="w-6 h-6 sm:w-8 sm:h-8 bg-blue-400 rounded-full flex items-center justify-center mr-2 sm:mr-3 text-sm sm:text-base">🔵</span>
-                Comandos de Treino
-            </h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                <div class="word-card rounded-xl p-6 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-3">
-                        <h4 class="font-subtitle text-xl font-semibold text-gray-900">Hajime (始め)</h4>
-                        <span class="text-sm text-gray-500 font-mono">Hajime</span>
-                    </div>
-                    <p class="font-desc text-gray-600 mb-3">
-                        <span class="highlight-word">Começar</span> - Comando para iniciar o combate
-                    </p>
-                    <div class="text-sm text-gray-500">
-                        <strong>Uso:</strong> Início de randori ou competição
-                    </div>
-                </div>
-                
-                <div class="word-card rounded-xl p-6 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-3">
-                        <h4 class="font-subtitle text-xl font-semibold text-gray-900">Matte (待って)</h4>
-                        <span class="text-sm text-gray-500 font-mono">Matte</span>
-                    </div>
-                    <p class="font-desc text-gray-600 mb-3">
-                        <span class="highlight-word">Parar</span> - Comando para interromper a ação
-                    </p>
-                    <div class="text-sm text-gray-500">
-                        <strong>Uso:</strong> Pausa temporária no treino
-                    </div>
-                </div>
-                
-                <div class="word-card rounded-xl p-6 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-3">
-                        <h4 class="font-subtitle text-xl font-semibold text-gray-900">Sore Made (それまで)</h4>
-                        <span class="text-sm text-gray-500 font-mono">Sore Made</span>
-                    </div>
-                    <p class="font-desc text-gray-600 mb-3">
-                        <span class="highlight-word">Fim</span> - Comando para finalizar o combate
-                    </p>
-                    <div class="text-sm text-gray-500">
-                        <strong>Uso:</strong> Término de randori ou competição
-                    </div>
-                </div>
-                
-                <div class="word-card rounded-xl p-6 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-3">
-                        <h4 class="font-subtitle text-xl font-semibold text-gray-900">Yame (止め)</h4>
-                        <span class="text-sm text-gray-500 font-mono">Yame</span>
-                    </div>
-                    <p class="font-desc text-gray-600 mb-3">
-                        <span class="highlight-word">Parar</span> - Comando de parada imediata
-                    </p>
-                    <div class="text-sm text-gray-500">
-                        <strong>Uso:</strong> Interrupção urgente
-                    </div>
-                </div>
-                
-                <div class="word-card rounded-xl p-6 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-3">
-                        <h4 class="font-subtitle text-xl font-semibold text-gray-900">Osae-komi (押さえ込み)</h4>
-                        <span class="text-sm text-gray-500 font-mono">Osae-komi</span>
-                    </div>
-                    <p class="font-desc text-gray-600 mb-3">
-                        <span class="highlight-word">Imobilização</span> - Início da contagem de imobilização
-                    </p>
-                    <div class="text-sm text-gray-500">
-                        <strong>Uso:</strong> Competição e treino
-                    </div>
-                </div>
-                
-                <div class="word-card rounded-xl p-6 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-3">
-                        <h4 class="font-subtitle text-xl font-semibold text-gray-900">Toketa (解けた)</h4>
-                        <span class="text-sm text-gray-500 font-mono">Toketa</span>
-                    </div>
-                    <p class="font-desc text-gray-600 mb-3">
-                        <span class="highlight-word">Soltou</span> - Fim da imobilização
-                    </p>
-                    <div class="text-sm text-gray-500">
-                        <strong>Uso:</strong> Competição e treino
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Números em Japonês responsivos -->
-        <div class="fade-in-up mb-8 sm:mb-12">
-            <h3 class="font-title text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 text-center flex items-center justify-center">
-                <span class="w-6 h-6 sm:w-8 sm:h-8 bg-indigo-400 rounded-full flex items-center justify-center mr-2 sm:mr-3 text-sm sm:text-base">🔢</span>
-                Contando em Japonês (1-10)
-            </h3>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 sm:gap-4">
-                <div class="word-card rounded-xl p-3 sm:p-4 relative overflow-hidden text-center">
-                    <h4 class="font-subtitle text-2xl sm:text-3xl font-bold text-gray-900 mb-1 sm:mb-2">一</h4>
-                    <p class="font-mono text-sm sm:text-lg text-blue-600 mb-1">Ichi</p>
-                    <p class="font-desc text-xs sm:text-sm text-gray-500">1</p>
-                </div>
-                <div class="word-card rounded-xl p-4 relative overflow-hidden text-center">
-                    <h4 class="font-subtitle text-3xl font-bold text-gray-900 mb-2">二</h4>
-                    <p class="font-mono text-lg text-blue-600 mb-1">Ni</p>
-                    <p class="font-desc text-sm text-gray-500">2</p>
-                </div>
-                <div class="word-card rounded-xl p-4 relative overflow-hidden text-center">
-                    <h4 class="font-subtitle text-3xl font-bold text-gray-900 mb-2">三</h4>
-                    <p class="font-mono text-lg text-blue-600 mb-1">San</p>
-                    <p class="font-desc text-sm text-gray-500">3</p>
-                </div>
-                <div class="word-card rounded-xl p-4 relative overflow-hidden text-center">
-                    <h4 class="font-subtitle text-3xl font-bold text-gray-900 mb-2">四</h4>
-                    <p class="font-mono text-lg text-blue-600 mb-1">Shi/Yon</p>
-                    <p class="font-desc text-sm text-gray-500">4</p>
-                </div>
-                <div class="word-card rounded-xl p-4 relative overflow-hidden text-center">
-                    <h4 class="font-subtitle text-3xl font-bold text-gray-900 mb-2">五</h4>
-                    <p class="font-mono text-lg text-blue-600 mb-1">Go</p>
-                    <p class="font-desc text-sm text-gray-500">5</p>
-                </div>
-                <div class="word-card rounded-xl p-4 relative overflow-hidden text-center">
-                    <h4 class="font-subtitle text-3xl font-bold text-gray-900 mb-2">六</h4>
-                    <p class="font-mono text-lg text-blue-600 mb-1">Roku</p>
-                    <p class="font-desc text-sm text-gray-500">6</p>
-                </div>
-                <div class="word-card rounded-xl p-4 relative overflow-hidden text-center">
-                    <h4 class="font-subtitle text-3xl font-bold text-gray-900 mb-2">七</h4>
-                    <p class="font-mono text-lg text-blue-600 mb-1">Shichi/Nana</p>
-                    <p class="font-desc text-sm text-gray-500">7</p>
-                </div>
-                <div class="word-card rounded-xl p-4 relative overflow-hidden text-center">
-                    <h4 class="font-subtitle text-3xl font-bold text-gray-900 mb-2">八</h4>
-                    <p class="font-mono text-lg text-blue-600 mb-1">Hachi</p>
-                    <p class="font-desc text-sm text-gray-500">8</p>
-                </div>
-                <div class="word-card rounded-xl p-4 relative overflow-hidden text-center">
-                    <h4 class="font-subtitle text-3xl font-bold text-gray-900 mb-2">九</h4>
-                    <p class="font-mono text-lg text-blue-600 mb-1">Ku/Kyū</p>
-                    <p class="font-desc text-sm text-gray-500">9</p>
-                </div>
-                <div class="word-card rounded-xl p-4 relative overflow-hidden text-center">
-                    <h4 class="font-subtitle text-3xl font-bold text-gray-900 mb-2">十</h4>
-                    <p class="font-mono text-lg text-blue-600 mb-1">Jū</p>
-                    <p class="font-desc text-sm text-gray-500">10</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Roupas e Equipamentos responsivos -->
-        <div class="fade-in-up mb-8 sm:mb-12">
-            <h3 class="font-title text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 text-center flex items-center justify-center">
-                <span class="w-6 h-6 sm:w-8 sm:h-8 bg-pink-400 rounded-full flex items-center justify-center mr-2 sm:mr-3 text-sm sm:text-base">👕</span>
-                Roupas e Equipamentos do Judô
-            </h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                <div class="word-card rounded-xl p-6 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-3">
-                        <h4 class="font-subtitle text-xl font-semibold text-gray-900">Judogi (柔道着)</h4>
-                        <span class="text-sm text-gray-500 font-mono">Judogi</span>
-                    </div>
-                    <p class="font-desc text-gray-600 mb-3">
-                        <span class="highlight-word">Uniforme do Judô</span> - Traje tradicional para prática
-                    </p>
-                    <div class="text-sm text-gray-500">
-                        <strong>Significado:</strong> "Ju" (suave) + "Do" (caminho) + "Gi" (roupa)
-                    </div>
-                </div>
-                
-                <div class="word-card rounded-xl p-6 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-3">
-                        <h4 class="font-subtitle text-xl font-semibold text-gray-900">Uwagi (上衣)</h4>
-                        <span class="text-sm text-gray-500 font-mono">Uwagi</span>
-                    </div>
-                    <p class="font-desc text-gray-600 mb-3">
-                        <span class="highlight-word">Jaqueta</span> - Parte superior do judogi
-                    </p>
-                    <div class="text-sm text-gray-500">
-                        <strong>Significado:</strong> "Uwa" (superior) + "Gi" (roupa)
-                    </div>
-                </div>
-                
-                <div class="word-card rounded-xl p-6 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-3">
-                        <h4 class="font-subtitle text-xl font-semibold text-gray-900">Obi (帯)</h4>
-                        <span class="text-sm text-gray-500 font-mono">Obi</span>
-                    </div>
-                    <p class="font-desc text-gray-600 mb-3">
-                        <span class="highlight-word">Faixa</span> - Indica o nível do praticante
-                    </p>
-                    <div class="text-sm text-gray-500">
-                        <strong>Significado:</strong> "Obi" (faixa/cinto)
-                    </div>
-                </div>
-                
-                <div class="word-card rounded-xl p-6 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-3">
-                        <h4 class="font-subtitle text-xl font-semibold text-gray-900">Zubon (ズボン)</h4>
-                        <span class="text-sm text-gray-500 font-mono">Zubon</span>
-                    </div>
-                    <p class="font-desc text-gray-600 mb-3">
-                        <span class="highlight-word">Calça</span> - Parte inferior do judogi
-                    </p>
-                    <div class="text-sm text-gray-500">
-                        <strong>Significado:</strong> "Zubon" (calça)
-                    </div>
-                </div>
-                
-                <div class="word-card rounded-xl p-6 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-3">
-                        <h4 class="font-subtitle text-xl font-semibold text-gray-900">Tatami (畳)</h4>
-                        <span class="text-sm text-gray-500 font-mono">Tatami</span>
-                    </div>
-                    <p class="font-desc text-gray-600 mb-3">
-                        <span class="highlight-word">Esteira</span> - Superfície de treino tradicional
-                    </p>
-                    <div class="text-sm text-gray-500">
-                        <strong>Significado:</strong> "Tatami" (esteira japonesa)
-                    </div>
-                </div>
-                
-                <div class="word-card rounded-xl p-6 relative overflow-hidden">
-                    <div class="flex justify-between items-start mb-3">
-                        <h4 class="font-subtitle text-xl font-semibold text-gray-900">Shinai (竹刀)</h4>
-                        <span class="text-sm text-gray-500 font-mono">Shinai</span>
-                    </div>
-                    <p class="font-desc text-gray-600 mb-3">
-                        <span class="highlight-word">Espada de Bambu</span> - Para treino de kendo (arte relacionada)
-                    </p>
-                    <div class="text-sm text-gray-500">
-                        <strong>Significado:</strong> "Shi" (bambu) + "Nai" (espada)
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Footer responsivo -->
-        <div class="text-center fade-in-up">
-            <div class="bg-white rounded-2xl shadow-lg p-4 sm:p-6 md:p-8">
-                <h3 class="font-title text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
-                    🌟 Continue Aprendendo
-                </h3>
-                <p class="font-desc text-sm sm:text-base md:text-lg text-gray-600 mb-4 sm:mb-6 px-2">
-                    O conhecimento das palavras em japonês é apenas o começo. 
-                    Continue praticando e mergulhando na rica cultura do judô.
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
-                    <a href="/quiz" class="px-4 sm:px-6 py-2 sm:py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm sm:text-base">
-                        Fazer Quiz
-                    </a>
-                    <a href="/ukemis" class="px-4 sm:px-6 py-2 sm:py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm sm:text-base">
-                        Aprender Ukemis
-                    </a>
-                </div>
+            <!-- Container de Palavras Dinâmico -->
+            <div id="words-grid" class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-12">
+                <!-- As palavras serão inseridas aqui dinamicamente -->
             </div>
         </div>
     </div>
     
     <!-- Script para funcionalidades interativas -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Array com todas as palavras da página para busca
-            const allWords = [
-                // Palavras Básicas
-                { japanese: 'Judo (柔道)', romaji: 'Jūdō', meaning: 'Caminho Suave', category: 'Básico', section: 'Palavras Básicas' },
-                { japanese: 'Dojo (道場)', romaji: 'Dōjō', meaning: 'Local de Treino', category: 'Básico', section: 'Palavras Básicas' },
-                { japanese: 'Sensei (先生)', romaji: 'Sensei', meaning: 'Professor', category: 'Básico', section: 'Palavras Básicas' },
-                { japanese: 'Kumi-kata (組み方)', romaji: 'Kumi-kata', meaning: 'Pegadas', category: 'Básico', section: 'Palavras Básicas' },
-                { japanese: 'Migi (右)', romaji: 'Migi', meaning: 'Direita', category: 'Básico', section: 'Palavras Básicas' },
-                { japanese: 'Hidari (左)', romaji: 'Hidari', meaning: 'Esquerda', category: 'Básico', section: 'Palavras Básicas' },
-                { japanese: 'Mae (前)', romaji: 'Mae', meaning: 'Frente', category: 'Básico', section: 'Palavras Básicas' },
-                { japanese: 'Ushiro (後)', romaji: 'Ushiro', meaning: 'Trás', category: 'Básico', section: 'Palavras Básicas' },
-                { japanese: 'Tori (取り)', romaji: 'Tori', meaning: 'Quem Executa', category: 'Básico', section: 'Palavras Básicas' },
-                { japanese: 'Uke (受け)', romaji: 'Uke', meaning: 'Quem Recebe', category: 'Básico', section: 'Palavras Básicas' },
-                { japanese: 'Shizentai (自然体)', romaji: 'Shizentai', meaning: 'Postura Natural', category: 'Básico', section: 'Palavras Básicas' },
-                { japanese: 'Jigo-tai (自護体)', romaji: 'Jigo-tai', meaning: 'Postura Defensiva', category: 'Básico', section: 'Palavras Básicas' },
-                { japanese: 'Ayumi-ashi (歩み足)', romaji: 'Ayumi-ashi', meaning: 'Passo Normal', category: 'Básico', section: 'Palavras Básicas' },
-                { japanese: 'Tsugi-ashi (継ぎ足)', romaji: 'Tsugi-ashi', meaning: 'Passo Deslizante', category: 'Básico', section: 'Palavras Básicas' },
-                
-                // Termos Técnicos
-                { japanese: 'Ukemi (受身)', romaji: 'Ukemi', meaning: 'Técnicas de Queda', category: 'Técnico', section: 'Termos Técnicos' },
-                { japanese: 'Tachi-waza (立ち技)', romaji: 'Tachi-waza', meaning: 'Técnicas em Pé', category: 'Técnico', section: 'Termos Técnicos' },
-                { japanese: 'Ne-waza (寝技)', romaji: 'Ne-waza', meaning: 'Técnicas no Solo', category: 'Técnico', section: 'Termos Técnicos' },
-                { japanese: 'Katame-waza (固技)', romaji: 'Katame-waza', meaning: 'Técnicas de Imobilização', category: 'Técnico', section: 'Termos Técnicos' },
-                { japanese: 'Shime-waza (絞技)', romaji: 'Shime-waza', meaning: 'Técnicas de Estrangulamento', category: 'Técnico', section: 'Termos Técnicos' },
-                { japanese: 'Kansetsu-waza (関節技)', romaji: 'Kansetsu-waza', meaning: 'Técnicas de Articulação', category: 'Técnico', section: 'Termos Técnicos' },
-                { japanese: 'Randori (乱取り)', romaji: 'Randori', meaning: 'Treino Livre', category: 'Técnico', section: 'Termos Técnicos' },
-                { japanese: 'Uchi-komi (打ち込み)', romaji: 'Uchi-komi', meaning: 'Repetição de Técnica', category: 'Técnico', section: 'Termos Técnicos' },
-                { japanese: 'Nage-komi (投げ込み)', romaji: 'Nage-komi', meaning: 'Projeção Completa', category: 'Técnico', section: 'Termos Técnicos' },
-                { japanese: 'Yaku-soku-geiko (約束稽古)', romaji: 'Yaku-soku-geiko', meaning: 'Treino Combinado', category: 'Técnico', section: 'Termos Técnicos' },
-                { japanese: 'Kata (形)', romaji: 'Kata', meaning: 'Forma/Sequência', category: 'Técnico', section: 'Termos Técnicos' },
-                { japanese: 'Shiai (試合)', romaji: 'Shiai', meaning: 'Competição', category: 'Técnico', section: 'Termos Técnicos' },
-                { japanese: 'Ippon (一本)', romaji: 'Ippon', meaning: 'Ponto Completo', category: 'Técnico', section: 'Termos Técnicos' },
-                { japanese: 'Waza-ari (技あり)', romaji: 'Waza-ari', meaning: 'Meio Ponto', category: 'Técnico', section: 'Termos Técnicos' },
-                
+        // Dados das faixas e suas palavras
+        const beltData = {
+            gray: {
+                icon: '⚪',
+                title: 'Faixa Cinza',
+                description: 'Vocabulário básico para iniciantes no judô',
+                words: [
+                    { japanese: 'Judo (柔道)', romaji: 'Jūdō', meaning: 'Caminho Suave', description: 'A arte marcial fundada por Jigoro Kano' },
+                    { japanese: 'Dojo (道場)', romaji: 'Dōjō', meaning: 'Local de Treino', description: 'O espaço sagrado para prática' },
+                    { japanese: 'Sensei (先生)', romaji: 'Sensei', meaning: 'Professor', description: 'Aquele que veio antes' },
+                    { japanese: 'Rei (礼)', romaji: 'Rei', meaning: 'Respeito e Cortesia', description: 'Base da etiqueta do judô' },
+                    { japanese: 'Migi (右)', romaji: 'Migi', meaning: 'Direita', description: 'Lado direito do corpo' },
+                    { japanese: 'Hidari (左)', romaji: 'Hidari', meaning: 'Esquerda', description: 'Lado esquerdo do corpo' },
+                    { japanese: 'Mae (前)', romaji: 'Mae', meaning: 'Frente', description: 'Direção para frente' },
+                    { japanese: 'Ushiro (後)', romaji: 'Ushiro', meaning: 'Trás', description: 'Direção para trás' },
+                    { japanese: 'Tori (取り)', romaji: 'Tori', meaning: 'Quem Executa', description: 'Aquele que aplica a técnica' },
+                    { japanese: 'Uke (受け)', romaji: 'Uke', meaning: 'Quem Recebe', description: 'Aquele que recebe a técnica' }
+                ]
+            },
+            yellow: {
+                icon: '🟡',
+                title: 'Faixa Amarela',
+                description: 'Vocabulário essencial para continuidade do aprendizado',
+                words: [
+                    { japanese: 'Shizentai (自然体)', romaji: 'Shizentai', meaning: 'Postura Natural', description: 'Posição básica de combate' },
+                    { japanese: 'Jigo-tai (自護体)', romaji: 'Jigo-tai', meaning: 'Postura Defensiva', description: 'Posição de proteção' },
+                    { japanese: 'Ayumi-ashi (歩み足)', romaji: 'Ayumi-ashi', meaning: 'Passo Normal', description: 'Movimento natural de caminhada' },
+                    { japanese: 'Tsugi-ashi (継ぎ足)', romaji: 'Tsugi-ashi', meaning: 'Passo Deslizante', description: 'Movimento de deslizamento' },
+                    { japanese: 'Kumi-kata (組み方)', romaji: 'Kumi-kata', meaning: 'Pegadas', description: 'Forma de segurar o judogi' },
+                    { japanese: 'Ukemi (受身)', romaji: 'Ukemi', meaning: 'Técnicas de Queda', description: 'Como cair com segurança' },
+                    { japanese: 'Hajime (始め)', romaji: 'Hajime', meaning: 'Começar', description: 'Comando para iniciar o combate' },
+                    { japanese: 'Matte (待って)', romaji: 'Matte', meaning: 'Parar', description: 'Comando para interromper a ação' },
+                    { japanese: 'Sore Made (それまで)', romaji: 'Sore Made', meaning: 'Fim', description: 'Comando para finalizar o combate' },
+                    { japanese: 'Randori (乱取り)', romaji: 'Randori', meaning: 'Treino Livre', description: 'Prática de combate não estruturado' }
+                ]
+            },
+            green: {
+                icon: '🟢',
+                title: 'Faixa Verde',
+                description: 'Vocabulário técnico para técnicas avançadas',
+                words: [
+                    { japanese: 'Kuzushi (崩し)', romaji: 'Kuzushi', meaning: 'Desequilíbrio', description: 'Primeiro princípio da técnica' },
+                    { japanese: 'Tsukuri (作り)', romaji: 'Tsukuri', meaning: 'Posicionamento', description: 'Segundo princípio da técnica' },
+                    { japanese: 'Kake (掛け)', romaji: 'Kake', meaning: 'Execução', description: 'Terceiro princípio da técnica' },
+                    { japanese: 'Tai-sabaki (体捌き)', romaji: 'Tai-sabaki', meaning: 'Movimento Corporal', description: 'Técnica de esquiva e posicionamento' },
+                    { japanese: 'Ma-ai (間合い)', romaji: 'Ma-ai', meaning: 'Distância de Combate', description: 'Espaçamento ideal entre lutadores' },
+                    { japanese: 'Osae-komi (押さえ込み)', romaji: 'Osae-komi', meaning: 'Imobilização', description: 'Início da contagem de imobilização' },
+                    { japanese: 'Toketa (解けた)', romaji: 'Toketa', meaning: 'Soltou', description: 'Fim da imobilização' },
+                    { japanese: 'Hansoku-make (反則負け)', romaji: 'Hansoku-make', meaning: 'Desqualificação', description: 'Por infrações graves' },
+                    { japanese: 'Shido (指導)', romaji: 'Shido', meaning: 'Penalidade Leve', description: 'Por infrações menores' },
+                    { japanese: 'Yaku-soku-geiko (約束稽古)', romaji: 'Yaku-soku-geiko', meaning: 'Treino Combinado', description: 'Prática com movimentos predefinidos' }
+                ]
+            },
+            blue: {
+                icon: '🔵',
+                title: 'Faixa Azul',
+                description: 'Vocabulário avançado para técnicas complexas',
+                words: [
+                    { japanese: 'Hadaka-jime (裸絞)', romaji: 'Hadaka-jime', meaning: 'Estrangulamento Nu', description: 'Técnica de estrangulamento fundamental' },
+                    { japanese: 'Okuri-eri-jime (送襟絞)', romaji: 'Okuri-eri-jime', meaning: 'Estrangulamento com Gola', description: 'Utiliza a gola do judogi' },
+                    { japanese: 'Kata-juji-jime (片十字絞)', romaji: 'Kata-juji-jime', meaning: 'Estrangulamento Cruzado', description: 'Braços em formato de cruz' },
+                    { japanese: 'Sankaku-jime (三角絞)', romaji: 'Sankaku-jime', meaning: 'Estrangulamento Triângulo', description: 'Pernas em formato de triângulo' },
+                    { japanese: 'Tomoe-nage (巴投)', romaji: 'Tomoe-nage', meaning: 'Projeção com Sacrifício', description: 'Atacante se joga ao chão' },
+                    { japanese: 'Hiza-guruma (膝車)', romaji: 'Hiza-guruma', meaning: 'Roda de Joelho', description: 'Utiliza o joelho como apoio' },
+                    { japanese: 'Ashi-guruma (足車)', romaji: 'Ashi-guruma', meaning: 'Roda de Perna', description: 'Utiliza o tornozelo como apoio' },
+                    { japanese: 'Koshi-guruma (腰車)', romaji: 'Koshi-guruma', meaning: 'Roda de Quadril', description: 'Quadril em movimento diagonal' },
+                    { japanese: 'Seiryoku Zenyo (精力善用)', romaji: 'Seiryoku Zen\'yō', meaning: 'Uso Eficiente da Energia', description: 'Primeiro princípio filosófico' },
+                    { japanese: 'Jita Kyoei (自他共栄)', romaji: 'Jita Kyōei', meaning: 'Bem-estar Mútuo', description: 'Segundo princípio filosófico' }
+                ]
+            },
+            brown: {
+                icon: '🤎',
+                title: 'Faixa Marrom',
+                description: 'Vocabulário completo para preparação da faixa preta',
+                words: [] // Será preenchido com todas as palavras
+            },
+            purple: {
+                icon: '🟣',
+                title: 'Faixa Roxa (Instrutor)',
+                description: 'Vocabulário completo para instrutores',
+                words: [] // Será preenchido com todas as palavras
+            }
+        };
 
-                
-                // Termos Avançados
-                { japanese: 'Kuzushi (崩し)', romaji: 'Kuzushi', meaning: 'Desequilíbrio', category: 'Avançado', section: 'Termos Avançados' },
-                { japanese: 'Tsukuri (作り)', romaji: 'Tsukuri', meaning: 'Posicionamento', category: 'Avançado', section: 'Termos Avançados' },
-                { japanese: 'Kake (掛け)', romaji: 'Kake', meaning: 'Execução', category: 'Avançado', section: 'Termos Avançados' },
-                { japanese: 'Tai-sabaki (体捌き)', romaji: 'Tai-sabaki', meaning: 'Movimento Corporal', category: 'Avançado', section: 'Termos Avançados' },
-                { japanese: 'Ma-ai (間合い)', romaji: 'Ma-ai', meaning: 'Distância de Combate', category: 'Avançado', section: 'Termos Avançados' },
-                
-                // Filosofia
-                { japanese: 'Seiryoku Zenyo (精力善用)', romaji: 'Seiryoku Zen\'yō', meaning: 'Uso Eficiente da Energia', category: 'Filosofia', section: 'Filosofia do Judô' },
-                { japanese: 'Jita Kyoei (自他共栄)', romaji: 'Jita Kyōei', meaning: 'Bem-estar Mútuo', category: 'Filosofia', section: 'Filosofia do Judô' },
-                { japanese: 'Rei (礼)', romaji: 'Rei', meaning: 'Respeito e Cortesia', category: 'Filosofia', section: 'Filosofia do Judô' },
-                { japanese: 'Shin (信)', romaji: 'Shin', meaning: 'Confiança e Honestidade', category: 'Filosofia', section: 'Filosofia do Judô' },
-                
-                // Disciplina para Crianças
-                { japanese: 'Ganbare (頑張れ)', romaji: 'Ganbare', meaning: 'Vamos! Força!', category: 'Disciplina', section: 'Disciplina para Crianças' },
-                { japanese: 'Yoku Dekimashita (よくできました)', romaji: 'Yoku Dekimashita', meaning: 'Muito Bem!', category: 'Disciplina', section: 'Disciplina para Crianças' },
-                { japanese: 'Motto (もっと)', romaji: 'Motto', meaning: 'Mais!', category: 'Disciplina', section: 'Disciplina para Crianças' },
-                { japanese: 'Sugoi (すごい)', romaji: 'Sugoi', meaning: 'Incrível!', category: 'Disciplina', section: 'Disciplina para Crianças' },
-                { japanese: 'Kawaii (かわいい)', romaji: 'Kawaii', meaning: 'Fofo!', category: 'Disciplina', section: 'Disciplina para Crianças' },
-                { japanese: 'Yasashiku (優しく)', romaji: 'Yasashiku', meaning: 'Gentilmente', category: 'Disciplina', section: 'Disciplina para Crianças' },
-                
-                // Comandos de Treino
-                { japanese: 'Hajime (始め)', romaji: 'Hajime', meaning: 'Começar', category: 'Comando', section: 'Comandos de Treino' },
-                { japanese: 'Matte (待って)', romaji: 'Matte', meaning: 'Parar', category: 'Comando', section: 'Comandos de Treino' },
-                { japanese: 'Sore Made (それまで)', romaji: 'Sore Made', meaning: 'Fim', category: 'Comando', section: 'Comandos de Treino' },
-                { japanese: 'Yame (止め)', romaji: 'Yame', meaning: 'Parar', category: 'Comando', section: 'Comandos de Treino' },
-                { japanese: 'Osae-komi (押さえ込み)', romaji: 'Osae-komi', meaning: 'Imobilização', category: 'Comando', section: 'Comandos de Treino' },
-                { japanese: 'Toketa (解けた)', romaji: 'Toketa', meaning: 'Soltou', category: 'Comando', section: 'Comandos de Treino' },
-                
-                // Números
-                { japanese: 'Ichi (一)', romaji: 'Ichi', meaning: '1', category: 'Número', section: 'Números em Japonês' },
-                { japanese: 'Ni (二)', romaji: 'Ni', meaning: '2', category: 'Número', section: 'Números em Japonês' },
-                { japanese: 'San (三)', romaji: 'San', meaning: '3', category: 'Número', section: 'Números em Japonês' },
-                { japanese: 'Shi/Yon (四)', romaji: 'Shi/Yon', meaning: '4', category: 'Número', section: 'Números em Japonês' },
-                { japanese: 'Go (五)', romaji: 'Go', meaning: '5', category: 'Número', section: 'Números em Japonês' },
-                { japanese: 'Roku (六)', romaji: 'Roku', meaning: '6', category: 'Número', section: 'Números em Japonês' },
-                { japanese: 'Shichi/Nana (七)', romaji: 'Shichi/Nana', meaning: '7', category: 'Número', section: 'Números em Japonês' },
-                { japanese: 'Hachi (八)', romaji: 'Hachi', meaning: '8', category: 'Número', section: 'Números em Japonês' },
-                { japanese: 'Ku/Kyū (九)', romaji: 'Ku/Kyū', meaning: '9', category: 'Número', section: 'Números em Japonês' },
-                { japanese: 'Jū (十)', romaji: 'Jū', meaning: '10', category: 'Número', section: 'Números em Japonês' },
-                
-                // Roupas e Equipamentos
-                { japanese: 'Judogi (柔道着)', romaji: 'Judogi', meaning: 'Uniforme do Judô', category: 'Equipamento', section: 'Roupas e Equipamentos do Judô' },
-                { japanese: 'Uwagi (上衣)', romaji: 'Uwagi', meaning: 'Jaqueta', category: 'Equipamento', section: 'Roupas e Equipamentos do Judô' },
-                { japanese: 'Obi (帯)', romaji: 'Obi', meaning: 'Faixa', category: 'Equipamento', section: 'Roupas e Equipamentos do Judô' },
-                { japanese: 'Zubon (ズボン)', romaji: 'Zubon', meaning: 'Calça', category: 'Equipamento', section: 'Roupas e Equipamentos do Judô' },
-                { japanese: 'Tatami (畳)', romaji: 'Tatami', meaning: 'Esteira', category: 'Equipamento', section: 'Roupas e Equipamentos do Judô' },
-                { japanese: 'Shinai (竹刀)', romaji: 'Shinai', meaning: 'Espada de Bambu', category: 'Equipamento', section: 'Roupas e Equipamentos do Judô' }
-            ];
+        // Função para selecionar faixa
+        function selectBelt(beltColor) {
+            const belt = beltData[beltColor];
             
-            // Elementos DOM
-            const searchInput = document.getElementById('searchInput');
-            const searchResults = document.getElementById('searchResults');
-            
-            // Função de busca melhorada
-            function performSearch(query) {
-                if (!query.trim()) {
-                    searchResults.classList.add('hidden');
-                    return;
-                }
-                
-                const searchTerm = query.toLowerCase().trim();
-                const results = allWords.filter(word => 
-                    word.japanese.toLowerCase().includes(searchTerm) ||
-                    word.romaji.toLowerCase().includes(searchTerm) ||
-                    word.meaning.toLowerCase().includes(searchTerm) ||
-                    word.category.toLowerCase().includes(searchTerm) ||
-                    word.section.toLowerCase().includes(searchTerm)
-                );
-                
-                displaySearchResults(results, query);
+            // Se for faixa roxa ou marrom, mostrar todas as palavras
+            if (beltColor === 'purple' || beltColor === 'brown') {
+                belt.words = getAllWords();
             }
             
-            // Função para exibir resultados da busca melhorada
-            function displaySearchResults(results, query) {
-                if (results.length === 0) {
-                    searchResults.innerHTML = `
-                        <div class="bg-gray-100 rounded-xl p-6 text-center">
-                            <div class="text-4xl mb-3">🔍</div>
-                            <p class="text-gray-600 text-lg">Nenhuma palavra encontrada para</p>
-                            <p class="text-gray-800 font-semibold text-xl">"${query}"</p>
-                            <p class="text-gray-500 text-sm mt-2">Tente usar termos em japonês, romaji ou português</p>
-                        </div>
-                    `;
-                } else {
-                    searchResults.innerHTML = `
-                        <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-200">
-                            <div class="flex items-center justify-between mb-4">
-                                <h4 class="font-semibold text-gray-900 text-lg">
-                                    <span class="text-blue-600">${results.length}</span> resultado(s) encontrado(s)
-                                </h4>
-                                <button onclick="clearSearch()" class="text-gray-500 hover:text-gray-700 text-sm">
-                                    <i class="fas fa-times"></i> Limpar
-                                </button>
-                            </div>
-                            <div class="space-y-3 max-h-96 overflow-y-auto">
-                                ${results.map(word => `
-                                    <div class="word-card rounded-lg p-4 relative overflow-hidden cursor-pointer hover:shadow-md transition-all duration-200" 
-                                         onclick="scrollToSection('${word.section}', '${word.japanese}')">
-                                        <div class="flex justify-between items-start">
-                                            <div class="flex-1">
-                                                <h5 class="font-semibold text-gray-900 text-lg">${word.japanese}</h5>
-                                                <p class="text-blue-600 text-sm font-mono">${word.romaji}</p>
-                                                <p class="text-gray-600 text-sm">${word.meaning}</p>
-                                                <p class="text-gray-500 text-xs mt-1">${word.section}</p>
-                                            </div>
-                                            <span class="text-xs bg-blue-600 text-white px-3 py-1 rounded-full ml-3 whitespace-nowrap">
-                                                ${word.category}
-                                            </span>
-                                        </div>
-                                    </div>
-                                `).join('')}
-                            </div>
-                        </div>
-                    `;
-                }
+            // Atualizar cabeçalho
+            document.getElementById('belt-icon').textContent = belt.icon;
+            document.getElementById('belt-title').textContent = belt.title;
+            document.getElementById('belt-description').textContent = belt.description;
+            
+            // Mostrar container de palavras e esconder seleção
+            document.getElementById('belt-selection').classList.add('hidden');
+            document.getElementById('words-container').classList.remove('hidden');
+            
+            // Carregar palavras
+            loadWords(belt.words);
+        }
+
+        // Função para voltar à seleção de faixas
+        function backToBeltSelection() {
+            document.getElementById('words-container').classList.add('hidden');
+            document.getElementById('belt-selection').classList.remove('hidden');
+        }
+
+        // Função para carregar palavras no grid
+        function loadWords(words) {
+            const grid = document.getElementById('words-grid');
+            grid.innerHTML = '';
+            
+            words.forEach((word, index) => {
+                const wordCard = document.createElement('div');
+                wordCard.className = 'word-card rounded-xl p-4 sm:p-6 relative overflow-hidden fade-in-up';
+                wordCard.style.animationDelay = `${index * 0.1}s`;
                 
-                searchResults.classList.remove('hidden');
-            }
-            
-            // Função para limpar busca
-            window.clearSearch = function() {
-                searchInput.value = '';
-                searchResults.classList.add('hidden');
-                searchInput.focus();
-            };
-            
-            // Função para rolar para seção específica melhorada
-            window.scrollToSection = function(sectionName, highlightWord = '') {
-                // Buscar pela seção usando ID
-                let targetSection = document.getElementById(sectionName);
+                wordCard.innerHTML = `
+                    <div class="flex justify-between items-start mb-2 sm:mb-3">
+                        <h4 class="font-subtitle text-lg sm:text-xl font-semibold text-gray-900">${word.japanese}</h4>
+                        <span class="text-xs sm:text-sm text-gray-500 font-mono">${word.romaji}</span>
+                    </div>
+                    <p class="font-desc text-sm sm:text-base text-gray-600 mb-2 sm:mb-3">
+                        <span class="highlight-word">${word.meaning}</span> - ${word.description}
+                    </p>
+                `;
                 
-                if (!targetSection) {
-                    // Fallback: buscar por texto do título
-                    const sections = document.querySelectorAll('h3');
-                    for (let section of sections) {
-                        if (section.textContent.toLowerCase().includes(sectionName.toLowerCase())) {
-                            targetSection = section.closest('[id]') || section;
-                            break;
-                        }
-                    }
-                }
-                
-                if (targetSection) {
-                    // Rolar para a seção
-                    targetSection.scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'start' 
-                    });
-                    
-                    // Adicionar destaque temporário na seção
-                    targetSection.style.backgroundColor = 'rgba(59, 130, 246, 0.1)';
-                    targetSection.style.transition = 'background-color 0.3s ease';
-                    
-                    // Se uma palavra específica foi passada, destacá-la também
-                    if (highlightWord) {
-                        setTimeout(() => {
-                            const wordCards = targetSection.querySelectorAll('.word-card');
-                            wordCards.forEach(card => {
-                                if (card.textContent.includes(highlightWord.split(' ')[0])) {
-                                    card.style.transform = 'scale(1.05)';
-                                    card.style.boxShadow = '0 20px 25px -5px rgba(59, 130, 246, 0.3)';
-                                    card.style.borderColor = '#3B82F6';
-                                    
-                                    setTimeout(() => {
-                                        card.style.transform = 'scale(1)';
-                                        card.style.boxShadow = '';
-                                        card.style.borderColor = '';
-                                    }, 2000);
-                                }
-                            });
-                        }, 500);
-                    }
-                    
-                    // Remover destaque da seção após 3 segundos
-                    setTimeout(() => {
-                        targetSection.style.backgroundColor = '';
-                    }, 3000);
-                    
-                    // Feedback visual nos botões de navegação
-                    document.querySelectorAll('[data-section]').forEach(btn => {
-                        btn.classList.remove('active');
-                        if (btn.getAttribute('data-section') === sectionName) {
-                            btn.classList.add('active');
-                            setTimeout(() => btn.classList.remove('active'), 2000);
-                        }
-                    });
-                } else {
-                    console.warn(`Seção "${sectionName}" não encontrada`);
-                }
-                
-                // Limpar busca
-                searchResults.classList.add('hidden');
-                searchInput.value = '';
-            };
-            
-            // Event listeners para busca
-            searchInput.addEventListener('input', function() {
-                if (this.value.trim()) {
-                    performSearch(this.value);
-                } else {
-                    searchResults.classList.add('hidden');
+                grid.appendChild(wordCard);
+            });
+        }
+
+        // Função para obter todas as palavras (usado para faixas marrom, preta e roxa)
+        function getAllWords() {
+            const allWords = [];
+            Object.values(beltData).forEach(belt => {
+                if (belt.words && belt.words.length > 0) {
+                    allWords.push(...belt.words);
                 }
             });
-            
-            searchInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    performSearch(this.value);
-                }
-            });
-            
-            // Fechar resultados ao clicar fora
-            document.addEventListener('click', function(e) {
-                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-                    searchResults.classList.add('hidden');
-                }
-            });
-            
-            // Efeitos de hover para cards
-            document.querySelectorAll('.word-card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-4px) scale(1.02)';
-                    this.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0) scale(1)';
-                    this.style.boxShadow = '';
-                });
-            });
-            
-            // Navegação por seções com scroll suave
-            document.querySelectorAll('[data-section]').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const sectionName = this.getAttribute('data-section');
-                    console.log('🎯 Navegando para seção:', sectionName);
-                    scrollToSection(sectionName);
-                });
-            });
-            
-            console.log('🔗 Botões de navegação configurados:', document.querySelectorAll('[data-section]').length);
-            
-            // Animação de entrada para elementos com Intersection Observer
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-            
-            // Observar todos os elementos com fade-in-up
-            document.querySelectorAll('.fade-in-up').forEach(el => {
-                observer.observe(el);
-            });
-            
-            // Adicionar funcionalidade de teclas de atalho
-            document.addEventListener('keydown', function(e) {
-                // Ctrl/Cmd + K para focar na busca
-                if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-                    e.preventDefault();
-                    searchInput.focus();
-                }
-                
-                // Escape para limpar busca
-                if (e.key === 'Escape') {
-                    clearSearch();
-                }
-            });
-            
-            // Melhorar acessibilidade da busca
-            searchInput.setAttribute('aria-label', 'Buscar palavras em japonês, português ou romaji');
-            searchInput.setAttribute('role', 'searchbox');
-            
-            // Adicionar placeholder dinâmico
-            const placeholders = [
-                '🔍 Buscar palavras em japonês...',
-                '🔍 Buscar por romaji...',
-                '🔍 Buscar em português...',
-                '🔍 Buscar por categoria...'
-            ];
-            
-            let placeholderIndex = 0;
-            setInterval(() => {
-                if (!searchInput.matches(':focus')) {
-                    searchInput.placeholder = placeholders[placeholderIndex];
-                    placeholderIndex = (placeholderIndex + 1) % placeholders.length;
-                }
-            }, 3000);
-            
-            // Inicializar com foco na busca
-            console.log('🎯 Página de vocabulário carregada com sucesso!');
-            console.log(`📚 Total de palavras disponíveis: ${allWords.length}`);
+            return allWords;
+        }
+
+        // Inicializar página
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🎯 Página de vocabulário por faixas carregada com sucesso!');
         });
     </script>
 </body>
