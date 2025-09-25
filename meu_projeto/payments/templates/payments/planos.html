@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Planos Premium{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-gray-800 mb-4">Planos Premium</h1>
+        <p class="text-xl text-gray-600">Escolha o plano ideal para sua jornada no judô</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {% for plano in planos %}
+        <div class="bg-white rounded-lg shadow-lg border border-gray-200 p-6 {% if plano.nome == 'Plano Anual' %}ring-2 ring-blue-500{% endif %}">
+            <div class="text-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">{{ plano.nome }}</h3>
+                <div class="text-4xl font-bold text-blue-600 mb-2">
+                    R$ {{ plano.preco|floatformat:2 }}
+                </div>
+                <p class="text-gray-600">{{ plano.duracao_dias }} dias de acesso</p>
+            </div>
+            
+            <div class="mb-6">
+                <p class="text-gray-700 mb-4">{{ plano.descricao }}</p>
+                
+                <ul class="space-y-2 text-gray-600">
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        Acesso completo ao quiz
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        Progresso ilimitado
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        Relatórios detalhados
+                    </li>
+                    {% if plano.nome == 'Plano Anual' %}
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        Suporte prioritário
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+            
+            <div class="text-center">
+                <a href="{% url 'payments:criar_pagamento' plano.id %}" 
+                   class="inline-block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-200 {% if plano.nome == 'Plano Anual' %}bg-blue-700 hover:bg-blue-800{% endif %}">
+                    Assinar Agora
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div class="text-center mt-8">
+        <p class="text-gray-600">
+            <strong>Formas de pagamento:</strong> Cartão de crédito, débito, PIX, boleto
+        </p>
+        <p class="text-sm text-gray-500 mt-2">
+            Processado com segurança pelo Mercado Pago
+        </p>
+    </div>
+</div>
+{% endblock %}

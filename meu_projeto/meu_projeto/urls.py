@@ -35,6 +35,7 @@ urlpatterns = [
     path('historia/', include('historia.urls')),
     path('palavras/', include('palavras.urls')),  
     path('regras/', include('regras.urls')),
+    path('payments/', include('payments.urls')),
 ]
 
 # Configuração para servir arquivos estáticos durante o desenvolvimento

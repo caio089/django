@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.admin','django.contrib.auth','django.contrib.contenttypes',
     'django.contrib.sessions','django.contrib.messages','django.contrib.staticfiles',
     'core','pag1','pag2','pag3','pag4','pag5','pag6','pag7',
-    'home','ukemis','quiz','historia','palavras','regras',
+    'home','ukemis','quiz','historia','palavras','regras','payments',
 ]
 
 MIDDLEWARE = [
@@ -58,13 +58,29 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'meu_projeto.wsgi.application'
 
-# Database
+# Database - Configuração para Supabase PostgreSQL
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME', 'postgres'),
+        'USER': os.getenv('DB_USER', 'postgres'),
+        'PASSWORD': os.getenv('DB_PASSWORD', ''),
+        'HOST': os.getenv('DB_HOST', 'localhost'),
+        'PORT': os.getenv('DB_PORT', '5432'),
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
     }
 }
+
+# Fallback para SQLite em desenvolvimento local se não houver configuração do Supabase
+if not os.getenv('DB_HOST'):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Senhas
 AUTH_PASSWORD_VALIDATORS = [
