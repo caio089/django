@@ -393,3 +393,65 @@ class ConfiguracaoPagamento(models.Model):
     class Meta:
         verbose_name = "Configuração de Pagamento"
         verbose_name_plural = "Configurações de Pagamento"
+
+
+class Reembolso(models.Model):
+    """
+    Modelo para gerenciar reembolsos de assinaturas canceladas
+    Registra informações sobre reembolsos processados
+    """
+    STATUS_CHOICES = [
+        ('pendente', 'Pendente'),
+        ('processado', 'Processado'),
+        ('falhou', 'Falhou'),
+        ('cancelado', 'Cancelado'),
+    ]
+    
+    assinatura = models.ForeignKey(Assinatura, on_delete=models.CASCADE, related_name='reembolsos')
+    valor = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Valor do reembolso")
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pendente', verbose_name="Status")
+    data_solicitacao = models.DateTimeField(auto_now_add=True, verbose_name="Data da solicitação")
+    data_reembolso = models.DateTimeField(null=True, blank=True, verbose_name="Data do reembolso")
+    motivo = models.TextField(blank=True, null=True, verbose_name="Motivo do reembolso")
+    
+    # Dados do reembolso (criptografados)
+    _refund_id = models.TextField(blank=True, null=True, verbose_name="ID do reembolso")
+    _refund_data = models.TextField(blank=True, null=True, verbose_name="Dados do reembolso")
+    
+    def set_refund_id(self, refund_id):
+        """Criptografa e armazena o ID do reembolso"""
+        if refund_id:
+            self._refund_id = payment_encryption.encrypt(refund_id)
+    
+    def get_refund_id(self):
+        """Descriptografa e retorna o ID do reembolso"""
+        if self._refund_id:
+            try:
+                return payment_encryption.decrypt(self._refund_id)
+            except Exception as e:
+                logger.error(f"Erro ao descriptografar refund_id: {e}")
+                return None
+        return None
+    
+    def set_refund_data(self, data):
+        """Criptografa e armazena os dados do reembolso"""
+        if data:
+            self._refund_data = payment_encryption.encrypt(json.dumps(data))
+    
+    def get_refund_data(self):
+        """Descriptografa e retorna os dados do reembolso"""
+        if self._refund_data:
+            try:
+                return json.loads(payment_encryption.decrypt(self._refund_data))
+            except Exception as e:
+                logger.error(f"Erro ao descriptografar refund_data: {e}")
+                return None
+        return None
+    
+    def __str__(self):
+        return f"Reembolso {self.id} - {self.assinatura.usuario.username} - R$ {self.valor}"
+    
+    class Meta:
+        verbose_name = "Reembolso"
+        verbose_name_plural = "Reembolsos"
+        ordering = ['-data_solicitacao']

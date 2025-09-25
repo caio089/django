@@ -7,7 +7,7 @@ urlpatterns = [
     # Páginas de planos e pagamento
     path('planos/', views.listar_planos, name='planos'),
     path('plano/<int:plano_id>/', views.escolher_plano, name='escolher_plano'),
-    path('criar-pagamento/', views.criar_pagamento, name='criar_pagamento'),
+    path('criar-pagamento/<int:plano_id>/', views.criar_pagamento, name='criar_pagamento'),
     path('checkout/<int:payment_id>/', views.checkout_pagamento, name='checkout_pagamento'),
     path('sucesso/', views.pagamento_sucesso, name='sucesso'),
     path('falha/', views.pagamento_falha, name='falha'),
@@ -19,4 +19,7 @@ urlpatterns = [
     
     # Webhook do Mercado Pago
     path('webhook/', views.webhook_mercadopago, name='webhook'),
+    
+    # Cancelar assinatura
+    path('cancelar-assinatura/', views.cancelar_assinatura, name='cancelar_assinatura'),
 ]

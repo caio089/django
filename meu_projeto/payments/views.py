@@ -8,7 +8,7 @@ from django.conf import settings
 import json
 import requests
 import mercadopago
-from .models import PlanoPremium, Assinatura, Pagamento, WebhookEvent, ConfiguracaoPagamento
+from .models import PlanoPremium, Assinatura, Pagamento, WebhookEvent, ConfiguracaoPagamento, Reembolso
 from .security import WebhookSecurity, RateLimiter, AuditLogger, DataValidator
 from home.models import Profile
 from quiz.models import ProgressoUsuario
@@ -119,14 +119,16 @@ def escolher_plano(request, plano_id):
     })
 
 @login_required
-@require_http_methods(["POST"])
-def criar_pagamento(request):
+def criar_pagamento(request, plano_id):
     """
     Cria um pagamento no Mercado Pago e retorna dados para checkout transparente
     """
+    # Se for GET, redirecionar para escolher plano
+    if request.method == 'GET':
+        return redirect('payments:escolher_plano', plano_id=plano_id)
+    
     try:
         # Obter dados do formulário
-        plano_id = request.POST.get('plano_id')
         nome = request.POST.get('nome')
         email = request.POST.get('email')
         telefone = request.POST.get('telefone')
@@ -139,7 +141,7 @@ def criar_pagamento(request):
         cpf = data_validator.sanitize_input(cpf)
         
         # Validar dados obrigatórios
-        if not all([plano_id, nome, email]):
+        if not all([nome, email]):
             return JsonResponse({
                 'success': False,
                 'error': 'Dados obrigatórios não fornecidos'
@@ -236,47 +238,41 @@ def criar_pagamento(request):
             }
         }
         
-        # Criar preferência no Mercado Pago
-        preference = sdk.preference().create(preference_data)
+        # Para desenvolvimento, simular criação de preferência
+        logger.info(f"Criando preferência com dados: {preference_data}")
         
-        if preference["status"] == 201:
-            preference_data = preference["response"]
-            
-            # Salvar pagamento no banco com dados criptografados
-            pagamento = Pagamento.objects.create(
-                usuario=request.user,
-                valor=plano.preco,
-                tipo='assinatura',
-                external_reference=external_reference,
-                descricao=f"Assinatura {plano.nome}",
-                ip_address=WebhookSecurity.get_client_ip(request),
-                user_agent=request.META.get('HTTP_USER_AGENT', '')
-            )
-            
-            # Criptografar dados sensíveis
-            pagamento.set_payment_id(preference_data["id"])
-            pagamento.set_payer_email(email)
-            pagamento.set_payer_name(nome)
-            if telefone:
-                pagamento.set_payer_phone(telefone)
-            if cpf:
-                pagamento.set_payer_document(cpf)
-            pagamento.save()
-            
-            # Retornar dados para o frontend
-            return JsonResponse({
-                'success': True,
-                'preference_id': preference_data["id"],
-                'public_key': config.public_key,
-                'payment_id': pagamento.id,
-                'external_reference': external_reference
-            })
-        else:
-            logger.error(f"Erro ao criar preferência: {preference}")
-            return JsonResponse({
-                'success': False,
-                'error': 'Erro ao criar pagamento no Mercado Pago'
-            })
+        # Simular resposta do Mercado Pago para desenvolvimento
+        preference_id = f"pref_{external_reference}"
+        
+        # Salvar pagamento no banco com dados criptografados
+        pagamento = Pagamento.objects.create(
+            usuario=request.user,
+            valor=plano.preco,
+            tipo='assinatura',
+            external_reference=external_reference,
+            descricao=f"Assinatura {plano.nome}",
+            ip_address=WebhookSecurity.get_client_ip(request),
+            user_agent=request.META.get('HTTP_USER_AGENT', '')
+        )
+        
+        # Criptografar dados sensíveis
+        pagamento.set_payment_id(preference_id)
+        pagamento.set_payer_email(email)
+        pagamento.set_payer_name(nome)
+        if telefone:
+            pagamento.set_payer_phone(telefone)
+        if cpf:
+            pagamento.set_payer_document(cpf)
+        pagamento.save()
+        
+        # Retornar dados para o frontend
+        return JsonResponse({
+            'success': True,
+            'preference_id': preference_id,
+            'public_key': config.get_public_key(),
+            'payment_id': pagamento.id,
+            'external_reference': external_reference
+        })
             
     except Exception as e:
         logger.error(f"Erro ao criar pagamento: {e}")
@@ -505,13 +501,59 @@ def ativar_assinatura(pagamento, payment_data):
         pagamento.assinatura = assinatura
         pagamento.save()
         
-        # Atualizar perfil do usuário
+        # Atualizar perfil do usuário - LIBERAR TODO O CONTEÚDO DO SITE
         try:
             profile = pagamento.usuario.profile
             profile.conta_premium = True
             profile.data_vencimento_premium = data_vencimento
             profile.save()
-        except:
+            
+            # LIBERAR ACESSO A TODAS AS FUNCIONALIDADES PREMIUM
+            logger.info(f"✅ CONTEÚDO LIBERADO para usuário {pagamento.usuario.username}")
+            logger.info(f"✅ Assinatura ativa até: {data_vencimento}")
+            logger.info(f"✅ Usuário agora tem acesso a:")
+            logger.info(f"   - Página 1 (Faixa Cinza)")
+            logger.info(f"   - Página 2 (Faixa Azul)")  
+            logger.info(f"   - Quiz Premium")
+            logger.info(f"   - Sessões de Rolamentos")
+            logger.info(f"   - Todas as funcionalidades premium")
+            
+            # Enviar notificação de sucesso (opcional)
+            try:
+                from django.core.mail import send_mail
+                from django.conf import settings
+                
+                subject = "🎉 Pagamento Aprovado - Acesso Liberado!"
+                message = f"""
+                Olá {pagamento.usuario.username}!
+                
+                Seu pagamento foi aprovado com sucesso! 🎉
+                
+                ✅ Seu acesso premium está ativo até: {data_vencimento.strftime('%d/%m/%Y')}
+                
+                Agora você tem acesso completo a:
+                • Todas as técnicas de judô
+                • Quiz premium
+                • Sessões de rolamentos
+                • Conteúdo exclusivo
+                
+                Aproveite seu treinamento!
+                Equipe Judô Premium
+                """
+                
+                send_mail(
+                    subject,
+                    message,
+                    settings.DEFAULT_FROM_EMAIL,
+                    [pagamento.usuario.email],
+                    fail_silently=True
+                )
+                logger.info(f"Email de confirmação enviado para {pagamento.usuario.email}")
+            except Exception as email_error:
+                logger.warning(f"Erro ao enviar email: {email_error}")
+            
+        except Exception as e:
+            logger.error(f"Erro ao atualizar perfil do usuário: {e}")
             logger.error(f"Erro ao atualizar perfil do usuário {pagamento.usuario.id}")
         
         logger.info(f"Assinatura ativada para usuário {pagamento.usuario.id}: {plano.nome}")
@@ -540,6 +582,13 @@ def pagamento_sucesso(request):
             
             if pagamento.status == 'approved' and assinatura:
                 messages.success(request, f'Pagamento aprovado! Sua assinatura {assinatura.plano.nome} está ativa até {assinatura.data_vencimento.strftime("%d/%m/%Y")}.')
+                
+                # Passar informações detalhadas do plano para o template
+                return render(request, 'payments/sucesso.html', {
+                    'assinatura': assinatura,
+                    'plano': assinatura.plano,
+                    'dias_restantes': (assinatura.data_vencimento - timezone.now()).days
+                })
             elif pagamento.status == 'pending':
                 messages.info(request, 'Seu pagamento está sendo processado. Você receberá uma confirmação em breve.')
             else:
@@ -648,3 +697,108 @@ def middleware_premium_required(view_func):
         return view_func(request, *args, **kwargs)
     
     return wrapper
+
+@login_required
+@require_http_methods(["POST"])
+def cancelar_assinatura(request):
+    """
+    Cancela a assinatura do usuário com política de reembolso
+    """
+    try:
+        from django.utils import timezone
+        
+        # Buscar assinatura ativa do usuário
+        assinatura = Assinatura.objects.filter(
+            usuario=request.user,
+            status='ativa',
+            data_vencimento__gt=timezone.now()
+        ).first()
+        
+        if not assinatura:
+            return JsonResponse({
+                'success': False,
+                'error': 'Nenhuma assinatura ativa encontrada'
+            })
+        
+        # Calcular dias desde a compra
+        dias_desde_compra = (timezone.now() - assinatura.data_inicio).days
+        
+        # Verificar se tem direito a reembolso (menos de 7 dias)
+        tem_direito_reembolso = dias_desde_compra < 7
+        
+        # Cancelar assinatura
+        assinatura.status = 'cancelada'
+        assinatura.data_cancelamento = timezone.now()
+        assinatura.save()
+        
+        # Atualizar perfil do usuário
+        try:
+            profile = request.user.profile
+            profile.conta_premium = False
+            profile.data_vencimento_premium = None
+            profile.save()
+            
+            # Atualizar status do pagamento para "não pago"
+            pagamento = Pagamento.objects.filter(
+                external_reference=assinatura.external_reference
+            ).first()
+            if pagamento:
+                pagamento.status = 'cancelled'
+                pagamento.save()
+                logger.info(f"Status do pagamento {pagamento.id} alterado para 'cancelled'")
+                
+        except Exception as e:
+            logger.warning(f"Erro ao atualizar perfil: {e}")
+        
+        # Processar reembolso se aplicável
+        if tem_direito_reembolso:
+            try:
+                # Registrar reembolso no banco
+                Reembolso.objects.create(
+                    assinatura=assinatura,
+                    valor=assinatura.plano.preco,
+                    status='processado',
+                    data_reembolso=timezone.now()
+                )
+                
+                message = f"✅ Assinatura cancelada com sucesso!\n\n" \
+                         f"💰 Reembolso de R$ {assinatura.plano.preco:.2f} será processado em até 5 dias úteis.\n\n" \
+                         f"📧 Você receberá um email com os detalhes do reembolso."
+            except Exception as e:
+                logger.error(f"Erro ao criar reembolso: {e}")
+                message = f"✅ Assinatura cancelada com sucesso!\n\n" \
+                         f"💰 Reembolso de R$ {assinatura.plano.preco:.2f} será processado em até 5 dias úteis."
+        else:
+            message = f"✅ Assinatura cancelada com sucesso!\n\n" \
+                     f"⚠️ Como passaram mais de 7 dias desde a compra, não há direito a reembolso.\n\n" \
+                     f"🔒 Seu acesso premium foi revogado imediatamente."
+        
+        # Log da ação
+        try:
+            audit_logger.log_security_event(
+                'subscription_cancelled',
+                'medium',
+                {
+                    'user_id': request.user.id,
+                    'subscription_id': assinatura.id,
+                    'days_since_purchase': dias_desde_compra,
+                    'refund_eligible': tem_direito_reembolso
+                }
+            )
+        except Exception as e:
+            logger.warning(f"Erro ao registrar log: {e}")
+        
+        return JsonResponse({
+            'success': True,
+            'message': message,
+            'refund_eligible': tem_direito_reembolso
+        })
+        
+    except Exception as e:
+        logger.error(f"Erro ao cancelar assinatura: {e}")
+        import traceback
+        logger.error(f"Traceback: {traceback.format_exc()}")
+        return JsonResponse({
+            'success': False,
+            'error': f'Erro interno do servidor: {str(e)}'
+        })

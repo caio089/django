@@ -19,43 +19,49 @@ django.setup()
 from payments.models import ConfiguracaoPagamento
 
 def setup_supabase():
-    """Configura credenciais do Supabase"""
-    print("🔧 Configuração do Supabase")
-    print("=" * 40)
+    """Configura credenciais essenciais do Supabase"""
+    print("🔧 Configuração do Supabase - Informações Essenciais")
+    print("=" * 50)
     
-    print("📋 Insira suas credenciais do Supabase:")
+    print("📋 Insira apenas as informações essenciais do Supabase:")
     print("   (Encontre em: supabase.com → Projeto → Settings → Database)")
     print()
     
-    db_host = input("🌍 Host (ex: xyz.supabase.co): ").strip()
-    db_port = input("🔌 Porta (padrão: 5432): ").strip() or "5432"
-    db_name = input("🗄️ Nome do banco (padrão: postgres): ").strip() or "postgres"
-    db_user = input("👤 Usuário (padrão: postgres): ").strip() or "postgres"
-    db_password = input("🔑 Senha: ").strip()
+    # Apenas informações essenciais
+    db_host = input("🌍 URL do Supabase (ex: xyz.supabase.co): ").strip()
+    db_password = input("🔑 Senha do banco: ").strip()
     
-    # Criar arquivo .env
-    env_content = f"""# Configurações do Supabase
+    # Valores padrão para as outras configurações
+    db_port = "5432"
+    db_name = "postgres"
+    db_user = "postgres"
+    
+    # Criar arquivo .env com configurações mínimas
+    env_content = f"""# Configurações essenciais do Supabase
 DB_HOST={db_host}
 DB_PORT={db_port}
 DB_NAME={db_name}
 DB_USER={db_user}
 DB_PASSWORD={db_password}
 
-# Configurações do Mercado Pago
+# Configurações do Mercado Pago (opcional)
 MERCADOPAGO_ACCESS_TOKEN=TEST-your-access-token-here
 MERCADOPAGO_PUBLIC_KEY=TEST-your-public-key-here
 
 # Configurações gerais
-SITE_URL=https://your-domain.com
-SECRET_KEY=your-django-secret-key-here
 DEBUG=True
 """
     
     with open('.env', 'w', encoding='utf-8') as f:
         f.write(env_content)
     
-    print("✅ Arquivo .env criado com credenciais do Supabase!")
-    print("📝 Configure as credenciais do Mercado Pago no arquivo .env")
+    print("✅ Arquivo .env criado com configurações essenciais!")
+    print("📝 Configurações padrão aplicadas:")
+    print(f"   - Host: {db_host}")
+    print(f"   - Porta: {db_port}")
+    print(f"   - Banco: {db_name}")
+    print(f"   - Usuário: {db_user}")
+    print("   - Senha: [configurada]")
     
     return True
 
@@ -107,33 +113,31 @@ def setup_mercadopago():
         return False
 
 def main():
-    """Função principal"""
-    print("🚀 Configuração de Credenciais")
+    """Função principal - Configuração simplificada"""
+    print("🚀 Configuração Simplificada do Supabase")
     print("=" * 50)
     
-    print("Escolha o que configurar:")
-    print("1. Supabase (banco de dados)")
-    print("2. Mercado Pago (pagamentos)")
-    print("3. Ambos")
+    print("Este script irá configurar apenas as informações essenciais:")
+    print("✅ URL do Supabase")
+    print("✅ Senha do banco")
+    print("✅ Configurações padrão (porta, banco, usuário)")
+    print()
     
-    opcao = input("\nDigite sua opção (1, 2 ou 3): ").strip()
+    continuar = input("Deseja continuar? (s/n): ").strip().lower()
     
-    success = True
-    
-    if opcao in ['1', '3']:
-        success &= setup_supabase()
-    
-    if opcao in ['2', '3']:
-        success &= setup_mercadopago()
-    
-    if success:
-        print("\n🎉 Configuração concluída!")
-        print("\n📋 Próximos passos:")
-        print("1. Reinicie o servidor: python manage.py runserver")
-        print("2. Acesse: http://localhost:8000/payments/planos/")
-        print("3. Teste os pagamentos!")
+    if continuar in ['s', 'sim', 'y', 'yes']:
+        success = setup_supabase()
+        
+        if success:
+            print("\n🎉 Configuração concluída!")
+            print("\n📋 Próximos passos:")
+            print("1. Reinicie o servidor: python manage.py runserver")
+            print("2. Acesse: http://localhost:8000/")
+            print("3. Se houver erro, verifique se a URL e senha estão corretas")
+        else:
+            print("\n⚠️ Erro na configuração. Tente novamente.")
     else:
-        print("\n⚠️ Alguns erros ocorreram. Verifique as configurações.")
+        print("❌ Configuração cancelada.")
 
 if __name__ == '__main__':
     main()

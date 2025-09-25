@@ -1,9 +1,14 @@
-{% extends 'base.html' %}
 {% load static %}
-
-{% block title %}Escolher Plano - {{ plano.nome }}{% endblock %}
-
-{% block content %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolher Plano - {{ plano.nome }} - Academia de Judô</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50 font-sans">
 <div class="container mx-auto px-4 py-8 max-w-4xl">
     <div class="text-center mb-8">
         <h1 class="text-3xl font-bold text-gray-800 mb-2">Escolha seu Plano</h1>
@@ -216,7 +221,7 @@ form.addEventListener('submit', async function(e) {
         const formData = new FormData(form);
         
         // Enviar requisição para criar pagamento
-        const response = await fetch('{% url "payments:criar_pagamento" %}', {
+        const response = await fetch('{% url "payments:criar_pagamento" plano.id %}', {
             method: 'POST',
             body: formData,
             headers: {
@@ -264,4 +269,46 @@ document.getElementById('email').addEventListener('blur', function(e) {
     }
 });
 </script>
-{% endblock %}
+
+<!-- Header com navegação -->
+<header class="bg-white shadow-sm border-b border-gray-200 mb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <div class="flex items-center">
+                <a href="{% url 'index' %}" class="flex items-center space-x-2">
+                    <img src="{% static 'judo.png' %}" alt="Judo" class="h-8 w-8">
+                    <span class="text-xl font-bold text-gray-800">Academia de Judô</span>
+                </a>
+            </div>
+            <div class="flex items-center space-x-4">
+                {% if user.is_authenticated %}
+                    <span class="text-sm text-gray-600">Olá, {{ user.first_name|default:user.username }}</span>
+                    <form method="post" action="{% url 'logout' %}" class="inline">
+                        {% csrf_token %}
+                        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+                            Logout
+                        </button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+                        Login
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Messages -->
+{% if messages %}
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} bg-{% if message.tags == 'error' %}red{% elif message.tags == 'warning' %}yellow{% elif message.tags == 'success' %}green{% else %}blue{% endif %}-100 border border-{% if message.tags == 'error' %}red{% elif message.tags == 'warning' %}yellow{% elif message.tags == 'success' %}green{% else %}blue{% endif %}-400 text-{% if message.tags == 'error' %}red{% elif message.tags == 'warning' %}yellow{% elif message.tags == 'success' %}green{% else %}blue{% endif %}-700 px-4 py-3 rounded mb-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+</body>
+</html>

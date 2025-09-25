@@ -286,7 +286,7 @@ class DataValidator:
     @staticmethod
     def validate_phone(phone):
         """
-        Valida telefone brasileiro
+        Valida telefone brasileiro (mais flexível)
         
         Args:
             phone (str): Telefone a ser validado
@@ -294,15 +294,18 @@ class DataValidator:
         Returns:
             bool: True se válido
         """
+        if not phone:
+            return True  # Telefone é opcional
+        
         # Remove caracteres não numéricos
         phone = ''.join(filter(str.isdigit, phone))
         
-        # Verifica se tem 10 ou 11 dígitos
-        if len(phone) not in [10, 11]:
+        # Verifica se tem pelo menos 8 dígitos (mínimo para telefone)
+        if len(phone) < 8:
             return False
         
-        # Verifica se começa com dígito válido
-        if len(phone) == 11 and phone[0] not in ['1', '2', '3', '4', '5']:
+        # Verifica se tem no máximo 15 dígitos (padrão internacional)
+        if len(phone) > 15:
             return False
         
         return True

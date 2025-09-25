@@ -14,7 +14,7 @@ DEBUG = os.getenv('DEBUG', 'True') == 'True'  # True local, False no Render via 
 
 # Hosts
 if DEBUG:
-    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'testserver']
 else:
     ALLOWED_HOSTS = ['dojo-on.onrender.com']
 
@@ -39,6 +39,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'payments.middleware.PremiumAccessMiddleware',
 ]
 
 ROOT_URLCONF = 'meu_projeto.urls'

@@ -957,6 +957,80 @@
                 </a>
             </nav>
             
+            <!-- Opções de usuário -->
+            <div class="mt-8 pt-6 border-t border-white/20">
+                <div class="space-y-3">
+                    <!-- Status da assinatura -->
+                    {% if user.is_authenticated %}
+                        {% if assinatura %}
+                            <div class="bg-green-500/20 border border-green-400/30 rounded-lg p-3">
+                                <div class="flex items-center">
+                                    <span class="text-green-400 text-lg mr-2">✅</span>
+                                    <div>
+                                        <p class="text-green-300 text-sm font-semibold">Premium Ativo</p>
+                                        <p class="text-green-200 text-xs">Vence em {{ assinatura.data_vencimento|date:"d/m/Y" }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            {% if assinatura_cancelada %}
+                                <div class="bg-red-500/20 border border-red-400/30 rounded-lg p-3">
+                                    <div class="flex items-center">
+                                        <span class="text-red-400 text-lg mr-2">🚫</span>
+                                        <div>
+                                            <p class="text-red-300 text-sm font-semibold">Assinatura Cancelada</p>
+                                            <p class="text-red-200 text-xs">Contrate um novo plano para continuar</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="bg-yellow-500/20 border border-yellow-400/30 rounded-lg p-3">
+                                    <div class="flex items-center">
+                                        <span class="text-yellow-400 text-lg mr-2">⚠️</span>
+                                        <div>
+                                            <p class="text-yellow-300 text-sm font-semibold">Sem Assinatura</p>
+                                            <p class="text-yellow-200 text-xs">Acesse planos premium</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                    
+                    <!-- Botões de ação -->
+                    <div class="space-y-2">
+                        {% if user.is_authenticated %}
+                            {% if assinatura %}
+                                <button onclick="cancelarAssinatura()" class="w-full bg-red-500/20 hover:bg-red-500/30 border border-red-400/30 text-red-300 hover:text-red-200 px-4 py-2 rounded-lg text-sm font-medium transition duration-200">
+                                    🚫 Cancelar Assinatura
+                                </button>
+                            {% else %}
+                                {% if assinatura_cancelada %}
+                                    <a href="/payments/planos/" class="w-full bg-green-500/20 hover:bg-green-500/30 border border-green-400/30 text-green-300 hover:text-green-200 px-4 py-2 rounded-lg text-sm font-medium transition duration-200 block text-center">
+                                        🔄 Contratar Novo Plano
+                                    </a>
+                                {% else %}
+                                    <a href="/payments/planos/" class="w-full bg-blue-500/20 hover:bg-blue-500/30 border border-blue-400/30 text-blue-300 hover:text-blue-200 px-4 py-2 rounded-lg text-sm font-medium transition duration-200 block text-center">
+                                        💎 Assinar Premium
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                            
+                            <form method="post" action="{% url 'logout' %}" class="w-full">
+                                {% csrf_token %}
+                                <button type="submit" class="w-full bg-gray-500/20 hover:bg-gray-500/30 border border-gray-400/30 text-gray-300 hover:text-gray-200 px-4 py-2 rounded-lg text-sm font-medium transition duration-200">
+                                    🚪 Sair
+                                </button>
+                            </form>
+                        {% else %}
+                            <a href="{% url 'login' %}" class="w-full bg-blue-500/20 hover:bg-blue-500/30 border border-blue-400/30 text-blue-300 hover:text-blue-200 px-4 py-2 rounded-lg text-sm font-medium transition duration-200 block text-center">
+                                🔐 Fazer Login
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
             <div class="absolute bottom-6 left-6 right-6">
                 <div class="bg-white/10 rounded-lg p-4 text-center">
                     <p class="text-white text-sm">© 2024 Academia de Judô</p>
@@ -1009,6 +1083,26 @@
             </button>
         </div>
     </div>
+
+    <!-- Mensagem de Boas-vindas após Pagamento -->
+    {% if from_payment and new_subscription %}
+    <div class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-green-500 to-blue-600 text-white p-4 shadow-lg">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="flex items-center">
+                <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-3">
+                    <span class="text-xl">🎉</span>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg">Bem-vindo ao Premium!</h3>
+                    <p class="text-sm opacity-90">Seu plano {{ new_subscription.plano.nome }} está ativo!</p>
+                </div>
+            </div>
+            <button onclick="this.parentElement.parentElement.parentElement.remove()" class="text-white hover:text-gray-200 text-xl font-bold">
+                ✕
+            </button>
+        </div>
+    </div>
+    {% endif %}
 
     <!-- Main Content -->
     <div class="hero-section flex items-start justify-center min-h-screen pb-16 sm:pb-20 lg:pb-32">
@@ -1063,8 +1157,9 @@
                 
                 <!-- Right Side - Belts Grid -->
                 <div class="flex items-center justify-center">
-                    <!-- Belts Grid - Layout Original 3-3-1 -->
-                    <div class="grid grid-cols-3 gap-3 sm:gap-4 lg:gap-6 justify-items-center">
+                    {% if assinatura %}
+                        <!-- Belts Grid - Layout Original 3-3-1 -->
+                        <div class="grid grid-cols-3 gap-3 sm:gap-4 lg:gap-6 justify-items-center">
                         <!-- Primeira linha: 3 faixas -->
                         <a href="/pagina1/" class="block">
                             <div class="faixa-card bg-judo-gray rounded-2xl p-4 sm:p-5 lg:p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl relative">
@@ -1126,6 +1221,19 @@
                             </a>
                         </div>
                     </div>
+                    {% else %}
+                        <!-- Mensagem para usuários sem acesso premium -->
+                        <div class="text-center p-8 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-2xl border border-red-400/30 backdrop-blur-sm">
+                            <div class="w-20 h-20 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-4xl">🔒</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2">Conteúdo Premium</h3>
+                            <p class="text-gray-300 mb-6">Para acessar todas as faixas e técnicas, você precisa de uma assinatura premium.</p>
+                            <a href="/payments/planos/" class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-3 px-8 rounded-xl transition duration-300 transform hover:scale-105 shadow-lg">
+                                💎 Assinar Premium
+                            </a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
             
@@ -1434,6 +1542,81 @@
 
             console.log('Sidebar and navigation functionality loaded successfully!');
         });
+        
+        // Função para cancelar assinatura
+        function cancelarAssinatura() {
+            if (confirm('⚠️ ATENÇÃO: Você tem certeza que deseja cancelar sua assinatura?\n\n' +
+                       '• Se cancelou há menos de 7 dias, receberá reembolso total\n' +
+                       '• Se cancelou há mais de 7 dias, perderá acesso imediatamente\n' +
+                       '• Esta ação não pode ser desfeita\n\n' +
+                       'Deseja continuar?')) {
+                
+                // Mostrar modal de confirmação profissional
+                const modal = document.createElement('div');
+                modal.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50';
+                modal.innerHTML = `
+                    <div class="bg-white rounded-2xl p-8 max-w-md mx-4 shadow-2xl">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <span class="text-2xl">🚫</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Cancelar Assinatura</h3>
+                            <p class="text-gray-600 mb-6">Processando seu cancelamento...</p>
+                            <div class="flex space-x-3">
+                                <button onclick="this.closest('.fixed').remove()" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded-lg font-medium transition duration-200">
+                                    Cancelar
+                                </button>
+                                <button onclick="confirmarCancelamento()" class="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg font-medium transition duration-200">
+                                    Confirmar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+            }
+        }
+        
+        function confirmarCancelamento() {
+            // Fazer requisição para cancelar assinatura
+            fetch('/payments/cancelar-assinatura/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                },
+                body: JSON.stringify({})
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Mostrar mensagem de sucesso
+                    const modal = document.createElement('div');
+                    modal.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50';
+                    modal.innerHTML = `
+                        <div class="bg-white rounded-2xl p-8 max-w-md mx-4 shadow-2xl">
+                            <div class="text-center">
+                                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <span class="text-2xl">✅</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2">Assinatura Cancelada</h3>
+                                <p class="text-gray-600 mb-4">${data.message}</p>
+                                <button onclick="window.location.reload()" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg font-medium transition duration-200">
+                                    OK
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    document.body.appendChild(modal);
+                } else {
+                    alert('Erro ao cancelar assinatura: ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao cancelar assinatura. Tente novamente.');
+            });
+        }
         
         // Área de anúncios sempre visível e fixa
         console.log('Área de anúncios horizontal fixa carregada!');
