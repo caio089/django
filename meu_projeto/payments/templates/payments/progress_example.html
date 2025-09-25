@@ -1,0 +1,173 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo de Sistema de Progresso</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold mb-8">Sistema de Progresso do Usuário</h1>
+        
+        <!-- Exemplo de Barra de Progresso para Faixa -->
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+            <h2 class="text-xl font-bold mb-4">Progresso da Faixa Cinza</h2>
+            <div class="w-full bg-gray-200 rounded-full h-4 mb-2">
+                <div class="bg-blue-600 h-4 rounded-full progress-bar" 
+                     data-faixa="cinza" 
+                     style="width: 0%" 
+                     aria-valuenow="0" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100">
+                </div>
+            </div>
+            <div class="flex justify-between text-sm text-gray-600">
+                <span class="progress-text">0%</span>
+                <span>0/10 lições completadas</span>
+            </div>
+            <button onclick="updateFaixaProgress()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">
+                Simular Progresso
+            </button>
+        </div>
+        
+        <!-- Exemplo de Barra de Progresso para Quiz -->
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+            <h2 class="text-xl font-bold mb-4">Progresso do Quiz</h2>
+            <div class="w-full bg-gray-200 rounded-full h-4 mb-2">
+                <div class="bg-green-600 h-4 rounded-full quiz-progress-bar" 
+                     style="width: 0%" 
+                     aria-valuenow="0" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100">
+                </div>
+            </div>
+            <div class="flex justify-between text-sm text-gray-600">
+                <span class="quiz-progress-text">0%</span>
+                <span>0/20 perguntas corretas</span>
+            </div>
+            <button onclick="updateQuizProgress()" class="mt-4 bg-green-500 text-white px-4 py-2 rounded">
+                Simular Progresso do Quiz
+            </button>
+        </div>
+        
+        <!-- Exemplo de Barra de Progresso para Rolamentos -->
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+            <h2 class="text-xl font-bold mb-4">Progresso dos Rolamentos</h2>
+            <div class="w-full bg-gray-200 rounded-full h-4 mb-2">
+                <div class="bg-purple-600 h-4 rounded-full rolamentos-progress-bar" 
+                     style="width: 0%" 
+                     aria-valuenow="0" 
+                     aria-valuemin="0" 
+                     aria-valuemax="100">
+                </div>
+            </div>
+            <div class="flex justify-between text-sm text-gray-600">
+                <span class="rolamentos-progress-text">0%</span>
+                <span>0/15 rolamentos completados</span>
+            </div>
+            <button onclick="updateRolamentosProgress()" class="mt-4 bg-purple-500 text-white px-4 py-2 rounded">
+                Simular Progresso dos Rolamentos
+            </button>
+        </div>
+        
+        <!-- Botões de Controle -->
+        <div class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-xl font-bold mb-4">Controles do Sistema</h2>
+            <div class="space-x-4">
+                <button onclick="loadUserProgress()" class="bg-blue-500 text-white px-4 py-2 rounded">
+                    Carregar Progresso
+                </button>
+                <button onclick="saveAllProgress()" class="bg-green-500 text-white px-4 py-2 rounded">
+                    Salvar Todo Progresso
+                </button>
+                <button onclick="clearProgress()" class="bg-red-500 text-white px-4 py-2 rounded">
+                    Limpar Progresso
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Incluir o script de progresso simplificado -->
+    <script src="{% static 'payments/js/simple_progress.js' %}"></script>
+    
+    <script>
+        // Simular dados de usuário (em produção, isso viria do login)
+        const userData = {
+            id: 1,
+            username: 'usuario_teste',
+            email: 'teste@example.com'
+        };
+        
+        // Inicializar sistema de progresso simplificado
+        simpleProgress.onUserLogin(userData);
+        
+        // Funções de exemplo
+        function updateFaixaProgress() {
+            const progressBar = document.querySelector('[data-faixa="cinza"] .progress-bar');
+            const progressText = document.querySelector('[data-faixa="cinza"] .progress-text');
+            const currentProgress = parseInt(progressBar.getAttribute('aria-valuenow') || 0);
+            const newProgress = Math.min(currentProgress + 10, 100);
+            
+            progressBar.style.width = `${newProgress}%`;
+            progressBar.setAttribute('aria-valuenow', newProgress);
+            progressText.textContent = `${newProgress}%`;
+            
+            // Salvar progresso de forma simplificada
+            simpleProgress.saveFaixaProgress('cinza', newProgress, 5);
+        }
+        
+        function updateQuizProgress() {
+            const progressBar = document.querySelector('.quiz-progress-bar');
+            const progressText = document.querySelector('.quiz-progress-text');
+            const currentProgress = parseInt(progressBar.getAttribute('aria-valuenow') || 0);
+            const newProgress = Math.min(currentProgress + 5, 100);
+            
+            progressBar.style.width = `${newProgress}%`;
+            progressBar.setAttribute('aria-valuenow', newProgress);
+            progressText.textContent = `${newProgress}%`;
+            
+            // Salvar progresso de forma simplificada
+            simpleProgress.saveQuizProgress(newProgress, Math.floor(newProgress / 5), 20);
+        }
+        
+        function updateRolamentosProgress() {
+            const progressBar = document.querySelector('.rolamentos-progress-bar');
+            const progressText = document.querySelector('.rolamentos-progress-text');
+            const currentProgress = parseInt(progressBar.getAttribute('aria-valuenow') || 0);
+            const newProgress = Math.min(currentProgress + 7, 100);
+            
+            progressBar.style.width = `${newProgress}%`;
+            progressBar.setAttribute('aria-valuenow', newProgress);
+            progressText.textContent = `${newProgress}%`;
+            
+            // Salvar progresso de forma simplificada
+            simpleProgress.saveRolamentosProgress(newProgress, Math.floor(newProgress / 7), 15);
+        }
+        
+        function loadUserProgress() {
+            simpleProgress.loadProgress();
+        }
+        
+        function saveAllProgress() {
+            // Salvar progresso atual manualmente
+            simpleProgress.saveFaixaProgress('cinza', 50, 10);
+            simpleProgress.saveQuizProgress(75, 15, 20);
+            simpleProgress.saveRolamentosProgress(60, 9, 15);
+        }
+        
+        function clearProgress() {
+            // Limpar barras de progresso
+            document.querySelectorAll('.progress-bar, .quiz-progress-bar, .rolamentos-progress-bar').forEach(bar => {
+                bar.style.width = '0%';
+                bar.setAttribute('aria-valuenow', 0);
+            });
+            
+            document.querySelectorAll('.progress-text, .quiz-progress-text, .rolamentos-progress-text').forEach(text => {
+                text.textContent = '0%';
+            });
+        }
+    </script>
+</body>
+</html>

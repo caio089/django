@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -381,16 +382,88 @@
             }
         }
         
+        @keyframes judoBelt {
+            0%, 100% {
+                transform: scaleX(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scaleX(1.1);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes judoSpirit {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                filter: brightness(1);
+            }
+            25% {
+                transform: translateY(-2px) rotate(1deg);
+                filter: brightness(1.1);
+            }
+            50% {
+                transform: translateY(-4px) rotate(0deg);
+                filter: brightness(1.2);
+            }
+            75% {
+                transform: translateY(-2px) rotate(-1deg);
+                filter: brightness(1.1);
+            }
+        }
+        
+        @keyframes judoEnergy {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(59, 130, 246, 0.6), 0 0 40px rgba(16, 185, 129, 0.3);
+            }
+        }
+        
         .animate-fade-in-up {
-            animation: fadeInUp 0.7s ease-out forwards;
+            animation: fadeInUp 0.3s ease-out forwards;
         }
         
         .animate-fade-in-down {
-            animation: fadeInDown 0.7s ease-out forwards;
+            animation: fadeInDown 0.3s ease-out forwards;
+        }
+        
+        /* Melhorar cursor e interações */
+        button, input, select, textarea, a {
+            cursor: pointer;
+        }
+        
+        button:disabled {
+            cursor: not-allowed;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            cursor: text;
+        }
+        
+        /* Prevenir seleção de texto em botões */
+        button {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        
+        /* Melhorar feedback visual */
+        .input:focus {
+            outline: none;
+            border-color: #3B82F6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        /* Prevenir múltiplos cliques */
+        button:disabled {
+            pointer-events: none;
         }
         
         .animate-slide-in-right {
-            animation: slideInRight 1s ease-out forwards;
+            animation: slideInRight 0.5s ease-out forwards;
         }
         
         .animate-glow-pulse {
@@ -477,25 +550,41 @@
             animation: judoMeditation 4s ease-in-out infinite;
         }
         
+        .animate-judo-belt {
+            animation: judoBelt 3s ease-in-out infinite;
+        }
+        
+        .animate-judo-spirit {
+            animation: judoSpirit 5s ease-in-out infinite;
+        }
+        
+        .animate-judo-energy {
+            animation: judoEnergy 4s ease-in-out infinite;
+        }
+        
         /* Responsividade para mobile */
         @media (max-width: 768px) {
             .login-card {
-                margin: 1rem;
-                padding: 1.5rem;
-                max-width: calc(100vw - 2rem);
+                margin: 0.5rem;
+                padding: 1rem;
+                max-width: calc(100vw - 1rem);
+                border-radius: 1rem;
             }
             
             .hero-section {
-                padding: 1rem;
+                padding: 0.5rem;
             }
             
             .floating-label {
-                font-size: 0.75rem;
+                font-size: 0.875rem;
+                font-weight: 500;
             }
             
             .input {
-                font-size: 0.875rem;
-                padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+                font-size: 1rem;
+                padding: 1rem 1rem 1rem 3rem;
+                border-radius: 0.75rem;
+                border-width: 2px;
             }
             
             .mobile-brand {
@@ -505,26 +594,95 @@
             .desktop-brand {
                 display: none;
             }
+            
+            /* Botões maiores para mobile */
+            button {
+                padding: 1rem 1.5rem;
+                font-size: 1.125rem;
+                border-radius: 0.75rem;
+            }
+            
+            /* Textos maiores para mobile */
+            h1 {
+                font-size: 2.5rem;
+                line-height: 1.1;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+                line-height: 1.2;
+            }
+            
+            /* Espaçamentos otimizados para mobile */
+            .space-y-4 > * + * {
+                margin-top: 1rem;
+            }
+            
+            /* Campos de formulário com mais espaço */
+            .form-group {
+                margin-bottom: 1.25rem;
+            }
+            
+            /* Links e botões com área de toque maior */
+            a, button {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
         }
         
         @media (max-width: 480px) {
             .login-card {
-                margin: 0.5rem;
-                padding: 1rem;
-                max-width: calc(100vw - 1rem);
+                margin: 0.25rem;
+                padding: 0.75rem;
+                max-width: calc(100vw - 0.5rem);
+                border-radius: 0.75rem;
             }
             
             .hero-section {
-                padding: 0.5rem;
+                padding: 0.25rem;
             }
             
             .floating-label {
-                font-size: 0.6875rem;
+                font-size: 0.875rem;
+                font-weight: 600;
             }
             
             .input {
-                font-size: 0.75rem;
-                padding: 0.625rem 0.625rem 0.625rem 2.25rem;
+                font-size: 1rem;
+                padding: 0.875rem 0.875rem 0.875rem 2.75rem;
+                border-radius: 0.5rem;
+                border-width: 2px;
+            }
+            
+            /* Textos ajustados para telas muito pequenas */
+            h1 {
+                font-size: 2rem;
+                line-height: 1.1;
+            }
+            
+            h2 {
+                font-size: 1.25rem;
+                line-height: 1.2;
+            }
+            
+            /* Botões otimizados para telas pequenas */
+            button {
+                padding: 0.875rem 1.25rem;
+                font-size: 1rem;
+                border-radius: 0.5rem;
+                min-height: 48px;
+            }
+            
+            /* Espaçamentos reduzidos mas ainda confortáveis */
+            .space-y-4 > * + * {
+                margin-top: 0.875rem;
+            }
+            
+            /* Campos de formulário com espaçamento otimizado */
+            .form-group {
+                margin-bottom: 1rem;
             }
         }
         
@@ -559,33 +717,33 @@
     <!-- Nome do site para desktop (centro da tela + 50px para direita) -->
     <div class="desktop-brand fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40 text-center" style="transform: translate(50px, -50%);">
         <div class="animate-slide-in-right">
-            <!-- Círculo decorativo rotativo -->
-            <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-16 h-16 border-2 border-judo-blue/30 rounded-full animate-rotate"></div>
-            <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-12 h-12 border-2 border-judo-yellow/30 rounded-full animate-rotate" style="animation-direction: reverse; animation-duration: 15s;"></div>
-            
-            <h1 class="text-7xl lg:text-8xl xl:text-9xl font-bold text-white/90 leading-none">
-                Dojo
-            </h1>
-            <h1 class="text-7xl lg:text-8xl xl:text-9xl font-bold text-judo-blue leading-none -mt-2">
-                On
-            </h1>
-            
-            <!-- Linha decorativa animada -->
-            <div class="mt-2 h-1 bg-gradient-to-l from-judo-blue via-judo-yellow to-judo-green rounded-full animate-pulse"></div>
-            
-            <div class="mt-4 text-center">
-                <p class="text-white/70 text-lg font-medium animate-judo-focus">Academia de Judô</p>
-                <div class="flex justify-center mt-2 space-x-3">
-                    <div class="w-2 h-2 bg-judo-blue rounded-full animate-pulse-delayed"></div>
-                    <div class="w-2 h-2 bg-judo-yellow rounded-full animate-pulse-delayed"></div>
-                    <div class="w-2 h-2 bg-judo-green rounded-full animate-pulse-delayed"></div>
+            <!-- Imagem do Judô integrada com o nome - DESTAQUE MÁXIMO -->
+            <div class="relative mb-8">
+                <img src="{% static 'judo.png' %}" alt="Judô" class="w-72 h-72 mx-auto drop-shadow-2xl hover:scale-105 transition-transform duration-300 opacity-60" />
+                
+                <!-- Nome integrado com a imagem -->
+                <div class="absolute -bottom-12 left-1/2 -translate-x-1/2 text-center">
+                    <h1 class="text-7xl lg:text-8xl xl:text-9xl font-bold text-white/95 leading-none">
+                        Dojo
+                    </h1>
+                    <h1 class="text-7xl lg:text-8xl xl:text-9xl font-bold text-judo-blue leading-none -mt-2">
+                        On
+                    </h1>
                 </div>
             </div>
             
-                         <!-- Elementos flutuantes decorativos -->
-             <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 bg-judo-blue/50 rounded-full"></div>
-             <div class="absolute top-8 left-1/2 -translate-x-1/2 w-2 h-2 bg-judo-yellow/50 rounded-full"></div>
-             <div class="absolute top-16 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-judo-green/50 rounded-full"></div>
+            <!-- Linha decorativa estática -->
+            <div class="mt-12 h-2 bg-gradient-to-r from-judo-blue via-judo-yellow to-judo-green rounded-full shadow-lg"></div>
+            
+            <div class="mt-4 text-center">
+                <p class="text-white/80 text-lg font-medium">🥋 Academia de Judô</p>
+                <p class="text-white/60 text-sm mt-1">O caminho suave da vida</p>
+                <div class="flex justify-center mt-3 space-x-3">
+                    <div class="w-3 h-3 bg-judo-blue rounded-full shadow-lg"></div>
+                    <div class="w-3 h-3 bg-judo-yellow rounded-full shadow-lg"></div>
+                    <div class="w-3 h-3 bg-judo-green rounded-full shadow-lg"></div>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -593,51 +751,49 @@
     <div class="relative z-30 w-full flex flex-col items-start justify-center min-h-screen px-4 sm:px-6 md:px-8 lg:px-20">
         <!-- Nome do site para mobile (em cima) -->
         <div class="mobile-brand w-full text-center mb-8 animate-fade-in-down">
-            <!-- Círculos decorativos rotativos -->
-            <div class="relative">
-                <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-12 h-12 border-2 border-judo-blue/30 rounded-full animate-rotate"></div>
-                <div class="absolute -top-1 left-1/2 -translate-x-1/2 w-8 h-8 border-2 border-judo-yellow/30 rounded-full animate-rotate" style="animation-direction: reverse; animation-duration: 12s;"></div>
+            <!-- Imagem do Judô integrada com o nome para mobile - DESTAQUE MÁXIMO -->
+            <div class="relative mb-4 sm:mb-8">
+                <img src="{% static 'judo.png' %}" alt="Judô" class="w-32 h-32 sm:w-44 sm:h-44 md:w-56 md:h-56 mx-auto drop-shadow-xl hover:scale-105 transition-transform duration-300 opacity-60" />
+                
+                <!-- Nome integrado com a imagem -->
+                <div class="absolute -bottom-6 sm:-bottom-8 left-1/2 -translate-x-1/2 text-center">
+                    <h1 class="text-3xl sm:text-5xl md:text-6xl font-bold text-white/95 mb-1 relative">
+                        <span class="text-white inline-block">Dojo</span>
+                        <span class="text-judo-blue inline-block">On</span>
+                    </h1>
+                </div>
             </div>
             
-            <h1 class="text-5xl sm:text-6xl font-bold text-white/90 mb-2 relative">
-                <span class="text-white inline-block">Dojo</span>
-                <span class="text-judo-blue inline-block">On</span>
-            </h1>
+            <!-- Linha decorativa estática -->
+            <div class="mx-auto w-16 sm:w-20 h-1 sm:h-1.5 bg-gradient-to-r from-judo-blue via-judo-yellow to-judo-green rounded-full mb-2 sm:mb-3 shadow-lg mt-4 sm:mt-8"></div>
             
-            <!-- Linha decorativa animada -->
-            <div class="mx-auto w-24 h-1 bg-gradient-to-r from-judo-blue via-judo-yellow to-judo-green rounded-full animate-pulse mb-3"></div>
-            
-            <p class="text-white/70 text-lg font-medium animate-judo-focus">Academia de Judô</p>
-            
-                         <!-- Elementos flutuantes decorativos -->
-             <div class="absolute top-4 left-4 w-2 h-2 bg-judo-blue/50 rounded-full"></div>
-             <div class="absolute top-8 right-4 w-1.5 h-1.5 bg-judo-yellow/50 rounded-full"></div>
-             <div class="absolute top-12 left-8 w-2 h-2 bg-judo-green/50 rounded-full"></div>
+            <p class="text-white/80 text-sm sm:text-base font-medium">🥋 Academia de Judô</p>
+            <p class="text-white/60 text-xs sm:text-sm mt-1">O caminho suave da vida</p>
         </div>
         
         <!-- Card de login responsivo -->
-        <div id="login-card" class="login-card bg-white/85 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl px-4 sm:px-6 py-4 sm:py-6 w-full max-w-md mx-auto md:mx-0 flex flex-col items-center animate-fade-in-up transition-all duration-700 border border-white/30">
-            <!-- Logo e título -->
-            <div class="flex items-center gap-2 mb-3 animate-fade-in-down">
-                <i class="fa-solid fa-user-ninja text-judo-blue text-xl sm:text-2xl animate-judo-punch"></i>
-                <span class="font-bold text-base sm:text-lg text-gray-700 tracking-wider">Academia de Judô</span>
+        <div id="login-card" class="login-card bg-white/90 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl px-3 sm:px-4 md:px-5 py-3 sm:py-4 md:py-5 w-full max-w-sm sm:max-w-md mx-auto md:mx-0 flex flex-col items-center transition-all duration-300 border border-white/30 relative overflow-hidden">
+            <!-- Título do card de login -->
+            <div class="text-center mb-4 sm:mb-5 md:mb-6 relative z-10">
+                <span class="font-bold text-base sm:text-lg md:text-xl text-gray-700 tracking-wider block">🥋 Academia de Judô</span>
+                <span class="text-xs sm:text-sm text-gray-500">O caminho suave</span>
             </div>
             
-            <h2 class="text-lg sm:text-xl font-semibold mb-4 text-gray-800 animate-fade-in-down text-center">
+            <h2 class="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 md:mb-5 text-gray-800 text-center">
                 {% if show_register %}Criar nova conta{% else %}Acessar sua conta{% endif %}
             </h2>
             
             <!-- Formulário -->
-            <form id="login-form" method="post" action="{% if show_register %}{% url 'register' %}{% else %}{% url 'login' %}{% endif %}" class="w-full flex flex-col gap-3" autocomplete="off" novalidate>
+            <form id="login-form" method="post" action="{% if show_register %}{% url 'register' %}{% else %}{% url 'login' %}{% endif %}" class="w-full flex flex-col gap-3 sm:gap-3 md:gap-4" autocomplete="off" novalidate>
                 {% csrf_token %}
                 
                 <!-- Campo Email -->
                 <div class="relative" id="login-email-group">
                     <input id="email" type="email" name="email" placeholder=" " required aria-label="Email" 
-                           class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-judo-blue focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" 
+                           class="input peer w-full pl-12 sm:pl-12 pr-4 py-3 sm:py-4 rounded-lg border-2 border-gray-300 focus:border-judo-blue focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm sm:text-base transition-all duration-300" 
                            value="{{ register_form.email.value|default:'' }}" />
-                    <label for="email" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Email</label>
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm">
+                    <label for="email" class="floating-label absolute left-12 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-1 transition-all duration-200 text-xs sm:text-sm font-medium">Email</label>
+                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-base sm:text-lg">
                         <i class="fa-regular fa-envelope" aria-hidden="true"></i>
                     </span>
                     <div class="error-message" id="email-error"></div>
@@ -646,32 +802,20 @@
                 <!-- Campo Senha -->
                 <div class="relative" id="login-senha-group">
                     <input id="senha" type="password" name="senha" placeholder=" " required aria-label="Senha" 
-                           class="input peer w-full pl-10 pr-10 py-2 rounded-md border border-gray-300 focus:border-judo-blue focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" />
-                    <label for="senha" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Senha</label>
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm">
+                           class="input peer w-full pl-12 sm:pl-12 pr-12 py-3 sm:py-4 rounded-lg border-2 border-gray-300 focus:border-judo-blue focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm sm:text-base transition-all duration-300" />
+                    <label for="senha" class="floating-label absolute left-12 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-1 transition-all duration-200 text-xs sm:text-sm font-medium">Senha</label>
+                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-base sm:text-lg">
                         <i class="fa-solid fa-key" aria-hidden="true"></i>
                     </span>
-                    <button type="button" id="togglePassword" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-judo-blue transition text-sm" aria-label="Mostrar ou ocultar senha">
+                    <button type="button" id="togglePassword" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-judo-blue transition text-base sm:text-lg" aria-label="Mostrar ou ocultar senha">
                         <i class="fa-regular fa-eye"></i>
                     </button>
                     <div class="error-message" id="senha-error"></div>
                 </div>
                 
                 <!-- Campos de cadastro (apenas quando show_register é True) -->
-                <div id="cadastro-campos" {% if show_register %}style="display:block;"{% else %}style="display:none;"{% endif %} class="space-y-3">
-                    <!-- Campo Nome -->
-                    <div class="relative">
-                        <input id="nome" type="text" name="nome" placeholder=" " required aria-label="Nome completo" 
-                               class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-judo-blue focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" 
-                               value="{{ register_form.nome.value|default:'' }}" />
-                        <label for="nome" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Nome completo</label>
-                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm">
-                            <i class="fa-regular fa-user" aria-hidden="true"></i>
-                        </span>
-                        <div class="error-message" id="nome-error"></div>
-                    </div>
-                    
-                    <!-- Campo Idade -->
+                <div id="cadastro-campos" {% if show_register %}style="display:block;"{% else %}style="display:none;"{% endif %} class="space-y-4">
+                    <!-- Campo Idade (primeiro para determinar tipo de formulário) -->
                     <div class="relative">
                         <input id="idade" type="number" name="idade" placeholder=" " min="3" max="120" required aria-label="Idade" 
                                class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-judo-blue focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" 
@@ -682,56 +826,166 @@
                         </span>
                         <div class="error-message" id="idade-error"></div>
                     </div>
+
+                    <!-- Campos para Maiores de Idade (18+) -->
+                    <div id="campos-maior-idade" class="space-y-3" style="display: none;">
+                        <!-- Campo Nome -->
+                        <div class="relative">
+                            <input id="nome" type="text" name="nome" placeholder=" " aria-label="Nome completo" 
+                                   class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-judo-blue focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" 
+                                   value="{{ register_form.nome.value|default:'' }}" />
+                            <label for="nome" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Nome completo</label>
+                            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm">
+                                <i class="fa-regular fa-user" aria-hidden="true"></i>
+                            </span>
+                            <div class="error-message" id="nome-error"></div>
+                        </div>
+                        
+                        <!-- Campo Faixa -->
+                        <div class="relative">
+                            <select id="faixa" name="faixa" aria-label="Faixa atual" 
+                                    class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-judo-blue focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 text-sm transition-all duration-300">
+                                <option value="" disabled selected>Faixa atual</option>
+                                <option value="branca" {% if register_form.faixa.value == 'branca' %}selected{% endif %}>Branca</option>
+                                <option value="cinza" {% if register_form.faixa.value == 'cinza' %}selected{% endif %}>Cinza</option>
+                                <option value="azul" {% if register_form.faixa.value == 'azul' %}selected{% endif %}>Azul</option>
+                                <option value="amarela" {% if register_form.faixa.value == 'amarela' %}selected{% endif %}>Amarela</option>
+                                <option value="laranja" {% if register_form.faixa.value == 'laranja' %}selected{% endif %}>Laranja</option>
+                                <option value="verde" {% if register_form.faixa.value == 'verde' %}selected{% endif %}>Verde</option>
+                                <option value="roxa" {% if register_form.faixa.value == 'roxa' %}selected{% endif %}>Roxa</option>
+                                <option value="marrom" {% if register_form.faixa.value == 'marrom' %}selected{% endif %}>Marrom</option>
+                                <option value="preta" {% if register_form.faixa.value == 'preta' %}selected{% endif %}>Preta</option>
+                            </select>
+                            <label for="faixa" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Faixa atual</label>
+                            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm">
+                                <i class="fa-solid fa-medal" aria-hidden="true"></i>
+                            </span>
+                            <div class="error-message" id="faixa-error"></div>
+                        </div>
+                    </div>
+
+                    <!-- Campos para Menores de Idade (<18) -->
+                    <div id="campos-menor-idade" class="space-y-3" style="display: none;">
+                        <!-- Responsável -->
+                        <div class="bg-blue-50 p-3 rounded-lg border border-blue-200">
+                            <h4 class="text-sm font-semibold text-blue-800 mb-2">👨‍👩‍👧‍👦 Dados do Responsável</h4>
+                            
+                            <!-- Nome do Responsável -->
+                            <div class="relative mb-3">
+                                <input id="nome-responsavel" type="text" name="nome_responsavel" placeholder=" " aria-label="Nome completo do responsável" 
+                                       class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-judo-blue focus:ring-2 focus:ring-blue-100 outline-none bg-white text-gray-800 placeholder-transparent text-sm transition-all duration-300" />
+                                <label for="nome-responsavel" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white px-0.5 transition-all duration-200 text-xs">Nome completo do responsável</label>
+                                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm">
+                                    <i class="fa-solid fa-user-tie" aria-hidden="true"></i>
+                                </span>
+                                <div class="error-message" id="nome-responsavel-error"></div>
+                            </div>
+                            
+                            <!-- Idade do Responsável -->
+                            <div class="relative">
+                                <input id="idade-responsavel" type="number" name="idade_responsavel" placeholder=" " min="18" max="120" aria-label="Idade do responsável" 
+                                       class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-judo-blue focus:ring-2 focus:ring-blue-100 outline-none bg-white text-gray-800 placeholder-transparent text-sm transition-all duration-300" />
+                                <label for="idade-responsavel" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white px-0.5 transition-all duration-200 text-xs">Idade do responsável</label>
+                                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm">
+                                    <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+                                </span>
+                                <div class="error-message" id="idade-responsavel-error"></div>
+                            </div>
+                        </div>
+
+                        <!-- Criança -->
+                        <div class="bg-green-50 p-3 rounded-lg border border-green-200">
+                            <h4 class="text-sm font-semibold text-green-800 mb-2">👶 Dados da Criança</h4>
+                            
+                            <!-- Nome da Criança -->
+                            <div class="relative mb-3">
+                                <input id="nome-crianca" type="text" name="nome_crianca" placeholder=" " aria-label="Nome completo da criança" 
+                                       class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-judo-blue focus:ring-2 focus:ring-blue-100 outline-none bg-white text-gray-800 placeholder-transparent text-sm transition-all duration-300" />
+                                <label for="nome-crianca" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white px-0.5 transition-all duration-200 text-xs">Nome completo da criança</label>
+                                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm">
+                                    <i class="fa-solid fa-child" aria-hidden="true"></i>
+                                </span>
+                                <div class="error-message" id="nome-crianca-error"></div>
+                            </div>
+                            
+                            <!-- Idade da Criança -->
+                            <div class="relative mb-3">
+                                <input id="idade-crianca" type="number" name="idade_crianca" placeholder=" " min="3" max="17" aria-label="Idade da criança" 
+                                       class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-judo-blue focus:ring-2 focus:ring-blue-100 outline-none bg-white text-gray-800 placeholder-transparent text-sm transition-all duration-300" />
+                                <label for="idade-crianca" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white px-0.5 transition-all duration-200 text-xs">Idade da criança</label>
+                                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm">
+                                    <i class="fa-solid fa-calendar" aria-hidden="true"></i>
+                                </span>
+                                <div class="error-message" id="idade-crianca-error"></div>
+                            </div>
+                            
+                            <!-- Faixa da Criança -->
+                            <div class="relative">
+                                <select id="faixa-crianca" name="faixa_crianca" aria-label="Faixa da criança" 
+                                        class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-judo-blue focus:ring-2 focus:ring-blue-100 outline-none bg-white text-gray-800 text-sm transition-all duration-300">
+                                    <option value="" disabled selected>Faixa da criança</option>
+                                    <option value="branca">Branca</option>
+                                    <option value="cinza">Cinza</option>
+                                    <option value="azul">Azul</option>
+                                    <option value="amarela">Amarela</option>
+                                    <option value="laranja">Laranja</option>
+                                    <option value="verde">Verde</option>
+                                    <option value="roxa">Roxa</option>
+                                    <option value="marrom">Marrom</option>
+                                </select>
+                                <label for="faixa-crianca" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white px-0.5 transition-all duration-200 text-xs">Faixa da criança</label>
+                                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm">
+                                    <i class="fa-solid fa-medal" aria-hidden="true"></i>
+                                </span>
+                                <div class="error-message" id="faixa-crianca-error"></div>
+                            </div>
+                        </div>
+                    </div>
                     
-                    <!-- Campo Faixa -->
+                    <!-- Campo Academia (para todos) -->
                     <div class="relative">
-                        <select id="faixa" name="faixa" required aria-label="Faixa atual" 
-                                class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-judo-blue focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 text-sm transition-all duration-300">
-                            <option value="" disabled selected>Faixa atual</option>
-                            <option value="branca" {% if register_form.faixa.value == 'branca' %}selected{% endif %}>Branca</option>
-                            <option value="cinza" {% if register_form.faixa.value == 'cinza' %}selected{% endif %}>Cinza</option>
-                            <option value="azul" {% if register_form.faixa.value == 'azul' %}selected{% endif %}>Azul</option>
-                            <option value="amarela" {% if register_form.faixa.value == 'amarela' %}selected{% endif %}>Amarela</option>
-                            <option value="laranja" {% if register_form.faixa.value == 'laranja' %}selected{% endif %}>Laranja</option>
-                            <option value="verde" {% if register_form.faixa.value == 'verde' %}selected{% endif %}>Verde</option>
-                            <option value="roxa" {% if register_form.faixa.value == 'roxa' %}selected{% endif %}>Roxa</option>
-                            <option value="marrom" {% if register_form.faixa.value == 'marrom' %}selected{% endif %}>Marrom</option>
-                            <option value="preta" {% if register_form.faixa.value == 'preta' %}selected{% endif %}>Preta</option>
-                        </select>
-                        <label for="faixa" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Faixa atual</label>
+                        <input id="academia" type="text" name="academia" placeholder=" " required aria-label="Nome da academia" 
+                               class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-judo-blue focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" 
+                               value="{{ register_form.academia.value|default:'' }}" />
+                        <label for="academia" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Nome da academia</label>
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm">
-                            <i class="fa-solid fa-medal" aria-hidden="true"></i>
+                            <i class="fa-solid fa-building" aria-hidden="true"></i>
                         </span>
-                        <div class="error-message" id="faixa-error"></div>
+                        <div class="error-message" id="academia-error"></div>
                     </div>
                 </div>
                 
-                <!-- Botão de envio -->
+                <!-- Botão de envio otimizado -->
                 <button id="login-btn" type="submit" 
-                        class="mt-2 w-full py-2.5 rounded-md bg-gradient-to-r from-judo-blue to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white font-semibold text-base shadow-lg transition-all duration-300 focus:ring-4 focus:ring-blue-200 focus:outline-none active:scale-95 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
-                    <span id="login-btn-text">{% if show_register %}Criar conta{% else %}Entrar{% endif %}</span>
-                    <span id="login-spinner" class="hidden animate-spin">
+                        class="mt-4 sm:mt-5 md:mt-6 w-full py-3 sm:py-3 md:py-4 rounded-xl bg-gradient-to-r from-judo-blue to-blue-600 hover:from-blue-700 hover:to-blue-700 text-white font-bold text-base sm:text-base md:text-lg shadow-xl transition-all duration-200 focus:ring-4 focus:ring-blue-200 focus:outline-none active:scale-98 flex items-center justify-center gap-2 sm:gap-2 md:gap-3 disabled:opacity-50 disabled:cursor-not-allowed min-h-[48px] sm:min-h-[48px] md:min-h-[56px]">
+                    <span id="login-btn-text" class="flex items-center gap-2 sm:gap-3">
+                        <i class="fa-solid fa-user-ninja text-lg sm:text-xl"></i>
+                        {% if show_register %}Criar conta{% else %}Entrar no Dojo{% endif %}
+                    </span>
+                    <span id="login-spinner" class="hidden animate-spin text-lg sm:text-xl">
                         <i class="fa-solid fa-spinner" aria-hidden="true"></i>
                     </span>
                 </button>
             </form>
             
             <!-- Opções de login (apenas quando não é registro) -->
-            <div class="flex items-center justify-between w-full mt-3 text-xs text-gray-600 animate-fade-in-up gap-2 flex-wrap" id="login-options" {% if show_register %}style="display:none;"{% else %}style="display:flex;"{% endif %}>
-                <label class="flex items-center gap-1 cursor-pointer">
-                    <input type="checkbox" class="accent-judo-blue transition-all duration-200" aria-label="Lembrar de mim" />
-                    Lembrar de mim
+            <div class="flex items-center justify-between w-full mt-4 text-sm text-gray-600 gap-3 flex-wrap" id="login-options" {% if show_register %}style="display:none;"{% else %}style="display:flex;"{% endif %}>
+                <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" class="accent-judo-blue transition-all duration-200 w-4 h-4" aria-label="Lembrar de mim" />
+                    <span class="font-medium">Lembrar de mim</span>
                 </label>
-                <a href="#" class="hover:underline transition-colors duration-200">Esqueceu a senha?</a>
+                <a href="#" class="hover:underline transition-colors duration-200 font-medium text-judo-blue">Esqueceu a senha?</a>
             </div>
             
             <!-- Link para alternar entre login/registro -->
-            <div class="w-full text-center mt-3 text-xs text-gray-500 animate-fade-in-up">
-                <span id="toggle-auth-mode">
+            <div class="w-full text-center mt-3 sm:mt-4 md:mt-5 p-2 sm:p-3 md:p-3 bg-gradient-to-r from-judo-blue/10 to-blue-100/20 rounded-lg border border-judo-blue/20">
+                <span id="toggle-auth-mode" class="text-sm sm:text-base">
                 {% if show_register %}
-                  Já tem conta? <a href="{% url 'login' %}" id="fazer-login-link" class="text-judo-blue hover:underline transition-colors duration-200">Faça login</a>
+                  <span class="text-gray-600">Já tem conta?</span> 
+                  <a href="{% url 'login' %}" id="fazer-login-link" class="text-judo-blue hover:text-blue-700 font-bold underline transition-colors duration-200 ml-1 min-h-[44px] inline-flex items-center">Faça login</a>
                 {% else %}
-                Não possui conta? <a href="{% url 'register' %}" id="criar-conta-link" class="text-judo-blue hover:underline transition-colors duration-200">Crie uma conta grátis</a>
+                  <span class="text-gray-600">Não possui conta?</span> 
+                  <a href="{% url 'register' %}" id="criar-conta-link" class="text-judo-blue hover:text-blue-700 font-bold underline transition-colors duration-200 ml-1 min-h-[44px] inline-flex items-center">Crie uma conta grátis</a>
                 {% endif %}
                 </span>
             </div>
@@ -743,32 +997,6 @@
             <div id="login-feedback" class="fixed left-1/2 -translate-x-1/2 top-8 bg-judo-blue text-white px-4 py-2 rounded-lg shadow-lg font-semibold text-xs opacity-0 pointer-events-none transition-all duration-500 z-50" role="alert" aria-live="polite"></div>
         </div>
         
-        <!-- Seção de contatos para mobile (embaixo) -->
-        <div class="mobile-brand w-full mt-6 animate-fade-in-up">
-            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                <h3 class="text-lg font-bold text-white text-center mb-3">Contato</h3>
-                <div class="flex justify-center space-x-6 text-center">
-                    <div class="flex flex-col items-center space-y-1">
-                        <i class="fa-solid fa-phone text-judo-blue text-lg"></i>
-                        <span class="text-white/80 text-xs">(11) 99999-9999</span>
-                    </div>
-                    <div class="flex flex-col items-center space-y-1">
-                        <i class="fa-solid fa-envelope text-judo-blue text-lg"></i>
-                        <span class="text-white/80 text-xs">contato@dojo-on.com</span>
-                    </div>
-                </div>
-                <div class="mt-3 text-center">
-                    <div class="flex justify-center space-x-4">
-                        <a href="#" class="text-white/70 hover:text-judo-blue transition-colors duration-200">
-                            <i class="fa-brands fa-instagram text-lg"></i>
-                        </a>
-                        <a href="#" class="text-white/70 hover:text-judo-blue transition-colors duration-200">
-                            <i class="fa-brands fa-whatsapp text-lg"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     
     <script>
@@ -809,6 +1037,24 @@
             return emailRegex.test(email);
         }
 
+        function validatePassword(password) {
+            // Senha deve ter pelo menos 8 caracteres, 1 maiúscula, 1 minúscula, 1 número
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,}$/;
+            return passwordRegex.test(password);
+        }
+
+        function validateAge(age) {
+            const ageNum = parseInt(age);
+            return ageNum >= 3 && ageNum <= 120;
+        }
+
+        function validateName(name) {
+            // Nome deve ter pelo menos 2 palavras e apenas letras e espaços
+            const nameRegex = /^[a-zA-ZÀ-ÿ\s]{2,}$/;
+            const words = name.trim().split(/\s+/);
+            return nameRegex.test(name) && words.length >= 2;
+        }
+
         function validateForm() {
             let isValid = true;
             
@@ -818,7 +1064,7 @@
                 showError('email', 'Email é obrigatório');
                 isValid = false;
             } else if (email && !validateEmail(email.value.trim())) {
-                showError('email', 'Email inválido');
+                showError('email', 'Email deve conter @ e domínio válido');
                 isValid = false;
             } else {
                 clearError('email');
@@ -829,8 +1075,8 @@
             if (senha && senha.value.trim() === '') {
                 showError('senha', 'Senha é obrigatória');
                 isValid = false;
-            } else if (senha && senha.value.length < 6) {
-                showError('senha', 'Senha deve ter pelo menos 6 caracteres');
+            } else if (senha && !validatePassword(senha.value)) {
+                showError('senha', 'Senha deve ter 8+ caracteres, 1 maiúscula, 1 minúscula e 1 número');
                 isValid = false;
             } else {
                 clearError('senha');
@@ -839,29 +1085,88 @@
             // Validar campos de cadastro se estiver no modo registro
             const cadastroCampos = document.getElementById('cadastro-campos');
             if (cadastroCampos && cadastroCampos.style.display !== 'none') {
-                const nome = document.getElementById('nome');
                 const idade = document.getElementById('idade');
+                const nome = document.getElementById('nome');
                 const faixa = document.getElementById('faixa');
+                const academia = document.getElementById('academia');
 
-                if (nome && nome.value.trim() === '') {
-                    showError('nome', 'Nome é obrigatório');
-                    isValid = false;
-                } else {
-                    clearError('nome');
-                }
-
-                if (idade && (idade.value === '' || parseInt(idade.value) < 3 || parseInt(idade.value) > 120)) {
+                // Validar idade primeiro para determinar tipo de formulário
+                if (idade && (idade.value === '' || !validateAge(idade.value))) {
                     showError('idade', 'Idade deve estar entre 3 e 120 anos');
                     isValid = false;
                 } else {
                     clearError('idade');
+                    
+                    // Se idade for válida, validar outros campos baseado na idade
+                    const age = parseInt(idade.value);
+                    
+                    if (age >= 18) {
+                        // Validação para maiores de idade
+                        if (nome && !validateName(nome.value)) {
+                            showError('nome', 'Nome completo é obrigatório (mínimo 2 palavras)');
+                            isValid = false;
+                        } else {
+                            clearError('nome');
+                        }
+                    } else {
+                        // Validação para menores de idade
+                        const nomeResponsavel = document.getElementById('nome-responsavel');
+                        const idadeResponsavel = document.getElementById('idade-responsavel');
+                        const nomeCrianca = document.getElementById('nome-crianca');
+                        const idadeCrianca = document.getElementById('idade-crianca');
+                        const faixaCrianca = document.getElementById('faixa-crianca');
+
+                        if (nomeResponsavel && !validateName(nomeResponsavel.value)) {
+                            showError('nome-responsavel', 'Nome completo do responsável é obrigatório');
+                            isValid = false;
+                        } else {
+                            clearError('nome-responsavel');
+                        }
+
+                        if (idadeResponsavel && (idadeResponsavel.value === '' || parseInt(idadeResponsavel.value) < 18)) {
+                            showError('idade-responsavel', 'Responsável deve ser maior de 18 anos');
+                            isValid = false;
+                        } else {
+                            clearError('idade-responsavel');
+                        }
+
+                        if (nomeCrianca && !validateName(nomeCrianca.value)) {
+                            showError('nome-crianca', 'Nome completo da criança é obrigatório');
+                            isValid = false;
+                        } else {
+                            clearError('nome-crianca');
+                        }
+
+                        if (idadeCrianca && (idadeCrianca.value === '' || parseInt(idadeCrianca.value) < 3 || parseInt(idadeCrianca.value) >= 18)) {
+                            showError('idade-crianca', 'Idade da criança deve estar entre 3 e 17 anos');
+                            isValid = false;
+                        } else {
+                            clearError('idade-crianca');
+                        }
+
+                        if (faixaCrianca && faixaCrianca.value === '') {
+                            showError('faixa-crianca', 'Selecione a faixa da criança');
+                            isValid = false;
+                        } else {
+                            clearError('faixa-crianca');
+                        }
+                    }
                 }
 
+                // Validar faixa (para maiores de idade)
                 if (faixa && faixa.value === '') {
                     showError('faixa', 'Selecione uma faixa');
                     isValid = false;
                 } else {
                     clearError('faixa');
+                }
+
+                // Validar academia
+                if (academia && academia.value.trim() === '') {
+                    showError('academia', 'Nome da academia é obrigatório');
+                    isValid = false;
+                } else {
+                    clearError('academia');
                 }
             }
 
@@ -877,25 +1182,40 @@
         }
 
         function showFeedback(message, type = 'success') {
-            const feedback = document.getElementById('login-feedback');
-            if (feedback) {
-                feedback.textContent = message;
-                feedback.className = `fixed left-1/2 -translate-x-1/2 top-8 px-4 py-2 rounded-lg shadow-lg font-semibold text-xs transition-all duration-500 z-50`;
-                
-                if (type === 'success') {
-                    feedback.classList.add('bg-green-600', 'text-white');
-                } else {
-                    feedback.classList.add('bg-red-600', 'text-white');
-                }
-                
-                feedback.style.opacity = '1';
-                feedback.style.pointerEvents = 'auto';
-                
-                setTimeout(() => {
-                    feedback.style.opacity = '0';
-                    feedback.style.pointerEvents = 'none';
-                }, 3000);
+            // Limpar mensagens existentes
+            const existingFeedback = document.getElementById('login-feedback');
+            if (existingFeedback) {
+                existingFeedback.remove();
             }
+            
+            // Criar nova mensagem
+            const feedback = document.createElement('div');
+            feedback.id = 'login-feedback';
+            feedback.textContent = message;
+            feedback.className = `fixed left-1/2 -translate-x-1/2 top-8 px-4 py-2 rounded-lg shadow-lg font-semibold text-xs transition-all duration-500 z-50`;
+            
+            if (type === 'success') {
+                feedback.classList.add('bg-green-600', 'text-white');
+            } else {
+                feedback.classList.add('bg-red-600', 'text-white');
+            }
+            
+            feedback.style.opacity = '1';
+            feedback.style.pointerEvents = 'auto';
+            
+            document.body.appendChild(feedback);
+            
+            // Auto-remover após 3 segundos
+            setTimeout(() => {
+                if (feedback && feedback.parentNode) {
+                    feedback.style.opacity = '0';
+                    setTimeout(() => {
+                        if (feedback && feedback.parentNode) {
+                            feedback.remove();
+                        }
+                    }, 500);
+                }
+            }, 3000);
         }
 
         // Limpar erros quando o usuário digita
@@ -905,34 +1225,51 @@
             }
         });
 
+        // Controlar exibição de campos baseado na idade
+        function toggleFieldsByAge() {
+            const idadeInput = document.getElementById('idade');
+            const camposMaiorIdade = document.getElementById('campos-maior-idade');
+            const camposMenorIdade = document.getElementById('campos-menor-idade');
+            
+            if (idadeInput && camposMaiorIdade && camposMenorIdade) {
+                const idade = parseInt(idadeInput.value);
+                
+                if (idade >= 18) {
+                    camposMaiorIdade.style.display = 'block';
+                    camposMenorIdade.style.display = 'none';
+                } else if (idade >= 3 && idade < 18) {
+                    camposMaiorIdade.style.display = 'none';
+                    camposMenorIdade.style.display = 'block';
+                } else {
+                    camposMaiorIdade.style.display = 'none';
+                    camposMenorIdade.style.display = 'none';
+                }
+            }
+        }
+
         // Manipular envio do formulário
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('login-form');
             const loginBtn = document.getElementById('login-btn');
             const loginBtnText = document.getElementById('login-btn-text');
             const loginSpinner = document.getElementById('login-spinner');
+            
+            // Adicionar listener para mudança de idade
+            const idadeInput = document.getElementById('idade');
+            if (idadeInput) {
+                idadeInput.addEventListener('input', toggleFieldsByAge);
+                idadeInput.addEventListener('change', toggleFieldsByAge);
+            }
 
             if (form) {
                 form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    if (!validateForm()) {
-                        showFeedback('Por favor, corrija os erros no formulário.', 'error');
-                        return;
-                    }
-
                     // Mostrar loading
                     loginBtn.disabled = true;
                     loginBtnText.style.display = 'none';
                     loginSpinner.classList.remove('hidden');
 
-                    // Simular envio (remover em produção)
-                    setTimeout(() => {
-                        showFeedback('Formulário enviado com sucesso!', 'success');
-                        setTimeout(() => {
-                            form.submit();
-                        }, 1000);
-                    }, 1000);
+                    // Permitir envio normal do formulário
+                    // Não usar preventDefault() para permitir o envio
                 });
             }
 

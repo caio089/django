@@ -1,0 +1,341 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🥋 Academia de Judô - Planos Premium</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        judo: {
+                            gray: '#6B7280',
+                            blue: '#3B82F6',
+                            yellow: '#FBBF24',
+                            orange: '#F97316',
+                            green: '#10B981',
+                            purple: '#8B5CF6',
+                            brown: '#92400E'
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['DM Sans', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+        .font-league { font-family: 'DM Sans', system-ui, sans-serif; }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #0c1426 0%, #1e1b4b 50%, #312e81 100%);
+            min-height: 100vh;
+        }
+        
+        .pricing-card {
+            background: linear-gradient(145deg, #1e293b 0%, #334155 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+        
+        .pricing-card.popular {
+            background: linear-gradient(145deg, #1e40af 0%, #3b82f6 100%);
+            border-color: #3b82f6;
+            position: relative;
+        }
+        
+        .pricing-card.popular::before {
+            content: 'MAIS POPULAR';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, #f59e0b, #f97316);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .feature-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+        }
+        
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .price-highlight {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .btn-premium {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+        }
+        
+        .discount-badge {
+            background: linear-gradient(90deg, #ef4444, #f97316);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        .judo-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+
+<body class="font-display">
+    <!-- Header -->
+    <div class="hero-section relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-purple-900/20"></div>
+        <div class="absolute top-20 left-10 w-20 h-20 bg-blue-500/10 rounded-full blur-xl"></div>
+        <div class="absolute bottom-20 right-10 w-32 h-32 bg-purple-500/10 rounded-full blur-xl"></div>
+        
+        <!-- Navigation -->
+        <nav class="relative z-10 p-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <img src="{% static 'judo.png' %}" alt="Judô" class="w-12 h-12 opacity-80" />
+                    <h1 class="text-2xl font-bold text-white">🥋 Academia de Judô</h1>
+                </div>
+                <a href="{% url 'index' %}" class="text-white hover:text-blue-300 transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i>Voltar ao Site
+                </a>
+            </div>
+        </nav>
+        
+        <!-- Hero Content -->
+        <div class="relative z-10 text-center py-20 px-6">
+            <div class="judo-icon mb-8">
+                <img src="{% static 'judo.png' %}" alt="Judô" class="w-32 h-32 md:w-40 md:h-40 mx-auto opacity-60" />
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
+                Desbloqueie o <span class="price-highlight">Poder do Judô</span>
+            </h1>
+            
+            <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
+                Acesse conteúdo exclusivo, técnicas avançadas, quizzes interativos e muito mais. 
+                Torne-se um verdadeiro mestre do Judô!
+            </p>
+            
+            <!-- Pricing Cards -->
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                
+                <!-- Plano Mensal -->
+                <div class="pricing-card rounded-2xl p-8">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-white mb-4">Plano Mensal</h3>
+                        <div class="mb-4">
+                            <span class="text-5xl font-bold text-white">R$ 29</span>
+                            <span class="text-gray-400">/mês</span>
+                        </div>
+                        <div class="discount-badge inline-block px-4 py-2 rounded-full text-white text-sm font-bold">
+                            Sem Desconto
+                        </div>
+                    </div>
+                    
+                    <ul class="feature-list text-gray-300 mb-8">
+                        <li>🎥 <strong>Vídeos exclusivos</strong> de técnicas avançadas</li>
+                        <li>🧠 <strong>Quiz interativo</strong> para testar conhecimentos</li>
+                        <li>📚 <strong>Forma didática</strong> e fácil de aprender</li>
+                        <li>🎯 <strong>Facilidade no aprendizado</strong> com vídeos explicativos</li>
+                        <li>🥋 <strong>Acesso a todas as faixas</strong> do Judô</li>
+                        <li>🔄 <strong>Rolamentos do Judô</strong> em vídeo</li>
+                        <li>📖 <strong>História do Judô</strong> completa</li>
+                        <li>🇯🇵 <strong>Palavras em Japonês</strong> com pronúncia</li>
+                        <li>📋 <strong>Regras do Judô</strong> atualizadas</li>
+                        <li>📧 <strong>Suporte por email</strong></li>
+                    </ul>
+                    
+                    <a href="{% url 'simulate_payment' 'monthly' %}" class="btn-premium w-full py-4 rounded-xl text-white font-bold text-lg block text-center">
+                        Escolher Mensal
+                    </a>
+                </div>
+                
+                <!-- Plano Semestral - MAIS POPULAR -->
+                <div class="pricing-card popular rounded-2xl p-8">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-white mb-4">Plano Semestral</h3>
+                        <div class="mb-4">
+                            <span class="text-5xl font-bold text-white">R$ 149</span>
+                            <span class="text-gray-300">/6 meses</span>
+                        </div>
+                        <div class="discount-badge inline-block px-4 py-2 rounded-full text-white text-sm font-bold">
+                            14% de Desconto
+                        </div>
+                        <div class="text-sm text-gray-300 mt-2">
+                            <span class="line-through">R$ 174</span> - Economize R$ 25
+                        </div>
+                    </div>
+                    
+                    <ul class="feature-list text-gray-300 mb-8">
+                        <li>🎥 <strong>Vídeos exclusivos</strong> de técnicas avançadas</li>
+                        <li>🧠 <strong>Quiz interativo</strong> para testar conhecimentos</li>
+                        <li>📚 <strong>Forma didática</strong> e fácil de aprender</li>
+                        <li>🎯 <strong>Facilidade no aprendizado</strong> com vídeos explicativos</li>
+                        <li>🥋 <strong>Acesso a todas as faixas</strong> do Judô</li>
+                        <li>🔄 <strong>Rolamentos do Judô</strong> em vídeo</li>
+                        <li>📖 <strong>História do Judô</strong> completa</li>
+                        <li>🇯🇵 <strong>Palavras em Japonês</strong> com pronúncia</li>
+                        <li>📋 <strong>Regras do Judô</strong> atualizadas</li>
+                        <li>⭐ <strong>Conteúdo exclusivo</strong> premium</li>
+                        <li>🚀 <strong>Suporte prioritário</strong></li>
+                        <li>🏆 <strong>Certificado digital</strong></li>
+                    </ul>
+                    
+                    <a href="{% url 'simulate_payment' 'semester' %}" class="btn-premium w-full py-4 rounded-xl text-white font-bold text-lg block text-center">
+                        Escolher Semestral
+                    </a>
+                </div>
+                
+                <!-- Plano Anual -->
+                <div class="pricing-card rounded-2xl p-8">
+                    <div class="text-center mb-8">
+                        <h3 class="text-2xl font-bold text-white mb-4">Plano Anual</h3>
+                        <div class="mb-4">
+                            <span class="text-5xl font-bold text-white">R$ 249</span>
+                            <span class="text-gray-400">/ano</span>
+                        </div>
+                        <div class="discount-badge inline-block px-4 py-2 rounded-full text-white text-sm font-bold">
+                            28% de Desconto
+                        </div>
+                        <div class="text-sm text-gray-300 mt-2">
+                            <span class="line-through">R$ 348</span> - Economize R$ 99
+                        </div>
+                    </div>
+                    
+                    <ul class="feature-list text-gray-300 mb-8">
+                        <li>🎥 <strong>Vídeos exclusivos</strong> de técnicas avançadas</li>
+                        <li>🧠 <strong>Quiz interativo</strong> para testar conhecimentos</li>
+                        <li>📚 <strong>Forma didática</strong> e fácil de aprender</li>
+                        <li>🎯 <strong>Facilidade no aprendizado</strong> com vídeos explicativos</li>
+                        <li>🥋 <strong>Acesso a todas as faixas</strong> do Judô</li>
+                        <li>🔄 <strong>Rolamentos do Judô</strong> em vídeo</li>
+                        <li>📖 <strong>História do Judô</strong> completa</li>
+                        <li>🇯🇵 <strong>Palavras em Japonês</strong> com pronúncia</li>
+                        <li>📋 <strong>Regras do Judô</strong> atualizadas</li>
+                        <li>⭐ <strong>Conteúdo exclusivo</strong> premium</li>
+                        <li>🚀 <strong>Suporte prioritário</strong></li>
+                        <li>🏆 <strong>Certificado digital</strong></li>
+                        <li>👨‍🏫 <strong>Mentoria personalizada</strong></li>
+                        <li>♾️ <strong>Acesso vitalício</strong></li>
+                    </ul>
+                    
+                    <a href="{% url 'simulate_payment' 'annual' %}" class="btn-premium w-full py-4 rounded-xl text-white font-bold text-lg block text-center">
+                        Escolher Anual
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Benefícios e Garantia -->
+            <div class="mt-16 space-y-8">
+                <!-- Benefícios Principais -->
+                <div class="bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-2xl p-8 max-w-4xl mx-auto">
+                    <h3 class="text-3xl font-bold text-white mb-6 text-center">
+                        🥋 O que você vai aprender:
+                    </h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="text-center">
+                            <div class="text-4xl mb-3">🎥</div>
+                            <h4 class="text-xl font-bold text-white mb-2">Vídeos Exclusivos</h4>
+                            <p class="text-gray-300">Técnicas avançadas em vídeo com explicações detalhadas</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl mb-3">🧠</div>
+                            <h4 class="text-xl font-bold text-white mb-2">Quiz Interativo</h4>
+                            <p class="text-gray-300">Teste seus conhecimentos e acompanhe seu progresso</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl mb-3">📚</div>
+                            <h4 class="text-xl font-bold text-white mb-2">Aprendizado Didático</h4>
+                            <p class="text-gray-300">Forma fácil e didática de aprender Judô</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl mb-3">🎯</div>
+                            <h4 class="text-xl font-bold text-white mb-2">Facilidade no Aprendizado</h4>
+                            <p class="text-gray-300">Vídeos explicativos que facilitam o entendimento</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Garantia -->
+                <div class="bg-green-500/10 border border-green-500/20 rounded-2xl p-8 max-w-2xl mx-auto">
+                    <div class="flex items-center justify-center mb-4">
+                        <i class="fas fa-shield-alt text-green-400 text-3xl mr-3"></i>
+                        <h3 class="text-2xl font-bold text-white">Garantia de 30 Dias</h3>
+                    </div>
+                    <p class="text-gray-300 text-center">
+                        Não gostou? Cancele em até 30 dias e receba seu dinheiro de volta, 
+                        sem perguntas!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-8">
+        <div class="text-center text-gray-400">
+            <p>&copy; 2024 Academia de Judô. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Adicionar funcionalidade aos botões
+        document.querySelectorAll('.btn-premium').forEach(button => {
+            button.addEventListener('click', function() {
+                // Aqui será implementada a integração com o gateway de pagamento
+                alert('Redirecionando para o pagamento...');
+            });
+        });
+    </script>
+</body>
+</html>

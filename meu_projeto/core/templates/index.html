@@ -98,6 +98,26 @@
         
         .faixa-card {
             transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Animação para mensagens */
+        @keyframes fade-in-down {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -20px);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+        
+        .animate-fade-in-down {
+            animation: fade-in-down 0.5s ease-out;
+        }
             position: relative;
             overflow: hidden;
             cursor: pointer;
@@ -136,20 +156,7 @@
             margin-top: 0.25rem;
         }
         
-        .faixa-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s ease;
-        }
-        
-        .faixa-card:hover::before {
-            left: 100%;
-        }
+        /* Removido efeito de rastro branco */
         
         .faixa-card:hover {
             transform: translateY(-5px) scale(1.02);
@@ -398,32 +405,31 @@
             visibility: visible !important;
         }
         
-        /* Pulse effect for cards */
-        .faixa-card::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s ease, height 0.6s ease;
-        }
+        /* Removido efeito de pulse que causava rastros */
         
-        .faixa-card:hover::after {
-            width: 300px;
-            height: 300px;
-        }
-        
-        /* Glow effect */
+        /* Glow effect simplificado */
         .faixa-card {
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15), 0 0 0 0 rgba(255,255,255,0.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
         
         .faixa-card:hover {
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.3) !important;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+        }
+        
+        /* Melhorar cursor e interações */
+        .faixa-card {
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        
+        .faixa-card * {
+            pointer-events: none;
+        }
+        
+        .faixa-card a {
+            pointer-events: auto;
         }
         body {
             background:
@@ -894,6 +900,35 @@
     </style>
 </head>
 <body class="font-display">
+    <!-- Sistema de Mensagens -->
+    {% if messages %}
+        <div id="messages-container" class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 space-y-2">
+            {% for message in messages %}
+                <div class="message-item px-6 py-3 rounded-lg shadow-lg text-white font-medium text-sm max-w-md mx-auto {% if message.tags == 'success' %}bg-green-600{% elif message.tags == 'error' %}bg-red-600{% elif message.tags == 'warning' %}bg-yellow-600{% else %}bg-blue-600{% endif %} animate-fade-in-down">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+        
+        <script>
+            // Auto-remover mensagens após 5 segundos
+            document.addEventListener('DOMContentLoaded', function() {
+                const messages = document.querySelectorAll('.message-item');
+                messages.forEach(function(message) {
+                    setTimeout(function() {
+                        message.style.opacity = '0';
+                        message.style.transform = 'translate(-50%, -20px)';
+                        setTimeout(function() {
+                            if (message.parentNode) {
+                                message.remove();
+                            }
+                        }, 300);
+                    }, 5000);
+                });
+            });
+        </script>
+    {% endif %}
+    
     <!-- Botão de Logout -->
     <form action="{% url 'logout' %}" method="post" class="fixed top-6 right-32 lg:right-32 left-6 lg:left-auto z-50" style="position: fixed !important;">
         {% csrf_token %}
@@ -1254,26 +1289,47 @@
 
             // Function to open sidebar
             function openSidebar() {
-                sidebar.classList.add('open');
-                sidebarOverlay.classList.add('open');
-                menuToggle.classList.add('active');
-                document.body.style.overflow = 'hidden';
+                if (!sidebar.classList.contains('open')) {
+                    sidebar.classList.add('open');
+                    sidebarOverlay.classList.add('open');
+                    menuToggle.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
             }
 
             // Function to close sidebar
             function closeSidebarFunc() {
-                sidebar.classList.remove('open');
-                sidebarOverlay.classList.remove('open');
-                menuToggle.classList.remove('active');
-                document.body.style.overflow = 'auto';
+                if (sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                    sidebarOverlay.classList.remove('open');
+                    menuToggle.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
             }
 
+            // Debounce para prevenir cliques múltiplos
+            let isSidebarTransitioning = false;
+            
             // Event listeners for sidebar
             if (menuToggle) {
                 menuToggle.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    openSidebar();
+                    
+                    if (isSidebarTransitioning) return;
+                    
+                    isSidebarTransitioning = true;
+                    
+                    if (sidebar.classList.contains('open')) {
+                        closeSidebarFunc();
+                    } else {
+                        openSidebar();
+                    }
+                    
+                    // Reset após 300ms
+                    setTimeout(() => {
+                        isSidebarTransitioning = false;
+                    }, 300);
                 });
             }
 
@@ -1296,15 +1352,6 @@
             // Keyboard navigation for sidebar
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape' && sidebar.classList.contains('open')) {
-                    closeSidebarFunc();
-                }
-            });
-
-            // Close sidebar when clicking outside
-            document.addEventListener('click', function(e) {
-                if (sidebar.classList.contains('open') && 
-                    !sidebar.contains(e.target) && 
-                    !menuToggle.contains(e.target)) {
                     closeSidebarFunc();
                 }
             });

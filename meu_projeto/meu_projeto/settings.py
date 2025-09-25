@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.admin','django.contrib.auth','django.contrib.contenttypes',
     'django.contrib.sessions','django.contrib.messages','django.contrib.staticfiles',
     'core','pag1','pag2','pag3','pag4','pag5','pag6','pag7',
-    'home','ukemis','quiz','historia','palavras','regras',
+    'home','ukemis','quiz','historia','palavras','regras','payments',
 ]
 
 MIDDLEWARE = [
@@ -39,6 +39,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'payments.middleware.PaymentMiddleware',
 ]
 
 ROOT_URLCONF = 'meu_projeto.urls'
@@ -102,3 +103,6 @@ else:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'login'
+
+# Configuração para desenvolvimento
+DEVELOPMENT_MODE = True  # Mude para False em produção

@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🥋 Academia de Judô - Acesso Premium Necessário</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+        .font-league { font-family: 'DM Sans', system-ui, sans-serif; }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #0c1426 0%, #1e1b4b 50%, #312e81 100%);
+            min-height: 100vh;
+        }
+        
+        .lock-icon {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .premium-card {
+            background: linear-gradient(145deg, #1e293b 0%, #334155 100%);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .premium-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(59, 130, 246, 0.6);
+        }
+        
+        .btn-premium {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+        }
+    </style>
+</head>
+
+<body class="font-league">
+    <!-- Header -->
+    <div class="hero-section relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-purple-900/20"></div>
+        <div class="absolute top-20 left-10 w-20 h-20 bg-blue-500/10 rounded-full blur-xl"></div>
+        <div class="absolute bottom-20 right-10 w-32 h-32 bg-purple-500/10 rounded-full blur-xl"></div>
+        
+        <!-- Navigation -->
+        <nav class="relative z-10 p-6">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <img src="{% static 'judo.png' %}" alt="Judô" class="w-12 h-12 opacity-80" />
+                    <h1 class="text-2xl font-bold text-white">🥋 Academia de Judô</h1>
+                </div>
+                <a href="{% url 'index' %}" class="text-white hover:text-blue-300 transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i>Voltar ao Site
+                </a>
+            </div>
+        </nav>
+        
+        <!-- Main Content -->
+        <div class="relative z-10 text-center py-20 px-6">
+            <!-- Lock Icon -->
+            <div class="lock-icon mb-8">
+                <div class="w-24 h-24 mx-auto bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
+                    <i class="fas fa-lock text-white text-4xl"></i>
+                </div>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">
+                Conteúdo <span class="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">Premium</span>
+            </h1>
+            
+            <p class="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
+                Este conteúdo é exclusivo para membros premium. 
+                Desbloqueie acesso completo a todas as funcionalidades!
+            </p>
+            
+            <!-- Premium Features -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
+                <div class="premium-card rounded-2xl p-6">
+                    <div class="text-center">
+                        <i class="fas fa-graduation-cap text-4xl text-blue-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-white mb-2">Todas as Faixas</h3>
+                        <p class="text-gray-300">Acesso completo a todas as faixas do Judô</p>
+                    </div>
+                </div>
+                
+                <div class="premium-card rounded-2xl p-6">
+                    <div class="text-center">
+                        <i class="fas fa-question-circle text-4xl text-green-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-white mb-2">Quiz Interativo</h3>
+                        <p class="text-gray-300">Teste seus conhecimentos com quizzes exclusivos</p>
+                    </div>
+                </div>
+                
+                <div class="premium-card rounded-2xl p-6">
+                    <div class="text-center">
+                        <i class="fas fa-book text-4xl text-purple-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-white mb-2">Conteúdo Exclusivo</h3>
+                        <p class="text-gray-300">História, regras e técnicas avançadas</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="{% url 'pricing' %}" class="btn-premium px-8 py-4 rounded-xl text-white font-bold text-lg">
+                    <i class="fas fa-crown mr-2"></i>
+                    Ver Planos Premium
+                </a>
+                
+                <a href="{% url 'index' %}" class="px-8 py-4 rounded-xl border border-gray-600 text-gray-300 font-bold text-lg hover:bg-gray-800 transition-colors">
+                    <i class="fas fa-home mr-2"></i>
+                    Voltar ao Início
+                </a>
+            </div>
+            
+            <!-- Benefits -->
+            <div class="mt-16 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-2xl p-8 max-w-2xl mx-auto">
+                <h3 class="text-2xl font-bold text-white mb-4">
+                    <i class="fas fa-star text-yellow-400 mr-2"></i>
+                    Por que escolher o Premium?
+                </h3>
+                <ul class="text-gray-300 space-y-2">
+                    <li><i class="fas fa-check text-green-400 mr-2"></i>Acesso a todo o conteúdo exclusivo</li>
+                    <li><i class="fas fa-check text-green-400 mr-2"></i>Suporte prioritário</li>
+                    <li><i class="fas fa-check text-green-400 mr-2"></i>Certificado digital</li>
+                    <li><i class="fas fa-check text-green-400 mr-2"></i>Conteúdo atualizado regularmente</li>
+                    <li><i class="fas fa-check text-green-400 mr-2"></i>Garantia de 30 dias</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-8">
+        <div class="text-center text-gray-400">
+            <p>&copy; 2024 Academia de Judô. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

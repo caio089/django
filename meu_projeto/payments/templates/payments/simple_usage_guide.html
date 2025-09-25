@@ -1,0 +1,167 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Uso Simplificado - Sistema de Progresso</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold mb-8">🥋 Sistema de Progresso Simplificado</h1>
+        
+        <!-- Como usar -->
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+            <h2 class="text-xl font-bold mb-4">📝 Como Usar</h2>
+            <div class="space-y-4">
+                <div class="bg-blue-50 p-4 rounded">
+                    <h3 class="font-bold text-blue-800">1. Incluir o Script</h3>
+                    <code class="text-sm bg-gray-100 p-2 rounded block mt-2">
+                        &lt;script src="{% static 'payments/js/simple_progress.js' %}"&gt;&lt;/script&gt;
+                    </code>
+                </div>
+                
+                <div class="bg-green-50 p-4 rounded">
+                    <h3 class="font-bold text-green-800">2. Login do Usuário</h3>
+                    <code class="text-sm bg-gray-100 p-2 rounded block mt-2">
+                        simpleProgress.onUserLogin({id: 1, username: 'usuario', email: 'usuario@email.com'});
+                    </code>
+                </div>
+                
+                <div class="bg-yellow-50 p-4 rounded">
+                    <h3 class="font-bold text-yellow-800">3. Salvar Progresso</h3>
+                    <div class="space-y-2 mt-2">
+                        <code class="text-sm bg-gray-100 p-2 rounded block">
+                            // Salvar progresso de faixa<br>
+                            simpleProgress.saveFaixaProgress('cinza', 50, 10);
+                        </code>
+                        <code class="text-sm bg-gray-100 p-2 rounded block">
+                            // Salvar progresso do quiz<br>
+                            simpleProgress.saveQuizProgress(75, 15, 20);
+                        </code>
+                        <code class="text-sm bg-gray-100 p-2 rounded block">
+                            // Salvar progresso dos rolamentos<br>
+                            simpleProgress.saveRolamentosProgress(60, 9, 15);
+                        </code>
+                    </div>
+                </div>
+                
+                <div class="bg-purple-50 p-4 rounded">
+                    <h3 class="font-bold text-purple-800">4. Carregar Progresso</h3>
+                    <code class="text-sm bg-gray-100 p-2 rounded block mt-2">
+                        simpleProgress.loadProgress();
+                    </code>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exemplos práticos -->
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+            <h2 class="text-xl font-bold mb-4">🎯 Exemplos Práticos</h2>
+            
+            <div class="space-y-6">
+                <!-- Exemplo 1: Faixa -->
+                <div class="border-l-4 border-blue-500 pl-4">
+                    <h3 class="font-bold text-blue-800">Faixa Cinza - 50% Completa</h3>
+                    <p class="text-gray-600 text-sm">Quando o usuário completa 50% da faixa cinza:</p>
+                    <code class="text-sm bg-gray-100 p-2 rounded block mt-2">
+                        simpleProgress.saveFaixaProgress('cinza', 50, 30); // 50%, 30 minutos
+                    </code>
+                </div>
+                
+                <!-- Exemplo 2: Quiz -->
+                <div class="border-l-4 border-green-500 pl-4">
+                    <h3 class="font-bold text-green-800">Quiz - 15/20 Corretas</h3>
+                    <p class="text-gray-600 text-sm">Quando o usuário responde 15 de 20 perguntas corretas:</p>
+                    <code class="text-sm bg-gray-100 p-2 rounded block mt-2">
+                        simpleProgress.saveQuizProgress(75, 15, 20); // 75%, 15 corretas, 20 total
+                    </code>
+                </div>
+                
+                <!-- Exemplo 3: Rolamentos -->
+                <div class="border-l-4 border-purple-500 pl-4">
+                    <h3 class="font-bold text-purple-800">Rolamentos - 9/15 Completos</h3>
+                    <p class="text-gray-600 text-sm">Quando o usuário completa 9 de 15 rolamentos:</p>
+                    <code class="text-sm bg-gray-100 p-2 rounded block mt-2">
+                        simpleProgress.saveRolamentosProgress(60, 9, 15); // 60%, 9 completos, 15 total
+                    </code>
+                </div>
+            </div>
+        </div>
+        
+        <!-- HTML necessário -->
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+            <h2 class="text-xl font-bold mb-4">🏗️ HTML Necessário</h2>
+            
+            <div class="space-y-4">
+                <div>
+                    <h3 class="font-bold text-gray-800">Barras de Progresso:</h3>
+                    <pre class="text-sm bg-gray-100 p-4 rounded mt-2 overflow-x-auto"><code>&lt;!-- Faixa --&gt;
+&lt;div class="progress-container" data-faixa="cinza"&gt;
+    &lt;div class="progress-bar" style="width: 0%"&gt;&lt;/div&gt;
+    &lt;span class="progress-text"&gt;0%&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Quiz --&gt;
+&lt;div class="quiz-progress-container"&gt;
+    &lt;div class="quiz-progress-bar" style="width: 0%"&gt;&lt;/div&gt;
+    &lt;span class="quiz-progress-text"&gt;0%&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Rolamentos --&gt;
+&lt;div class="rolamentos-progress-container"&gt;
+    &lt;div class="rolamentos-progress-bar" style="width: 0%"&gt;&lt;/div&gt;
+    &lt;span class="rolamentos-progress-text"&gt;0%&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Vantagens -->
+        <div class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-xl font-bold mb-4">✅ Vantagens do Sistema Simplificado</h2>
+            
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="space-y-2">
+                    <div class="flex items-center">
+                        <span class="text-green-500 mr-2">✓</span>
+                        <span>Sem loops infinitos</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-green-500 mr-2">✓</span>
+                        <span>Sem auto-save desnecessário</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-green-500 mr-2">✓</span>
+                        <span>Salva apenas quando necessário</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-green-500 mr-2">✓</span>
+                        <span>Performance otimizada</span>
+                    </div>
+                </div>
+                
+                <div class="space-y-2">
+                    <div class="flex items-center">
+                        <span class="text-green-500 mr-2">✓</span>
+                        <span>Código limpo e simples</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-green-500 mr-2">✓</span>
+                        <span>Fácil de integrar</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-green-500 mr-2">✓</span>
+                        <span>Sem verificações complexas</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-green-500 mr-2">✓</span>
+                        <span>Controle total do desenvolvedor</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
