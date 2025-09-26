@@ -43,3 +43,4 @@ class Command(BaseCommand):
                 
         except User.DoesNotExist:
             self.stdout.write('  ❌ Usuário não encontrado')
+

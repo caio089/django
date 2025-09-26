@@ -1222,17 +1222,55 @@
                         </div>
                     </div>
                     {% else %}
-                        <!-- Mensagem para usuários sem acesso premium -->
-                        <div class="text-center p-8 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-2xl border border-red-400/30 backdrop-blur-sm">
-                            <div class="w-20 h-20 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <span class="text-4xl">🔒</span>
-                            </div>
-                            <h3 class="text-2xl font-bold text-white mb-2">Conteúdo Premium</h3>
-                            <p class="text-gray-300 mb-6">Para acessar todas as faixas e técnicas, você precisa de uma assinatura premium.</p>
-                            <a href="/payments/planos/" class="inline-block bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-3 px-8 rounded-xl transition duration-300 transform hover:scale-105 shadow-lg">
-                                💎 Assinar Premium
-                            </a>
+                        <!-- Belts Grid - Layout Original 3-3-1 (sem assinatura) -->
+                        <div class="grid grid-cols-3 gap-3 sm:gap-4 lg:gap-6 justify-items-center">
+                        <!-- Primeira linha: 3 faixas -->
+                        <div class="faixa-card bg-judo-gray rounded-2xl p-4 sm:p-5 lg:p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl relative cursor-pointer" onclick="abrirModalPagamento()">
+                            <img src="{% static 'faixa-cinza.png' %}" alt="Faixa Cinza" class="mx-auto mb-2 sm:mb-3" style="height: 40px; width: auto;" />
+                            <div class="text-sm sm:text-base">Faixa Cinza  Ponteira Cinza</div>
+                            <div class="text-xs sm:text-sm opacity-80"></div>
                         </div>
+                        
+                        <div class="faixa-card bg-judo-blue rounded-2xl p-4 sm:p-5 lg:p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="abrirModalPagamento()">
+                            <img src="{% static 'faixa-azul.png' %}" alt="Faixa Azul" class="mx-auto mb-2 sm:mb-3" style="height: 40px; width: auto;" />
+                            <div class="text-sm sm:text-base">Faixa Azul  Ponteira Azul</div>
+                            <div class="text-xs sm:text-sm opacity-80"></div>
+                        </div>
+                        
+                        <div class="faixa-card bg-judo-yellow rounded-2xl p-4 sm:p-5 lg:p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="abrirModalPagamento()">
+                            <img src="{% static 'faixa-amarela.png' %}" alt="Faixa Amarela" class="mx-auto mb-2 sm:mb-3" style="height: 40px; width: auto;" />
+                            <div class="text-white text-sm sm:text-base">Faixa Amarela  Ponteira Amarela</div>
+                            <div class="text-xs sm:text-sm opacity-80"></div>
+                        </div>
+                        
+                        <!-- Segunda linha: 3 faixas -->
+                        <div class="faixa-card bg-judo-orange rounded-2xl p-4 sm:p-5 lg:p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="abrirModalPagamento()">
+                            <img src="{% static 'faixa-laranja.png' %}" alt="Faixa Laranja" class="mx-auto mb-2 sm:mb-3" style="height: 40px; width: auto;" />
+                            <div class="text-sm sm:text-base">Faixa Laranja  Ponteira Laranja</div>
+                            <div class="text-xs sm:text-sm opacity-80"></div>
+                        </div>
+                        
+                        <div class="faixa-card bg-judo-green rounded-2xl p-4 sm:p-5 lg:p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="abrirModalPagamento()">
+                            <img src="{% static 'faixa-verde.png' %}" alt="Faixa Verde" class="mx-auto mb-2 sm:mb-3" style="height: 40px; width: auto;" />
+                            <div class="text-sm sm:text-base">Faixa Verde</div>
+                            <div class="text-xs sm:text-sm opacity-80"></div>
+                        </div>
+                        
+                        <div class="faixa-card bg-judo-purple rounded-2xl p-4 sm:p-5 lg:p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="abrirModalPagamento()">
+                            <img src="{% static 'faixa-roxa.png' %}" alt="Faixa Roxa" class="mx-auto mb-2 sm:mb-3" style="height: 40px; width: auto;" />
+                            <div class="text-sm sm:text-base">Faixa Roxa</div>
+                            <div class="text-xs sm:text-sm opacity-80"></div>
+                        </div>
+                        
+                        <!-- Terceira linha: 1 faixa centralizada -->
+                        <div class="col-span-3 flex justify-center">
+                            <div class="faixa-card bg-judo-brown rounded-2xl p-4 sm:p-5 lg:p-6 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="abrirModalPagamento()">
+                                <img src="{% static 'faixa-marrom.png' %}" alt="Faixa Marrom" class="mx-auto mb-2 sm:mb-3" style="height: 40px; width: auto;" />
+                                <div class="text-sm sm:text-base">Faixa Marrom</div>
+                                <div class="text-xs sm:text-sm opacity-80"></div>
+                            </div>
+                        </div>
+                    </div>
                     {% endif %}
                 </div>
             </div>
@@ -1284,69 +1322,121 @@
                 
                 <!-- Faixas Grid para Mobile -->
                 <div class="flex items-center justify-center">
-                    <div class="grid grid-cols-2 gap-4 justify-items-center">
-                        <!-- Primeira linha: 2 faixas -->
-                        <a href="/pagina1/" class="block">
-                            <div class="faixa-card bg-judo-gray rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl relative">
+                    {% if assinatura %}
+                        <div class="grid grid-cols-2 gap-4 justify-items-center">
+                            <!-- Primeira linha: 2 faixas -->
+                            <a href="/pagina1/" class="block">
+                                <div class="faixa-card bg-judo-gray rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl relative">
+                                    <img src="{% static 'faixa-cinza.png' %}" alt="Faixa Cinza" class="mx-auto mb-2" style="height: 30px; width: auto;" />
+                                    <div class="text-xs">Faixa Cinza</div>
+                                    <div class="text-xs opacity-80">Ponteira Cinza</div>
+                                </div>
+                            </a>
+                            
+                            <a href="/pagina2/" class="block">
+                                <div class="faixa-card bg-judo-blue rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl">
+                                    <img src="{% static 'faixa-azul.png' %}" alt="Faixa Azul" class="mx-auto mb-2" style="height: 30px; width: auto;" />
+                                    <div class="text-xs">Faixa Azul</div>
+                                    <div class="text-xs opacity-80">Ponteira Azul</div>
+                                </div>
+                            </a>
+                            
+                            <!-- Segunda linha: 2 faixas -->
+                            <a href="/pagina3/" class="block">
+                                <div class="faixa-card bg-judo-yellow rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl">
+                                    <img src="{% static 'faixa-amarela.png' %}" alt="Faixa Amarela" class="mx-auto mb-2" style="height: 30px; width: auto;" />
+                                    <div class="text-white text-xs">Faixa Amarela</div>
+                                    <div class="text-xs opacity-80">Ponteira Amarela</div>
+                                </div>
+                            </a>
+                            
+                            <a href="/pagina4/" class="block">
+                                <div class="faixa-card bg-judo-orange rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl">
+                                    <img src="{% static 'faixa-laranja.png' %}" alt="Faixa Laranja" class="mx-auto mb-2" style="height: 30px; width: auto;" />
+                                    <div class="text-xs">Faixa Laranja</div>
+                                    <div class="text-xs opacity-80">Ponteira Laranja</div>
+                                </div>
+                            </a>
+                            
+                            <!-- Terceira linha: 2 faixas -->
+                            <a href="/pagina5/" class="block">
+                                <div class="faixa-card bg-judo-green rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl">
+                                    <img src="{% static 'faixa-verde.png' %}" alt="Faixa Verde" class="mx-auto mb-2" style="height: 30px; width: auto;" />
+                                    <div class="text-xs">Faixa Verde</div>
+                                    <div class="text-xs opacity-80"></div>
+                                </div>
+                            </a>
+                            
+                            <a href="/pagina6/" class="block">
+                                <div class="faixa-card bg-judo-purple rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl">
+                                    <img src="{% static 'faixa-roxa.png' %}" alt="Faixa Roxa" class="mx-auto mb-2" style="height: 30px; width: auto;" />
+                                    <div class="text-xs">Faixa Roxa</div>
+                                    <div class="text-xs opacity-80"></div>
+                                </div>
+                            </a>
+                            
+                            <!-- Quarta linha: 1 faixa centralizada -->
+                            <div class="col-span-2 flex justify-center">
+                                <a href="/pagina7/" class="block">
+                                    <div class="faixa-card bg-judo-brown rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl">
+                                        <img src="{% static 'faixa-marrom.png' %}" alt="Faixa Marrom" class="mx-auto mb-2" style="height: 30px; width: auto;" />
+                                        <div class="text-xs">Faixa Marrom</div>
+                                        <div class="text-xs opacity-80"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="grid grid-cols-2 gap-4 justify-items-center">
+                            <!-- Primeira linha: 2 faixas -->
+                            <div class="faixa-card bg-judo-gray rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl relative cursor-pointer" onclick="abrirModalPagamento()">
                                 <img src="{% static 'faixa-cinza.png' %}" alt="Faixa Cinza" class="mx-auto mb-2" style="height: 30px; width: auto;" />
                                 <div class="text-xs">Faixa Cinza</div>
                                 <div class="text-xs opacity-80">Ponteira Cinza</div>
                             </div>
-                        </a>
-                        
-                        <a href="/pagina2/" class="block">
-                            <div class="faixa-card bg-judo-blue rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl">
+                            
+                            <div class="faixa-card bg-judo-blue rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="abrirModalPagamento()">
                                 <img src="{% static 'faixa-azul.png' %}" alt="Faixa Azul" class="mx-auto mb-2" style="height: 30px; width: auto;" />
                                 <div class="text-xs">Faixa Azul</div>
                                 <div class="text-xs opacity-80">Ponteira Azul</div>
                             </div>
-                        </a>
-                        
-                        <!-- Segunda linha: 2 faixas -->
-                        <a href="/pagina3/" class="block">
-                            <div class="faixa-card bg-judo-yellow rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl">
+                            
+                            <!-- Segunda linha: 2 faixas -->
+                            <div class="faixa-card bg-judo-yellow rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="abrirModalPagamento()">
                                 <img src="{% static 'faixa-amarela.png' %}" alt="Faixa Amarela" class="mx-auto mb-2" style="height: 30px; width: auto;" />
                                 <div class="text-white text-xs">Faixa Amarela</div>
                                 <div class="text-xs opacity-80">Ponteira Amarela</div>
                             </div>
-                        </a>
-                        
-                        <a href="/pagina4/" class="block">
-                            <div class="faixa-card bg-judo-orange rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl">
+                            
+                            <div class="faixa-card bg-judo-orange rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="abrirModalPagamento()">
                                 <img src="{% static 'faixa-laranja.png' %}" alt="Faixa Laranja" class="mx-auto mb-2" style="height: 30px; width: auto;" />
                                 <div class="text-xs">Faixa Laranja</div>
                                 <div class="text-xs opacity-80">Ponteira Laranja</div>
                             </div>
-                        </a>
-                        
-                        <!-- Terceira linha: 2 faixas -->
-                        <a href="/pagina5/" class="block">
-                            <div class="faixa-card bg-judo-green rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl">
+                            
+                            <!-- Terceira linha: 2 faixas -->
+                            <div class="faixa-card bg-judo-green rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="abrirModalPagamento()">
                                 <img src="{% static 'faixa-verde.png' %}" alt="Faixa Verde" class="mx-auto mb-2" style="height: 30px; width: auto;" />
                                 <div class="text-xs">Faixa Verde</div>
                                 <div class="text-xs opacity-80"></div>
                             </div>
-                        </a>
-                        
-                        <a href="/pagina6/" class="block">
-                            <div class="faixa-card bg-judo-purple rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl">
+                            
+                            <div class="faixa-card bg-judo-purple rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="abrirModalPagamento()">
                                 <img src="{% static 'faixa-roxa.png' %}" alt="Faixa Roxa" class="mx-auto mb-2" style="height: 30px; width: auto;" />
                                 <div class="text-xs">Faixa Roxa</div>
                                 <div class="text-xs opacity-80"></div>
                             </div>
-                        </a>
-                        
-                        <!-- Quarta linha: 1 faixa centralizada -->
-                        <div class="col-span-2 flex justify-center">
-                            <a href="/pagina7/" class="block">
-                                <div class="faixa-card bg-judo-brown rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl">
+                            
+                            <!-- Quarta linha: 1 faixa centralizada -->
+                            <div class="col-span-2 flex justify-center">
+                                <div class="faixa-card bg-judo-brown rounded-2xl p-4 text-center text-white font-bold shadow-lg hover:shadow-2xl cursor-pointer" onclick="abrirModalPagamento()">
                                     <img src="{% static 'faixa-marrom.png' %}" alt="Faixa Marrom" class="mx-auto mb-2" style="height: 30px; width: auto;" />
                                     <div class="text-xs">Faixa Marrom</div>
                                     <div class="text-xs opacity-80"></div>
                                 </div>
-                            </a>
+                            </div>
                         </div>
-                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -1620,6 +1710,44 @@
         
         // Área de anúncios sempre visível e fixa
         console.log('Área de anúncios horizontal fixa carregada!');
+        
+        // Função para abrir modal de pagamento
+        function abrirModalPagamento() {
+            // Redirecionar para a página de planos
+            window.location.href = '/payments/planos/';
+        }
+        
+        // Verificar se o usuário tem assinatura ativa
+        function verificarAssinatura() {
+            // Esta função será chamada quando o usuário retornar do pagamento
+            // para verificar se a assinatura foi ativada
+            fetch('/payments/verificar-assinatura/', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.assinatura_ativa) {
+                    // Recarregar a página para mostrar o conteúdo liberado
+                    window.location.reload();
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao verificar assinatura:', error);
+            });
+        }
+        
+        // Verificar assinatura quando a página carrega
+        document.addEventListener('DOMContentLoaded', function() {
+            // Se veio de um pagamento, verificar se a assinatura foi ativada
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('from_payment') === 'true') {
+                verificarAssinatura();
+            }
+        });
     </script>
 </body>
 </html>

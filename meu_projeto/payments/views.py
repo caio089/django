@@ -224,11 +224,11 @@ def criar_pagamento(request, plano_id):
                 }
             },
             "back_urls": {
-                "success": f"{request.scheme}://{request.get_host()}/payments/success/",
-                "failure": f"{request.scheme}://{request.get_host()}/payments/failure/",
-                "pending": f"{request.scheme}://{request.get_host()}/payments/pending/"
+                "success": f"{request.scheme}://{request.get_host()}/payments/success/?external_reference={external_reference}",
+                "failure": f"{request.scheme}://{request.get_host()}/payments/failure/?external_reference={external_reference}",
+                "pending": f"{request.scheme}://{request.get_host()}/payments/pending/?external_reference={external_reference}"
             },
-            "auto_return": "approved",
+            "auto_return": "all",
             "external_reference": external_reference,
             "notification_url": config.webhook_url,
             "payment_methods": {
@@ -238,11 +238,35 @@ def criar_pagamento(request, plano_id):
             }
         }
         
-        # Para desenvolvimento, simular criação de preferência
-        logger.info(f"Criando preferência com dados: {preference_data}")
+        # Criar preferência real no Mercado Pago
+        logger.info(f"Criando preferência real no Mercado Pago com dados: {preference_data}")
         
-        # Simular resposta do Mercado Pago para desenvolvimento
-        preference_id = f"pref_{external_reference}"
+        try:
+            # Criar preferência real no Mercado Pago
+            logger.info(f"Tentando criar preferência com SDK: {sdk}")
+            logger.info(f"Dados da preferência: {preference_data}")
+            
+            preference_result = sdk.preference().create(preference_data)
+            logger.info(f"Resultado da criação: {preference_result}")
+            
+            if preference_result["status"] == 201:
+                preference = preference_result["response"]
+                preference_id = preference["id"]
+                logger.info(f"Preferência criada com sucesso: {preference_id}")
+            else:
+                logger.error(f"Erro ao criar preferência: {preference_result}")
+                return JsonResponse({
+                    'success': False,
+                    'error': f'Erro ao criar preferência no Mercado Pago: {preference_result.get("response", {}).get("message", "Erro desconhecido")}'
+                })
+        except Exception as e:
+            logger.error(f"Erro ao criar preferência no Mercado Pago: {e}")
+            import traceback
+            logger.error(f"Traceback: {traceback.format_exc()}")
+            return JsonResponse({
+                'success': False,
+                'error': f'Erro ao conectar com Mercado Pago: {str(e)}'
+            })
         
         # Salvar pagamento no banco com dados criptografados
         pagamento = Pagamento.objects.create(
@@ -271,7 +295,9 @@ def criar_pagamento(request, plano_id):
             'preference_id': preference_id,
             'public_key': config.get_public_key(),
             'payment_id': pagamento.id,
-            'external_reference': external_reference
+            'external_reference': external_reference,
+            'init_point': preference.get('init_point'),  # URL para pagamento
+            'sandbox_init_point': preference.get('sandbox_init_point')  # URL para sandbox
         })
             
     except Exception as e:
@@ -570,13 +596,28 @@ def pagamento_sucesso(request):
     """
     Página de sucesso do pagamento
     """
+    # Primeiro tentar external_reference (novo método)
+    external_reference = request.GET.get('external_reference')
     payment_id = request.GET.get('payment_id')
     
-    if payment_id:
+    pagamento = None
+    
+    if external_reference:
+        # Buscar por external_reference (método preferido)
+        pagamento = Pagamento.objects.filter(
+            usuario=request.user,
+            external_reference=external_reference
+        ).first()
+    elif payment_id:
+        # Buscar por payment_id (método antigo)
+        pagamentos = Pagamento.objects.filter(usuario=request.user)
+        for p in pagamentos:
+            if p.get_payment_id() == payment_id:
+                pagamento = p
+                break
+    
+    if pagamento:
         try:
-            # Buscar pagamento
-            pagamento = Pagamento.objects.get(payment_id=payment_id, usuario=request.user)
-            
             # Buscar assinatura se existir
             assinatura = Assinatura.objects.filter(external_reference=pagamento.external_reference).first()
             
@@ -594,11 +635,11 @@ def pagamento_sucesso(request):
             else:
                 messages.warning(request, f'Status do pagamento: {pagamento.get_status_display()}')
                 
-        except Pagamento.DoesNotExist:
-            messages.error(request, 'Pagamento não encontrado.')
         except Exception as e:
             logger.error(f"Erro na página de sucesso: {e}")
             messages.error(request, 'Erro ao processar informações do pagamento.')
+    else:
+        messages.error(request, 'Pagamento não encontrado.')
     
     return render(request, 'payments/sucesso.html')
 
@@ -607,7 +648,11 @@ def pagamento_falha(request):
     """
     Página de falha do pagamento
     """
-    messages.error(request, 'Pagamento não foi aprovado. Tente novamente.')
+    external_reference = request.GET.get('external_reference')
+    if external_reference:
+        messages.error(request, f'Pagamento não foi aprovado. Referência: {external_reference}. Tente novamente.')
+    else:
+        messages.error(request, 'Pagamento não foi aprovado. Tente novamente.')
     return render(request, 'payments/falha.html')
 
 @login_required
@@ -615,7 +660,11 @@ def pagamento_pendente(request):
     """
     Página de pagamento pendente
     """
-    messages.info(request, 'Pagamento está sendo processado. Aguarde a confirmação.')
+    external_reference = request.GET.get('external_reference')
+    if external_reference:
+        messages.info(request, f'Pagamento está sendo processado. Referência: {external_reference}. Aguarde a confirmação.')
+    else:
+        messages.info(request, 'Pagamento está sendo processado. Aguarde a confirmação.')
     return render(request, 'payments/pendente.html')
 
 @login_required
@@ -697,6 +746,31 @@ def middleware_premium_required(view_func):
         return view_func(request, *args, **kwargs)
     
     return wrapper
+
+@login_required
+def verificar_assinatura(request):
+    """
+    API para verificar se o usuário tem assinatura ativa
+    """
+    try:
+        tem_acesso, assinatura = verificar_acesso_premium(request.user)
+        
+        return JsonResponse({
+            'assinatura_ativa': tem_acesso,
+            'assinatura': {
+                'id': assinatura.id if assinatura else None,
+                'plano': assinatura.plano.nome if assinatura else None,
+                'data_vencimento': assinatura.data_vencimento.isoformat() if assinatura else None,
+                'status': assinatura.status if assinatura else None
+            } if assinatura else None
+        })
+        
+    except Exception as e:
+        logger.error(f"Erro ao verificar assinatura: {e}")
+        return JsonResponse({
+            'assinatura_ativa': False,
+            'error': 'Erro interno do servidor'
+        })
 
 @login_required
 @require_http_methods(["POST"])

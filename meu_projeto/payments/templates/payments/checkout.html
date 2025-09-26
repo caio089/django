@@ -173,12 +173,19 @@
 
 <script>
 // Configuração do Mercado Pago
-const PUBLIC_KEY = '{{ public_key }}';
-const PREFERENCE_ID = '{{ preference_id }}';
-const PAYMENT_ID = {{ pagamento.id|default:0 }};
+const PUBLIC_KEY = '{{ public_key|default:"" }}';
+const PREFERENCE_ID = '{{ preference_id|default:"" }}';
+const PAYMENT_ID = parseInt('{{ pagamento.id|default:"0" }}');
 
 // Inicializar SDK do Mercado Pago
-const mp = new MercadoPago(PUBLIC_KEY);
+let mp = null;
+if (PUBLIC_KEY && PUBLIC_KEY !== '') {
+    try {
+        mp = new MercadoPago(PUBLIC_KEY);
+    } catch (error) {
+        console.error('Erro ao inicializar SDK do Mercado Pago:', error);
+    }
+}
 
 let currentPaymentType = null;
 let checkout = null;
@@ -225,20 +232,34 @@ async function setupPixCheckout() {
         hideStatus();
         showStatus('loading', 'Configurando PIX...', 'Preparando pagamento instantâneo');
         
-        // Criar checkout para PIX
-        checkout = mp.checkout({
-            preference: {
-                id: PREFERENCE_ID
-            },
-            render: {
-                container: elementsContainer,
-                label: 'Pagar com PIX'
-            }
-        });
+        // Redirecionar diretamente para a URL de pagamento do Mercado Pago
+        // Isso vai mostrar o QR Code do PIX
+        const initPoint = '{{ pagamento.get_payment_id|default:"" }}';
         
-        currentPaymentType = 'pix';
-        submitContainer.classList.remove('hidden');
-        submitText.textContent = 'Gerar PIX';
+        if (initPoint && initPoint !== '') {
+            // Criar botão que redireciona para o pagamento
+            elementsContainer.innerHTML = `
+                <div class="text-center">
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                        <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-blue-800 mb-2">PIX Instantâneo</h3>
+                        <p class="text-blue-600 mb-4">Clique no botão abaixo para gerar o QR Code do PIX</p>
+                        <p class="text-sm text-gray-500">Aprovação instantânea após o pagamento</p>
+                    </div>
+                </div>
+            `;
+            
+            currentPaymentType = 'pix';
+            submitContainer.classList.remove('hidden');
+            submitText.textContent = 'Gerar QR Code PIX';
+            hideStatus();
+        } else {
+            showStatus('error', 'Erro no PIX', 'Preferência de pagamento não encontrada');
+        }
         
     } catch (error) {
         console.error('Erro ao configurar PIX:', error);
@@ -252,9 +273,14 @@ async function setupCardCheckout() {
         hideStatus();
         showStatus('loading', 'Configurando cartão...', 'Preparando pagamento com cartão de crédito');
         
+        if (!mp) {
+            showStatus('error', 'Erro no cartão', 'SDK do Mercado Pago não inicializado');
+            return;
+        }
+        
         // Criar elementos do cartão
         const cardForm = mp.cardForm({
-            amount: "{% if pagamento.valor %}{{ pagamento.valor }}{% else %}0{% endif %}",
+            amount: parseFloat('{{ pagamento.valor|default:"0" }}'),
             iframe: true,
             form: {
                 id: "form-checkout",
@@ -346,13 +372,20 @@ submitButton.addEventListener('click', async () => {
     
     try {
         if (currentPaymentType === 'pix') {
-            // Para PIX, redirecionar para o checkout
+            // Para PIX, redirecionar para a URL de pagamento do Mercado Pago
             showStatus('loading', 'Gerando PIX...', 'Aguarde, estamos gerando seu código PIX');
             
-            // Simular redirecionamento (o checkout do MP já faz isso)
-            setTimeout(() => {
-                window.location.href = `{% url 'payments:sucesso' %}?payment_id=${PREFERENCE_ID}`;
-            }, 2000);
+            // Redirecionar para a URL de pagamento real do Mercado Pago
+            // Isso vai mostrar o QR Code do PIX
+            const initPoint = '{{ pagamento.get_payment_id|default:"" }}';
+            if (initPoint && initPoint !== '') {
+                window.location.href = initPoint;
+            } else {
+                showStatus('error', 'Erro no PIX', 'URL de pagamento não encontrada');
+                submitButton.disabled = false;
+                submitText.classList.remove('hidden');
+                loadingSpinner.classList.add('hidden');
+            }
             
         } else if (currentPaymentType === 'card') {
             // Para cartão, processar pagamento

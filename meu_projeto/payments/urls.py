@@ -16,6 +16,7 @@ urlpatterns = [
     
     # API para verificar status
     path('verificar-status/<int:payment_id>/', views.verificar_status_pagamento, name='verificar_status'),
+    path('verificar-assinatura/', views.verificar_assinatura, name='verificar_assinatura'),
     
     # Webhook do Mercado Pago
     path('webhook/', views.webhook_mercadopago, name='webhook'),

@@ -65,3 +65,4 @@ class Command(BaseCommand):
             self.stdout.write(f'❌ Erro: {e}')
             import traceback
             self.stdout.write(traceback.format_exc())
+

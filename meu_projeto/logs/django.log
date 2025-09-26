@@ -1,0 +1,133 @@
+Watching for file changes with StatReloader
+"GET /index/?from_payment=true HTTP/1.1" 200 66305
+"GET /payments/verificar-assinatura/ HTTP/1.1" 200 47
+"GET /payments/planos/ HTTP/1.1" 200 10331
+"GET /payments/criar-pagamento/1/ HTTP/1.1" 302 0
+"GET /payments/plano/1/ HTTP/1.1" 200 14417
+PAYMENT_AUDIT: {"timestamp": "2025-09-26T15:13:37.923710+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 29.9}}
+Criando preferência com dados: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://localhost:8000/payments/success/', 'failure': 'http://localhost:8000/payments/failure/', 'pending': 'http://localhost:8000/payments/pending/'}, 'auto_return': 'approved', 'external_reference': 'c3cd3796-3786-454e-83a5-aed8465196ba', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 217
+"GET /payments/checkout/9/ HTTP/1.1" 200 20835
+"GET /payments/sucesso/?payment_id=pref_c3cd3796-3786-454e-83a5-aed8465196ba HTTP/1.1" 200 6048
+"GET /index/ HTTP/1.1" 200 66305
+"GET /payments/planos/ HTTP/1.1" 200 10331
+"GET /payments/criar-pagamento/1/ HTTP/1.1" 302 0
+"GET /payments/plano/1/ HTTP/1.1" 200 14417
+PAYMENT_AUDIT: {"timestamp": "2025-09-26T15:13:54.884041+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 29.9}}
+Criando preferência com dados: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://localhost:8000/payments/success/', 'failure': 'http://localhost:8000/payments/failure/', 'pending': 'http://localhost:8000/payments/pending/'}, 'auto_return': 'approved', 'external_reference': 'c1e20e93-01fc-4f5d-87c6-ff0dfa74cc6c', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 218
+"GET /payments/checkout/10/ HTTP/1.1" 200 20836
+"GET /payments/sucesso/?payment_id=pref_c1e20e93-01fc-4f5d-87c6-ff0dfa74cc6c HTTP/1.1" 200 6048
+"GET /index/ HTTP/1.1" 200 66305
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /index/ HTTP/1.1" 200 66305
+"GET /payments/planos/ HTTP/1.1" 200 10331
+"GET /payments/criar-pagamento/1/ HTTP/1.1" 302 0
+"GET /payments/plano/1/ HTTP/1.1" 200 14417
+PAYMENT_AUDIT: {"timestamp": "2025-09-26T15:39:22.371663+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 29.9}}
+Criando preferência com dados: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://localhost:8000/payments/success/?external_reference=24f63dde-20db-473a-9834-3d4af0b95140', 'failure': 'http://localhost:8000/payments/failure/?external_reference=24f63dde-20db-473a-9834-3d4af0b95140', 'pending': 'http://localhost:8000/payments/pending/?external_reference=24f63dde-20db-473a-9834-3d4af0b95140'}, 'auto_return': 'approved', 'external_reference': '24f63dde-20db-473a-9834-3d4af0b95140', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 218
+"GET /payments/checkout/11/ HTTP/1.1" 200 20836
+"GET /payments/sucesso/?payment_id=pref_24f63dde-20db-473a-9834-3d4af0b95140 HTTP/1.1" 200 6105
+"GET /index/ HTTP/1.1" 200 66305
+"GET /payments/planos/ HTTP/1.1" 200 10331
+"GET /payments/criar-pagamento/1/ HTTP/1.1" 302 0
+"GET /payments/plano/1/ HTTP/1.1" 200 14417
+PAYMENT_AUDIT: {"timestamp": "2025-09-26T15:39:39.997556+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 29.9}}
+Criando preferência com dados: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://localhost:8000/payments/success/?external_reference=7bbe3c48-2faa-4152-a349-0a5b39b741c3', 'failure': 'http://localhost:8000/payments/failure/?external_reference=7bbe3c48-2faa-4152-a349-0a5b39b741c3', 'pending': 'http://localhost:8000/payments/pending/?external_reference=7bbe3c48-2faa-4152-a349-0a5b39b741c3'}, 'auto_return': 'approved', 'external_reference': '7bbe3c48-2faa-4152-a349-0a5b39b741c3', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 218
+"GET /payments/checkout/12/ HTTP/1.1" 200 20836
+"GET /payments/verificar-status/12/ HTTP/1.1" 200 128
+"GET /payments/sucesso/?payment_id=pref_7bbe3c48-2faa-4152-a349-0a5b39b741c3 HTTP/1.1" 200 6105
+Internal Server Error: /payments/assinaturas/
+Traceback (most recent call last):
+  File "D:\github\django\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\github\django\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\github\django\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\github\django\meu_projeto\payments\views.py", line 677, in minhas_assinaturas
+    return render(request, 'payments/assinaturas.html', {
+        'assinaturas': assinaturas,
+        'pagamentos': pagamentos
+    })
+  File "D:\github\django\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: payments/assinaturas.html
+"GET /payments/assinaturas/ HTTP/1.1" 500 101074
+"GET /index/ HTTP/1.1" 200 66305
+"GET /payments/planos/ HTTP/1.1" 200 10331
+"GET /payments/criar-pagamento/1/ HTTP/1.1" 302 0
+"GET /payments/plano/1/ HTTP/1.1" 200 14417
+PAYMENT_AUDIT: {"timestamp": "2025-09-26T15:40:02.106865+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 29.9}}
+Criando preferência com dados: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://localhost:8000/payments/success/?external_reference=3f6951bc-c57e-4bd5-b288-2ec1325b3527', 'failure': 'http://localhost:8000/payments/failure/?external_reference=3f6951bc-c57e-4bd5-b288-2ec1325b3527', 'pending': 'http://localhost:8000/payments/pending/?external_reference=3f6951bc-c57e-4bd5-b288-2ec1325b3527'}, 'auto_return': 'approved', 'external_reference': '3f6951bc-c57e-4bd5-b288-2ec1325b3527', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 218
+"GET /payments/checkout/13/ HTTP/1.1" 200 20836
+"GET /payments/sucesso/?payment_id=pref_3f6951bc-c57e-4bd5-b288-2ec1325b3527 HTTP/1.1" 200 6105
+"GET /index/ HTTP/1.1" 200 66305
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /index/ HTTP/1.1" 200 66305
+"GET /payments/planos/ HTTP/1.1" 200 10331
+"GET /payments/criar-pagamento/1/ HTTP/1.1" 302 0
+"GET /payments/plano/1/ HTTP/1.1" 200 14417
+PAYMENT_AUDIT: {"timestamp": "2025-09-26T16:02:29.151061+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 29.9}}
+Criando preferência real no Mercado Pago com dados: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://localhost:8000/payments/success/?external_reference=0f1c3aae-62d3-456a-93aa-3ea8120bf685', 'failure': 'http://localhost:8000/payments/failure/?external_reference=0f1c3aae-62d3-456a-93aa-3ea8120bf685', 'pending': 'http://localhost:8000/payments/pending/?external_reference=0f1c3aae-62d3-456a-93aa-3ea8120bf685'}, 'auto_return': 'approved', 'external_reference': '0f1c3aae-62d3-456a-93aa-3ea8120bf685', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}}
+Erro ao criar preferência: {'status': 400, 'response': {'message': 'auto_return invalid. back_url.success must be defined', 'error': 'invalid_auto_return', 'status': 400, 'cause': None}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 77
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+PAYMENT_AUDIT: {"timestamp": "2025-09-26T16:04:08.650500+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 29.9}}
+Criando preferência real no Mercado Pago com dados: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://localhost:8000/payments/success/?external_reference=40a3c22e-6b09-4568-acad-ba9394841881', 'failure': 'http://localhost:8000/payments/failure/?external_reference=40a3c22e-6b09-4568-acad-ba9394841881', 'pending': 'http://localhost:8000/payments/pending/?external_reference=40a3c22e-6b09-4568-acad-ba9394841881'}, 'auto_return': 'approved', 'external_reference': '40a3c22e-6b09-4568-acad-ba9394841881', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}}
+Tentando criar preferência com SDK: <mercadopago.sdk.SDK object at 0x000002071C61D6A0>
+Dados da preferência: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://localhost:8000/payments/success/?external_reference=40a3c22e-6b09-4568-acad-ba9394841881', 'failure': 'http://localhost:8000/payments/failure/?external_reference=40a3c22e-6b09-4568-acad-ba9394841881', 'pending': 'http://localhost:8000/payments/pending/?external_reference=40a3c22e-6b09-4568-acad-ba9394841881'}, 'auto_return': 'approved', 'external_reference': '40a3c22e-6b09-4568-acad-ba9394841881', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}}
+Resultado da criação: {'status': 400, 'response': {'message': 'auto_return invalid. back_url.success must be defined', 'error': 'invalid_auto_return', 'status': 400, 'cause': None}}
+Erro ao criar preferência: {'status': 400, 'response': {'message': 'auto_return invalid. back_url.success must be defined', 'error': 'invalid_auto_return', 'status': 400, 'cause': None}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 132
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5362
+PAYMENT_AUDIT: {"timestamp": "2025-09-26T16:04:13.663649+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 29.9}}
+Criando preferência real no Mercado Pago com dados: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://localhost:8000/payments/success/?external_reference=4f56336e-9086-4ddb-a3e4-1cddb36adecd', 'failure': 'http://localhost:8000/payments/failure/?external_reference=4f56336e-9086-4ddb-a3e4-1cddb36adecd', 'pending': 'http://localhost:8000/payments/pending/?external_reference=4f56336e-9086-4ddb-a3e4-1cddb36adecd'}, 'auto_return': 'approved', 'external_reference': '4f56336e-9086-4ddb-a3e4-1cddb36adecd', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}}
+Tentando criar preferência com SDK: <mercadopago.sdk.SDK object at 0x000002071CB34550>
+Dados da preferência: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://localhost:8000/payments/success/?external_reference=4f56336e-9086-4ddb-a3e4-1cddb36adecd', 'failure': 'http://localhost:8000/payments/failure/?external_reference=4f56336e-9086-4ddb-a3e4-1cddb36adecd', 'pending': 'http://localhost:8000/payments/pending/?external_reference=4f56336e-9086-4ddb-a3e4-1cddb36adecd'}, 'auto_return': 'approved', 'external_reference': '4f56336e-9086-4ddb-a3e4-1cddb36adecd', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}}
+Resultado da criação: {'status': 400, 'response': {'message': 'auto_return invalid. back_url.success must be defined', 'error': 'invalid_auto_return', 'status': 400, 'cause': None}}
+Erro ao criar preferência: {'status': 400, 'response': {'message': 'auto_return invalid. back_url.success must be defined', 'error': 'invalid_auto_return', 'status': 400, 'cause': None}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 132
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/plano/1/ HTTP/1.1" 200 14417
+"GET /index/ HTTP/1.1" 200 66305
+"GET /payments/planos/ HTTP/1.1" 200 10331
+"GET /payments/criar-pagamento/1/ HTTP/1.1" 302 0
+"GET /payments/plano/1/ HTTP/1.1" 200 14417
+PAYMENT_AUDIT: {"timestamp": "2025-09-26T16:09:42.099777+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 29.9}}
+Criando preferência real no Mercado Pago com dados: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://localhost:8000/payments/success/?external_reference=e2e64b21-2370-49b5-a9c7-9a7317c9d216', 'failure': 'http://localhost:8000/payments/failure/?external_reference=e2e64b21-2370-49b5-a9c7-9a7317c9d216', 'pending': 'http://localhost:8000/payments/pending/?external_reference=e2e64b21-2370-49b5-a9c7-9a7317c9d216'}, 'auto_return': 'approved', 'external_reference': 'e2e64b21-2370-49b5-a9c7-9a7317c9d216', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}}
+Tentando criar preferência com SDK: <mercadopago.sdk.SDK object at 0x000001EAD3F474D0>
+Dados da preferência: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://localhost:8000/payments/success/?external_reference=e2e64b21-2370-49b5-a9c7-9a7317c9d216', 'failure': 'http://localhost:8000/payments/failure/?external_reference=e2e64b21-2370-49b5-a9c7-9a7317c9d216', 'pending': 'http://localhost:8000/payments/pending/?external_reference=e2e64b21-2370-49b5-a9c7-9a7317c9d216'}, 'auto_return': 'approved', 'external_reference': 'e2e64b21-2370-49b5-a9c7-9a7317c9d216', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}}
+Resultado da criação: {'status': 400, 'response': {'message': 'auto_return invalid. back_url.success must be defined', 'error': 'invalid_auto_return', 'status': 400, 'cause': None}}
+Erro ao criar preferência: {'status': 400, 'response': {'message': 'auto_return invalid. back_url.success must be defined', 'error': 'invalid_auto_return', 'status': 400, 'cause': None}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 132
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
