@@ -228,14 +228,17 @@ def criar_pagamento(request, plano_id):
                 "failure": f"{request.scheme}://{request.get_host()}/payments/failure/?external_reference={external_reference}",
                 "pending": f"{request.scheme}://{request.get_host()}/payments/pending/?external_reference={external_reference}"
             },
-            "auto_return": "all",
             "external_reference": external_reference,
             "notification_url": config.webhook_url,
             "payment_methods": {
                 "excluded_payment_methods": [],
                 "excluded_payment_types": [],
-                "installments": 12
-            }
+                "installments": 12,
+                "default_payment_method_id": "pix"
+            },
+            "purpose": "wallet_purchase",
+            "additional_info": "Pagamento via PIX para assinatura premium",
+            "binary_mode": False
         }
         
         # Criar preferência real no Mercado Pago
@@ -246,13 +249,34 @@ def criar_pagamento(request, plano_id):
             logger.info(f"Tentando criar preferência com SDK: {sdk}")
             logger.info(f"Dados da preferência: {preference_data}")
             
+            # Verificar se há configurações conflitantes
+            if "default_payment_method_id" in str(preference_data):
+                logger.error("ERRO: default_payment_method_id ainda está presente nos dados!")
+                return JsonResponse({
+                    'success': False,
+                    'error': 'Configuração conflitante detectada'
+                })
+            
             preference_result = sdk.preference().create(preference_data)
             logger.info(f"Resultado da criação: {preference_result}")
             
             if preference_result["status"] == 201:
                 preference = preference_result["response"]
                 preference_id = preference["id"]
+                init_point = preference.get("init_point", "")
+                
                 logger.info(f"Preferência criada com sucesso: {preference_id}")
+                logger.info(f"Init Point: {init_point}")
+                logger.info(f"Preferência completa: {preference}")
+                
+                # Verificar se PIX está disponível na preferência
+                payment_methods = preference.get("payment_methods", {})
+                excluded_payment_types = payment_methods.get("excluded_payment_types", [])
+                pix_available = "pix" not in excluded_payment_types
+                
+                logger.info(f"PIX disponível: {pix_available}")
+                logger.info(f"Tipos de pagamento excluídos: {excluded_payment_types}")
+                
             else:
                 logger.error(f"Erro ao criar preferência: {preference_result}")
                 return JsonResponse({
@@ -320,11 +344,130 @@ def checkout_pagamento(request, payment_id):
         messages.error(request, 'Erro na configuração do pagamento.')
         return redirect('payments:planos')
     
-    return render(request, 'payments/checkout.html', {
+    # Obter URL de pagamento da preferência
+    init_point = None
+    pix_available = True  # Forçar PIX disponível
+    
+    if pagamento.get_payment_id():
+        try:
+            # Buscar preferência no Mercado Pago para obter init_point
+            preference_info = sdk.preference().get(pagamento.get_payment_id())
+            if preference_info["status"] == 200:
+                preference_data = preference_info["response"]
+                init_point = preference_data.get("init_point")
+                
+                # Verificar se PIX está disponível na preferência
+                payment_methods = preference_data.get("payment_methods", {})
+                excluded_types = payment_methods.get("excluded_payment_types", [])
+                pix_available = "pix" not in excluded_types
+                
+        except Exception as e:
+            logger.error(f"Erro ao buscar preferência: {e}")
+    
+    return render(request, 'payments/checkout_simples.html', {
         'pagamento': pagamento,
         'public_key': config.get_public_key(),
-        'preference_id': pagamento.get_payment_id()
+        'preference_id': pagamento.get_payment_id(),
+        'init_point': init_point,
+        'pix_available': pix_available
     })
+
+@login_required
+def gerar_pix_direto(request, payment_id):
+    """
+    Gera PIX diretamente via API do Mercado Pago
+    """
+    pagamento = get_object_or_404(Pagamento, id=payment_id, usuario=request.user)
+    
+    # Obter configuração do Mercado Pago
+    sdk, config = get_mercadopago_config()
+    if not sdk:
+        return JsonResponse({
+            'success': False,
+            'error': 'Erro na configuração do pagamento'
+        })
+    
+    try:
+        # Validar valor do pagamento
+        valor_pagamento = float(pagamento.valor)
+        if valor_pagamento <= 0:
+            return JsonResponse({
+                'success': False,
+                'error': 'Valor do pagamento deve ser maior que zero'
+            })
+        
+        # Criar pagamento PIX diretamente (versão mínima)
+        payment_data = {
+            "transaction_amount": valor_pagamento,
+            "description": pagamento.descricao or "Pagamento via PIX",
+            "payment_method_id": "pix",
+            "payer": {
+                "email": request.user.email or "teste@exemplo.com",
+                "first_name": request.user.first_name or "Cliente",
+                "last_name": request.user.last_name or "Teste"
+            }
+        }
+        
+        # Log dos dados do pagamento
+        logger.info(f"Dados do pagamento PIX: {payment_data}")
+        
+        # Criar pagamento PIX
+        payment_result = sdk.payment().create(payment_data)
+        
+        # Log do resultado
+        logger.info(f"Resultado da criação do pagamento PIX: {payment_result}")
+        
+        if payment_result["status"] == 201:
+            payment_info = payment_result["response"]
+            
+            # Log detalhado do pagamento PIX
+            logger.info(f"Pagamento PIX criado com sucesso: {payment_info['id']}")
+            logger.info(f"Dados completos do pagamento: {payment_info}")
+            
+            # Extrair dados do PIX
+            point_of_interaction = payment_info.get("point_of_interaction", {})
+            transaction_data = point_of_interaction.get("transaction_data", {})
+            
+            qr_code = transaction_data.get("qr_code")
+            qr_code_base64 = transaction_data.get("qr_code_base64")
+            ticket_url = transaction_data.get("ticket_url")
+            
+            logger.info(f"QR Code: {qr_code}")
+            logger.info(f"QR Code Base64: {qr_code_base64[:100] if qr_code_base64 else 'None'}...")
+            logger.info(f"Ticket URL: {ticket_url}")
+            
+            # Atualizar pagamento com ID do Mercado Pago
+            pagamento.set_payment_id(payment_info["id"])
+            pagamento.status = payment_info["status"]
+            pagamento.save()
+            
+            return JsonResponse({
+                'success': True,
+                'payment_id': payment_info["id"],
+                'status': payment_info["status"],
+                'qr_code': qr_code,
+                'qr_code_base64': qr_code_base64,
+                'ticket_url': ticket_url
+            })
+        else:
+            error_message = payment_result.get("response", {}).get("message", "Erro desconhecido")
+            error_cause = payment_result.get("response", {}).get("cause", [])
+            logger.error(f"Erro ao criar pagamento PIX: {error_message}")
+            logger.error(f"Causa do erro: {error_cause}")
+            logger.error(f"Resposta completa: {payment_result}")
+            
+            return JsonResponse({
+                'success': False,
+                'error': f'Erro ao criar pagamento PIX: {error_message}',
+                'details': error_cause
+            })
+            
+    except Exception as e:
+        logger.error(f"Erro ao gerar PIX direto: {e}")
+        return JsonResponse({
+            'success': False,
+            'error': f'Erro interno: {str(e)}'
+        })
 
 # =====================================================
 # WEBHOOK E PROCESSAMENTO DE PAGAMENTOS
@@ -349,14 +492,18 @@ def webhook_mercadopago(request):
             )
             return HttpResponse(status=429)
         
-        # Verificar origem do webhook
+        # Verificar origem do webhook (mais permissivo para desenvolvimento)
         if not WebhookSecurity.verify_webhook_origin(request):
-            audit_logger.log_security_event(
-                'invalid_webhook_origin',
-                'high',
-                {'ip': client_ip, 'user_agent': request.META.get('HTTP_USER_AGENT', '')}
-            )
-            return HttpResponse(status=403)
+            # Em desenvolvimento, permitir webhooks de qualquer origem
+            if settings.DEBUG:
+                logger.warning(f"Webhook de origem desconhecida em modo DEBUG: {client_ip}")
+            else:
+                audit_logger.log_security_event(
+                    'invalid_webhook_origin',
+                    'high',
+                    {'ip': client_ip, 'user_agent': request.META.get('HTTP_USER_AGENT', '')}
+                )
+                return HttpResponse(status=403)
         
         # Obter dados do webhook
         data = json.loads(request.body)
@@ -378,6 +525,7 @@ def webhook_mercadopago(request):
                     return HttpResponse(status=403)
         
         logger.info(f"Webhook recebido de {client_ip}: {data.get('type', 'unknown')}")
+        logger.info(f"Dados completos do webhook: {data}")
         
         # Registrar evento no banco com dados criptografados
         webhook_event = WebhookEvent.objects.create(
@@ -876,3 +1024,112 @@ def cancelar_assinatura(request):
             'success': False,
             'error': f'Erro interno do servidor: {str(e)}'
         })
+
+def testar_pix(request):
+    """View para testar se PIX está funcionando"""
+    try:
+        # Configurar SDK do Mercado Pago
+        config = ConfiguracaoPagamento.objects.first()
+        if not config:
+            return JsonResponse({'success': False, 'error': 'Configuração não encontrada'})
+        
+        sdk = mercadopago.SDK(config.get_access_token())
+        
+        # Criar preferência de teste
+        test_preference = {
+            "items": [
+                {
+                    "title": "Teste PIX",
+                    "description": "Teste de PIX",
+                    "quantity": 1,
+                    "unit_price": 1.0,
+                    "currency_id": "BRL"
+                }
+            ],
+            "payment_methods": {
+                "excluded_payment_methods": [],
+                "excluded_payment_types": [],
+                "installments": 12
+            },
+            "purpose": "wallet_purchase"
+        }
+        
+        logger.info(f"Testando PIX com preferência: {test_preference}")
+        
+        # Criar preferência de teste
+        preference_result = sdk.preference().create(test_preference)
+        logger.info(f"Resultado do teste PIX: {preference_result}")
+        
+        if preference_result["status"] == 201:
+            preference = preference_result["response"]
+            payment_methods = preference.get("payment_methods", {})
+            excluded_payment_types = payment_methods.get("excluded_payment_types", [])
+            pix_available = "pix" not in excluded_payment_types
+            
+            return JsonResponse({
+                'success': True,
+                'pix_available': pix_available,
+                'excluded_payment_types': excluded_payment_types,
+                'preference_id': preference.get("id"),
+                'init_point': preference.get("init_point")
+            })
+        else:
+            return JsonResponse({
+                'success': False,
+                'error': f'Erro no teste: {preference_result}'
+            })
+            
+    except Exception as e:
+        logger.error(f"Erro no teste PIX: {e}")
+        return JsonResponse({'success': False, 'error': f'Erro: {str(e)}'})
+
+def verificar_pagamento_manual(request, payment_id):
+    """View para verificar manualmente o status de um pagamento"""
+    try:
+        # Buscar pagamento
+        pagamento = Pagamento.objects.get(id=payment_id)
+        
+        # Configurar SDK do Mercado Pago
+        config = ConfiguracaoPagamento.objects.first()
+        if not config:
+            return JsonResponse({'success': False, 'error': 'Configuração não encontrada'})
+        
+        sdk = mercadopago.SDK(config.get_access_token())
+        
+        # Buscar pagamento no Mercado Pago
+        mp_payment_id = pagamento.get_payment_id()
+        if not mp_payment_id:
+            return JsonResponse({'success': False, 'error': 'ID do pagamento no MP não encontrado'})
+        
+        payment_info = sdk.payment().get(mp_payment_id)
+        logger.info(f"Status do pagamento {mp_payment_id}: {payment_info}")
+        
+        if payment_info["status"] == 200:
+            payment_data = payment_info["response"]
+            
+            # Atualizar status no banco
+            status_anterior = pagamento.status
+            pagamento.status = payment_data["status"]
+            pagamento.save()
+            
+            return JsonResponse({
+                'success': True,
+                'payment_id': mp_payment_id,
+                'status': payment_data["status"],
+                'status_anterior': status_anterior,
+                'payment_method': payment_data.get("payment_method_id"),
+                'transaction_amount': payment_data.get("transaction_amount"),
+                'date_approved': payment_data.get("date_approved"),
+                'date_created': payment_data.get("date_created")
+            })
+        else:
+            return JsonResponse({
+                'success': False,
+                'error': f'Erro ao buscar pagamento: {payment_info}'
+            })
+            
+    except Pagamento.DoesNotExist:
+        return JsonResponse({'success': False, 'error': 'Pagamento não encontrado'})
+    except Exception as e:
+        logger.error(f"Erro ao verificar pagamento: {e}")
+        return JsonResponse({'success': False, 'error': f'Erro: {str(e)}'})

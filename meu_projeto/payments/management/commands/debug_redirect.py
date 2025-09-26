@@ -37,3 +37,4 @@ class Command(BaseCommand):
         except Exception as e:
             self.stdout.write(f'❌ Erro na URL de planos: {e}')
 
+

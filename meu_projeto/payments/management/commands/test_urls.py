@@ -63,3 +63,4 @@ class Command(BaseCommand):
         except User.DoesNotExist:
             self.stdout.write('  ❌ Usuário ccamposs2007@gmail.com não encontrado')
 
+

@@ -122,3 +122,4 @@ class Command(BaseCommand):
                 print("❌ Credenciais do Mercado Pago inválidas")
 
         print("\n" + "=" * 50)
+

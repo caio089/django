@@ -122,3 +122,4 @@ class Command(BaseCommand):
                 self.style.ERROR(f'❌ Erro geral: {e}')
             )
             logger.error(f"Erro geral ao testar Mercado Pago: {e}")
+

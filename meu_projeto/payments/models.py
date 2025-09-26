@@ -188,19 +188,13 @@ class Pagamento(models.Model):
         return None
     
     def set_payment_id(self, payment_id):
-        """Define ID do pagamento de forma criptografada"""
+        """Define ID do pagamento"""
         if payment_id:
-            self.payment_id = encryption_manager.encrypt(payment_id)
+            self.payment_id = str(payment_id)
     
     def get_payment_id(self):
-        """Obtém ID do pagamento descriptografado"""
-        if self.payment_id:
-            try:
-                return encryption_manager.decrypt(self.payment_id)
-            except Exception as e:
-                logger.error(f"Erro ao descriptografar payment_id: {e}")
-                return self.payment_id  # Retorna original se falhar
-        return None
+        """Obtém ID do pagamento"""
+        return self.payment_id
     
     def __str__(self):
         return f"Pagamento {self.get_payment_id() or 'N/A'} - R$ {self.valor}"

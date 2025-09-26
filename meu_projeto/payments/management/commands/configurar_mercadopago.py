@@ -101,3 +101,4 @@ class Command(BaseCommand):
                 self.style.ERROR(f'❌ Erro ao configurar Mercado Pago: {e}')
             )
             logger.error(f"Erro ao configurar Mercado Pago: {e}")
+

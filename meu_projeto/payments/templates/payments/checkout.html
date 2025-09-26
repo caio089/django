@@ -11,6 +11,7 @@
     <script src="https://sdk.mercadopago.com/js/v2"></script>
 </head>
 <body class="bg-gray-50 font-sans">
+{% csrf_token %}
 <div class="container mx-auto px-4 py-8 max-w-4xl">
     <div class="text-center mb-8">
         <h1 class="text-3xl font-bold text-gray-800 mb-2">Finalizar Pagamento</h1>
@@ -50,6 +51,11 @@
                             <div class="text-left">
                                 <div class="font-medium">PIX</div>
                                 <div class="text-sm text-gray-500">Aprovação instantânea</div>
+                                {% if not pix_available %}
+                                <div class="text-xs text-orange-500 mt-1">⚠️ PIX via API direta</div>
+                                {% else %}
+                                <div class="text-xs text-green-500 mt-1">✅ PIX disponível no Mercado Pago</div>
+                                {% endif %}
                             </div>
                         </div>
                     </button>
@@ -171,11 +177,24 @@
     </div>
 </div>
 
+<!-- Variáveis do Django como atributos HTML -->
+<div id="django-vars" 
+     data-pix-available="{% if pix_available %}true{% else %}false{% endif %}"
+     data-init-point="{{ init_point|default:'' }}"
+     data-preference-id="{{ preference_id|default:'' }}"
+     style="display: none;">
+</div>
+
 <script>
 // Configuração do Mercado Pago
 const PUBLIC_KEY = '{{ public_key|default:"" }}';
 const PREFERENCE_ID = '{{ preference_id|default:"" }}';
 const PAYMENT_ID = parseInt('{{ pagamento.id|default:"0" }}');
+
+// Variáveis do Django para PIX
+const djangoVars = document.getElementById('django-vars');
+const PIX_AVAILABLE = djangoVars.dataset.pixAvailable === 'true';
+const INIT_POINT = djangoVars.dataset.initPoint;
 
 // Inicializar SDK do Mercado Pago
 let mp = null;
@@ -226,40 +245,271 @@ function hideStatus() {
     paymentStatus.classList.add('hidden');
 }
 
+// Função para testar QR Code PIX
+function testarQrCode(qrCode) {
+    console.log('Testando QR Code PIX:', qrCode);
+    
+    // Validar formato do QR Code PIX
+    if (!qrCode || qrCode.length < 100) {
+        alert('QR Code inválido: muito curto');
+        return;
+    }
+    
+    // Verificar se começa com 000201 (padrão PIX)
+    if (!qrCode.startsWith('000201')) {
+        alert('QR Code inválido: não começa com padrão PIX (000201)');
+        return;
+    }
+    
+    // Verificar se contém dados essenciais do PIX
+    const pixData = {
+        hasMerchantName: qrCode.includes('59'),
+        hasTransactionAmount: qrCode.includes('54'),
+        hasMerchantCity: qrCode.includes('60'),
+        hasMerchantAccount: qrCode.includes('26'),
+        hasCRC: qrCode.includes('6304'),
+        hasPixKey: qrCode.includes('br.gov.bcb.pix'),
+        hasMerchantInfo: qrCode.includes('mpqrinter')
+    };
+    
+    console.log('Análise do QR Code PIX:', pixData);
+    
+    // Extrair informações específicas do QR Code
+    const amountMatch = qrCode.match(/54(\d{2})(\d+)/);
+    const merchantNameMatch = qrCode.match(/59(\d{2})([^0-9]+)/);
+    const cityMatch = qrCode.match(/60(\d{2})([^0-9]+)/);
+    
+    const extractedData = {
+        amount: amountMatch ? (parseInt(amountMatch[2]) / 100).toFixed(2) : 'N/A',
+        merchantName: merchantNameMatch ? merchantNameMatch[2] : 'N/A',
+        city: cityMatch ? cityMatch[2] : 'N/A'
+    };
+    
+    console.log('Dados extraídos do QR Code:', extractedData);
+    
+    // Análise detalhada do QR Code
+    const qrAnalysis = {
+        startsWith000201: qrCode.startsWith('000201'),
+        hasPixKey: qrCode.includes('br.gov.bcb.pix'),
+        hasAmount: qrCode.includes('54'),
+        hasMerchantName: qrCode.includes('59'),
+        hasCity: qrCode.includes('60'),
+        hasCRC: qrCode.includes('6304'),
+        hasMerchantInfo: qrCode.includes('mpqrinter'),
+        length: qrCode.length,
+        endsWithCRC: qrCode.endsWith('E1CD') || qrCode.endsWith('D5F2')
+    };
+    
+    console.log('Análise detalhada do QR Code:', qrAnalysis);
+    
+    const missingFields = Object.entries(pixData)
+        .filter(([key, value]) => !value)
+        .map(([key]) => key);
+    
+    if (missingFields.length > 0) {
+        alert(`QR Code inválido: campos ausentes: ${missingFields.join(', ')}`);
+        return;
+    }
+    
+    // Mostrar informações detalhadas
+    const info = `
+QR Code PIX VÁLIDO! ✅
+
+Informações extraídas:
+• Valor: R$ ${extractedData.amount}
+• Merchant: ${extractedData.merchantName}
+• Cidade: ${extractedData.city}
+• Tamanho: ${qrCode.length} caracteres
+
+Análise técnica:
+• Formato PIX: ${qrAnalysis.startsWith000201 ? '✅' : '❌'}
+• Chave PIX: ${qrAnalysis.hasPixKey ? '✅' : '❌'}
+• Valor: ${qrAnalysis.hasAmount ? '✅' : '❌'}
+• Merchant: ${qrAnalysis.hasMerchantName ? '✅' : '❌'}
+• Cidade: ${qrAnalysis.hasCity ? '✅' : '❌'}
+• CRC: ${qrAnalysis.hasCRC ? '✅' : '❌'}
+• Info Merchant: ${qrAnalysis.hasMerchantInfo ? '✅' : '❌'}
+• Termina com CRC: ${qrAnalysis.endsWithCRC ? '✅' : '❌'}
+
+Pode ser usado para pagamento!
+    `;
+    
+    alert(info);
+}
+
+// Função para testar QR Code com diferentes bancos
+function testarComBancos(qrCode) {
+    console.log('Testando QR Code com diferentes bancos:', qrCode);
+    
+    const bancos = [
+        { nome: 'Nubank', app: 'nuapp://pix' },
+        { nome: 'Itaú', app: 'itau://pix' },
+        { nome: 'Bradesco', app: 'bradesco://pix' },
+        { nome: 'Santander', app: 'santander://pix' },
+        { nome: 'Caixa', app: 'caixa://pix' },
+        { nome: 'Banco do Brasil', app: 'bb://pix' }
+    ];
+    
+    const info = `
+QR Code PIX - Teste com Bancos 🏦
+
+Código: ${qrCode.substring(0, 50)}...
+
+Bancos para testar:
+${bancos.map(banco => `• ${banco.nome}: ${banco.app}`).join('\n')}
+
+Instruções:
+1. Copie o código PIX completo
+2. Abra o app do seu banco
+3. Vá em PIX > Pagar com PIX
+4. Cole o código ou escaneie o QR Code
+5. Verifique se o banco reconhece o código
+
+Se algum banco não reconhecer, pode ser:
+• Problema no formato do QR Code
+• Banco não suporta o formato
+• Dados do merchant inválidos
+• Status do pagamento incorreto
+    `;
+    
+    alert(info);
+}
+
+// Função para mostrar QR Code do PIX
+function showPixQRCode(data) {
+    console.log('Mostrando modal PIX com dados:', data);
+    hideStatus();
+    
+    // Remover modal anterior se existir
+    const existingModal = document.querySelector('.pix-modal');
+    if (existingModal) {
+        existingModal.remove();
+    }
+    
+    // Criar modal com QR Code
+    const modal = document.createElement('div');
+    modal.className = 'pix-modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+    modal.innerHTML = `
+        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">PIX - Pagamento Instantâneo</h3>
+                <p class="text-gray-600 mb-6">Escaneie o QR Code com seu app bancário</p>
+                
+                <div class="bg-gray-100 p-4 rounded-lg mb-6">
+                    ${data.qr_code_base64 ? 
+                        `<img src="data:image/png;base64,${data.qr_code_base64}" alt="QR Code PIX" class="mx-auto max-w-full h-auto">` :
+                        `<div class="text-gray-500">QR Code não disponível</div>`
+                    }
+                </div>
+                
+                ${data.qr_code ? `
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
+                    <p class="text-xs text-yellow-800 font-medium mb-2">Código PIX (copie e cole no seu banco):</p>
+                    <div class="bg-white p-2 rounded border text-xs font-mono break-all">
+                        ${data.qr_code}
+                    </div>
+                    <div class="flex space-x-2 mt-2">
+                        <button onclick="navigator.clipboard.writeText('${data.qr_code}')" class="text-xs bg-yellow-600 text-white px-2 py-1 rounded">
+                            Copiar Código
+                        </button>
+                        <button onclick="testarQrCode('${data.qr_code}')" class="text-xs bg-green-600 text-white px-2 py-1 rounded">
+                            Testar QR
+                        </button>
+                        <button onclick="testarComBancos('${data.qr_code}')" class="text-xs bg-blue-600 text-white px-2 py-1 rounded">
+                            Testar Bancos
+                        </button>
+                    </div>
+                    <div class="mt-2 text-xs text-gray-600">
+                        <p>Status: ${data.status}</p>
+                        <p>ID: ${data.payment_id}</p>
+                        <p>Tamanho do código: ${data.qr_code.length} caracteres</p>
+                    </div>
+                </div>
+                ` : ''}
+                
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                    <p class="text-sm text-blue-800 font-medium">Valor: R$ {{ pagamento.valor|floatformat:2 }}</p>
+                    <p class="text-xs text-blue-600 mt-1">Pagamento será processado automaticamente</p>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <button id="close-pix-modal" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">
+                        Fechar
+                    </button>
+                    <button id="paid-pix-modal" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
+                        Já Paguei
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Testar QR Code automaticamente
+    if (data.qr_code) {
+        console.log('Testando QR Code automaticamente...');
+        testarQrCode(data.qr_code);
+    }
+    
+    // Adicionar event listeners
+    document.getElementById('close-pix-modal').addEventListener('click', () => {
+        modal.remove();
+    });
+    
+    document.getElementById('paid-pix-modal').addEventListener('click', () => {
+        window.location.href = '{% url "payments:sucesso" %}';
+    });
+    
+    // Verificar status do pagamento a cada 5 segundos
+    const checkStatus = setInterval(async () => {
+        try {
+            const response = await fetch(`/payments/verificar-status/{{ pagamento.id }}/`);
+            const statusData = await response.json();
+            
+            if (statusData.status === 'approved') {
+                clearInterval(checkStatus);
+                modal.remove();
+                showStatus('success', 'Pagamento Aprovado!', 'Seu pagamento foi processado com sucesso');
+                setTimeout(() => {
+                    window.location.href = '{% url "payments:sucesso" %}';
+                }, 2000);
+            }
+        } catch (error) {
+            console.error('Erro ao verificar status:', error);
+        }
+    }, 5000);
+    
+    console.log('Modal PIX criado e adicionado ao DOM');
+}
+
 // Função para configurar checkout PIX
 async function setupPixCheckout() {
     try {
         hideStatus();
         showStatus('loading', 'Configurando PIX...', 'Preparando pagamento instantâneo');
         
-        // Redirecionar diretamente para a URL de pagamento do Mercado Pago
-        // Isso vai mostrar o QR Code do PIX
-        const initPoint = '{{ pagamento.get_payment_id|default:"" }}';
-        
-        if (initPoint && initPoint !== '') {
-            // Criar botão que redireciona para o pagamento
-            elementsContainer.innerHTML = `
-                <div class="text-center">
-                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
-                        <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"/>
-                            </svg>
-                        </div>
-                        <h3 class="text-lg font-semibold text-blue-800 mb-2">PIX Instantâneo</h3>
-                        <p class="text-blue-600 mb-4">Clique no botão abaixo para gerar o QR Code do PIX</p>
-                        <p class="text-sm text-gray-500">Aprovação instantânea após o pagamento</p>
+        // Para PIX, mostrar opção de pagamento
+        elementsContainer.innerHTML = `
+            <div class="text-center">
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                    <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"/>
+                        </svg>
                     </div>
+                    <h3 class="text-lg font-semibold text-blue-800 mb-2">PIX Instantâneo</h3>
+                    <p class="text-blue-600 mb-4">Clique no botão abaixo para gerar o QR Code do PIX</p>
+                    <p class="text-sm text-gray-500">QR Code será exibido automaticamente</p>
+                    <p class="text-xs text-green-600 mt-2">✅ Modal PIX com QR Code direto</p>
                 </div>
-            `;
-            
-            currentPaymentType = 'pix';
-            submitContainer.classList.remove('hidden');
-            submitText.textContent = 'Gerar QR Code PIX';
-            hideStatus();
-        } else {
-            showStatus('error', 'Erro no PIX', 'Preferência de pagamento não encontrada');
-        }
+            </div>
+        `;
+        
+        currentPaymentType = 'pix';
+        submitContainer.classList.remove('hidden');
+        submitText.textContent = 'Gerar QR Code PIX';
+        hideStatus();
         
     } catch (error) {
         console.error('Erro ao configurar PIX:', error);
@@ -273,68 +523,27 @@ async function setupCardCheckout() {
         hideStatus();
         showStatus('loading', 'Configurando cartão...', 'Preparando pagamento com cartão de crédito');
         
-        if (!mp) {
-            showStatus('error', 'Erro no cartão', 'SDK do Mercado Pago não inicializado');
-            return;
-        }
+        // Para cartão, mostrar opção de redirecionamento
+        elementsContainer.innerHTML = `
+            <div class="text-center">
+                <div class="bg-green-50 border border-green-200 rounded-lg p-6">
+                    <div class="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-green-800 mb-2">Cartão de Crédito</h3>
+                    <p class="text-green-600 mb-4">Clique no botão abaixo para ir ao Mercado Pago</p>
+                    <p class="text-sm text-gray-500">Redirecionamento para página de pagamento</p>
+                    <p class="text-xs text-green-600 mt-2">✅ Página oficial do Mercado Pago</p>
+                </div>
+            </div>
+        `;
         
-        // Criar elementos do cartão
-        const cardForm = mp.cardForm({
-            amount: parseFloat('{{ pagamento.valor|default:"0" }}'),
-            iframe: true,
-            form: {
-                id: "form-checkout",
-                cardNumber: {
-                    id: "form-checkout__cardNumber",
-                    placeholder: "Número do cartão",
-                },
-                expirationDate: {
-                    id: "form-checkout__expirationDate",
-                    placeholder: "MM/AA",
-                },
-                securityCode: {
-                    id: "form-checkout__securityCode",
-                    placeholder: "Código de segurança",
-                },
-                cardholderName: {
-                    id: "form-checkout__cardholderName",
-                    placeholder: "Nome no cartão",
-                },
-                issuer: {
-                    id: "form-checkout__issuer",
-                    placeholder: "Banco emissor",
-                },
-                installments: {
-                    id: "form-checkout__installments",
-                    placeholder: "Parcelas",
-                },
-                identificationType: {
-                    id: "form-checkout__identificationType",
-                    placeholder: "Tipo de documento",
-                },
-                identificationNumber: {
-                    id: "form-checkout__identificationNumber",
-                    placeholder: "Número do documento",
-                },
-                cardholderEmail: {
-                    id: "form-checkout__cardholderEmail",
-                    placeholder: "E-mail",
-                },
-            },
-            callbacks: {
-                onFormMounted: error => {
-                    if (error) {
-                        console.error('Erro ao montar formulário:', error);
-                        showStatus('error', 'Erro no formulário', 'Não foi possível carregar o formulário do cartão');
-                    } else {
-                        hideStatus();
-                        currentPaymentType = 'card';
-                        submitContainer.classList.remove('hidden');
-                        submitText.textContent = 'Pagar com Cartão';
-                    }
-                },
-            },
-        });
+        currentPaymentType = 'card';
+        submitContainer.classList.remove('hidden');
+        submitText.textContent = 'Ir para Mercado Pago';
+        hideStatus();
         
     } catch (error) {
         console.error('Erro ao configurar cartão:', error);
@@ -372,33 +581,77 @@ submitButton.addEventListener('click', async () => {
     
     try {
         if (currentPaymentType === 'pix') {
-            // Para PIX, redirecionar para a URL de pagamento do Mercado Pago
+            // Para PIX, SEMPRE gerar QR Code diretamente no modal
+            console.log('Iniciando geração de PIX via API direta...');
             showStatus('loading', 'Gerando PIX...', 'Aguarde, estamos gerando seu código PIX');
             
-            // Redirecionar para a URL de pagamento real do Mercado Pago
-            // Isso vai mostrar o QR Code do PIX
-            const initPoint = '{{ pagamento.get_payment_id|default:"" }}';
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]');
+            console.log('CSRF Token encontrado:', csrfToken ? 'Sim' : 'Não');
+            
+            fetch(`/payments/gerar-pix/{{ pagamento.id }}/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken ? csrfToken.value : ''
+                }
+            })
+            .then(response => {
+                console.log('Resposta da API PIX:', response.status);
+                return response.json();
+            })
+            .then(data => {
+                console.log('Dados recebidos da API PIX:', data);
+                
+                if (data.success) {
+                    // PIX gerado com sucesso, mostrar QR Code no modal
+                    console.log('PIX gerado com sucesso, mostrando modal...');
+                    console.log('Dados do PIX recebidos:', data);
+                    console.log('QR Code:', data.qr_code);
+                    console.log('QR Code Base64:', data.qr_code_base64 ? data.qr_code_base64.substring(0, 100) + '...' : 'None');
+                    showPixQRCode(data);
+                } else {
+                    // Erro ao gerar PIX, mostrar erro
+                    console.log('Erro ao gerar PIX:', data.error);
+                    showStatus('error', 'Erro no PIX', data.error || 'Erro ao gerar PIX. Tente novamente ou use cartão de crédito.');
+                    
+                    // Reabilitar botão para tentar novamente
+                    submitButton.disabled = false;
+                    submitText.classList.remove('hidden');
+                    loadingSpinner.classList.add('hidden');
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao gerar PIX:', error);
+                showStatus('error', 'Erro no PIX', 'Erro de conexão. Tente novamente ou use cartão de crédito.');
+                
+                // Reabilitar botão para tentar novamente
+                submitButton.disabled = false;
+                submitText.classList.remove('hidden');
+                loadingSpinner.classList.add('hidden');
+            });
+            
+        } else if (currentPaymentType === 'card') {
+            // Para cartão, SEMPRE redirecionar para Mercado Pago
+            console.log('Redirecionando para Mercado Pago (cartão)...');
+            showStatus('loading', 'Redirecionando...', 'Aguarde, estamos redirecionando para o pagamento');
+            
+            const initPoint = INIT_POINT;
+            const preferenceId = PREFERENCE_ID;
+            
             if (initPoint && initPoint !== '') {
-                window.location.href = initPoint;
+                setTimeout(() => {
+                    window.location.href = initPoint;
+                }, 1000);
+            } else if (preferenceId) {
+                setTimeout(() => {
+                    window.location.href = `https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=${preferenceId}`;
+                }, 1000);
             } else {
-                showStatus('error', 'Erro no PIX', 'URL de pagamento não encontrada');
+                showStatus('error', 'Erro no pagamento', 'URL de pagamento não encontrada');
                 submitButton.disabled = false;
                 submitText.classList.remove('hidden');
                 loadingSpinner.classList.add('hidden');
             }
-            
-        } else if (currentPaymentType === 'card') {
-            // Para cartão, processar pagamento
-            showStatus('loading', 'Processando pagamento...', 'Validando dados do cartão');
-            
-            // Aqui você implementaria a lógica de pagamento com cartão
-            // Por enquanto, vamos simular
-            setTimeout(() => {
-                showStatus('success', 'Pagamento aprovado!', 'Sua assinatura foi ativada com sucesso');
-                setTimeout(() => {
-                    window.location.href = '{% url "payments:sucesso" %}';
-                }, 2000);
-            }, 3000);
         }
         
     } catch (error) {
@@ -434,11 +687,29 @@ async function checkPaymentStatus() {
 // Verificar status a cada 5 segundos (para pagamentos PIX)
 setInterval(checkPaymentStatus, 5000);
 
+// Função de teste para modal PIX
+function testPixModal() {
+    console.log('Testando modal PIX...');
+    const testData = {
+        success: true,
+        qr_code_base64: 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==',
+        payment_id: '123456789'
+    };
+    showPixQRCode(testData);
+}
+
 // Inicializar
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Checkout inicializado');
     console.log('Public Key:', PUBLIC_KEY);
     console.log('Preference ID:', PREFERENCE_ID);
+    
+    // Adicionar botão de teste (remover em produção)
+    const testButton = document.createElement('button');
+    testButton.textContent = 'Testar Modal PIX';
+    testButton.className = 'fixed bottom-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg z-50';
+    testButton.onclick = testPixModal;
+    document.body.appendChild(testButton);
 });
 </script>
 

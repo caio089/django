@@ -131,3 +131,1204 @@ Erro ao criar preferência: {'status': 400, 'response': {'message': 'auto_return 
 "POST /payments/criar-pagamento/1/ HTTP/1.1" 200 132
 D:\github\django\meu_projeto\payments\views.py changed, reloading.
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /index/ HTTP/1.1" 200 66305
+Not Found: /favicon.ico
+"GET /payments/planos/ HTTP/1.1" 200 10331
+"GET /payments/criar-pagamento/1/ HTTP/1.1" 302 0
+"GET /payments/criar-pagamento/1/ HTTP/1.1" 302 0
+"GET /favicon.ico HTTP/1.1" 404 5251
+Not Found: /favicon.ico
+- Broken pipe from ('127.0.0.1', 54529)
+"GET /favicon.ico HTTP/1.1" 404 5251
+- Broken pipe from ('127.0.0.1', 54585)
+"GET /payments/plano/1/ HTTP/1.1" 200 14417
+PAYMENT_AUDIT: {"timestamp": "2025-09-26T17:19:39.913155+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 29.9}}
+Criando preferência real no Mercado Pago com dados: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://127.0.0.1:8000/payments/success/?external_reference=8177cbfc-c395-4f98-b6fd-c81d9ed4b6b8', 'failure': 'http://127.0.0.1:8000/payments/failure/?external_reference=8177cbfc-c395-4f98-b6fd-c81d9ed4b6b8', 'pending': 'http://127.0.0.1:8000/payments/pending/?external_reference=8177cbfc-c395-4f98-b6fd-c81d9ed4b6b8'}, 'auto_return': 'all', 'external_reference': '8177cbfc-c395-4f98-b6fd-c81d9ed4b6b8', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}}
+Tentando criar preferência com SDK: <mercadopago.sdk.SDK object at 0x00000143AD216E40>
+Dados da preferência: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://127.0.0.1:8000/payments/success/?external_reference=8177cbfc-c395-4f98-b6fd-c81d9ed4b6b8', 'failure': 'http://127.0.0.1:8000/payments/failure/?external_reference=8177cbfc-c395-4f98-b6fd-c81d9ed4b6b8', 'pending': 'http://127.0.0.1:8000/payments/pending/?external_reference=8177cbfc-c395-4f98-b6fd-c81d9ed4b6b8'}, 'auto_return': 'all', 'external_reference': '8177cbfc-c395-4f98-b6fd-c81d9ed4b6b8', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}}
+"GET /payments/plano/1/ HTTP/1.1" 200 14417
+Resultado da criação: {'status': 400, 'response': {'message': 'auto_return invalid. back_url.success must be defined', 'error': 'invalid_auto_return', 'status': 400, 'cause': None}}
+Erro ao criar preferência: {'status': 400, 'response': {'message': 'auto_return invalid. back_url.success must be defined', 'error': 'invalid_auto_return', 'status': 400, 'cause': None}}
+- Broken pipe from ('127.0.0.1', 57366)
+Watching for file changes with StatReloader
+"GET /payments/plano/1/ HTTP/1.1" 200 14417
+PAYMENT_AUDIT: {"timestamp": "2025-09-26T17:22:19.545414+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 29.9}}
+Criando preferência real no Mercado Pago com dados: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://127.0.0.1:8000/payments/success/?external_reference=327f4448-0903-4f97-9b76-a34a81d1d1c7', 'failure': 'http://127.0.0.1:8000/payments/failure/?external_reference=327f4448-0903-4f97-9b76-a34a81d1d1c7', 'pending': 'http://127.0.0.1:8000/payments/pending/?external_reference=327f4448-0903-4f97-9b76-a34a81d1d1c7'}, 'external_reference': '327f4448-0903-4f97-9b76-a34a81d1d1c7', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}}
+Tentando criar preferência com SDK: <mercadopago.sdk.SDK object at 0x00000277218FF230>
+Dados da preferência: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://127.0.0.1:8000/payments/success/?external_reference=327f4448-0903-4f97-9b76-a34a81d1d1c7', 'failure': 'http://127.0.0.1:8000/payments/failure/?external_reference=327f4448-0903-4f97-9b76-a34a81d1d1c7', 'pending': 'http://127.0.0.1:8000/payments/pending/?external_reference=327f4448-0903-4f97-9b76-a34a81d1d1c7'}, 'external_reference': '327f4448-0903-4f97-9b76-a34a81d1d1c7', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}}
+Resultado da criação: {'status': 201, 'response': {'additional_info': '', 'auto_return': '', 'back_urls': {'failure': '', 'pending': '', 'success': ''}, 'binary_mode': False, 'client_id': '3670731395523817', 'collector_id': 2270907901, 'coupon_code': None, 'coupon_labels': None, 'date_created': '2025-09-26T13:22:28.666-04:00', 'date_of_expiration': None, 'expiration_date_from': None, 'expiration_date_to': None, 'expires': False, 'external_reference': '327f4448-0903-4f97-9b76-a34a81d1d1c7', 'id': '2270907901-39f332af-968c-4ced-a1d0-41bcf5ac30d2', 'init_point': 'https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=2270907901-39f332af-968c-4ced-a1d0-41bcf5ac30d2', 'internal_metadata': None, 'items': [{'id': '', 'category_id': '', 'currency_id': 'BRL', 'description': 'Acesso completo por 1 mês', 'title': 'Plano Mensal', 'quantity': 1, 'unit_price': 29.9}], 'marketplace': 'NONE', 'marketplace_fee': 0, 'metadata': {}, 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'operation_type': 'regular_payment', 'payer': {'phone': {'area_code': '89', 'number': ' 99407-7754'}, 'address': {'zip_code': '', 'street_name': '', 'street_number': None}, 'email': 'ccamposs2007@gmail.com', 'identification': {'number': '04217183313', 'type': 'CPF'}, 'name': '', 'surname': '', 'date_created': None, 'last_purchase': None}, 'payment_methods': {'default_card_id': None, 'default_payment_method_id': None, 'excluded_payment_methods': [{'id': ''}], 'excluded_payment_types': [{'id': ''}], 'installments': 12, 'default_installments': None}, 'processing_modes': None, 'product_id': None, 'preference_expired': False, 'redirect_urls': {'failure': '', 'pending': '', 'success': ''}, 'sandbox_init_point': 'https://sandbox.mercadopago.com.br/checkout/v1/redirect?pref_id=2270907901-39f332af-968c-4ced-a1d0-41bcf5ac30d2', 'site_id': 'MLB', 'shipments': {'default_shipping_method': None, 'receiver_address': {'zip_code': '', 'street_name': '', 'street_number': None, 'floor': '', 'apartment': '', 'city_name': None, 'state_name': None, 'country_name': None, 'neighborhood': None}}, 'total_amount': None, 'last_updated': None, 'financing_group': ''}}
+Preferência criada com sucesso: 2270907901-39f332af-968c-4ced-a1d0-41bcf5ac30d2
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 486
+"GET /payments/checkout/14/ HTTP/1.1" 200 22486
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/checkout/14/ HTTP/1.1" 200 22486
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/checkout/14/ HTTP/1.1" 200 22956
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/checkout/14/ HTTP/1.1" 200 22956
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/checkout/14/ HTTP/1.1" 200 23488
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/checkout/14/ HTTP/1.1" 200 22910
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/checkout/14/ HTTP/1.1" 200 23387
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/checkout/14/ HTTP/1.1" 200 23624
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\urls.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/checkout/14/ HTTP/1.1" 200 27079
+Erro ao criptografar dados: data must be bytes
+Erro ao gerar PIX direto: Falha na criptografia: data must be bytes
+"POST /payments/gerar-pix/14/ HTTP/1.1" 200 86
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /payments/checkout/14/ HTTP/1.1" 200 27079
+"GET /payments/verificar-status/14/ HTTP/1.1" 200 128
+"GET /index/ HTTP/1.1" 200 66305
+"GET /payments/planos/ HTTP/1.1" 200 10331
+"GET /payments/criar-pagamento/1/ HTTP/1.1" 302 0
+"GET /payments/plano/1/ HTTP/1.1" 200 14417
+PAYMENT_AUDIT: {"timestamp": "2025-09-26T17:38:44.055177+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 29.9}}
+Criando preferência real no Mercado Pago com dados: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://127.0.0.1:8000/payments/success/?external_reference=dfca83f1-784a-4625-88f6-8c61f2f87614', 'failure': 'http://127.0.0.1:8000/payments/failure/?external_reference=dfca83f1-784a-4625-88f6-8c61f2f87614', 'pending': 'http://127.0.0.1:8000/payments/pending/?external_reference=dfca83f1-784a-4625-88f6-8c61f2f87614'}, 'external_reference': 'dfca83f1-784a-4625-88f6-8c61f2f87614', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12, 'default_payment_method_id': 'pix'}, 'purpose': 'wallet_purchase', 'additional_info': 'PIX preferido para pagamento instantâneo'}
+Tentando criar preferência com SDK: <mercadopago.sdk.SDK object at 0x0000022F40AABCE0>
+Dados da preferência: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://127.0.0.1:8000/payments/success/?external_reference=dfca83f1-784a-4625-88f6-8c61f2f87614', 'failure': 'http://127.0.0.1:8000/payments/failure/?external_reference=dfca83f1-784a-4625-88f6-8c61f2f87614', 'pending': 'http://127.0.0.1:8000/payments/pending/?external_reference=dfca83f1-784a-4625-88f6-8c61f2f87614'}, 'external_reference': 'dfca83f1-784a-4625-88f6-8c61f2f87614', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12, 'default_payment_method_id': 'pix'}, 'purpose': 'wallet_purchase', 'additional_info': 'PIX preferido para pagamento instantâneo'}
+Resultado da criação: {'status': 400, 'response': {'message': 'invalid default_payment_method_id. The default payment method is excluded', 'error': 'bad_request', 'status': 400, 'cause': None}}
+Erro ao criar preferência: {'status': 400, 'response': {'message': 'invalid default_payment_method_id. The default payment method is excluded', 'error': 'bad_request', 'status': 400, 'cause': None}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 152
+"GET /payments/plano/1/ HTTP/1.1" 200 14417
+"GET /payments/plano/1/ HTTP/1.1" 200 14417
+PAYMENT_AUDIT: {"timestamp": "2025-09-26T17:39:38.533403+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 29.9}}
+Criando preferência real no Mercado Pago com dados: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://127.0.0.1:8000/payments/success/?external_reference=5365a242-8d5f-48dc-a702-4869fdc46725', 'failure': 'http://127.0.0.1:8000/payments/failure/?external_reference=5365a242-8d5f-48dc-a702-4869fdc46725', 'pending': 'http://127.0.0.1:8000/payments/pending/?external_reference=5365a242-8d5f-48dc-a702-4869fdc46725'}, 'external_reference': '5365a242-8d5f-48dc-a702-4869fdc46725', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12, 'default_payment_method_id': 'pix'}, 'purpose': 'wallet_purchase', 'additional_info': 'PIX preferido para pagamento instantâneo'}
+Tentando criar preferência com SDK: <mercadopago.sdk.SDK object at 0x0000022F40AA8E90>
+Dados da preferência: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://127.0.0.1:8000/payments/success/?external_reference=5365a242-8d5f-48dc-a702-4869fdc46725', 'failure': 'http://127.0.0.1:8000/payments/failure/?external_reference=5365a242-8d5f-48dc-a702-4869fdc46725', 'pending': 'http://127.0.0.1:8000/payments/pending/?external_reference=5365a242-8d5f-48dc-a702-4869fdc46725'}, 'external_reference': '5365a242-8d5f-48dc-a702-4869fdc46725', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12, 'default_payment_method_id': 'pix'}, 'purpose': 'wallet_purchase', 'additional_info': 'PIX preferido para pagamento instantâneo'}
+Resultado da criação: {'status': 400, 'response': {'message': 'invalid default_payment_method_id. The default payment method is excluded', 'error': 'bad_request', 'status': 400, 'cause': None}}
+Erro ao criar preferência: {'status': 400, 'response': {'message': 'invalid default_payment_method_id. The default payment method is excluded', 'error': 'bad_request', 'status': 400, 'cause': None}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 152
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/plano/1/ HTTP/1.1" 200 14417
+PAYMENT_AUDIT: {"timestamp": "2025-09-26T17:40:12.921604+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 29.9}}
+Criando preferência real no Mercado Pago com dados: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://127.0.0.1:8000/payments/success/?external_reference=3055c707-d90d-4dc3-9449-7e39c7b2c475', 'failure': 'http://127.0.0.1:8000/payments/failure/?external_reference=3055c707-d90d-4dc3-9449-7e39c7b2c475', 'pending': 'http://127.0.0.1:8000/payments/pending/?external_reference=3055c707-d90d-4dc3-9449-7e39c7b2c475'}, 'external_reference': '3055c707-d90d-4dc3-9449-7e39c7b2c475', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}, 'purpose': 'wallet_purchase'}
+Tentando criar preferência com SDK: <mercadopago.sdk.SDK object at 0x00000187CFF3B230>
+Dados da preferência: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://127.0.0.1:8000/payments/success/?external_reference=3055c707-d90d-4dc3-9449-7e39c7b2c475', 'failure': 'http://127.0.0.1:8000/payments/failure/?external_reference=3055c707-d90d-4dc3-9449-7e39c7b2c475', 'pending': 'http://127.0.0.1:8000/payments/pending/?external_reference=3055c707-d90d-4dc3-9449-7e39c7b2c475'}, 'external_reference': '3055c707-d90d-4dc3-9449-7e39c7b2c475', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}, 'purpose': 'wallet_purchase'}
+Resultado da criação: {'status': 201, 'response': {'additional_info': '', 'auto_return': '', 'back_urls': {'failure': '', 'pending': '', 'success': ''}, 'binary_mode': False, 'client_id': '3670731395523817', 'collector_id': 2270907901, 'coupon_code': None, 'coupon_labels': None, 'date_created': '2025-09-26T13:40:22.158-04:00', 'date_of_expiration': None, 'expiration_date_from': None, 'expiration_date_to': None, 'expires': False, 'external_reference': '3055c707-d90d-4dc3-9449-7e39c7b2c475', 'id': '2270907901-5c2e3df5-810a-4247-8d2a-28cc936c335f', 'init_point': 'https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=2270907901-5c2e3df5-810a-4247-8d2a-28cc936c335f', 'internal_metadata': None, 'items': [{'id': '', 'category_id': '', 'currency_id': 'BRL', 'description': 'Acesso completo por 1 mês', 'title': 'Plano Mensal', 'quantity': 1, 'unit_price': 29.9}], 'marketplace': 'NONE', 'marketplace_fee': 0, 'metadata': {}, 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'operation_type': 'regular_payment', 'payer': {'phone': {'area_code': '89', 'number': ' 99407-7754'}, 'address': {'zip_code': '', 'street_name': '', 'street_number': None}, 'email': 'ccamposs2007@gmail.com', 'identification': {'number': '04217183313', 'type': 'CPF'}, 'name': '', 'surname': '', 'date_created': None, 'last_purchase': None}, 'payment_methods': {'default_card_id': None, 'default_payment_method_id': None, 'excluded_payment_methods': [{'id': ''}], 'excluded_payment_types': [{'id': ''}], 'installments': 12, 'default_installments': None}, 'processing_modes': None, 'product_id': None, 'preference_expired': False, 'redirect_urls': {'failure': '', 'pending': '', 'success': ''}, 'sandbox_init_point': 'https://sandbox.mercadopago.com.br/checkout/v1/redirect?pref_id=2270907901-5c2e3df5-810a-4247-8d2a-28cc936c335f', 'site_id': 'MLB', 'shipments': {'default_shipping_method': None, 'receiver_address': {'zip_code': '', 'street_name': '', 'street_number': None, 'floor': '', 'apartment': '', 'city_name': None, 'state_name': None, 'country_name': None, 'neighborhood': None}}, 'total_amount': None, 'last_updated': None, 'financing_group': ''}}
+Preferência criada com sucesso: 2270907901-5c2e3df5-810a-4247-8d2a-28cc936c335f
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 486
+"GET /payments/checkout/15/ HTTP/1.1" 200 28900
+Erro ao criptografar dados: data must be bytes
+Erro ao gerar PIX direto: Falha na criptografia: data must be bytes
+"POST /payments/gerar-pix/15/ HTTP/1.1" 200 86
+"GET /payments/verificar-status/15/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /index/ HTTP/1.1" 200 66305
+"GET /payments/planos/ HTTP/1.1" 200 10331
+"GET /payments/criar-pagamento/1/ HTTP/1.1" 302 0
+"GET /payments/plano/1/ HTTP/1.1" 200 14417
+PAYMENT_AUDIT: {"timestamp": "2025-09-26T17:42:10.226609+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 29.9}}
+Criando preferência real no Mercado Pago com dados: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://127.0.0.1:8000/payments/success/?external_reference=dd3ed8ef-ed45-49f6-be6e-d1be6d09b3ac', 'failure': 'http://127.0.0.1:8000/payments/failure/?external_reference=dd3ed8ef-ed45-49f6-be6e-d1be6d09b3ac', 'pending': 'http://127.0.0.1:8000/payments/pending/?external_reference=dd3ed8ef-ed45-49f6-be6e-d1be6d09b3ac'}, 'external_reference': 'dd3ed8ef-ed45-49f6-be6e-d1be6d09b3ac', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/'}
+Tentando criar preferência com SDK: <mercadopago.sdk.SDK object at 0x000002914D0DF380>
+Dados da preferência: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://127.0.0.1:8000/payments/success/?external_reference=dd3ed8ef-ed45-49f6-be6e-d1be6d09b3ac', 'failure': 'http://127.0.0.1:8000/payments/failure/?external_reference=dd3ed8ef-ed45-49f6-be6e-d1be6d09b3ac', 'pending': 'http://127.0.0.1:8000/payments/pending/?external_reference=dd3ed8ef-ed45-49f6-be6e-d1be6d09b3ac'}, 'external_reference': 'dd3ed8ef-ed45-49f6-be6e-d1be6d09b3ac', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/'}
+Resultado da criação: {'status': 201, 'response': {'additional_info': '', 'auto_return': '', 'back_urls': {'failure': '', 'pending': '', 'success': ''}, 'binary_mode': False, 'client_id': '3670731395523817', 'collector_id': 2270907901, 'coupon_code': None, 'coupon_labels': None, 'date_created': '2025-09-26T13:42:19.346-04:00', 'date_of_expiration': None, 'expiration_date_from': None, 'expiration_date_to': None, 'expires': False, 'external_reference': 'dd3ed8ef-ed45-49f6-be6e-d1be6d09b3ac', 'id': '2270907901-17a8846f-46d5-4a1a-904c-002edeb710c2', 'init_point': 'https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=2270907901-17a8846f-46d5-4a1a-904c-002edeb710c2', 'internal_metadata': None, 'items': [{'id': '', 'category_id': '', 'currency_id': 'BRL', 'description': 'Acesso completo por 1 mês', 'title': 'Plano Mensal', 'quantity': 1, 'unit_price': 29.9}], 'marketplace': 'NONE', 'marketplace_fee': 0, 'metadata': {}, 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'operation_type': 'regular_payment', 'payer': {'phone': {'area_code': '89', 'number': ' 99407-7754'}, 'address': {'zip_code': '', 'street_name': '', 'street_number': None}, 'email': 'ccamposs2007@gmail.com', 'identification': {'number': '04217183313', 'type': 'CPF'}, 'name': '', 'surname': '', 'date_created': None, 'last_purchase': None}, 'payment_methods': {'default_card_id': None, 'default_payment_method_id': None, 'excluded_payment_methods': [{'id': ''}], 'excluded_payment_types': [{'id': ''}], 'installments': None, 'default_installments': None}, 'processing_modes': None, 'product_id': None, 'preference_expired': False, 'redirect_urls': {'failure': '', 'pending': '', 'success': ''}, 'sandbox_init_point': 'https://sandbox.mercadopago.com.br/checkout/v1/redirect?pref_id=2270907901-17a8846f-46d5-4a1a-904c-002edeb710c2', 'site_id': 'MLB', 'shipments': {'default_shipping_method': None, 'receiver_address': {'zip_code': '', 'street_name': '', 'street_number': None, 'floor': '', 'apartment': '', 'city_name': None, 'state_name': None, 'country_name': None, 'neighborhood': None}}, 'total_amount': None, 'last_updated': None, 'financing_group': ''}}
+Preferência criada com sucesso: 2270907901-17a8846f-46d5-4a1a-904c-002edeb710c2
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 486
+"GET /payments/checkout/16/ HTTP/1.1" 200 28900
+"POST /payments/gerar-pix/16/ HTTP/1.1" 200 74
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/checkout/16/ HTTP/1.1" 200 28191
+Erro ao criptografar dados: data must be bytes
+Erro ao gerar PIX direto: Falha na criptografia: data must be bytes
+"POST /payments/gerar-pix/16/ HTTP/1.1" 200 86
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/checkout/16/ HTTP/1.1" 200 29052
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/checkout/16/ HTTP/1.1" 200 29729
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+Watching for file changes with StatReloader
+Erro no teste PIX: name 'MercadoPagoConfig' is not defined
+"GET /payments/testar-pix/ HTTP/1.1" 200 76
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 5251
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Erro no teste PIX: name 'MercadoPagoConfig' is not defined
+"GET /payments/testar-pix/ HTTP/1.1" 200 76
+Erro no teste PIX: name 'MercadoPagoConfig' is not defined
+"GET /payments/testar-pix/ HTTP/1.1" 200 76
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/checkout/16/ HTTP/1.1" 200 29729
+Erro no teste PIX: name 'MercadoPagoConfig' is not defined
+"GET /payments/testar-pix/ HTTP/1.1" 200 76
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Erro no teste PIX: 'ConfiguracaoPagamento' object has no attribute 'access_token'
+"GET /payments/testar-pix/ HTTP/1.1" 200 99
+Erro no teste PIX: 'ConfiguracaoPagamento' object has no attribute 'access_token'
+"GET /payments/testar-pix/ HTTP/1.1" 200 99
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Erro no teste PIX: 'ConfiguracaoPagamento' object has no attribute 'access_token'
+"GET /payments/testar-pix/ HTTP/1.1" 200 99
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Testando PIX com preferência: {'items': [{'title': 'Teste PIX', 'description': 'Teste de PIX', 'quantity': 1, 'unit_price': 1.0, 'currency_id': 'BRL'}], 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}, 'purpose': 'wallet_purchase'}
+Resultado do teste PIX: {'status': 201, 'response': {'additional_info': '', 'auto_return': '', 'back_urls': {'failure': '', 'pending': '', 'success': ''}, 'binary_mode': False, 'client_id': '3670731395523817', 'collector_id': 2270907901, 'coupon_code': None, 'coupon_labels': None, 'date_created': '2025-09-26T13:56:44.326-04:00', 'date_of_expiration': None, 'expiration_date_from': None, 'expiration_date_to': None, 'expires': False, 'external_reference': '', 'id': '2270907901-b9b20e0e-d76f-4941-a54b-d763b39a3b79', 'init_point': 'https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=2270907901-b9b20e0e-d76f-4941-a54b-d763b39a3b79', 'internal_metadata': None, 'items': [{'id': '', 'category_id': '', 'currency_id': 'BRL', 'description': 'Teste de PIX', 'title': 'Teste PIX', 'quantity': 1, 'unit_price': 1}], 'marketplace': 'NONE', 'marketplace_fee': 0, 'metadata': {}, 'notification_url': None, 'operation_type': 'regular_payment', 'payer': {'phone': {'area_code': '', 'number': ''}, 'address': {'zip_code': '', 'street_name': '', 'street_number': None}, 'email': '', 'identification': {'number': '', 'type': ''}, 'name': '', 'surname': '', 'date_created': None, 'last_purchase': None}, 'payment_methods': {'default_card_id': None, 'default_payment_method_id': None, 'excluded_payment_methods': [{'id': ''}], 'excluded_payment_types': [{'id': ''}], 'installments': 12, 'default_installments': None}, 'processing_modes': None, 'product_id': None, 'preference_expired': False, 'redirect_urls': {'failure': '', 'pending': '', 'success': ''}, 'sandbox_init_point': 'https://sandbox.mercadopago.com.br/checkout/v1/redirect?pref_id=2270907901-b9b20e0e-d76f-4941-a54b-d763b39a3b79', 'site_id': 'MLB', 'shipments': {'default_shipping_method': None, 'receiver_address': {'zip_code': '', 'street_name': '', 'street_number': None, 'floor': '', 'apartment': '', 'city_name': None, 'state_name': None, 'country_name': None, 'neighborhood': None}}, 'total_amount': None, 'last_updated': None, 'financing_group': ''}}
+"GET /payments/testar-pix/ HTTP/1.1" 200 273
+"GET /payments/verificar-status/16/ HTTP/1.1" 200 128
+"GET /payments/checkout/16/ HTTP/1.1" 200 29729
+"GET /index/ HTTP/1.1" 200 66305
+"GET /payments/planos/ HTTP/1.1" 200 10331
+"GET /payments/criar-pagamento/1/ HTTP/1.1" 302 0
+"GET /payments/plano/1/ HTTP/1.1" 200 14417
+PAYMENT_AUDIT: {"timestamp": "2025-09-26T17:57:15.246781+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 29.9}}
+Criando preferência real no Mercado Pago com dados: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://127.0.0.1:8000/payments/success/?external_reference=565bb1e7-39d5-4ae2-b5a2-5b613872a5d4', 'failure': 'http://127.0.0.1:8000/payments/failure/?external_reference=565bb1e7-39d5-4ae2-b5a2-5b613872a5d4', 'pending': 'http://127.0.0.1:8000/payments/pending/?external_reference=565bb1e7-39d5-4ae2-b5a2-5b613872a5d4'}, 'external_reference': '565bb1e7-39d5-4ae2-b5a2-5b613872a5d4', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}, 'purpose': 'wallet_purchase', 'additional_info': 'Pagamento via PIX para assinatura premium', 'auto_return': 'approved', 'binary_mode': False}
+Tentando criar preferência com SDK: <mercadopago.sdk.SDK object at 0x000001CE7F22C190>
+Dados da preferência: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://127.0.0.1:8000/payments/success/?external_reference=565bb1e7-39d5-4ae2-b5a2-5b613872a5d4', 'failure': 'http://127.0.0.1:8000/payments/failure/?external_reference=565bb1e7-39d5-4ae2-b5a2-5b613872a5d4', 'pending': 'http://127.0.0.1:8000/payments/pending/?external_reference=565bb1e7-39d5-4ae2-b5a2-5b613872a5d4'}, 'external_reference': '565bb1e7-39d5-4ae2-b5a2-5b613872a5d4', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}, 'purpose': 'wallet_purchase', 'additional_info': 'Pagamento via PIX para assinatura premium', 'auto_return': 'approved', 'binary_mode': False}
+Resultado da criação: {'status': 400, 'response': {'message': 'auto_return invalid. back_url.success must be defined', 'error': 'invalid_auto_return', 'status': 400, 'cause': None}}
+Erro ao criar preferência: {'status': 400, 'response': {'message': 'auto_return invalid. back_url.success must be defined', 'error': 'invalid_auto_return', 'status': 400, 'cause': None}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 132
+PAYMENT_AUDIT: {"timestamp": "2025-09-26T17:57:17.438380+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 29.9}}
+Criando preferência real no Mercado Pago com dados: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://127.0.0.1:8000/payments/success/?external_reference=826f15b7-8f4e-4642-9efa-555c706dff23', 'failure': 'http://127.0.0.1:8000/payments/failure/?external_reference=826f15b7-8f4e-4642-9efa-555c706dff23', 'pending': 'http://127.0.0.1:8000/payments/pending/?external_reference=826f15b7-8f4e-4642-9efa-555c706dff23'}, 'external_reference': '826f15b7-8f4e-4642-9efa-555c706dff23', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}, 'purpose': 'wallet_purchase', 'additional_info': 'Pagamento via PIX para assinatura premium', 'auto_return': 'approved', 'binary_mode': False}
+Tentando criar preferência com SDK: <mercadopago.sdk.SDK object at 0x000001CE7F23C9D0>
+Dados da preferência: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://127.0.0.1:8000/payments/success/?external_reference=826f15b7-8f4e-4642-9efa-555c706dff23', 'failure': 'http://127.0.0.1:8000/payments/failure/?external_reference=826f15b7-8f4e-4642-9efa-555c706dff23', 'pending': 'http://127.0.0.1:8000/payments/pending/?external_reference=826f15b7-8f4e-4642-9efa-555c706dff23'}, 'external_reference': '826f15b7-8f4e-4642-9efa-555c706dff23', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}, 'purpose': 'wallet_purchase', 'additional_info': 'Pagamento via PIX para assinatura premium', 'auto_return': 'approved', 'binary_mode': False}
+Resultado da criação: {'status': 400, 'response': {'message': 'auto_return invalid. back_url.success must be defined', 'error': 'invalid_auto_return', 'status': 400, 'cause': None}}
+Erro ao criar preferência: {'status': 400, 'response': {'message': 'auto_return invalid. back_url.success must be defined', 'error': 'invalid_auto_return', 'status': 400, 'cause': None}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 132
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /payments/plano/1/ HTTP/1.1" 200 14417
+PAYMENT_AUDIT: {"timestamp": "2025-09-26T17:58:01.306849+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 29.9}}
+Criando preferência real no Mercado Pago com dados: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://127.0.0.1:8000/payments/success/?external_reference=1367eb00-5114-4628-aa4b-d225ecee6c33', 'failure': 'http://127.0.0.1:8000/payments/failure/?external_reference=1367eb00-5114-4628-aa4b-d225ecee6c33', 'pending': 'http://127.0.0.1:8000/payments/pending/?external_reference=1367eb00-5114-4628-aa4b-d225ecee6c33'}, 'external_reference': '1367eb00-5114-4628-aa4b-d225ecee6c33', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}, 'purpose': 'wallet_purchase', 'additional_info': 'Pagamento via PIX para assinatura premium', 'binary_mode': False}
+Tentando criar preferência com SDK: <mercadopago.sdk.SDK object at 0x00000202198E7230>
+Dados da preferência: {'items': [{'title': 'Plano Mensal', 'description': 'Acesso completo por 1 mês', 'quantity': 1, 'unit_price': 29.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'http://127.0.0.1:8000/payments/success/?external_reference=1367eb00-5114-4628-aa4b-d225ecee6c33', 'failure': 'http://127.0.0.1:8000/payments/failure/?external_reference=1367eb00-5114-4628-aa4b-d225ecee6c33', 'pending': 'http://127.0.0.1:8000/payments/pending/?external_reference=1367eb00-5114-4628-aa4b-d225ecee6c33'}, 'external_reference': '1367eb00-5114-4628-aa4b-d225ecee6c33', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}, 'purpose': 'wallet_purchase', 'additional_info': 'Pagamento via PIX para assinatura premium', 'binary_mode': False}
+Resultado da criação: {'status': 201, 'response': {'additional_info': 'Pagamento via PIX para assinatura premium', 'auto_return': '', 'back_urls': {'failure': '', 'pending': '', 'success': ''}, 'binary_mode': False, 'client_id': '3670731395523817', 'collector_id': 2270907901, 'coupon_code': None, 'coupon_labels': None, 'date_created': '2025-09-26T13:58:10.493-04:00', 'date_of_expiration': None, 'expiration_date_from': None, 'expiration_date_to': None, 'expires': False, 'external_reference': '1367eb00-5114-4628-aa4b-d225ecee6c33', 'id': '2270907901-33c39d83-1375-4d24-bd06-e987fb7a2e63', 'init_point': 'https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=2270907901-33c39d83-1375-4d24-bd06-e987fb7a2e63', 'internal_metadata': None, 'items': [{'id': '', 'category_id': '', 'currency_id': 'BRL', 'description': 'Acesso completo por 1 mês', 'title': 'Plano Mensal', 'quantity': 1, 'unit_price': 29.9}], 'marketplace': 'NONE', 'marketplace_fee': 0, 'metadata': {}, 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'operation_type': 'regular_payment', 'payer': {'phone': {'area_code': '89', 'number': ' 99407-7754'}, 'address': {'zip_code': '', 'street_name': '', 'street_number': None}, 'email': 'ccamposs2007@gmail.com', 'identification': {'number': '04217183313', 'type': 'CPF'}, 'name': '', 'surname': '', 'date_created': None, 'last_purchase': None}, 'payment_methods': {'default_card_id': None, 'default_payment_method_id': None, 'excluded_payment_methods': [{'id': ''}], 'excluded_payment_types': [{'id': ''}], 'installments': 12, 'default_installments': None}, 'processing_modes': None, 'product_id': None, 'preference_expired': False, 'redirect_urls': {'failure': '', 'pending': '', 'success': ''}, 'sandbox_init_point': 'https://sandbox.mercadopago.com.br/checkout/v1/redirect?pref_id=2270907901-33c39d83-1375-4d24-bd06-e987fb7a2e63', 'site_id': 'MLB', 'shipments': {'default_shipping_method': None, 'receiver_address': {'zip_code': '', 'street_name': '', 'street_number': None, 'floor': '', 'apartment': '', 'city_name': None, 'state_name': None, 'country_name': None, 'neighborhood': None}}, 'total_amount': None, 'last_updated': None, 'financing_group': ''}}
+Preferência criada com sucesso: 2270907901-33c39d83-1375-4d24-bd06-e987fb7a2e63
+Init Point: https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=2270907901-33c39d83-1375-4d24-bd06-e987fb7a2e63
+Preferência completa: {'additional_info': 'Pagamento via PIX para assinatura premium', 'auto_return': '', 'back_urls': {'failure': '', 'pending': '', 'success': ''}, 'binary_mode': False, 'client_id': '3670731395523817', 'collector_id': 2270907901, 'coupon_code': None, 'coupon_labels': None, 'date_created': '2025-09-26T13:58:10.493-04:00', 'date_of_expiration': None, 'expiration_date_from': None, 'expiration_date_to': None, 'expires': False, 'external_reference': '1367eb00-5114-4628-aa4b-d225ecee6c33', 'id': '2270907901-33c39d83-1375-4d24-bd06-e987fb7a2e63', 'init_point': 'https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=2270907901-33c39d83-1375-4d24-bd06-e987fb7a2e63', 'internal_metadata': None, 'items': [{'id': '', 'category_id': '', 'currency_id': 'BRL', 'description': 'Acesso completo por 1 mês', 'title': 'Plano Mensal', 'quantity': 1, 'unit_price': 29.9}], 'marketplace': 'NONE', 'marketplace_fee': 0, 'metadata': {}, 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'operation_type': 'regular_payment', 'payer': {'phone': {'area_code': '89', 'number': ' 99407-7754'}, 'address': {'zip_code': '', 'street_name': '', 'street_number': None}, 'email': 'ccamposs2007@gmail.com', 'identification': {'number': '04217183313', 'type': 'CPF'}, 'name': '', 'surname': '', 'date_created': None, 'last_purchase': None}, 'payment_methods': {'default_card_id': None, 'default_payment_method_id': None, 'excluded_payment_methods': [{'id': ''}], 'excluded_payment_types': [{'id': ''}], 'installments': 12, 'default_installments': None}, 'processing_modes': None, 'product_id': None, 'preference_expired': False, 'redirect_urls': {'failure': '', 'pending': '', 'success': ''}, 'sandbox_init_point': 'https://sandbox.mercadopago.com.br/checkout/v1/redirect?pref_id=2270907901-33c39d83-1375-4d24-bd06-e987fb7a2e63', 'site_id': 'MLB', 'shipments': {'default_shipping_method': None, 'receiver_address': {'zip_code': '', 'street_name': '', 'street_number': None, 'floor': '', 'apartment': '', 'city_name': None, 'state_name': None, 'country_name': None, 'neighborhood': None}}, 'total_amount': None, 'last_updated': None, 'financing_group': ''}
+PIX disponível: True
+Tipos de pagamento excluídos: [{'id': ''}]
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 486
+"GET /payments/checkout/17/ HTTP/1.1" 200 29729
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/checkout/17/ HTTP/1.1" 200 29729
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/checkout/17/ HTTP/1.1" 200 27998
+Erro ao criptografar dados: data must be bytes
+Erro ao gerar PIX direto: Falha na criptografia: data must be bytes
+"POST /payments/gerar-pix/17/ HTTP/1.1" 200 86
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/checkout/17/ HTTP/1.1" 200 27998
+Erro ao criptografar dados: data must be bytes
+Erro ao gerar PIX direto: Falha na criptografia: data must be bytes
+"POST /payments/gerar-pix/17/ HTTP/1.1" 200 86
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\urls.py changed, reloading.
+D:\github\django\meu_projeto\payments\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/checkout/17/ HTTP/1.1" 200 27998
+Erro ao criptografar dados: data must be bytes
+Erro ao gerar PIX direto: Falha na criptografia: data must be bytes
+"POST /payments/gerar-pix/17/ HTTP/1.1" 200 86
+D:\github\django\meu_projeto\payments\urls.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+Watching for file changes with StatReloader
+"GET /payments/checkout/17/ HTTP/1.1" 200 27998
+Erro ao criptografar dados: data must be bytes
+Erro ao gerar PIX direto: Falha na criptografia: data must be bytes
+"POST /payments/gerar-pix/17/ HTTP/1.1" 200 86
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/checkout/17/ HTTP/1.1" 200 27998
+Erro ao criptografar dados: data must be bytes
+Erro ao gerar PIX direto: Falha na criptografia: data must be bytes
+"POST /payments/gerar-pix/17/ HTTP/1.1" 200 86
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\models.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\models.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\models.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\models.py changed, reloading.
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\models.py changed, reloading.
+D:\github\django\meu_projeto\payments\models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /payments/checkout/17/ HTTP/1.1" 200 28165
+"POST /payments/gerar-pix/17/ HTTP/1.1" 200 5249
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/checkout/17/ HTTP/1.1" 200 28746
+Pagamento PIX criado com sucesso: 1341371351
+Dados completos do pagamento: {'id': 1341371351, 'date_created': '2025-09-26T14:07:47.408-04:00', 'date_approved': None, 'date_last_updated': '2025-09-26T14:07:47.408-04:00', 'date_of_expiration': '2025-09-27T14:07:47.144-04:00', 'money_release_date': None, 'money_release_status': 'released', 'operation_type': 'regular_payment', 'issuer_id': '12501', 'payment_method_id': 'pix', 'payment_type_id': 'bank_transfer', 'payment_method': {'id': 'pix', 'type': 'bank_transfer', 'issuer_id': '12501'}, 'status': 'pending', 'status_detail': 'pending_waiting_transfer', 'currency_id': 'BRL', 'description': 'Assinatura Plano Mensal', 'live_mode': False, 'sponsor_id': None, 'authorization_code': None, 'money_release_schema': None, 'taxes_amount': 0, 'counter_currency': None, 'brand_id': None, 'shipping_amount': 0, 'build_version': '3.125.0-rc-2', 'pos_id': None, 'store_id': None, 'integrator_id': None, 'platform_id': None, 'corporation_id': None, 'payer': {'identification': {'number': None, 'type': None}, 'entity_type': None, 'phone': {'number': None, 'extension': None, 'area_code': None}, 'last_name': None, 'id': '1855622431', 'type': None, 'first_name': None, 'email': None}, 'collector_id': 2270907901, 'marketplace_owner': None, 'metadata': {}, 'additional_info': {'tracking_id': 'platform:3.13.3,so:so;,type:SDK2.3.0,security:none'}, 'order': {}, 'external_reference': '1367eb00-5114-4628-aa4b-d225ecee6c33', 'transaction_amount': 29.9, 'transaction_amount_refunded': 0, 'coupon_amount': 0, 'differential_pricing_id': None, 'financing_group': None, 'deduction_schema': None, 'callback_url': None, 'installments': 1, 'transaction_details': {'payment_method_reference_id': None, 'acquirer_reference': None, 'net_received_amount': 0, 'total_paid_amount': 29.9, 'overpaid_amount': 0, 'external_resource_url': None, 'installment_amount': 0, 'financial_institution': None, 'payable_deferral_period': None, 'bank_transfer_id': None, 'transaction_id': None}, 'fee_details': [], 'charges_details': [{'id': '1341371351-001', 'name': 'mercadopago_fee', 'type': 'fee', 'accounts': {'from': 'collector', 'to': 'mp'}, 'client_id': 0, 'date_created': '2025-09-26T14:07:47.410-04:00', 'last_updated': '2025-09-26T14:07:47.410-04:00', 'amounts': {'original': 0.3, 'refunded': 0}, 'metadata': {'source': 'rule-engine', 'source_detail': 'processing_fee_charge', 'reason': ''}, 'reserve_id': None, 'refund_charges': []}, {'id': '1341371351-002', 'name': 'financed_advance_fee', 'type': 'fee', 'accounts': {'from': 'collector', 'to': 'mp'}, 'client_id': 0, 'date_created': '2025-09-26T14:07:47.411-04:00', 'last_updated': '2025-09-26T14:07:47.411-04:00', 'amounts': {'original': 1.2, 'refunded': 0}, 'metadata': {'source': 'rule-engine', 'source_detail': 'financed_advance_fee_charge'}, 'reserve_id': None, 'refund_charges': [], 'rate': 1, 'base_amount': 0}], 'captured': True, 'binary_mode': False, 'call_for_authorize_id': None, 'statement_descriptor': None, 'card': {}, 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'refunds': [], 'processing_mode': 'aggregator', 'merchant_account_id': None, 'merchant_number': None, 'acquirer_reconciliation': [], 'point_of_interaction': {'type': 'OPENPLATFORM', 'business_info': {'unit': 'online_payments', 'sub_unit': 'sdk', 'branch': None}, 'location': {'state_id': None, 'source': None}, 'application_data': {'name': None, 'operating_system': None, 'version': None}, 'transaction_data': {'qr_code': '00020126580014br.gov.bcb.pix0136b76aa9c2-2ec4-4110-954e-ebfe34f05b61520400005303986540529.905802BR5916CC513878240914566009Sao Paulo62230519mpqrinter13413713516304D5F2', 'bank_transfer_id': None, 'transaction_id': None, 'e2e_id': None, 'financial_institution': None, 'ticket_url': 'https://www.mercadopago.com.br/sandbox/payments/1341371351/ticket?caller_id=1855622431&hash=49a36562-5479-419f-abd4-b0c65d06b2a1', 'merchant_category_code': None, 'bank_info': {'payer': {'account_id': None, 'branch': None, 'id': None, 'long_name': None, 'account_holder_name': None, 'identification': {'number': None, 'type': None}, 'external_account_id': None, 'is_end_consumer': None}, 'collector': {'account_id': None, 'long_name': None, 'account_holder_name': 'CaGr hAMwbY ehlva', 'transfer_account_id': None}, 'is_same_bank_account_owner': None, 'origin_bank_id': None, 'origin_wallet_id': None}, 'qr_code_base64': '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'}}, 'accounts_info': None, 'release_info': None, 'tags': None}
+QR Code: 00020126580014br.gov.bcb.pix0136b76aa9c2-2ec4-4110-954e-ebfe34f05b61520400005303986540529.905802BR5916CC513878240914566009Sao Paulo62230519mpqrinter13413713516304D5F2
+QR Code Base64: iVBORw0KGgoAAAANSUhEUgAABWQAAAVkAQAAAAB79iscAAANzUlEQVR4Xu3XUZKjKw6EUe9g9r/L3oEnWimRIHBH1Y3ijt3z5YMb...
+Ticket URL: https://www.mercadopago.com.br/sandbox/payments/1341371351/ticket?caller_id=1855622431&hash=49a36562-5479-419f-abd4-b0c65d06b2a1
+"POST /payments/gerar-pix/17/ HTTP/1.1" 200 5201
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5362
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/checkout/17/ HTTP/1.1" 200 30520
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5362
+Pagamento PIX criado com sucesso: 1341371379
+Dados completos do pagamento: {'id': 1341371379, 'date_created': '2025-09-26T14:10:54.985-04:00', 'date_approved': None, 'date_last_updated': '2025-09-26T14:10:54.985-04:00', 'date_of_expiration': '2025-09-27T14:10:54.674-04:00', 'money_release_date': None, 'money_release_status': 'released', 'operation_type': 'regular_payment', 'issuer_id': '12501', 'payment_method_id': 'pix', 'payment_type_id': 'bank_transfer', 'payment_method': {'id': 'pix', 'type': 'bank_transfer', 'issuer_id': '12501'}, 'status': 'pending', 'status_detail': 'pending_waiting_transfer', 'currency_id': 'BRL', 'description': 'Pagamento PIX - Assinatura Plano Mensal', 'live_mode': False, 'sponsor_id': None, 'authorization_code': None, 'money_release_schema': None, 'taxes_amount': 0, 'counter_currency': None, 'brand_id': None, 'shipping_amount': 0, 'build_version': '3.125.0-rc-2', 'pos_id': None, 'store_id': None, 'integrator_id': None, 'platform_id': None, 'corporation_id': None, 'payer': {'identification': {'number': None, 'type': None}, 'entity_type': None, 'phone': {'number': None, 'extension': None, 'area_code': None}, 'last_name': None, 'id': '1855622431', 'type': None, 'first_name': None, 'email': None}, 'collector_id': 2270907901, 'marketplace_owner': None, 'metadata': {'payment_type': 'pix', 'source': 'django_app'}, 'additional_info': {'tracking_id': 'platform:3.13.3,so:so;,type:SDK2.3.0,security:none'}, 'order': {}, 'external_reference': '1367eb00-5114-4628-aa4b-d225ecee6c33', 'transaction_amount': 29.9, 'transaction_amount_refunded': 0, 'coupon_amount': 0, 'differential_pricing_id': None, 'financing_group': None, 'deduction_schema': None, 'callback_url': None, 'installments': 1, 'transaction_details': {'payment_method_reference_id': None, 'acquirer_reference': None, 'net_received_amount': 0, 'total_paid_amount': 29.9, 'overpaid_amount': 0, 'external_resource_url': None, 'installment_amount': 0, 'financial_institution': None, 'payable_deferral_period': None, 'bank_transfer_id': None, 'transaction_id': None}, 'fee_details': [], 'charges_details': [{'id': '1341371379-001', 'name': 'mercadopago_fee', 'type': 'fee', 'accounts': {'from': 'collector', 'to': 'mp'}, 'client_id': 0, 'date_created': '2025-09-26T14:10:54.988-04:00', 'last_updated': '2025-09-26T14:10:54.988-04:00', 'amounts': {'original': 0.3, 'refunded': 0}, 'metadata': {'source': 'rule-engine', 'source_detail': 'processing_fee_charge', 'reason': ''}, 'reserve_id': None, 'refund_charges': []}, {'id': '1341371379-002', 'name': 'financed_advance_fee', 'type': 'fee', 'accounts': {'from': 'collector', 'to': 'mp'}, 'client_id': 0, 'date_created': '2025-09-26T14:10:54.988-04:00', 'last_updated': '2025-09-26T14:10:54.988-04:00', 'amounts': {'original': 1.2, 'refunded': 0}, 'metadata': {'source': 'rule-engine', 'source_detail': 'financed_advance_fee_charge'}, 'reserve_id': None, 'refund_charges': [], 'rate': 1, 'base_amount': 0}], 'captured': True, 'binary_mode': False, 'call_for_authorize_id': None, 'statement_descriptor': None, 'card': {}, 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'refunds': [], 'processing_mode': 'aggregator', 'merchant_account_id': None, 'merchant_number': None, 'acquirer_reconciliation': [], 'point_of_interaction': {'type': 'OPENPLATFORM', 'business_info': {'unit': 'online_payments', 'sub_unit': 'sdk', 'branch': None}, 'location': {'state_id': None, 'source': None}, 'application_data': {'name': None, 'operating_system': None, 'version': None}, 'transaction_data': {'qr_code': '00020126580014br.gov.bcb.pix0136b76aa9c2-2ec4-4110-954e-ebfe34f05b61520400005303986540529.905802BR5916CC513878240914566009Sao Paulo62230519mpqrinter134137137963045C9F', 'bank_transfer_id': None, 'transaction_id': None, 'e2e_id': None, 'financial_institution': None, 'ticket_url': 'https://www.mercadopago.com.br/sandbox/payments/1341371379/ticket?caller_id=1855622431&hash=a78d7be8-9e03-4c4b-9c7c-d6b2ff319853', 'merchant_category_code': None, 'bank_info': {'payer': {'account_id': None, 'branch': None, 'id': None, 'long_name': None, 'account_holder_name': None, 'identification': {'number': None, 'type': None}, 'external_account_id': None, 'is_end_consumer': None}, 'collector': {'account_id': None, 'long_name': None, 'account_holder_name': 'CaGr hAMwbY ehlva', 'transfer_account_id': None}, 'is_same_bank_account_owner': None, 'origin_bank_id': None, 'origin_wallet_id': None}, 'qr_code_base64': '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'}}, 'accounts_info': None, 'release_info': None, 'tags': None}
+QR Code: 00020126580014br.gov.bcb.pix0136b76aa9c2-2ec4-4110-954e-ebfe34f05b61520400005303986540529.905802BR5916CC513878240914566009Sao Paulo62230519mpqrinter134137137963045C9F
+QR Code Base64: iVBORw0KGgoAAAANSUhEUgAABWQAAAVkAQAAAAB79iscAAAOVklEQVR4Xu3XTYJbKQyFUe+g97/L7MDd1g9XCKiaFB07+e7AASTE...
+Ticket URL: https://www.mercadopago.com.br/sandbox/payments/1341371379/ticket?caller_id=1855622431&hash=a78d7be8-9e03-4c4b-9c7c-d6b2ff319853
+"POST /payments/gerar-pix/17/ HTTP/1.1" 200 5385
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/checkout/17/ HTTP/1.1" 200 31610
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5362
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+Pagamento PIX criado com sucesso: 1341369751
+Dados completos do pagamento: {'id': 1341369751, 'date_created': '2025-09-26T14:12:00.504-04:00', 'date_approved': None, 'date_last_updated': '2025-09-26T14:12:00.504-04:00', 'date_of_expiration': '2025-09-27T14:12:00.299-04:00', 'money_release_date': None, 'money_release_status': 'released', 'operation_type': 'regular_payment', 'issuer_id': '12501', 'payment_method_id': 'pix', 'payment_type_id': 'bank_transfer', 'payment_method': {'id': 'pix', 'type': 'bank_transfer', 'issuer_id': '12501'}, 'status': 'pending', 'status_detail': 'pending_waiting_transfer', 'currency_id': 'BRL', 'description': 'Pagamento PIX - Assinatura Plano Mensal', 'live_mode': False, 'sponsor_id': None, 'authorization_code': None, 'money_release_schema': None, 'taxes_amount': 0, 'counter_currency': None, 'brand_id': None, 'shipping_amount': 0, 'build_version': '3.125.0-rc-2', 'pos_id': None, 'store_id': None, 'integrator_id': None, 'platform_id': None, 'corporation_id': None, 'payer': {'identification': {'number': None, 'type': None}, 'entity_type': None, 'phone': {'number': None, 'extension': None, 'area_code': None}, 'last_name': None, 'id': '1855622431', 'type': None, 'first_name': None, 'email': None}, 'collector_id': 2270907901, 'marketplace_owner': None, 'metadata': {'payment_type': 'pix', 'source': 'django_app'}, 'additional_info': {'items': [{'quantity': '1', 'category_id': 'services', 'description': 'Pagamento via PIX - Assinatura Plano Mensal', 'id': '17', 'title': 'Assinatura Plano Mensal', 'unit_price': '29.9'}], 'tracking_id': 'platform:3.13.3,so:so;,type:SDK2.3.0,security:none'}, 'order': {}, 'external_reference': '1367eb00-5114-4628-aa4b-d225ecee6c33', 'transaction_amount': 29.9, 'transaction_amount_refunded': 0, 'coupon_amount': 0, 'differential_pricing_id': None, 'financing_group': None, 'deduction_schema': None, 'callback_url': None, 'installments': 1, 'transaction_details': {'payment_method_reference_id': None, 'acquirer_reference': None, 'net_received_amount': 0, 'total_paid_amount': 29.9, 'overpaid_amount': 0, 'external_resource_url': None, 'installment_amount': 0, 'financial_institution': None, 'payable_deferral_period': None, 'bank_transfer_id': None, 'transaction_id': None}, 'fee_details': [], 'charges_details': [{'id': '1341369751-001', 'name': 'mercadopago_fee', 'type': 'fee', 'accounts': {'from': 'collector', 'to': 'mp'}, 'client_id': 0, 'date_created': '2025-09-26T14:12:00.506-04:00', 'last_updated': '2025-09-26T14:12:00.506-04:00', 'amounts': {'original': 0.3, 'refunded': 0}, 'metadata': {'source': 'rule-engine', 'source_detail': 'processing_fee_charge', 'reason': ''}, 'reserve_id': None, 'refund_charges': []}, {'id': '1341369751-002', 'name': 'financed_advance_fee', 'type': 'fee', 'accounts': {'from': 'collector', 'to': 'mp'}, 'client_id': 0, 'date_created': '2025-09-26T14:12:00.506-04:00', 'last_updated': '2025-09-26T14:12:00.506-04:00', 'amounts': {'original': 1.2, 'refunded': 0}, 'metadata': {'source': 'rule-engine', 'source_detail': 'financed_advance_fee_charge'}, 'reserve_id': None, 'refund_charges': [], 'rate': 1, 'base_amount': 0}], 'captured': True, 'binary_mode': False, 'call_for_authorize_id': None, 'statement_descriptor': None, 'card': {}, 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'refunds': [], 'processing_mode': 'aggregator', 'merchant_account_id': None, 'merchant_number': None, 'acquirer_reconciliation': [], 'point_of_interaction': {'type': 'OPENPLATFORM', 'business_info': {'unit': 'online_payments', 'sub_unit': 'sdk', 'branch': None}, 'location': {'state_id': None, 'source': None}, 'application_data': {'name': None, 'operating_system': None, 'version': None}, 'transaction_data': {'qr_code': '00020126580014br.gov.bcb.pix0136b76aa9c2-2ec4-4110-954e-ebfe34f05b61520400005303986540529.905802BR5916CC513878240914566009Sao Paulo62230519mpqrinter13413697516304E1CD', 'bank_transfer_id': None, 'transaction_id': None, 'e2e_id': None, 'financial_institution': None, 'ticket_url': 'https://www.mercadopago.com.br/sandbox/payments/1341369751/ticket?caller_id=1855622431&hash=12b92634-44ef-4394-904e-e39a23643d69', 'merchant_category_code': None, 'bank_info': {'payer': {'account_id': None, 'branch': None, 'id': None, 'long_name': None, 'account_holder_name': None, 'identification': {'number': None, 'type': None}, 'external_account_id': None, 'is_end_consumer': None}, 'collector': {'account_id': None, 'long_name': None, 'account_holder_name': 'CaGr hAMwbY ehlva', 'transfer_account_id': None}, 'is_same_bank_account_owner': None, 'origin_bank_id': None, 'origin_wallet_id': None}, 'qr_code_base64': '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'}}, 'accounts_info': None, 'release_info': None, 'tags': None}
+QR Code: 00020126580014br.gov.bcb.pix0136b76aa9c2-2ec4-4110-954e-ebfe34f05b61520400005303986540529.905802BR5916CC513878240914566009Sao Paulo62230519mpqrinter13413697516304E1CD
+QR Code Base64: iVBORw0KGgoAAAANSUhEUgAABWQAAAVkAQAAAAB79iscAAAOBUlEQVR4Xu3XXZLkuA2FUe3A+99l7UCOxg8vSFA544iinRp/9yGb...
+Ticket URL: https://www.mercadopago.com.br/sandbox/payments/1341369751/ticket?caller_id=1855622431&hash=12b92634-44ef-4394-904e-e39a23643d69
+"POST /payments/gerar-pix/17/ HTTP/1.1" 200 5277
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5362
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/checkout/17/ HTTP/1.1" 200 33955
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5362
+"POST /payments/gerar-pix/17/ HTTP/1.1" 200 74
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"POST /payments/gerar-pix/17/ HTTP/1.1" 200 74
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/checkout/17/ HTTP/1.1" 200 33955
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5362
+Dados do pagamento PIX: {'transaction_amount': 29.9, 'description': 'Assinatura Plano Mensal', 'payment_method_id': 'pix', 'payer': {'email': 'ccamposs2007@gmail.com', 'first_name': 'CAIO CAMPOS SILVA', 'last_name': '', 'identification': {'type': 'CPF', 'number': '042.171.833-13'}}, 'external_reference': '1367eb00-5114-4628-aa4b-d225ecee6c33', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/'}
+Resultado da criação do pagamento PIX: {'status': 500, 'response': {'message': 'internal_error', 'error': None, 'status': 500, 'cause': []}}
+Erro ao criar pagamento PIX: internal_error
+Causa do erro: []
+Resposta completa: {'status': 500, 'response': {'message': 'internal_error', 'error': None, 'status': 500, 'cause': []}}
+"POST /payments/gerar-pix/17/ HTTP/1.1" 200 89
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+Dados do pagamento PIX: {'transaction_amount': 29.9, 'description': 'Assinatura Plano Mensal', 'payment_method_id': 'pix', 'payer': {'email': 'ccamposs2007@gmail.com', 'first_name': 'CAIO CAMPOS SILVA', 'last_name': '', 'identification': {'type': 'CPF', 'number': '042.171.833-13'}}, 'external_reference': '1367eb00-5114-4628-aa4b-d225ecee6c33', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/'}
+Resultado da criação do pagamento PIX: {'status': 500, 'response': {'message': 'internal_error', 'error': None, 'status': 500, 'cause': []}}
+Erro ao criar pagamento PIX: internal_error
+Causa do erro: []
+Resposta completa: {'status': 500, 'response': {'message': 'internal_error', 'error': None, 'status': 500, 'cause': []}}
+"POST /payments/gerar-pix/17/ HTTP/1.1" 200 89
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/17/ HTTP/1.1" 200 128
+Internal Server Error: /payments/checkout/17/
+Traceback (most recent call last):
+  File "D:\github\django\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        template_name,
+        ^^^^^^^^^^^^^^
+        skip=history,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\engine.py", line 163, in find_template
+    raise TemplateDoesNotExist(name, tried=tried)
+django.template.exceptions.TemplateDoesNotExist: base.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\github\django\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\github\django\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\github\django\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\github\django\meu_projeto\payments\views.py", line 367, in checkout_pagamento
+    return render(request, 'payments/checkout_simples.html', {
+        'pagamento': pagamento,
+    ...<3 lines>...
+        'pix_available': pix_available
+    })
+  File "D:\github\django\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\backends\django.py", line 109, in render
+    reraise(exc, self.backend)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\backends\django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: base.html
+"GET /payments/checkout/17/ HTTP/1.1" 500 148025
+Internal Server Error: /payments/checkout/17/
+Traceback (most recent call last):
+  File "D:\github\django\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        template_name,
+        ^^^^^^^^^^^^^^
+        skip=history,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\engine.py", line 163, in find_template
+    raise TemplateDoesNotExist(name, tried=tried)
+django.template.exceptions.TemplateDoesNotExist: base.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\github\django\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\github\django\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\github\django\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\github\django\meu_projeto\payments\views.py", line 367, in checkout_pagamento
+    return render(request, 'payments/checkout_simples.html', {
+        'pagamento': pagamento,
+    ...<3 lines>...
+        'pix_available': pix_available
+    })
+  File "D:\github\django\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\backends\django.py", line 109, in render
+    reraise(exc, self.backend)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\backends\django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: base.html
+"GET /payments/checkout/17/ HTTP/1.1" 500 148025
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /payments/checkout/17/
+Traceback (most recent call last):
+  File "D:\github\django\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        template_name,
+        ^^^^^^^^^^^^^^
+        skip=history,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\engine.py", line 163, in find_template
+    raise TemplateDoesNotExist(name, tried=tried)
+django.template.exceptions.TemplateDoesNotExist: base.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\github\django\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\github\django\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\github\django\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\github\django\meu_projeto\payments\views.py", line 367, in checkout_pagamento
+    return render(request, 'payments/checkout_simples.html', {
+        'pagamento': pagamento,
+    ...<3 lines>...
+        'pix_available': pix_available
+    })
+  File "D:\github\django\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\backends\django.py", line 109, in render
+    reraise(exc, self.backend)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\backends\django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: base.html
+"GET /payments/checkout/17/ HTTP/1.1" 500 148025
+Internal Server Error: /payments/checkout/17/
+Traceback (most recent call last):
+  File "D:\github\django\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        template_name,
+        ^^^^^^^^^^^^^^
+        skip=history,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\engine.py", line 163, in find_template
+    raise TemplateDoesNotExist(name, tried=tried)
+django.template.exceptions.TemplateDoesNotExist: base.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\github\django\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\github\django\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\github\django\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\github\django\meu_projeto\payments\views.py", line 367, in checkout_pagamento
+    return render(request, 'payments/checkout_simples.html', {
+        'pagamento': pagamento,
+    ...<3 lines>...
+        'pix_available': pix_available
+    })
+  File "D:\github\django\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\backends\django.py", line 109, in render
+    reraise(exc, self.backend)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\backends\django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: base.html
+"GET /payments/checkout/17/ HTTP/1.1" 500 148025
+Internal Server Error: /payments/checkout/17/
+Traceback (most recent call last):
+  File "D:\github\django\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        template_name,
+        ^^^^^^^^^^^^^^
+        skip=history,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\engine.py", line 163, in find_template
+    raise TemplateDoesNotExist(name, tried=tried)
+django.template.exceptions.TemplateDoesNotExist: base.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\github\django\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\github\django\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\github\django\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\github\django\meu_projeto\payments\views.py", line 367, in checkout_pagamento
+    return render(request, 'payments/checkout_simples.html', {
+        'pagamento': pagamento,
+    ...<3 lines>...
+        'pix_available': pix_available
+    })
+  File "D:\github\django\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\backends\django.py", line 109, in render
+    reraise(exc, self.backend)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\backends\django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: base.html
+"GET /payments/checkout/17/ HTTP/1.1" 500 148025
+Internal Server Error: /payments/checkout/17/
+Traceback (most recent call last):
+  File "D:\github\django\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        template_name,
+        ^^^^^^^^^^^^^^
+        skip=history,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\engine.py", line 163, in find_template
+    raise TemplateDoesNotExist(name, tried=tried)
+django.template.exceptions.TemplateDoesNotExist: base.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\github\django\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\github\django\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\github\django\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\github\django\meu_projeto\payments\views.py", line 367, in checkout_pagamento
+    return render(request, 'payments/checkout_simples.html', {
+        'pagamento': pagamento,
+    ...<3 lines>...
+        'pix_available': pix_available
+    })
+  File "D:\github\django\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\backends\django.py", line 109, in render
+    reraise(exc, self.backend)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\backends\django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: base.html
+"GET /payments/checkout/17/ HTTP/1.1" 500 148025
+Internal Server Error: /payments/checkout/17/
+Traceback (most recent call last):
+  File "D:\github\django\.venv\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        template_name,
+        ^^^^^^^^^^^^^^
+        skip=history,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\engine.py", line 163, in find_template
+    raise TemplateDoesNotExist(name, tried=tried)
+django.template.exceptions.TemplateDoesNotExist: base.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\github\django\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\github\django\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\github\django\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\github\django\meu_projeto\payments\views.py", line 367, in checkout_pagamento
+    return render(request, 'payments/checkout_simples.html', {
+        'pagamento': pagamento,
+    ...<3 lines>...
+        'pix_available': pix_available
+    })
+  File "D:\github\django\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\github\django\.venv\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\backends\django.py", line 109, in render
+    reraise(exc, self.backend)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\template\backends\django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: base.html
+"GET /payments/checkout/17/ HTTP/1.1" 500 148025
+"GET /payments/checkout/17/ HTTP/1.1" 200 12309
+"GET /payments/checkout/17/ HTTP/1.1" 200 12309
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /payments/checkout/17/ HTTP/1.1" 200 12690

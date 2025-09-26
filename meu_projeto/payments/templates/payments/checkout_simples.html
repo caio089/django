@@ -1,0 +1,288 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Checkout - Pagamento{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 py-8">
+    <div class="max-w-2xl mx-auto px-4">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Finalizar Pagamento</h1>
+            <p class="text-gray-600">Escolha sua forma de pagamento preferida</p>
+        </div>
+
+        <!-- Informações do Pagamento -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Resumo do Pagamento</h2>
+            <div class="space-y-3">
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Plano:</span>
+                    <span class="font-medium">{{ pagamento.descricao }}</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Valor:</span>
+                    <span class="font-bold text-lg text-green-600">R$ {{ pagamento.valor|floatformat:2 }}</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Status:</span>
+                    <span class="px-2 py-1 rounded-full text-xs font-medium
+                        {% if pagamento.status == 'approved' %}bg-green-100 text-green-800
+                        {% elif pagamento.status == 'pending' %}bg-yellow-100 text-yellow-800
+                        {% elif pagamento.status == 'rejected' %}bg-red-100 text-red-800
+                        {% else %}bg-gray-100 text-gray-800{% endif %}">
+                        {{ pagamento.get_status_display }}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Opções de Pagamento -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-6">Forma de Pagamento</h2>
+            
+            <!-- PIX -->
+            <div class="mb-6">
+                <button id="pix-option" class="w-full p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors payment-option" data-type="pix">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <span class="text-2xl">📱</span>
+                            </div>
+                            <div class="text-left">
+                                <h3 class="font-semibold text-gray-800">PIX</h3>
+                                <p class="text-sm text-gray-600">Pagamento instantâneo e seguro</p>
+                            </div>
+                        </div>
+                        <div class="text-green-600 font-medium">R$ {{ pagamento.valor|floatformat:2 }}</div>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Cartão de Crédito -->
+            <div class="mb-6">
+                <button id="card-option" class="w-full p-4 border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors payment-option" data-type="card">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                <span class="text-2xl">💳</span>
+                            </div>
+                            <div class="text-left">
+                                <h3 class="font-semibold text-gray-800">Cartão de Crédito</h3>
+                                <p class="text-sm text-gray-600">Visa, Mastercard, Elo e outros</p>
+                            </div>
+                        </div>
+                        <div class="text-green-600 font-medium">R$ {{ pagamento.valor|floatformat:2 }}</div>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Botão de Pagamento -->
+            <button id="submit-payment" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                <span id="submit-text">Escolha uma forma de pagamento</span>
+                <div id="loading-spinner" class="hidden">
+                    <div class="flex items-center justify-center">
+                        <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        Processando...
+                    </div>
+                </div>
+            </button>
+        </div>
+
+        <!-- Status do Pagamento -->
+        <div id="payment-status" class="hidden mt-6 p-4 rounded-lg">
+            <div id="status-icon" class="text-center mb-2"></div>
+            <div id="status-title" class="text-center font-semibold mb-1"></div>
+            <div id="status-message" class="text-center text-sm text-gray-600"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Variáveis Django para JavaScript -->
+<div id="django-vars" 
+     data-pix-available="{% if pix_available %}true{% else %}false{% endif %}"
+     data-init-point="{{ init_point|default:'' }}"
+     data-preference-id="{{ preference_id|default:'' }}"
+     style="display: none;">
+</div>
+
+<script>
+// Variáveis do Django
+const djangoVars = document.getElementById('django-vars');
+const PIX_AVAILABLE = djangoVars.dataset.pixAvailable === 'true';
+const INIT_POINT = djangoVars.dataset.initPoint;
+const PREFERENCE_ID = djangoVars.dataset.preferenceId;
+
+// Elementos do DOM
+const paymentOptions = document.querySelectorAll('.payment-option');
+const submitButton = document.getElementById('submit-payment');
+const submitText = document.getElementById('submit-text');
+const loadingSpinner = document.getElementById('loading-spinner');
+const paymentStatus = document.getElementById('payment-status');
+const statusIcon = document.getElementById('status-icon');
+const statusTitle = document.getElementById('status-title');
+const statusMessage = document.getElementById('status-message');
+
+let currentPaymentType = null;
+
+// Configurar opções de pagamento
+paymentOptions.forEach(option => {
+    option.addEventListener('click', () => {
+        // Remover seleção anterior
+        paymentOptions.forEach(opt => {
+            opt.classList.remove('border-blue-500', 'bg-blue-50');
+            opt.classList.add('border-gray-200');
+        });
+        
+        // Selecionar opção atual
+        option.classList.remove('border-gray-200');
+        option.classList.add('border-blue-500', 'bg-blue-50');
+        
+        // Atualizar tipo de pagamento
+        currentPaymentType = option.dataset.type;
+        
+        // Habilitar botão de pagamento
+        submitButton.disabled = false;
+        submitText.textContent = 'Prosseguir para o pagamento';
+        
+        // Configurar checkout baseado no tipo
+        if (currentPaymentType === 'pix') {
+            setupPixCheckout();
+        } else if (currentPaymentType === 'card') {
+            setupCardCheckout();
+        }
+    });
+});
+
+// Configurar checkout PIX
+function setupPixCheckout() {
+    console.log('Configurando checkout PIX...');
+    console.log('PIX disponível:', PIX_AVAILABLE);
+    console.log('Init Point:', INIT_POINT);
+    
+    if (PIX_AVAILABLE) {
+        console.log('✅ PIX disponível - Redirecionamento para Mercado Pago');
+    } else {
+        console.log('❌ PIX não disponível');
+    }
+}
+
+// Configurar checkout Cartão
+function setupCardCheckout() {
+    console.log('Configurando checkout Cartão...');
+    console.log('Init Point:', INIT_POINT);
+    console.log('✅ Página oficial do Mercado Pago');
+}
+
+// Configurar botão de pagamento
+submitButton.addEventListener('click', () => {
+    if (!currentPaymentType) return;
+    
+    // Desabilitar botão e mostrar loading
+    submitButton.disabled = true;
+    submitText.classList.add('hidden');
+    loadingSpinner.classList.remove('hidden');
+    
+    try {
+        if (currentPaymentType === 'pix') {
+            // PIX - Redirecionar para página oficial do Mercado Pago
+            console.log('Redirecionando para PIX no Mercado Pago...');
+            showStatus('loading', 'Redirecionando...', 'Abrindo página segura do Mercado Pago...');
+            
+            // Verificar se PIX está disponível
+            if (!PIX_AVAILABLE) {
+                showStatus('error', 'PIX Indisponível', 'PIX não está disponível no momento. Por favor, use cartão de crédito.');
+                submitButton.disabled = false;
+                submitText.classList.remove('hidden');
+                loadingSpinner.classList.add('hidden');
+                return;
+            }
+            
+            // Redirecionar para página oficial do Mercado Pago com PIX
+            if (INIT_POINT) {
+                // Adicionar parâmetro para forçar PIX
+                const pixUrl = INIT_POINT + (INIT_POINT.includes('?') ? '&' : '?') + 'payment_method_id=pix';
+                console.log('Redirecionando para:', pixUrl);
+                setTimeout(() => {
+                    window.location.href = pixUrl;
+                }, 1000);
+            } else if (PREFERENCE_ID) {
+                // Usar URL genérica do Mercado Pago com PIX
+                const pixUrl = `https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=${PREFERENCE_ID}&payment_method_id=pix`;
+                console.log('Redirecionando para:', pixUrl);
+                setTimeout(() => {
+                    window.location.href = pixUrl;
+                }, 1000);
+            } else {
+                showStatus('error', 'Erro', 'Não foi possível redirecionar para o pagamento PIX.');
+                submitButton.disabled = false;
+                submitText.classList.remove('hidden');
+                loadingSpinner.classList.add('hidden');
+            }
+        } else if (currentPaymentType === 'card') {
+            // Cartão - Redirecionar para página oficial do Mercado Pago
+            console.log('Redirecionando para Cartão no Mercado Pago...');
+            showStatus('loading', 'Redirecionando...', 'Abrindo página segura do Mercado Pago...');
+            
+            // Sempre usar URL do Mercado Pago
+            if (INIT_POINT) {
+                console.log('Redirecionando para:', INIT_POINT);
+                setTimeout(() => {
+                    window.location.href = INIT_POINT;
+                }, 1000);
+            } else if (PREFERENCE_ID) {
+                const cardUrl = `https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=${PREFERENCE_ID}`;
+                console.log('Redirecionando para:', cardUrl);
+                setTimeout(() => {
+                    window.location.href = cardUrl;
+                }, 1000);
+            } else {
+                showStatus('error', 'Erro', 'Não foi possível redirecionar para o pagamento.');
+                submitButton.disabled = false;
+                submitText.classList.remove('hidden');
+                loadingSpinner.classList.add('hidden');
+            }
+        }
+    } catch (error) {
+        console.error('Erro no pagamento:', error);
+        showStatus('error', 'Erro', 'Ocorreu um erro inesperado. Tente novamente.');
+        
+        // Reabilitar botão
+        submitButton.disabled = false;
+        submitText.classList.remove('hidden');
+        loadingSpinner.classList.add('hidden');
+    }
+});
+
+// Função para mostrar status
+function showStatus(type, title, message) {
+    statusIcon.innerHTML = '';
+    statusTitle.textContent = title;
+    statusMessage.textContent = message;
+    
+    if (type === 'loading') {
+        statusIcon.innerHTML = '<div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>';
+        paymentStatus.className = 'mt-6 p-4 rounded-lg bg-blue-50 border border-blue-200';
+    } else if (type === 'success') {
+        statusIcon.innerHTML = '<div class="text-green-600 text-4xl">✅</div>';
+        paymentStatus.className = 'mt-6 p-4 rounded-lg bg-green-50 border border-green-200';
+    } else if (type === 'error') {
+        statusIcon.innerHTML = '<div class="text-red-600 text-4xl">❌</div>';
+        paymentStatus.className = 'mt-6 p-4 rounded-lg bg-red-50 border border-red-200';
+    }
+    
+    paymentStatus.classList.remove('hidden');
+}
+
+// Função para esconder status
+function hideStatus() {
+    paymentStatus.classList.add('hidden');
+}
+
+console.log('Checkout inicializado');
+console.log('Public Key:', '{{ public_key }}');
+console.log('Preference ID:', '{{ preference_id }}');
+console.log('Init Point:', '{{ init_point }}');
+console.log('PIX Available:', '{{ pix_available }}');
+</script>
+{% endblock %}
