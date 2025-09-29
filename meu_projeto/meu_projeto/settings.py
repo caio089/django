@@ -19,6 +19,8 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 CSRF_TRUSTED_ORIGINS = [
     'https://dojo-on.onrender.com',
     'https://*.onrender.com',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
 ]
 
 # Apps e Middleware (sem mudanças)
@@ -115,6 +117,12 @@ if not DEBUG:
 else:
     # Em desenvolvimento, usar o storage padrão do Django
     STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
+# Configurações adicionais para produção
+if not DEBUG:
+    # Forçar HTTPS em produção
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    USE_TZ = True
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
