@@ -834,6 +834,112 @@ window.showSection = function(sectionId) {
         });
     }
     
+    // ===== SISTEMA DE PROGRESSO NO BANCO DE DADOS =====
+    
+    // Salvar progresso no banco de dados
+    function saveProgress() {
+        const allCheckboxes = [
+            ...projCheckboxes,
+            ...imobCheckboxes,
+            ...henkakuenkaCheckboxes,
+            ...kaeshiWazaCheckboxes
+        ];
+        
+        const elementos = [];
+        
+        allCheckboxes.forEach((checkbox, index) => {
+            let tipo = 'proj-checkbox';
+            if (checkbox.classList.contains('imob-checkbox')) tipo = 'imob-checkbox';
+            else if (checkbox.classList.contains('henkakuenka-checkbox')) tipo = 'henkakuenka-checkbox';
+            else if (checkbox.classList.contains('kaeshi-waza-checkbox')) tipo = 'kaeshi-waza-checkbox';
+            
+            elementos.push({
+                id: `checkbox_${index}`,
+                tipo: tipo,
+                aprendido: checkbox.checked
+            });
+        });
+        
+        // Salvar no banco de dados
+        fetch('/pagina3/salvar-progresso/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: JSON.stringify({
+                pagina: 'pagina3',
+                elementos: elementos
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('Progresso salvo no banco de dados:', data.message);
+            } else {
+                console.error('Erro ao salvar progresso:', data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao salvar progresso:', error);
+        });
+    }
+    
+    // Carregar progresso do banco de dados
+    function loadProgress() {
+        fetch('/pagina3/carregar-progresso/?pagina=pagina3')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success && data.elementos.length > 0) {
+                console.log('Carregando progresso do banco de dados:', data.elementos);
+                
+                const allCheckboxes = [
+                    ...projCheckboxes,
+                    ...imobCheckboxes,
+                    ...henkakuenkaCheckboxes,
+                    ...kaeshiWazaCheckboxes
+                ];
+                
+                data.elementos.forEach(elemento => {
+                    const index = parseInt(elemento.id.replace('checkbox_', ''));
+                    if (allCheckboxes[index]) {
+                        allCheckboxes[index].checked = elemento.aprendido;
+                    }
+                });
+                
+                updateProgress();
+            } else {
+                console.log('Nenhum progresso no banco, usando estado atual');
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao carregar progresso do banco:', error);
+        });
+    }
+    
+    // Modificar a função addCheckboxListeners para salvar progresso
+    function addCheckboxListeners(checkboxes) {
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function(e) {
+                updateProgress();
+                saveProgress(); // Salvar no banco quando mudar
+                
+                if (e.target.checked) {
+                    const totalQuestions = projCheckboxes.length + imobCheckboxes.length + henkakuenkaCheckboxes.length + kaeshiWazaCheckboxes.length;
+                    const completedQuestions = Array.from(projCheckboxes).filter(cb => cb.checked).length +
+                                             Array.from(imobCheckboxes).filter(cb => cb.checked).length +
+                                             Array.from(henkakuenkaCheckboxes).filter(cb => cb.checked).length +
+                                             Array.from(kaeshiWazaCheckboxes).filter(cb => cb.checked).length;
+                    const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
+                    showFloatingProgress(progress);
+                }
+            });
+        });
+    }
+    
+    // Carregar progresso ao inicializar
+    loadProgress();
+    
     // ===== INICIALIZAÇÃO FINAL =====
     console.log('✅ Script da Página 3 otimizado carregado!');
     console.log('📱 Mobile:', isMobile);

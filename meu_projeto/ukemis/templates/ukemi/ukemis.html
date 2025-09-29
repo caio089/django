@@ -327,6 +327,8 @@
     </style>
 </head>
 <body class="bg-gray-50 font-display">
+    <!-- CSRF Token para requisições AJAX -->
+    {% csrf_token %}
     <!-- Header com Progresso responsivo -->
     <header class="gradient-bg text-white py-3 sm:py-4 px-4">
         <div class="max-w-6xl mx-auto">
@@ -694,18 +696,7 @@
                 }
             }
             
-            // Event listeners para checkboxes
-            ukemiCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', function() {
-                    updateProgress();
-                    if (this.checked) {
-                        const totalChecked = document.querySelectorAll('.ukemi-checkbox:checked').length;
-                        const totalQuestions = ukemiCheckboxes.length;
-                        const progress = (totalChecked / totalQuestions) * 100;
-                        showFloatingProgress(progress);
-                    }
-                });
-            });
+            // Event listeners para checkboxes serão adicionados no sistema de progresso
             
             // Event listeners para botões do modal
             function initializeCongratulationsButtons() {
@@ -732,6 +723,88 @@
                     });
                 }
             }
+            
+            // ===== SISTEMA DE PROGRESSO NO BANCO DE DADOS =====
+            
+            // Salvar progresso no banco de dados
+            function saveProgress() {
+                const elementos = [];
+                
+                ukemiCheckboxes.forEach((checkbox, index) => {
+                    elementos.push({
+                        id: `checkbox_${index}`,
+                        tipo: 'ukemi-checkbox',
+                        aprendido: checkbox.checked
+                    });
+                });
+                
+                // Salvar no banco de dados
+                fetch('/ukemis/salvar-progresso/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    },
+                    body: JSON.stringify({
+                        pagina: 'ukemis',
+                        elementos: elementos
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log('Progresso salvo no banco de dados:', data.message);
+                    } else {
+                        console.error('Erro ao salvar progresso:', data.error);
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao salvar progresso:', error);
+                });
+            }
+            
+            // Carregar progresso do banco de dados
+            function loadProgress() {
+                fetch('/ukemis/carregar-progresso/?pagina=ukemis')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && data.elementos.length > 0) {
+                        console.log('Carregando progresso do banco de dados:', data.elementos);
+                        
+                        data.elementos.forEach(elemento => {
+                            const index = parseInt(elemento.id.replace('checkbox_', ''));
+                            if (ukemiCheckboxes[index]) {
+                                ukemiCheckboxes[index].checked = elemento.aprendido;
+                            }
+                        });
+                        
+                        updateProgress();
+                    } else {
+                        console.log('Nenhum progresso no banco, usando estado atual');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao carregar progresso do banco:', error);
+                });
+            }
+            
+            // Modificar o event listener para salvar progresso
+            ukemiCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    updateProgress();
+                    saveProgress(); // Salvar no banco quando mudar
+                    
+                    if (this.checked) {
+                        const totalChecked = document.querySelectorAll('.ukemi-checkbox:checked').length;
+                        const totalQuestions = ukemiCheckboxes.length;
+                        const progress = (totalChecked / totalQuestions) * 100;
+                        showFloatingProgress(progress);
+                    }
+                });
+            });
+            
+            // Carregar progresso ao inicializar
+            loadProgress();
             
             // Inicializar botões do modal
             initializeCongratulationsButtons();

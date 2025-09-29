@@ -172,21 +172,40 @@
 {% endif %}
 
 <script>
-// Redirecionamento automático para a página inicial após 5 segundos
-setTimeout(function() {
-    window.location.href = "{% url 'index' %}";
-}, 5000);
+// Redirecionamento automático configurável
+const redirectUrl = '{{ redirect_url|default:"/" }}';
+const redirectDelay = {{ redirect_delay|default:3000 }};
 
 // Mostrar contador regressivo
-let countdown = 5;
+let countdown = Math.ceil(redirectDelay / 1000);
 const countdownElement = document.createElement('div');
-countdownElement.className = 'text-center mt-4 text-gray-600';
-countdownElement.innerHTML = `Redirecionando para a página inicial em <span id="countdown">${countdown}</span> segundos...`;
+countdownElement.className = 'text-center mt-4 text-gray-600 bg-blue-50 border border-blue-200 rounded-lg p-4';
+countdownElement.innerHTML = `
+    <div class="flex items-center justify-center mb-2">
+        <svg class="animate-spin h-5 w-5 text-blue-600 mr-2" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <span class="font-semibold text-blue-800">Redirecionando para a página principal...</span>
+    </div>
+    <div class="text-sm text-blue-600">
+        Você será redirecionado em <span id="countdown" class="font-bold text-blue-800">${countdown}</span> segundos
+    </div>
+`;
 document.querySelector('.space-y-4').appendChild(countdownElement);
 
+// Redirecionamento automático
+setTimeout(function() {
+    window.location.href = redirectUrl;
+}, redirectDelay);
+
+// Atualizar contador
 const countdownInterval = setInterval(function() {
     countdown--;
-    document.getElementById('countdown').textContent = countdown;
+    const countdownSpan = document.getElementById('countdown');
+    if (countdownSpan) {
+        countdownSpan.textContent = countdown;
+    }
     if (countdown <= 0) {
         clearInterval(countdownInterval);
     }

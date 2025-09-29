@@ -14,3 +14,4 @@ class Command(BaseCommand):
         self.stdout.write('Pagamentos existentes:')
         for p in pagamentos:
             self.stdout.write(f'ID: {p.id}, Status: {p.status}, Usuario: {p.usuario}')
+

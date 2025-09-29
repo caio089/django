@@ -37,6 +37,11 @@
             </div>
         </div>
 
+        <!-- Formulário oculto com CSRF Token -->
+        <form style="display: none;">
+            {% csrf_token %}
+        </form>
+        
         <!-- Opções de Pagamento -->
         <div class="bg-white rounded-lg shadow-md p-6">
             <h2 class="text-xl font-semibold text-gray-800 mb-6">Forma de Pagamento</h2>
@@ -184,63 +189,177 @@ submitButton.addEventListener('click', () => {
     loadingSpinner.classList.remove('hidden');
     
     try {
-        if (currentPaymentType === 'pix') {
-            // PIX - Redirecionar para página oficial do Mercado Pago
-            console.log('Redirecionando para PIX no Mercado Pago...');
-            showStatus('loading', 'Redirecionando...', 'Abrindo página segura do Mercado Pago...');
-            
-            // Verificar se PIX está disponível
-            if (!PIX_AVAILABLE) {
-                showStatus('error', 'PIX Indisponível', 'PIX não está disponível no momento. Por favor, use cartão de crédito.');
-                submitButton.disabled = false;
-                submitText.classList.remove('hidden');
-                loadingSpinner.classList.add('hidden');
-                return;
-            }
-            
-            // Redirecionar para página oficial do Mercado Pago com PIX
-            if (INIT_POINT) {
-                // Adicionar parâmetro para forçar PIX
-                const pixUrl = INIT_POINT + (INIT_POINT.includes('?') ? '&' : '?') + 'payment_method_id=pix';
-                console.log('Redirecionando para:', pixUrl);
-                setTimeout(() => {
-                    window.location.href = pixUrl;
-                }, 1000);
-            } else if (PREFERENCE_ID) {
-                // Usar URL genérica do Mercado Pago com PIX
-                const pixUrl = `https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=${PREFERENCE_ID}&payment_method_id=pix`;
-                console.log('Redirecionando para:', pixUrl);
-                setTimeout(() => {
-                    window.location.href = pixUrl;
-                }, 1000);
-            } else {
-                showStatus('error', 'Erro', 'Não foi possível redirecionar para o pagamento PIX.');
-                submitButton.disabled = false;
-                submitText.classList.remove('hidden');
-                loadingSpinner.classList.add('hidden');
-            }
+               if (currentPaymentType === 'pix') {
+                   // PIX - USAR PIX DIRETO (SEM MERCADO PAGO)
+                   console.log('🔵 PIX SELECIONADO - USANDO PIX DIRETO');
+                   console.log('✅ GERANDO QR CODE PIX DIRETAMENTE');
+                   
+                   showStatus('loading', 'Gerando PIX...', 'Aguarde, estamos gerando seu código PIX');
+                   
+                   // Gerar PIX diretamente
+                   const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]');
+                   console.log('🔐 CSRF Token:', csrfToken ? 'Encontrado' : 'NÃO ENCONTRADO');
+                   
+                   const url = `/payments/gerar-pix/{{ pagamento.id }}/`;
+                   console.log('🌐 URL da API PIX:', url);
+                   
+                   const requestOptions = {
+                       method: 'POST',
+                       headers: {
+                           'Content-Type': 'application/json',
+                           'X-CSRFToken': csrfToken ? csrfToken.value : ''
+                       }
+                   };
+                   
+                   console.log('📤 Enviando requisição PIX:', requestOptions);
+                   
+                   fetch(url, requestOptions)
+                   .then(response => {
+                       console.log('📥 Resposta recebida da API PIX:');
+                       console.log('   Status:', response.status);
+                       console.log('   OK:', response.ok);
+                       
+                       if (!response.ok) {
+                           console.error('❌ Resposta não OK:', response.status);
+                       }
+                       
+                       return response.json();
+                   })
+                   .then(data => {
+                       console.log('📊 Dados recebidos da API PIX:', data);
+                       
+                       if (data.success) {
+                           // PIX gerado com sucesso, mostrar QR Code
+                           console.log('✅ PIX GERADO COM SUCESSO!');
+                           showPixQRCode(data);
+                       } else {
+                           // Erro ao gerar PIX, mostrar erro
+                           console.error('❌ ERRO AO GERAR PIX:', data.error);
+                           showStatus('error', 'Erro no PIX', data.error || 'Erro ao gerar PIX. Tente novamente ou use cartão de crédito.');
+                           
+                           // Reabilitar botão para tentar novamente
+                           submitButton.disabled = false;
+                           submitText.classList.remove('hidden');
+                           loadingSpinner.classList.add('hidden');
+                       }
+                   })
+                   .catch(error => {
+                       console.error('❌ ERRO DE CONEXÃO AO GERAR PIX:', error);
+                       showStatus('error', 'Erro no PIX', 'Erro de conexão. Tente novamente ou use cartão de crédito.');
+                       
+                       // Reabilitar botão para tentar novamente
+                       submitButton.disabled = false;
+                       submitText.classList.remove('hidden');
+                       loadingSpinner.classList.add('hidden');
+                   });
         } else if (currentPaymentType === 'card') {
-            // Cartão - Redirecionar para página oficial do Mercado Pago
-            console.log('Redirecionando para Cartão no Mercado Pago...');
-            showStatus('loading', 'Redirecionando...', 'Abrindo página segura do Mercado Pago...');
+            // Cartão - Detectar ambiente e usar estratégia apropriada
+            console.log('🔵 CARTÃO SELECIONADO - DETECTANDO AMBIENTE');
             
-            // Sempre usar URL do Mercado Pago
-            if (INIT_POINT) {
-                console.log('Redirecionando para:', INIT_POINT);
+            // Verificar se estamos em sandbox (TEST- no public key)
+            const isSandbox = '{{ public_key|default:"" }}'.startsWith('TEST-');
+            
+            if (isSandbox) {
+                // SANDBOX: Simular pagamento
+                console.log('🧪 AMBIENTE SANDBOX - SIMULANDO PAGAMENTO');
+                console.log('✅ USANDO CARTÃO - SIMULAÇÃO PARA TESTE');
+                
+                showStatus('loading', 'Processando pagamento...', 'Simulando pagamento com cartão de crédito...');
+                
+                // Simular processamento do cartão
                 setTimeout(() => {
-                    window.location.href = INIT_POINT;
-                }, 1000);
-            } else if (PREFERENCE_ID) {
-                const cardUrl = `https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=${PREFERENCE_ID}`;
-                console.log('Redirecionando para:', cardUrl);
-                setTimeout(() => {
-                    window.location.href = cardUrl;
-                }, 1000);
+                    console.log('✅ PAGAMENTO SIMULADO COM SUCESSO!');
+                    showStatus('success', 'Pagamento aprovado!', 'Pagamento com cartão processado com sucesso! Redirecionando...');
+                    
+                    // Simular redirecionamento para página principal (index.html)
+                    setTimeout(() => {
+                        console.log('🚀 Redirecionando para index.html...');
+                        window.location.href = '/index/';
+                    }, 2000);
+                    
+                }, 3000);
             } else {
-                showStatus('error', 'Erro', 'Não foi possível redirecionar para o pagamento.');
-                submitButton.disabled = false;
-                submitText.classList.remove('hidden');
-                loadingSpinner.classList.add('hidden');
+                // PRODUÇÃO: Usar Mercado Pago real
+                console.log('🚀 AMBIENTE PRODUÇÃO - USANDO MERCADO PAGO REAL');
+                console.log('✅ USANDO CARTÃO - MERCADO PAGO REAL');
+                
+                showStatus('loading', 'Preparando pagamento...', 'Criando nova sessão de pagamento...');
+                
+                // Criar nova preferência para cartão
+                const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]');
+                console.log('🔐 CSRF Token:', csrfToken ? 'Encontrado' : 'NÃO ENCONTRADO');
+                
+                const url = `/payments/criar-pagamento-cartao/{{ pagamento.id }}/`;
+                console.log('🌐 URL da API Cartão:', url);
+                
+                const requestOptions = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken ? csrfToken.value : ''
+                    }
+                };
+                
+                console.log('📤 Enviando requisição para criar preferência de cartão...');
+                
+                fetch(url, requestOptions)
+                .then(response => {
+                    console.log('📥 Resposta recebida da API Cartão:');
+                    console.log('   Status:', response.status);
+                    console.log('   OK:', response.ok);
+                    
+                    if (!response.ok) {
+                        console.error('❌ Resposta não OK:', response.status);
+                    }
+                    
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('📊 Dados recebidos da API Cartão:', data);
+                    
+                    if (data.success && data.init_point) {
+                        // Preferência criada com sucesso, redirecionar
+                        console.log('✅ PREFERÊNCIA DE CARTÃO CRIADA COM SUCESSO!');
+                        console.log('   Init Point:', data.init_point);
+                        
+                        showStatus('loading', 'Redirecionando...', 'Abrindo página segura do Mercado Pago...');
+                        
+                        // Validar URL antes de redirecionar
+                        if (data.init_point && data.init_point.includes('mercadopago.com.br') && data.init_point.includes('pref_id=')) {
+                            console.log('✅ URL válida confirmada:', data.init_point);
+                            console.log('🔄 Redirecionando em 1 segundo...');
+                            
+                            setTimeout(() => {
+                                console.log('🚀 Executando redirecionamento para:', data.init_point);
+                                window.location.href = data.init_point;
+                            }, 1000);
+                        } else {
+                            console.error('❌ URL inválida:', data.init_point);
+                            showStatus('error', 'Erro', 'URL de pagamento inválida. Tente novamente.');
+                            submitButton.disabled = false;
+                            submitText.classList.remove('hidden');
+                            loadingSpinner.classList.add('hidden');
+                        }
+                    } else {
+                        // Erro ao criar preferência
+                        console.error('❌ ERRO AO CRIAR PREFERÊNCIA DE CARTÃO:', data.error);
+                        showStatus('error', 'Erro no cartão', data.error || 'Erro ao criar sessão de pagamento. Tente novamente.');
+                        
+                        // Reabilitar botão para tentar novamente
+                        submitButton.disabled = false;
+                        submitText.classList.remove('hidden');
+                        loadingSpinner.classList.add('hidden');
+                    }
+                })
+                .catch(error => {
+                    console.error('❌ ERRO DE CONEXÃO AO CRIAR PREFERÊNCIA DE CARTÃO:', error);
+                    showStatus('error', 'Erro no cartão', 'Erro de conexão. Tente novamente.');
+                    
+                    // Reabilitar botão para tentar novamente
+                    submitButton.disabled = false;
+                    submitText.classList.remove('hidden');
+                    loadingSpinner.classList.add('hidden');
+                });
             }
         }
     } catch (error) {
@@ -277,6 +396,52 @@ function showStatus(type, title, message) {
 // Função para esconder status
 function hideStatus() {
     paymentStatus.classList.add('hidden');
+}
+
+// Função para mostrar QR Code PIX
+function showPixQRCode(data) {
+    console.log('🎯 Mostrando QR Code PIX:', data);
+    
+    // Criar modal para QR Code
+    const modal = document.createElement('div');
+    modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+    modal.innerHTML = `
+        <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+            <div class="text-center">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Pagamento PIX</h3>
+                <p class="text-gray-600 mb-4">Escaneie o QR Code com seu app bancário</p>
+                
+                <div class="bg-gray-100 p-4 rounded-lg mb-4">
+                    ${data.qr_code_base64 ? 
+                        `<img src="data:image/png;base64,${data.qr_code_base64}" alt="QR Code PIX" class="mx-auto max-w-full h-auto">` :
+                        `<div class="text-gray-500">QR Code não disponível</div>`
+                    }
+                </div>
+                
+                <div class="text-sm text-gray-600 mb-4">
+                    <p><strong>Valor:</strong> R$ {{ pagamento.valor|floatformat:2 }}</p>
+                    <p><strong>Descrição:</strong> {{ pagamento.descricao }}</p>
+                </div>
+                
+                <div class="flex space-x-3">
+                    <button onclick="this.closest('.fixed').remove()" class="flex-1 bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600">
+                        Fechar
+                    </button>
+                    <button onclick="navigator.clipboard.writeText('${data.qr_code || ''}')" class="flex-1 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
+                        Copiar Código
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Esconder status e reabilitar botão
+    hideStatus();
+    submitButton.disabled = false;
+    submitText.classList.remove('hidden');
+    loadingSpinner.classList.add('hidden');
 }
 
 console.log('Checkout inicializado');

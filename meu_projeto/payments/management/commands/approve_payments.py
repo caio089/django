@@ -65,3 +65,4 @@ class Command(BaseCommand):
             self.stdout.write(self.style.ERROR(f'Erro ao aprovar pagamento {pagamento.id}: {e}'))
 
 
+

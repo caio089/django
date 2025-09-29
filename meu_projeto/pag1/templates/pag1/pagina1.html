@@ -101,6 +101,8 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
 </head>
 <body class="bg-gray-50 font-sans min-h-screen flex flex-col">
+    <!-- CSRF Token para requisições AJAX -->
+    {% csrf_token %}
     <!-- Header com Progresso -->
     <header class="gradient-bg text-white py-2 px-4">
         <div class="max-w-6xl mx-auto">
@@ -1948,20 +1950,85 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// Salvar progresso no localStorage
+// Salvar progresso no banco de dados
 function saveProgress() {
     const checkboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
-    const progressData = {};
+    const elementos = [];
     
+    checkboxes.forEach((checkbox, index) => {
+        elementos.push({
+            id: `checkbox_${index}`,
+            tipo: checkbox.className.includes('proj-checkbox') ? 'proj-checkbox' : 'imob-checkbox',
+            aprendido: checkbox.checked
+        });
+    });
+    
+    // Salvar no banco de dados
+    fetch('/pagina1/salvar-progresso/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        },
+        body: JSON.stringify({
+            pagina: 'pagina1',
+            elementos: elementos
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log('Progresso salvo no banco de dados:', data.message);
+        } else {
+            console.error('Erro ao salvar progresso:', data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Erro ao salvar progresso:', error);
+    });
+    
+    // Também salvar no localStorage como backup
+    const progressData = {};
     checkboxes.forEach((checkbox, index) => {
         progressData[`checkbox_${index}`] = checkbox.checked;
     });
-    
     localStorage.setItem('judoProgress', JSON.stringify(progressData));
 }
 
-// Carregar progresso do localStorage
+// Carregar progresso do banco de dados
 function loadProgress() {
+    // Primeiro tentar carregar do banco de dados
+    fetch('/pagina1/carregar-progresso/?pagina=pagina1')
+    .then(response => response.json())
+    .then(data => {
+        if (data.success && data.elementos.length > 0) {
+            console.log('Carregando progresso do banco de dados:', data.elementos);
+            
+            const checkboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
+            
+            data.elementos.forEach(elemento => {
+                const index = parseInt(elemento.id.replace('checkbox_', ''));
+                if (checkboxes[index]) {
+                    checkboxes[index].checked = elemento.aprendido;
+                }
+            });
+            
+            calculateProgress();
+        } else {
+            // Se não há dados no banco, tentar localStorage como fallback
+            console.log('Nenhum progresso no banco, tentando localStorage...');
+            loadProgressFromLocalStorage();
+        }
+    })
+    .catch(error => {
+        console.error('Erro ao carregar progresso do banco:', error);
+        // Em caso de erro, usar localStorage como fallback
+        loadProgressFromLocalStorage();
+    });
+}
+
+// Função auxiliar para carregar do localStorage
+function loadProgressFromLocalStorage() {
     const savedProgress = localStorage.getItem('judoProgress');
     if (savedProgress) {
         const progressData = JSON.parse(savedProgress);
@@ -1981,8 +2048,8 @@ function loadProgress() {
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM Content Loaded - Initializing progress system'); // Debug
     
-    // Não carregar progresso salvo - sempre começar em 0%
-    // loadProgress();
+    // Carregar progresso salvo do banco de dados
+    loadProgress();
     initializeProgressSystem();
     initializeCongratulationsButtons();
     

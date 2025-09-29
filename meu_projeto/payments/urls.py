@@ -20,6 +20,7 @@ urlpatterns = [
     
     # PIX direto
     path('gerar-pix/<int:payment_id>/', views.gerar_pix_direto, name='gerar_pix_direto'),
+    path('criar-pagamento-cartao/<int:payment_id>/', views.criar_pagamento_cartao, name='criar_pagamento_cartao'),
     path('testar-pix/', views.testar_pix, name='testar_pix'),
     path('verificar-pagamento/<int:payment_id>/', views.verificar_pagamento_manual, name='verificar_pagamento_manual'),
     

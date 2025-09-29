@@ -215,3 +215,4 @@ class Command(BaseCommand):
             )
             logger.error(f"Erro geral ao testar pagamento: {e}")
 
+

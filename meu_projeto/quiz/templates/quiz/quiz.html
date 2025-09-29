@@ -193,6 +193,8 @@
   </style>
 </head>
 <body class="bg-gray-50 font-display min-h-screen">
+    <!-- CSRF Token para requisições AJAX -->
+    {% csrf_token %}
   <!-- Header com Progresso responsivo -->
   <header class="gradient-bg text-white py-4 sm:py-6 px-4">
     <div class="max-w-4xl mx-auto">
@@ -595,6 +597,7 @@
     // Variáveis globais
     let questions = [];
     let currentQuestion = 0;
+    let currentDifficulty = null; // Dificuldade atual do quiz
     let score = 0;
     let answered = false;
     let selectedDifficulty = '';
@@ -612,7 +615,23 @@
     // Função para selecionar dificuldade
     function selectDifficulty(difficulty) {
       selectedDifficulty = difficulty;
+      currentDifficulty = difficulty; // Definir a dificuldade atual
       
+      console.log('🎯 Selecionando dificuldade:', difficulty);
+      
+      // Carregar perguntas normalmente (sempre randomizar por enquanto)
+      loadQuestionsWithRandom(difficulty);
+      
+      // Esconder seleção de dificuldade e mostrar quiz
+      document.getElementById('difficulty-selection').classList.add('hidden');
+      document.getElementById('quiz-container').classList.remove('hidden');
+      
+      // Inicializar quiz
+      initQuiz();
+    }
+    
+    // Função para carregar perguntas COM randomização (novo quiz)
+    function loadQuestionsWithRandom(difficulty) {
       if (difficulty === 'all') {
         // Para "Todas as Perguntas", misturar todas as perguntas de todos os níveis
         const allEasyQuestions = questionsByDifficulty.easy;
@@ -631,6 +650,29 @@
       }
       
       // Randomizar alternativas de cada pergunta
+      randomizeQuestionAnswers();
+      
+      // Salvar a ordem das perguntas no localStorage para manter consistência
+      localStorage.setItem(`quiz_questions_${difficulty}`, JSON.stringify(questions));
+    }
+    
+    // Função para carregar perguntas SEM randomização (quiz com progresso)
+    function loadQuestionsWithoutRandom(difficulty) {
+      // Tentar carregar perguntas salvas do localStorage
+      const savedQuestions = localStorage.getItem(`quiz_questions_${difficulty}`);
+      
+      if (savedQuestions) {
+        questions = JSON.parse(savedQuestions);
+        console.log('✅ Perguntas carregadas do localStorage (ordem mantida)');
+      } else {
+        // Se não tem perguntas salvas, carregar com randomização
+        console.log('⚠️ Perguntas não encontradas no localStorage, randomizando...');
+        loadQuestionsWithRandom(difficulty);
+      }
+    }
+    
+    // Função para randomizar apenas as alternativas das perguntas
+    function randomizeQuestionAnswers() {
       questions.forEach((question, questionIndex) => {
         const originalAnswers = [...question.answers];
         const correctAnswer = originalAnswers[question.correct];
@@ -648,13 +690,6 @@
           correct: newCorrectIndex
         };
       });
-      
-      // Esconder seleção de dificuldade e mostrar quiz
-      document.getElementById('difficulty-selection').classList.add('hidden');
-      document.getElementById('quiz-container').classList.remove('hidden');
-      
-      // Inicializar quiz
-      initQuiz();
     }
 
     const quizContainer = document.getElementById("quiz-container");
@@ -666,12 +701,20 @@
     const finalPercentageElement = document.getElementById("final-percentage");
 
     function updateStatus() {
+      console.log('📊 Atualizando status...');
+      console.log('   Pergunta atual:', currentQuestion);
+      console.log('   Score:', score);
+      console.log('   Total perguntas:', questions.length);
+      
       statusElement.innerHTML = `<i class="fa-solid fa-question-circle mr-2"></i>Pergunta ${currentQuestion + 1}/${questions.length}`;
       scoreElement.innerHTML = `<i class="fa-solid fa-trophy mr-2"></i>Acertos: ${score}`;
       
       // Calcular progresso baseado na pergunta atual (começando em 0%)
       const progress = (currentQuestion / questions.length) * 100;
       progressBar.style.width = `${progress}%`;
+      
+      console.log('   Progresso calculado:', progress + '%');
+      console.log('   Status atualizado com sucesso');
     }
 
     function createQuestionCard() {
@@ -792,6 +835,10 @@
 
       answered = true;
       updateStatus();
+      
+      // Salvar progresso imediatamente após responder
+      console.log('💾 Salvando progresso após resposta...');
+      saveQuizProgress();
     }
 
     function nextQuestion() {
@@ -838,8 +885,20 @@
     }
 
     function initQuiz() {
+      console.log('🎯 Inicializando quiz...');
+      console.log('   Pergunta atual:', currentQuestion);
+      console.log('   Score:', score);
+      console.log('   Total perguntas:', questions.length);
+      
+      // Sempre atualizar status primeiro
       updateStatus();
-      createQuestionCard();
+      
+      // Se há perguntas e não completou, criar pergunta
+      if (questions.length > 0 && currentQuestion < questions.length) {
+        createQuestionCard();
+      } else {
+        console.log('⚠️ Nenhuma pergunta disponível ou quiz já completado');
+      }
     }
 
     // Inicializar apenas a tela de seleção quando a página carregar
@@ -849,6 +908,189 @@
       document.getElementById('quiz-container').classList.add('hidden');
       document.getElementById('result').classList.add('hidden');
     });
+
+    // ===== SISTEMA DE PROGRESSO SEQUENCIAL NO BANCO DE DADOS =====
+    
+    // Verificar níveis disponíveis
+    function verificarNiveisDisponiveis() {
+      fetch('/quiz/verificar-niveis/')
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          console.log('Níveis disponíveis:', data.niveis);
+          atualizarInterfaceNiveis(data.niveis);
+        } else {
+          console.error('Erro ao verificar níveis:', data.error);
+        }
+      })
+      .catch(error => {
+        console.error('Erro ao verificar níveis:', error);
+      });
+    }
+    
+    // Atualizar interface dos níveis
+    function atualizarInterfaceNiveis(niveis) {
+      niveis.forEach(nivel => {
+        const button = document.querySelector(`[onclick="selectDifficulty('${nivel.nivel}')"]`);
+        if (button) {
+          if (nivel.disponivel) {
+            button.disabled = false;
+            button.classList.remove('opacity-50', 'cursor-not-allowed');
+            button.classList.add('hover:scale-105', 'hover:shadow-lg');
+          } else {
+            button.disabled = true;
+            button.classList.add('opacity-50', 'cursor-not-allowed');
+            button.classList.remove('hover:scale-105', 'hover:shadow-lg');
+            
+            // Adicionar ícone de bloqueado
+            const icon = button.querySelector('div:first-child');
+            if (icon && !icon.textContent.includes('🔒')) {
+              icon.textContent = '🔒';
+            }
+          }
+        }
+      });
+    }
+    
+    // Salvar progresso do quiz no banco de dados
+    function saveQuizProgress() {
+      console.log('🔄 Salvando progresso do quiz...');
+      console.log('   Dificuldade:', currentDifficulty);
+      console.log('   Pergunta atual:', currentQuestion);
+      console.log('   Total perguntas:', questions.length);
+      console.log('   Acertos:', score);
+      
+      const progressData = {
+        dificuldade: currentDifficulty,
+        pergunta_atual: currentQuestion,
+        total_perguntas: questions.length,
+        acertos: score,
+        erros: currentQuestion - score,
+        pontuacao: score * 10, // 10 pontos por acerto
+        quiz_completo: currentQuestion >= questions.length
+      };
+      
+      console.log('📤 Enviando dados:', progressData);
+      
+      fetch('/quiz/salvar-progresso/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        },
+        body: JSON.stringify(progressData)
+      })
+      .then(response => {
+        console.log('📥 Resposta recebida:', response.status);
+        return response.json();
+      })
+      .then(data => {
+        console.log('📊 Dados recebidos:', data);
+        if (data.success) {
+          console.log('✅ Progresso do quiz salvo:', data.message);
+          
+          // Se completou o quiz, verificar níveis
+          if (progressData.quiz_completo) {
+            console.log('🎉 Quiz completado! Verificando níveis...');
+            setTimeout(() => {
+              verificarNiveisDisponiveis();
+            }, 1000);
+          }
+        } else {
+          console.error('❌ Erro ao salvar progresso do quiz:', data.error);
+          if (data.error.includes('completar o nível anterior')) {
+            alert('Você deve completar o nível anterior primeiro!');
+          }
+        }
+      })
+      .catch(error => {
+        console.error('❌ Erro de conexão ao salvar progresso do quiz:', error);
+      });
+    }
+    
+    // Carregar progresso do quiz do banco de dados
+    function loadQuizProgress() {
+      return new Promise((resolve, reject) => {
+        if (!currentDifficulty) {
+          console.log('❌ Nenhuma dificuldade selecionada para carregar progresso');
+          resolve();
+          return;
+        }
+        
+        console.log('🔄 Carregando progresso do quiz...');
+        console.log('   Dificuldade:', currentDifficulty);
+        
+        fetch(`/quiz/carregar-progresso/?dificuldade=${currentDifficulty}`)
+        .then(response => {
+          console.log('📥 Resposta de carregamento:', response.status);
+          return response.json();
+        })
+        .then(data => {
+          console.log('📊 Dados de progresso recebidos:', data);
+          
+          if (data.success && data.progresso) {
+            console.log('✅ Carregando progresso do quiz:', data.progresso);
+            
+            // Restaurar estado do quiz
+            currentQuestion = data.progresso.pergunta_atual;
+            score = data.progresso.acertos;
+            
+            console.log('   Pergunta atual restaurada:', currentQuestion);
+            console.log('   Score restaurado:', score);
+            
+            // Se o quiz não foi completado, continuar de onde parou
+            if (!data.progresso.quiz_completo && currentQuestion < questions.length) {
+              console.log(`🎯 Continuando quiz da pergunta ${currentQuestion + 1}`);
+              // Atualizar status após carregar progresso
+              updateStatus();
+            } else {
+              console.log('ℹ️ Quiz já foi completado ou não há progresso salvo');
+            }
+          } else if (data.error && data.error.includes('completar o nível anterior')) {
+            console.log('🔒 Nível bloqueado:', data.error);
+            alert('Você deve completar o nível anterior primeiro!');
+            // Voltar para seleção de dificuldade
+            document.getElementById('difficulty-selection').classList.remove('hidden');
+            document.getElementById('quiz-container').classList.add('hidden');
+            reject(new Error('Nível bloqueado'));
+            return;
+          } else {
+            console.log('ℹ️ Nenhum progresso salvo para esta dificuldade');
+          }
+          
+          resolve();
+        })
+        .catch(error => {
+          console.error('❌ Erro ao carregar progresso do quiz:', error);
+          reject(error);
+        });
+      });
+    }
+    
+    // Modificar a função nextQuestion para salvar progresso
+    const originalNextQuestion = nextQuestion;
+    nextQuestion = function() {
+      originalNextQuestion();
+      saveQuizProgress(); // Salvar progresso após cada pergunta
+    };
+    
+    // Modificar a função selectDifficulty para carregar progresso
+    const originalSelectDifficulty = selectDifficulty;
+    selectDifficulty = function(difficulty) {
+      console.log('🎯 Iniciando selectDifficulty para:', difficulty);
+      
+      // Primeiro carregar o progresso, depois inicializar o quiz
+      loadQuizProgress().then(() => {
+        console.log('✅ Progresso carregado, inicializando quiz...');
+        originalSelectDifficulty(difficulty);
+      }).catch(error => {
+        console.error('❌ Erro ao carregar progresso, continuando sem progresso:', error);
+        originalSelectDifficulty(difficulty);
+      });
+    };
+    
+    // Verificar níveis disponíveis ao carregar a página
+    verificarNiveisDisponiveis();
   </script>
 </body>
 </html>

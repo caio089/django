@@ -235,3 +235,92 @@ class Conquista(models.Model):
     class Meta:
         verbose_name = "Conquista"
         verbose_name_plural = "Conquistas"
+
+
+class ProgressoQuiz(models.Model):
+    """
+    Modelo para salvar o progresso do quiz no banco de dados
+    Sistema sequencial: só pode avançar após completar o nível anterior
+    """
+    DIFICULDADE_CHOICES = [
+        ('easy', 'Fácil'),
+        ('medium', 'Médio'),
+        ('hard', 'Difícil'),
+        ('expert', 'Expert'),
+    ]
+    
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='progresso_quiz')
+    dificuldade = models.CharField(max_length=20, choices=DIFICULDADE_CHOICES, verbose_name="Dificuldade")
+    pergunta_atual = models.PositiveIntegerField(default=0, verbose_name="Pergunta Atual")
+    total_perguntas = models.PositiveIntegerField(default=0, verbose_name="Total de Perguntas")
+    acertos = models.PositiveIntegerField(default=0, verbose_name="Acertos")
+    erros = models.PositiveIntegerField(default=0, verbose_name="Erros")
+    pontuacao = models.PositiveIntegerField(default=0, verbose_name="Pontuação")
+    quiz_completo = models.BooleanField(default=False, verbose_name="Quiz Completo")
+    nivel_desbloqueado = models.BooleanField(default=False, verbose_name="Nível Desbloqueado")
+    data_inicio = models.DateTimeField(auto_now_add=True, verbose_name="Data de Início")
+    data_fim = models.DateTimeField(null=True, blank=True, verbose_name="Data de Fim")
+    data_atualizacao = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        unique_together = ['usuario', 'dificuldade']
+        verbose_name = "Progresso do Quiz"
+        verbose_name_plural = "Progressos do Quiz"
+        ordering = ['usuario', 'dificuldade']
+    
+    def __str__(self):
+        return f"{self.usuario.username} - {self.get_dificuldade_display()} - {self.pergunta_atual}/{self.total_perguntas}"
+    
+    @classmethod
+    def get_nivel_atual(cls, usuario):
+        """
+        Retorna o nível atual que o usuário pode acessar
+        """
+        # Verificar se completou o nível anterior
+        niveis = ['easy', 'medium', 'hard', 'expert']
+        
+        for i, nivel in enumerate(niveis):
+            try:
+                progresso = cls.objects.get(usuario=usuario, dificuldade=nivel)
+                if not progresso.quiz_completo:
+                    return nivel  # Nível atual (não completado)
+            except cls.DoesNotExist:
+                # Se não existe progresso para este nível, verificar se o anterior foi completado
+                if i == 0:  # Primeiro nível (easy) sempre disponível
+                    return nivel
+                else:
+                    # Verificar se o nível anterior foi completado
+                    try:
+                        nivel_anterior = cls.objects.get(usuario=usuario, dificuldade=niveis[i-1])
+                        if nivel_anterior.quiz_completo:
+                            return nivel  # Pode acessar este nível
+                        else:
+                            return niveis[i-1]  # Deve completar o anterior primeiro
+                    except cls.DoesNotExist:
+                        return niveis[i-1]  # Deve completar o anterior primeiro
+        
+        return 'expert'  # Se completou todos os níveis
+    
+    @classmethod
+    def pode_acessar_nivel(cls, usuario, nivel):
+        """
+        Verifica se o usuário pode acessar um determinado nível
+        """
+        niveis = ['easy', 'medium', 'hard', 'expert']
+        
+        if nivel not in niveis:
+            return False
+        
+        nivel_index = niveis.index(nivel)
+        
+        # Primeiro nível sempre disponível
+        if nivel_index == 0:
+            return True
+        
+        # Verificar se o nível anterior foi completado
+        nivel_anterior = niveis[nivel_index - 1]
+        try:
+            progresso_anterior = cls.objects.get(usuario=usuario, dificuldade=nivel_anterior)
+            return progresso_anterior.quiz_completo
+        except cls.DoesNotExist:
+            return False

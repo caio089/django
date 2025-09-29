@@ -377,13 +377,23 @@ Se algum banco não reconhecer, pode ser:
 
 // Função para mostrar QR Code do PIX
 function showPixQRCode(data) {
-    console.log('Mostrando modal PIX com dados:', data);
+    console.log('🖼️ MOSTRANDO MODAL PIX');
+    console.log('   Dados recebidos:', data);
+    console.log('   Success:', data.success);
+    console.log('   QR Code:', data.qr_code ? data.qr_code.substring(0, 50) + '...' : 'None');
+    console.log('   QR Code Base64:', data.qr_code_base64 ? data.qr_code_base64.substring(0, 50) + '...' : 'None');
+    console.log('   Payment ID:', data.payment_id);
+    console.log('   Status:', data.status);
+    
     hideStatus();
     
     // Remover modal anterior se existir
     const existingModal = document.querySelector('.pix-modal');
     if (existingModal) {
+        console.log('🗑️ Removendo modal anterior existente');
         existingModal.remove();
+    } else {
+        console.log('✅ Nenhum modal anterior encontrado');
     }
     
     // Criar modal com QR Code
@@ -444,50 +454,88 @@ function showPixQRCode(data) {
         </div>
     `;
     
+    console.log('📝 Adicionando modal ao DOM...');
     document.body.appendChild(modal);
+    console.log('✅ Modal adicionado ao DOM');
     
     // Testar QR Code automaticamente
     if (data.qr_code) {
-        console.log('Testando QR Code automaticamente...');
+        console.log('🧪 Testando QR Code automaticamente...');
         testarQrCode(data.qr_code);
+    } else {
+        console.log('⚠️ Nenhum QR Code para testar');
     }
     
     // Adicionar event listeners
-    document.getElementById('close-pix-modal').addEventListener('click', () => {
-        modal.remove();
-    });
+    console.log('🔗 Adicionando event listeners do modal...');
     
-    document.getElementById('paid-pix-modal').addEventListener('click', () => {
-        window.location.href = '{% url "payments:sucesso" %}';
-    });
+    const closeButton = document.getElementById('close-pix-modal');
+    const paidButton = document.getElementById('paid-pix-modal');
+    
+    console.log('   Close button:', closeButton);
+    console.log('   Paid button:', paidButton);
+    
+    if (closeButton) {
+        closeButton.addEventListener('click', () => {
+            console.log('❌ Botão fechar clicado');
+            modal.remove();
+        });
+        console.log('✅ Event listener do botão fechar adicionado');
+    } else {
+        console.error('❌ Botão fechar não encontrado');
+    }
+    
+    if (paidButton) {
+        paidButton.addEventListener('click', () => {
+            console.log('✅ Botão "Já Paguei" clicado');
+            window.location.href = '{% url "payments:sucesso" %}';
+        });
+        console.log('✅ Event listener do botão "Já Paguei" adicionado');
+    } else {
+        console.error('❌ Botão "Já Paguei" não encontrado');
+    }
     
     // Verificar status do pagamento a cada 5 segundos
+    console.log('⏰ Iniciando verificação de status a cada 5 segundos...');
     const checkStatus = setInterval(async () => {
         try {
+            console.log('🔍 Verificando status do pagamento...');
             const response = await fetch(`/payments/verificar-status/{{ pagamento.id }}/`);
             const statusData = await response.json();
             
+            console.log('📊 Status recebido:', statusData);
+            
             if (statusData.status === 'approved') {
+                console.log('✅ Pagamento aprovado!');
                 clearInterval(checkStatus);
                 modal.remove();
                 showStatus('success', 'Pagamento Aprovado!', 'Seu pagamento foi processado com sucesso');
                 setTimeout(() => {
                     window.location.href = '{% url "payments:sucesso" %}';
                 }, 2000);
+            } else {
+                console.log('⏳ Pagamento ainda pendente:', statusData.status);
             }
         } catch (error) {
-            console.error('Erro ao verificar status:', error);
+            console.error('❌ Erro ao verificar status:', error);
         }
     }, 5000);
     
-    console.log('Modal PIX criado e adicionado ao DOM');
+    console.log('🎉 MODAL PIX CRIADO E CONFIGURADO COM SUCESSO!');
 }
 
 // Função para configurar checkout PIX
 async function setupPixCheckout() {
+    console.log('🔧 CONFIGURANDO PIX CHECKOUT');
+    console.log('   Elements Container:', elementsContainer);
+    console.log('   Submit Container:', submitContainer);
+    console.log('   Submit Button:', submitButton);
+    
     try {
         hideStatus();
         showStatus('loading', 'Configurando PIX...', 'Preparando pagamento instantâneo');
+        
+        console.log('📝 Criando interface PIX...');
         
         // Para PIX, mostrar opção de pagamento
         elementsContainer.innerHTML = `
@@ -506,13 +554,24 @@ async function setupPixCheckout() {
             </div>
         `;
         
+        console.log('✅ Interface PIX criada');
+        console.log('🔧 Configurando variáveis...');
+        
         currentPaymentType = 'pix';
+        console.log('   currentPaymentType definido como:', currentPaymentType);
+        
         submitContainer.classList.remove('hidden');
+        console.log('   Submit container mostrado');
+        
         submitText.textContent = 'Gerar QR Code PIX';
+        console.log('   Texto do botão alterado para:', submitText.textContent);
+        
         hideStatus();
+        console.log('✅ PIX CHECKOUT CONFIGURADO COM SUCESSO');
         
     } catch (error) {
-        console.error('Erro ao configurar PIX:', error);
+        console.error('❌ ERRO ao configurar PIX:', error);
+        console.error('   Stack trace:', error.stack);
         showStatus('error', 'Erro no PIX', 'Não foi possível configurar o pagamento PIX');
     }
 }
@@ -552,21 +611,43 @@ async function setupCardCheckout() {
 }
 
 // Event listeners para opções de pagamento
-document.querySelectorAll('.payment-option').forEach(option => {
-    option.addEventListener('click', async () => {
+console.log('🔗 CONFIGURANDO EVENT LISTENERS DAS OPÇÕES DE PAGAMENTO');
+const paymentOptions = document.querySelectorAll('.payment-option');
+console.log(`📱 Encontradas ${paymentOptions.length} opções de pagamento`);
+
+paymentOptions.forEach((option, index) => {
+    console.log(`   Opção ${index + 1}:`, option.dataset.type, option);
+    
+    option.addEventListener('click', async (event) => {
+        console.log('🖱️ OPÇÃO DE PAGAMENTO CLICADA');
+        console.log('   Evento:', event);
+        console.log('   Elemento clicado:', option);
+        console.log('   Tipo:', option.dataset.type);
+        
         const type = option.dataset.type;
         
         // Limpar elementos anteriores
+        console.log('🧹 Limpando elementos anteriores...');
         elementsContainer.innerHTML = '';
         submitContainer.classList.add('hidden');
+        console.log('   Elements container limpo');
+        console.log('   Submit container escondido');
         
         if (type === 'pix') {
+            console.log('🔵 PIX selecionado - chamando setupPixCheckout()');
             await setupPixCheckout();
         } else if (type === 'card') {
+            console.log('🟢 CARTÃO selecionado - chamando setupCardCheckout()');
             await setupCardCheckout();
+        } else {
+            console.log('❌ Tipo de pagamento desconhecido:', type);
         }
     });
+    
+    console.log(`✅ Event listener adicionado à opção ${index + 1}`);
 });
+
+console.log('🎯 Event listeners configurados com sucesso');
 
 // Event listener para botão de pagamento
 submitButton.addEventListener('click', async () => {
@@ -582,52 +663,92 @@ submitButton.addEventListener('click', async () => {
     try {
         if (currentPaymentType === 'pix') {
             // Para PIX, SEMPRE gerar QR Code diretamente no modal
-            console.log('Iniciando geração de PIX via API direta...');
+            console.log('🔵 PIX SELECIONADO - INICIANDO GERAÇÃO DIRETA');
+            console.log('   Payment ID:', PAYMENT_ID);
+            console.log('   Current Payment Type:', currentPaymentType);
+            console.log('   Submit Button:', submitButton);
+            console.log('   Submit Text:', submitText);
+            console.log('   Loading Spinner:', loadingSpinner);
+            
+            // FORÇAR PIX DIRETO - NÃO REDIRECIONAR PARA MERCADO PAGO
+            console.log('🚫 BLOQUEANDO REDIRECIONAMENTO PARA MERCADO PAGO');
+            console.log('✅ USANDO PIX DIRETO - SEM REDIRECIONAMENTO');
+            
             showStatus('loading', 'Gerando PIX...', 'Aguarde, estamos gerando seu código PIX');
             
             const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]');
-            console.log('CSRF Token encontrado:', csrfToken ? 'Sim' : 'Não');
+            console.log('🔐 CSRF Token:', csrfToken ? 'Encontrado' : 'NÃO ENCONTRADO');
+            if (csrfToken) {
+                console.log('   Token value:', csrfToken.value.substring(0, 20) + '...');
+            }
             
-            fetch(`/payments/gerar-pix/{{ pagamento.id }}/`, {
+            const url = `/payments/gerar-pix/{{ pagamento.id }}/`;
+            console.log('🌐 URL da API PIX:', url);
+            
+            const requestOptions = {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRFToken': csrfToken ? csrfToken.value : ''
                 }
-            })
+            };
+            
+            console.log('📤 Enviando requisição PIX:', requestOptions);
+            
+            fetch(url, requestOptions)
             .then(response => {
-                console.log('Resposta da API PIX:', response.status);
+                console.log('📥 Resposta recebida da API PIX:');
+                console.log('   Status:', response.status);
+                console.log('   Status Text:', response.statusText);
+                console.log('   Headers:', response.headers);
+                console.log('   OK:', response.ok);
+                
+                if (!response.ok) {
+                    console.error('❌ Resposta não OK:', response.status, response.statusText);
+                }
+                
                 return response.json();
             })
             .then(data => {
-                console.log('Dados recebidos da API PIX:', data);
+                console.log('📊 Dados recebidos da API PIX:');
+                console.log('   Success:', data.success);
+                console.log('   Error:', data.error);
+                console.log('   Payment ID:', data.payment_id);
+                console.log('   Status:', data.status);
+                console.log('   QR Code:', data.qr_code ? data.qr_code.substring(0, 50) + '...' : 'None');
+                console.log('   QR Code Base64:', data.qr_code_base64 ? data.qr_code_base64.substring(0, 50) + '...' : 'None');
+                console.log('   Dados completos:', data);
                 
                 if (data.success) {
                     // PIX gerado com sucesso, mostrar QR Code no modal
-                    console.log('PIX gerado com sucesso, mostrando modal...');
-                    console.log('Dados do PIX recebidos:', data);
-                    console.log('QR Code:', data.qr_code);
-                    console.log('QR Code Base64:', data.qr_code_base64 ? data.qr_code_base64.substring(0, 100) + '...' : 'None');
+                    console.log('✅ PIX GERADO COM SUCESSO!');
+                    console.log('   Mostrando modal PIX...');
                     showPixQRCode(data);
                 } else {
                     // Erro ao gerar PIX, mostrar erro
-                    console.log('Erro ao gerar PIX:', data.error);
+                    console.error('❌ ERRO AO GERAR PIX:', data.error);
+                    console.error('   Detalhes:', data.details);
                     showStatus('error', 'Erro no PIX', data.error || 'Erro ao gerar PIX. Tente novamente ou use cartão de crédito.');
                     
                     // Reabilitar botão para tentar novamente
                     submitButton.disabled = false;
                     submitText.classList.remove('hidden');
                     loadingSpinner.classList.add('hidden');
+                    console.log('🔄 Botão reabilitado para nova tentativa');
                 }
             })
             .catch(error => {
-                console.error('Erro ao gerar PIX:', error);
+                console.error('❌ ERRO DE CONEXÃO AO GERAR PIX:');
+                console.error('   Error:', error);
+                console.error('   Message:', error.message);
+                console.error('   Stack:', error.stack);
                 showStatus('error', 'Erro no PIX', 'Erro de conexão. Tente novamente ou use cartão de crédito.');
                 
                 // Reabilitar botão para tentar novamente
                 submitButton.disabled = false;
                 submitText.classList.remove('hidden');
                 loadingSpinner.classList.add('hidden');
+                console.log('🔄 Botão reabilitado após erro de conexão');
             });
             
         } else if (currentPaymentType === 'card') {
@@ -700,9 +821,34 @@ function testPixModal() {
 
 // Inicializar
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Checkout inicializado');
-    console.log('Public Key:', PUBLIC_KEY);
-    console.log('Preference ID:', PREFERENCE_ID);
+    console.log('🚀 CHECKOUT INICIALIZADO');
+    console.log('📊 Configurações:');
+    console.log('   Public Key:', PUBLIC_KEY);
+    console.log('   Preference ID:', PREFERENCE_ID);
+    console.log('   Payment ID:', PAYMENT_ID);
+    console.log('   PIX Available:', PIX_AVAILABLE);
+    console.log('   Init Point:', INIT_POINT);
+    
+    // Verificar elementos do DOM
+    console.log('🔍 Elementos do DOM:');
+    console.log('   Elements Container:', document.getElementById('mercadopago-elements'));
+    console.log('   Submit Container:', document.getElementById('submit-container'));
+    console.log('   Submit Button:', document.getElementById('submit-payment'));
+    console.log('   Payment Options:', document.querySelectorAll('.payment-option'));
+    
+    // Verificar opções de pagamento
+    const paymentOptions = document.querySelectorAll('.payment-option');
+    console.log(`📱 Opções de pagamento encontradas: ${paymentOptions.length}`);
+    paymentOptions.forEach((option, index) => {
+        console.log(`   Opção ${index + 1}:`, option.dataset.type, option);
+    });
+    
+    // Verificar se PIX está disponível
+    if (PIX_AVAILABLE) {
+        console.log('✅ PIX está disponível na configuração');
+    } else {
+        console.log('❌ PIX NÃO está disponível na configuração');
+    }
     
     // Adicionar botão de teste (remover em produção)
     const testButton = document.createElement('button');
@@ -710,6 +856,8 @@ document.addEventListener('DOMContentLoaded', () => {
     testButton.className = 'fixed bottom-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg z-50';
     testButton.onclick = testPixModal;
     document.body.appendChild(testButton);
+    
+    console.log('🎯 Checkout pronto para uso!');
 });
 </script>
 

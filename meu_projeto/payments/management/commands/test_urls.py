@@ -64,3 +64,4 @@ class Command(BaseCommand):
             self.stdout.write('  ❌ Usuário ccamposs2007@gmail.com não encontrado')
 
 
+

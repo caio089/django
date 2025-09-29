@@ -38,3 +38,4 @@ class Command(BaseCommand):
             self.stdout.write(f'❌ Erro na URL de planos: {e}')
 
 
+

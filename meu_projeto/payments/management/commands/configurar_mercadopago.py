@@ -102,3 +102,4 @@ class Command(BaseCommand):
             )
             logger.error(f"Erro ao configurar Mercado Pago: {e}")
 
+
