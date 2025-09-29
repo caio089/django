@@ -201,3 +201,4 @@ class Command(BaseCommand):
         self.stdout.write('   3. Faça outro pagamento')
         self.stdout.write('   4. Verifique se apenas uma assinatura fica ativa')
         self.stdout.write('   5. Verifique se o acesso premium funciona')
+

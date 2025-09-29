@@ -65,3 +65,4 @@ class Command(BaseCommand):
         
         self.stdout.write(self.style.SUCCESS('\n🎉 Configuração de produção concluída!'))
         self.stdout.write(self.style.WARNING('💡 Agora teste o PIX novamente'))
+

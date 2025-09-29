@@ -19,9 +19,10 @@ DB_HOST=seu_host_supabase
 DB_PORT=5432
 
 # Mercado Pago
-MERCADO_PAGO_ACCESS_TOKEN=seu_access_token_mercadopago
-MERCADO_PAGO_PUBLIC_KEY=sua_public_key_mercadopago
-MERCADO_PAGO_WEBHOOK_URL=https://dojo-on.onrender.com/payments/webhook/
+MERCADOPAGO_ACCESS_TOKEN=seu_access_token_mercadopago
+MERCADOPAGO_PUBLIC_KEY=sua_public_key_mercadopago
+MERCADOPAGO_WEBHOOK_SECRET=seu_webhook_secret_mercadopago
+MERCADOPAGO_WEBHOOK_URL=https://dojo-on.onrender.com/payments/webhook/
 
 # Configurações de Ambiente
 USE_SQLITE_FALLBACK=False
@@ -82,3 +83,4 @@ python manage.py check --deploy
 - **Aplicação**: https://dojo-on.onrender.com
 - **Admin**: https://dojo-on.onrender.com/admin/
 - **Webhook Mercado Pago**: https://dojo-on.onrender.com/payments/webhook/
+

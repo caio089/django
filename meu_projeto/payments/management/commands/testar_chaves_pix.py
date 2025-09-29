@@ -151,3 +151,4 @@ class Command(BaseCommand):
             self.stdout.write(traceback.format_exc())
         
         self.stdout.write(self.style.SUCCESS('🏁 Teste de chaves PIX concluído!'))
+

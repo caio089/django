@@ -65,3 +65,4 @@ class Command(BaseCommand):
             self.stdout.write(self.style.ERROR(f'❌ Erro ao carregar checkout: {response.status_code}'))
         
         self.stdout.write(self.style.SUCCESS('🏁 Teste de CSRF concluído!'))
+

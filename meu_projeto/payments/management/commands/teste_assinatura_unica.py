@@ -110,3 +110,4 @@ class Command(BaseCommand):
             self.stdout.write(self.style.ERROR(f'❌ ERRO: {assinaturas_canceladas} assinaturas canceladas (deveria ser 1)'))
         
         self.stdout.write(self.style.SUCCESS('\n🎉 TESTE DE ASSINATURA ÚNICA CONCLUÍDO!'))
+

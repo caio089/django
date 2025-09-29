@@ -104,3 +104,4 @@ class Command(BaseCommand):
         self.stdout.write('6. Para produção, certifique-se de que a conta está aprovada para PIX')
         
         self.stdout.write(self.style.SUCCESS('🏁 Verificação concluída!'))
+

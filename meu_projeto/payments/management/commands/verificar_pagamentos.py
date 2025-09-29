@@ -15,3 +15,4 @@ class Command(BaseCommand):
         for p in pagamentos:
             self.stdout.write(f'ID: {p.id}, Status: {p.status}, Usuario: {p.usuario}')
 
+

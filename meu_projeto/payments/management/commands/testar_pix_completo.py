@@ -149,3 +149,4 @@ class Command(BaseCommand):
         self.stdout.write('4. Não depende do checkout visual do Mercado Pago')
         
         self.stdout.write(self.style.SUCCESS('🏁 Teste de PIX completo concluído!'))
+
