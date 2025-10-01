@@ -3038,3 +3038,77 @@ Criando pagamento PIX: {'transaction_amount': 1.0, 'description': 'Assinatura Pl
 Point of interaction: {'type': 'OPENPLATFORM', 'business_info': {'unit': 'online_payments', 'sub_unit': 'sdk', 'branch': None}, 'location': {'state_id': None, 'source': None}, 'application_data': {'name': None, 'operating_system': None, 'version': None}, 'transaction_data': {'qr_code': '00020126580014br.gov.bcb.pix0136b76aa9c2-2ec4-4110-954e-ebfe34f05b6152040000530398654041.005802BR5916CC513878240914566009Sao Paulo62230519mpqrinter132493408663048E4D', 'bank_transfer_id': None, 'transaction_id': None, 'e2e_id': None, 'financial_institution': None, 'ticket_url': 'https://www.mercadopago.com.br/sandbox/payments/1324934086/ticket?caller_id=1855622431&hash=1b890df8-8d1d-4ed6-84e5-8028bbe7af4c', 'merchant_category_code': None, 'bank_info': {'payer': {'account_id': None, 'branch': None, 'id': None, 'long_name': None, 'account_holder_name': None, 'identification': {'number': None, 'type': None}, 'external_account_id': None, 'is_end_consumer': None}, 'collector': {'account_id': None, 'long_name': None, 'account_holder_name': 'CaGr hAMwbY ehlva', 'transfer_account_id': None}, 'is_same_bank_account_owner': None, 'origin_bank_id': None, 'origin_wallet_id': None}, 'qr_code_base64': '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'}}
 D:\github\django\meu_projeto\payments\views.py changed, reloading.
 Watching for file changes with StatReloader
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/plano/1/ HTTP/1.1" 200 14408
+PAYMENT_AUDIT: {"timestamp": "2025-10-01T18:20:09.742912+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 1.0}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 224
+"GET /payments/checkout/72/ HTTP/1.1" 200 41086
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+Configurações totais: 1, Ativas: 1
+Configuração encontrada: ID 1, Ambiente: sandbox
+Access token obtido com sucesso
+SDK do Mercado Pago criado com sucesso
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128
+PAYMENT_AUDIT: {"timestamp": "2025-10-01T18:25:27.101203+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 1.0}}
+"GET /payments/verificar-status/72/ HTTP/1.1" 200 128

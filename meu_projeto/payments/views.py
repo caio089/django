@@ -42,10 +42,13 @@ def get_mercadopago_config():
                 # Marcar uso da configuração
                 config.mark_usage()
                 return sdk, config
-        logger.error("Nenhuma configuração ativa do Mercado Pago encontrada")
+            else:
+                logger.error("Access token não pôde ser obtido")
+        else:
+            logger.error("Nenhuma configuração ativa do Mercado Pago encontrada")
         return None, None
     except Exception as e:
-        logger.error(f"Erro ao configurar Mercado Pago: {e}")
+        logger.error(f"Erro ao configurar Mercado Pago: {e}", exc_info=True)
         return None, None
 
 def criar_perfil_usuario(user):
