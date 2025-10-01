@@ -114,3 +114,4 @@ class Command(BaseCommand):
         
         self.stdout.write(self.style.SUCCESS('🏁 Teste de cartão concluído!'))
 
+

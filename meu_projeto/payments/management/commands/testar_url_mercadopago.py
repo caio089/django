@@ -125,3 +125,4 @@ class Command(BaseCommand):
         
         self.stdout.write(self.style.SUCCESS('\n🏁 Teste de URL concluído!'))
 
+

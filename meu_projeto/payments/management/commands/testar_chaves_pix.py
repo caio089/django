@@ -152,3 +152,4 @@ class Command(BaseCommand):
         
         self.stdout.write(self.style.SUCCESS('🏁 Teste de chaves PIX concluído!'))
 
+

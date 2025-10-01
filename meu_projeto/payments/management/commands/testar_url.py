@@ -81,3 +81,4 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS('🏁 Teste de URL concluído!'))
         self.stdout.write(f'💡 Acesse: http://localhost:8000{url}')
 
+

@@ -159,3 +159,4 @@ class Command(BaseCommand):
         self.stdout.write('✅ Middleware de verificação premium: FUNCIONANDO')
         self.stdout.write('✅ Páginas de sucesso/falha: FUNCIONANDO')
 
+

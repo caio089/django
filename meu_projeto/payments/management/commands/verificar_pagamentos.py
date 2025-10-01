@@ -16,3 +16,4 @@ class Command(BaseCommand):
             self.stdout.write(f'ID: {p.id}, Status: {p.status}, Usuario: {p.usuario}')
 
 
+
