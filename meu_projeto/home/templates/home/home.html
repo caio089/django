@@ -905,29 +905,36 @@
             }
         });
 
-        // Manipular envio do formulário
+        // JavaScript mínimo - apenas funcionalidades básicas
         document.addEventListener('DOMContentLoaded', function() {
+            // Toggle de senha
+            const togglePassword = document.getElementById('togglePassword');
+            const senhaInput = document.getElementById('senha');
+            
+            if (togglePassword && senhaInput) {
+                togglePassword.addEventListener('click', function() {
+                    const type = senhaInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    senhaInput.setAttribute('type', type);
+                    const icon = this.querySelector('i');
+                    icon.classList.toggle('fa-eye');
+                    icon.classList.toggle('fa-eye-slash');
+                });
+            }
+            
+            // Formulário - sem interferência no envio
             const form = document.getElementById('login-form');
-            const loginBtn = document.getElementById('login-btn');
-            const loginBtnText = document.getElementById('login-btn-text');
-            const loginSpinner = document.getElementById('login-spinner');
-
             if (form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
+                // Apenas mostrar loading visual, sem prevenir envio
+                form.addEventListener('submit', function() {
+                    const loginBtn = document.getElementById('login-btn');
+                    const loginBtnText = document.getElementById('login-btn-text');
+                    const loginSpinner = document.getElementById('login-spinner');
                     
-                    if (!validateForm()) {
-                        showFeedback('Por favor, corrija os erros no formulário.', 'error');
-                        return;
+                    if (loginBtn) {
+                        loginBtn.disabled = true;
+                        if (loginBtnText) loginBtnText.style.display = 'none';
+                        if (loginSpinner) loginSpinner.classList.remove('hidden');
                     }
-
-                    // Mostrar loading
-                    loginBtn.disabled = true;
-                    loginBtnText.style.display = 'none';
-                    loginSpinner.classList.remove('hidden');
-
-                    // Enviar formulário diretamente
-                    form.submit();
                 });
             }
 

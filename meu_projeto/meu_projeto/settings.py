@@ -13,7 +13,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'chave_de_teste_local')
 DEBUG = os.getenv('DEBUG', 'True') == 'True'  # True local, False no Render via .env
 
 # Hosts
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,testserver').split(',')
 
 # CSRF Trusted Origins
 CSRF_TRUSTED_ORIGINS = [
