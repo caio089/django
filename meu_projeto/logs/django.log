@@ -3146,3 +3146,35 @@ PAYMENT_AUDIT: {"timestamp": "2025-10-01T18:25:27.101203+00:00", "event_type": "
 "GET /login/?next=/payments/verificar-status/72/ HTTP/1.1" 200 39147
 "GET /payments/verificar-status/72/ HTTP/1.1" 302 0
 "GET /login/?next=/payments/verificar-status/72/ HTTP/1.1" 200 39147
+"GET /payments/verificar-status/72/ HTTP/1.1" 302 0
+"GET /login/?next=/payments/verificar-status/72/ HTTP/1.1" 200 39147
+"GET /payments/verificar-status/72/ HTTP/1.1" 302 0
+"GET /login/?next=/payments/verificar-status/72/ HTTP/1.1" 200 39147
+"GET /payments/verificar-status/72/ HTTP/1.1" 302 0
+"GET /login/?next=/payments/verificar-status/72/ HTTP/1.1" 200 39147
+"GET /payments/verificar-status/72/ HTTP/1.1" 302 0
+"GET /login/?next=/payments/verificar-status/72/ HTTP/1.1" 200 39147
+"GET /payments/verificar-status/72/ HTTP/1.1" 302 0
+"GET /login/?next=/payments/verificar-status/72/ HTTP/1.1" 200 39147
+"GET /payments/verificar-status/72/ HTTP/1.1" 302 0
+"GET /login/?next=/payments/verificar-status/72/ HTTP/1.1" 200 39147
+"GET /payments/verificar-status/72/ HTTP/1.1" 302 0
+"GET /login/?next=/payments/verificar-status/72/ HTTP/1.1" 200 39147
+"GET /payments/verificar-status/72/ HTTP/1.1" 302 0
+"GET /login/?next=/payments/verificar-status/72/ HTTP/1.1" 200 39147
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/72/ HTTP/1.1" 302 0
+"GET /login/?next=/payments/verificar-status/72/ HTTP/1.1" 200 39147
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader

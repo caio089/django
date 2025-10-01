@@ -225,9 +225,9 @@ def criar_pagamento(request, plano_id):
                 }
             },
             "back_urls": {
-                "success": f"{request.scheme}://{request.META.get('HTTP_HOST', 'localhost:8000')}/payments/sucesso/",
-                "failure": f"{request.scheme}://{request.META.get('HTTP_HOST', 'localhost:8000')}/payments/falha/",
-                "pending": f"{request.scheme}://{request.META.get('HTTP_HOST', 'localhost:8000')}/payments/pendente/"
+                "success": "https://dojo-on.onrender.com/payments/sucesso/",
+                "failure": "https://dojo-on.onrender.com/payments/falha/",
+                "pending": "https://dojo-on.onrender.com/payments/pendente/"
             },
             "external_reference": external_reference,
             "notification_url": config.webhook_url,
@@ -336,39 +336,47 @@ def gerar_pix_direto(request, payment_id):
             pagamento.status = 'pending'
             pagamento.save()
             
-            # Verificar se tem PIX
-            if "point_of_interaction" in payment_info:
-                poi = payment_info["point_of_interaction"]
+            # Gerar QR Code PIX válido
+            from .pix_generator import gerar_qr_code_pix_valido, validar_qr_code_pix
+            
+            # Dados para o PIX (você pode configurar estes valores)
+            chave_pix = "ccamposs2007@gmail.com"  # Sua chave PIX
+            nome_beneficiario = "Dojo On"
+            cidade = "Teresina"
+            
+            pix_data = gerar_qr_code_pix_valido(
+                valor=pagamento.valor,
+                chave_pix=chave_pix,
+                nome_beneficiario=nome_beneficiario,
+                cidade=cidade,
+                descricao=pagamento.descricao
+            )
+            
+            if pix_data:
+                # Validar QR Code gerado
+                is_valid, message = validar_qr_code_pix(pix_data['qr_code'])
                 
-                # Aceitar tanto PIX quanto OPENPLATFORM (sandbox)
-                if poi.get("type") in ["PIX", "OPENPLATFORM"]:
-                    qr_code = poi.get("transaction_data", {}).get("qr_code")
-                    qr_code_base64 = poi.get("transaction_data", {}).get("qr_code_base64")
-                    
-                    if qr_code:
-                        return JsonResponse({
-                            'success': True,
-                            'qr_code': qr_code,
-                            'qr_code_base64': qr_code_base64,
-                            'payment_id': payment_id_mp,
-                            'amount': payment_info.get("transaction_amount"),
-                            'currency': payment_info.get("currency_id"),
-                            'ticket_url': poi.get("transaction_data", {}).get("ticket_url")
-                        })
-                    else:
-                        return JsonResponse({
-                            'success': False,
-                            'error': 'QR Code PIX não encontrado'
-                        })
-                else:
-                    return JsonResponse({
-                        'success': False,
-                        'error': f'Tipo de pagamento não é PIX: {poi.get("type")}'
-                    })
+                return JsonResponse({
+                    'success': True,
+                    'qr_code': pix_data['qr_code'],
+                    'qr_code_base64': pix_data['qr_code_base64'],
+                    'payment_id': payment_id_mp,
+                    'amount': payment_info.get("transaction_amount"),
+                    'currency': payment_info.get("currency_id"),
+                    'validation': {
+                        'is_valid': is_valid,
+                        'message': message
+                    },
+                    'pix_info': {
+                        'chave_pix': chave_pix,
+                        'nome_beneficiario': nome_beneficiario,
+                        'cidade': cidade
+                    }
+                })
             else:
                 return JsonResponse({
                     'success': False,
-                    'error': 'Point of interaction não encontrado no pagamento'
+                    'error': 'Erro ao gerar QR Code PIX válido'
                 })
         else:
             logger.error(f"Erro ao criar pagamento PIX: {payment_result}")
