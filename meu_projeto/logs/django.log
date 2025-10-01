@@ -2271,3 +2271,770 @@ Watching for file changes with StatReloader
 D:\github\django\meu_projeto\payments\views.py changed, reloading.
 Watching for file changes with StatReloader
 D:\github\django\meu_projeto\pag2\urls.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 39147
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 5251
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 67241
+"GET /pagina1/ HTTP/1.1" 200 91890
+"GET /pagina1/carregar-progresso/?pagina=pagina1 HTTP/1.1" 200 340
+"GET /index/ HTTP/1.1" 200 67241
+Not Found: /payments/cancelar-assinatura/
+"POST /payments/cancelar-assinatura/ HTTP/1.1" 404 8273
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5362
+"GET /index/ HTTP/1.1" 200 65333
+"GET /payments/assinaturas/ HTTP/1.1" 200 17700
+PAYMENT_AUDIT: {"timestamp": "2025-10-01T17:52:56.000598+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "cancel_15", "status": "cancelled", "details": {"assinatura_id": 15, "plano": "Plano Mensal"}}
+Assinatura 15 cancelada pelo usuário 1
+"POST /payments/cancelar-assinatura/15/ HTTP/1.1" 302 0
+"GET /payments/assinaturas/ HTTP/1.1" 200 14945
+"GET /index/ HTTP/1.1" 200 64389
+"GET /payments/planos/ HTTP/1.1" 200 12751
+"GET /index/ HTTP/1.1" 200 71293
+"GET /payments/planos/ HTTP/1.1" 200 12751
+"GET /index/ HTTP/1.1" 200 70848
+"GET /payments/assinaturas/ HTTP/1.1" 200 14650
+"GET / HTTP/1.1" 200 39147
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 71337
+"GET /index/ HTTP/1.1" 200 71414
+"GET /quiz/ HTTP/1.1" 302 0
+"GET /payments/planos/ HTTP/1.1" 200 13075
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /index/ HTTP/1.1" 200 71432
+"GET /index/ HTTP/1.1" 200 71432
+"GET /index/ HTTP/1.1" 200 71432
+"GET /index/ HTTP/1.1" 200 71432
+"GET /index/ HTTP/1.1" 200 71432
+"GET /index/ HTTP/1.1" 200 72297
+"GET /index/ HTTP/1.1" 200 72297
+"GET /index/ HTTP/1.1" 200 72297
+"GET /index/ HTTP/1.1" 200 72297
+"GET /index/ HTTP/1.1" 200 72307
+"GET /index/ HTTP/1.1" 200 72307
+"GET /index/ HTTP/1.1" 200 72307
+"GET /index/ HTTP/1.1" 200 72305
+"GET /index/ HTTP/1.1" 200 72305
+"GET /index/ HTTP/1.1" 200 72305
+"GET /index/ HTTP/1.1" 200 72305
+"GET /index/ HTTP/1.1" 200 72305
+"GET /index/ HTTP/1.1" 200 72469
+"GET /index/ HTTP/1.1" 200 72469
+"GET /index/ HTTP/1.1" 200 74047
+"GET /payments/planos/ HTTP/1.1" 200 12751
+"GET /payments/plano/1/ HTTP/1.1" 200 14421
+Internal Server Error: /payments/criar-pagamento/1/
+Traceback (most recent call last):
+  File "D:\github\django\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\github\django\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\github\django\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\github\django\.venv\Lib\site-packages\django\views\decorators\http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+TypeError: criar_pagamento() got an unexpected keyword argument 'plano_id'
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 500 78662
+Internal Server Error: /payments/criar-pagamento/1/
+Traceback (most recent call last):
+  File "D:\github\django\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\github\django\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\github\django\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\github\django\.venv\Lib\site-packages\django\views\decorators\http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+TypeError: criar_pagamento() got an unexpected keyword argument 'plano_id'
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 500 78662
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5362
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/plano/1/ HTTP/1.1" 200 14421
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5362
+Iniciando criação de pagamento para plano 1
+Dados recebidos - Nome: ccamposs2007@gmail.com, Email: ccamposs2007@gmail.com, Plano: 1
+Sanitizando dados de entrada
+Dados sanitizados com sucesso
+PAYMENT_AUDIT: {"timestamp": "2025-10-01T18:07:53.407581+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 1.0}}
+Erro ao criar preferência: {'status': 400, 'response': {'message': 'auto_return invalid. back_url.success must be defined', 'error': 'invalid_auto_return', 'status': 400, 'cause': None}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 70
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5362
+Iniciando criação de pagamento para plano 1
+Dados recebidos - Nome: ccamposs2007@gmail.com, Email: ccamposs2007@gmail.com, Plano: 1
+Sanitizando dados de entrada
+Dados sanitizados com sucesso
+PAYMENT_AUDIT: {"timestamp": "2025-10-01T18:08:12.969021+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 1.0}}
+Erro ao criar preferência: {'status': 400, 'response': {'message': 'auto_return invalid. back_url.success must be defined', 'error': 'invalid_auto_return', 'status': 400, 'cause': None}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 70
+"GET /payments/plano/1/ HTTP/1.1" 200 14421
+Iniciando criação de pagamento para plano 1
+Dados recebidos - Nome: ccamposs2007@gmail.com, Email: ccamposs2007@gmail.com, Plano: 1
+Sanitizando dados de entrada
+Dados sanitizados com sucesso
+PAYMENT_AUDIT: {"timestamp": "2025-10-01T18:08:56.766628+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 1.0}}
+Erro ao criar preferência: {'status': 400, 'response': {'message': 'auto_return invalid. back_url.success must be defined', 'error': 'invalid_auto_return', 'status': 400, 'cause': None}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 70
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5362
+Iniciando criação de pagamento para plano 1
+Dados recebidos - Nome: Teste Usuario, Email: ccamposs2007@gmail.com, Plano: 1
+Sanitizando dados de entrada
+Dados sanitizados com sucesso
+Iniciando criação de pagamento para plano 1
+Dados recebidos - Nome: Teste Usuario, Email: ccamposs2007@gmail.com, Plano: 1
+Sanitizando dados de entrada
+Dados sanitizados com sucesso
+PAYMENT_AUDIT: {"timestamp": "2025-10-01T18:09:42.874302+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 1.0}}
+Erro ao criar pagamento: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "D:\github\django\meu_projeto\payments\views.py", line 233, in criar_pagamento
+    "success": f"{request.scheme}://{request.get_host()}/payments/success/",
+                                     ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\http\request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+Traceback completo: Traceback (most recent call last):
+  File "D:\github\django\meu_projeto\payments\views.py", line 233, in criar_pagamento
+    "success": f"{request.scheme}://{request.get_host()}/payments/success/",
+                                     ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\http\request.py", line 202, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'testserver'. You may need to add 'testserver' to ALLOWED_HOSTS.
+
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Iniciando criação de pagamento para plano 1
+Dados recebidos - Nome: Teste Usuario, Email: ccamposs2007@gmail.com, Plano: 1
+Sanitizando dados de entrada
+Dados sanitizados com sucesso
+PAYMENT_AUDIT: {"timestamp": "2025-10-01T18:09:53.999651+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 1.0}}
+Erro ao criar preferência: {'status': 400, 'response': {'message': 'auto_return invalid. back_url.success must be defined', 'error': 'invalid_auto_return', 'status': 400, 'cause': None}}
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Iniciando criação de pagamento para plano 1
+Dados recebidos - Nome: Teste Usuario, Email: ccamposs2007@gmail.com, Plano: 1
+Sanitizando dados de entrada
+Dados sanitizados com sucesso
+PAYMENT_AUDIT: {"timestamp": "2025-10-01T18:10:07.808538+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 1.0}}
+Erro ao criar preferência: {'status': 400, 'response': {'message': 'auto_return invalid. back_url.success must be defined', 'error': 'invalid_auto_return', 'status': 400, 'cause': None}}
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Iniciando criação de pagamento para plano 1
+Dados recebidos - Nome: Teste Usuario, Email: ccamposs2007@gmail.com, Plano: 1
+Sanitizando dados de entrada
+Dados sanitizados com sucesso
+PAYMENT_AUDIT: {"timestamp": "2025-10-01T18:10:37.592634+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 1.0}}
+Dados da preferência: {
+  "items": [
+    {
+      "title": "Plano Mensal",
+      "description": "Acesso completo por 1 m\u00eas",
+      "quantity": 1,
+      "unit_price": 1.0,
+      "currency_id": "BRL"
+    }
+  ],
+  "payer": {
+    "email": "ccamposs2007@gmail.com",
+    "identification": {
+      "type": "CPF",
+      "number": "11144477735"
+    },
+    "phone": {
+      "area_code": "11",
+      "number": " 99999-9999"
+    }
+  },
+  "back_urls": {
+    "success": "http://localhost:8000/payments/sucesso/",
+    "failure": "http://localhost:8000/payments/falha/",
+    "pending": "http://localhost:8000/payments/pendente/"
+  },
+  "auto_return": "approved",
+  "external_reference": "e13088b9-e5a6-45ea-afe7-64c8d874f753",
+  "notification_url": "https://dojo-on.onrender.com/payments/webhook/",
+  "payment_methods": {
+    "excluded_payment_methods": [],
+    "excluded_payment_types": [],
+    "installments": 12
+  }
+}
+Erro ao criar preferência: {'status': 400, 'response': {'message': 'auto_return invalid. back_url.success must be defined', 'error': 'invalid_auto_return', 'status': 400, 'cause': None}}
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Iniciando criação de pagamento para plano 1
+Dados recebidos - Nome: Teste Usuario, Email: ccamposs2007@gmail.com, Plano: 1
+Sanitizando dados de entrada
+Dados sanitizados com sucesso
+PAYMENT_AUDIT: {"timestamp": "2025-10-01T18:10:53.801846+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 1.0}}
+Dados da preferência: {
+  "items": [
+    {
+      "title": "Plano Mensal",
+      "description": "Acesso completo por 1 m\u00eas",
+      "quantity": 1,
+      "unit_price": 1.0,
+      "currency_id": "BRL"
+    }
+  ],
+  "payer": {
+    "email": "ccamposs2007@gmail.com",
+    "identification": {
+      "type": "CPF",
+      "number": "11144477735"
+    },
+    "phone": {
+      "area_code": "11",
+      "number": " 99999-9999"
+    }
+  },
+  "back_url": {
+    "success": "http://localhost:8000/payments/sucesso/",
+    "failure": "http://localhost:8000/payments/falha/",
+    "pending": "http://localhost:8000/payments/pendente/"
+  },
+  "auto_return": "approved",
+  "external_reference": "8c6b6ae8-8b93-4c16-82ea-0c6a37e7295f",
+  "notification_url": "https://dojo-on.onrender.com/payments/webhook/",
+  "payment_methods": {
+    "excluded_payment_methods": [],
+    "excluded_payment_types": [],
+    "installments": 12
+  }
+}
+Erro ao criar preferência: {'status': 400, 'response': {'message': 'auto_return invalid. back_url.success must be defined', 'error': 'invalid_auto_return', 'status': 400, 'cause': None}}
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Iniciando criação de pagamento para plano 1
+Dados recebidos - Nome: Teste Usuario, Email: ccamposs2007@gmail.com, Plano: 1
+Sanitizando dados de entrada
+Dados sanitizados com sucesso
+PAYMENT_AUDIT: {"timestamp": "2025-10-01T18:11:06.072399+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 1.0}}
+Dados da preferência: {
+  "items": [
+    {
+      "title": "Plano Mensal",
+      "description": "Acesso completo por 1 m\u00eas",
+      "quantity": 1,
+      "unit_price": 1.0,
+      "currency_id": "BRL"
+    }
+  ],
+  "payer": {
+    "email": "ccamposs2007@gmail.com",
+    "identification": {
+      "type": "CPF",
+      "number": "11144477735"
+    },
+    "phone": {
+      "area_code": "11",
+      "number": " 99999-9999"
+    }
+  },
+  "back_urls": {
+    "success": "http://localhost:8000/payments/sucesso/",
+    "failure": "http://localhost:8000/payments/falha/",
+    "pending": "http://localhost:8000/payments/pendente/"
+  },
+  "external_reference": "ad629f91-0bd7-4eee-a7af-be90bd25baae",
+  "notification_url": "https://dojo-on.onrender.com/payments/webhook/",
+  "payment_methods": {
+    "excluded_payment_methods": [],
+    "excluded_payment_types": [],
+    "installments": 12
+  }
+}
+Erro ao criar pagamento: UNIQUE constraint failed: payments_pagamento.payment_id
+Traceback (most recent call last):
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: payments_pagamento.payment_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\github\django\meu_projeto\payments\views.py", line 255, in criar_pagamento
+    pagamento = Pagamento.objects.create(
+        usuario=request.user,
+    ...<5 lines>...
+        user_agent=request.META.get('HTTP_USER_AGENT', '')
+    )
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\base.py", line 902, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\base.py", line 1008, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\base.py", line 1210, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: payments_pagamento.payment_id
+Traceback completo: Traceback (most recent call last):
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: payments_pagamento.payment_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\github\django\meu_projeto\payments\views.py", line 255, in criar_pagamento
+    pagamento = Pagamento.objects.create(
+        usuario=request.user,
+    ...<5 lines>...
+        user_agent=request.META.get('HTTP_USER_AGENT', '')
+    )
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\base.py", line 902, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\base.py", line 1008, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\base.py", line 1210, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\ccamp\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: payments_pagamento.payment_id
+
+"GET /payments/plano/1/ HTTP/1.1" 200 14412
+Iniciando criação de pagamento para plano 1
+Dados recebidos - Nome: Teste Usuario, Email: ccamposs2007@gmail.com, Plano: 1
+Sanitizando dados de entrada
+Dados sanitizados com sucesso
+PAYMENT_AUDIT: {"timestamp": "2025-10-01T18:11:23.976562+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 1.0}}
+Dados da preferência: {
+  "items": [
+    {
+      "title": "Plano Mensal",
+      "description": "Acesso completo por 1 m\u00eas",
+      "quantity": 1,
+      "unit_price": 1.0,
+      "currency_id": "BRL"
+    }
+  ],
+  "payer": {
+    "email": "ccamposs2007@gmail.com",
+    "identification": {
+      "type": "CPF",
+      "number": "04217183313"
+    },
+    "phone": {
+      "area_code": "89",
+      "number": " 99407-7754"
+    }
+  },
+  "back_urls": {
+    "success": "http://127.0.0.1:8000/payments/sucesso/",
+    "failure": "http://127.0.0.1:8000/payments/falha/",
+    "pending": "http://127.0.0.1:8000/payments/pendente/"
+  },
+  "external_reference": "df78f33b-d268-4672-944f-9b70d4bdd782",
+  "notification_url": "https://dojo-on.onrender.com/payments/webhook/",
+  "payment_methods": {
+    "excluded_payment_methods": [],
+    "excluded_payment_types": [],
+    "installments": 12
+  }
+}
+Erro ao criar pagamento: UNIQUE constraint failed: payments_pagamento.payment_id
+Traceback (most recent call last):
+  File "D:\github\django\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: payments_pagamento.payment_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\github\django\meu_projeto\payments\views.py", line 255, in criar_pagamento
+    pagamento = Pagamento.objects.create(
+        usuario=request.user,
+    ...<5 lines>...
+        user_agent=request.META.get('HTTP_USER_AGENT', '')
+    )
+  File "D:\github\django\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\models\query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\models\base.py", line 902, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\models\base.py", line 1008, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "D:\github\django\.venv\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "D:\github\django\.venv\Lib\site-packages\django\db\models\base.py", line 1210, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\models\query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\github\django\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\github\django\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: payments_pagamento.payment_id
+Traceback completo: Traceback (most recent call last):
+  File "D:\github\django\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: payments_pagamento.payment_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\github\django\meu_projeto\payments\views.py", line 255, in criar_pagamento
+    pagamento = Pagamento.objects.create(
+        usuario=request.user,
+    ...<5 lines>...
+        user_agent=request.META.get('HTTP_USER_AGENT', '')
+    )
+  File "D:\github\django\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\models\query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\models\base.py", line 902, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\models\base.py", line 1008, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "D:\github\django\.venv\Lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "D:\github\django\.venv\Lib\site-packages\django\db\models\base.py", line 1210, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\models\query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\github\django\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\github\django\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 360, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: payments_pagamento.payment_id
+
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 112
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5362
+"GET /payments/plano/1/ HTTP/1.1" 200 14412
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+PAYMENT_AUDIT: {"timestamp": "2025-10-01T18:12:16.877104+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 1.0}}
+Erro ao criar pagamento: 'ConfiguracaoPagamento' object has no attribute 'public_key'
+Traceback (most recent call last):
+  File "D:\github\django\meu_projeto\payments\views.py", line 270, in criar_pagamento
+    'public_key': config.public_key,
+                  ^^^^^^^^^^^^^^^^^
+AttributeError: 'ConfiguracaoPagamento' object has no attribute 'public_key'. Did you mean: 'get_public_key'?
+Traceback completo: Traceback (most recent call last):
+  File "D:\github\django\meu_projeto\payments\views.py", line 270, in criar_pagamento
+    'public_key': config.public_key,
+                  ^^^^^^^^^^^^^^^^^
+AttributeError: 'ConfiguracaoPagamento' object has no attribute 'public_key'. Did you mean: 'get_public_key'?
+
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+PAYMENT_AUDIT: {"timestamp": "2025-10-01T18:12:29.112177+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 1.0}}
+"GET /payments/plano/1/ HTTP/1.1" 200 14412
+PAYMENT_AUDIT: {"timestamp": "2025-10-01T18:12:42.976237+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 1.0}}
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+PAYMENT_AUDIT: {"timestamp": "2025-10-01T18:12:44.902505+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 1.0}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 224
+"GET /payments/checkout/67/ HTTP/1.1" 200 41076
+Not Found: /payments/gerar-pix/67/
+"POST /payments/gerar-pix/67/ HTTP/1.1" 404 8252
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/checkout/67/ HTTP/1.1" 200 41076
+Not Found: /payments/gerar-pix/67/
+"POST /payments/gerar-pix/67/ HTTP/1.1" 404 8252
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5362
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/checkout/67/ HTTP/1.1" 200 41076
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\urls.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/checkout/67/ HTTP/1.1" 200 41076
+"POST /payments/gerar-pix/67/ HTTP/1.1" 200 71
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+PAYMENT_AUDIT: {"timestamp": "2025-10-01T18:14:39.475377+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 1.0}}
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+PAYMENT_AUDIT: {"timestamp": "2025-10-01T18:14:57.891993+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 1.0}}
+Resposta do Mercado Pago: {'status': 404, 'response': {'error': 'resource not found', 'message': 'Si quieres conocer los recursos de la API que se encuentran disponibles visita el Sitio de Desarrolladores de MercadoLibre (https://developers.mercadopago.com)'}}
+Erro ao buscar pagamento: {'status': 404, 'response': {'error': 'resource not found', 'message': 'Si quieres conocer los recursos de la API que se encuentran disponibles visita el Sitio de Desarrolladores de MercadoLibre (https://developers.mercadopago.com)'}}
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+PAYMENT_AUDIT: {"timestamp": "2025-10-01T18:15:29.172839+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 1.0}}
+Criando pagamento PIX: {'transaction_amount': 1.0, 'description': 'Assinatura Plano Mensal', 'payment_method_id': 'pix', 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '111.444.777-35'}}, 'external_reference': '61391664-873d-4d3f-a99a-dbc7bc42ebe0'}
+Point of interaction: {'type': 'OPENPLATFORM', 'business_info': {'unit': 'online_payments', 'sub_unit': 'sdk', 'branch': None}, 'location': {'state_id': None, 'source': None}, 'application_data': {'name': None, 'operating_system': None, 'version': None}, 'transaction_data': {'qr_code': '00020126580014br.gov.bcb.pix0136b76aa9c2-2ec4-4110-954e-ebfe34f05b6152040000530398654041.005802BR5916CC513878240914566009Sao Paulo62230519mpqrinter132493407463040FCD', 'bank_transfer_id': None, 'transaction_id': None, 'e2e_id': None, 'financial_institution': None, 'ticket_url': 'https://www.mercadopago.com.br/sandbox/payments/1324934074/ticket?caller_id=1855622431&hash=08c94e43-252c-48a0-9b6e-768ecc4f6d6f', 'merchant_category_code': None, 'bank_info': {'payer': {'account_id': None, 'branch': None, 'id': None, 'long_name': None, 'account_holder_name': None, 'identification': {'number': None, 'type': None}, 'external_account_id': None, 'is_end_consumer': None}, 'collector': {'account_id': None, 'long_name': None, 'account_holder_name': 'CaGr hAMwbY ehlva', 'transfer_account_id': None}, 'is_same_bank_account_owner': None, 'origin_bank_id': None, 'origin_wallet_id': None}, 'qr_code_base64': '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'}}
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+PAYMENT_AUDIT: {"timestamp": "2025-10-01T18:15:54.203952+00:00", "event_type": "payment_attempt", "user_id": 1, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 1.0}}
+Criando pagamento PIX: {'transaction_amount': 1.0, 'description': 'Assinatura Plano Mensal', 'payment_method_id': 'pix', 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '111.444.777-35'}}, 'external_reference': 'a371ef6e-5c4c-4d71-9a3a-3ef6b3bfd9c6'}
+Point of interaction: {'type': 'OPENPLATFORM', 'business_info': {'unit': 'online_payments', 'sub_unit': 'sdk', 'branch': None}, 'location': {'state_id': None, 'source': None}, 'application_data': {'name': None, 'operating_system': None, 'version': None}, 'transaction_data': {'qr_code': '00020126580014br.gov.bcb.pix0136b76aa9c2-2ec4-4110-954e-ebfe34f05b6152040000530398654041.005802BR5916CC513878240914566009Sao Paulo62230519mpqrinter132493408663048E4D', 'bank_transfer_id': None, 'transaction_id': None, 'e2e_id': None, 'financial_institution': None, 'ticket_url': 'https://www.mercadopago.com.br/sandbox/payments/1324934086/ticket?caller_id=1855622431&hash=1b890df8-8d1d-4ed6-84e5-8028bbe7af4c', 'merchant_category_code': None, 'bank_info': {'payer': {'account_id': None, 'branch': None, 'id': None, 'long_name': None, 'account_holder_name': None, 'identification': {'number': None, 'type': None}, 'external_account_id': None, 'is_end_consumer': None}, 'collector': {'account_id': None, 'long_name': None, 'account_holder_name': 'CaGr hAMwbY ehlva', 'transfer_account_id': None}, 'is_same_bank_account_owner': None, 'origin_bank_id': None, 'origin_wallet_id': None}, 'qr_code_base64': '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'}}
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader

@@ -1,0 +1,207 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Assinaturas - Academia de Judô</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50 font-sans">
+<!-- CSRF Token para JavaScript -->
+<script>
+    window.csrfToken = '{{ csrf_token }}';
+</script>
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">Minhas Assinaturas</h1>
+            <p class="text-xl text-gray-600">Gerencie suas assinaturas e pagamentos</p>
+        </div>
+
+        <!-- Assinaturas Ativas -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Assinaturas Ativas</h2>
+            {% if assinaturas %}
+                {% for assinatura in assinaturas %}
+                    {% if assinatura.status == 'ativa' %}
+                    <div class="bg-white rounded-lg shadow-lg border border-gray-200 p-6 mb-4">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-800">{{ assinatura.plano.nome }}</h3>
+                                <p class="text-gray-600">{{ assinatura.plano.descricao }}</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="inline-block bg-green-100 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">
+                                    {{ assinatura.get_status_display }}
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-3 gap-4 mb-4">
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <div class="text-sm text-gray-600">Valor</div>
+                                <div class="text-lg font-bold text-gray-800">R$ {{ assinatura.plano.preco|floatformat:2 }}</div>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <div class="text-sm text-gray-600">Início</div>
+                                <div class="text-lg font-bold text-gray-800">{{ assinatura.data_inicio|date:"d/m/Y" }}</div>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg p-4">
+                                <div class="text-sm text-gray-600">Vencimento</div>
+                                <div class="text-lg font-bold text-gray-800">{{ assinatura.data_vencimento|date:"d/m/Y" }}</div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-center">
+                            <div class="text-sm text-gray-600">
+                                {% if assinatura.data_vencimento > now %}
+                                    <span class="text-green-600 font-semibold">
+                                        Válida por mais {{ assinatura.data_vencimento|timeuntil }}
+                                    </span>
+                                {% else %}
+                                    <span class="text-red-600 font-semibold">Expirada</span>
+                                {% endif %}
+                            </div>
+                            <div class="space-x-2">
+                                <form method="post" action="{% url 'payments:cancelar_assinatura' assinatura.id %}" class="inline">
+                                    {% csrf_token %}
+                                    <button type="submit" 
+                                            class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition duration-200"
+                                            onclick="return confirm('Tem certeza que deseja cancelar esta assinatura?')">
+                                        Cancelar Assinatura
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <div class="bg-white rounded-lg shadow-lg border border-gray-200 p-8 text-center">
+                    <div class="text-gray-400 mb-4">
+                        <svg class="w-16 h-16 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Nenhuma assinatura ativa</h3>
+                    <p class="text-gray-600 mb-4">Você não possui assinaturas ativas no momento.</p>
+                    <a href="{% url 'payments:planos' %}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition duration-200">
+                        Ver Planos Disponíveis
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Histórico de Pagamentos -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Histórico de Pagamentos</h2>
+            {% if pagamentos %}
+                <div class="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Data</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Descrição</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Valor</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                {% for pagamento in pagamentos %}
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                        {{ pagamento.data_criacao|date:"d/m/Y H:i" }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                        {{ pagamento.descricao }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                        R$ {{ pagamento.valor|floatformat:2 }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full
+                                            {% if pagamento.status == 'approved' %}bg-green-100 text-green-800
+                                            {% elif pagamento.status == 'pending' %}bg-yellow-100 text-yellow-800
+                                            {% elif pagamento.status == 'rejected' %}bg-red-100 text-red-800
+                                            {% elif pagamento.status == 'cancelled' %}bg-gray-100 text-gray-800
+                                            {% else %}bg-gray-100 text-gray-800{% endif %}">
+                                            {{ pagamento.get_status_display }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% else %}
+                <div class="bg-white rounded-lg shadow-lg border border-gray-200 p-8 text-center">
+                    <div class="text-gray-400 mb-4">
+                        <svg class="w-16 h-16 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4zM18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Nenhum pagamento encontrado</h3>
+                    <p class="text-gray-600">Você ainda não realizou nenhum pagamento.</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Ações -->
+        <div class="text-center">
+            <a href="{% url 'payments:planos' %}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-200 mr-4">
+                Ver Planos
+            </a>
+            <a href="{% url 'index' %}" class="inline-block bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition duration-200">
+                Voltar ao Início
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Header com navegação -->
+<header class="bg-white shadow-sm border-b border-gray-200 mb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <div class="flex items-center">
+                <a href="{% url 'index' %}" class="flex items-center space-x-2">
+                    <img src="{% static 'judo.png' %}" alt="Judo" class="h-8 w-8">
+                    <span class="text-xl font-bold text-gray-800">Academia de Judô</span>
+                </a>
+            </div>
+            <div class="flex items-center space-x-4">
+                {% if user.is_authenticated %}
+                    <span class="text-sm text-gray-600">Olá, {{ user.first_name|default:user.username }}</span>
+                    <form method="post" action="{% url 'logout' %}" class="inline">
+                        {% csrf_token %}
+                        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+                            Logout
+                        </button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium">
+                        Login
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Messages -->
+{% if messages %}
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} bg-{% if message.tags == 'error' %}red{% elif message.tags == 'warning' %}yellow{% elif message.tags == 'success' %}green{% else %}blue{% endif %}-100 border border-{% if message.tags == 'error' %}red{% elif message.tags == 'warning' %}yellow{% elif message.tags == 'success' %}green{% else %}blue{% endif %}-400 text-{% if message.tags == 'error' %}red{% elif message.tags == 'warning' %}yellow{% elif message.tags == 'success' %}green{% else %}blue{% endif %}-700 px-4 py-3 rounded mb-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+</body>
+</html>

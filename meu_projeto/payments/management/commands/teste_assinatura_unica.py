@@ -112,3 +112,4 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS('\n🎉 TESTE DE ASSINATURA ÚNICA CONCLUÍDO!'))
 
 
+

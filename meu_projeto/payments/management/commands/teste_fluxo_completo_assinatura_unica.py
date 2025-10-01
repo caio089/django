@@ -203,3 +203,4 @@ class Command(BaseCommand):
         self.stdout.write('   5. Verifique se o acesso premium funciona')
 
 
+

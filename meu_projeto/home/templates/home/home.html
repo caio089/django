@@ -926,13 +926,8 @@
                     loginBtnText.style.display = 'none';
                     loginSpinner.classList.remove('hidden');
 
-                    // Simular envio (remover em produção)
-                    setTimeout(() => {
-                        showFeedback('Formulário enviado com sucesso!', 'success');
-                        setTimeout(() => {
-                            form.submit();
-                        }, 1000);
-                    }, 1000);
+                    // Enviar formulário diretamente
+                    form.submit();
                 });
             }
 

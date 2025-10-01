@@ -122,3 +122,4 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS('🏁 Teste de QR Code concluído!'))
 
 
+

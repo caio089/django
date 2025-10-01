@@ -67,3 +67,4 @@ class Command(BaseCommand):
         self.stdout.write(self.style.WARNING('💡 Agora teste o PIX novamente'))
 
 
+

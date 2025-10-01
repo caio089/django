@@ -260,21 +260,24 @@
         .sidebar {
             position: fixed !important;
             top: 0;
-            right: -300px;
-            width: 300px;
+            right: -100%;
+            width: 100%;
+            max-width: 400px;
             height: 100vh;
             background: linear-gradient(120deg, #23272F 0%, #374151 50%, #6B7280 100%);
             background-size: 200% 200%;
             animation: sidebarGradientMove 8s ease-in-out infinite;
             backdrop-filter: blur(10px);
-            transition: right 0.5s cubic-bezier(0.77,0,0.175,1);
+            transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             z-index: 1000;
             border-left: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: -8px 0 32px 0 rgba(30,41,59,0.18);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .sidebar.open {
             right: 0;
-            animation: sidebarSlideIn 0.7s cubic-bezier(0.77,0,0.175,1);
+            animation: sidebarSlideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         @keyframes sidebarGradientMove {
             0%, 100% { background-position: 0% 50%; }
@@ -283,23 +286,46 @@
         @keyframes sidebarSlideIn {
             from {
                 opacity: 0;
-                right: -60px;
-                filter: blur(4px);
+                right: -100%;
+                transform: translateX(20px);
+                filter: blur(2px);
             }
             to {
                 opacity: 1;
                 right: 0;
+                transform: translateX(0);
                 filter: blur(0);
             }
         }
         .sidebar-item {
-            transition: all 0.2s cubic-bezier(0.77,0,0.175,1), box-shadow 0.3s;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-radius: 12px;
+            margin-bottom: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        .sidebar-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+        }
+        .sidebar-item:hover::before {
+            left: 100%;
         }
         .sidebar-item:hover {
-            background: rgba(255, 255, 255, 0.13);
-            transform: translateX(8px) scale(1.03);
-            box-shadow: 0 2px 16px 0 rgba(59,130,246,0.08);
-            filter: brightness(1.15) drop-shadow(0 0 6px #60A5FA33);
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(8px) scale(1.02);
+            box-shadow: 0 4px 20px 0 rgba(59,130,246,0.15);
+            filter: brightness(1.1);
+        }
+        .sidebar-item:active {
+            transform: translateX(4px) scale(0.98);
+            transition: all 0.1s;
         }
         
         .sidebar-overlay {
@@ -357,6 +383,167 @@
                 padding: 0.75rem !important;
             }
             
+            /* Sidebar mobile optimizations */
+            .sidebar {
+                width: 100%;
+                max-width: 100%;
+                right: -100%;
+                transition: right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+            
+            .sidebar.open {
+                right: 0;
+            }
+            
+            .sidebar-item {
+                padding: 16px;
+                margin-bottom: 12px;
+                border-radius: 16px;
+            }
+            
+            .sidebar-item:hover {
+                transform: translateX(4px) scale(1.01);
+            }
+            
+            .sidebar-item:active {
+                transform: translateX(2px) scale(0.99);
+            }
+            
+            /* Menu toggle mobile */
+            .menu-toggle {
+                padding: 12px;
+                border-radius: 12px;
+            }
+            
+            /* Sidebar content mobile */
+            .sidebar .p-6 {
+                padding: 20px;
+            }
+            
+            .sidebar h2 {
+                font-size: 1.5rem;
+            }
+            
+            .sidebar-item span {
+                font-size: 1.5rem;
+                margin-right: 12px;
+            }
+            
+            .sidebar-item h3 {
+                font-size: 1rem;
+                font-weight: 600;
+            }
+            
+            .sidebar-item p {
+                font-size: 0.875rem;
+            }
+        }
+        
+        /* Tablet adjustments */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .sidebar {
+                width: 350px;
+                max-width: 350px;
+            }
+            
+            .sidebar-item {
+                padding: 16px;
+            }
+        }
+        
+        /* Desktop adjustments */
+        @media (min-width: 1025px) {
+            .sidebar {
+                width: 400px;
+                max-width: 400px;
+            }
+            
+            .sidebar-item:hover {
+                transform: translateX(12px) scale(1.03);
+            }
+        }
+        
+        /* Design sofisticado e compacto para sidebar */
+        .sidebar-alert {
+            background: rgba(239, 68, 68, 0.08) !important;
+            border: 1px solid rgba(239, 68, 68, 0.2) !important;
+            border-radius: 8px !important;
+            padding: 8px 12px !important;
+            margin-bottom: 8px !important;
+            backdrop-filter: blur(10px) !important;
+            height: auto !important;
+            min-height: 44px !important;
+        }
+        
+        .sidebar-alert .flex {
+            align-items: center !important;
+            gap: 8px !important;
+        }
+        
+        .sidebar-alert .flex span {
+            font-size: 14px !important;
+            width: 20px !important;
+            height: 20px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            background: rgba(239, 68, 68, 0.15) !important;
+            border-radius: 50% !important;
+            flex-shrink: 0 !important;
+        }
+        
+        .sidebar-alert div {
+            flex: 1 !important;
+        }
+        
+        .sidebar-alert p:first-child {
+            font-size: 12px !important;
+            font-weight: 600 !important;
+            color: #fca5a5 !important;
+            margin: 0 !important;
+            line-height: 1.2 !important;
+        }
+        
+        .sidebar-alert p:last-child {
+            font-size: 10px !important;
+            color: #f87171 !important;
+            margin: 2px 0 0 0 !important;
+            line-height: 1.2 !important;
+        }
+        
+        .sidebar-button {
+            height: 40px !important;
+            min-height: 40px !important;
+            max-height: 40px !important;
+            padding: 8px 12px !important;
+            border-radius: 8px !important;
+            font-size: 12px !important;
+            font-weight: 500 !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            margin-bottom: 6px !important;
+            backdrop-filter: blur(10px) !important;
+            transition: all 0.2s ease !important;
+        }
+        
+        .sidebar-button:hover {
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+        }
+        
+        .sidebar-button span {
+            font-size: 14px !important;
+            width: 16px !important;
+            height: 16px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            flex-shrink: 0 !important;
+        }
+        
+        /* Estilos adicionais para mobile */
+        @media (max-width: 768px) {
             .faixa-card .emoji {
                 font-size: 1.5rem !important;
             }
@@ -904,55 +1091,63 @@
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     
     <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
+    <div class="sidebar" id="sidebar" role="navigation" aria-label="Menu principal">
         <div class="p-6">
-            <div class="flex items-center justify-between mb-8">
-                <h2 class="text-2xl font-bold text-white">🥋 Menu</h2>
-                <button class="menu-toggle text-white text-2xl hover:text-gray-300" id="closeSidebar">
-                    ✕
-                </button>
+            <div class="flex items-center mb-8">
+                <h2 class="text-2xl font-bold text-white flex items-center">
+                    <span class="mr-2">🥋</span>
+                    Menu
+                </h2>
             </div>
             
-            <nav class="space-y-2">
-                <a href="/quiz" class="sidebar-item flex items-center p-4 rounded-lg text-white hover:text-blue-300">
-                    <span class="text-2xl mr-4">📝</span>
-                    <div>
-                        <h3 class="font-semibold">Quiz</h3>
-                        <p class="text-sm text-gray-400">Teste seus conhecimentos</p>
+            <nav class="space-y-2" role="navigation" aria-label="Navegação principal">
+                <a href="/quiz" class="sidebar-item flex items-center p-4 rounded-lg text-white hover:text-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400/50 transition-all" 
+                   role="menuitem" 
+                   aria-label="Acessar Quiz">
+                    <span class="text-2xl mr-4 flex-shrink-0">📝</span>
+                    <div class="flex-1 min-w-0">
+                        <h3 class="font-semibold text-base">Quiz</h3>
+                        <p class="text-sm text-gray-400 mt-1">Teste seus conhecimentos</p>
                     </div>
                 </a>
                 
-
-                
-                <a href="/ukemis/" class="sidebar-item flex items-center p-4 rounded-lg text-white hover:text-emerald-400">
-                    <span class="text-2xl mr-4">🔄</span>
-                    <div>
-                        <h3 class="font-semibold">Rolamentos do Judô</h3>
-                        <p class="text-sm text-gray-400">Conheça todos os ukemis</p>
+                <a href="/ukemis/" class="sidebar-item flex items-center p-4 rounded-lg text-white hover:text-emerald-400 focus:outline-none focus:ring-2 focus:ring-emerald-400/50 transition-all" 
+                   role="menuitem" 
+                   aria-label="Acessar Rolamentos do Judô">
+                    <span class="text-2xl mr-4 flex-shrink-0">🔄</span>
+                    <div class="flex-1 min-w-0">
+                        <h3 class="font-semibold text-base">Rolamentos do Judô</h3>
+                        <p class="text-sm text-gray-400 mt-1">Conheça todos os ukemis</p>
                     </div>
                 </a>
                 
-                <a href="/historia" class="sidebar-item flex items-center p-4 rounded-lg text-white hover:text-blue-300">
-                    <span class="text-2xl mr-4">📚</span>
-                    <div>
-                        <h3 class="font-semibold">História do Judô</h3>
-                        <p class="text-sm text-gray-400">Origens e evolução</p>
+                <a href="/historia" class="sidebar-item flex items-center p-4 rounded-lg text-white hover:text-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400/50 transition-all" 
+                   role="menuitem" 
+                   aria-label="Acessar História do Judô">
+                    <span class="text-2xl mr-4 flex-shrink-0">📚</span>
+                    <div class="flex-1 min-w-0">
+                        <h3 class="font-semibold text-base">História do Judô</h3>
+                        <p class="text-sm text-gray-400 mt-1">Origens e evolução</p>
                     </div>
                 </a>
                 
-                <a href="/palavras/" class="sidebar-item flex items-center p-4 rounded-lg text-white hover:text-blue-300">
-                    <span class="text-2xl mr-4">🇯🇵</span>
-                    <div>
-                        <h3 class="font-semibold">Palavras em Japonês</h3>
-                        <p class="text-sm text-gray-400">Vocabulário essencial</p>
+                <a href="/palavras/" class="sidebar-item flex items-center p-4 rounded-lg text-white hover:text-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400/50 transition-all" 
+                   role="menuitem" 
+                   aria-label="Acessar Palavras em Japonês">
+                    <span class="text-2xl mr-4 flex-shrink-0">🇯🇵</span>
+                    <div class="flex-1 min-w-0">
+                        <h3 class="font-semibold text-base">Palavras em Japonês</h3>
+                        <p class="text-sm text-gray-400 mt-1">Vocabulário essencial</p>
                     </div>
                 </a>
                 
-                <a href="/regras/" class="sidebar-item flex items-center p-4 rounded-lg text-white hover:text-blue-300">
-                    <span class="text-2xl mr-4">📋</span>
-                    <div>
-                        <h3 class="font-semibold">Regras do Judô</h3>
-                        <p class="text-sm text-gray-400">Regulamentos oficiais</p>
+                <a href="/regras/" class="sidebar-item flex items-center p-4 rounded-lg text-white hover:text-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400/50 transition-all" 
+                   role="menuitem" 
+                   aria-label="Acessar Regras do Judô">
+                    <span class="text-2xl mr-4 flex-shrink-0">📋</span>
+                    <div class="flex-1 min-w-0">
+                        <h3 class="font-semibold text-base">Regras do Judô</h3>
+                        <p class="text-sm text-gray-400 mt-1">Regulamentos oficiais</p>
                     </div>
                 </a>
             </nav>
@@ -974,22 +1169,22 @@
                             </div>
                         {% else %}
                             {% if assinatura_cancelada %}
-                                <div class="bg-red-500/20 border border-red-400/30 rounded-lg p-3">
-                                    <div class="flex items-center">
-                                        <span class="text-red-400 text-lg mr-2">🚫</span>
+                                <div class="sidebar-alert">
+                                    <div class="flex">
+                                        <span>⚠</span>
                                         <div>
-                                            <p class="text-red-300 text-sm font-semibold">Assinatura Cancelada</p>
-                                            <p class="text-red-200 text-xs">Contrate um novo plano para continuar</p>
+                                            <p>Assinatura Cancelada</p>
+                                            <p>Contrate um novo plano</p>
                                         </div>
                                     </div>
                                 </div>
                             {% else %}
-                                <div class="bg-yellow-500/20 border border-yellow-400/30 rounded-lg p-3">
-                                    <div class="flex items-center">
-                                        <span class="text-yellow-400 text-lg mr-2">⚠️</span>
+                                <div class="sidebar-alert" style="background: rgba(251, 191, 36, 0.08) !important; border-color: rgba(251, 191, 36, 0.2) !important;">
+                                    <div class="flex">
+                                        <span style="background: rgba(251, 191, 36, 0.15) !important;">ℹ</span>
                                         <div>
-                                            <p class="text-yellow-300 text-sm font-semibold">Sem Assinatura</p>
-                                            <p class="text-yellow-200 text-xs">Acesse planos premium</p>
+                                            <p style="color: #fbbf24 !important;">Sem Assinatura</p>
+                                            <p style="color: #f59e0b !important;">Acesse planos premium</p>
                                         </div>
                                     </div>
                                 </div>
@@ -998,43 +1193,48 @@
                     {% endif %}
                     
                     <!-- Botões de ação -->
-                    <div class="space-y-2">
+                    <div>
                         {% if user.is_authenticated %}
                             {% if assinatura %}
-                                <button onclick="cancelarAssinatura()" class="w-full bg-red-500/20 hover:bg-red-500/30 border border-red-400/30 text-red-300 hover:text-red-200 px-4 py-2 rounded-lg text-sm font-medium transition duration-200">
-                                    🚫 Cancelar Assinatura
+                                <button onclick="cancelarAssinatura()" class="sidebar-button w-full" style="background: rgba(239, 68, 68, 0.08) !important; border: 1px solid rgba(239, 68, 68, 0.2) !important; color: #fca5a5 !important;">
+                                    <span>✕</span>
+                                    Cancelar Assinatura
                                 </button>
                             {% else %}
                                 {% if assinatura_cancelada %}
-                                    <a href="/payments/planos/" class="w-full bg-green-500/20 hover:bg-green-500/30 border border-green-400/30 text-green-300 hover:text-green-200 px-4 py-2 rounded-lg text-sm font-medium transition duration-200 block text-center">
-                                        🔄 Contratar Novo Plano
+                                    <a href="/payments/planos/" class="sidebar-button w-full block" style="background: rgba(34, 197, 94, 0.08) !important; border: 1px solid rgba(34, 197, 94, 0.2) !important; color: #86efac !important;">
+                                        <span>↻</span>
+                                        Contratar Novo Plano
                                     </a>
                                 {% else %}
-                                    <a href="/payments/planos/" class="w-full bg-blue-500/20 hover:bg-blue-500/30 border border-blue-400/30 text-blue-300 hover:text-blue-200 px-4 py-2 rounded-lg text-sm font-medium transition duration-200 block text-center">
-                                        💎 Assinar Premium
+                                    <a href="/payments/planos/" class="sidebar-button w-full block" style="background: rgba(59, 130, 246, 0.08) !important; border: 1px solid rgba(59, 130, 246, 0.2) !important; color: #93c5fd !important;">
+                                        <span>★</span>
+                                        Assinar Premium
                                     </a>
                                 {% endif %}
                             {% endif %}
                             
                             <form method="post" action="{% url 'logout' %}" class="w-full">
                                 {% csrf_token %}
-                                <button type="submit" class="w-full bg-gray-500/20 hover:bg-gray-500/30 border border-gray-400/30 text-gray-300 hover:text-gray-200 px-4 py-2 rounded-lg text-sm font-medium transition duration-200">
-                                    🚪 Sair
+                                <button type="submit" class="sidebar-button w-full" style="background: rgba(107, 114, 128, 0.08) !important; border: 1px solid rgba(107, 114, 128, 0.2) !important; color: #d1d5db !important;">
+                                    <span>→</span>
+                                    Sair
                                 </button>
                             </form>
                         {% else %}
-                            <a href="{% url 'login' %}" class="w-full bg-blue-500/20 hover:bg-blue-500/30 border border-blue-400/30 text-blue-300 hover:text-blue-200 px-4 py-2 rounded-lg text-sm font-medium transition duration-200 block text-center">
-                                🔐 Fazer Login
+                            <a href="{% url 'login' %}" class="sidebar-button w-full block" style="background: rgba(59, 130, 246, 0.08) !important; border: 1px solid rgba(59, 130, 246, 0.2) !important; color: #93c5fd !important;">
+                                <span>🔑</span>
+                                Fazer Login
                             </a>
                         {% endif %}
                     </div>
                 </div>
             </div>
             
-            <div class="absolute bottom-6 left-6 right-6">
-                <div class="bg-white/10 rounded-lg p-4 text-center">
-                    <p class="text-white text-sm">© 2024 Academia de Judô</p>
-                    <p class="text-gray-400 text-xs">Desenvolvido por Caio campos</p>
+            <div class="absolute bottom-4 left-4 right-4">
+                <div class="bg-white/5 rounded-lg p-3 text-center backdrop-filter blur(10px)">
+                    <p class="text-white/60 text-xs font-medium">© 2024 Academia de Judô</p>
+                    <p class="text-white/40 text-xs mt-1">Desenvolvido por Caio Campos</p>
                 </div>
             </div>
         </div>
@@ -1443,12 +1643,18 @@
     </div>
 
     <script>
-        // Sidebar functionality with improved JavaScript
+        // Sidebar functionality with improved JavaScript and touch support
         document.addEventListener('DOMContentLoaded', function() {
             const menuToggle = document.getElementById('menuToggle');
             const sidebar = document.getElementById('sidebar');
             const sidebarOverlay = document.getElementById('sidebarOverlay');
-            const closeSidebar = document.getElementById('closeSidebar');
+
+            // Touch gesture variables
+            let startX = 0;
+            let startY = 0;
+            let currentX = 0;
+            let isDragging = false;
+            let sidebarWidth = 0;
 
             // Function to open sidebar
             function openSidebar() {
@@ -1456,6 +1662,15 @@
                 sidebarOverlay.classList.add('open');
                 menuToggle.classList.add('active');
                 document.body.style.overflow = 'hidden';
+                
+                // Add smooth transition class
+                sidebar.style.transition = 'right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                
+                // Change menu icon to close icon
+                if (menuToggle) {
+                    menuToggle.innerHTML = '✕';
+                    menuToggle.setAttribute('aria-label', 'Fechar menu');
+                }
             }
 
             // Function to close sidebar
@@ -1464,6 +1679,59 @@
                 sidebarOverlay.classList.remove('open');
                 menuToggle.classList.remove('active');
                 document.body.style.overflow = 'auto';
+                
+                // Reset any transform
+                sidebar.style.transform = 'translateX(0)';
+                
+                // Change menu icon back to hamburger
+                if (menuToggle) {
+                    menuToggle.innerHTML = '☰';
+                    menuToggle.setAttribute('aria-label', 'Abrir menu');
+                }
+            }
+
+            // Touch gesture handlers
+            function handleTouchStart(e) {
+                if (!sidebar.classList.contains('open')) return;
+                
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+                isDragging = true;
+                sidebarWidth = sidebar.offsetWidth;
+                
+                // Disable transition during drag
+                sidebar.style.transition = 'none';
+            }
+
+            function handleTouchMove(e) {
+                if (!isDragging || !sidebar.classList.contains('open')) return;
+                
+                currentX = e.touches[0].clientX;
+                const deltaX = currentX - startX;
+                
+                // Only allow right swipe to close
+                if (deltaX > 0) {
+                    const translateX = Math.min(deltaX, sidebarWidth);
+                    sidebar.style.transform = `translateX(${translateX}px)`;
+                }
+            }
+
+            function handleTouchEnd(e) {
+                if (!isDragging) return;
+                
+                isDragging = false;
+                const deltaX = currentX - startX;
+                const threshold = sidebarWidth * 0.3; // 30% threshold
+                
+                // Re-enable transition
+                sidebar.style.transition = 'right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                
+                if (deltaX > threshold) {
+                    closeSidebarFunc();
+                } else {
+                    // Snap back
+                    sidebar.style.transform = 'translateX(0)';
+                }
             }
 
             // Event listeners for sidebar
@@ -1471,15 +1739,13 @@
                 menuToggle.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    openSidebar();
-                });
-            }
-
-            if (closeSidebar) {
-                closeSidebar.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    closeSidebarFunc();
+                    
+                    // Toggle sidebar - se estiver aberta, fecha; se estiver fechada, abre
+                    if (sidebar.classList.contains('open')) {
+                        closeSidebarFunc();
+                    } else {
+                        openSidebar();
+                    }
                 });
             }
 
@@ -1489,6 +1755,13 @@
                     e.stopPropagation();
                     closeSidebarFunc();
                 });
+            }
+
+            // Touch event listeners for mobile gestures
+            if (sidebar) {
+                sidebar.addEventListener('touchstart', handleTouchStart, { passive: false });
+                sidebar.addEventListener('touchmove', handleTouchMove, { passive: false });
+                sidebar.addEventListener('touchend', handleTouchEnd, { passive: false });
             }
 
             // Keyboard navigation for sidebar
@@ -1668,44 +1941,8 @@
         }
         
         function confirmarCancelamento() {
-            // Fazer requisição para cancelar assinatura
-            fetch('/payments/cancelar-assinatura/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-                },
-                body: JSON.stringify({})
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Mostrar mensagem de sucesso
-                    const modal = document.createElement('div');
-                    modal.className = 'fixed inset-0 bg-black/50 flex items-center justify-center z-50';
-                    modal.innerHTML = `
-                        <div class="bg-white rounded-2xl p-8 max-w-md mx-4 shadow-2xl">
-                            <div class="text-center">
-                                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <span class="text-2xl">✅</span>
-                                </div>
-                                <h3 class="text-xl font-bold text-gray-900 mb-2">Assinatura Cancelada</h3>
-                                <p class="text-gray-600 mb-4">${data.message}</p>
-                                <button onclick="window.location.reload()" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg font-medium transition duration-200">
-                                    OK
-                                </button>
-                            </div>
-                        </div>
-                    `;
-                    document.body.appendChild(modal);
-                } else {
-                    alert('Erro ao cancelar assinatura: ' + data.error);
-                }
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                alert('Erro ao cancelar assinatura. Tente novamente.');
-            });
+            // Redirecionar para página de assinaturas para cancelar
+            window.location.href = '/payments/assinaturas/';
         }
         
         // Área de anúncios sempre visível e fixa

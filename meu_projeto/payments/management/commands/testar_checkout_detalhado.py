@@ -100,3 +100,4 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS('🏁 Teste detalhado concluído!'))
 
 
+

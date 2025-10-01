@@ -160,3 +160,4 @@ class Command(BaseCommand):
         self.stdout.write('✅ Páginas de sucesso/falha: FUNCIONANDO')
 
 
+

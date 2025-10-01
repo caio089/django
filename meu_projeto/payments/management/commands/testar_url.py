@@ -82,3 +82,4 @@ class Command(BaseCommand):
         self.stdout.write(f'💡 Acesse: http://localhost:8000{url}')
 
 
+

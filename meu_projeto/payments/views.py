@@ -120,13 +120,13 @@ def escolher_plano(request, plano_id):
 
 @login_required
 @require_http_methods(["POST"])
-def criar_pagamento(request):
+def criar_pagamento(request, plano_id):
     """
     Cria um pagamento no Mercado Pago e retorna dados para checkout transparente
     """
     try:
         # Obter dados do formulário
-        plano_id = request.POST.get('plano_id')
+        plano_id = plano_id or request.POST.get('plano_id')
         nome = request.POST.get('nome')
         email = request.POST.get('email')
         telefone = request.POST.get('telefone')
@@ -222,17 +222,17 @@ def criar_pagamento(request):
                 }
             },
             "back_urls": {
-                "success": f"{request.scheme}://{request.get_host()}/payments/success/",
-                "failure": f"{request.scheme}://{request.get_host()}/payments/failure/",
-                "pending": f"{request.scheme}://{request.get_host()}/payments/pending/"
+                "success": f"{request.scheme}://{request.META.get('HTTP_HOST', 'localhost:8000')}/payments/sucesso/",
+                "failure": f"{request.scheme}://{request.META.get('HTTP_HOST', 'localhost:8000')}/payments/falha/",
+                "pending": f"{request.scheme}://{request.META.get('HTTP_HOST', 'localhost:8000')}/payments/pendente/"
             },
-            "auto_return": "approved",
             "external_reference": external_reference,
             "notification_url": config.webhook_url,
             "payment_methods": {
                 "excluded_payment_methods": [],
                 "excluded_payment_types": [],
-                "installments": 12
+                "installments": 12,
+                "default_payment_method_id": "pix"
             }
         }
         
@@ -247,6 +247,7 @@ def criar_pagamento(request):
                 usuario=request.user,
                 valor=plano.preco,
                 tipo='assinatura',
+                payment_id=f"temp_{external_reference}",  # ID temporário único
                 external_reference=external_reference,
                 descricao=f"Assinatura {plano.nome}",
                 ip_address=WebhookSecurity.get_client_ip(request),
@@ -254,7 +255,8 @@ def criar_pagamento(request):
             )
             
             # Criptografar dados sensíveis
-            pagamento.set_payment_id(preference_data["id"])
+            # O preference_id não é o payment_id - será definido quando o pagamento for processado
+            pagamento.set_payment_id(f"pref_{preference_data['id']}")
             pagamento.set_payer_email(email)
             pagamento.set_payer_name(nome)
             if telefone:
@@ -267,7 +269,7 @@ def criar_pagamento(request):
             return JsonResponse({
                 'success': True,
                 'preference_id': preference_data["id"],
-                'public_key': config.public_key,
+                'public_key': config.get_public_key(),
                 'payment_id': pagamento.id,
                 'external_reference': external_reference
             })
@@ -279,7 +281,101 @@ def criar_pagamento(request):
             })
             
     except Exception as e:
-        logger.error(f"Erro ao criar pagamento: {e}")
+        logger.error(f"Erro ao criar pagamento: {e}", exc_info=True)
+        import traceback
+        logger.error(f"Traceback completo: {traceback.format_exc()}")
+        return JsonResponse({
+            'success': False,
+            'error': f'Erro interno do servidor: {str(e)}'
+        })
+
+@login_required
+@require_http_methods(["POST"])
+def gerar_pix_direto(request, payment_id):
+    """
+    Gera QR Code PIX diretamente para um pagamento
+    """
+    try:
+        pagamento = get_object_or_404(Pagamento, id=payment_id, usuario=request.user)
+        
+        # Obter configuração do Mercado Pago
+        sdk, config = get_mercadopago_config()
+        if not sdk:
+            return JsonResponse({
+                'success': False,
+                'error': 'Erro na configuração do pagamento'
+            })
+        
+        # Criar um pagamento PIX no Mercado Pago
+        payment_data = {
+            "transaction_amount": float(pagamento.valor),
+            "description": pagamento.descricao,
+            "payment_method_id": "pix",
+            "payer": {
+                "email": pagamento.get_payer_email() or pagamento.usuario.email,
+                "identification": {
+                    "type": "CPF",
+                    "number": pagamento.get_payer_document() or "00000000000"
+                }
+            },
+            "external_reference": str(pagamento.external_reference)
+        }
+        
+        # Criar pagamento no Mercado Pago
+        payment_result = sdk.payment().create(payment_data)
+        
+        if payment_result["status"] == 201:
+            payment_info = payment_result["response"]
+            payment_id_mp = payment_info["id"]
+            
+            # Atualizar pagamento com o ID real do Mercado Pago
+            pagamento.set_payment_id(str(payment_id_mp))
+            pagamento.status = 'pending'
+            pagamento.save()
+            
+            # Verificar se tem PIX
+            if "point_of_interaction" in payment_info:
+                poi = payment_info["point_of_interaction"]
+                
+                # Aceitar tanto PIX quanto OPENPLATFORM (sandbox)
+                if poi.get("type") in ["PIX", "OPENPLATFORM"]:
+                    qr_code = poi.get("transaction_data", {}).get("qr_code")
+                    qr_code_base64 = poi.get("transaction_data", {}).get("qr_code_base64")
+                    
+                    if qr_code:
+                        return JsonResponse({
+                            'success': True,
+                            'qr_code': qr_code,
+                            'qr_code_base64': qr_code_base64,
+                            'payment_id': payment_id_mp,
+                            'amount': payment_info.get("transaction_amount"),
+                            'currency': payment_info.get("currency_id"),
+                            'ticket_url': poi.get("transaction_data", {}).get("ticket_url")
+                        })
+                    else:
+                        return JsonResponse({
+                            'success': False,
+                            'error': 'QR Code PIX não encontrado'
+                        })
+                else:
+                    return JsonResponse({
+                        'success': False,
+                        'error': f'Tipo de pagamento não é PIX: {poi.get("type")}'
+                    })
+            else:
+                return JsonResponse({
+                    'success': False,
+                    'error': 'Point of interaction não encontrado no pagamento'
+                })
+        else:
+            logger.error(f"Erro ao criar pagamento PIX: {payment_result}")
+            return JsonResponse({
+                'success': False,
+                'error': f'Erro ao criar pagamento PIX: {payment_result.get("response", {}).get("message", "Erro desconhecido")}'
+            })
+            
+    except Exception as e:
+        logger.error(f"Erro ao gerar PIX: {e}")
         return JsonResponse({
             'success': False,
             'error': 'Erro interno do servidor'
@@ -599,13 +695,60 @@ def minhas_assinaturas(request):
     """
     Lista as assinaturas do usuário
     """
+    from django.utils import timezone
+    
     assinaturas = Assinatura.objects.filter(usuario=request.user).order_by('-data_criacao')
     pagamentos = Pagamento.objects.filter(usuario=request.user).order_by('-data_criacao')
     
     return render(request, 'payments/assinaturas.html', {
         'assinaturas': assinaturas,
-        'pagamentos': pagamentos
+        'pagamentos': pagamentos,
+        'now': timezone.now()
     })
+
+@login_required
+@require_http_methods(["POST"])
+def cancelar_assinatura(request, assinatura_id):
+    """
+    Cancela uma assinatura ativa do usuário
+    """
+    try:
+        assinatura = get_object_or_404(Assinatura, id=assinatura_id, usuario=request.user)
+        
+        # Verificar se a assinatura pode ser cancelada
+        if assinatura.status != 'ativa':
+            messages.error(request, 'Esta assinatura não pode ser cancelada.')
+            return redirect('payments:assinaturas')
+        
+        # Cancelar assinatura
+        assinatura.status = 'cancelada'
+        assinatura.data_cancelamento = datetime.now()
+        assinatura.save()
+        
+        # Atualizar perfil do usuário
+        try:
+            profile = request.user.profile
+            profile.conta_premium = False
+            profile.save()
+        except:
+            logger.error(f"Erro ao atualizar perfil do usuário {request.user.id}")
+        
+        # Registrar auditoria
+        audit_logger.log_payment_attempt(
+            user_id=request.user.id,
+            payment_id=f'cancel_{assinatura.id}',
+            status='cancelled',
+            details={'assinatura_id': assinatura.id, 'plano': assinatura.plano.nome}
+        )
+        
+        messages.success(request, f'Assinatura {assinatura.plano.nome} cancelada com sucesso!')
+        logger.info(f"Assinatura {assinatura.id} cancelada pelo usuário {request.user.id}")
+        
+    except Exception as e:
+        logger.error(f"Erro ao cancelar assinatura {assinatura_id}: {e}")
+        messages.error(request, 'Erro ao cancelar assinatura. Tente novamente.')
+    
+    return redirect('payments:assinaturas')
 
 # =====================================================
 # VIEWS DE CONTROLE DE ACESSO
