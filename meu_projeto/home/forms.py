@@ -18,9 +18,9 @@ class EmailLoginForm(forms.Form):
         
         if email and senha:
             try:
-                # Buscar usuário por email
+                # Buscar usuário por email (case-insensitive)
                 logger.info(f"Buscando usuário com email: {email}")
-                user = User.objects.get(email=email)
+                user = User.objects.get(email__iexact=email)
                 logger.info(f"Usuário encontrado: {user.username}, ativo: {user.is_active}")
                 
                 # Verificar se o usuário está ativo
@@ -41,11 +41,6 @@ class EmailLoginForm(forms.Form):
                 if auth_user is None:
                     logger.warning(f"Falha na autenticação para {email}")
                     raise forms.ValidationError('Email ou senha inválidos.')
-                
-                # Verificar se é um usuário real (não de teste)
-                if user.email in ['teste@exemplo.com', 'admin@exemplo.com']:
-                    logger.warning(f"Acesso negado para conta de teste: {email}")
-                    raise forms.ValidationError('Acesso negado para contas de teste.')
                 
                 logger.info(f"Login bem-sucedido para {email}")
                 cleaned_data['user'] = auth_user

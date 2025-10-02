@@ -338,10 +338,18 @@ class ConfiguracaoPagamento(models.Model):
         """Obtém access token descriptografado"""
         if self.access_token_encrypted:
             try:
+                # Tentar descriptografar primeiro
                 return encryption_manager.decrypt(self.access_token_encrypted)
             except Exception as e:
-                logger.error(f"Erro ao descriptografar access token: {e}")
-                return None
+                logger.warning(f"Erro ao descriptografar access token: {e}")
+                # Se falhar, pode ser que o token não esteja criptografado
+                # Verificar se parece com um token válido (não criptografado)
+                if self.access_token_encrypted.startswith(('TEST-', 'APP-')):
+                    logger.info("Usando token não criptografado")
+                    return self.access_token_encrypted
+                else:
+                    logger.error("Token não é válido nem criptografado")
+                    return None
         return None
     
     def set_public_key(self, key):
@@ -353,10 +361,18 @@ class ConfiguracaoPagamento(models.Model):
         """Obtém public key descriptografada"""
         if self.public_key_encrypted:
             try:
+                # Tentar descriptografar primeiro
                 return encryption_manager.decrypt(self.public_key_encrypted)
             except Exception as e:
-                logger.error(f"Erro ao descriptografar public key: {e}")
-                return None
+                logger.warning(f"Erro ao descriptografar public key: {e}")
+                # Se falhar, pode ser que a key não esteja criptografada
+                # Verificar se parece com uma key válida (não criptografada)
+                if self.public_key_encrypted.startswith(('TEST-', 'APP-')):
+                    logger.info("Usando public key não criptografada")
+                    return self.public_key_encrypted
+                else:
+                    logger.error("Public key não é válida nem criptografada")
+                    return None
         return None
     
     def set_webhook_secret(self, secret):
