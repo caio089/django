@@ -3370,3 +3370,311 @@ D:\github\django\meu_projeto\home\urls.py changed, reloading.
 Watching for file changes with StatReloader
 D:\github\django\meu_projeto\home\urls.py changed, reloading.
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 9788
+"GET /static/js/login-optimized.js HTTP/1.1" 200 7695
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 5516
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 74263
+"GET /payments/planos/ HTTP/1.1" 200 13028
+"GET /payments/plano/1/ HTTP/1.1" 200 14410
+PAYMENT_AUDIT: {"timestamp": "2025-10-02T17:42:46.064517+00:00", "event_type": "payment_attempt", "user_id": 2, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 1.0}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 224
+"GET /payments/checkout/74/ HTTP/1.1" 200 41083
+"POST /payments/gerar-pix/74/ HTTP/1.1" 200 2306
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\home\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\home\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+Configuração encontrada: Configuração production - Ativa
+Access token obtido: True
+SDK criado com sucesso
+"GET /payments/checkout/74/ HTTP/1.1" 200 40999
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+Configuração encontrada: Configuração production - Ativa
+Access token obtido: True
+SDK criado com sucesso
+"POST /payments/gerar-pix/74/ HTTP/1.1" 200 2306
+"GET /payments/verificar-status/74/ HTTP/1.1" 200 128
+"GET / HTTP/1.1" 200 39909
+D:\github\django\meu_projeto\home\views.py changed, reloading.
+Watching for file changes with StatReloader
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 74263
+"GET /payments/planos/ HTTP/1.1" 200 12748
+"GET /payments/plano/1/ HTTP/1.1" 200 14410
+PAYMENT_AUDIT: {"timestamp": "2025-10-02T17:46:36.664563+00:00", "event_type": "payment_attempt", "user_id": 2, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal", "valor": 1.0}}
+Configuração encontrada: Configuração production - Ativa
+Access token obtido: True
+SDK criado com sucesso
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 224
+Configuração encontrada: Configuração production - Ativa
+Access token obtido: True
+SDK criado com sucesso
+"GET /payments/checkout/75/ HTTP/1.1" 200 41083
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+Configuração encontrada: Configuração production - Ativa
+Access token obtido: True
+SDK criado com sucesso
+"GET /payments/checkout/75/ HTTP/1.1" 200 41083
+Configuração encontrada: Configuração production - Ativa
+Access token obtido: True
+SDK criado com sucesso
+"POST /payments/gerar-pix/75/ HTTP/1.1" 200 2306
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+Configuração encontrada: Configuração production - Ativa
+Access token obtido: True
+SDK criado com sucesso
+"GET /payments/checkout/75/ HTTP/1.1" 200 40977
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+Configuração encontrada: Configuração production - Ativa
+Access token obtido: True
+SDK criado com sucesso
+"POST /payments/gerar-pix/75/ HTTP/1.1" 200 2306
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+Configuração encontrada: Configuração production - Ativa
+Access token obtido: True
+SDK criado com sucesso
+"GET /payments/checkout/75/ HTTP/1.1" 200 40977
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+- Broken pipe from ('127.0.0.1', 52507)
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+Configuração encontrada: Configuração production - Ativa
+Access token obtido: True
+SDK criado com sucesso
+"GET /payments/checkout/75/ HTTP/1.1" 200 41498
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+Configuração encontrada: Configuração production - Ativa
+Access token obtido: True
+SDK criado com sucesso
+"GET /payments/checkout/75/ HTTP/1.1" 200 41252
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+Configuração encontrada: Configuração production - Ativa
+Access token obtido: True
+SDK criado com sucesso
+"GET /payments/checkout/75/ HTTP/1.1" 200 41252
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+Configuração encontrada: Configuração production - Ativa
+Access token obtido: True
+SDK criado com sucesso
+"POST /payments/gerar-pix/75/ HTTP/1.1" 200 2306
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+Configuração encontrada: Configuração production - Ativa
+Access token obtido: True
+SDK criado com sucesso
+"GET /payments/checkout/75/ HTTP/1.1" 200 41999
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+Configuração encontrada: Configuração production - Ativa
+Access token obtido: True
+SDK criado com sucesso
+"POST /payments/gerar-pix/75/ HTTP/1.1" 200 2306
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Configuração encontrada: Configuração production - Ativa
+Access token obtido: True
+SDK criado com sucesso
+"GET /payments/checkout/75/ HTTP/1.1" 200 42499
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+Configuração encontrada: Configuração production - Ativa
+Access token obtido: True
+SDK criado com sucesso
+"POST /payments/gerar-pix/75/ HTTP/1.1" 200 2306
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+Configuração encontrada: Configuração production - Ativa
+Access token obtido: True
+SDK criado com sucesso
+"GET /payments/checkout/75/ HTTP/1.1" 200 42499
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+Configuração encontrada: Configuração production - Ativa
+Access token obtido: True
+SDK criado com sucesso
+Checkout - Payment ID: 1341488031
+Checkout - Payment status: pending
+Checkout - External reference: 51192058-22d4-4b6b-82c7-c227de045043
+"GET /payments/checkout/75/ HTTP/1.1" 200 42704
+"GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader

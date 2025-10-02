@@ -35,12 +35,15 @@ def get_mercadopago_config():
     """
     try:
         config = ConfiguracaoPagamento.objects.filter(ativo=True).first()
+        logger.info(f"Configuração encontrada: {config}")
         if config:
             access_token = config.get_access_token()
+            logger.info(f"Access token obtido: {bool(access_token)}")
             if access_token:
                 sdk = mercadopago.SDK(access_token)
                 # Marcar uso da configuração
                 config.mark_usage()
+                logger.info("SDK criado com sucesso")
                 return sdk, config
             else:
                 logger.error("Access token não pôde ser obtido")
@@ -50,6 +53,20 @@ def get_mercadopago_config():
     except Exception as e:
         logger.error(f"Erro ao configurar Mercado Pago: {e}", exc_info=True)
         return None, None
+
+def is_sandbox_environment():
+    """
+    Detecta se estamos em ambiente sandbox baseado no access token
+    """
+    try:
+        config = ConfiguracaoPagamento.objects.filter(ativo=True).first()
+        if config:
+            access_token = config.get_access_token()
+            # Tokens de sandbox geralmente começam com TEST-
+            return access_token.startswith('TEST-') if access_token else True
+        return True  # Assume sandbox por padrão
+    except:
+        return True
 
 def criar_perfil_usuario(user):
     """
@@ -234,13 +251,25 @@ def criar_pagamento(request, plano_id):
             "payment_methods": {
                 "excluded_payment_methods": [],
                 "excluded_payment_types": [],
-                "installments": 12,
-                "default_payment_method_id": "pix"
+                "installments": 12
+            },
+            "auto_return": "approved",
+            "binary_mode": False,
+            "statement_descriptor": "DOJO-ON",
+            "metadata": {
+                "plano_id": str(plano.id),
+                "user_id": str(request.user.id),
+                "external_reference": external_reference
+            },
+            "differential_pricing": {
+                "id": 1
             }
         }
         
         # Criar preferência no Mercado Pago
+        logger.info(f"Criando preferência com dados: {preference_data}")
         preference = sdk.preference().create(preference_data)
+        logger.info(f"Resposta da preferência: {preference}")
         
         if preference["status"] == 201:
             preference_data = preference["response"]
@@ -405,10 +434,16 @@ def checkout_pagamento(request, payment_id):
         messages.error(request, 'Erro na configuração do pagamento.')
         return redirect('payments:planos')
     
+    # Debug: verificar dados do pagamento
+    payment_id = pagamento.get_payment_id()
+    logger.info(f"Checkout - Payment ID: {payment_id}")
+    logger.info(f"Checkout - Payment status: {pagamento.status}")
+    logger.info(f"Checkout - External reference: {pagamento.external_reference}")
+    
     return render(request, 'payments/checkout.html', {
         'pagamento': pagamento,
         'public_key': config.get_public_key(),
-        'preference_id': pagamento.get_payment_id()
+        'preference_id': payment_id
     })
 
 # =====================================================

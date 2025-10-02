@@ -51,3 +51,4 @@ class Command(BaseCommand):
                         
                 except User.DoesNotExist:
                     self.stdout.write(f'  Usuario nao encontrado por username')
+

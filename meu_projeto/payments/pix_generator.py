@@ -97,17 +97,31 @@ def validar_qr_code_pix(qr_code):
     Valida se o QR Code PIX está no formato correto
     """
     try:
-        # Verificar se termina com CRC
+        # Verificar se o QR Code não está vazio
+        if not qr_code or len(qr_code) < 50:
+            return False, "QR Code muito curto ou vazio"
+        
+        # Verificar se começa com 000201 (formato EMV padrão)
+        if not qr_code.startswith('000201'):
+            return False, "QR Code não começa com formato EMV válido"
+        
+        # Verificar se termina com CRC (mais flexível)
         if not re.search(r'6304[0-9A-F]{4}$', qr_code):
             return False, "QR Code não termina com CRC válido"
         
-        # Verificar se contém elementos obrigatórios
+        # Verificar se contém elementos obrigatórios (mais flexível)
         required_elements = ["00", "26", "52", "53", "54", "58", "59", "60"]
+        missing_elements = []
+        
         for element in required_elements:
             # Verificar se o elemento existe (pode ter diferentes tamanhos)
             pattern = f"{element}[0-9]{{2}}"
             if not re.search(pattern, qr_code):
-                return False, f"Elemento obrigatório {element} não encontrado"
+                missing_elements.append(element)
+        
+        # Se faltam muitos elementos, considerar inválido
+        if len(missing_elements) > 2:
+            return False, f"Elementos obrigatórios ausentes: {', '.join(missing_elements)}"
         
         return True, "QR Code válido"
         

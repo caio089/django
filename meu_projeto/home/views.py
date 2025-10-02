@@ -9,7 +9,7 @@ def home(request):
     form = EmailLoginForm()
     register_form = RegisterForm()
     show_register = False
-    return render(request, 'home/home_otimizado.html', {
+    return render(request, 'home/home.html', {
         'form': form,
         'register_form': register_form,
         'show_register': show_register
@@ -36,7 +36,7 @@ def login_view(request):
                 for error in errors:
                     messages.error(request, error)
     
-    return render(request, 'home/home_otimizado.html', {
+    return render(request, 'home/home.html', {
         'form': form,
         'register_form': register_form,
         'show_register': show_register
@@ -74,7 +74,7 @@ def register_view(request):
                 for error in errors:
                     messages.error(request, f'{field}: {error}')
     
-    return render(request, 'home/home_otimizado.html', {
+    return render(request, 'home/home.html', {
         'form': form,
         'register_form': register_form,
         'show_register': show_register

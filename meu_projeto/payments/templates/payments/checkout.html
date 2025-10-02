@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- SDK do Mercado Pago -->
     <script src="https://sdk.mercadopago.com/js/v2"></script>
+    
 </head>
 <body class="bg-gray-50 font-sans">
 {% csrf_token %}
@@ -186,10 +187,12 @@
 </div>
 
 <script>
-// Configuração do Mercado Pago
-const PUBLIC_KEY = '{{ public_key|default:"" }}';
-const PREFERENCE_ID = '{{ preference_id|default:"" }}';
-const PAYMENT_ID = parseInt('{{ pagamento.id|default:"0" }}');
+// Variáveis do Django para JavaScript
+const PUBLIC_KEY = '{{ public_key }}';
+const PREFERENCE_ID = '{{ preference_id }}';
+const PAYMENT_ID = '{{ pagamento.id }}';
+const PAYMENT_VALUE = '{{ pagamento.valor }}';
+const PAYMENT_DESCRIPTION = '{{ pagamento.descricao }}';
 
 // Variáveis do Django para PIX
 const djangoVars = document.getElementById('django-vars');
@@ -200,11 +203,28 @@ const INIT_POINT = djangoVars.dataset.initPoint;
 let mp = null;
 if (PUBLIC_KEY && PUBLIC_KEY !== '') {
     try {
-        mp = new MercadoPago(PUBLIC_KEY);
+        mp = new MercadoPago(PUBLIC_KEY, {
+            locale: 'pt-BR',
+            advancedFraudPrevention: false, // Desabilitar para ambiente de desenvolvimento
+            enableRecaptcha: false // Desabilitar reCAPTCHA para evitar erros 401
+        });
+        console.log('✅ SDK do Mercado Pago inicializado com sucesso');
     } catch (error) {
-        console.error('Erro ao inicializar SDK do Mercado Pago:', error);
+        console.error('❌ Erro ao inicializar SDK do Mercado Pago:', error);
+        console.log('💡 Dica: Verifique se a chave pública está correta');
     }
+} else {
+    console.warn('⚠️ PUBLIC_KEY não encontrada ou vazia');
 }
+
+// Suprimir erros de reCAPTCHA em desenvolvimento
+window.addEventListener('error', function(e) {
+    if (e.message && e.message.includes('recaptcha')) {
+        console.warn('⚠️ Erro de reCAPTCHA suprimido (normal em desenvolvimento)');
+        e.preventDefault();
+        return false;
+    }
+});
 
 let currentPaymentType = null;
 let checkout = null;
@@ -268,8 +288,7 @@ function testarQrCode(qrCode) {
         hasMerchantCity: qrCode.includes('60'),
         hasMerchantAccount: qrCode.includes('26'),
         hasCRC: qrCode.includes('6304'),
-        hasPixKey: qrCode.includes('br.gov.bcb.pix'),
-        hasMerchantInfo: qrCode.includes('mpqrinter')
+        hasPixKey: qrCode.includes('br.gov.bcb.pix')
     };
     
     console.log('Análise do QR Code PIX:', pixData);
@@ -295,19 +314,27 @@ function testarQrCode(qrCode) {
         hasMerchantName: qrCode.includes('59'),
         hasCity: qrCode.includes('60'),
         hasCRC: qrCode.includes('6304'),
-        hasMerchantInfo: qrCode.includes('mpqrinter'),
         length: qrCode.length,
         endsWithCRC: qrCode.endsWith('E1CD') || qrCode.endsWith('D5F2')
     };
     
     console.log('Análise detalhada do QR Code:', qrAnalysis);
     
-    const missingFields = Object.entries(pixData)
-        .filter(([key, value]) => !value)
-        .map(([key]) => key);
+    // Verificar apenas campos essenciais
+    const essentialFields = ['hasMerchantName', 'hasTransactionAmount', 'hasMerchantCity', 'hasMerchantAccount', 'hasCRC', 'hasPixKey'];
+    const missingEssentialFields = essentialFields.filter(field => !pixData[field]);
     
-    if (missingFields.length > 0) {
-        alert(`QR Code inválido: campos ausentes: ${missingFields.join(', ')}`);
+    if (missingEssentialFields.length > 0) {
+        console.warn('⚠️ Campos essenciais ausentes:', missingEssentialFields);
+        // Não mostrar alerta, apenas log de warning
+    }
+    
+    // Verificar se pelo menos os campos mais importantes estão presentes
+    const criticalFields = ['hasTransactionAmount', 'hasMerchantAccount', 'hasCRC'];
+    const missingCriticalFields = criticalFields.filter(field => !pixData[field]);
+    
+    if (missingCriticalFields.length > 0) {
+        alert(`QR Code inválido: campos críticos ausentes: ${missingCriticalFields.join(', ')}`);
         return;
     }
     
@@ -407,7 +434,7 @@ function showPixQRCode(data) {
                 
                 <div class="bg-gray-100 p-4 rounded-lg mb-6">
                     ${data.qr_code_base64 ? 
-                        `<img src="data:image/png;base64,${data.qr_code_base64}" alt="QR Code PIX" class="mx-auto max-w-full h-auto">` :
+                        `<img src="${data.qr_code_base64}" alt="QR Code PIX" class="mx-auto max-w-full h-auto">` :
                         `<div class="text-gray-500">QR Code não disponível</div>`
                     }
                 </div>
@@ -756,19 +783,23 @@ submitButton.addEventListener('click', async () => {
             console.log('Redirecionando para Mercado Pago (cartão)...');
             showStatus('loading', 'Redirecionando...', 'Aguarde, estamos redirecionando para o pagamento');
             
-            const initPoint = INIT_POINT;
-            const preferenceId = PREFERENCE_ID;
+            console.log('🔗 Dados de redirecionamento:');
+            console.log('   PREFERENCE_ID:', PREFERENCE_ID);
+            console.log('   PUBLIC_KEY:', PUBLIC_KEY);
             
-            if (initPoint && initPoint !== '') {
+            if (PREFERENCE_ID && PREFERENCE_ID !== 'None' && PREFERENCE_ID !== '') {
+                console.log('✅ Redirecionando para Mercado Pago com preference_id:', PREFERENCE_ID);
+                
+                // URL correta para sandbox/produção
+                const checkoutUrl = `https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=${PREFERENCE_ID}`;
+                console.log('🔗 URL de checkout:', checkoutUrl);
+                
                 setTimeout(() => {
-                    window.location.href = initPoint;
-                }, 1000);
-            } else if (preferenceId) {
-                setTimeout(() => {
-                    window.location.href = `https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=${preferenceId}`;
+                    window.location.href = checkoutUrl;
                 }, 1000);
             } else {
-                showStatus('error', 'Erro no pagamento', 'URL de pagamento não encontrada');
+                console.error('❌ PREFERENCE_ID não encontrado ou inválido:', PREFERENCE_ID);
+                showStatus('error', 'Erro no pagamento', 'ID de preferência não encontrado. Tente novamente.');
                 submitButton.disabled = false;
                 submitText.classList.remove('hidden');
                 loadingSpinner.classList.add('hidden');

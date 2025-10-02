@@ -627,6 +627,17 @@
                 {% if show_register %}Criar nova conta{% else %}Acessar sua conta{% endif %}
             </h2>
             
+            <!-- Mensagens de erro/sucesso -->
+            {% if messages %}
+                <div class="w-full mb-4">
+                    {% for message in messages %}
+                        <div class="p-3 rounded-md text-sm font-medium {% if message.tags == 'error' %}bg-red-100 text-red-800 border border-red-200{% else %}bg-green-100 text-green-800 border border-green-200{% endif %}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            
             <!-- Formulário -->
             <form id="login-form" method="post" action="{% if show_register %}{% url 'register' %}{% else %}{% url 'login' %}{% endif %}" class="w-full flex flex-col gap-3" autocomplete="off" novalidate>
                 {% csrf_token %}
@@ -921,10 +932,10 @@
                 });
             }
             
-            // Formulário - sem interferência no envio
+            // Formulário - permitir envio normal do Django
             const form = document.getElementById('login-form');
             if (form) {
-                // Apenas mostrar loading visual, sem prevenir envio
+                // Apenas mostrar loading visual quando o formulário for enviado
                 form.addEventListener('submit', function() {
                     const loginBtn = document.getElementById('login-btn');
                     const loginBtnText = document.getElementById('login-btn-text');
@@ -935,6 +946,7 @@
                         if (loginBtnText) loginBtnText.style.display = 'none';
                         if (loginSpinner) loginSpinner.classList.remove('hidden');
                     }
+                    // Não prevenir o envio - deixar o Django processar
                 });
             }
 
