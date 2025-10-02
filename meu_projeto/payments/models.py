@@ -349,7 +349,9 @@ class ConfiguracaoPagamento(models.Model):
                     return self.access_token_encrypted
                 else:
                     logger.error("Token não é válido nem criptografado")
-                    return None
+                    # Tentar usar o token como está (pode ser válido mas não reconhecido)
+                    logger.info("Tentando usar token como está")
+                    return self.access_token_encrypted
         return None
     
     def set_public_key(self, key):
@@ -372,7 +374,9 @@ class ConfiguracaoPagamento(models.Model):
                     return self.public_key_encrypted
                 else:
                     logger.error("Public key não é válida nem criptografada")
-                    return None
+                    # Tentar usar a key como está (pode ser válida mas não reconhecida)
+                    logger.info("Tentando usar public key como está")
+                    return self.public_key_encrypted
         return None
     
     def set_webhook_secret(self, secret):

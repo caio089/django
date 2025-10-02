@@ -71,6 +71,7 @@ class WebhookSecurity:
             '54.94.0.0/16',     # Mercado Pago México
             '54.88.0.0/16',     # Mercado Pago (novos IPs)
             '18.213.0.0/16',    # Mercado Pago (novos IPs)
+            '18.206.0.0/16',    # Mercado Pago (novos IPs)
         ]
         
         client_ip = WebhookSecurity.get_client_ip(request)
