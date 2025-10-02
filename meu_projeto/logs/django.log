@@ -3689,3 +3689,19 @@ Not Found: /.well-known/appspecific/com.chrome.devtools.json
 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
 "GET /payments/verificar-status/75/ HTTP/1.1" 200 128
 "GET /payments/verificar-status/75/ HTTP/1.1" 200 128
+D:\github\django\meu_projeto\home\forms.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\home\forms.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\home\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\home\views.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\home\forms.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\security.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\security.py changed, reloading.
+Watching for file changes with StatReloader

@@ -4,6 +4,9 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Profile
 from .forms import EmailLoginForm, RegisterForm
+import logging
+
+logger = logging.getLogger(__name__)
 
 def home(request):
     form = EmailLoginForm()
@@ -25,15 +28,20 @@ def login_view(request):
     show_register = False
     
     if request.method == 'POST':
+        logger.info(f"Tentativa de login via POST para: {request.POST.get('email', 'N/A')}")
+        
         if form.is_valid():
             user = form.cleaned_data['user']
+            logger.info(f"Login bem-sucedido para: {user.email}")
             login(request, user)
             messages.success(request, f'Bem-vindo, {user.email}!')
             return redirect('index')
         else:
+            logger.warning(f"Formulário inválido. Erros: {form.errors}")
             # Mostrar erros do formulário
             for field, errors in form.errors.items():
                 for error in errors:
+                    logger.error(f"Erro de validação - {field}: {error}")
                     messages.error(request, error)
     
     return render(request, 'home/home.html', {
