@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 import uuid
 from decimal import Decimal
-from .encryption import encryption_manager, email_encryption, payment_encryption
+# Removido: from .encryption import encryption_manager, email_encryption, payment_encryption
 import json
 import logging
 
@@ -100,19 +100,19 @@ class Pagamento(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
     tipo = models.CharField(max_length=20, choices=TIPO_CHOICES, default='assinatura')
     
-    # Identificadores do Mercado Pago (CRIPTOGRAFADOS)
-    payment_id = models.CharField(max_length=200, unique=True, verbose_name="ID do Pagamento MP (Criptografado)")
+    # Identificadores do Mercado Pago
+    payment_id = models.CharField(max_length=200, unique=True, verbose_name="ID do Pagamento MP")
     external_reference = models.UUIDField(default=uuid.uuid4, unique=True, verbose_name="Referência externa")
     
-    # Dados sensíveis CRIPTOGRAFADOS
-    payer_email_encrypted = models.TextField(null=True, blank=True, verbose_name="Email do pagador (Criptografado)")
-    payer_name_encrypted = models.TextField(null=True, blank=True, verbose_name="Nome do pagador (Criptografado)")
-    payer_phone_encrypted = models.TextField(null=True, blank=True, verbose_name="Telefone (Criptografado)")
-    payer_document_encrypted = models.TextField(null=True, blank=True, verbose_name="CPF/Documento (Criptografado)")
+    # Dados do pagador
+    payer_email = models.EmailField(null=True, blank=True, verbose_name="Email do pagador")
+    payer_name = models.CharField(max_length=100, null=True, blank=True, verbose_name="Nome do pagador")
+    payer_phone = models.CharField(max_length=20, null=True, blank=True, verbose_name="Telefone")
+    payer_document = models.CharField(max_length=20, null=True, blank=True, verbose_name="CPF/Documento")
     
-    # Dados do cartão CRIPTOGRAFADOS (se aplicável)
-    card_holder_name_encrypted = models.TextField(null=True, blank=True, verbose_name="Nome no cartão (Criptografado)")
-    card_last_four_encrypted = models.TextField(null=True, blank=True, verbose_name="Últimos 4 dígitos (Criptografado)")
+    # Dados do cartão (se aplicável)
+    card_holder_name = models.CharField(max_length=100, null=True, blank=True, verbose_name="Nome no cartão")
+    card_last_four = models.CharField(max_length=4, null=True, blank=True, verbose_name="Últimos 4 dígitos")
     
     # Informações não sensíveis
     descricao = models.TextField(verbose_name="Descrição do pagamento")
@@ -128,64 +128,40 @@ class Pagamento(models.Model):
     data_atualizacao = models.DateTimeField(auto_now=True)
     
     def set_payer_email(self, email):
-        """Define email do pagador de forma criptografada"""
+        """Define email do pagador"""
         if email:
-            self.payer_email_encrypted = encryption_manager.encrypt(email)
+            self.payer_email = email
     
     def get_payer_email(self):
-        """Obtém email do pagador descriptografado"""
-        if self.payer_email_encrypted:
-            try:
-                return encryption_manager.decrypt(self.payer_email_encrypted)
-            except Exception as e:
-                logger.error(f"Erro ao descriptografar email: {e}")
-                return None
-        return None
+        """Obtém email do pagador"""
+        return self.payer_email
     
     def set_payer_name(self, name):
-        """Define nome do pagador de forma criptografada"""
+        """Define nome do pagador"""
         if name:
-            self.payer_name_encrypted = encryption_manager.encrypt(name)
+            self.payer_name = name
     
     def get_payer_name(self):
-        """Obtém nome do pagador descriptografado"""
-        if self.payer_name_encrypted:
-            try:
-                return encryption_manager.decrypt(self.payer_name_encrypted)
-            except Exception as e:
-                logger.error(f"Erro ao descriptografar nome: {e}")
-                return None
-        return None
+        """Obtém nome do pagador"""
+        return self.payer_name
     
     def set_payer_phone(self, phone):
-        """Define telefone de forma criptografada"""
+        """Define telefone"""
         if phone:
-            self.payer_phone_encrypted = encryption_manager.encrypt(phone)
+            self.payer_phone = phone
     
     def get_payer_phone(self):
-        """Obtém telefone descriptografado"""
-        if self.payer_phone_encrypted:
-            try:
-                return encryption_manager.decrypt(self.payer_phone_encrypted)
-            except Exception as e:
-                logger.error(f"Erro ao descriptografar telefone: {e}")
-                return None
-        return None
+        """Obtém telefone"""
+        return self.payer_phone
     
     def set_payer_document(self, document):
-        """Define CPF/documento de forma criptografada"""
+        """Define CPF/documento"""
         if document:
-            self.payer_document_encrypted = encryption_manager.encrypt(document)
+            self.payer_document = document
     
     def get_payer_document(self):
-        """Obtém CPF/documento descriptografado"""
-        if self.payer_document_encrypted:
-            try:
-                return encryption_manager.decrypt(self.payer_document_encrypted)
-            except Exception as e:
-                logger.error(f"Erro ao descriptografar documento: {e}")
-                return None
-        return None
+        """Obtém CPF/documento"""
+        return self.payer_document
     
     def set_payment_id(self, payment_id):
         """Define ID do pagamento"""
@@ -222,12 +198,12 @@ class WebhookEvent(models.Model):
     tipo = models.CharField(max_length=50, choices=TIPO_CHOICES, verbose_name="Tipo de evento")
     action = models.CharField(max_length=50, verbose_name="Ação")
     
-    # Identificadores (CRIPTOGRAFADOS)
-    id_mercadopago_encrypted = models.TextField(verbose_name="ID Mercado Pago (Criptografado)", default='')
-    external_reference_encrypted = models.TextField(null=True, blank=True, verbose_name="Referência externa (Criptografada)", default='')
+    # Identificadores
+    id_mercadopago = models.CharField(max_length=100, verbose_name="ID Mercado Pago", default='')
+    external_reference = models.CharField(max_length=100, null=True, blank=True, verbose_name="Referência externa", default='')
     
-    # Dados do evento (CRIPTOGRAFADOS)
-    data_recebida_encrypted = models.TextField(verbose_name="Dados recebidos (Criptografados)", default='')
+    # Dados do evento
+    data_recebida = models.JSONField(verbose_name="Dados recebidos", default=dict)
     processado = models.BooleanField(default=False, verbose_name="Processado")
     erro_processamento = models.TextField(null=True, blank=True, verbose_name="Erro no processamento")
     
@@ -240,59 +216,31 @@ class WebhookEvent(models.Model):
     data_processamento = models.DateTimeField(null=True, blank=True, verbose_name="Data de processamento")
     
     def set_id_mercadopago(self, mp_id):
-        """Define ID do Mercado Pago de forma criptografada"""
+        """Define ID do Mercado Pago"""
         if mp_id:
-            self.id_mercadopago_encrypted = encryption_manager.encrypt(str(mp_id))
+            self.id_mercadopago = str(mp_id)
     
     def get_id_mercadopago(self):
-        """Obtém ID do Mercado Pago descriptografado"""
-        if self.id_mercadopago_encrypted:
-            try:
-                return encryption_manager.decrypt(self.id_mercadopago_encrypted)
-            except Exception as e:
-                logger.error(f"Erro ao descriptografar ID Mercado Pago: {e}")
-                return None
-        return None
+        """Obtém ID do Mercado Pago"""
+        return self.id_mercadopago
     
     def set_external_reference(self, ref):
-        """Define referência externa de forma criptografada"""
+        """Define referência externa"""
         if ref:
-            self.external_reference_encrypted = encryption_manager.encrypt(str(ref))
+            self.external_reference = str(ref)
     
     def get_external_reference(self):
-        """Obtém referência externa descriptografada"""
-        if self.external_reference_encrypted:
-            try:
-                return encryption_manager.decrypt(self.external_reference_encrypted)
-            except Exception as e:
-                logger.error(f"Erro ao descriptografar referência externa: {e}")
-                return None
-        return None
+        """Obtém referência externa"""
+        return self.external_reference
     
     def set_data_recebida(self, data):
-        """Define dados recebidos de forma criptografada"""
+        """Define dados recebidos"""
         if data:
-            # Converter para JSON se necessário
-            if isinstance(data, dict):
-                data_str = json.dumps(data, ensure_ascii=False)
-            else:
-                data_str = str(data)
-            self.data_recebida_encrypted = encryption_manager.encrypt(data_str)
+            self.data_recebida = data if isinstance(data, dict) else {}
     
     def get_data_recebida(self):
-        """Obtém dados recebidos descriptografados"""
-        if self.data_recebida_encrypted:
-            try:
-                decrypted_data = encryption_manager.decrypt(self.data_recebida_encrypted)
-                # Tentar converter de volta para JSON
-                try:
-                    return json.loads(decrypted_data)
-                except json.JSONDecodeError:
-                    return decrypted_data
-            except Exception as e:
-                logger.error(f"Erro ao descriptografar dados recebidos: {e}")
-                return None
-        return None
+        """Obtém dados recebidos"""
+        return self.data_recebida
     
     def __str__(self):
         return f"Webhook {self.tipo} - {self.action} - {self.data_recebimento}"
