@@ -32,59 +32,40 @@ data_validator = DataValidator()
 
 def get_mercadopago_config():
     """
-    Obtém as configurações ativas do Mercado Pago
+    Obtém as configurações do Mercado Pago diretamente das variáveis de ambiente
     Retorna: (sdk, config) ou (None, None) se erro
     """
     try:
-        # Primeiro, tentar obter do banco de dados
-        config = ConfiguracaoPagamento.objects.filter(ativo=True).first()
-        logger.info(f"Configuração encontrada: {config}")
-        
-        if config:
-            access_token = config.get_access_token()
-            logger.info(f"Access token obtido: {bool(access_token)}")
-            if access_token:
-                sdk = mercadopago.SDK(access_token)
-                # Marcar uso da configuração
-                config.mark_usage()
-                logger.info("SDK criado com sucesso")
-                return sdk, config
-            else:
-                logger.error("Access token não pôde ser obtido do banco")
-        else:
-            logger.warning("Nenhuma configuração ativa do Mercado Pago encontrada no banco")
-        
-        # Fallback: usar variáveis de ambiente diretamente
-        logger.info("Tentando usar variáveis de ambiente diretamente...")
+        # Usar variáveis de ambiente diretamente (sem criptografia)
         access_token = os.getenv('MERCADOPAGO_ACCESS_TOKEN')
         public_key = os.getenv('MERCADOPAGO_PUBLIC_KEY')
         webhook_url = os.getenv('MERCADOPAGO_WEBHOOK_URL', 'https://dojo-on.onrender.com/payments/webhook/')
         
-        if access_token and public_key:
-            logger.info("Usando tokens das variáveis de ambiente")
-            sdk = mercadopago.SDK(access_token)
-            
-            # Criar um objeto config temporário
-            class TempConfig:
-                def __init__(self, access_token, public_key, webhook_url):
-                    self.access_token = access_token
-                    self.public_key = public_key
-                    self.webhook_url = webhook_url
-                    self.ambiente = 'production' if access_token.startswith('APP-') else 'sandbox'
-                
-                def get_public_key(self):
-                    return self.public_key
-                
-                def mark_usage(self):
-                    pass
-            
-            temp_config = TempConfig(access_token, public_key, webhook_url)
-            logger.info("SDK criado com sucesso usando variáveis de ambiente")
-            return sdk, temp_config
-        else:
+        if not access_token or not public_key:
             logger.error("Variáveis de ambiente MERCADOPAGO_ACCESS_TOKEN ou MERCADOPAGO_PUBLIC_KEY não encontradas")
+            return None, None
         
-        return None, None
+        logger.info("Usando tokens das variáveis de ambiente (sem criptografia)")
+        sdk = mercadopago.SDK(access_token)
+        
+        # Criar um objeto config simples
+        class SimpleConfig:
+            def __init__(self, access_token, public_key, webhook_url):
+                self.access_token = access_token
+                self.public_key = public_key
+                self.webhook_url = webhook_url
+                self.ambiente = 'production' if access_token.startswith('APP-') else 'sandbox'
+            
+            def get_public_key(self):
+                return self.public_key
+            
+            def mark_usage(self):
+                pass
+        
+        config = SimpleConfig(access_token, public_key, webhook_url)
+        logger.info(f"SDK criado com sucesso - Ambiente: {config.ambiente}")
+        return sdk, config
+        
     except Exception as e:
         logger.error(f"Erro ao configurar Mercado Pago: {e}", exc_info=True)
         return None, None

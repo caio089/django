@@ -40,18 +40,13 @@ class Command(BaseCommand):
         # Criar configuração
         try:
             config = ConfiguracaoPagamento.objects.create(
+                access_token=access_token,
+                public_key=public_key,
                 webhook_url=webhook_url or 'https://dojo-on.onrender.com/payments/webhook/',
+                webhook_secret=webhook_secret or '',
                 ambiente=ambiente,
                 ativo=True
             )
-            
-            # Criptografar e salvar tokens
-            config.set_access_token(access_token)
-            config.set_public_key(public_key)
-            if webhook_secret:
-                config.set_webhook_secret(webhook_secret)
-            
-            config.save()
             
             self.stdout.write(
                 self.style.SUCCESS(f"✅ Configuração criada com sucesso!")

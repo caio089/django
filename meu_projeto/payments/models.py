@@ -307,15 +307,14 @@ class ConfiguracaoPagamento(models.Model):
     """
     Modelo para configurações do sistema de pagamento
     Armazena tokens e configurações do Mercado Pago
-    TOKENS CRIPTOGRAFADOS
     """
-    # Tokens do Mercado Pago (CRIPTOGRAFADOS)
-    access_token_encrypted = models.TextField(verbose_name="Access Token (Criptografado)", default='')
-    public_key_encrypted = models.TextField(verbose_name="Public Key (Criptografado)", default='')
+    # Tokens do Mercado Pago (SEM CRIPTOGRAFIA)
+    access_token = models.TextField(verbose_name="Access Token", default='')
+    public_key = models.TextField(verbose_name="Public Key", default='')
     
     # Configurações de webhook
     webhook_url = models.URLField(verbose_name="URL do Webhook")
-    webhook_secret_encrypted = models.TextField(verbose_name="Secret do Webhook (Criptografado)", default='')
+    webhook_secret = models.TextField(verbose_name="Secret do Webhook", default='')
     
     # Configurações gerais
     ambiente = models.CharField(max_length=10, choices=[('sandbox', 'Sandbox'), ('production', 'Produção')], default='sandbox')
@@ -330,83 +329,31 @@ class ConfiguracaoPagamento(models.Model):
     data_atualizacao = models.DateTimeField(auto_now=True)
     
     def set_access_token(self, token):
-        """Define access token de forma criptografada"""
+        """Define access token"""
         if token:
-            self.access_token_encrypted = encryption_manager.encrypt(token)
+            self.access_token = token
     
     def get_access_token(self):
-        """Obtém access token descriptografado"""
-        if self.access_token_encrypted:
-            try:
-                # Tentar descriptografar primeiro
-                return encryption_manager.decrypt(self.access_token_encrypted)
-            except Exception as e:
-                logger.warning(f"Erro ao descriptografar access token: {e}")
-                # Se falhar, pode ser que o token não esteja criptografado
-                # Verificar se parece com um token válido (não criptografado)
-                if self.access_token_encrypted.startswith(('TEST-', 'APP-')):
-                    logger.info("Usando token não criptografado")
-                    return self.access_token_encrypted
-                else:
-                    logger.error("Token não é válido nem criptografado")
-                    # Tentar usar o token como está (pode ser válido mas não reconhecido)
-                    logger.info("Tentando usar token como está")
-                    return self.access_token_encrypted
-        else:
-            # Se não há token criptografado, tentar obter das variáveis de ambiente
-            import os
-            env_token = os.getenv('MERCADOPAGO_ACCESS_TOKEN')
-            if env_token:
-                logger.info("Usando token das variáveis de ambiente")
-                return env_token
-        return None
+        """Obtém access token"""
+        return self.access_token
     
     def set_public_key(self, key):
-        """Define public key de forma criptografada"""
+        """Define public key"""
         if key:
-            self.public_key_encrypted = encryption_manager.encrypt(key)
+            self.public_key = key
     
     def get_public_key(self):
-        """Obtém public key descriptografada"""
-        if self.public_key_encrypted:
-            try:
-                # Tentar descriptografar primeiro
-                return encryption_manager.decrypt(self.public_key_encrypted)
-            except Exception as e:
-                logger.warning(f"Erro ao descriptografar public key: {e}")
-                # Se falhar, pode ser que a key não esteja criptografada
-                # Verificar se parece com uma key válida (não criptografada)
-                if self.public_key_encrypted.startswith(('TEST-', 'APP-')):
-                    logger.info("Usando public key não criptografada")
-                    return self.public_key_encrypted
-                else:
-                    logger.error("Public key não é válida nem criptografada")
-                    # Tentar usar a key como está (pode ser válida mas não reconhecida)
-                    logger.info("Tentando usar public key como está")
-                    return self.public_key_encrypted
-        else:
-            # Se não há key criptografada, tentar obter das variáveis de ambiente
-            import os
-            env_key = os.getenv('MERCADOPAGO_PUBLIC_KEY')
-            if env_key:
-                logger.info("Usando public key das variáveis de ambiente")
-                return env_key
-        return None
+        """Obtém public key"""
+        return self.public_key
     
     def set_webhook_secret(self, secret):
-        """Define webhook secret de forma criptografada"""
+        """Define webhook secret"""
         if secret:
-            self.webhook_secret_encrypted = encryption_manager.encrypt(secret)
+            self.webhook_secret = secret
     
     def get_webhook_secret(self):
-        """Obtém webhook secret descriptografado"""
-        if self.webhook_secret_encrypted:
-            try:
-                return encryption_manager.decrypt(self.webhook_secret_encrypted)
-            except Exception as e:
-                logger.error(f"Erro ao descriptografar webhook secret: {e}")
-                return None
-        return None
+        """Obtém webhook secret"""
+        return self.webhook_secret
     
     def mark_usage(self):
         """Marca uso da configuração"""
