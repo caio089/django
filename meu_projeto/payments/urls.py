@@ -9,6 +9,7 @@ urlpatterns = [
     path('plano/<int:plano_id>/', views.escolher_plano, name='escolher_plano'),
     path('criar-pagamento/<int:plano_id>/', views.criar_pagamento, name='criar_pagamento'),
     path('gerar-pix/<int:payment_id>/', views.gerar_pix_direto, name='gerar_pix_direto'),
+    path('criar-pagamento-cartao/<int:payment_id>/', views.criar_pagamento_cartao, name='criar_pagamento_cartao'),
     path('checkout/<int:payment_id>/', views.checkout_pagamento, name='checkout_pagamento'),
     path('sucesso/', views.pagamento_sucesso, name='sucesso'),
     path('falha/', views.pagamento_falha, name='falha'),

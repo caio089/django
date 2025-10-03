@@ -32,29 +32,35 @@ data_validator = DataValidator()
 
 def get_mercadopago_config():
     """
-    Obtém as configurações do Mercado Pago diretamente das variáveis de ambiente
+    Obtém as configurações do Mercado Pago usando configuração centralizada
     Retorna: (sdk, config) ou (None, None) se erro
     """
     try:
-        # Usar variáveis de ambiente diretamente (sem criptografia)
-        access_token = os.getenv('MERCADOPAGO_ACCESS_TOKEN')
-        public_key = os.getenv('MERCADOPAGO_PUBLIC_KEY')
-        webhook_url = os.getenv('MERCADOPAGO_WEBHOOK_URL', 'https://dojo-on.onrender.com/payments/webhook/')
+        from .mercadopago_config import get_mercadopago_credentials, validate_credentials
         
-        if not access_token or not public_key:
-            logger.error("Variáveis de ambiente MERCADOPAGO_ACCESS_TOKEN ou MERCADOPAGO_PUBLIC_KEY não encontradas")
+        # Validar credenciais
+        is_valid, message = validate_credentials()
+        if not is_valid:
+            logger.error(f"❌ Credenciais inválidas: {message}")
             return None, None
         
-        logger.info("Usando tokens das variáveis de ambiente (sem criptografia)")
+        # Obter credenciais
+        access_token, public_key, webhook_url, ambiente = get_mercadopago_credentials()
+        
+        if not access_token or not public_key:
+            logger.error("❌ Credenciais não encontradas após validação")
+            return None, None
+        
+        logger.info(f"✅ Configurando SDK Mercado Pago - Ambiente: {ambiente}")
         sdk = mercadopago.SDK(access_token)
         
         # Criar um objeto config simples
         class SimpleConfig:
-            def __init__(self, access_token, public_key, webhook_url):
+            def __init__(self, access_token, public_key, webhook_url, ambiente):
                 self.access_token = access_token
                 self.public_key = public_key
                 self.webhook_url = webhook_url
-                self.ambiente = 'production' if access_token.startswith('APP-') else 'sandbox'
+                self.ambiente = ambiente
             
             def get_public_key(self):
                 return self.public_key
@@ -62,12 +68,12 @@ def get_mercadopago_config():
             def mark_usage(self):
                 pass
         
-        config = SimpleConfig(access_token, public_key, webhook_url)
-        logger.info(f"SDK criado com sucesso - Ambiente: {config.ambiente}")
+        config = SimpleConfig(access_token, public_key, webhook_url, ambiente)
+        logger.info(f"✅ SDK criado com sucesso - Ambiente: {ambiente}")
         return sdk, config
         
     except Exception as e:
-        logger.error(f"Erro ao configurar Mercado Pago: {e}", exc_info=True)
+        logger.error(f"❌ Erro ao configurar Mercado Pago: {e}", exc_info=True)
         return None, None
 
 def is_sandbox_environment():
@@ -339,6 +345,108 @@ def criar_pagamento(request, plano_id):
 
 @login_required
 @require_http_methods(["POST"])
+def criar_pagamento_cartao(request, payment_id):
+    """
+    Cria um pagamento com cartão de crédito no Mercado Pago
+    """
+    try:
+        pagamento = get_object_or_404(Pagamento, id=payment_id, usuario=request.user)
+        
+        # Obter configuração do Mercado Pago
+        sdk, config = get_mercadopago_config()
+        if not sdk:
+            return JsonResponse({
+                'success': False,
+                'error': 'Erro na configuração do pagamento'
+            })
+        
+        # Buscar plano pelo valor
+        plano = PlanoPremium.objects.filter(preco=pagamento.valor, ativo=True).first()
+        if not plano:
+            return JsonResponse({
+                'success': False,
+                'error': 'Plano não encontrado'
+            })
+        
+        # Criar preferência de pagamento para cartão
+        preference_data = {
+            "items": [
+                {
+                    "title": plano.nome,
+                    "description": plano.descricao,
+                    "quantity": 1,
+                    "unit_price": float(plano.preco),
+                    "currency_id": "BRL"
+                }
+            ],
+            "payer": {
+                "email": pagamento.get_payer_email() or pagamento.usuario.email,
+                "identification": {
+                    "type": "CPF",
+                    "number": pagamento.get_payer_document() or "00000000000"
+                }
+            },
+            "back_urls": {
+                "success": "https://dojo-on.onrender.com/payments/sucesso/",
+                "failure": "https://dojo-on.onrender.com/payments/falha/",
+                "pending": "https://dojo-on.onrender.com/payments/pendente/"
+            },
+            "external_reference": str(pagamento.external_reference),
+            "notification_url": config.webhook_url,
+            "payment_methods": {
+                "excluded_payment_methods": [
+                    {"id": "pix"}  # Excluir PIX para forçar cartão
+                ],
+                "excluded_payment_types": [],
+                "installments": 12
+            },
+            "auto_return": "approved",
+            "binary_mode": False,
+            "statement_descriptor": "DOJO-ON",
+            "metadata": {
+                "plano_id": str(plano.id),
+                "user_id": str(request.user.id),
+                "external_reference": str(pagamento.external_reference),
+                "payment_type": "cartao"
+            }
+        }
+        
+        # Criar preferência no Mercado Pago
+        logger.info(f"Criando preferência para cartão com dados: {preference_data}")
+        preference = sdk.preference().create(preference_data)
+        logger.info(f"Resposta da preferência cartão: {preference}")
+        
+        if preference["status"] == 201:
+            preference_data = preference["response"]
+            
+            # Atualizar pagamento com o ID da preferência
+            pagamento.set_payment_id(f"pref_{preference_data['id']}")
+            pagamento.save()
+            
+            return JsonResponse({
+                'success': True,
+                'preference_id': preference_data["id"],
+                'init_point': preference_data["init_point"],
+                'public_key': config.get_public_key(),
+                'payment_id': pagamento.id,
+                'external_reference': str(pagamento.external_reference)
+            })
+        else:
+            logger.error(f"Erro ao criar preferência cartão: {preference}")
+            return JsonResponse({
+                'success': False,
+                'error': 'Erro ao criar pagamento com cartão no Mercado Pago'
+            })
+            
+    except Exception as e:
+        logger.error(f"Erro ao criar pagamento cartão: {e}", exc_info=True)
+        return JsonResponse({
+            'success': False,
+            'error': f'Erro interno do servidor: {str(e)}'
+        })
+
+@login_required
+@require_http_methods(["POST"])
 def gerar_pix_direto(request, payment_id):
     """
     Gera QR Code PIX diretamente para um pagamento
@@ -381,47 +489,49 @@ def gerar_pix_direto(request, payment_id):
             pagamento.status = 'pending'
             pagamento.save()
             
-            # Gerar QR Code PIX válido
-            from .pix_generator import gerar_qr_code_pix_valido, validar_qr_code_pix
+            # Verificar se o pagamento PIX foi criado com sucesso
+            if payment_info.get("status") == "pending":
+                # Buscar informações do PIX no Mercado Pago
+                point_of_interaction = payment_info.get("point_of_interaction", {})
+                transaction_details = payment_info.get("transaction_details", {})
             
-            # Dados para o PIX (você pode configurar estes valores)
-            chave_pix = "ccamposs2007@gmail.com"  # Sua chave PIX
-            nome_beneficiario = "Dojo On"
-            cidade = "Teresina"
-            
-            pix_data = gerar_qr_code_pix_valido(
-                valor=pagamento.valor,
-                chave_pix=chave_pix,
-                nome_beneficiario=nome_beneficiario,
-                cidade=cidade,
-                descricao=pagamento.descricao
-            )
-            
-            if pix_data:
-                # Validar QR Code gerado
-                is_valid, message = validar_qr_code_pix(pix_data['qr_code'])
+                # Extrair dados do PIX do Mercado Pago
+                qr_code = point_of_interaction.get("transaction_data", {}).get("qr_code")
+                qr_code_base64 = point_of_interaction.get("transaction_data", {}).get("qr_code_base64")
                 
-                return JsonResponse({
-                    'success': True,
-                    'qr_code': pix_data['qr_code'],
-                    'qr_code_base64': pix_data['qr_code_base64'],
-                    'payment_id': payment_id_mp,
-                    'amount': payment_info.get("transaction_amount"),
-                    'currency': payment_info.get("currency_id"),
-                    'validation': {
-                        'is_valid': is_valid,
-                        'message': message
-                    },
-                    'pix_info': {
-                        'chave_pix': chave_pix,
-                        'nome_beneficiario': nome_beneficiario,
-                        'cidade': cidade
-                    }
-                })
+                if qr_code:
+                    logger.info(f"PIX gerado com sucesso - Payment ID: {payment_id_mp}")
+                    logger.info(f"QR Code: {qr_code[:50]}...")
+                    
+                    return JsonResponse({
+                        'success': True,
+                        'qr_code': qr_code,
+                        'qr_code_base64': qr_code_base64,
+                        'payment_id': payment_id_mp,
+                        'amount': payment_info.get("transaction_amount"),
+                        'currency': payment_info.get("currency_id"),
+                        'status': payment_info.get("status"),
+                        'validation': {
+                            'is_valid': True,
+                            'message': 'QR Code PIX válido do Mercado Pago'
+                        },
+                        'pix_info': {
+                            'chave_pix': 'Chave PIX do Mercado Pago',
+                            'nome_beneficiario': 'Mercado Pago',
+                            'cidade': 'Brasil'
+                        }
+                    })
+                else:
+                    logger.error(f"PIX criado mas sem QR Code - Payment: {payment_info}")
+                    return JsonResponse({
+                        'success': False,
+                        'error': 'PIX criado mas QR Code não disponível'
+                    })
             else:
+                logger.error(f"PIX não foi criado corretamente - Status: {payment_info.get('status')}")
                 return JsonResponse({
                     'success': False,
-                    'error': 'Erro ao gerar QR Code PIX válido'
+                    'error': f'Erro ao criar PIX - Status: {payment_info.get("status")}'
                 })
         else:
             logger.error(f"Erro ao criar pagamento PIX: {payment_result}")
