@@ -502,7 +502,8 @@ def gerar_pix_direto(request, payment_id):
                 if qr_code:
                     logger.info(f"PIX gerado com sucesso - Payment ID: {payment_id_mp}")
                     logger.info(f"QR Code: {qr_code[:50]}...")
-                    
+                    logger.info(f"QR Code Base64 disponível: {qr_code_base64 is not None}")
+
                     return JsonResponse({
                         'success': True,
                         'qr_code': qr_code,
@@ -511,6 +512,11 @@ def gerar_pix_direto(request, payment_id):
                         'amount': payment_info.get("transaction_amount"),
                         'currency': payment_info.get("currency_id"),
                         'status': payment_info.get("status"),
+                        'debug_info': {
+                            'has_qr_code': bool(qr_code),
+                            'has_qr_base64': bool(qr_code_base64),
+                            'payment_status': payment_info.get("status")
+                        },
                         'validation': {
                             'is_valid': True,
                             'message': 'QR Code PIX válido do Mercado Pago'

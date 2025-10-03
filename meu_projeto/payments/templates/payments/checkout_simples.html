@@ -423,20 +423,16 @@ function showPixQRCode(data) {
                     <p><strong>Descrição:</strong> {{ pagamento.descricao }}</p>
                 </div>
                 
-                <div class="flex space-x-3">
-                    <button onclick="this.closest('.fixed').remove()" class="flex-1 bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600">
+                <div class="text-center">
+                    <button onclick="this.closest('.fixed').remove()" class="bg-blue-600 text-white py-3 px-8 rounded-lg hover:bg-blue-700 font-semibold">
                         Fechar
-                    </button>
-                    <button onclick="navigator.clipboard.writeText('${data.qr_code || ''}')" class="flex-1 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700">
-                        Copiar Código
                     </button>
                 </div>
                 
-                <div class="mt-4 pt-4 border-t">
-                    <button onclick="jaPaguei()" class="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-green-700">
-                        ✅ Já Paguei - Verificar Pagamento
-                    </button>
-                    <p class="text-xs text-gray-500 mt-2">Clique aqui após fazer o PIX para ativar seu plano</p>
+                <div class="mt-4 text-center">
+                    <p class="text-sm text-gray-600">
+                        💡 <strong>Após fazer o PIX, você será redirecionado automaticamente para o dashboard</strong>
+                    </p>
                 </div>
             </div>
         </div>
@@ -469,7 +465,7 @@ function showPixQRCode(data) {
                 modal.remove();
                 showStatus('success', 'Pagamento Confirmado!', 'Sua assinatura foi ativada. Redirecionando...');
                 setTimeout(() => {
-                    window.location.href = '{% url "payments:bem_vindo" payment_id=pagamento.id %}';
+                    window.location.href = '/payments/bem-vindo/{{ pagamento.id }}/';
                 }, 2000);
             } else if (statusData.status === 'approved' && !statusData.assinatura_ativa) {
                 console.log('Pagamento aprovado mas assinatura não ativa ainda');
@@ -490,46 +486,7 @@ function showPixQRCode(data) {
     }, 2000);
 }
 
-// Função para verificar pagamento manualmente
-async function jaPaguei() {
-    try {
-        showStatus('loading', 'Verificando pagamento...', 'Aguarde, estamos verificando seu pagamento no Mercado Pago');
-        
-        const response = await fetch(`/payments/verificar-status/{{ pagamento.id }}/`);
-        const data = await response.json();
-        
-        console.log('Status do pagamento:', data);
-        
-        if (data.status === 'approved' && data.assinatura_ativa) {
-            showStatus('success', 'Pagamento Confirmado!', 'Sua assinatura foi ativada. Redirecionando...');
-            setTimeout(() => {
-                window.location.href = '{% url "payments:bem_vindo" payment_id=pagamento.id %}';
-            }, 2000);
-        } else if (data.status === 'approved' && !data.assinatura_ativa) {
-            showStatus('loading', 'Ativando assinatura...', 'Pagamento confirmado, ativando seu plano premium...');
-            // Tentar novamente em 2 segundos
-            setTimeout(async () => {
-                const response2 = await fetch(`/payments/verificar-status/{{ pagamento.id }}/`);
-                const data2 = await response2.json();
-                if (data2.assinatura_ativa) {
-                    showStatus('success', 'Plano Ativado!', 'Redirecionando para o dashboard...');
-                    setTimeout(() => {
-                        window.location.href = '{% url "payments:bem_vindo" payment_id=pagamento.id %}';
-                    }, 2000);
-                } else {
-                    showStatus('error', 'Erro na ativação', 'Entre em contato com o suporte');
-                }
-            }, 2000);
-        } else if (data.status === 'pending') {
-            showStatus('error', 'Pagamento ainda pendente', 'Aguarde a confirmação do PIX. Pode levar alguns minutos.');
-        } else {
-            showStatus('error', 'Pagamento não confirmado', 'Verifique se o PIX foi realizado corretamente');
-        }
-    } catch (error) {
-        console.error('Erro ao verificar pagamento:', error);
-        showStatus('error', 'Erro na verificação', 'Tente novamente em alguns minutos');
-    }
-}
+// Função removida - verificação agora é automática
 
 console.log('Checkout inicializado');
 console.log('Public Key:', '{{ public_key }}');
