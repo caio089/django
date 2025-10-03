@@ -64,22 +64,33 @@ class WebhookSecurity:
         Returns:
             bool: True se origem for válida
         """
-        # IPs conhecidos do Mercado Pago
+        # IPs conhecidos do Mercado Pago (mais abrangente)
         mercadopago_ips = [
-            '54.233.0.0/16',    # Mercado Pago Brasil
-            '54.207.0.0/16',    # Mercado Pago Argentina
-            '54.94.0.0/16',     # Mercado Pago México
-            '54.88.0.0/16',     # Mercado Pago (novos IPs)
-            '18.213.0.0/16',    # Mercado Pago (novos IPs)
-            '18.206.0.0/16',    # Mercado Pago (novos IPs)
+            '54.233.',    # Mercado Pago Brasil
+            '54.207.',    # Mercado Pago Argentina
+            '54.94.',     # Mercado Pago México
+            '54.88.',     # Mercado Pago (novos IPs)
+            '18.213.',    # Mercado Pago (novos IPs)
+            '18.206.',    # Mercado Pago (novos IPs)
+            '18.215.',    # Mercado Pago (novos IPs)
+            '54.88.218.', # Mercado Pago específico
         ]
         
         client_ip = WebhookSecurity.get_client_ip(request)
         
-        # Verificar se IP está na lista (simplificado)
-        for ip_range in mercadopago_ips:
-            if client_ip.startswith(ip_range.split('/')[0].rsplit('.', 1)[0]):
+        # Verificar User-Agent do Mercado Pago
+        user_agent = request.META.get('HTTP_USER_AGENT', '')
+        if 'MercadoPago' in user_agent or 'mercadopago' in user_agent.lower():
+            return True
+        
+        # Verificar se IP está na lista
+        for ip_prefix in mercadopago_ips:
+            if client_ip.startswith(ip_prefix):
                 return True
+        
+        # Em ambiente de desenvolvimento, ser mais permissivo
+        if settings.DEBUG:
+            return True
         
         return False
     

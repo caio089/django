@@ -564,12 +564,13 @@ def webhook_mercadopago(request):
             )
             return HttpResponse(status=429)
         
-        # Verificar origem do webhook
-        if not WebhookSecurity.verify_webhook_origin(request):
+        # Verificar origem do webhook (mais permissivo para Mercado Pago)
+        user_agent = request.META.get('HTTP_USER_AGENT', '')
+        if not WebhookSecurity.verify_webhook_origin(request) and 'MercadoPago' not in user_agent:
             audit_logger.log_security_event(
                 'invalid_webhook_origin',
                 'high',
-                {'ip': client_ip, 'user_agent': request.META.get('HTTP_USER_AGENT', '')}
+                {'ip': client_ip, 'user_agent': user_agent}
             )
             return HttpResponse(status=403)
         

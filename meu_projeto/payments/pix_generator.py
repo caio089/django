@@ -16,39 +16,47 @@ def gerar_qr_code_pix_valido(valor, chave_pix, nome_beneficiario, cidade, descri
         cidade = cidade[:15] if len(cidade) > 15 else cidade
         descricao = descricao[:25] if descricao and len(descricao) > 25 else (descricao or "Pagamento")
         
-        # Dados do PIX no formato EMV
-        pix_data = {
-            "00": "01",  # Payload Format Indicator
-            "26": {      # Merchant Account Information
-                "00": "br.gov.bcb.pix",  # GUI
-                "01": chave_pix,         # Chave PIX
-            },
-            "52": "0000",  # Merchant Category Code
-            "53": "986",   # Transaction Currency (BRL)
-            "54": valor_formatado,  # Transaction Amount
-            "58": "BR",    # Country Code
-            "59": nome_beneficiario,  # Merchant Name
-            "60": cidade,  # Merchant City
-            "62": {        # Additional Data Field Template
-                "05": descricao  # Reference Label
-            }
-        }
+        # Construir string EMV manualmente para garantir formato correto
+        emv_string = "000201"  # Payload Format Indicator
         
-        # Converter para string EMV
-        emv_string = ""
-        for tag, value in pix_data.items():
-            if isinstance(value, dict):
-                # Construir string do dicionário aninhado
-                nested_string = ""
-                for sub_tag, sub_value in value.items():
-                    sub_value_str = str(sub_value)
-                    nested_string += f"{sub_tag}{len(sub_value_str):02d}{sub_value_str}"
-                
-                # Adicionar tag pai com tamanho do conteúdo aninhado
-                emv_string += f"{tag}{len(nested_string):02d}{nested_string}"
-            else:
-                value_str = str(value)
-                emv_string += f"{tag}{len(value_str):02d}{value_str}"
+        # Merchant Account Information (26)
+        gui = "br.gov.bcb.pix"
+        gui_length = len(gui)
+        chave_length = len(chave_pix)
+        merchant_account = f"00{gui_length:02d}{gui}01{chave_length:02d}{chave_pix}"
+        merchant_account_length = len(merchant_account)
+        emv_string += f"26{merchant_account_length:02d}{merchant_account}"
+        
+        # Merchant Category Code (52)
+        mcc = "0000"
+        emv_string += f"52{len(mcc):02d}{mcc}"
+        
+        # Transaction Currency (53)
+        currency = "986"
+        emv_string += f"53{len(currency):02d}{currency}"
+        
+        # Transaction Amount (54)
+        amount_length = len(valor_formatado)
+        emv_string += f"54{amount_length:02d}{valor_formatado}"
+        
+        # Country Code (58)
+        country = "BR"
+        emv_string += f"58{len(country):02d}{country}"
+        
+        # Merchant Name (59)
+        name_length = len(nome_beneficiario)
+        emv_string += f"59{name_length:02d}{nome_beneficiario}"
+        
+        # Merchant City (60)
+        city_length = len(cidade)
+        emv_string += f"60{city_length:02d}{cidade}"
+        
+        # Additional Data Field Template (62)
+        reference = descricao
+        reference_length = len(reference)
+        additional_data = f"05{reference_length:02d}{reference}"
+        additional_data_length = len(additional_data)
+        emv_string += f"62{additional_data_length:02d}{additional_data}"
         
         # Adicionar CRC (Checksum)
         crc = calcular_crc16(emv_string)
