@@ -227,10 +227,13 @@ submitButton.addEventListener('click', () => {
                    })
                    .then(data => {
                        console.log('📊 Dados recebidos da API PIX:', data);
+                       console.log('🔍 QR Code Base64:', data.qr_code_base64 ? 'Disponível' : 'NÃO DISPONÍVEL');
+                       console.log('🔍 Debug Info:', data.debug_info);
                        
                        if (data.success) {
                            // PIX gerado com sucesso, mostrar QR Code
                            console.log('✅ PIX GERADO COM SUCESSO!');
+                           console.log('🖼️ Mostrando QR Code...');
                            showPixQRCode(data);
                        } else {
                            // Erro ao gerar PIX, mostrar erro
@@ -401,6 +404,8 @@ function hideStatus() {
 // Função para mostrar QR Code PIX
 function showPixQRCode(data) {
     console.log('🎯 Mostrando QR Code PIX:', data);
+    console.log('🖼️ QR Code Base64:', data.qr_code_base64 ? 'Disponível' : 'NÃO DISPONÍVEL');
+    console.log('📏 Tamanho do QR Code:', data.qr_code_base64 ? data.qr_code_base64.length : 'N/A');
     
     // Criar modal para QR Code
     const modal = document.createElement('div');
@@ -413,7 +418,7 @@ function showPixQRCode(data) {
                 
                 <div class="bg-gray-100 p-4 rounded-lg mb-4">
                     ${data.qr_code_base64 ? 
-                        `<img src="${data.qr_code_base64}" alt="QR Code PIX" class="mx-auto max-w-full h-auto">` :
+                        `<img src="data:image/png;base64,${data.qr_code_base64}" alt="QR Code PIX" class="mx-auto max-w-full h-auto">` :
                         `<div class="text-gray-500">QR Code não disponível</div>`
                     }
                 </div>

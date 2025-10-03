@@ -529,9 +529,18 @@ def gerar_pix_direto(request, payment_id):
                     })
                 else:
                     logger.error(f"PIX criado mas sem QR Code - Payment: {payment_info}")
+                    logger.error(f"Point of interaction: {point_of_interaction}")
+                    logger.error(f"Transaction data: {point_of_interaction.get('transaction_data', {})}")
+                    
                     return JsonResponse({
                         'success': False,
-                        'error': 'PIX criado mas QR Code não disponível'
+                        'error': 'PIX criado mas QR Code não disponível',
+                        'debug_info': {
+                            'payment_id': payment_id_mp,
+                            'payment_status': payment_info.get("status"),
+                            'has_point_of_interaction': bool(point_of_interaction),
+                            'transaction_data': point_of_interaction.get('transaction_data', {})
+                        }
                     })
             else:
                 logger.error(f"PIX não foi criado corretamente - Status: {payment_info.get('status')}")
