@@ -24,7 +24,7 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 # CSRF Settings
-CSRF_COOKIE_SECURE = False  # True apenas em HTTPS
+CSRF_COOKIE_SECURE = not DEBUG  # True em produção (HTTPS)
 CSRF_COOKIE_HTTPONLY = False
 CSRF_COOKIE_SAMESITE = 'Lax'
 CSRF_USE_SESSIONS = False
@@ -48,6 +48,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'payments.middleware.PremiumAccessMiddleware',
+    'payments.security.SecurityMiddleware',
 ]
 
 ROOT_URLCONF = 'meu_projeto.urls'
@@ -101,8 +102,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internacionalização
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'pt-br'
+TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_TZ = True
 
@@ -134,6 +135,8 @@ if not DEBUG:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'home'
 
 # Configurações de segurança para produção
 if not DEBUG:

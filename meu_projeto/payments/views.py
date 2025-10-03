@@ -14,6 +14,7 @@ from home.models import Profile
 from quiz.models import ProgressoUsuario
 import uuid
 from datetime import datetime, timedelta
+from django.utils import timezone
 import logging
 
 # Configurar logging para debug
@@ -105,7 +106,7 @@ def listar_planos(request):
     assinatura_ativa = Assinatura.objects.filter(
         usuario=request.user,
         status='ativa',
-        data_vencimento__gt=datetime.now()
+        data_vencimento__gt=timezone.now()
     ).first()
     
     return render(request, 'payments/planos.html', {
@@ -124,7 +125,7 @@ def escolher_plano(request, plano_id):
     assinatura_ativa = Assinatura.objects.filter(
         usuario=request.user,
         status='ativa',
-        data_vencimento__gt=datetime.now()
+        data_vencimento__gt=timezone.now()
     ).exists()
     
     if assinatura_ativa:
@@ -529,7 +530,7 @@ def webhook_mercadopago(request):
         
         # Marcar como processado
         webhook_event.processado = True
-        webhook_event.data_processamento = datetime.now()
+        webhook_event.data_processamento = timezone.now()
         webhook_event.save()
         
         return HttpResponse(status=200)
@@ -590,7 +591,7 @@ def processar_pagamento_webhook(payment_id, webhook_event):
         status_anterior = pagamento.status
         pagamento.status = payment_data["status"]
         pagamento.metodo_pagamento = payment_data.get("payment_method_id")
-        pagamento.data_pagamento = datetime.now()
+        pagamento.data_pagamento = timezone.now()
         pagamento.save()
         
         # Registrar auditoria
@@ -629,7 +630,7 @@ def ativar_assinatura(pagamento, payment_data):
             return
         
         # Calcular datas
-        data_inicio = datetime.now()
+        data_inicio = timezone.now()
         data_vencimento = data_inicio + timedelta(days=plano.duracao_dias)
         
         # Criar assinatura
@@ -768,7 +769,7 @@ def cancelar_assinatura(request, assinatura_id):
         
         # Cancelar assinatura
         assinatura.status = 'cancelada'
-        assinatura.data_cancelamento = datetime.now()
+        assinatura.data_cancelamento = timezone.now()
         assinatura.save()
         
         # Atualizar perfil do usuário
@@ -809,7 +810,7 @@ def verificar_acesso_premium(user):
         assinatura = Assinatura.objects.filter(
             usuario=user,
             status='ativa',
-            data_vencimento__gt=datetime.now()
+            data_vencimento__gt=timezone.now()
         ).first()
         
         return assinatura is not None, assinatura
