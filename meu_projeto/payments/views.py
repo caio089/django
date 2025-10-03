@@ -440,7 +440,7 @@ def gerar_pix_direto(request, payment_id):
 @login_required
 def checkout_pagamento(request, payment_id):
     """
-    Página de checkout com Mercado Pago SDK
+    Página de checkout com Mercado Pago
     """
     pagamento = get_object_or_404(Pagamento, id=payment_id, usuario=request.user)
     
@@ -451,16 +451,95 @@ def checkout_pagamento(request, payment_id):
         return redirect('payments:planos')
     
     # Debug: verificar dados do pagamento
-    payment_id = pagamento.get_payment_id()
-    logger.info(f"Checkout - Payment ID: {payment_id}")
+    payment_id_mp = pagamento.get_payment_id()
+    logger.info(f"Checkout - Payment ID: {payment_id_mp}")
     logger.info(f"Checkout - Payment status: {pagamento.status}")
     logger.info(f"Checkout - External reference: {pagamento.external_reference}")
     
-    return render(request, 'payments/checkout.html', {
-        'pagamento': pagamento,
-        'public_key': config.get_public_key(),
-        'preference_id': payment_id
-    })
+    # Se o payment_id começa com "pref_", é uma preferência
+    if payment_id_mp and payment_id_mp.startswith('pref_'):
+        preference_id = payment_id_mp.replace('pref_', '')
+        init_point = f"https://www.mercadopago.com.br/checkout/v1/redirect?pref_id={preference_id}"
+        logger.info(f"Checkout - Init Point: {init_point}")
+        
+        return render(request, 'payments/checkout.html', {
+            'pagamento': pagamento,
+            'public_key': config.get_public_key(),
+            'preference_id': preference_id,
+            'init_point': init_point
+        })
+    else:
+        # Se não é uma preferência, criar uma nova
+        logger.info("Criando nova preferência para checkout...")
+        
+        # Buscar plano pelo valor
+        plano = PlanoPremium.objects.filter(preco=pagamento.valor, ativo=True).first()
+        if not plano:
+            messages.error(request, 'Plano não encontrado.')
+            return redirect('payments:planos')
+        
+        # Criar preferência
+        preference_data = {
+            "items": [
+                {
+                    "title": plano.nome,
+                    "description": plano.descricao,
+                    "quantity": 1,
+                    "unit_price": float(plano.preco),
+                    "currency_id": "BRL"
+                }
+            ],
+            "payer": {
+                "email": pagamento.get_payer_email() or pagamento.usuario.email,
+                "identification": {
+                    "type": "CPF",
+                    "number": pagamento.get_payer_document() or "00000000000"
+                }
+            },
+            "back_urls": {
+                "success": "https://dojo-on.onrender.com/payments/sucesso/",
+                "failure": "https://dojo-on.onrender.com/payments/falha/",
+                "pending": "https://dojo-on.onrender.com/payments/pendente/"
+            },
+            "external_reference": str(pagamento.external_reference),
+            "notification_url": config.webhook_url,
+            "payment_methods": {
+                "excluded_payment_methods": [],
+                "excluded_payment_types": [],
+                "installments": 12
+            },
+            "auto_return": "approved",
+            "binary_mode": False,
+            "statement_descriptor": "DOJO-ON"
+        }
+        
+        try:
+            preference = sdk.preference().create(preference_data)
+            if preference["status"] == 201:
+                preference_data = preference["response"]
+                init_point = preference_data["init_point"]
+                preference_id = preference_data["id"]
+                
+                # Atualizar pagamento com o ID da preferência
+                pagamento.set_payment_id(f"pref_{preference_id}")
+                pagamento.save()
+                
+                logger.info(f"Preferência criada: {preference_id}")
+                
+                return render(request, 'payments/checkout.html', {
+                    'pagamento': pagamento,
+                    'public_key': config.get_public_key(),
+                    'preference_id': preference_id,
+                    'init_point': init_point
+                })
+            else:
+                logger.error(f"Erro ao criar preferência: {preference}")
+                messages.error(request, 'Erro ao criar checkout.')
+                return redirect('payments:planos')
+        except Exception as e:
+            logger.error(f"Erro ao criar preferência: {e}")
+            messages.error(request, 'Erro ao criar checkout.')
+            return redirect('payments:planos')
 
 # =====================================================
 # WEBHOOK E PROCESSAMENTO DE PAGAMENTOS

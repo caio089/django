@@ -785,25 +785,31 @@ submitButton.addEventListener('click', async () => {
             
             console.log('🔗 Dados de redirecionamento:');
             console.log('   PREFERENCE_ID:', PREFERENCE_ID);
+            console.log('   INIT_POINT:', INIT_POINT);
             console.log('   PUBLIC_KEY:', PUBLIC_KEY);
             
-            if (PREFERENCE_ID && PREFERENCE_ID !== 'None' && PREFERENCE_ID !== '') {
-                console.log('✅ Redirecionando para Mercado Pago com preference_id:', PREFERENCE_ID);
-                
-                // URL correta para sandbox/produção
-                const checkoutUrl = `https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=${PREFERENCE_ID}`;
-                console.log('🔗 URL de checkout:', checkoutUrl);
-                
-                setTimeout(() => {
-                    window.location.href = checkoutUrl;
-                }, 1000);
+            // Usar init_point se disponível, senão construir URL
+            let checkoutUrl = '';
+            if (INIT_POINT && INIT_POINT !== 'None' && INIT_POINT !== '') {
+                checkoutUrl = INIT_POINT;
+                console.log('✅ Usando init_point:', checkoutUrl);
+            } else if (PREFERENCE_ID && PREFERENCE_ID !== 'None' && PREFERENCE_ID !== '') {
+                checkoutUrl = `https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=${PREFERENCE_ID}`;
+                console.log('✅ Construindo URL com preference_id:', checkoutUrl);
             } else {
-                console.error('❌ PREFERENCE_ID não encontrado ou inválido:', PREFERENCE_ID);
-                showStatus('error', 'Erro no pagamento', 'ID de preferência não encontrado. Tente novamente.');
+                console.error('❌ Nem init_point nem PREFERENCE_ID encontrados');
+                showStatus('error', 'Erro no pagamento', 'URL de checkout não encontrada. Tente novamente.');
                 submitButton.disabled = false;
                 submitText.classList.remove('hidden');
                 loadingSpinner.classList.add('hidden');
+                return;
             }
+            
+            console.log('🔗 URL de checkout final:', checkoutUrl);
+            
+            setTimeout(() => {
+                window.location.href = checkoutUrl;
+            }, 1000);
         }
         
     } catch (error) {

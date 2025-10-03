@@ -11,6 +11,11 @@ def gerar_qr_code_pix_valido(valor, chave_pix, nome_beneficiario, cidade, descri
         # Formatar valor para PIX (2 casas decimais)
         valor_formatado = f"{float(valor):.2f}"
         
+        # Limitar tamanho dos campos conforme especificação PIX
+        nome_beneficiario = nome_beneficiario[:25] if len(nome_beneficiario) > 25 else nome_beneficiario
+        cidade = cidade[:15] if len(cidade) > 15 else cidade
+        descricao = descricao[:25] if descricao and len(descricao) > 25 else (descricao or "Pagamento")
+        
         # Dados do PIX no formato EMV
         pix_data = {
             "00": "01",  # Payload Format Indicator
@@ -25,7 +30,7 @@ def gerar_qr_code_pix_valido(valor, chave_pix, nome_beneficiario, cidade, descri
             "59": nome_beneficiario,  # Merchant Name
             "60": cidade,  # Merchant City
             "62": {        # Additional Data Field Template
-                "05": descricao[:25] if descricao else "Pagamento"  # Reference Label
+                "05": descricao  # Reference Label
             }
         }
         
@@ -36,12 +41,14 @@ def gerar_qr_code_pix_valido(valor, chave_pix, nome_beneficiario, cidade, descri
                 # Construir string do dicionário aninhado
                 nested_string = ""
                 for sub_tag, sub_value in value.items():
-                    nested_string += f"{sub_tag}{len(str(sub_value)):02d}{sub_value}"
+                    sub_value_str = str(sub_value)
+                    nested_string += f"{sub_tag}{len(sub_value_str):02d}{sub_value_str}"
                 
                 # Adicionar tag pai com tamanho do conteúdo aninhado
                 emv_string += f"{tag}{len(nested_string):02d}{nested_string}"
             else:
-                emv_string += f"{tag}{len(str(value)):02d}{value}"
+                value_str = str(value)
+                emv_string += f"{tag}{len(value_str):02d}{value_str}"
         
         # Adicionar CRC (Checksum)
         crc = calcular_crc16(emv_string)
