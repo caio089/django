@@ -191,8 +191,7 @@ submitButton.addEventListener('click', () => {
     try {
                if (currentPaymentType === 'pix') {
                    // PIX - USAR PIX DIRETO (SEM MERCADO PAGO)
-                   console.log('🔵 PIX SELECIONADO - USANDO PIX DIRETO');
-                   console.log('✅ GERANDO QR CODE PIX DIRETAMENTE');
+                   // PIX selecionado - gerando QR Code
                    
                    showStatus('loading', 'Gerando PIX...', 'Aguarde, estamos gerando seu código PIX');
                    
@@ -232,8 +231,6 @@ submitButton.addEventListener('click', () => {
                        
                        if (data.success) {
                            // PIX gerado com sucesso, mostrar QR Code
-                           console.log('✅ PIX GERADO COM SUCESSO!');
-                           console.log('🖼️ Mostrando QR Code...');
                            showPixQRCode(data);
                        } else {
                            // Erro ao gerar PIX, mostrar erro
@@ -420,16 +417,35 @@ function showPixQRCode(data) {
                 
                 <div class="bg-gray-100 p-4 rounded-lg mb-4" id="qr-container">
                     ${data.qr_code_base64 ? 
-                        `<img src="${data.qr_code_base64.startsWith('data:') ? data.qr_code_base64 : 'data:image/png;base64,' + data.qr_code_base64}" alt="QR Code PIX" class="mx-auto max-w-full h-auto" onerror="console.error('Erro ao carregar QR Code'); this.style.display='none'; this.nextElementSibling.style.display='block';">` :
+                        `<div class="text-center">
+                            <div id="qr-image-container"></div>
+                            <script>
+                                (function() {
+                                    const base64 = '${data.qr_code_base64}';
+                                    const img = document.createElement('img');
+                                    img.alt = 'QR Code PIX';
+                                    img.className = 'mx-auto max-w-full h-auto';
+                                    
+                                    // Verificar se já tem prefixo data:
+                                    if (base64.startsWith('data:')) {
+                                        img.src = base64;
+                                    } else {
+                                        img.src = 'data:image/png;base64,' + base64;
+                                    }
+                                    
+                                    img.onload = function() {
+                                        document.getElementById('qr-image-container').appendChild(img);
+                                    };
+                                    
+                                    img.onerror = function() {
+                                        document.getElementById('qr-image-container').innerHTML = 
+                                            '<div class="text-center"><p class="text-gray-600 mb-2">QR Code não pôde ser exibido</p><p class="text-sm text-gray-500">Use o código PIX abaixo:</p><div class="bg-white p-3 rounded border"><code class="text-xs break-all">${data.qr_code || 'Código não disponível'}</code></div></div>';
+                                    };
+                                })();
+                            </script>
+                        </div>` :
                         `<div class="text-gray-500">QR Code não disponível</div>`
                     }
-                    <div style="display: none; text-align: center;">
-                        <p class="text-gray-600 mb-2">QR Code não pôde ser exibido</p>
-                        <p class="text-sm text-gray-500">Use o código PIX abaixo:</p>
-                        <div class="bg-white p-3 rounded border">
-                            <code class="text-xs break-all">${data.qr_code || 'Código não disponível'}</code>
-                        </div>
-                    </div>
                 </div>
                 
                 <div class="text-sm text-gray-600 mb-4">
