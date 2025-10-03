@@ -352,6 +352,13 @@ class ConfiguracaoPagamento(models.Model):
                     # Tentar usar o token como está (pode ser válido mas não reconhecido)
                     logger.info("Tentando usar token como está")
                     return self.access_token_encrypted
+        else:
+            # Se não há token criptografado, tentar obter das variáveis de ambiente
+            import os
+            env_token = os.getenv('MERCADOPAGO_ACCESS_TOKEN')
+            if env_token:
+                logger.info("Usando token das variáveis de ambiente")
+                return env_token
         return None
     
     def set_public_key(self, key):
@@ -377,6 +384,13 @@ class ConfiguracaoPagamento(models.Model):
                     # Tentar usar a key como está (pode ser válida mas não reconhecida)
                     logger.info("Tentando usar public key como está")
                     return self.public_key_encrypted
+        else:
+            # Se não há key criptografada, tentar obter das variáveis de ambiente
+            import os
+            env_key = os.getenv('MERCADOPAGO_PUBLIC_KEY')
+            if env_key:
+                logger.info("Usando public key das variáveis de ambiente")
+                return env_key
         return None
     
     def set_webhook_secret(self, secret):
