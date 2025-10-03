@@ -406,6 +406,8 @@ function showPixQRCode(data) {
     console.log('🎯 Mostrando QR Code PIX:', data);
     console.log('🖼️ QR Code Base64:', data.qr_code_base64 ? 'Disponível' : 'NÃO DISPONÍVEL');
     console.log('📏 Tamanho do QR Code:', data.qr_code_base64 ? data.qr_code_base64.length : 'N/A');
+    console.log('🔍 Início do Base64:', data.qr_code_base64 ? data.qr_code_base64.substring(0, 50) : 'N/A');
+    console.log('🔍 Tem prefixo data:?', data.qr_code_base64 ? data.qr_code_base64.startsWith('data:') : 'N/A');
     
     // Criar modal para QR Code
     const modal = document.createElement('div');
@@ -416,11 +418,18 @@ function showPixQRCode(data) {
                 <h3 class="text-xl font-bold text-gray-800 mb-4">Pagamento PIX</h3>
                 <p class="text-gray-600 mb-4">Escaneie o QR Code com seu app bancário</p>
                 
-                <div class="bg-gray-100 p-4 rounded-lg mb-4">
+                <div class="bg-gray-100 p-4 rounded-lg mb-4" id="qr-container">
                     ${data.qr_code_base64 ? 
-                        `<img src="data:image/png;base64,${data.qr_code_base64}" alt="QR Code PIX" class="mx-auto max-w-full h-auto">` :
+                        `<img src="${data.qr_code_base64.startsWith('data:') ? data.qr_code_base64 : 'data:image/png;base64,' + data.qr_code_base64}" alt="QR Code PIX" class="mx-auto max-w-full h-auto" onerror="console.error('Erro ao carregar QR Code'); this.style.display='none'; this.nextElementSibling.style.display='block';">` :
                         `<div class="text-gray-500">QR Code não disponível</div>`
                     }
+                    <div style="display: none; text-align: center;">
+                        <p class="text-gray-600 mb-2">QR Code não pôde ser exibido</p>
+                        <p class="text-sm text-gray-500">Use o código PIX abaixo:</p>
+                        <div class="bg-white p-3 rounded border">
+                            <code class="text-xs break-all">${data.qr_code || 'Código não disponível'}</code>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="text-sm text-gray-600 mb-4">
