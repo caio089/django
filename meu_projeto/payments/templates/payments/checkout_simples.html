@@ -413,7 +413,7 @@ function showPixQRCode(data) {
                 
                 <div class="bg-gray-100 p-4 rounded-lg mb-4">
                     ${data.qr_code_base64 ? 
-                        `<img src="data:image/png;base64,${data.qr_code_base64}" alt="QR Code PIX" class="mx-auto max-w-full h-auto">` :
+                        `<img src="${data.qr_code_base64}" alt="QR Code PIX" class="mx-auto max-w-full h-auto">` :
                         `<div class="text-gray-500">QR Code não disponível</div>`
                     }
                 </div>
@@ -431,6 +431,13 @@ function showPixQRCode(data) {
                         Copiar Código
                     </button>
                 </div>
+                
+                <div class="mt-4 pt-4 border-t">
+                    <button onclick="jaPaguei()" class="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-green-700">
+                        ✅ Já Paguei - Verificar Pagamento
+                    </button>
+                    <p class="text-xs text-gray-500 mt-2">Clique aqui após fazer o PIX para ativar seu plano</p>
+                </div>
             </div>
         </div>
     `;
@@ -442,6 +449,86 @@ function showPixQRCode(data) {
     submitButton.disabled = false;
     submitText.classList.remove('hidden');
     loadingSpinner.classList.add('hidden');
+    
+    // Verificar status automaticamente a cada 2 segundos
+    let checkCount = 0;
+    const maxChecks = 150; // 5 minutos máximo (150 * 2 segundos)
+    
+    const checkInterval = setInterval(async () => {
+        try {
+            checkCount++;
+            console.log(`Verificação automática ${checkCount}/${maxChecks}`);
+            
+            const response = await fetch(`/payments/verificar-status/{{ pagamento.id }}/`);
+            const statusData = await response.json();
+            
+            console.log('Status verificado:', statusData);
+            
+            if (statusData.status === 'approved' && statusData.assinatura_ativa) {
+                clearInterval(checkInterval);
+                modal.remove();
+                showStatus('success', 'Pagamento Confirmado!', 'Sua assinatura foi ativada. Redirecionando...');
+                setTimeout(() => {
+                    window.location.href = '{% url "payments:bem_vindo" payment_id=pagamento.id %}';
+                }, 2000);
+            } else if (statusData.status === 'approved' && !statusData.assinatura_ativa) {
+                console.log('Pagamento aprovado mas assinatura não ativa ainda');
+            } else if (statusData.status === 'rejected' || statusData.status === 'cancelled') {
+                clearInterval(checkInterval);
+                modal.remove();
+                showStatus('error', 'Pagamento não aprovado', 'O pagamento foi rejeitado ou cancelado');
+            }
+            
+            // Parar verificação após tempo limite
+            if (checkCount >= maxChecks) {
+                clearInterval(checkInterval);
+                console.log('Verificação automática encerrada por tempo limite');
+            }
+        } catch (error) {
+            console.error('Erro ao verificar status:', error);
+        }
+    }, 2000);
+}
+
+// Função para verificar pagamento manualmente
+async function jaPaguei() {
+    try {
+        showStatus('loading', 'Verificando pagamento...', 'Aguarde, estamos verificando seu pagamento no Mercado Pago');
+        
+        const response = await fetch(`/payments/verificar-status/{{ pagamento.id }}/`);
+        const data = await response.json();
+        
+        console.log('Status do pagamento:', data);
+        
+        if (data.status === 'approved' && data.assinatura_ativa) {
+            showStatus('success', 'Pagamento Confirmado!', 'Sua assinatura foi ativada. Redirecionando...');
+            setTimeout(() => {
+                window.location.href = '{% url "payments:bem_vindo" payment_id=pagamento.id %}';
+            }, 2000);
+        } else if (data.status === 'approved' && !data.assinatura_ativa) {
+            showStatus('loading', 'Ativando assinatura...', 'Pagamento confirmado, ativando seu plano premium...');
+            // Tentar novamente em 2 segundos
+            setTimeout(async () => {
+                const response2 = await fetch(`/payments/verificar-status/{{ pagamento.id }}/`);
+                const data2 = await response2.json();
+                if (data2.assinatura_ativa) {
+                    showStatus('success', 'Plano Ativado!', 'Redirecionando para o dashboard...');
+                    setTimeout(() => {
+                        window.location.href = '{% url "payments:bem_vindo" payment_id=pagamento.id %}';
+                    }, 2000);
+                } else {
+                    showStatus('error', 'Erro na ativação', 'Entre em contato com o suporte');
+                }
+            }, 2000);
+        } else if (data.status === 'pending') {
+            showStatus('error', 'Pagamento ainda pendente', 'Aguarde a confirmação do PIX. Pode levar alguns minutos.');
+        } else {
+            showStatus('error', 'Pagamento não confirmado', 'Verifique se o PIX foi realizado corretamente');
+        }
+    } catch (error) {
+        console.error('Erro ao verificar pagamento:', error);
+        showStatus('error', 'Erro na verificação', 'Tente novamente em alguns minutos');
+    }
 }
 
 console.log('Checkout inicializado');

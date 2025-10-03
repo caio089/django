@@ -12,6 +12,7 @@ urlpatterns = [
     path('criar-pagamento-cartao/<int:payment_id>/', views.criar_pagamento_cartao, name='criar_pagamento_cartao'),
     path('checkout/<int:payment_id>/', views.checkout_pagamento, name='checkout_pagamento'),
     path('sucesso/', views.pagamento_sucesso, name='sucesso'),
+    path('bem-vindo/<int:payment_id>/', views.bem_vindo_premium, name='bem_vindo'),
     path('falha/', views.pagamento_falha, name='falha'),
     path('pendente/', views.pagamento_pendente, name='pendente'),
     path('assinaturas/', views.minhas_assinaturas, name='assinaturas'),

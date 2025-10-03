@@ -731,7 +731,15 @@ def webhook_mercadopago(request):
         if data.get('type') == 'payment':
             payment_id = data.get('data', {}).get('id')
             if payment_id:
+                logger.info(f"Processando webhook de pagamento: {payment_id}")
                 processar_pagamento_webhook(payment_id, webhook_event)
+        
+        # Processar eventos de preferência (para pagamentos via preferência)
+        elif data.get('type') == 'preference':
+            preference_id = data.get('data', {}).get('id')
+            if preference_id:
+                logger.info(f"Processando webhook de preferência: {preference_id}")
+                processar_preferencia_webhook(preference_id, webhook_event)
         
         # Marcar como processado
         webhook_event.processado = True
@@ -823,6 +831,53 @@ def processar_pagamento_webhook(payment_id, webhook_event):
         webhook_event.erro_processamento = str(e)
         webhook_event.save()
 
+def processar_preferencia_webhook(preference_id, webhook_event):
+    """
+    Processa eventos de preferência do Mercado Pago
+    Busca pagamentos relacionados e processa se necessário
+    """
+    try:
+        # Buscar pagamentos que usam esta preferência
+        pagamentos = Pagamento.objects.filter(
+            payment_id__icontains=preference_id
+        )
+        
+        for pagamento in pagamentos:
+            logger.info(f"Processando preferência para pagamento {pagamento.id}")
+            
+            # Buscar pagamentos na preferência
+            sdk, config = get_mercadopago_config()
+            if not sdk:
+                continue
+            
+            try:
+                # Buscar pagamentos da preferência
+                search_result = sdk.payment().search({
+                    'external_reference': str(pagamento.external_reference)
+                })
+                
+                if search_result["status"] == 200:
+                    payments = search_result["response"]["results"]
+                    for payment_data in payments:
+                        if payment_data["status"] == "approved":
+                            # Atualizar pagamento com ID real
+                            pagamento.set_payment_id(str(payment_data["id"]))
+                            pagamento.status = "approved"
+                            pagamento.save()
+                            
+                            # Ativar assinatura se não existir
+                            if not Assinatura.objects.filter(external_reference=pagamento.external_reference).exists():
+                                ativar_assinatura(pagamento, payment_data)
+                                logger.info(f"Assinatura ativada via preferência para pagamento {pagamento.id}")
+                            
+            except Exception as e:
+                logger.error(f"Erro ao processar preferência {preference_id}: {e}")
+                
+    except Exception as e:
+        logger.error(f"Erro geral ao processar preferência webhook {preference_id}: {e}")
+        webhook_event.erro_processamento = str(e)
+        webhook_event.save()
+
 def ativar_assinatura(pagamento, payment_data):
     """
     Ativa a assinatura do usuário após pagamento aprovado
@@ -887,7 +942,8 @@ def pagamento_sucesso(request):
             assinatura = Assinatura.objects.filter(external_reference=pagamento.external_reference).first()
             
             if pagamento.status == 'approved' and assinatura:
-                messages.success(request, f'Pagamento aprovado! Sua assinatura {assinatura.plano.nome} está ativa até {assinatura.data_vencimento.strftime("%d/%m/%Y")}.')
+                # Redirecionar para página de bem-vindo
+                return redirect('payments:bem_vindo', payment_id=pagamento.id)
             elif pagamento.status == 'pending':
                 messages.info(request, 'Seu pagamento está sendo processado. Você receberá uma confirmação em breve.')
             else:
@@ -900,6 +956,29 @@ def pagamento_sucesso(request):
             messages.error(request, 'Erro ao processar informações do pagamento.')
     
     return render(request, 'payments/sucesso.html')
+
+@login_required
+def bem_vindo_premium(request, payment_id):
+    """
+    Página de boas-vindas após pagamento aprovado
+    """
+    try:
+        pagamento = get_object_or_404(Pagamento, id=payment_id, usuario=request.user)
+        assinatura = Assinatura.objects.filter(external_reference=pagamento.external_reference).first()
+        
+        if not assinatura or assinatura.status != 'ativa':
+            messages.error(request, 'Assinatura não encontrada ou inativa.')
+            return redirect('payments:planos')
+        
+        return render(request, 'payments/bem_vindo.html', {
+            'assinatura': assinatura,
+            'pagamento': pagamento
+        })
+        
+    except Exception as e:
+        logger.error(f"Erro na página de bem-vindo: {e}")
+        messages.error(request, 'Erro ao carregar página de boas-vindas.')
+        return redirect('index')
 
 @login_required
 def pagamento_falha(request):
@@ -921,11 +1000,62 @@ def pagamento_pendente(request):
 def verificar_status_pagamento(request, payment_id):
     """
     API para verificar status do pagamento via AJAX
+    Também verifica no Mercado Pago e ativa assinatura se necessário
     """
     try:
         pagamento = Pagamento.objects.get(id=payment_id, usuario=request.user)
         
-        # Buscar assinatura se existir
+        # Obter payment_id real do Mercado Pago
+        payment_id_mp = pagamento.get_payment_id()
+        if not payment_id_mp:
+            # Se não tem payment_id, retornar status atual
+            assinatura = Assinatura.objects.filter(external_reference=pagamento.external_reference).first()
+            return JsonResponse({
+                'status': pagamento.status,
+                'status_display': pagamento.get_status_display(),
+                'tem_assinatura': assinatura is not None,
+                'assinatura_ativa': assinatura.status == 'ativa' if assinatura else False,
+                'data_vencimento': assinatura.data_vencimento.isoformat() if assinatura else None
+            })
+        
+        # Se tem pref_, buscar o payment_id real
+        if payment_id_mp.startswith('pref_'):
+            # Para preferências, vamos buscar pagamentos relacionados
+            # Primeiro, vamos verificar se já existe um pagamento real
+            logger.info(f"Buscando pagamento real para preferência {payment_id_mp}")
+            # Por enquanto, retornar status atual
+            assinatura = Assinatura.objects.filter(external_reference=pagamento.external_reference).first()
+            return JsonResponse({
+                'status': pagamento.status,
+                'status_display': pagamento.get_status_display(),
+                'tem_assinatura': assinatura is not None,
+                'assinatura_ativa': assinatura.status == 'ativa' if assinatura else False,
+                'data_vencimento': assinatura.data_vencimento.isoformat() if assinatura else None
+            })
+        
+        # Verificar status no Mercado Pago
+        sdk, config = get_mercadopago_config()
+        if sdk:
+            try:
+                payment_info = sdk.payment().get(payment_id_mp.replace('pref_', ''))
+                if payment_info["status"] == 200:
+                    payment_data = payment_info["response"]
+                    
+                    # Atualizar status se mudou
+                    if payment_data["status"] != pagamento.status:
+                        pagamento.status = payment_data["status"]
+                        pagamento.save()
+                        
+                        # Se aprovado, ativar assinatura
+                        if payment_data["status"] == "approved":
+                            assinatura_existente = Assinatura.objects.filter(external_reference=pagamento.external_reference).first()
+                            if not assinatura_existente:
+                                ativar_assinatura(pagamento, payment_data)
+                                logger.info(f"Assinatura ativada para pagamento {payment_id}")
+            except Exception as e:
+                logger.error(f"Erro ao verificar status no MP: {e}")
+        
+        # Buscar assinatura atualizada
         assinatura = Assinatura.objects.filter(external_reference=pagamento.external_reference).first()
         
         return JsonResponse({
