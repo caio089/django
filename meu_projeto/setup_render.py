@@ -44,18 +44,14 @@ def setup_initial_data():
     else:
         print("ℹ️ Plano premium já existe")
     
-    # 3. Criar configuração de pagamento se não existir
-    if not ConfiguracaoPagamento.objects.exists():
-        print("💳 Criando configuração de pagamento...")
-        ConfiguracaoPagamento.objects.create(
-            access_token=os.getenv('MERCADOPAGO_ACCESS_TOKEN', ''),
-            public_key=os.getenv('MERCADOPAGO_PUBLIC_KEY', ''),
-            webhook_url=os.getenv('MERCADOPAGO_WEBHOOK_URL', ''),
-            ambiente='production' if not os.getenv('DEBUG', 'True') == 'True' else 'sandbox'
-        )
-        print("✅ Configuração de pagamento criada")
-    else:
-        print("ℹ️ Configuração de pagamento já existe")
+    # 3. Configurar Mercado Pago
+    print("💳 Configurando Mercado Pago...")
+    from django.core.management import call_command
+    try:
+        call_command('configurar_render')
+        print("✅ Configuração de pagamento concluída")
+    except Exception as e:
+        print(f"❌ Erro ao configurar pagamento: {e}")
     
     print("🎉 Configuração inicial concluída!")
 
