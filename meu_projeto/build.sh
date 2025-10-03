@@ -11,6 +11,9 @@ python manage.py migrate
 # Coletar arquivos estáticos
 python manage.py collectstatic --noinput
 
+# Executar script de configuração inicial (apenas se necessário)
+python setup_render.py
+
 
 
 
