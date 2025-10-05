@@ -42,7 +42,11 @@ class PremiumAccessMiddleware:
             '/static/',
             '/media/',
             '/',
-            '/index/'
+            '/index/',
+            '/sucesso/',
+            '/bem-vindo/',
+            '/falha/',
+            '/pendente/'
         ]
     
     def __call__(self, request):

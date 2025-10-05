@@ -538,7 +538,7 @@ function showPixQRCode(data) {
                 modal.remove();
                 showStatus('success', 'Pagamento Aprovado!', 'Seu pagamento foi processado com sucesso');
                 setTimeout(() => {
-                    window.location.href = '{% url "payments:sucesso" %}';
+                    window.location.href = '{% url "payments:sucesso" %}?redirect_to=/index/';
                 }, 2000);
             } else {
                 console.log('⏳ Pagamento ainda pendente:', statusData.status);

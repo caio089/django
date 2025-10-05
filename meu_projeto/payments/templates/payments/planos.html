@@ -31,56 +31,73 @@
     </div>
 
     {% if not assinatura_ativa %}
-    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+    <div class="flex justify-center">
         {% for plano in planos %}
-        <div class="bg-white rounded-lg shadow-lg border border-gray-200 p-6 {% if plano.nome == 'Plano Anual' %}ring-2 ring-blue-500{% endif %}">
+        <div class="bg-white rounded-lg shadow-xl border border-gray-200 p-8 max-w-md w-full relative">
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <span class="bg-blue-500 text-white px-6 py-2 rounded-full text-sm font-bold">
+                    🔥 PLANO PREMIUM
+                </span>
+            </div>
             <div class="text-center mb-6">
                 <h3 class="text-2xl font-bold text-gray-800 mb-2">{{ plano.nome }}</h3>
                 <div class="text-4xl font-bold text-blue-600 mb-2">
                     R$ {{ plano.preco|floatformat:2 }}
                 </div>
-                <p class="text-gray-600">{{ plano.duracao_dias }} dias de acesso</p>
+                <p class="text-gray-600 mb-2">por mês</p>
+                <p class="text-sm text-green-600 font-semibold">🔄 Renovação automática</p>
             </div>
             
             <div class="mb-6">
                 <p class="text-gray-700 mb-4">{{ plano.descricao }}</p>
                 
-                <ul class="space-y-2 text-gray-600">
+                <ul class="space-y-3 text-gray-600">
                     <li class="flex items-center">
-                        <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                         </svg>
-                        Acesso completo ao quiz
+                        <span class="font-medium">Acesso completo ao quiz ilimitado</span>
                     </li>
                     <li class="flex items-center">
-                        <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                         </svg>
-                        Progresso ilimitado
+                        <span class="font-medium">Progresso e estatísticas detalhadas</span>
                     </li>
                     <li class="flex items-center">
-                        <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                         </svg>
-                        Relatórios detalhados
+                        <span class="font-medium">Acesso a todas as faixas (1-7)</span>
                     </li>
-                    {% if plano.nome == 'Plano Anual' %}
                     <li class="flex items-center">
-                        <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                         </svg>
-                        Suporte prioritário
+                        <span class="font-medium">Vídeos e técnicas exclusivas</span>
                     </li>
-                    {% endif %}
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="font-medium">Suporte prioritário</span>
+                    </li>
+                    <li class="flex items-center">
+                        <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="font-medium">Cancele quando quiser</span>
+                    </li>
                 </ul>
             </div>
             
             <div class="text-center">
                 <a href="{% url 'payments:escolher_plano' plano.id %}" 
-                   class="inline-block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-200 {% if plano.nome == 'Plano Anual' %}bg-blue-700 hover:bg-blue-800{% endif %}"
+                   class="inline-block w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-8 rounded-lg transition duration-200 transform hover:scale-105 shadow-lg"
                    onclick="console.log('Clicando no plano {{ plano.id }}'); return true;">
-                    Assinar Agora
+                    🚀 Começar Agora - R$ {{ plano.preco|floatformat:2 }}/mês
                 </a>
+                <p class="text-xs text-gray-500 mt-2">Renovação automática • Cancele quando quiser</p>
             </div>
         </div>
         {% endfor %}

@@ -495,7 +495,7 @@ function showPixQRCode(data) {
                 modal.remove();
                 showStatus('success', 'Pagamento Confirmado!', 'Sua assinatura foi ativada. Redirecionando...');
                 setTimeout(() => {
-                    window.location.href = '/payments/bem-vindo/{{ pagamento.id }}/';
+                    window.location.href = '/payments/bem-vindo/{{ pagamento.id }}/?redirect_to=/index/';
                 }, 2000);
             } else if (statusData.status === 'approved' && !statusData.assinatura_ativa) {
                 console.log('Pagamento aprovado mas assinatura não ativa ainda');
