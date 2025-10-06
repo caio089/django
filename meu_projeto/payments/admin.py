@@ -20,6 +20,10 @@ class PlanoPremiumAdmin(admin.ModelAdmin):
         ('Recursos', {
             'fields': ('acesso_ilimitado_quiz', 'relatorios_detalhados', 'suporte_prioritario')
         }),
+        ('Imagens do Conteúdo (3 fotos principais)', {
+            'fields': ('imagem_1', 'imagem_2', 'imagem_3'),
+            'description': '3 imagens que mostram: Quiz e Aprendizado, Vídeos de Técnicas, Organização e Estrutura'
+        }),
         ('Status', {
             'fields': ('ativo',)
         }),

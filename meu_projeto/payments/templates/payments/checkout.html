@@ -265,142 +265,7 @@ function hideStatus() {
     paymentStatus.classList.add('hidden');
 }
 
-// Função para testar QR Code PIX
-function testarQrCode(qrCode) {
-    console.log('Testando QR Code PIX:', qrCode);
-    
-    // Validar formato do QR Code PIX
-    if (!qrCode || qrCode.length < 100) {
-        alert('QR Code inválido: muito curto');
-        return;
-    }
-    
-    // Verificar se começa com 000201 (padrão PIX)
-    if (!qrCode.startsWith('000201')) {
-        alert('QR Code inválido: não começa com padrão PIX (000201)');
-        return;
-    }
-    
-    // Verificar se contém dados essenciais do PIX
-    const pixData = {
-        hasMerchantName: qrCode.includes('59'),
-        hasTransactionAmount: qrCode.includes('54'),
-        hasMerchantCity: qrCode.includes('60'),
-        hasMerchantAccount: qrCode.includes('26'),
-        hasCRC: qrCode.includes('6304'),
-        hasPixKey: qrCode.includes('br.gov.bcb.pix')
-    };
-    
-    console.log('Análise do QR Code PIX:', pixData);
-    
-    // Extrair informações específicas do QR Code
-    const amountMatch = qrCode.match(/54(\d{2})(\d+)/);
-    const merchantNameMatch = qrCode.match(/59(\d{2})([^0-9]+)/);
-    const cityMatch = qrCode.match(/60(\d{2})([^0-9]+)/);
-    
-    const extractedData = {
-        amount: amountMatch ? (parseInt(amountMatch[2]) / 100).toFixed(2) : 'N/A',
-        merchantName: merchantNameMatch ? merchantNameMatch[2] : 'N/A',
-        city: cityMatch ? cityMatch[2] : 'N/A'
-    };
-    
-    console.log('Dados extraídos do QR Code:', extractedData);
-    
-    // Análise detalhada do QR Code
-    const qrAnalysis = {
-        startsWith000201: qrCode.startsWith('000201'),
-        hasPixKey: qrCode.includes('br.gov.bcb.pix'),
-        hasAmount: qrCode.includes('54'),
-        hasMerchantName: qrCode.includes('59'),
-        hasCity: qrCode.includes('60'),
-        hasCRC: qrCode.includes('6304'),
-        length: qrCode.length,
-        endsWithCRC: qrCode.endsWith('E1CD') || qrCode.endsWith('D5F2')
-    };
-    
-    console.log('Análise detalhada do QR Code:', qrAnalysis);
-    
-    // Verificar apenas campos essenciais
-    const essentialFields = ['hasMerchantName', 'hasTransactionAmount', 'hasMerchantCity', 'hasMerchantAccount', 'hasCRC', 'hasPixKey'];
-    const missingEssentialFields = essentialFields.filter(field => !pixData[field]);
-    
-    if (missingEssentialFields.length > 0) {
-        console.warn('⚠️ Campos essenciais ausentes:', missingEssentialFields);
-        // Não mostrar alerta, apenas log de warning
-    }
-    
-    // Verificar se pelo menos os campos mais importantes estão presentes
-    const criticalFields = ['hasTransactionAmount', 'hasMerchantAccount', 'hasCRC'];
-    const missingCriticalFields = criticalFields.filter(field => !pixData[field]);
-    
-    if (missingCriticalFields.length > 0) {
-        alert(`QR Code inválido: campos críticos ausentes: ${missingCriticalFields.join(', ')}`);
-        return;
-    }
-    
-    // Mostrar informações detalhadas
-    const info = `
-QR Code PIX VÁLIDO! ✅
 
-Informações extraídas:
-• Valor: R$ ${extractedData.amount}
-• Merchant: ${extractedData.merchantName}
-• Cidade: ${extractedData.city}
-• Tamanho: ${qrCode.length} caracteres
-
-Análise técnica:
-• Formato PIX: ${qrAnalysis.startsWith000201 ? '✅' : '❌'}
-• Chave PIX: ${qrAnalysis.hasPixKey ? '✅' : '❌'}
-• Valor: ${qrAnalysis.hasAmount ? '✅' : '❌'}
-• Merchant: ${qrAnalysis.hasMerchantName ? '✅' : '❌'}
-• Cidade: ${qrAnalysis.hasCity ? '✅' : '❌'}
-• CRC: ${qrAnalysis.hasCRC ? '✅' : '❌'}
-• Info Merchant: ${qrAnalysis.hasMerchantInfo ? '✅' : '❌'}
-• Termina com CRC: ${qrAnalysis.endsWithCRC ? '✅' : '❌'}
-
-Pode ser usado para pagamento!
-    `;
-    
-    alert(info);
-}
-
-// Função para testar QR Code com diferentes bancos
-function testarComBancos(qrCode) {
-    console.log('Testando QR Code com diferentes bancos:', qrCode);
-    
-    const bancos = [
-        { nome: 'Nubank', app: 'nuapp://pix' },
-        { nome: 'Itaú', app: 'itau://pix' },
-        { nome: 'Bradesco', app: 'bradesco://pix' },
-        { nome: 'Santander', app: 'santander://pix' },
-        { nome: 'Caixa', app: 'caixa://pix' },
-        { nome: 'Banco do Brasil', app: 'bb://pix' }
-    ];
-    
-    const info = `
-QR Code PIX - Teste com Bancos 🏦
-
-Código: ${qrCode.substring(0, 50)}...
-
-Bancos para testar:
-${bancos.map(banco => `• ${banco.nome}: ${banco.app}`).join('\n')}
-
-Instruções:
-1. Copie o código PIX completo
-2. Abra o app do seu banco
-3. Vá em PIX > Pagar com PIX
-4. Cole o código ou escaneie o QR Code
-5. Verifique se o banco reconhece o código
-
-Se algum banco não reconhecer, pode ser:
-• Problema no formato do QR Code
-• Banco não suporta o formato
-• Dados do merchant inválidos
-• Status do pagamento incorreto
-    `;
-    
-    alert(info);
-}
 
 // Função para mostrar QR Code do PIX
 function showPixQRCode(data) {
@@ -411,6 +276,10 @@ function showPixQRCode(data) {
     console.log('   QR Code Base64:', data.qr_code_base64 ? data.qr_code_base64.substring(0, 50) + '...' : 'None');
     console.log('   Payment ID:', data.payment_id);
     console.log('   Status:', data.status);
+    console.log('   QR Code Base64 completo:', data.qr_code_base64 ? 'Sim' : 'Não');
+    console.log('   QR Code Base64 length:', data.qr_code_base64 ? data.qr_code_base64.length : 0);
+    console.log('   QR Code Base64 preview:', data.qr_code_base64 ? data.qr_code_base64.substring(0, 100) + '...' : 'N/A');
+    console.log('   QR Code Base64 starts with data:', data.qr_code_base64 ? data.qr_code_base64.startsWith('data:') : 'N/A');
     
     hideStatus();
     
@@ -432,10 +301,14 @@ function showPixQRCode(data) {
                 <h3 class="text-2xl font-bold text-gray-800 mb-4">PIX - Pagamento Instantâneo</h3>
                 <p class="text-gray-600 mb-6">Escaneie o QR Code com seu app bancário</p>
                 
-                <div class="bg-gray-100 p-4 rounded-lg mb-6">
-                    ${data.qr_code_base64 ? 
-                        `<img src="${data.qr_code_base64}" alt="QR Code PIX" class="mx-auto max-w-full h-auto">` :
-                        `<div class="text-gray-500">QR Code não disponível</div>`
+                <div class="bg-gray-100 p-4 rounded-lg mb-6 text-center">
+                    ${data.qr_code_base64 && data.qr_code_base64.startsWith('data:') ? 
+                        `<img src="${data.qr_code_base64}" alt="QR Code PIX" class="mx-auto max-w-full h-auto max-h-64" onload="console.log('✅ QR Code carregado com sucesso')" onerror="console.error('❌ Erro ao carregar QR Code:', this.src.substring(0, 50) + '...')">` :
+                        `<div class="text-gray-500 text-center">
+                            <p class="mb-2">QR Code não disponível</p>
+                            <p class="text-sm">Tente novamente ou use o código PIX abaixo</p>
+                            <p class="text-xs text-gray-400 mt-2">Debug: ${data.qr_code_base64 ? 'Base64 presente mas inválido' : 'Base64 ausente'}</p>
+                        </div>`
                     }
                 </div>
                 
@@ -448,12 +321,6 @@ function showPixQRCode(data) {
                     <div class="flex space-x-2 mt-2">
                         <button onclick="navigator.clipboard.writeText('${data.qr_code}')" class="text-xs bg-yellow-600 text-white px-2 py-1 rounded">
                             Copiar Código
-                        </button>
-                        <button onclick="testarQrCode('${data.qr_code}')" class="text-xs bg-green-600 text-white px-2 py-1 rounded">
-                            Testar QR
-                        </button>
-                        <button onclick="testarComBancos('${data.qr_code}')" class="text-xs bg-blue-600 text-white px-2 py-1 rounded">
-                            Testar Bancos
                         </button>
                     </div>
                     <div class="mt-2 text-xs text-gray-600">
@@ -485,12 +352,11 @@ function showPixQRCode(data) {
     document.body.appendChild(modal);
     console.log('✅ Modal adicionado ao DOM');
     
-    // Testar QR Code automaticamente
+    // QR Code será exibido no modal sem teste automático
     if (data.qr_code) {
-        console.log('🧪 Testando QR Code automaticamente...');
-        testarQrCode(data.qr_code);
+        console.log('✅ QR Code disponível para exibição no modal');
     } else {
-        console.log('⚠️ Nenhum QR Code para testar');
+        console.log('⚠️ Nenhum QR Code disponível');
     }
     
     // Adicionar event listeners
@@ -845,16 +711,6 @@ async function checkPaymentStatus() {
 // Verificar status a cada 5 segundos (para pagamentos PIX)
 setInterval(checkPaymentStatus, 5000);
 
-// Função de teste para modal PIX
-function testPixModal() {
-    console.log('Testando modal PIX...');
-    const testData = {
-        success: true,
-        qr_code_base64: 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==',
-        payment_id: '123456789'
-    };
-    showPixQRCode(testData);
-}
 
 // Inicializar
 document.addEventListener('DOMContentLoaded', () => {
@@ -887,12 +743,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('❌ PIX NÃO está disponível na configuração');
     }
     
-    // Adicionar botão de teste (remover em produção)
-    const testButton = document.createElement('button');
-    testButton.textContent = 'Testar Modal PIX';
-    testButton.className = 'fixed bottom-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg z-50';
-    testButton.onclick = testPixModal;
-    document.body.appendChild(testButton);
     
     console.log('🎯 Checkout pronto para uso!');
 });

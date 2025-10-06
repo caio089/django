@@ -119,9 +119,23 @@ def criar_perfil_usuario(user):
 @login_required
 def listar_planos(request):
     """
-    Lista todos os planos premium disponíveis
+    Lista apenas o plano mensal premium
     """
-    planos = PlanoPremium.objects.filter(ativo=True).order_by('preco')
+    # Buscar apenas o plano mensal ativo
+    plano_mensal = PlanoPremium.objects.filter(ativo=True, preco=39.90).first()
+    
+    # Se não existir, criar um plano mensal padrão
+    if not plano_mensal:
+        plano_mensal = PlanoPremium.objects.create(
+            nome="Plano Mensal Premium",
+            descricao="Acesso completo à plataforma de judô com todos os recursos premium",
+            preco=39.90,
+            duracao_dias=30,
+            ativo=True,
+            acesso_ilimitado_quiz=True,
+            relatorios_detalhados=True,
+            suporte_prioritario=True
+        )
     
     # Verificar se usuário já tem assinatura ativa
     assinatura_ativa = Assinatura.objects.filter(
@@ -131,7 +145,7 @@ def listar_planos(request):
     ).first()
     
     return render(request, 'payments/planos.html', {
-        'planos': planos,
+        'plano': plano_mensal,  # Enviar apenas um plano
         'assinatura_ativa': assinatura_ativa
     })
 
@@ -503,6 +517,42 @@ def gerar_pix_direto(request, payment_id):
                     logger.info(f"PIX gerado com sucesso - Payment ID: {payment_id_mp}")
                     logger.info(f"QR Code: {qr_code[:50]}...")
                     logger.info(f"QR Code Base64 disponível: {qr_code_base64 is not None}")
+                    
+                    # Se não temos qr_code_base64, gerar a partir do qr_code
+                    if not qr_code_base64 and qr_code:
+                        try:
+                            import qrcode
+                            import base64
+                            from io import BytesIO
+                            
+                            logger.info("🔧 Gerando QR Code Base64 localmente...")
+                            
+                            # Gerar QR Code
+                            qr = qrcode.QRCode(version=1, box_size=10, border=5)
+                            qr.add_data(qr_code)
+                            qr.make(fit=True)
+                            
+                            # Criar imagem
+                            img = qr.make_image(fill_color="black", back_color="white")
+                            
+                            # Converter para base64
+                            buffer = BytesIO()
+                            img.save(buffer, format='PNG')
+                            buffer.seek(0)
+                            qr_code_base64 = f"data:image/png;base64,{base64.b64encode(buffer.getvalue()).decode()}"
+                            
+                            logger.info(f"✅ QR Code Base64 gerado localmente: {len(qr_code_base64)} caracteres")
+                            logger.info(f"🔍 Início do Base64: {qr_code_base64[:100]}...")
+                            logger.info(f"🔍 Tem prefixo data: {qr_code_base64.startswith('data:')}")
+                            
+                        except Exception as e:
+                            logger.error(f"❌ Erro ao gerar QR Code Base64: {e}")
+                            qr_code_base64 = None
+                    else:
+                        logger.info(f"📋 QR Code Base64 do Mercado Pago: {qr_code_base64 is not None}")
+                        if qr_code_base64:
+                            logger.info(f"🔍 Início do Base64 MP: {qr_code_base64[:100]}...")
+                            logger.info(f"🔍 Tem prefixo data: {qr_code_base64.startswith('data:')}")
 
                     return JsonResponse({
                         'success': True,
@@ -515,7 +565,8 @@ def gerar_pix_direto(request, payment_id):
                         'debug_info': {
                             'has_qr_code': bool(qr_code),
                             'has_qr_base64': bool(qr_code_base64),
-                            'payment_status': payment_info.get("status")
+                            'payment_status': payment_info.get("status"),
+                            'qr_base64_generated': qr_code_base64 is not None
                         },
                         'validation': {
                             'is_valid': True,

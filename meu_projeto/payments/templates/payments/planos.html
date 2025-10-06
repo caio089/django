@@ -7,6 +7,77 @@
     <title>Planos Premium - Academia de Judô</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Responsividade para mobile - Design Minimalista */
+        @media (max-width: 768px) {
+            .plano-container {
+                max-width: 95% !important;
+                margin: 0 auto !important;
+                border-radius: 1.5rem !important;
+            }
+            
+            .plano-container .px-12 {
+                padding-left: 1.5rem !important;
+                padding-right: 1.5rem !important;
+            }
+            
+            .plano-container .py-16 {
+                padding-top: 2rem !important;
+                padding-bottom: 2rem !important;
+            }
+            
+            .galeria-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+            }
+            
+            .imagem-card img {
+                height: 12rem !important;
+            }
+            
+            .botao-assinar {
+                font-size: 1rem !important;
+                padding: 1rem 2rem !important;
+            }
+            
+            .recursos-lista {
+                flex-direction: column !important;
+                gap: 0.75rem !important;
+            }
+            
+            .plano-container h3 {
+                font-size: 2.5rem !important;
+            }
+            
+            .plano-container .text-7xl {
+                font-size: 4rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .plano-container .px-12 {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+            
+            .imagem-card img {
+                height: 10rem !important;
+            }
+            
+            .botao-assinar {
+                font-size: 0.9rem !important;
+                padding: 0.875rem 1.5rem !important;
+            }
+            
+            .plano-container h3 {
+                font-size: 2rem !important;
+            }
+            
+            .plano-container .text-7xl {
+                font-size: 3rem !important;
+            }
+        }
+    </style>
 </head>
 <body class="bg-gray-50 font-sans">
 <div class="container mx-auto px-4 py-8">
@@ -31,76 +102,154 @@
     </div>
 
     {% if not assinatura_ativa %}
+    <!-- Plano Mensal Único - Design Minimalista -->
     <div class="flex justify-center">
-        {% for plano in planos %}
-        <div class="bg-white rounded-lg shadow-xl border border-gray-200 p-8 max-w-md w-full relative">
-            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                <span class="bg-blue-500 text-white px-6 py-2 rounded-full text-sm font-bold">
-                    🔥 PLANO PREMIUM
-                </span>
-            </div>
-            <div class="text-center mb-6">
-                <h3 class="text-2xl font-bold text-gray-800 mb-2">{{ plano.nome }}</h3>
-                <div class="text-4xl font-bold text-blue-600 mb-2">
-                    R$ {{ plano.preco|floatformat:2 }}
+        {% if plano %}
+        <div class="bg-white rounded-3xl shadow-2xl border-0 p-0 max-w-5xl w-full relative plano-container overflow-hidden">
+            <!-- Header com gradiente sutil -->
+            <div class="bg-gradient-to-br from-slate-50 via-white to-blue-50 px-12 py-16 text-center relative">
+                <div class="absolute inset-0 bg-gradient-to-r from-purple-600/5 to-blue-600/5"></div>
+                <div class="relative z-10">
+                    <div class="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm font-semibold mb-8 shadow-lg">
+                        ✨ PLANO PREMIUM
+                    </div>
+                    
+                    <h3 class="text-5xl font-light text-gray-900 mb-6 tracking-tight">{{ plano.nome }}</h3>
+                    <div class="text-7xl font-thin text-gray-900 mb-4">
+                        R$ <span class="font-bold">{{ plano.preco|floatformat:2 }}</span>
+                    </div>
+                    <p class="text-xl text-gray-500 mb-8 font-light">por mês</p>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed font-light">{{ plano.descricao }}</p>
                 </div>
-                <p class="text-gray-600 mb-2">por mês</p>
-                <p class="text-sm text-green-600 font-semibold">🔄 Renovação automática</p>
             </div>
             
-            <div class="mb-6">
-                <p class="text-gray-700 mb-4">{{ plano.descricao }}</p>
-                
-                <ul class="space-y-3 text-gray-600">
-                    <li class="flex items-center">
-                        <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="font-medium">Acesso completo ao quiz ilimitado</span>
-                    </li>
-                    <li class="flex items-center">
-                        <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="font-medium">Progresso e estatísticas detalhadas</span>
-                    </li>
-                    <li class="flex items-center">
-                        <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="font-medium">Acesso a todas as faixas (1-7)</span>
-                    </li>
-                    <li class="flex items-center">
-                        <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="font-medium">Vídeos e técnicas exclusivas</span>
-                    </li>
-                    <li class="flex items-center">
-                        <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="font-medium">Suporte prioritário</span>
-                    </li>
-                    <li class="flex items-center">
-                        <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
-                        </svg>
-                        <span class="font-medium">Cancele quando quiser</span>
-                    </li>
-                </ul>
+            <!-- Galeria de 3 Imagens - Design Minimalista -->
+            {% if plano.imagem_1 or plano.imagem_2 or plano.imagem_3 %}
+            <div class="px-12 py-16 bg-gray-50/50">
+                <h4 class="text-2xl font-light text-gray-800 mb-12 text-center tracking-wide">O que você terá acesso</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {% if plano.imagem_1 %}
+                    <div class="group">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                            <img src="{{ plano.imagem_1.url }}" alt="Conteúdo Principal" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <h5 class="text-lg font-semibold mb-1">Quiz e Aprendizado</h5>
+                                <p class="text-sm text-gray-200">Teste seus conhecimentos</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    {% if plano.imagem_2 %}
+                    <div class="group">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                            <img src="{{ plano.imagem_2.url }}" alt="Quiz e Relatórios" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <h5 class="text-lg font-semibold mb-1">Vídeos de Técnicas</h5>
+                                <p class="text-sm text-gray-200">Para cada faixa</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    {% if plano.imagem_3 %}
+                    <div class="group">
+                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+                            <img src="{{ plano.imagem_3.url }}" alt="Técnicas e História" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <div class="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <h5 class="text-lg font-semibold mb-1">Organização e Estrutura</h5>
+                                <p class="text-sm text-gray-200">Facilidade de aprendizado</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+            
+            <!-- Recursos Inclusos - Design Minimalista -->
+            <div class="px-12 py-16 bg-white">
+                <div class="max-w-4xl mx-auto">
+                    <h4 class="text-2xl font-light text-gray-800 mb-12 text-center tracking-wide">Recursos inclusos</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="text-center group">
+                            <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-100 to-blue-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <h5 class="font-medium text-gray-900 mb-2">Quiz Ilimitado</h5>
+                            <p class="text-sm text-gray-500">Teste seus conhecimentos</p>
+                        </div>
+                        
+                        <div class="text-center group">
+                            <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <h5 class="font-medium text-gray-900 mb-2">Vídeos de Técnicas</h5>
+                            <p class="text-sm text-gray-500">Para cada faixa</p>
+                        </div>
+                        
+                        <div class="text-center group">
+                            <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                                </svg>
+                            </div>
+                            <h5 class="font-medium text-gray-900 mb-2">Organização de Técnicas</h5>
+                            <p class="text-sm text-gray-500">Estrutura clara</p>
+                        </div>
+                        
+                        <div class="text-center group">
+                            <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-orange-100 to-red-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg>
+                            </div>
+                            <h5 class="font-medium text-gray-900 mb-2">Facilidade de Aprendizado</h5>
+                            <p class="text-sm text-gray-500">Método eficiente</p>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <div class="text-center">
-                <a href="{% url 'payments:escolher_plano' plano.id %}" 
-                   class="inline-block w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-8 rounded-lg transition duration-200 transform hover:scale-105 shadow-lg"
-                   onclick="console.log('Clicando no plano {{ plano.id }}'); return true;">
-                    🚀 Começar Agora - R$ {{ plano.preco|floatformat:2 }}/mês
-                </a>
-                <p class="text-xs text-gray-500 mt-2">Renovação automática • Cancele quando quiser</p>
+            <!-- Botão de Assinatura - Design Minimalista -->
+            <div class="px-12 py-16 bg-gradient-to-br from-gray-50 to-white">
+                <div class="text-center max-w-2xl mx-auto">
+                    <a href="{% url 'payments:escolher_plano' plano.id %}" 
+                       class="group inline-flex items-center justify-center w-full max-w-sm bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-700 text-white font-medium py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl text-lg"
+                       onclick="console.log('Clicando no plano {{ plano.id }}'); return true;">
+                        <span class="mr-3">Começar agora</span>
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                    </a>
+                    
+                    <p class="text-sm text-gray-500 mt-6 font-light">Renovação automática • Cancele quando quiser</p>
+                    
+                    <div class="mt-8 flex justify-center items-center space-x-6 text-xs text-gray-400">
+                        <div class="flex items-center">
+                            <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                            Pagamento seguro
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                            Acesso imediato
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                            Suporte 24/7
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        {% endfor %}
+        {% endif %}
     </div>
     
     <div class="text-center mt-8">

@@ -297,6 +297,13 @@
           </div>
         </div>
         
+        <!-- Mensagem de resultado -->
+        <div class="text-center mb-6">
+          <p class="text-lg font-semibold text-gray-700" id="result-message">
+            🎉 Parabéns por completar o quiz!
+          </p>
+        </div>
+        
         <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
           <button onclick="restartQuiz()" 
                   class="bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 sm:px-8 py-2 sm:py-3 rounded-xl hover:from-blue-700 hover:to-blue-600 transition-all duration-300 font-semibold flex items-center justify-center gap-2 text-sm sm:text-base">
@@ -619,15 +626,22 @@
       
       console.log('🎯 Selecionando dificuldade:', difficulty);
       
-      // Carregar perguntas normalmente (sempre randomizar por enquanto)
-      loadQuestionsWithRandom(difficulty);
+      // Carregar perguntas SEM randomização (para manter progresso)
+      loadQuestionsWithoutRandom(difficulty);
       
       // Esconder seleção de dificuldade e mostrar quiz
       document.getElementById('difficulty-selection').classList.add('hidden');
       document.getElementById('quiz-container').classList.remove('hidden');
       
-      // Inicializar quiz
-      initQuiz();
+      // Carregar progresso salvo antes de inicializar
+      loadQuizProgress().then(() => {
+        // Inicializar quiz após carregar progresso
+        initQuiz();
+      }).catch(error => {
+        console.log('❌ Erro ao carregar progresso:', error);
+        // Inicializar quiz mesmo com erro
+        initQuiz();
+      });
     }
     
     // Função para carregar perguntas COM randomização (novo quiz)
@@ -665,9 +679,35 @@
         questions = JSON.parse(savedQuestions);
         console.log('✅ Perguntas carregadas do localStorage (ordem mantida)');
       } else {
-        // Se não tem perguntas salvas, carregar com randomização
-        console.log('⚠️ Perguntas não encontradas no localStorage, randomizando...');
-        loadQuestionsWithRandom(difficulty);
+        // Se não tem perguntas salvas, carregar diretamente sem randomizar
+        console.log('⚠️ Perguntas não encontradas no localStorage, carregando diretamente...');
+        
+        if (difficulty === 'all') {
+          // Para "Todas as Perguntas", misturar todas as perguntas de todos os níveis
+          const allEasyQuestions = questionsByDifficulty.easy;
+          const allMediumQuestions = questionsByDifficulty.medium;
+          const allHardQuestions = questionsByDifficulty.hard;
+          
+          // Combinar todas as perguntas
+          const combinedQuestions = [...allEasyQuestions, ...allMediumQuestions, ...allHardQuestions];
+          
+          // Selecionar 45 perguntas (ou todas se houver menos de 45)
+          questions = combinedQuestions.slice(0, 45);
+        } else {
+          // Selecionar 15 perguntas da dificuldade escolhida (SEM randomizar)
+          const allQuestions = questionsByDifficulty[difficulty];
+          questions = allQuestions.slice(0, 15);
+        }
+        
+        // Salvar as perguntas no localStorage para manter consistência
+        localStorage.setItem(`quiz_questions_${difficulty}`, JSON.stringify(questions));
+        console.log('💾 Perguntas salvas no localStorage para consistência');
+      }
+      
+      // Garantir que sempre temos 15 perguntas (exceto para 'all')
+      if (difficulty !== 'all' && questions.length > 15) {
+        questions = questions.slice(0, 15);
+        console.log('📝 Limitando a 15 perguntas por modo');
       }
     }
     
@@ -713,12 +753,20 @@
       const progress = (currentQuestion / questions.length) * 100;
       progressBar.style.width = `${progress}%`;
       
+      // Salvar progresso no banco de dados
+      saveQuizProgress();
+      
       console.log('   Progresso calculado:', progress + '%');
+      console.log('   Barra de progresso atualizada para:', progressBar.style.width);
       console.log('   Status atualizado com sucesso');
     }
 
     function createQuestionCard() {
       const q = questions[currentQuestion];
+      
+      // Log do progresso atual
+      const progress = (currentQuestion / questions.length) * 100;
+      console.log(`📊 Criando pergunta ${currentQuestion + 1}/${questions.length} - Progresso: ${progress.toFixed(1)}%`);
       
       const card = document.createElement("div");
       card.className = "bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-4 sm:p-6 md:p-8 border border-blue-200 fade-in";
@@ -859,6 +907,30 @@
       finalScoreElement.textContent = `${score}/${questions.length}`;
       finalPercentageElement.textContent = `${percentage}%`;
       
+      // Adicionar mensagem personalizada baseada na performance
+      let message = '';
+      let emoji = '';
+      
+      if (percentage >= 90) {
+        message = 'Excelente! Você é um verdadeiro mestre do judô!';
+        emoji = '🥇';
+      } else if (percentage >= 70) {
+        message = 'Muito bom! Você tem um ótimo conhecimento!';
+        emoji = '🥈';
+      } else if (percentage >= 50) {
+        message = 'Bom trabalho! Continue praticando!';
+        emoji = '🥉';
+      } else {
+        message = 'Não desista! A prática leva à perfeição!';
+        emoji = '💪';
+      }
+      
+      // Atualizar mensagem no modal
+      const messageElement = document.getElementById('result-message');
+      if (messageElement) {
+        messageElement.innerHTML = `${emoji} ${message}`;
+      }
+      
       resultElement.classList.remove("hidden");
       resultElement.classList.add("bounce-in");
       
@@ -867,6 +939,9 @@
       
       // Garantir que a barra de progresso chegue a 100%
       progressBar.style.width = '100%';
+      
+      // Salvar progresso final
+      saveQuizProgress();
     }
 
     function restartQuiz() {
@@ -882,6 +957,7 @@
       
       // Resetar barra de progresso
       progressBar.style.width = '0%';
+      console.log('🔄 Quiz reiniciado - barra de progresso resetada para 0%');
     }
 
     function initQuiz() {
@@ -909,48 +985,9 @@
       document.getElementById('result').classList.add('hidden');
     });
 
-    // ===== SISTEMA DE PROGRESSO SEQUENCIAL NO BANCO DE DADOS =====
+    // ===== SISTEMA DE PROGRESSO LIBERADO - TODOS OS NÍVEIS DISPONÍVEIS =====
     
-    // Verificar níveis disponíveis
-    function verificarNiveisDisponiveis() {
-      fetch('/quiz/verificar-niveis/')
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          console.log('Níveis disponíveis:', data.niveis);
-          atualizarInterfaceNiveis(data.niveis);
-        } else {
-          console.error('Erro ao verificar níveis:', data.error);
-        }
-      })
-      .catch(error => {
-        console.error('Erro ao verificar níveis:', error);
-      });
-    }
-    
-    // Atualizar interface dos níveis
-    function atualizarInterfaceNiveis(niveis) {
-      niveis.forEach(nivel => {
-        const button = document.querySelector(`[onclick="selectDifficulty('${nivel.nivel}')"]`);
-        if (button) {
-          if (nivel.disponivel) {
-            button.disabled = false;
-            button.classList.remove('opacity-50', 'cursor-not-allowed');
-            button.classList.add('hover:scale-105', 'hover:shadow-lg');
-          } else {
-            button.disabled = true;
-            button.classList.add('opacity-50', 'cursor-not-allowed');
-            button.classList.remove('hover:scale-105', 'hover:shadow-lg');
-            
-            // Adicionar ícone de bloqueado
-            const icon = button.querySelector('div:first-child');
-            if (icon && !icon.textContent.includes('🔒')) {
-              icon.textContent = '🔒';
-            }
-          }
-        }
-      });
-    }
+    // Todos os níveis estão liberados - sem verificação de bloqueio
     
     // Salvar progresso do quiz no banco de dados
     function saveQuizProgress() {
@@ -959,6 +996,12 @@
       console.log('   Pergunta atual:', currentQuestion);
       console.log('   Total perguntas:', questions.length);
       console.log('   Acertos:', score);
+      
+      // Verificar se temos dados válidos
+      if (!currentDifficulty) {
+        console.log('❌ Nenhuma dificuldade selecionada, não salvando progresso');
+        return;
+      }
       
       const progressData = {
         dificuldade: currentDifficulty,
@@ -971,6 +1014,14 @@
       };
       
       console.log('📤 Enviando dados:', progressData);
+      
+      // Verificar CSRF token
+      const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]');
+      if (!csrfToken) {
+        console.error('❌ CSRF token não encontrado!');
+        return;
+      }
+      console.log('🔐 CSRF token encontrado:', csrfToken.value.substring(0, 10) + '...');
       
       fetch('/quiz/salvar-progresso/', {
         method: 'POST',
@@ -989,18 +1040,12 @@
         if (data.success) {
           console.log('✅ Progresso do quiz salvo:', data.message);
           
-          // Se completou o quiz, verificar níveis
+          // Quiz completado com sucesso
           if (progressData.quiz_completo) {
-            console.log('🎉 Quiz completado! Verificando níveis...');
-            setTimeout(() => {
-              verificarNiveisDisponiveis();
-            }, 1000);
+            console.log('🎉 Quiz completado com sucesso!');
           }
         } else {
           console.error('❌ Erro ao salvar progresso do quiz:', data.error);
-          if (data.error.includes('completar o nível anterior')) {
-            alert('Você deve completar o nível anterior primeiro!');
-          }
         }
       })
       .catch(error => {
@@ -1019,6 +1064,7 @@
         
         console.log('🔄 Carregando progresso do quiz...');
         console.log('   Dificuldade:', currentDifficulty);
+        console.log('   Perguntas carregadas:', questions.length);
         
         fetch(`/quiz/carregar-progresso/?dificuldade=${currentDifficulty}`)
         .then(response => {
@@ -1046,14 +1092,6 @@
             } else {
               console.log('ℹ️ Quiz já foi completado ou não há progresso salvo');
             }
-          } else if (data.error && data.error.includes('completar o nível anterior')) {
-            console.log('🔒 Nível bloqueado:', data.error);
-            alert('Você deve completar o nível anterior primeiro!');
-            // Voltar para seleção de dificuldade
-            document.getElementById('difficulty-selection').classList.remove('hidden');
-            document.getElementById('quiz-container').classList.add('hidden');
-            reject(new Error('Nível bloqueado'));
-            return;
           } else {
             console.log('ℹ️ Nenhum progresso salvo para esta dificuldade');
           }
@@ -1071,6 +1109,7 @@
     const originalNextQuestion = nextQuestion;
     nextQuestion = function() {
       originalNextQuestion();
+      updateStatus(); // Atualizar barra de progresso
       saveQuizProgress(); // Salvar progresso após cada pergunta
     };
     
@@ -1089,8 +1128,7 @@
       });
     };
     
-    // Verificar níveis disponíveis ao carregar a página
-    verificarNiveisDisponiveis();
+    // Todos os níveis estão liberados - sem verificação necessária
   </script>
 </body>
 </html>

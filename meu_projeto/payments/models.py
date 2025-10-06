@@ -24,6 +24,11 @@ class PlanoPremium(models.Model):
     relatorios_detalhados = models.BooleanField(default=True, verbose_name="Relatórios detalhados")
     suporte_prioritario = models.BooleanField(default=False, verbose_name="Suporte prioritário")
     
+    # Imagens do plano para mostrar o que o usuário terá acesso (3 fotos principais)
+    imagem_1 = models.ImageField(upload_to='planos/imagens/', null=True, blank=True, verbose_name="Imagem 1 - Quiz e Aprendizado")
+    imagem_2 = models.ImageField(upload_to='planos/imagens/', null=True, blank=True, verbose_name="Imagem 2 - Vídeos de Técnicas")
+    imagem_3 = models.ImageField(upload_to='planos/imagens/', null=True, blank=True, verbose_name="Imagem 3 - Organização e Estrutura")
+    
     data_criacao = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
