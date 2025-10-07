@@ -13,33 +13,37 @@
                     colors: {
                         judo: {
                             gray: '#6B7280',
-                            blue: '#3B82F6',
-                            yellow: '#FBBF24',
-                            orange: '#F97316',
-                            green: '#10B981',
-                            purple: '#8B5CF6',
-                            brown: '#92400E'
+                            blue: '#1E40AF',
+                            yellow: '#F59E0B',
+                            orange: '#EA580C',
+                            green: '#059669',
+                            purple: '#7C3AED',
+                            brown: '#92400E',
+                            white: '#F8FAFC',
+                            black: '#1F2937'
                         }
                     },
                     fontFamily: {
-                        'display': ['DM Sans', 'system-ui', 'sans-serif'],
+                        'display': ['Inter', 'system-ui', 'sans-serif'],
+                        'judo': ['Poppins', 'system-ui', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        .font-display { font-family: 'DM Sans', system-ui, sans-serif; }
+        .font-display { font-family: 'Inter', system-ui, sans-serif; }
+        .font-judo { font-family: 'Poppins', system-ui, sans-serif; }
         
         .floating-label {
             pointer-events: none;
-            transition: all 0.2s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .input:focus ~ .floating-label,
         .input:not(:placeholder-shown) ~ .floating-label {
             transform: translateY(-1.7rem) scale(0.85);
-            color: #3B82F6;
+            color: #1E40AF;
         }
         .error-message {
             color: #dc2626;
@@ -540,91 +544,115 @@
     </style>
 </head>
 <body class="font-display min-h-screen w-full flex items-center justify-start relative overflow-x-hidden overflow-y-auto touch-pan-y">
-    <!-- Fundo com gradiente mais escuro -->
-    <div class="fixed inset-0 z-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800"></div>
+    <!-- Fundo com gradiente temático de judô -->
+    <div class="fixed inset-0 z-0 bg-gradient-to-br from-judo-black via-slate-900 to-judo-blue"></div>
     
-    <!-- Padrão de linhas sutis similar ao index.html -->
-    <div class="fixed inset-0 z-10 opacity-30">
+    <!-- Imagem de fundo do judô (desktop) -->
+    <div class="fixed inset-0 z-5 opacity-10 hidden md:block">
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('/static/judo.png');"></div>
+    </div>
+    
+    <!-- Padrão de faixas de judô -->
+    <div class="fixed inset-0 z-10 opacity-20">
         <div class="absolute inset-0" style="
             background-image: 
-                repeating-linear-gradient(0deg, rgba(59,130,246,0.03) 0 2px, transparent 2px 32px),
-                repeating-linear-gradient(90deg, rgba(59,130,246,0.03) 0 2px, transparent 2px 32px);
+                repeating-linear-gradient(45deg, rgba(30,64,175,0.1) 0 4px, transparent 4px 40px),
+                repeating-linear-gradient(-45deg, rgba(245,158,11,0.1) 0 4px, transparent 4px 40px);
         "></div>
     </div>
     
     <!-- Gradiente com blur nas laterais -->
-    <div class="fixed inset-y-0 left-0 z-20 pointer-events-none right-[30vw] sm:right-[35vw] md:right-[40vw] bg-gradient-to-r from-white/5 to-transparent filter blur-[18px] saturate-110"></div>
-    <div class="fixed inset-y-0 right-0 z-20 pointer-events-none left-[30vw] sm:left-[35vw] md:left-[40vw] bg-gradient-to-l from-white/5 to-transparent filter blur-[18px] saturate-110"></div>
+    <div class="fixed inset-y-0 left-0 z-20 pointer-events-none right-[30vw] sm:right-[35vw] md:right-[40vw] bg-gradient-to-r from-white/10 to-transparent filter blur-[20px] saturate-150"></div>
+    <div class="fixed inset-y-0 right-0 z-20 pointer-events-none left-[30vw] sm:left-[35vw] md:left-[40vw] bg-gradient-to-l from-white/10 to-transparent filter blur-[20px] saturate-150"></div>
     
     <!-- Nome do site para desktop (centro da tela + 50px para direita) -->
     <div class="desktop-brand fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40 text-center" style="transform: translate(50px, -50%);">
-        <div class="animate-slide-in-right">
-            <!-- Círculo decorativo rotativo -->
-            <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-16 h-16 border-2 border-judo-blue/30 rounded-full animate-rotate"></div>
-            <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-12 h-12 border-2 border-judo-yellow/30 rounded-full animate-rotate" style="animation-direction: reverse; animation-duration: 15s;"></div>
+        <div>
+            <!-- Anel de judô decorativo -->
+            <div class="absolute -top-6 left-1/2 -translate-x-1/2 w-20 h-20 border-4 border-judo-blue/40 rounded-full animate-rotate"></div>
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-16 h-16 border-3 border-judo-yellow/40 rounded-full animate-rotate" style="animation-direction: reverse; animation-duration: 15s;"></div>
+            <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-12 h-12 border-2 border-judo-white/60 rounded-full animate-rotate" style="animation-duration: 10s;"></div>
             
-            <h1 class="text-7xl lg:text-8xl xl:text-9xl font-bold text-white/90 leading-none">
-                Dojo
+            <h1 class="text-6xl lg:text-7xl xl:text-8xl font-judo font-light text-white leading-none tracking-wide">
+                DOJO
             </h1>
-            <h1 class="text-7xl lg:text-8xl xl:text-9xl font-bold text-judo-blue leading-none -mt-2">
-                On
+            <h1 class="text-6xl lg:text-7xl xl:text-8xl font-judo font-light text-judo-blue leading-none tracking-wide">
+                ONLINE
             </h1>
             
-            <!-- Linha decorativa animada -->
-            <div class="mt-2 h-1 bg-gradient-to-l from-judo-blue via-judo-yellow to-judo-green rounded-full animate-pulse"></div>
+            <!-- Linha decorativa com faixas de judô -->
+            <div class="mt-3 h-2 bg-gradient-to-r from-judo-blue via-judo-yellow to-judo-green rounded-full animate-pulse shadow-lg"></div>
             
-            <div class="mt-4 text-center">
-                <p class="text-white/70 text-lg font-medium animate-judo-focus">Academia de Judô</p>
-                <div class="flex justify-center mt-2 space-x-3">
-                    <div class="w-2 h-2 bg-judo-blue rounded-full animate-pulse-delayed"></div>
-                    <div class="w-2 h-2 bg-judo-yellow rounded-full animate-pulse-delayed"></div>
-                    <div class="w-2 h-2 bg-judo-green rounded-full animate-pulse-delayed"></div>
+            <div class="mt-6 text-center">
+                <p class="text-white/80 text-xl font-light font-judo tracking-wide">ACADEMIA DE JUDÔ</p>
+                <div class="flex justify-center mt-3 space-x-4">
+                    <div class="w-3 h-3 bg-judo-blue rounded-full animate-pulse-delayed shadow-lg"></div>
+                    <div class="w-3 h-3 bg-judo-yellow rounded-full animate-pulse-delayed shadow-lg"></div>
+                    <div class="w-3 h-3 bg-judo-green rounded-full animate-pulse-delayed shadow-lg"></div>
                 </div>
             </div>
             
-                         <!-- Elementos flutuantes decorativos -->
-             <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 bg-judo-blue/50 rounded-full"></div>
-             <div class="absolute top-8 left-1/2 -translate-x-1/2 w-2 h-2 bg-judo-yellow/50 rounded-full"></div>
-             <div class="absolute top-16 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-judo-green/50 rounded-full"></div>
+            <!-- Elementos flutuantes temáticos de judô -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-judo-blue/60 rounded-full animate-float"></div>
+            <div class="absolute top-12 left-1/2 -translate-x-1/2 w-3 h-3 bg-judo-yellow/60 rounded-full animate-float" style="animation-delay: 1s;"></div>
+            <div class="absolute top-24 left-1/2 -translate-x-1/2 w-3.5 h-3.5 bg-judo-green/60 rounded-full animate-float" style="animation-delay: 2s;"></div>
         </div>
     </div>
     
     <!-- Conteúdo principal -->
     <div class="relative z-30 w-full flex flex-col items-start justify-center min-h-screen px-4 sm:px-6 md:px-8 lg:px-20">
         <!-- Nome do site para mobile (em cima) -->
-        <div class="mobile-brand w-full text-center mb-8 animate-fade-in-down">
-            <!-- Círculos decorativos rotativos -->
-            <div class="relative">
-                <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-12 h-12 border-2 border-judo-blue/30 rounded-full animate-rotate"></div>
-                <div class="absolute -top-1 left-1/2 -translate-x-1/2 w-8 h-8 border-2 border-judo-yellow/30 rounded-full animate-rotate" style="animation-direction: reverse; animation-duration: 12s;"></div>
+        <div class="mobile-brand w-full text-center mb-6">
+            <!-- Imagem do judô no mobile -->
+            <div class="flex justify-center mb-4">
+                <div class="relative">
+                    <img src="/static/judo.png" alt="Judô" class="w-20 h-20 object-contain">
+                    <div class="absolute -inset-2 border-2 border-judo-blue/30 rounded-full animate-rotate"></div>
+                    <div class="absolute -inset-1 border border-judo-yellow/40 rounded-full animate-rotate" style="animation-direction: reverse; animation-duration: 8s;"></div>
+                </div>
             </div>
             
-            <h1 class="text-5xl sm:text-6xl font-bold text-white/90 mb-2 relative">
-                <span class="text-white inline-block">Dojo</span>
-                <span class="text-judo-blue inline-block">On</span>
+            <!-- Anéis decorativos -->
+            <div class="relative mb-4">
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-16 border-2 border-judo-blue/40 rounded-full animate-rotate"></div>
+                <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-12 h-12 border-2 border-judo-yellow/40 rounded-full animate-rotate" style="animation-direction: reverse; animation-duration: 10s;"></div>
+            </div>
+            
+            <h1 class="text-3xl sm:text-4xl font-judo font-light text-white mb-1 tracking-wide">
+                DOJO
+            </h1>
+            <h1 class="text-3xl sm:text-4xl font-judo font-light text-judo-blue mb-3 tracking-wide">
+                ONLINE
             </h1>
             
-            <!-- Linha decorativa animada -->
-            <div class="mx-auto w-24 h-1 bg-gradient-to-r from-judo-blue via-judo-yellow to-judo-green rounded-full animate-pulse mb-3"></div>
+            <!-- Linha decorativa com faixas -->
+            <div class="mx-auto w-20 h-1.5 bg-gradient-to-r from-judo-blue via-judo-yellow to-judo-green rounded-full animate-pulse mb-3 shadow-lg"></div>
             
-            <p class="text-white/70 text-lg font-medium animate-judo-focus">Academia de Judô</p>
+            <p class="text-white/80 text-lg font-light font-judo tracking-wide">ACADEMIA DE JUDÔ</p>
             
-                         <!-- Elementos flutuantes decorativos -->
-             <div class="absolute top-4 left-4 w-2 h-2 bg-judo-blue/50 rounded-full"></div>
-             <div class="absolute top-8 right-4 w-1.5 h-1.5 bg-judo-yellow/50 rounded-full"></div>
-             <div class="absolute top-12 left-8 w-2 h-2 bg-judo-green/50 rounded-full"></div>
+            <!-- Elementos flutuantes temáticos -->
+            <div class="absolute top-4 left-4 w-2.5 h-2.5 bg-judo-blue/60 rounded-full animate-float"></div>
+            <div class="absolute top-8 right-4 w-2 h-2 bg-judo-yellow/60 rounded-full animate-float" style="animation-delay: 1s;"></div>
+            <div class="absolute top-12 left-8 w-2 h-2 bg-judo-green/60 rounded-full animate-float" style="animation-delay: 2s;"></div>
         </div>
         
         <!-- Card de login responsivo -->
-        <div id="login-card" class="login-card bg-white/85 backdrop-blur-sm rounded-xl sm:rounded-2xl shadow-2xl px-4 sm:px-6 py-4 sm:py-6 w-full max-w-md mx-auto md:mx-0 flex flex-col items-center animate-fade-in-up transition-all duration-700 border border-white/30">
+        <div id="login-card" class="login-card bg-white/90 backdrop-blur-lg rounded-2xl sm:rounded-3xl shadow-2xl px-6 sm:px-8 py-6 sm:py-8 w-full max-w-md mx-auto md:mx-0 flex flex-col items-center transition-all duration-700 border-2 border-judo-blue/20 relative overflow-hidden">
+            <!-- Decoração de fundo do card -->
+            <div class="absolute inset-0 bg-gradient-to-br from-judo-blue/5 via-transparent to-judo-yellow/5"></div>
+            <div class="absolute top-0 right-0 w-20 h-20 bg-judo-blue/10 rounded-full -translate-y-10 translate-x-10"></div>
+            <div class="absolute bottom-0 left-0 w-16 h-16 bg-judo-yellow/10 rounded-full translate-y-8 -translate-x-8"></div>
+            
             <!-- Logo e título -->
-            <div class="flex items-center gap-2 mb-3 animate-fade-in-down">
-                <i class="fa-solid fa-user-ninja text-judo-blue text-xl sm:text-2xl animate-judo-punch"></i>
-                <span class="font-bold text-base sm:text-lg text-gray-700 tracking-wider">Academia de Judô</span>
+            <div class="relative z-10 flex items-center gap-3 mb-4">
+                <div class="relative">
+                    <i class="fa-solid fa-user-ninja text-judo-blue text-2xl sm:text-3xl"></i>
+                </div>
+                <span class="font-judo font-bold text-lg sm:text-xl text-judo-black tracking-widest">DOJO</span>
             </div>
             
-            <h2 class="text-lg sm:text-xl font-semibold mb-4 text-gray-800 animate-fade-in-down text-center">
-                {% if show_register %}Criar nova conta{% else %}Acessar sua conta{% endif %}
+            <h2 class="text-xl sm:text-2xl font-judo font-light mb-6 text-judo-black text-center tracking-wide">
+                {% if show_register %}CRIAR NOVA CONTA{% else %}ACESSAR SUA CONTA{% endif %}
             </h2>
             
             <!-- Mensagens de erro/sucesso -->
@@ -639,16 +667,16 @@
             {% endif %}
             
             <!-- Formulário -->
-            <form id="login-form" method="post" action="{% if show_register %}{% url 'register' %}{% else %}{% url 'login' %}{% endif %}" class="w-full flex flex-col gap-3" autocomplete="off" novalidate>
+            <form id="login-form" method="post" action="{% if show_register %}{% url 'register' %}{% else %}{% url 'login' %}{% endif %}" class="w-full flex flex-col gap-4 relative z-10" autocomplete="off" novalidate>
                 {% csrf_token %}
                 
                 <!-- Campo Email -->
                 <div class="relative" id="login-email-group">
                     <input id="email" type="email" name="email" placeholder=" " required aria-label="Email" 
-                           class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-judo-blue focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" 
+                           class="input peer w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-judo-blue focus:ring-4 focus:ring-judo-blue/20 outline-none bg-white/95 text-judo-black placeholder-transparent text-sm transition-all duration-300 shadow-lg hover:shadow-xl" 
                            value="{{ register_form.email.value|default:'' }}" />
-                    <label for="email" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Email</label>
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm">
+                    <label for="email" class="floating-label absolute left-12 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-200 text-xs font-medium">EMAIL</label>
+                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-judo-blue pointer-events-none text-base">
                         <i class="fa-regular fa-envelope" aria-hidden="true"></i>
                     </span>
                     <div class="error-message" id="email-error"></div>
@@ -657,26 +685,26 @@
                 <!-- Campo Senha -->
                 <div class="relative" id="login-senha-group">
                     <input id="senha" type="password" name="senha" placeholder=" " required aria-label="Senha" 
-                           class="input peer w-full pl-10 pr-10 py-2 rounded-md border border-gray-300 focus:border-judo-blue focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" />
-                    <label for="senha" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Senha</label>
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm">
+                           class="input peer w-full pl-12 pr-12 py-3 rounded-xl border-2 border-gray-200 focus:border-judo-blue focus:ring-4 focus:ring-judo-blue/20 outline-none bg-white/95 text-judo-black placeholder-transparent text-sm transition-all duration-300 shadow-lg hover:shadow-xl" />
+                    <label for="senha" class="floating-label absolute left-12 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-200 text-xs font-medium">SENHA</label>
+                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-judo-blue pointer-events-none text-base">
                         <i class="fa-solid fa-key" aria-hidden="true"></i>
                     </span>
-                    <button type="button" id="togglePassword" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-judo-blue transition text-sm" aria-label="Mostrar ou ocultar senha">
+                    <button type="button" id="togglePassword" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-judo-blue transition-colors duration-200 text-base" aria-label="Mostrar ou ocultar senha">
                         <i class="fa-regular fa-eye"></i>
                     </button>
                     <div class="error-message" id="senha-error"></div>
                 </div>
                 
                 <!-- Campos de cadastro (apenas quando show_register é True) -->
-                <div id="cadastro-campos" {% if show_register %}style="display:block;"{% else %}style="display:none;"{% endif %} class="space-y-3">
+                <div id="cadastro-campos" {% if show_register %}style="display:block;"{% else %}style="display:none;"{% endif %} class="space-y-4">
                     <!-- Campo Nome -->
                     <div class="relative">
                         <input id="nome" type="text" name="nome" placeholder=" " required aria-label="Nome completo" 
-                               class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-judo-blue focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" 
+                               class="input peer w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-judo-blue focus:ring-4 focus:ring-judo-blue/20 outline-none bg-white/95 text-judo-black placeholder-transparent text-sm transition-all duration-300 shadow-lg hover:shadow-xl" 
                                value="{{ register_form.nome.value|default:'' }}" />
-                        <label for="nome" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Nome completo</label>
-                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm">
+                        <label for="nome" class="floating-label absolute left-12 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-200 text-xs font-medium">NOME COMPLETO</label>
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-judo-blue pointer-events-none text-base">
                             <i class="fa-regular fa-user" aria-hidden="true"></i>
                         </span>
                         <div class="error-message" id="nome-error"></div>
@@ -685,10 +713,10 @@
                     <!-- Campo Idade -->
                     <div class="relative">
                         <input id="idade" type="number" name="idade" placeholder=" " min="3" max="120" required aria-label="Idade" 
-                               class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-judo-blue focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 placeholder-transparent text-sm transition-all duration-300" 
+                               class="input peer w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-judo-blue focus:ring-4 focus:ring-judo-blue/20 outline-none bg-white/95 text-judo-black placeholder-transparent text-sm transition-all duration-300 shadow-lg hover:shadow-xl" 
                                value="{{ register_form.idade.value|default:'' }}" />
-                        <label for="idade" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Idade</label>
-                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm">
+                        <label for="idade" class="floating-label absolute left-12 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-200 text-xs font-medium">IDADE</label>
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-judo-blue pointer-events-none text-base">
                             <i class="fa-solid fa-calendar" aria-hidden="true"></i>
                         </span>
                         <div class="error-message" id="idade-error"></div>
@@ -697,8 +725,8 @@
                     <!-- Campo Faixa -->
                     <div class="relative">
                         <select id="faixa" name="faixa" required aria-label="Faixa atual" 
-                                class="input peer w-full pl-10 pr-2 py-2 rounded-md border border-gray-300 focus:border-judo-blue focus:ring-2 focus:ring-blue-100 outline-none bg-white/90 text-gray-800 text-sm transition-all duration-300">
-                            <option value="" disabled selected>Faixa atual</option>
+                                class="input peer w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-judo-blue focus:ring-4 focus:ring-judo-blue/20 outline-none bg-white/95 text-judo-black text-sm transition-all duration-300 shadow-lg hover:shadow-xl">
+                            <option value="" disabled selected>Selecione sua faixa</option>
                             <option value="branca" {% if register_form.faixa.value == 'branca' %}selected{% endif %}>Branca</option>
                             <option value="cinza" {% if register_form.faixa.value == 'cinza' %}selected{% endif %}>Cinza</option>
                             <option value="azul" {% if register_form.faixa.value == 'azul' %}selected{% endif %}>Azul</option>
@@ -709,8 +737,8 @@
                             <option value="marrom" {% if register_form.faixa.value == 'marrom' %}selected{% endif %}>Marrom</option>
                             <option value="preta" {% if register_form.faixa.value == 'preta' %}selected{% endif %}>Preta</option>
                         </select>
-                        <label for="faixa" class="floating-label absolute left-10 top-1/2 -translate-y-1/2 text-gray-400 bg-white/90 px-0.5 transition-all duration-200 text-xs">Faixa atual</label>
-                        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none text-sm">
+                        <label for="faixa" class="floating-label absolute left-12 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-200 text-xs font-medium">FAIXA ATUAL</label>
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-judo-blue pointer-events-none text-base">
                             <i class="fa-solid fa-medal" aria-hidden="true"></i>
                         </span>
                         <div class="error-message" id="faixa-error"></div>
@@ -719,66 +747,41 @@
                 
                 <!-- Botão de envio -->
                 <button id="login-btn" type="submit" 
-                        class="mt-2 w-full py-2.5 rounded-md bg-gradient-to-r from-judo-blue to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white font-semibold text-base shadow-lg transition-all duration-300 focus:ring-4 focus:ring-blue-200 focus:outline-none active:scale-95 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
-                    <span id="login-btn-text">{% if show_register %}Criar conta{% else %}Entrar{% endif %}</span>
-                    <span id="login-spinner" class="hidden animate-spin">
+                        class="mt-4 w-full py-4 rounded-xl bg-gradient-to-r from-judo-blue via-judo-blue to-blue-600 hover:from-blue-700 hover:via-blue-700 hover:to-blue-800 text-white font-judo font-medium text-base shadow-2xl transition-all duration-300 focus:ring-4 focus:ring-judo-blue/30 focus:outline-none active:scale-95 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group">
+                    <!-- Efeito de brilho no hover -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                    <span id="login-btn-text" class="relative z-10 tracking-wider">{% if show_register %}CRIAR CONTA{% else %}ENTRAR{% endif %}</span>
+                    <span id="login-spinner" class="hidden animate-spin relative z-10">
                         <i class="fa-solid fa-spinner" aria-hidden="true"></i>
                     </span>
                 </button>
             </form>
             
             <!-- Opções de login (apenas quando não é registro) -->
-            <div class="flex items-center justify-between w-full mt-3 text-xs text-gray-600 animate-fade-in-up gap-2 flex-wrap" id="login-options" {% if show_register %}style="display:none;"{% else %}style="display:flex;"{% endif %}>
-                <label class="flex items-center gap-1 cursor-pointer">
-                    <input type="checkbox" class="accent-judo-blue transition-all duration-200" aria-label="Lembrar de mim" />
-                    Lembrar de mim
+            <div class="flex items-center justify-between w-full mt-4 text-sm text-gray-600 gap-3 flex-wrap relative z-10" id="login-options" {% if show_register %}style="display:none;"{% else %}style="display:flex;"{% endif %}>
+                <label class="flex items-center gap-2 cursor-pointer hover:text-judo-blue transition-colors duration-200">
+                    <input type="checkbox" class="accent-judo-blue transition-all duration-200 rounded" aria-label="Lembrar de mim" />
+                    <span class="font-medium">Lembrar de mim</span>
                 </label>
-                <a href="#" class="hover:underline transition-colors duration-200">Esqueceu a senha?</a>
+                <a href="#" class="hover:text-judo-blue transition-colors duration-200 font-medium">Esqueceu a senha?</a>
             </div>
             
             <!-- Link para alternar entre login/registro -->
-            <div class="w-full text-center mt-3 text-xs text-gray-500 animate-fade-in-up">
-                <span id="toggle-auth-mode">
+            <div class="w-full text-center mt-4 text-sm text-gray-600 relative z-10">
+                <span id="toggle-auth-mode" class="font-medium">
                 {% if show_register %}
-                  Já tem conta? <a href="{% url 'login' %}" id="fazer-login-link" class="text-judo-blue hover:underline transition-colors duration-200">Faça login</a>
+                  Já tem conta? <a href="{% url 'login' %}" id="fazer-login-link" class="text-judo-blue hover:text-blue-700 transition-colors duration-200 font-bold">FAÇA LOGIN</a>
                 {% else %}
-                Não possui conta? <a href="{% url 'register' %}" id="criar-conta-link" class="text-judo-blue hover:underline transition-colors duration-200">Crie uma conta grátis</a>
+                Não possui conta? <a href="{% url 'register' %}" id="criar-conta-link" class="text-judo-blue hover:text-blue-700 transition-colors duration-200 font-bold">CRIE UMA CONTA GRÁTIS</a>
                 {% endif %}
                 </span>
             </div>
             
             <!-- Footer -->
-            <div class="w-full text-center mt-4 text-[10px] text-gray-400 animate-fade-in-up">© 2024 Academia de Judô</div>
+            <div class="w-full text-center mt-6 text-xs text-gray-500 font-judo tracking-wide">© 2024 DOJO ONLINE ACADEMIA DE JUDÔ</div>
             
             <!-- Feedback de sucesso/erro -->
             <div id="login-feedback" class="fixed left-1/2 -translate-x-1/2 top-8 bg-judo-blue text-white px-4 py-2 rounded-lg shadow-lg font-semibold text-xs opacity-0 pointer-events-none transition-all duration-500 z-50" role="alert" aria-live="polite"></div>
-        </div>
-        
-        <!-- Seção de contatos para mobile (embaixo) -->
-        <div class="mobile-brand w-full mt-6 animate-fade-in-up">
-            <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                <h3 class="text-lg font-bold text-white text-center mb-3">Contato</h3>
-                <div class="flex justify-center space-x-6 text-center">
-                    <div class="flex flex-col items-center space-y-1">
-                        <i class="fa-solid fa-phone text-judo-blue text-lg"></i>
-                        <span class="text-white/80 text-xs">(11) 99999-9999</span>
-                    </div>
-                    <div class="flex flex-col items-center space-y-1">
-                        <i class="fa-solid fa-envelope text-judo-blue text-lg"></i>
-                        <span class="text-white/80 text-xs">contato@dojo-on.com</span>
-                    </div>
-                </div>
-                <div class="mt-3 text-center">
-                    <div class="flex justify-center space-x-4">
-                        <a href="#" class="text-white/70 hover:text-judo-blue transition-colors duration-200">
-                            <i class="fa-brands fa-instagram text-lg"></i>
-                        </a>
-                        <a href="#" class="text-white/70 hover:text-judo-blue transition-colors duration-200">
-                            <i class="fa-brands fa-whatsapp text-lg"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     

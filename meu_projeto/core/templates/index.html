@@ -7,8 +7,8 @@
     <title>Academia de Judô - Home</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Montserrat, Poppins, Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Poppins, Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -16,27 +16,30 @@
                     colors: {
                         judo: {
                             gray: '#6B7280',
-                            blue: '#3B82F6',
-                            yellow: '#FBBF24',
-                            orange: '#F97316',
-                            green: '#10B981',
-                            purple: '#8B5CF6',
-                            brown: '#92400E'
+                            blue: '#1E40AF',
+                            yellow: '#F59E0B',
+                            orange: '#EA580C',
+                            green: '#059669',
+                            purple: '#7C3AED',
+                            brown: '#92400E',
+                            white: '#F8FAFC',
+                            black: '#1F2937'
                         }
                     },
                     fontFamily: {
-                        'display': ['DM Sans', 'system-ui', 'sans-serif'],
+                        'display': ['Inter', 'system-ui', 'sans-serif'],
+                        'judo': ['Poppins', 'system-ui', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
-        .font-league { font-family: 'DM Sans', system-ui, sans-serif; }
-        .font-title { font-family: 'DM Sans', Arial, sans-serif; }
-        .font-subtitle { font-family: 'DM Sans', Arial, sans-serif; }
-        .font-desc { font-family: 'DM Sans', Arial, sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+        .font-league { font-family: 'Poppins', system-ui, sans-serif; }
+        .font-title { font-family: 'Poppins', system-ui, sans-serif; }
+        .font-subtitle { font-family: 'Poppins', system-ui, sans-serif; }
+        .font-desc { font-family: 'Poppins', system-ui, sans-serif; }
         
         .hero-section {
             background: linear-gradient(135deg, #0c1426 0%, #1e1b4b 50%, #312e81 100%);
@@ -45,21 +48,11 @@
         }
         
         .welcome-title {
-            background: linear-gradient(90deg, #f8fafc, #e2e8f0, #cbd5e1, #94a3b8, #64748b, #475569, #f8fafc);
-            background-size: 400% 100%;
+            background: linear-gradient(90deg, #f8fafc, #e2e8f0, #cbd5e1);
+            background-size: 200% 100%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: gradientShiftGray 5s ease-in-out infinite;
-        }
-        
-        @keyframes gradientShiftGray {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
         }
         
         .welcome-section {
@@ -108,20 +101,8 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            /* Animação única de entrada */
-            animation: faixaCardEnter 1.2s ease-out forwards;
             opacity: 1;
             transform: none;
-        }
-        @keyframes faixaCardEnter {
-            0% {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
         
         .faixa-card > div:nth-child(2) {
@@ -140,15 +121,16 @@
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s ease;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
         .faixa-card:hover::before {
-            left: 100%;
+            opacity: 1;
         }
         
         .faixa-card:hover {
@@ -174,80 +156,29 @@
         
         .name-input {
             transition: all 0.3s ease;
-            animation: inputPulse 4s ease-in-out infinite;
         }
         
         .name-input:focus {
-            transform: scale(1.02);
+            transform: scale(1.01);
             box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.2);
-            animation: none;
-        }
-        
-        @keyframes inputPulse {
-            0%, 100% { 
-                border-color: rgba(156, 163, 175, 0.5);
-            }
-            50% { 
-                border-color: rgba(156, 163, 175, 0.8);
-            }
         }
         
         .instruction-text {
-            animation: textFade 5s ease-in-out infinite;
-        }
-        
-        @keyframes textFade {
-            0%, 100% { 
-                opacity: 0.9;
-            }
-            50% { 
-                opacity: 1;
-            }
+            opacity: 0.9;
         }
         
         .final-text {
-            animation: finalTextGlow 6s ease-in-out infinite;
-        }
-        
-        @keyframes finalTextGlow {
-            0%, 100% { 
-                opacity: 0.8;
-                transform: scale(1);
-            }
-            50% { 
-                opacity: 1;
-                transform: scale(1.01);
-            }
+            opacity: 0.8;
         }
         
         .welcome-section {
-            animation: slideInLeft 1s ease-out;
-        }
-        
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            opacity: 1;
+            transform: none;
         }
         
         .welcome-message {
-            animation: fadeInUp 0.6s ease-out;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            opacity: 1;
+            transform: none;
         }
         
         .gradient-text {
@@ -265,10 +196,8 @@
             max-width: 400px;
             height: 100vh;
             background: linear-gradient(120deg, #23272F 0%, #374151 50%, #6B7280 100%);
-            background-size: 200% 200%;
-            animation: sidebarGradientMove 8s ease-in-out infinite;
             backdrop-filter: blur(10px);
-            transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: right 0.3s ease;
             z-index: 1000;
             border-left: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: -8px 0 32px 0 rgba(30,41,59,0.18);
@@ -277,55 +206,17 @@
         }
         .sidebar.open {
             right: 0;
-            animation: sidebarSlideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        @keyframes sidebarGradientMove {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        @keyframes sidebarSlideIn {
-            from {
-                opacity: 0;
-                right: -100%;
-                transform: translateX(20px);
-                filter: blur(2px);
-            }
-            to {
-                opacity: 1;
-                right: 0;
-                transform: translateX(0);
-                filter: blur(0);
-            }
         }
         .sidebar-item {
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: all 0.2s ease;
             border-radius: 12px;
             margin-bottom: 8px;
             position: relative;
             overflow: hidden;
         }
-        .sidebar-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transition: left 0.5s;
-        }
-        .sidebar-item:hover::before {
-            left: 100%;
-        }
         .sidebar-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateX(8px) scale(1.02);
-            box-shadow: 0 4px 20px 0 rgba(59,130,246,0.15);
-            filter: brightness(1.1);
-        }
-        .sidebar-item:active {
-            transform: translateX(4px) scale(0.98);
-            transition: all 0.1s;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(4px);
         }
         
         .sidebar-overlay {
@@ -1316,18 +1207,18 @@
                         {# Remover debug de usuário autenticado e email #}
 
 {% if nome and faixa %}
-                        <h2 class="font-title text-lg sm:text-xl md:text-2xl lg:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-blue-200 to-slate-400 drop-shadow-lg animate-fade-in-up text-center select-none font-league text-shadow-lg/30" style="letter-spacing: 0.5px;">
+                        <h2 class="font-title text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-blue-200 to-slate-400 drop-shadow-lg text-center select-none font-league" style="letter-spacing: 0.5px;">
                             {{ nome }}, você está no caminho certo.
                         </h2>
-                        <p class="font-desc mt-2 sm:mt-3 text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-slate-200 drop-shadow-xl animate-fade-in-up text-center select-none font-league" style="text-shadow: 0 2px 16px #0003;">
-                            A faixa <span class="text-blue-400 font-bold text-shadow-lg">{{ faixa }}</span> é só o começo.<br class="hidden sm:block">
+                        <p class="font-desc mt-2 sm:mt-3 text-sm sm:text-base md:text-lg lg:text-xl font-light text-slate-200 drop-shadow-xl text-center select-none font-league" style="text-shadow: 0 2px 16px #0003;">
+                            A faixa <span class="text-blue-400 font-medium text-shadow-lg">{{ faixa }}</span> é só o começo.<br class="hidden sm:block">
                             Aqui você vai adquirir todo o conhecimento necessário para a próxima etapa.
                         </p>
 {% else %}
-                        <h2 class="font-title text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-gray-300 to-slate-400 drop-shadow-lg animate-fade-in-up text-center select-none font-league">
+                        <h2 class="font-title text-2xl md:text-3xl font-light text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-gray-300 to-slate-400 drop-shadow-lg text-center select-none font-league">
                             Sua jornada começa aqui.
                         </h2>
-                        <p class="font-desc mt-3 text-lg md:text-xl font-semibold text-slate-200 drop-shadow-xl animate-fade-in-up text-center select-none font-league">
+                        <p class="font-desc mt-3 text-lg md:text-xl font-light text-slate-200 drop-shadow-xl text-center select-none font-league">
                             Faça login para liberar seu potencial!
                         </p>
 {% endif %}
@@ -1481,18 +1372,18 @@
                 <div class="text-center welcome-section flex items-start justify-center mb-2" style="height: auto; overflow: visible;">
                     <div class="w-full flex flex-col items-center justify-start pt-1">
 {% if nome and faixa %}
-                        <h2 class="font-title text-lg sm:text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-blue-200 to-slate-400 drop-shadow-lg animate-fade-in-up text-center select-none font-league text-shadow-lg/30" style="letter-spacing: 0.5px;">
+                        <h2 class="font-title text-lg sm:text-xl font-light text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-blue-200 to-slate-400 drop-shadow-lg text-center select-none font-league" style="letter-spacing: 0.5px;">
                             {{ nome }}, você está no caminho certo.
                         </h2>
-                        <p class="font-desc mt-2 sm:mt-3 text-sm sm:text-base font-semibold text-slate-200 drop-shadow-xl animate-fade-in-up text-center select-none font-league" style="text-shadow: 0 2px 16px #0003;">
-                            A faixa <span class="text-blue-400 font-bold text-shadow-lg">{{ faixa }}</span> é só o começo.<br class="hidden sm:block">
+                        <p class="font-desc mt-2 sm:mt-3 text-sm sm:text-base font-light text-slate-200 drop-shadow-xl text-center select-none font-league" style="text-shadow: 0 2px 16px #0003;">
+                            A faixa <span class="text-blue-400 font-medium text-shadow-lg">{{ faixa }}</span> é só o começo.<br class="hidden sm:block">
                             Aqui você vai adquirir todo o conhecimento necessário para a próxima etapa.
                         </p>
 {% else %}
-                        <h2 class="font-title text-xl sm:text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-gray-300 to-slate-400 drop-shadow-lg animate-fade-in-up text-center select-none font-league">
+                        <h2 class="font-title text-xl sm:text-2xl font-light text-transparent bg-clip-text bg-gradient-to-r from-slate-200 via-gray-300 to-slate-400 drop-shadow-lg text-center select-none font-league">
                             Sua jornada começa aqui.
                         </h2>
-                        <p class="font-desc mt-3 text-base sm:text-lg font-semibold text-slate-200 drop-shadow-xl animate-fade-in-up text-center select-none font-league">
+                        <p class="font-desc mt-3 text-base sm:text-lg font-light text-slate-200 drop-shadow-xl text-center select-none font-league">
                             Faça login para liberar seu potencial!
                         </p>
 {% endif %}

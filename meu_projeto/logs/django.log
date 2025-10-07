@@ -7994,3 +7994,90 @@ Buscando pagamento real para preferência pref_463249815-bc850a45-48e6-41e7-bdc6-
   - Assinaturas: 0
   - Assinaturas ativas: 0
   - Pagamentos: 4
+  - Usuários: 4
+  - Assinaturas: 0
+  - Assinaturas ativas: 0
+  - Pagamentos: 4
+  - Usuários premium: 0
+Watching for file changes with StatReloader
+  - Usuários: 4
+  - Assinaturas: 0
+  - Assinaturas ativas: 0
+  - Pagamentos: 4
+  - Usuários premium: 0
+- Broken pipe from ('127.0.0.1', 65503)
+"GET / HTTP/1.1" 200 39909
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 5516
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET / HTTP/1.1" 200 40432
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET / HTTP/1.1" 200 40841
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET / HTTP/1.1" 200 40841
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET / HTTP/1.1" 200 41614
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET / HTTP/1.1" 200 42296
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET / HTTP/1.1" 200 42354
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET / HTTP/1.1" 200 42354
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET / HTTP/1.1" 200 41436
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET / HTTP/1.1" 200 41436
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET / HTTP/1.1" 200 41576
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET / HTTP/1.1" 200 41606
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET / HTTP/1.1" 200 41401
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET /register/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 74241
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"POST /index/logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 41302
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET /register/ HTTP/1.1" 200 41294
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 74241
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET /index/ HTTP/1.1" 200 73024
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+Not Found: /index/url('https://fonts.googleapis.com/css2
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 6081
+"GET /index/ HTTP/1.1" 200 72519
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+Not Found: /index/url('https://fonts.googleapis.com/css2
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 6081
+"GET /index/ HTTP/1.1" 200 72519
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /index/url('https://fonts.googleapis.com/css2
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 6081
