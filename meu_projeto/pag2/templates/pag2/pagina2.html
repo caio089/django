@@ -1842,10 +1842,6 @@
             </div>
         </div>
 
-        <!-- Indicador de Scroll -->
-        <div id="scrollIndicator" class="scroll-indicator">
-            <span id="scrollText">Navegando...</span>
-        </div>
         
         <!-- Container de Partículas -->
         <div id="scrollParticles" class="scroll-particles"></div>
@@ -1860,7 +1856,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6 px-4 mt-8">
+    <footer class="bg-gray-800 text-white py-4 px-4 mt-4">
         <div class="max-w-6xl mx-auto text-center">
             <p class="text-gray-300">
                 © 2024 Academia de Judô - Faixa Azul - Desenvolvido com ❤️ para todos os judocas
@@ -2160,16 +2156,9 @@
                         const rect = this.getBoundingClientRect();
                         createParticles(rect.left + rect.width / 2, rect.top + rect.height / 2);
                         
-                        // Mostrar indicador
-                        const scrollIndicator = document.getElementById('scrollIndicator');
-                        const scrollText = document.getElementById('scrollText');
-                        scrollText.textContent = 'Em desenvolvimento...';
-                        scrollIndicator.classList.add('show');
-                        
                         // Remover efeitos após animação
                         setTimeout(() => {
                             this.classList.remove('clicked');
-                            scrollIndicator.classList.remove('show');
                         }, 1500);
                     }
                 });

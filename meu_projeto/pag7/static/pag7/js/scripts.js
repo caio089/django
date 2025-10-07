@@ -92,13 +92,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- BOTÃO VOLTAR AO TOPO SIMPLIFICADO ---
     const backToTopBtn = document.getElementById('backToTop');
     
-    window.addEventListener('scroll', () => {
-        backToTopBtn.classList.toggle('hidden', window.pageYOffset <= 300);
-    });
-    
-    backToTopBtn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    if (backToTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.remove('hidden');
+            } else {
+                backToTopBtn.classList.add('hidden');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 
     // --- ANIMAÇÕES DE NAVEGAÇÃO REMOVIDAS ---
     // Animações removidas para melhorar performance mobile

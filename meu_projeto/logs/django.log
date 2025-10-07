@@ -7983,3 +7983,14 @@ Buscando pagamento real para preferência pref_463249815-bc850a45-48e6-41e7-bdc6-
 "GET /payments/verificar-status/79/ HTTP/1.1" 200 128
 Buscando pagamento real para preferência pref_463249815-bc850a45-48e6-41e7-bdc6-2a7b7bf307e6
 "GET /payments/verificar-status/79/ HTTP/1.1" 200 128
+Buscando pagamento real para preferência pref_463249815-bc850a45-48e6-41e7-bdc6-2a7b7bf307e6
+"GET /payments/verificar-status/79/ HTTP/1.1" 200 128
+  - Usuários: 4
+  - Assinaturas: 0
+  - Assinaturas ativas: 0
+  - Pagamentos: 4
+  - Usuários premium: 0
+  - Usuários: 4
+  - Assinaturas: 0
+  - Assinaturas ativas: 0
+  - Pagamentos: 4
