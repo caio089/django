@@ -1,19 +1,42 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // --- ANIMAÇÕES SIMPLIFICADAS ---
-    function animateHabilidades() {
-        document.querySelectorAll('.habilidade-item').forEach((item, index) => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(10px)';
-            item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-            
-            setTimeout(() => {
-                item.style.opacity = '1';
-                item.style.transform = 'translateY(0)';
-            }, index * 50);
-        });
+    // --- SISTEMA DE LAZY LOADING PARA VÍDEOS ---
+    
+    // Função para extrair ID do YouTube
+    function extractYouTubeId(url) {
+        const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/);
+        return match ? match[1] : null;
     }
     
-    setTimeout(animateHabilidades, 300);
+    // Função para criar thumbnail
+    function createVideoThumbnail(iframe) {
+        const src = iframe.getAttribute('src');
+        const videoId = extractYouTubeId(src);
+        if (!videoId) return iframe;
+        
+        const container = document.createElement('div');
+        container.className = 'video-thumbnail-container';
+        container.innerHTML = `
+            <img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg" alt="Vídeo" style="width:100%;height:200px;object-fit:cover;border-radius:8px;">
+            <div class="play-overlay">
+                <div class="play-button">▶</div>
+            </div>
+        `;
+        
+        container.addEventListener('click', () => {
+            container.parentNode.replaceChild(iframe, container);
+        });
+        
+        return container;
+    }
+    
+    // Inicializar thumbnails para todos os vídeos
+    document.querySelectorAll('.video-container iframe[src*="youtube.com"]').forEach(iframe => {
+        const thumbnail = createVideoThumbnail(iframe);
+        iframe.parentNode.replaceChild(thumbnail, iframe);
+    });
+    
+    // --- ANIMAÇÕES REMOVIDAS PARA PERFORMANCE ---
+    // Animações removidas para melhorar performance mobile
     
     // --- SISTEMA DE PROGRESSO SIMPLIFICADO ---
     const progressBar = document.getElementById('progressBar');
@@ -77,17 +100,8 @@ document.addEventListener('DOMContentLoaded', function() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // --- ANIMAÇÕES DE NAVEGAÇÃO SIMPLIFICADAS ---
-    document.querySelectorAll('.japanese-nav-card').forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(10px)';
-        card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-        
-        setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-        }, index * 50);
-    });
+    // --- ANIMAÇÕES DE NAVEGAÇÃO REMOVIDAS ---
+    // Animações removidas para melhorar performance mobile
 
     // --- NAVEGAÇÃO SIMPLIFICADA ---
     function setupNavigation() {

@@ -551,6 +551,11 @@ def gerar_pix_direto(request, payment_id):
                     else:
                         logger.info(f"📋 QR Code Base64 do Mercado Pago: {qr_code_base64 is not None}")
                         if qr_code_base64:
+                            # Garantir que tem o prefixo correto
+                            if not qr_code_base64.startswith('data:'):
+                                qr_code_base64 = f"data:image/png;base64,{qr_code_base64}"
+                                logger.info("🔧 Adicionado prefixo data:image/png;base64 ao QR Code Base64")
+                            
                             logger.info(f"🔍 Início do Base64 MP: {qr_code_base64[:100]}...")
                             logger.info(f"🔍 Tem prefixo data: {qr_code_base64.startswith('data:')}")
 

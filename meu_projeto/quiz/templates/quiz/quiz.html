@@ -940,8 +940,15 @@
       // Garantir que a barra de progresso chegue a 100%
       progressBar.style.width = '100%';
       
-      // Salvar progresso final
+      // Marcar quiz como completo e salvar progresso final
+      console.log('🎉 Quiz completado! Marcando como completo...');
       saveQuizProgress();
+      
+      // Após 3 segundos, reiniciar automaticamente o quiz
+      setTimeout(() => {
+        console.log('🔄 Reiniciando quiz automaticamente...');
+        restartQuiz();
+      }, 3000);
     }
 
     function restartQuiz() {
@@ -958,6 +965,12 @@
       // Resetar barra de progresso
       progressBar.style.width = '0%';
       console.log('🔄 Quiz reiniciado - barra de progresso resetada para 0%');
+      
+      // Resetar progresso no backend se há uma dificuldade selecionada
+      if (currentDifficulty) {
+        console.log('🔄 Resetando progresso no backend...');
+        resetQuizProgress();
+      }
     }
 
     function initQuiz() {
@@ -1077,20 +1090,29 @@
           if (data.success && data.progresso) {
             console.log('✅ Carregando progresso do quiz:', data.progresso);
             
-            // Restaurar estado do quiz
-            currentQuestion = data.progresso.pergunta_atual;
-            score = data.progresso.acertos;
-            
-            console.log('   Pergunta atual restaurada:', currentQuestion);
-            console.log('   Score restaurado:', score);
-            
-            // Se o quiz não foi completado, continuar de onde parou
-            if (!data.progresso.quiz_completo && currentQuestion < questions.length) {
-              console.log(`🎯 Continuando quiz da pergunta ${currentQuestion + 1}`);
-              // Atualizar status após carregar progresso
-              updateStatus();
+            // Se o quiz foi completado, reiniciar do zero
+            if (data.progresso.quiz_completo) {
+              console.log('🎉 Quiz já foi completado! Reiniciando do zero...');
+              currentQuestion = 0;
+              score = 0;
+              answered = false;
+              
+              // Limpar progresso salvo e reiniciar no backend
+              resetQuizProgress();
             } else {
-              console.log('ℹ️ Quiz já foi completado ou não há progresso salvo');
+              // Restaurar estado do quiz se não foi completado
+              currentQuestion = data.progresso.pergunta_atual;
+              score = data.progresso.acertos;
+              
+              console.log('   Pergunta atual restaurada:', currentQuestion);
+              console.log('   Score restaurado:', score);
+              
+              // Se o quiz não foi completado, continuar de onde parou
+              if (currentQuestion < questions.length) {
+                console.log(`🎯 Continuando quiz da pergunta ${currentQuestion + 1}`);
+                // Atualizar status após carregar progresso
+                updateStatus();
+              }
             }
           } else {
             console.log('ℹ️ Nenhum progresso salvo para esta dificuldade');
@@ -1102,6 +1124,54 @@
           console.error('❌ Erro ao carregar progresso do quiz:', error);
           reject(error);
         });
+      });
+    }
+    
+    // Função para resetar o progresso do quiz no backend
+    function resetQuizProgress() {
+      console.log('🔄 Resetando progresso do quiz no backend...');
+      
+      const resetData = {
+        dificuldade: currentDifficulty,
+        pergunta_atual: 0,
+        total_perguntas: questions.length,
+        acertos: 0,
+        erros: 0,
+        pontuacao: 0,
+        quiz_completo: false
+      };
+      
+      console.log('📤 Enviando dados de reset:', resetData);
+      
+      // Verificar CSRF token
+      const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]');
+      if (!csrfToken) {
+        console.error('❌ CSRF token não encontrado!');
+        return;
+      }
+      
+      fetch('/quiz/salvar-progresso/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        },
+        body: JSON.stringify(resetData)
+      })
+      .then(response => {
+        console.log('📥 Resposta de reset recebida:', response.status);
+        return response.json();
+      })
+      .then(data => {
+        console.log('📊 Dados de reset recebidos:', data);
+        if (data.success) {
+          console.log('✅ Progresso do quiz resetado com sucesso!');
+        } else {
+          console.error('❌ Erro ao resetar progresso do quiz:', data.error);
+        }
+      })
+      .catch(error => {
+        console.error('❌ Erro de conexão ao resetar progresso do quiz:', error);
       });
     }
     

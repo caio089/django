@@ -69,157 +69,58 @@
              border-color: #7c3aed;
          }
          
-         /* Estilos para as habilidades com animação de digitação */
+         /* Estilos simplificados para habilidades */
          .habilidade-item {
-             opacity: 0;
-             transform: translateY(20px);
-             animation: slideInUp 0.6s ease-out forwards;
+             opacity: 1;
+             transform: none;
              cursor: pointer;
-             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+             transition: transform 0.2s ease;
              position: relative;
-             overflow: hidden;
          }
          
-         @keyframes slideInUp {
-             to {
-                 opacity: 1;
-                 transform: translateY(0);
+         /* Hover simplificado para mobile */
+         .habilidade-item:hover {
+             transform: translateY(-2px);
+         }
+         
+         @media (max-width: 768px) {
+             .habilidade-item:hover {
+                 transform: none;
              }
          }
          
-         /* Aplicar delay escalonado para as habilidades */
-         .habilidade-item:nth-child(1) { animation-delay: 0.1s; }
-         .habilidade-item:nth-child(2) { animation-delay: 0.2s; }
-         .habilidade-item:nth-child(3) { animation-delay: 0.3s; }
-         .habilidade-item:nth-child(4) { animation-delay: 0.4s; }
-         .habilidade-item:nth-child(5) { animation-delay: 0.5s; }
-         .habilidade-item:nth-child(6) { animation-delay: 0.6s; }
-         
-         /* Efeito de cursor para habilidades e condições */
-         .habilidade-item::before {
-             content: '';
-             position: absolute;
-             top: 0;
-             left: -100%;
-             width: 100%;
-             height: 100%;
-             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-             transition: left 0.6s ease;
-             pointer-events: none;
-             z-index: 1;
-         }
-         
-         .habilidade-item:hover::before {
-             left: 100%;
-         }
-         
-         .habilidade-item:hover {
-             transform: translateY(-3px) scale(1.03);
-             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-             background: rgba(255, 255, 255, 0.95) !important;
-         }
-         
-         /* Efeito de borda animada */
-         .habilidade-item::after {
-             content: '';
-             position: absolute;
-             top: 0;
-             left: 0;
-             right: 0;
-             bottom: 0;
-             border: 2px solid transparent;
-             border-radius: 12px;
-             background: linear-gradient(45deg, #6B7280, #4B5563, #6B7280) border-box;
-             -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-             -webkit-mask-composite: destination-out;
-             mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-             mask-composite: exclude;
-             opacity: 0;
-             transition: opacity 0.3s ease;
-         }
-         
-         .habilidade-item:hover::after {
-             opacity: 1;
-         }
-         
-         /* Efeito de destaque especial para a barra japonesa */
+         /* Barra japonesa simplificada */
          .japanese-nav-container {
              position: relative;
-             background: linear-gradient(135deg, rgba(124, 58, 237, 0.03) 0%, rgba(124, 58, 237, 0.01) 100%);
-             border-radius: 16px;
+             background: rgba(124, 58, 237, 0.05);
+             border-radius: 12px;
              padding: 16px;
              margin: 16px 0;
-             border: 1px solid rgba(124, 58, 237, 0.08);
-             box-shadow: 0 4px 20px rgba(124, 58, 237, 0.08);
+             border: 1px solid rgba(124, 58, 237, 0.1);
          }
          
-         .japanese-nav-container::before {
-             content: '';
-             position: absolute;
-             top: -2px;
-             left: -2px;
-             right: -2px;
-             bottom: -2px;
-             background: linear-gradient(45deg, #7c3aed, #4c1d95, #7c3aed);
-             border-radius: 18px;
-             z-index: -1;
-             opacity: 0.2;
-             animation: borderGlow 3s ease-in-out infinite alternate;
-         }
-         
-         @keyframes borderGlow {
-             0% {
-                 opacity: 0.15;
-             }
-             100% {
-                 opacity: 0.25;
-             }
-         }
-         
-         /* Melhorar o hover dos cards */
+         /* Hover simplificado para cards */
          .japanese-nav-card:hover {
-             transform: translateY(-8px) scale(1.05);
-             box-shadow: 0 20px 40px rgba(124, 58, 237, 0.15);
-             border-color: #7c3aed;
+             transform: translateY(-4px);
+             box-shadow: 0 8px 16px rgba(124, 58, 237, 0.15);
          }
          
-         /* Efeito de brilho nos cards */
-         .japanese-nav-card::after {
-             content: '';
-             position: absolute;
-             top: 0;
-             left: -100%;
-             width: 100%;
-             height: 100%;
-             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-             transition: left 0.5s;
+         @media (max-width: 768px) {
+             .japanese-nav-card:hover {
+                 transform: none;
+             }
          }
          
-         .japanese-nav-card:hover::after {
-             left: 100%;
-         }
-         
-         /* Animações para transição japonesa */
+         /* Transições simplificadas */
          .japanese-nav-card {
-             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+             transition: transform 0.2s ease, box-shadow 0.2s ease;
              position: relative;
-             overflow: hidden;
          }
          
-         /* Animações do Modal de Parabéns */
+         /* Modal simplificado */
          .modal-enter {
-             animation: modalEnter 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-         }
-         
-         @keyframes modalEnter {
-             0% {
-                 opacity: 0;
-                 transform: scale(0.8) translateY(50px);
-             }
-             100% {
-                 opacity: 1;
-                 transform: scale(1) translateY(0);
-             }
+             opacity: 1;
+             transform: none;
          }
          
          /* Garantir que o modal apareça corretamente */
@@ -239,7 +140,7 @@
              pointer-events: auto !important;
          }
          
-         /* Troféu animado */
+         /* Troféu simplificado */
          .trophy-container {
              position: relative;
              display: inline-block;
@@ -247,107 +148,31 @@
          
          .trophy-icon {
              font-size: 4rem;
-             animation: trophyBounce 3s ease-in-out infinite;
-             filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));
-             will-change: transform;
+             filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
          }
          
-         @keyframes trophyBounce {
-             0%, 100% { transform: translateY(0) rotate(0deg); }
-             50% { transform: translateY(-8px) rotate(2deg); }
-         }
-         
-         .trophy-glow {
-             position: absolute;
-             top: 50%;
-             left: 50%;
-             width: 100px;
-             height: 100px;
-             background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
-             border-radius: 50%;
-             transform: translate(-50%, -50%);
-             animation: glowPulse 3s ease-in-out infinite;
-             will-change: transform, opacity;
-         }
-         
-         @keyframes glowPulse {
-             0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
-             50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.1); }
-         }
-         
-         /* Título animado */
-         .congratulations-title {
-             animation: titleGlow 3s ease-in-out infinite;
-         }
-         
-         @keyframes titleGlow {
-             0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3)); }
-             50% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6)); }
-         }
-         
-         /* Partículas de celebração otimizadas */
+         /* Remover partículas pesadas */
          .celebration-particle {
-             position: absolute;
-             width: 6px;
-             height: 6px;
-             background: #FFD700;
-             border-radius: 50%;
-             animation: celebrationFloat 2.5s ease-in-out infinite;
-             animation-delay: var(--delay);
-             left: var(--x);
-             top: var(--y);
-             will-change: transform, opacity;
+             display: none;
          }
          
-         @keyframes celebrationFloat {
-             0% { opacity: 0; transform: translateY(0) scale(0); }
-             20% { opacity: 1; transform: translateY(-15px) scale(1); }
-             80% { opacity: 1; transform: translateY(-30px) scale(1.1); }
-             100% { opacity: 0; transform: translateY(-45px) scale(0); }
-         }
-         
-         /* Botões animados */
+         /* Botões simplificados */
          .continue-btn, .close-btn {
-             position: relative;
-             overflow: hidden;
+             transition: transform 0.2s ease;
          }
          
-         .continue-btn::before, .close-btn::before {
-             content: '';
-             position: absolute;
-             top: 0;
-             left: -100%;
-             width: 100%;
-             height: 100%;
-             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-             transition: left 0.5s ease;
+         .continue-btn:hover, .close-btn:hover {
+             transform: scale(1.02);
          }
          
-         .continue-btn:hover::before, .close-btn:hover::before {
-             left: 100%;
-         }
-         
-         /* Estatísticas */
+         /* Estatísticas simplificadas */
          .stat-card {
-             background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+             background: #fef3c7;
              border: 2px solid #fbbf24;
-             border-radius: 16px;
+             border-radius: 12px;
              padding: 1.5rem;
-             transition: all 0.3s ease;
-             animation: statCardEnter 0.6s ease-out forwards;
-             animation-delay: calc(var(--index, 0) * 0.1s);
-             opacity: 0;
-             transform: translateY(20px);
-         }
-         
-         .stat-card:nth-child(1) { --index: 1; }
-         .stat-card:nth-child(2) { --index: 2; }
-         
-         @keyframes statCardEnter {
-             to {
-                 opacity: 1;
-                 transform: translateY(0);
-             }
+             opacity: 1;
+             transform: none;
          }
          
          .stat-number {
@@ -804,3 +629,97 @@
                 margin-bottom: 0.75rem !important;
             }
         }
+
+/* === THUMBNAILS DE VÍDEO OTIMIZADOS === */
+.video-thumbnail-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.video-thumbnail-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.video-thumbnail-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+
+.video-thumbnail-container:hover img {
+    transform: scale(1.02);
+}
+
+.video-thumbnail-container .play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+.video-thumbnail-container:hover .play-overlay {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.video-thumbnail-container .play-button {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease;
+    font-size: 20px;
+    color: #7c3aed;
+    font-weight: bold;
+}
+
+.video-thumbnail-container:hover .play-button {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Desabilitar hover no mobile */
+@media (max-width: 768px) {
+    .video-thumbnail-container:hover {
+        transform: none;
+    }
+    
+    .video-thumbnail-container:hover img {
+        transform: none;
+    }
+    
+    .video-thumbnail-container:hover .play-button {
+        transform: scale(1);
+    }
+    
+    .video-thumbnail-container .play-button {
+        width: 50px;
+        height: 50px;
+        font-size: 16px;
+    }
+}

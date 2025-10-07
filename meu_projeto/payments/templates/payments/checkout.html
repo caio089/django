@@ -270,16 +270,10 @@ function hideStatus() {
 // Função para mostrar QR Code do PIX
 function showPixQRCode(data) {
     console.log('🖼️ MOSTRANDO MODAL PIX');
-    console.log('   Dados recebidos:', data);
     console.log('   Success:', data.success);
-    console.log('   QR Code:', data.qr_code ? data.qr_code.substring(0, 50) + '...' : 'None');
-    console.log('   QR Code Base64:', data.qr_code_base64 ? data.qr_code_base64.substring(0, 50) + '...' : 'None');
     console.log('   Payment ID:', data.payment_id);
     console.log('   Status:', data.status);
-    console.log('   QR Code Base64 completo:', data.qr_code_base64 ? 'Sim' : 'Não');
-    console.log('   QR Code Base64 length:', data.qr_code_base64 ? data.qr_code_base64.length : 0);
-    console.log('   QR Code Base64 preview:', data.qr_code_base64 ? data.qr_code_base64.substring(0, 100) + '...' : 'N/A');
-    console.log('   QR Code Base64 starts with data:', data.qr_code_base64 ? data.qr_code_base64.startsWith('data:') : 'N/A');
+    console.log('   QR Code disponível:', data.qr_code_base64 ? 'Sim' : 'Não');
     
     hideStatus();
     
@@ -302,13 +296,17 @@ function showPixQRCode(data) {
                 <p class="text-gray-600 mb-6">Escaneie o QR Code com seu app bancário</p>
                 
                 <div class="bg-gray-100 p-4 rounded-lg mb-6 text-center">
-                    ${data.qr_code_base64 && data.qr_code_base64.startsWith('data:') ? 
+                    ${data.qr_code_base64 ? 
                         `<img src="${data.qr_code_base64}" alt="QR Code PIX" class="mx-auto max-w-full h-auto max-h-64" onload="console.log('✅ QR Code carregado com sucesso')" onerror="console.error('❌ Erro ao carregar QR Code:', this.src.substring(0, 50) + '...')">` :
-                        `<div class="text-gray-500 text-center">
-                            <p class="mb-2">QR Code não disponível</p>
-                            <p class="text-sm">Tente novamente ou use o código PIX abaixo</p>
-                            <p class="text-xs text-gray-400 mt-2">Debug: ${data.qr_code_base64 ? 'Base64 presente mas inválido' : 'Base64 ausente'}</p>
-                        </div>`
+                        data.qr_code ? 
+                            `<div class="text-gray-500 text-center">
+                                <p class="mb-2">QR Code não disponível</p>
+                                <p class="text-sm">Use o código PIX abaixo</p>
+                            </div>` :
+                            `<div class="text-gray-500 text-center">
+                                <p class="mb-2">QR Code não disponível</p>
+                                <p class="text-sm">Tente novamente ou use cartão de crédito</p>
+                            </div>`
                     }
                 </div>
                 
@@ -348,48 +346,26 @@ function showPixQRCode(data) {
         </div>
     `;
     
-    console.log('📝 Adicionando modal ao DOM...');
     document.body.appendChild(modal);
-    console.log('✅ Modal adicionado ao DOM');
-    
-    // QR Code será exibido no modal sem teste automático
-    if (data.qr_code) {
-        console.log('✅ QR Code disponível para exibição no modal');
-    } else {
-        console.log('⚠️ Nenhum QR Code disponível');
-    }
     
     // Adicionar event listeners
-    console.log('🔗 Adicionando event listeners do modal...');
     
     const closeButton = document.getElementById('close-pix-modal');
     const paidButton = document.getElementById('paid-pix-modal');
     
-    console.log('   Close button:', closeButton);
-    console.log('   Paid button:', paidButton);
-    
     if (closeButton) {
         closeButton.addEventListener('click', () => {
-            console.log('❌ Botão fechar clicado');
             modal.remove();
         });
-        console.log('✅ Event listener do botão fechar adicionado');
-    } else {
-        console.error('❌ Botão fechar não encontrado');
     }
     
     if (paidButton) {
         paidButton.addEventListener('click', () => {
-            console.log('✅ Botão "Já Paguei" clicado');
             window.location.href = '{% url "payments:sucesso" %}';
         });
-        console.log('✅ Event listener do botão "Já Paguei" adicionado');
-    } else {
-        console.error('❌ Botão "Já Paguei" não encontrado');
     }
     
     // Verificar status do pagamento a cada 5 segundos
-    console.log('⏰ Iniciando verificação de status a cada 5 segundos...');
     const checkStatus = setInterval(async () => {
         try {
             console.log('🔍 Verificando status do pagamento...');
@@ -789,4 +765,6 @@ document.addEventListener('DOMContentLoaded', () => {
 {% endif %}
 
 </body>
+
+
 </html>

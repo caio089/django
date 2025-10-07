@@ -74,12 +74,11 @@
         }
         
         .card-hover {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.2s ease;
         }
         
         .card-hover:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: translateY(-4px);
         }
         
         .video-container {
@@ -104,7 +103,7 @@
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            transition: all 0.3s ease;
+            transition: box-shadow 0.2s ease;
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -113,7 +112,7 @@
         
         .video-card:hover {
             box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            transform: translateY(-2px);
+            /* transform removido para melhorar performance mobile */
         }
         
         .video-header {
@@ -212,14 +211,7 @@
             background: linear-gradient(90deg, transparent, #E5E7EB, transparent);
         }
         
-        .floating-action {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
+        /* Animação float removida para melhorar performance mobile */
         
         .text-gradient {
             background: linear-gradient(45deg, #3B82F6, #1E40AF);
@@ -264,9 +256,7 @@
         .back-to-top-section {
             position: relative;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            transform: translateY(0);
-            animation: slideInFromBottom 0.6s ease-out;
+            transition: opacity 0.2s ease;
         }
         
         .back-to-top-section::before {
@@ -304,114 +294,19 @@
         }
         
         .back-to-top-section:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
-            animation: pulse 1s infinite;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
         
-        .back-to-top-section:active {
-            transform: translateY(-1px) scale(0.95);
-            transition: all 0.1s ease;
-        }
+        /* Animações removidas para melhorar performance mobile */
         
-        /* Animação de destaque quando o botão aparece */
-        .back-to-top-section.animate-in {
-            animation: buttonAppear 0.8s ease-out;
-        }
+        /* Partículas removidas para melhorar performance mobile */
         
-        @keyframes buttonAppear {
-            0% {
-                opacity: 0;
-                transform: translateY(30px) scale(0.8);
-            }
-            50% {
-                opacity: 0.8;
-                transform: translateY(-5px) scale(1.05);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-        
-        @keyframes slideInFromBottom {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
-            }
-            70% {
-                box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-            }
-        }
-        
-        /* Partículas para o botão voltar ao topo */
-        .back-to-top-particle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: backToTopParticle 1.2s ease-out forwards;
-            z-index: 1000;
-        }
-        
-        @keyframes backToTopParticle {
-            0% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-            50% {
-                opacity: 0.8;
-                transform: translateY(-25px) scale(1.2);
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-60px) scale(0);
-            }
-        }
-        
-        /* Animações para transição japonesa */
+        /* Animações japonesas removidas para melhorar performance mobile */
         .japanese-nav-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.2s ease;
             position: relative;
             overflow: hidden;
-            animation: japaneseCardEntrance 0.8s ease-out forwards;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        
-        .japanese-nav-card:nth-child(1) { animation-delay: 0.1s; }
-        .japanese-nav-card:nth-child(2) { animation-delay: 0.2s; }
-        .japanese-nav-card:nth-child(3) { animation-delay: 0.3s; }
-        .japanese-nav-card:nth-child(4) { animation-delay: 0.4s; }
-        
-        @keyframes japaneseCardEntrance {
-            0% {
-                opacity: 0;
-                transform: translateY(30px) scale(0.9);
-            }
-            50% {
-                opacity: 0.8;
-                transform: translateY(-5px) scale(1.05);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+            opacity: 1;
         }
         
         .japanese-nav-card::before {
@@ -474,9 +369,8 @@
         
         /* Melhorar o hover dos cards */
         .japanese-nav-card:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
-            border-color: #60a5fa;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.1);
         }
         
         /* Efeito de brilho nos cards */
@@ -497,76 +391,7 @@
         
 
         
-        /* Animação de scroll suave */
-        .scroll-indicator {
-            position: fixed;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-            background: rgba(59, 130, 246, 0.9);
-            color: white;
-            padding: 12px 16px;
-            border-radius: 25px;
-            font-size: 14px;
-            font-weight: 600;
-            z-index: 1000;
-            opacity: 0;
-            transition: all 0.3s ease;
-            pointer-events: none;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3);
-        }
-        
-        .scroll-indicator.show {
-            opacity: 1;
-        }
-        
-        .scroll-indicator::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: -8px;
-            width: 0;
-            height: 0;
-            border-top: 8px solid transparent;
-            border-bottom: 8px solid transparent;
-            border-right: 8px solid rgba(59, 130, 246, 0.9);
-            transform: translateY(-50%);
-        }
-        
-        /* Animação de destaque no destino */
-        .destination-highlight {
-            animation: destinationPulse 2s ease-out;
-        }
-        
-        @keyframes destinationPulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
-                transform: scale(1);
-            }
-            50% {
-                box-shadow: 0 0 0 20px rgba(59, 130, 246, 0.3);
-                transform: scale(1.02);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
-                transform: scale(1);
-            }
-        }
-        
-        /* Efeito de partículas durante o scroll */
-        .scroll-particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 999;
-        }
-        
-        .particle {
-            position: absolute;
+        /* Efeitos de scroll removidos para melhorar performance mobile */
             width: 4px;
             height: 4px;
             background: #3B82F6;
@@ -596,9 +421,8 @@
             }
         }
         .habilidade-item {
-            opacity: 0;
-            transform: scale(0.7);
-            animation: fadeGrow 1.3s cubic-bezier(0.4,0,0.2,1) forwards;
+            opacity: 1;
+            transform: scale(1);
             cursor: pointer;
             position: relative;
             overflow: hidden;
@@ -623,9 +447,8 @@
         }
         
         .habilidade-item:hover {
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            background: rgba(255, 255, 255, 0.9) !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
         /* Efeito de borda animada */
@@ -671,22 +494,15 @@
             border: 2px solid #e2e8f0;
             border-radius: 16px;
             padding: 1.5rem;
-            transition: all 0.3s ease;
-            animation: statCardEnter 0.6s ease-out forwards;
-            animation-delay: calc(var(--index, 0) * 0.1s);
-            opacity: 0;
-            transform: translateY(20px);
+            transition: box-shadow 0.2s ease;
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .stat-card:nth-child(1) { --index: 1; }
         .stat-card:nth-child(2) { --index: 2; }
         
-        @keyframes statCardEnter {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        /* Animações de estatísticas removidas */
         
         .stat-number {
             font-size: 2rem;
@@ -722,21 +538,7 @@
             left: 100%;
         }
 
-        /* Animações do Modal de Parabéns */
-        .modal-enter {
-            animation: modalEnter 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-        
-        @keyframes modalEnter {
-            0% {
-                opacity: 0;
-                transform: scale(0.8) translateY(50px);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
+        /* Animações de modal removidas para melhorar performance mobile */
         
         /* Garantir que o modal apareça corretamente */
         #congratulationsModal {
@@ -2291,71 +2093,16 @@
                 }
             }
             
-            // Função para animação de scroll com efeitos
+            // Função de scroll simplificada para melhorar performance mobile
             function smoothScrollTo(element, cardElement) {
                 const targetElement = document.getElementById(element);
-                const scrollIndicator = document.getElementById('scrollIndicator');
-                const scrollText = document.getElementById('scrollText');
-                
                 if (!targetElement) return;
                 
-                // Adicionar classe clicked ao card
-                cardElement.classList.add('clicked');
-                
-                // Criar partículas no ponto de clique
-                const rect = cardElement.getBoundingClientRect();
-                createParticles(rect.left + rect.width / 2, rect.top + rect.height / 2);
-                
-                // Mostrar indicador de scroll
-                scrollText.textContent = 'Navegando...';
-                scrollIndicator.classList.add('show');
-                
-                // Calcular posição de destino
-                const targetPosition = targetElement.offsetTop - 100;
-                const startPosition = window.pageYOffset;
-                const distance = targetPosition - startPosition;
-                const duration = 1200; // 1.2 segundos
-                let start = null;
-                
-                // Função de easing personalizada
-                function easeInOutCubic(t) {
-                    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-                }
-                
-                // Função de animação
-                function animation(currentTime) {
-                    if (start === null) start = currentTime;
-                    const timeElapsed = currentTime - start;
-                    const progress = Math.min(timeElapsed / duration, 1);
-                    const easedProgress = easeInOutCubic(progress);
-                    
-                    window.scrollTo(0, startPosition + distance * easedProgress);
-                    
-                    // Atualizar texto do indicador
-                    if (progress < 0.5) {
-                        scrollText.textContent = 'Navegando...';
-                    } else {
-                        scrollText.textContent = 'Chegando...';
-                    }
-                    
-                    if (progress < 1) {
-                        requestAnimationFrame(animation);
-                    } else {
-                        // Animação concluída
-                        setTimeout(() => {
-                            scrollIndicator.classList.remove('show');
-                            cardElement.classList.remove('clicked');
-                            
-                            // Adicionar destaque no destino
-                            targetElement.classList.add('destination-highlight');
-                            setTimeout(() => {
-                                targetElement.classList.remove('destination-highlight');
-                            }, 2000);
-                        }, 300);
-                    }
-                }
-                
-                requestAnimationFrame(animation);
+                // Scroll simples sem animações pesadas
+                targetElement.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             }
             
             // Navegação interna com animações
@@ -2428,30 +2175,7 @@
                 });
             });
 
-            // Função para criar partículas no botão voltar ao topo
-            function createBackToTopParticles(button) {
-                const rect = button.getBoundingClientRect();
-                const centerX = rect.left + rect.width / 2;
-                const centerY = rect.top + rect.height / 2;
-                
-                for (let i = 0; i < 12; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'back-to-top-particle';
-                    particle.style.left = centerX + (Math.random() - 0.5) * 60 + 'px';
-                    particle.style.top = centerY + (Math.random() - 0.5) * 60 + 'px';
-                    particle.style.animationDelay = Math.random() * 0.5 + 's';
-                    particle.style.background = `rgba(255, 255, 255, ${0.7 + Math.random() * 0.3})`;
-                    
-                    document.body.appendChild(particle);
-                    
-                    // Remover partícula após animação
-                    setTimeout(() => {
-                        if (particle.parentNode) {
-                            particle.parentNode.removeChild(particle);
-                        }
-                    }, 1200);
-                }
-            }
+            // Partículas removidas para melhorar performance mobile
 
             // Função para inicializar animações dos botões back-to-top
             function initializeBackToTopButtons() {
@@ -2477,48 +2201,10 @@
                 });
             }
             
-            // Handler para o botão voltar ao topo
+            // Handler simplificado para o botão voltar ao topo
             function backToTopHandler() {
-                // Criar partículas
-                createBackToTopParticles(this);
-                
-                // Adicionar efeito visual ao clicar
-                this.style.transform = 'scale(0.95)';
-                this.style.transition = 'transform 0.1s ease';
-                
-                // Scroll suave com easing personalizado
-                const startPosition = window.pageYOffset;
-                const targetPosition = 0;
-                const distance = targetPosition - startPosition;
-                const duration = 1000; // 1 segundo
-                let start = null;
-                
-                // Função de easing suave
-                function easeInOutCubic(t) {
-                    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-                }
-                
-                // Função de animação
-                function animation(currentTime) {
-                    if (start === null) start = currentTime;
-                    const timeElapsed = currentTime - start;
-                    const progress = Math.min(timeElapsed / duration, 1);
-                    const easedProgress = easeInOutCubic(progress);
-                    
-                    window.scrollTo(0, startPosition + distance * easedProgress);
-                    
-                    if (progress < 1) {
-                        requestAnimationFrame(animation);
-                    } else {
-                        // Restaurar o botão após a animação
-                        setTimeout(() => {
-                            this.style.transform = 'scale(1)';
-                            this.style.transition = 'transform 0.3s ease';
-                        }, 100);
-                    }
-                }
-                
-                requestAnimationFrame(animation);
+                // Scroll simples sem animações pesadas
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
             
             // Inicializar botões back-to-top

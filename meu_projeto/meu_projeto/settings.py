@@ -47,6 +47,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'payments.middleware_payment_sync.PaymentSyncMiddleware',  # Sincronização automática de pagamento
     'payments.middleware.PremiumAccessMiddleware',
     'payments.security.SecurityMiddleware',
 ]

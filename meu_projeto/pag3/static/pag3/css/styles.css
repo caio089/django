@@ -28,12 +28,11 @@ p, span, div {
 }
 
 .card-hover {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.2s ease;
 }
 
 .card-hover:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transform: translateY(-4px);
 }
 
 .video-container {
@@ -66,7 +65,7 @@ p, span, div {
     padding: 1rem !important;
     margin: 0.5rem !important;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition: transform 0.2s ease !important;
     position: relative !important;
     overflow: hidden !important;
     cursor: pointer !important;
@@ -75,9 +74,15 @@ p, span, div {
 }
 
 .habilidade-item:hover {
-    transform: translateY(-3px) scale(1.03) !important;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12) !important;
-    background: rgba(255, 255, 255, 0.95) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Desabilitar hover no mobile */
+@media (max-width: 768px) {
+    .habilidade-item:hover {
+        transform: none !important;
+    }
 }
 
 /* ===== BARRA JAPONESA ===== */
@@ -92,15 +97,21 @@ p, span, div {
 }
 
 .japanese-nav-card {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.2s ease;
     position: relative;
     overflow: hidden;
 }
 
 .japanese-nav-card:hover {
-    transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 20px 40px rgba(251, 191, 36, 0.2);
-    border-color: #fbbf24;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(251, 191, 36, 0.15);
+}
+
+/* Desabilitar hover no mobile */
+@media (max-width: 768px) {
+    .japanese-nav-card:hover {
+        transform: none;
+    }
 }
 
 /* ===== CARROSSEL ===== */
@@ -1393,7 +1404,7 @@ p, span, div {
     display: block !important;
     opacity: 1 !important;
     visibility: visible !important;
-    animation: fadeInUp 0.5s ease-out !important;
+    /* Animação removida para melhorar performance mobile */
 }
 
 /* Garantir que as seções sejam escondidas quando tiverem a classe hidden */
@@ -1404,17 +1415,7 @@ p, span, div {
     visibility: hidden !important;
 }
 
-/* Animação de entrada para as seções */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+/* Animações removidas para melhorar performance mobile */
 
 /* Regras com máxima especificidade para ataques combinados */
 html body #henkakuenka-section,
