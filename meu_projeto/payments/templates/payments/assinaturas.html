@@ -7,56 +7,105 @@
     <title>Minhas Assinaturas - Academia de Judô</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'DM Sans', sans-serif; }
+        @media (max-width: 640px) {
+            .mobile-card { padding: 1rem; }
+            .mobile-spacing { margin-bottom: 0.75rem; }
+        }
+    </style>
 </head>
-<body class="bg-gray-50 font-sans">
+<body class="bg-gray-50 min-h-screen flex flex-col">
 <!-- CSRF Token para JavaScript -->
 <script>
     window.csrfToken = '{{ csrf_token }}';
 </script>
-<div class="container mx-auto px-4 py-8">
-    <div class="max-w-4xl mx-auto">
+
+<!-- Header com navegação -->
+<header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-14 sm:h-16">
+            <div class="flex items-center">
+                <a href="{% url 'index' %}" class="flex items-center space-x-2">
+                    <img src="{% static 'judo.png' %}" alt="Judo" class="h-7 w-7 sm:h-8 sm:w-8">
+                    <span class="text-base sm:text-xl font-bold text-gray-800">Academia de Judô</span>
+                </a>
+            </div>
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                {% if user.is_authenticated %}
+                    <span class="text-xs sm:text-sm text-gray-600 hidden sm:inline">Olá, {{ user.first_name|default:user.username }}</span>
+                    <form method="post" action="{% url 'logout' %}" class="inline">
+                        {% csrf_token %}
+                        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-md text-xs sm:text-sm font-medium transition">
+                            Sair
+                        </button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-md text-xs sm:text-sm font-medium transition">
+                        Login
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Messages -->
+{% if messages %}
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-3 sm:pt-4">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} bg-{% if message.tags == 'error' %}red{% elif message.tags == 'warning' %}yellow{% elif message.tags == 'success' %}green{% else %}blue{% endif %}-100 border border-{% if message.tags == 'error' %}red{% elif message.tags == 'warning' %}yellow{% elif message.tags == 'success' %}green{% else %}blue{% endif %}-400 text-{% if message.tags == 'error' %}red{% elif message.tags == 'warning' %}yellow{% elif message.tags == 'success' %}green{% else %}blue{% endif %}-700 px-3 py-2 sm:px-4 sm:py-3 rounded text-sm mb-3 sm:mb-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<!-- Main Content -->
+<main class="flex-1">
+    <div class="max-w-4xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
         <!-- Header -->
-        <div class="text-center mb-8">
-            <h1 class="text-4xl font-bold text-gray-800 mb-4">Minhas Assinaturas</h1>
-            <p class="text-xl text-gray-600">Gerencie suas assinaturas e pagamentos</p>
+        <div class="text-center mb-6 sm:mb-8">
+            <h1 class="text-2xl sm:text-4xl font-bold text-gray-800 mb-2 sm:mb-4">Minhas Assinaturas</h1>
+            <p class="text-base sm:text-xl text-gray-600">Gerencie suas assinaturas e pagamentos</p>
         </div>
 
         <!-- Assinaturas Ativas -->
-        <div class="mb-8">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">Assinaturas Ativas</h2>
+        <div class="mb-6 sm:mb-8">
+            <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6 px-1">Assinaturas Ativas</h2>
             {% if assinaturas %}
                 {% for assinatura in assinaturas %}
                     {% if assinatura.status == 'ativa' %}
-                    <div class="bg-white rounded-lg shadow-lg border border-gray-200 p-6 mb-4">
-                        <div class="flex justify-between items-start mb-4">
-                            <div>
-                                <h3 class="text-xl font-bold text-gray-800">{{ assinatura.plano.nome }}</h3>
-                                <p class="text-gray-600">{{ assinatura.plano.descricao }}</p>
+                    <div class="bg-white rounded-lg shadow-lg border border-gray-200 p-4 sm:p-6 mb-3 sm:mb-4 mobile-card">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3 sm:mb-4 space-y-2 sm:space-y-0">
+                            <div class="flex-1">
+                                <h3 class="text-lg sm:text-xl font-bold text-gray-800">{{ assinatura.plano.nome }}</h3>
+                                <p class="text-sm sm:text-base text-gray-600 mt-1">{{ assinatura.plano.descricao }}</p>
                             </div>
-                            <div class="text-right">
-                                <span class="inline-block bg-green-100 text-green-800 text-sm font-semibold px-3 py-1 rounded-full">
+                            <div class="text-left sm:text-right">
+                                <span class="inline-block bg-green-100 text-green-800 text-xs sm:text-sm font-semibold px-2 sm:px-3 py-1 rounded-full">
                                     {{ assinatura.get_status_display }}
                                 </span>
                             </div>
                         </div>
                         
-                        <div class="grid md:grid-cols-3 gap-4 mb-4">
-                            <div class="bg-gray-50 rounded-lg p-4">
-                                <div class="text-sm text-gray-600">Valor</div>
-                                <div class="text-lg font-bold text-gray-800">R$ {{ assinatura.plano.preco|floatformat:2 }}</div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 mb-3 sm:mb-4">
+                            <div class="bg-gray-50 rounded-lg p-3 sm:p-4">
+                                <div class="text-xs sm:text-sm text-gray-600">Valor</div>
+                                <div class="text-base sm:text-lg font-bold text-gray-800">R$ {{ assinatura.plano.preco|floatformat:2 }}</div>
                             </div>
-                            <div class="bg-gray-50 rounded-lg p-4">
-                                <div class="text-sm text-gray-600">Início</div>
-                                <div class="text-lg font-bold text-gray-800">{{ assinatura.data_inicio|date:"d/m/Y" }}</div>
+                            <div class="bg-gray-50 rounded-lg p-3 sm:p-4">
+                                <div class="text-xs sm:text-sm text-gray-600">Início</div>
+                                <div class="text-base sm:text-lg font-bold text-gray-800">{{ assinatura.data_inicio|date:"d/m/Y" }}</div>
                             </div>
-                            <div class="bg-gray-50 rounded-lg p-4">
-                                <div class="text-sm text-gray-600">Vencimento</div>
-                                <div class="text-lg font-bold text-gray-800">{{ assinatura.data_vencimento|date:"d/m/Y" }}</div>
+                            <div class="bg-gray-50 rounded-lg p-3 sm:p-4">
+                                <div class="text-xs sm:text-sm text-gray-600">Vencimento</div>
+                                <div class="text-base sm:text-lg font-bold text-gray-800">{{ assinatura.data_vencimento|date:"d/m/Y" }}</div>
                             </div>
                         </div>
 
-                        <div class="flex justify-between items-center">
-                            <div class="text-sm text-gray-600">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-3 sm:space-y-0 border-t pt-3 sm:pt-4">
+                            <div class="text-xs sm:text-sm text-gray-600">
                                 {% if assinatura.data_vencimento > now %}
                                     <span class="text-green-600 font-semibold">
                                         Válida por mais {{ assinatura.data_vencimento|timeuntil }}
@@ -65,11 +114,11 @@
                                     <span class="text-red-600 font-semibold">Expirada</span>
                                 {% endif %}
                             </div>
-                            <div class="space-x-2">
+                            <div>
                                 <form method="post" action="{% url 'payments:cancelar_assinatura' assinatura.id %}" class="inline">
                                     {% csrf_token %}
                                     <button type="submit" 
-                                            class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition duration-200"
+                                            class="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition duration-200 text-sm sm:text-base"
                                             onclick="return confirm('Tem certeza que deseja cancelar esta assinatura?')">
                                         Cancelar Assinatura
                                     </button>
@@ -80,15 +129,15 @@
                     {% endif %}
                 {% endfor %}
             {% else %}
-                <div class="bg-white rounded-lg shadow-lg border border-gray-200 p-8 text-center">
-                    <div class="text-gray-400 mb-4">
-                        <svg class="w-16 h-16 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                <div class="bg-white rounded-lg shadow-lg border border-gray-200 p-6 sm:p-8 text-center mobile-card">
+                    <div class="text-gray-400 mb-3 sm:mb-4">
+                        <svg class="w-12 h-12 sm:w-16 sm:h-16 mx-auto" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Nenhuma assinatura ativa</h3>
-                    <p class="text-gray-600 mb-4">Você não possui assinaturas ativas no momento.</p>
-                    <a href="{% url 'payments:planos' %}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition duration-200">
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-2">Nenhuma assinatura ativa</h3>
+                    <p class="text-sm sm:text-base text-gray-600 mb-4">Você não possui assinaturas ativas no momento.</p>
+                    <a href="{% url 'payments:planos' %}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 sm:px-6 rounded-lg transition duration-200 text-sm sm:text-base">
                         Ver Planos Disponíveis
                     </a>
                 </div>
@@ -96,10 +145,32 @@
         </div>
 
         <!-- Histórico de Pagamentos -->
-        <div class="mb-8">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">Histórico de Pagamentos</h2>
+        <div class="mb-6 sm:mb-8">
+            <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6 px-1">Histórico de Pagamentos</h2>
             {% if pagamentos %}
-                <div class="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden">
+                <!-- Mobile View -->
+                <div class="block sm:hidden space-y-3">
+                    {% for pagamento in pagamentos %}
+                    <div class="bg-white rounded-lg shadow border border-gray-200 p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <div class="text-xs text-gray-500">{{ pagamento.data_criacao|date:"d/m/Y H:i" }}</div>
+                            <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full
+                                {% if pagamento.status == 'approved' %}bg-green-100 text-green-800
+                                {% elif pagamento.status == 'pending' %}bg-yellow-100 text-yellow-800
+                                {% elif pagamento.status == 'rejected' %}bg-red-100 text-red-800
+                                {% elif pagamento.status == 'cancelled' %}bg-gray-100 text-gray-800
+                                {% else %}bg-gray-100 text-gray-800{% endif %}">
+                                {{ pagamento.get_status_display }}
+                            </span>
+                        </div>
+                        <div class="text-sm font-medium text-gray-900 mb-1">{{ pagamento.descricao }}</div>
+                        <div class="text-lg font-bold text-gray-800">R$ {{ pagamento.valor|floatformat:2 }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <!-- Desktop View -->
+                <div class="hidden sm:block bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden">
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
@@ -116,7 +187,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                         {{ pagamento.data_criacao|date:"d/m/Y H:i" }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                    <td class="px-6 py-4 text-sm text-gray-900">
                                         {{ pagamento.descricao }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
@@ -139,69 +210,51 @@
                     </div>
                 </div>
             {% else %}
-                <div class="bg-white rounded-lg shadow-lg border border-gray-200 p-8 text-center">
-                    <div class="text-gray-400 mb-4">
-                        <svg class="w-16 h-16 mx-auto" fill="currentColor" viewBox="0 0 20 20">
+                <div class="bg-white rounded-lg shadow-lg border border-gray-200 p-6 sm:p-8 text-center mobile-card">
+                    <div class="text-gray-400 mb-3 sm:mb-4">
+                        <svg class="w-12 h-12 sm:w-16 sm:h-16 mx-auto" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4zM18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Nenhum pagamento encontrado</h3>
-                    <p class="text-gray-600">Você ainda não realizou nenhum pagamento.</p>
+                    <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-2">Nenhum pagamento encontrado</h3>
+                    <p class="text-sm sm:text-base text-gray-600">Você ainda não realizou nenhum pagamento.</p>
                 </div>
             {% endif %}
         </div>
 
         <!-- Ações -->
-        <div class="text-center">
-            <a href="{% url 'payments:planos' %}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-200 mr-4">
+        <div class="text-center space-y-2 sm:space-y-0">
+            <a href="{% url 'payments:planos' %}" class="block sm:inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 sm:py-3 px-6 rounded-lg transition duration-200 text-sm sm:text-base sm:mr-4">
                 Ver Planos
             </a>
-            <a href="{% url 'index' %}" class="inline-block bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg transition duration-200">
+            <a href="{% url 'index' %}" class="block sm:inline-block bg-gray-600 hover:bg-gray-700 text-white font-bold py-2.5 sm:py-3 px-6 rounded-lg transition duration-200 text-sm sm:text-base">
                 Voltar ao Início
             </a>
         </div>
     </div>
-</div>
+</main>
 
-<!-- Header com navegação -->
-<header class="bg-white shadow-sm border-b border-gray-200 mb-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-            <div class="flex items-center">
-                <a href="{% url 'index' %}" class="flex items-center space-x-2">
-                    <img src="{% static 'judo.png' %}" alt="Judo" class="h-8 w-8">
-                    <span class="text-xl font-bold text-gray-800">Academia de Judô</span>
-                </a>
+<!-- Footer -->
+<footer class="bg-white border-t border-gray-200 mt-auto">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6">
+        <div class="flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-0">
+            <div class="flex items-center space-x-2">
+                <img src="{% static 'judo.png' %}" alt="Judo" class="h-6 w-6 sm:h-8 sm:w-8">
+                <span class="text-sm sm:text-base font-semibold text-gray-800">Academia de Judô</span>
             </div>
-            <div class="flex items-center space-x-4">
-                {% if user.is_authenticated %}
-                    <span class="text-sm text-gray-600">Olá, {{ user.first_name|default:user.username }}</span>
-                    <form method="post" action="{% url 'logout' %}" class="inline">
-                        {% csrf_token %}
-                        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium">
-                            Logout
-                        </button>
-                    </form>
-                {% else %}
-                    <a href="{% url 'login' %}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium">
-                        Login
-                    </a>
-                {% endif %}
+            <div class="text-xs sm:text-sm text-gray-600 text-center sm:text-right">
+                <p>&copy; 2024 Academia de Judô. Todos os direitos reservados.</p>
+            </div>
+        </div>
+        <div class="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-200 text-center">
+            <div class="flex flex-wrap justify-center gap-3 sm:gap-6 text-xs sm:text-sm text-gray-600">
+                <a href="{% url 'payments:planos' %}" class="hover:text-blue-600 transition">Planos</a>
+                <a href="{% url 'payments:assinaturas' %}" class="hover:text-blue-600 transition">Assinaturas</a>
+                <a href="{% url 'index' %}" class="hover:text-blue-600 transition">Início</a>
             </div>
         </div>
     </div>
-</header>
-
-<!-- Messages -->
-{% if messages %}
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }} bg-{% if message.tags == 'error' %}red{% elif message.tags == 'warning' %}yellow{% elif message.tags == 'success' %}green{% else %}blue{% endif %}-100 border border-{% if message.tags == 'error' %}red{% elif message.tags == 'warning' %}yellow{% elif message.tags == 'success' %}green{% else %}blue{% endif %}-400 text-{% if message.tags == 'error' %}red{% elif message.tags == 'warning' %}yellow{% elif message.tags == 'success' %}green{% else %}blue{% endif %}-700 px-4 py-3 rounded mb-4">
-                {{ message }}
-            </div>
-        {% endfor %}
-    </div>
-{% endif %}
+</footer>
 
 </body>
 </html>

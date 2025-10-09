@@ -8081,3 +8081,433 @@ Not Found: /.well-known/appspecific/com.chrome.devtools.json
 Not Found: /index/url('https://fonts.googleapis.com/css2
 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
 "GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 6081
+  - Usuários: 4
+  - Assinaturas: 0
+  - Assinaturas ativas: 0
+  - Pagamentos: 4
+  - Usuários premium: 0
+Watching for file changes with StatReloader
+  - Usuários: 4
+  - Assinaturas: 0
+  - Assinaturas ativas: 0
+  - Pagamentos: 4
+  - Usuários premium: 0
+"GET / HTTP/1.1" 200 41211
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 5516
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 70975
+"GET /ukemis/ HTTP/1.1" 200 41007
+"GET /static/rolamento.png HTTP/1.1" 304 0
+"GET /ukemis/carregar-progresso/?pagina=ukemis HTTP/1.1" 200 34
+"GET /index/ HTTP/1.1" 200 70975
+"GET /payments/planos/ HTTP/1.1" 200 11968
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET /payments/planos/ HTTP/1.1" 200 14126
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET /payments/planos/ HTTP/1.1" 200 14364
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET /payments/planos/ HTTP/1.1" 200 14438
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET /payments/planos/ HTTP/1.1" 200 14438
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET /payments/planos/ HTTP/1.1" 200 15328
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET /payments/planos/ HTTP/1.1" 200 18438
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+"GET /payments/planos/ HTTP/1.1" 200 24188
+"GET /index/ HTTP/1.1" 200 71104
+"GET /index/ HTTP/1.1" 200 71151
+"GET /index/ HTTP/1.1" 200 71151
+"GET /index/ HTTP/1.1" 200 71151
+"GET /index/ HTTP/1.1" 200 71404
+"GET /index/ HTTP/1.1" 200 71404
+"GET /index/ HTTP/1.1" 200 71404
+"GET /index/ HTTP/1.1" 200 71404
+"GET /index/ HTTP/1.1" 200 71404
+"GET /index/ HTTP/1.1" 200 71404
+"GET /index/ HTTP/1.1" 200 71404
+"GET /index/ HTTP/1.1" 200 71404
+"GET /index/ HTTP/1.1" 200 71404
+"GET /index/ HTTP/1.1" 200 71404
+"GET /index/ HTTP/1.1" 200 71404
+"GET /index/ HTTP/1.1" 200 71521
+"GET /index/ HTTP/1.1" 200 71521
+"GET /index/ HTTP/1.1" 200 71521
+"GET /index/ HTTP/1.1" 200 71956
+"GET /index/ HTTP/1.1" 200 71956
+"GET /index/ HTTP/1.1" 200 72082
+"GET /index/ HTTP/1.1" 200 72160
+"GET /index/ HTTP/1.1" 200 72896
+"GET /index/ HTTP/1.1" 200 72896
+"GET /index/ HTTP/1.1" 200 72896
+"GET /index/ HTTP/1.1" 200 72895
+"GET /index/ HTTP/1.1" 200 72895
+"GET / HTTP/1.1" 200 41211
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 72895
+"GET /index/ HTTP/1.1" 200 72912
+"GET /index/ HTTP/1.1" 200 72912
+"GET /index/ HTTP/1.1" 200 72895
+"GET /index/ HTTP/1.1" 200 72895
+"GET /index/ HTTP/1.1" 200 72895
+"GET /index/ HTTP/1.1" 200 72895
+"GET /index/ HTTP/1.1" 200 72895
+"GET /index/ HTTP/1.1" 200 72895
+"GET /index/ HTTP/1.1" 200 72895
+"GET /index/ HTTP/1.1" 200 72963
+"GET /index/ HTTP/1.1" 200 72963
+"GET /index/ HTTP/1.1" 200 72963
+"GET /index/ HTTP/1.1" 200 72963
+"GET /index/ HTTP/1.1" 200 72963
+"GET / HTTP/1.1" 200 41211
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 72963
+"GET /index/ HTTP/1.1" 200 72963
+  - Usuários: 4
+  - Assinaturas: 0
+  - Assinaturas ativas: 0
+  - Pagamentos: 4
+  - Usuários premium: 0
+"GET /index/ HTTP/1.1" 200 73036
+  - Usuários: 4
+  - Assinaturas: 0
+  - Assinaturas ativas: 0
+  - Pagamentos: 4
+  - Usuários premium: 0
+"GET /index/ HTTP/1.1" 200 73036
+"GET /index/ HTTP/1.1" 200 73036
+"GET /index/ HTTP/1.1" 200 73036
+"GET /index/ HTTP/1.1" 200 73036
+"GET /index/ HTTP/1.1" 200 73036
+"GET /index/ HTTP/1.1" 200 73036
+"GET /index/ HTTP/1.1" 200 70715
+"GET /index/ HTTP/1.1" 200 70715
+"GET /payments/planos/ HTTP/1.1" 200 23792
+"GET /index/ HTTP/1.1" 200 70360
+"GET /index/ HTTP/1.1" 200 70360
+"GET /payments/planos/ HTTP/1.1" 200 23792
+"GET /payments/planos/ HTTP/1.1" 200 22937
+"GET /static/demosntra%C3%A7ao1.png HTTP/1.1" 200 227956
+"GET /payments/planos/ HTTP/1.1" 200 22937
+"GET /payments/planos/ HTTP/1.1" 200 22937
+"GET /payments/planos/ HTTP/1.1" 200 22937
+"GET /payments/planos/ HTTP/1.1" 200 22937
+"GET /payments/planos/ HTTP/1.1" 200 22937
+"GET /payments/planos/ HTTP/1.1" 200 22937
+"GET /payments/planos/ HTTP/1.1" 200 22937
+"GET /payments/planos/ HTTP/1.1" 200 22937
+"GET /payments/planos/ HTTP/1.1" 200 22937
+"GET /payments/planos/ HTTP/1.1" 200 22937
+"GET /payments/planos/ HTTP/1.1" 200 22937
+"GET /payments/planos/ HTTP/1.1" 200 22937
+"GET /payments/planos/ HTTP/1.1" 200 22937
+"GET /payments/planos/ HTTP/1.1" 200 22937
+"GET /payments/planos/ HTTP/1.1" 200 22937
+"GET /payments/planos/ HTTP/1.1" 200 22937
+"GET /payments/planos/ HTTP/1.1" 200 22937
+"GET /payments/planos/ HTTP/1.1" 200 22937
+"GET /payments/planos/ HTTP/1.1" 200 22937
+"GET /payments/planos/ HTTP/1.1" 200 22937
+"GET /payments/planos/ HTTP/1.1" 200 22190
+"GET /static/demonstra%C3%A7ao2.png HTTP/1.1" 200 332519
+"GET /payments/planos/ HTTP/1.1" 200 22190
+"GET /payments/planos/ HTTP/1.1" 200 22190
+"GET /payments/planos/ HTTP/1.1" 200 22190
+"GET /static/demosntra%C3%A7ao1.png HTTP/1.1" 304 0
+"GET /payments/planos/ HTTP/1.1" 200 21358
+"GET /static/demonstra%C3%A7ao3.png HTTP/1.1" 200 137497
+"GET /payments/planos/ HTTP/1.1" 200 22709
+"GET /static/demonstra%C3%A7ao2.png HTTP/1.1" 304 0
+"GET /static/demonstra%C3%A7ao4.png HTTP/1.1" 200 359249
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 5627
+  - Usuários: 4
+  - Assinaturas: 0
+  - Assinaturas ativas: 0
+  - Pagamentos: 4
+  - Usuários premium: 0
+  - Usuários: 4
+  - Assinaturas: 4
+  - Assinaturas ativas: 4
+  - Pagamentos: 4
+  - Usuários premium: 2
+  - Usuários: 4
+  - Assinaturas: 4
+  - Assinaturas ativas: 4
+  - Pagamentos: 4
+  - Usuários premium: 2
+  - Usuários: 4
+  - Assinaturas: 4
+  - Assinaturas ativas: 4
+  - Pagamentos: 4
+  - Usuários premium: 2
+  - Usuários: 4
+  - Assinaturas: 4
+  - Assinaturas ativas: 4
+  - Pagamentos: 4
+  - Usuários premium: 2
+  - Usuários: 4
+  - Assinaturas: 4
+  - Assinaturas ativas: 4
+  - Pagamentos: 4
+  - Usuários premium: 2
+Erro ao coletar estatísticas: could not translate host name "mhrlilhbtbbsodyjqqaq.supabase.co" to address: Name or service not known
+
+Erro ao coletar estatísticas: could not translate host name "mhrlilhbtbbsodyjqqaq.supabase.co" to address: Name or service not known
+
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Erro ao coletar estatísticas: could not translate host name "mhrlilhbtbbsodyjqqaq.supabase.co" to address: Name or service not known
+
+Watching for file changes with StatReloader
+Erro ao coletar estatísticas: could not translate host name "mhrlilhbtbbsodyjqqaq.supabase.co" to address: Name or service not known
+
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Erro ao coletar estatísticas: could not translate host name "mhrlilhbtbbsodyjqqaq.supabase.co" to address: Name or service not known
+
+Watching for file changes with StatReloader
+Erro ao coletar estatísticas: connection to server at "mhrlilhbtbbsodyjqqaq.supabase.co" (172.64.149.246), port 5432 failed: Connection timed out (0x0000274C/10060)
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "mhrlilhbtbbsodyjqqaq.supabase.co" (104.18.38.10), port 5432 failed: Connection timed out (0x0000274C/10060)
+	Is the server running on that host and accepting TCP/IP connections?
+
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Erro ao coletar estatísticas: connection to server at "mhrlilhbtbbsodyjqqaq.supabase.co" (172.64.149.246), port 5432 failed: Connection timed out (0x0000274C/10060)
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "mhrlilhbtbbsodyjqqaq.supabase.co" (104.18.38.10), port 5432 failed: Connection timed out (0x0000274C/10060)
+	Is the server running on that host and accepting TCP/IP connections?
+
+Watching for file changes with StatReloader
+Erro ao coletar estatísticas: connection to server at "aws-0-sa-east-1.pooler.supabase.com" (54.94.90.106), port 6543 failed: FATAL:  Tenant or user not found
+connection to server at "aws-0-sa-east-1.pooler.supabase.com" (54.94.90.106), port 6543 failed: FATAL:  Tenant or user not found
+
+  - Usuários: 4
+  - Assinaturas: 4
+  - Assinaturas ativas: 4
+  - Pagamentos: 4
+  - Usuários premium: 2
+Erro ao coletar estatísticas: connection to server at "aws-1-us-east-2.pooler.supabase.com" (3.131.201.192), port 5432 failed: FATAL:  password authentication failed for user "postgres"
+connection to server at "aws-1-us-east-2.pooler.supabase.com" (3.131.201.192), port 5432 failed: FATAL:  password authentication failed for user "postgres"
+
+Erro ao coletar estatísticas: relation "auth_user" does not exist
+LINE 1: SELECT COUNT(*) AS "__count" FROM "auth_user"
+                                          ^
+
+Erro ao corrigir perfis ausentes: relation "auth_user" does not exist
+LINE 1: ...user"."is_active", "auth_user"."date_joined" FROM "auth_user...
+                                                             ^
+
+Erro na sincronização de status premium: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao corrigir assinaturas expiradas: current transaction is aborted, commands ignored until end of transaction block
+
+Erro na verificação de integridade: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao coletar estatísticas: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro ao corrigir perfis ausentes: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro na sincronização de status premium: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao corrigir assinaturas expiradas: current transaction is aborted, commands ignored until end of transaction block
+
+Erro na verificação de integridade: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao coletar estatísticas: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro ao corrigir perfis ausentes: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro na sincronização de status premium: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao corrigir assinaturas expiradas: current transaction is aborted, commands ignored until end of transaction block
+
+Erro na verificação de integridade: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao coletar estatísticas: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro ao corrigir perfis ausentes: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro na sincronização de status premium: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao corrigir assinaturas expiradas: current transaction is aborted, commands ignored until end of transaction block
+
+Erro na verificação de integridade: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao coletar estatísticas: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro ao corrigir perfis ausentes: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro na sincronização de status premium: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao corrigir assinaturas expiradas: current transaction is aborted, commands ignored until end of transaction block
+
+Erro na verificação de integridade: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao coletar estatísticas: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro ao corrigir perfis ausentes: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro na sincronização de status premium: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao corrigir assinaturas expiradas: current transaction is aborted, commands ignored until end of transaction block
+
+Erro na verificação de integridade: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao corrigir perfis ausentes: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro ao coletar estatísticas: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro na sincronização de status premium: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao corrigir assinaturas expiradas: current transaction is aborted, commands ignored until end of transaction block
+
+Erro na verificação de integridade: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao coletar estatísticas: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro ao corrigir perfis ausentes: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro na sincronização de status premium: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao corrigir assinaturas expiradas: current transaction is aborted, commands ignored until end of transaction block
+
+Erro na verificação de integridade: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao coletar estatísticas: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro ao corrigir perfis ausentes: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro na sincronização de status premium: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao corrigir assinaturas expiradas: current transaction is aborted, commands ignored until end of transaction block
+
+Erro na verificação de integridade: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao coletar estatísticas: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro ao corrigir perfis ausentes: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro na sincronização de status premium: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao corrigir assinaturas expiradas: current transaction is aborted, commands ignored until end of transaction block
+
+Erro na verificação de integridade: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao coletar estatísticas: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro ao corrigir perfis ausentes: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro na sincronização de status premium: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao corrigir assinaturas expiradas: current transaction is aborted, commands ignored until end of transaction block
+
+Erro na verificação de integridade: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao coletar estatísticas: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro ao corrigir perfis ausentes: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro na sincronização de status premium: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao corrigir assinaturas expiradas: current transaction is aborted, commands ignored until end of transaction block
+
+Erro na verificação de integridade: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao coletar estatísticas: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro ao corrigir perfis ausentes: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Erro ao coletar estatísticas: connection to server at "aws-1-us-east-2.pooler.supabase.com" (3.131.201.192), port 5432 failed: duplicate SASL authentication request
+
+Watching for file changes with StatReloader
+Erro ao corrigir perfis ausentes: operator does not exist: integer = uuid
+LINE 1: ...FT OUTER JOIN "home_profile" ON ("auth_user"."id" = "home_pr...
+                                                             ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+Erro na sincronização de status premium: current transaction is aborted, commands ignored until end of transaction block
+
+Erro ao corrigir assinaturas expiradas: current transaction is aborted, commands ignored until end of transaction block
+
+Erro na verificação de integridade: current transaction is aborted, commands ignored until end of transaction block
+

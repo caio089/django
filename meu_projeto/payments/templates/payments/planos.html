@@ -8,6 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        body { font-family: 'DM Sans', sans-serif; }
+        
         /* Responsividade para mobile - Design Minimalista */
         @media (max-width: 768px) {
             .plano-container {
@@ -17,8 +19,8 @@
             }
             
             .plano-container .px-12 {
-                padding-left: 1.5rem !important;
-                padding-right: 1.5rem !important;
+                padding-left: 1.25rem !important;
+                padding-right: 1.25rem !important;
             }
             
             .plano-container .py-16 {
@@ -28,7 +30,7 @@
             
             .galeria-grid {
                 grid-template-columns: 1fr !important;
-                gap: 1.5rem !important;
+                gap: 1.25rem !important;
             }
             
             .imagem-card img {
@@ -36,8 +38,8 @@
             }
             
             .botao-assinar {
-                font-size: 1rem !important;
-                padding: 1rem 2rem !important;
+                font-size: 0.95rem !important;
+                padding: 0.875rem 1.75rem !important;
             }
             
             .recursos-lista {
@@ -46,11 +48,18 @@
             }
             
             .plano-container h3 {
-                font-size: 2.5rem !important;
+                font-size: 2rem !important;
+                line-height: 1.2 !important;
             }
             
             .plano-container .text-7xl {
-                font-size: 4rem !important;
+                font-size: 3rem !important;
+                line-height: 1.1 !important;
+            }
+            
+            .badge-premium {
+                font-size: 0.75rem !important;
+                padding: 0.5rem 1rem !important;
             }
         }
         
@@ -60,159 +69,389 @@
                 padding-right: 1rem !important;
             }
             
+            .plano-container .py-16 {
+                padding-top: 1.5rem !important;
+                padding-bottom: 1.5rem !important;
+            }
+            
             .imagem-card img {
                 height: 10rem !important;
             }
             
             .botao-assinar {
-                font-size: 0.9rem !important;
-                padding: 0.875rem 1.5rem !important;
+                font-size: 0.875rem !important;
+                padding: 0.75rem 1.5rem !important;
             }
             
             .plano-container h3 {
-                font-size: 2rem !important;
+                font-size: 1.75rem !important;
             }
             
             .plano-container .text-7xl {
-                font-size: 3rem !important;
+                font-size: 2.5rem !important;
+            }
+            
+            .recursos-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
             }
         }
     </style>
 </head>
-<body class="bg-gray-50 font-sans">
-<div class="container mx-auto px-4 py-8">
-    <div class="text-center mb-8">
-        {% if assinatura_ativa %}
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-6">
-                <h2 class="text-2xl font-bold mb-2">🎉 Você já tem acesso premium!</h2>
-                <p class="text-lg">Sua assinatura está ativa até: <strong>{{ assinatura_ativa.data_vencimento|date:"d/m/Y" }}</strong></p>
-                <div class="space-x-4">
-                    <a href="{% url 'index' %}" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition duration-200">
-                        Acessar Conteúdo Premium
+<body class="bg-gray-50 min-h-screen flex flex-col">
+
+<!-- Header com navegação -->
+<header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-14 sm:h-16">
+            <div class="flex items-center">
+                <a href="{% url 'index' %}" class="flex items-center space-x-2">
+                    <img src="{% static 'judo.png' %}" alt="Judo" class="h-7 w-7 sm:h-8 sm:w-8">
+                    <span class="text-base sm:text-xl font-bold text-gray-800">Academia de Judô</span>
+                </a>
+            </div>
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                {% if user.is_authenticated %}
+                    <span class="text-xs sm:text-sm text-gray-600 hidden sm:inline">Olá, {{ user.first_name|default:user.username }}</span>
+                    <form method="post" action="{% url 'logout' %}" class="inline">
+                        {% csrf_token %}
+                        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-md text-xs sm:text-sm font-medium transition">
+                            Sair
+                        </button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-md text-xs sm:text-sm font-medium transition">
+                        Login
                     </a>
-                    <a href="{% url 'payments:assinaturas' %}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition duration-200">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Messages -->
+{% if messages %}
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 pt-3 sm:pt-4">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} bg-{% if message.tags == 'error' %}red{% elif message.tags == 'warning' %}yellow{% elif message.tags == 'success' %}green{% else %}blue{% endif %}-100 border border-{% if message.tags == 'error' %}red{% elif message.tags == 'warning' %}yellow{% elif message.tags == 'success' %}green{% else %}blue{% endif %}-400 text-{% if message.tags == 'error' %}red{% elif message.tags == 'warning' %}yellow{% elif message.tags == 'success' %}green{% else %}blue{% endif %}-700 px-3 py-2 sm:px-4 sm:py-3 rounded text-sm mb-3 sm:mb-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<!-- Main Content -->
+<main class="flex-1">
+    <div class="container mx-auto px-3 sm:px-4 py-4 sm:py-8">
+        <div class="text-center mb-6 sm:mb-8">
+            {% if assinatura_ativa %}
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-4 sm:py-5 rounded-lg mb-6">
+                    <h2 class="text-xl sm:text-2xl font-bold mb-2">🎉 Você já tem acesso premium!</h2>
+                    <p class="text-base sm:text-lg mb-4">Sua assinatura está ativa até: <strong>{{ assinatura_ativa.data_vencimento|date:"d/m/Y" }}</strong></p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+                        <a href="{% url 'index' %}" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition duration-200 text-sm sm:text-base">
+                            Acessar Conteúdo Premium
+                        </a>
+                        <a href="{% url 'payments:assinaturas' %}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition duration-200 text-sm sm:text-base">
                         Gerenciar Assinatura
                     </a>
                 </div>
             </div>
         {% else %}
-            <h1 class="text-4xl font-bold text-gray-800 mb-4">Planos Premium</h1>
-            <p class="text-xl text-gray-600">Escolha o plano ideal para sua jornada no judô</p>
+                <h1 class="text-2xl sm:text-4xl font-bold text-gray-800 mb-2 sm:mb-4">Planos Premium</h1>
+                <p class="text-base sm:text-xl text-gray-600">Escolha o plano ideal para sua jornada no judô</p>
         {% endif %}
     </div>
 
     {% if not assinatura_ativa %}
     <!-- Plano Mensal Único - Design Minimalista -->
-    <div class="flex justify-center">
+        <div class="flex justify-center mb-6 sm:mb-8">
         {% if plano %}
-        <div class="bg-white rounded-3xl shadow-2xl border-0 p-0 max-w-5xl w-full relative plano-container overflow-hidden">
+            <div class="bg-white rounded-2xl sm:rounded-3xl shadow-2xl border-0 p-0 max-w-5xl w-full relative plano-container overflow-hidden">
             <!-- Header com gradiente sutil -->
             <div class="bg-gradient-to-br from-slate-50 via-white to-blue-50 px-12 py-16 text-center relative">
                 <div class="absolute inset-0 bg-gradient-to-r from-purple-600/5 to-blue-600/5"></div>
                 <div class="relative z-10">
-                    <div class="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm font-semibold mb-8 shadow-lg">
+                        <div class="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs sm:text-sm font-semibold mb-6 sm:mb-8 shadow-lg badge-premium">
                         ✨ PLANO PREMIUM
                     </div>
                     
-                    <h3 class="text-5xl font-light text-gray-900 mb-6 tracking-tight">{{ plano.nome }}</h3>
-                    <div class="text-7xl font-thin text-gray-900 mb-4">
+                        <h3 class="text-3xl sm:text-5xl font-light text-gray-900 mb-4 sm:mb-6 tracking-tight">{{ plano.nome }}</h3>
+                        <div class="text-5xl sm:text-7xl font-thin text-gray-900 mb-3 sm:mb-4">
                         R$ <span class="font-bold">{{ plano.preco|floatformat:2 }}</span>
                     </div>
-                    <p class="text-xl text-gray-500 mb-8 font-light">por mês</p>
-                    <p class="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed font-light">{{ plano.descricao }}</p>
+                        <p class="text-base sm:text-xl text-gray-500 mb-6 sm:mb-8 font-light">por mês</p>
+                        <p class="text-sm sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed font-light px-2">{{ plano.descricao }}</p>
                 </div>
             </div>
             
-            <!-- Galeria de 3 Imagens - Design Minimalista -->
-            {% if plano.imagem_1 or plano.imagem_2 or plano.imagem_3 %}
-            <div class="px-12 py-16 bg-gray-50/50">
-                <h4 class="text-2xl font-light text-gray-800 mb-12 text-center tracking-wide">O que você terá acesso</h4>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Galeria Premium - O que você terá acesso -->
+                <div class="px-4 sm:px-12 py-12 sm:py-16 bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/20">
+                    <div class="max-w-6xl mx-auto">
+                        <!-- Título da Seção -->
+                        <div class="text-center mb-10 sm:mb-14">
+                            <span class="inline-block px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-xs sm:text-sm font-semibold rounded-full mb-4">
+                                🎯 CONTEÚDO PREMIUM
+                            </span>
+                            <h4 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
+                                Veja o que você terá acesso
+                            </h4>
+                            <p class="text-sm sm:text-base lg:text-lg text-gray-600 max-w-2xl mx-auto">
+                                Conteúdo completo e organizado para acelerar seu aprendizado no judô
+                            </p>
+                        </div>
+
+                        <!-- Grid de Cards Premium -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+                            <!-- Card 1 - Quiz Interativo -->
                     {% if plano.imagem_1 %}
-                    <div class="group">
-                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-                            <img src="{{ plano.imagem_1.url }}" alt="Conteúdo Principal" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div class="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <h5 class="text-lg font-semibold mb-1">Quiz e Aprendizado</h5>
-                                <p class="text-sm text-gray-200">Teste seus conhecimentos</p>
+                            <div class="group relative bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3">
+                                <div class="relative overflow-hidden h-56 sm:h-64 lg:h-72">
+                                    <img src="{{ plano.imagem_1.url }}" alt="Quiz Interativo" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-blue-900/90 via-blue-900/50 to-transparent"></div>
+                                    
+                                    <!-- Badge no topo -->
+                                    <div class="absolute top-4 right-4">
+                                        <span class="bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                                            PREMIUM
+                                        </span>
+                                    </div>
+                                    
+                                    <!-- Conteúdo -->
+                                    <div class="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
+                                        <div class="flex items-center mb-3">
+                                            <div class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center mr-3">
+                                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                </svg>
+                                            </div>
+                                            <h5 class="text-xl sm:text-2xl font-bold text-white">Quiz Interativo</h5>
+                                        </div>
+                                        <p class="text-sm sm:text-base text-blue-100 leading-relaxed mb-3">
+                                            Teste seus conhecimentos com questões sobre técnicas, história e regras do judô
+                                        </p>
+                                        <div class="flex items-center text-xs sm:text-sm text-blue-200">
+                                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                                <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                                                <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                            </svg>
+                                            Múltiplas categorias e níveis
+                                        </div>
                             </div>
                         </div>
                     </div>
                     {% endif %}
                     
+                            <!-- Card 2 - Vídeos de Técnicas -->
                     {% if plano.imagem_2 %}
-                    <div class="group">
-                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-                            <img src="{{ plano.imagem_2.url }}" alt="Quiz e Relatórios" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div class="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <h5 class="text-lg font-semibold mb-1">Vídeos de Técnicas</h5>
-                                <p class="text-sm text-gray-200">Para cada faixa</p>
+                            <div class="group relative bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3">
+                                <div class="relative overflow-hidden h-56 sm:h-64 lg:h-72">
+                                    <img src="{{ plano.imagem_2.url }}" alt="Vídeos de Técnicas" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-purple-900/90 via-purple-900/50 to-transparent"></div>
+                                    
+                                    <!-- Badge no topo -->
+                                    <div class="absolute top-4 right-4">
+                                        <span class="bg-purple-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                                            PREMIUM
+                                        </span>
+                                    </div>
+                                    
+                                    <!-- Conteúdo -->
+                                    <div class="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
+                                        <div class="flex items-center mb-3">
+                                            <div class="w-10 h-10 bg-purple-500 rounded-lg flex items-center justify-center mr-3">
+                                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                </svg>
+                                            </div>
+                                            <h5 class="text-xl sm:text-2xl font-bold text-white">Vídeos de Técnicas</h5>
+                                        </div>
+                                        <p class="text-sm sm:text-base text-purple-100 leading-relaxed mb-3">
+                                            Aprenda golpes, quedas e movimentos organizados por faixa e categoria
+                                        </p>
+                                        <div class="flex items-center text-xs sm:text-sm text-purple-200">
+                                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                            </svg>
+                                            HD com explicações detalhadas
+                                        </div>
                             </div>
                         </div>
                     </div>
                     {% endif %}
                     
+                            <!-- Card 3 - Conteúdo Organizado -->
                     {% if plano.imagem_3 %}
-                    <div class="group">
-                        <div class="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-                            <img src="{{ plano.imagem_3.url }}" alt="Técnicas e História" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                            <div class="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <h5 class="text-lg font-semibold mb-1">Organização e Estrutura</h5>
-                                <p class="text-sm text-gray-200">Facilidade de aprendizado</p>
+                            <div class="group relative bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3">
+                                <div class="relative overflow-hidden h-56 sm:h-64 lg:h-72">
+                                    <img src="{{ plano.imagem_3.url }}" alt="Conteúdo Organizado" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/90 via-indigo-900/50 to-transparent"></div>
+                                    
+                                    <!-- Badge no topo -->
+                                    <div class="absolute top-4 right-4">
+                                        <span class="bg-indigo-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                                            PREMIUM
+                                        </span>
+                                    </div>
+                                    
+                                    <!-- Conteúdo -->
+                                    <div class="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
+                                        <div class="flex items-center mb-3">
+                                            <div class="w-10 h-10 bg-indigo-500 rounded-lg flex items-center justify-center mr-3">
+                                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                                                </svg>
+                                            </div>
+                                            <h5 class="text-xl sm:text-2xl font-bold text-white">Estrutura Completa</h5>
+                                        </div>
+                                        <p class="text-sm sm:text-base text-indigo-100 leading-relaxed mb-3">
+                                            Acesso organizado por faixas, categorias e níveis de dificuldade
+                                        </p>
+                                        <div class="flex items-center text-xs sm:text-sm text-indigo-200">
+                                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                                <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+                                                <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1zm0 4a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                                            </svg>
+                                            Navegação intuitiva e fácil
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Preview do Site - 3 Screenshots -->
+                        <div class="mt-10 sm:mt-12">
+                            <div class="text-center mb-8 sm:mb-10">
+                                <h5 class="text-lg sm:text-xl font-semibold text-gray-800 mb-2">
+                                    🖥️ Preview do que você verá após o pagamento
+                                </h5>
+                                <p class="text-sm sm:text-base text-gray-600">
+                                    Veja como ficará seu acesso ao conteúdo premium
+                                </p>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                                <!-- Screenshot 1 - Dashboard/Início -->
+                                <div class="bg-white rounded-2xl p-3 sm:p-4 shadow-xl hover:shadow-2xl transition-all duration-300">
+                                    <div class="relative">
+                                        <img src="{% static 'demosntraçao1.png' %}" alt="Dashboard Principal" class="w-full h-64 sm:h-80 object-cover rounded-xl border-2 border-gray-200">
+                                        <div class="absolute top-3 left-3">
+                                            <span class="bg-green-500 text-white px-2 py-1 rounded text-xs font-bold">
+                                                PREVIEW
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h6 class="font-semibold text-gray-800 text-sm sm:text-base">Página Inicial Premium</h6>
+                                        <p class="text-xs sm:text-sm text-gray-600 mt-1">
+                                            Interface principal com acesso a todas as seções
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Screenshot 2 - Quiz/Conteúdo -->
+                                <div class="bg-white rounded-2xl p-3 sm:p-4 shadow-xl hover:shadow-2xl transition-all duration-300">
+                                    <div class="relative">
+                                        <img src="{% static 'demonstraçao2.png' %}" alt="Sistema de Quiz" class="w-full h-64 sm:h-80 object-cover rounded-xl border-2 border-gray-200">
+                                        <div class="absolute top-3 left-3">
+                                            <span class="bg-blue-500 text-white px-2 py-1 rounded text-xs font-bold">
+                                                PREVIEW
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h6 class="font-semibold text-gray-800 text-sm sm:text-base">Quiz Interativo</h6>
+                                        <p class="text-xs sm:text-sm text-gray-600 mt-1">
+                                            Questões organizadas por categoria e dificuldade
+                                        </p>
+                        </div>
+                    </div>
+
+                                <!-- Screenshot 3 - Técnicas/Vídeos -->
+                                <div class="bg-white rounded-2xl p-3 sm:p-4 shadow-xl hover:shadow-2xl transition-all duration-300">
+                                    <div class="relative">
+                                        <img src="{% static 'demonstraçao3.png' %}" alt="Técnicas e Vídeos" class="w-full h-64 sm:h-80 object-cover rounded-xl border-2 border-gray-200">
+                                        <div class="absolute top-3 left-3">
+                                            <span class="bg-purple-500 text-white px-2 py-1 rounded text-xs font-bold">
+                                                PREVIEW
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h6 class="font-semibold text-gray-800 text-sm sm:text-base">Biblioteca de Técnicas</h6>
+                                        <p class="text-xs sm:text-sm text-gray-600 mt-1">
+                                            Vídeos e explicações detalhadas por faixa
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Screenshot 4 - Conteúdo Adicional -->
+                                <div class="bg-white rounded-2xl p-3 sm:p-4 shadow-xl hover:shadow-2xl transition-all duration-300">
+                                    <div class="relative">
+                                        <img src="{% static 'demonstraçao4.png' %}" alt="Conteúdo Adicional" class="w-full h-64 sm:h-80 object-cover rounded-xl border-2 border-gray-200">
+                                        <div class="absolute top-3 left-3">
+                                            <span class="bg-orange-500 text-white px-2 py-1 rounded text-xs font-bold">
+                                                PREVIEW
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4">
+                                        <h6 class="font-semibold text-gray-800 text-sm sm:text-base">Conteúdo Exclusivo</h6>
+                                        <p class="text-xs sm:text-sm text-gray-600 mt-1">
+                                            Acesso a material exclusivo e atualizações
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    {% endif %}
                 </div>
-            </div>
-            {% endif %}
             
             <!-- Recursos Inclusos - Design Minimalista -->
             <div class="px-12 py-16 bg-white">
                 <div class="max-w-4xl mx-auto">
-                    <h4 class="text-2xl font-light text-gray-800 mb-12 text-center tracking-wide">Recursos inclusos</h4>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <h4 class="text-lg sm:text-2xl font-light text-gray-800 mb-8 sm:mb-12 text-center tracking-wide">Recursos inclusos</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 recursos-grid">
                         <div class="text-center group">
-                            <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-100 to-blue-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 bg-gradient-to-br from-purple-100 to-blue-100 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                    <svg class="w-7 h-7 sm:w-8 sm:h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
                             </div>
-                            <h5 class="font-medium text-gray-900 mb-2">Quiz Ilimitado</h5>
-                            <p class="text-sm text-gray-500">Teste seus conhecimentos</p>
+                                <h5 class="text-sm sm:text-base font-medium text-gray-900 mb-1 sm:mb-2">Quiz Ilimitado</h5>
+                                <p class="text-xs sm:text-sm text-gray-500">Teste seus conhecimentos</p>
                         </div>
                         
                         <div class="text-center group">
-                            <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                    <svg class="w-7 h-7 sm:w-8 sm:h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
                                 </svg>
                             </div>
-                            <h5 class="font-medium text-gray-900 mb-2">Vídeos de Técnicas</h5>
-                            <p class="text-sm text-gray-500">Para cada faixa</p>
+                                <h5 class="text-sm sm:text-base font-medium text-gray-900 mb-1 sm:mb-2">Vídeos de Técnicas</h5>
+                                <p class="text-xs sm:text-sm text-gray-500">Para cada faixa</p>
                         </div>
                         
                         <div class="text-center group">
-                            <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 bg-gradient-to-br from-green-100 to-emerald-100 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                    <svg class="w-7 h-7 sm:w-8 sm:h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
                                 </svg>
                             </div>
-                            <h5 class="font-medium text-gray-900 mb-2">Organização de Técnicas</h5>
-                            <p class="text-sm text-gray-500">Estrutura clara</p>
+                                <h5 class="text-sm sm:text-base font-medium text-gray-900 mb-1 sm:mb-2">Organização de Técnicas</h5>
+                                <p class="text-xs sm:text-sm text-gray-500">Estrutura clara</p>
                         </div>
                         
                         <div class="text-center group">
-                            <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-orange-100 to-red-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                                <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4 bg-gradient-to-br from-orange-100 to-red-100 rounded-xl sm:rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                                    <svg class="w-7 h-7 sm:w-8 sm:h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                                 </svg>
                             </div>
-                            <h5 class="font-medium text-gray-900 mb-2">Facilidade de Aprendizado</h5>
-                            <p class="text-sm text-gray-500">Método eficiente</p>
+                                <h5 class="text-sm sm:text-base font-medium text-gray-900 mb-1 sm:mb-2">Facilidade de Aprendizado</h5>
+                                <p class="text-xs sm:text-sm text-gray-500">Método eficiente</p>
                         </div>
                     </div>
                 </div>
@@ -222,17 +461,17 @@
             <div class="px-12 py-16 bg-gradient-to-br from-gray-50 to-white">
                 <div class="text-center max-w-2xl mx-auto">
                     <a href="{% url 'payments:escolher_plano' plano.id %}" 
-                       class="group inline-flex items-center justify-center w-full max-w-sm bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-700 text-white font-medium py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl text-lg"
+                           class="group inline-flex items-center justify-center w-full max-w-sm bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-700 text-white font-medium py-3 sm:py-4 px-6 sm:px-8 rounded-xl sm:rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl text-base sm:text-lg botao-assinar"
                        onclick="console.log('Clicando no plano {{ plano.id }}'); return true;">
-                        <span class="mr-3">Começar agora</span>
-                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <span class="mr-2 sm:mr-3">Começar agora</span>
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                         </svg>
                     </a>
                     
-                    <p class="text-sm text-gray-500 mt-6 font-light">Renovação automática • Cancele quando quiser</p>
+                        <p class="text-xs sm:text-sm text-gray-500 mt-4 sm:mt-6 font-light">Renovação automática • Cancele quando quiser</p>
                     
-                    <div class="mt-8 flex justify-center items-center space-x-6 text-xs text-gray-400">
+                        <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-6 text-xs text-gray-400">
                         <div class="flex items-center">
                             <div class="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
                             Pagamento seguro
@@ -252,56 +491,39 @@
         {% endif %}
     </div>
     
-    <div class="text-center mt-8">
-        <p class="text-gray-600">
+        <div class="text-center mt-6 sm:mt-8 px-3">
+            <p class="text-sm sm:text-base text-gray-600">
             <strong>Formas de pagamento:</strong> Cartão de crédito, débito, PIX, boleto
         </p>
-        <p class="text-sm text-gray-500 mt-2">
+            <p class="text-xs sm:text-sm text-gray-500 mt-2">
             Processado com segurança pelo Mercado Pago
         </p>
     </div>
     {% endif %}
 </div>
+</main>
 
-<!-- Header com navegação -->
-<header class="bg-white shadow-sm border-b border-gray-200 mb-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-            <div class="flex items-center">
-                <a href="{% url 'index' %}" class="flex items-center space-x-2">
-                    <img src="{% static 'judo.png' %}" alt="Judo" class="h-8 w-8">
-                    <span class="text-xl font-bold text-gray-800">Academia de Judô</span>
-                </a>
+<!-- Footer -->
+<footer class="bg-white border-t border-gray-200 mt-auto">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6">
+        <div class="flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-0">
+            <div class="flex items-center space-x-2">
+                <img src="{% static 'judo.png' %}" alt="Judo" class="h-6 w-6 sm:h-8 sm:w-8">
+                <span class="text-sm sm:text-base font-semibold text-gray-800">Academia de Judô</span>
             </div>
-            <div class="flex items-center space-x-4">
-                {% if user.is_authenticated %}
-                    <span class="text-sm text-gray-600">Olá, {{ user.first_name|default:user.username }}</span>
-                    <form method="post" action="{% url 'logout' %}" class="inline">
-                        {% csrf_token %}
-                        <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium">
-                            Logout
-                        </button>
-                    </form>
-                {% else %}
-                    <a href="{% url 'login' %}" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium">
-                        Login
-                    </a>
-                {% endif %}
+            <div class="text-xs sm:text-sm text-gray-600 text-center sm:text-right">
+                <p>&copy; 2024 Academia de Judô. Todos os direitos reservados.</p>
+            </div>
+        </div>
+        <div class="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-200 text-center">
+            <div class="flex flex-wrap justify-center gap-3 sm:gap-6 text-xs sm:text-sm text-gray-600">
+                <a href="{% url 'payments:planos' %}" class="hover:text-blue-600 transition">Planos</a>
+                <a href="{% url 'payments:assinaturas' %}" class="hover:text-blue-600 transition">Assinaturas</a>
+                <a href="{% url 'index' %}" class="hover:text-blue-600 transition">Início</a>
             </div>
         </div>
     </div>
-</header>
-
-<!-- Messages -->
-{% if messages %}
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }} bg-{% if message.tags == 'error' %}red{% elif message.tags == 'warning' %}yellow{% elif message.tags == 'success' %}green{% else %}blue{% endif %}-100 border border-{% if message.tags == 'error' %}red{% elif message.tags == 'warning' %}yellow{% elif message.tags == 'success' %}green{% else %}blue{% endif %}-400 text-{% if message.tags == 'error' %}red{% elif message.tags == 'warning' %}yellow{% elif message.tags == 'success' %}green{% else %}blue{% endif %}-700 px-4 py-3 rounded mb-4">
-                {{ message }}
-            </div>
-        {% endfor %}
-    </div>
-{% endif %}
+</footer>
 
 </body>
 </html>

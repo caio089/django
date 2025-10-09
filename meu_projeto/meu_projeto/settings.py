@@ -69,33 +69,31 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'meu_projeto.wsgi.application'
 
-# Database - Configuração para Render (DATABASE_URL) e Supabase PostgreSQL
+# Database - Configuração para Supabase PostgreSQL e Render
 import dj_database_url
 
-# Tentar usar DATABASE_URL primeiro (padrão do Render)
+# Prioridade 1: DATABASE_URL (Supabase/Render)
 if os.getenv('DATABASE_URL'):
     DATABASES = {
         'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
     }
-else:
-    # Fallback para configuração individual (Supabase)
+# Prioridade 2: Configuração individual (Supabase)
+elif os.getenv('DB_HOST'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': os.getenv('DB_NAME', 'postgres'),
             'USER': os.getenv('DB_USER', 'postgres'),
             'PASSWORD': os.getenv('DB_PASSWORD', ''),
-            'HOST': os.getenv('DB_HOST', 'localhost'),
+            'HOST': os.getenv('DB_HOST'),
             'PORT': os.getenv('DB_PORT', '5432'),
             'OPTIONS': {
                 'sslmode': 'require',
             },
         }
     }
-
-# Fallback para SQLite em desenvolvimento local se não houver configuração do Supabase
-# ou se houver problemas de conexão com o Supabase
-if (not os.getenv('DB_HOST') and not os.getenv('DATABASE_URL')) or os.getenv('USE_SQLITE_FALLBACK', 'False').lower() == 'true':
+# Prioridade 3: SQLite (apenas se não houver nenhuma configuração)
+else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',

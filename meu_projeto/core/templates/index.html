@@ -36,6 +36,19 @@
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+        
+        /* Reset básico para garantir visibilidade */
+        * {
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
         .font-league { font-family: 'Poppins', system-ui, sans-serif; }
         .font-title { font-family: 'Poppins', system-ui, sans-serif; }
         .font-subtitle { font-family: 'Poppins', system-ui, sans-serif; }
@@ -45,6 +58,9 @@
             background: linear-gradient(135deg, #0c1426 0%, #1e1b4b 50%, #312e81 100%);
             min-height: 100vh;
             padding-top: 120px;
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
         }
         
         .welcome-title {
@@ -56,10 +72,12 @@
         }
         
         .welcome-section {
-            opacity: 1;
-            transform: none;
-            overflow: visible;
-            min-height: 140px;
+            opacity: 1 !important;
+            transform: none !important;
+            overflow: visible !important;
+            min-height: 140px !important;
+            visibility: visible !important;
+            display: flex !important;
         }
 
         
@@ -228,6 +246,7 @@
             background: rgba(0, 0, 0, 0.5);
             opacity: 0;
             visibility: hidden;
+            pointer-events: none;
             transition: all 0.3s ease;
             z-index: 999;
         }
@@ -235,6 +254,7 @@
         .sidebar-overlay.open {
             opacity: 1;
             visibility: visible;
+            pointer-events: auto;
         }
         
         .sidebar-item {
@@ -352,6 +372,15 @@
             .sidebar-item:hover {
                 transform: translateX(12px) scale(1.03);
             }
+            
+            /* Melhorar espaçamento no desktop */
+            .sidebar .flex-1 {
+                padding-bottom: 1rem;
+            }
+            
+            .sidebar .space-y-2 > * + * {
+                margin-top: 0.75rem;
+            }
         }
         
         /* Design sofisticado e compacto para sidebar */
@@ -463,6 +492,8 @@
             opacity: 1 !important;
             visibility: visible !important;
             display: flex !important;
+            position: relative !important;
+            z-index: 1 !important;
             align-items: flex-start !important;
             justify-content: center !important;
         }
@@ -509,80 +540,14 @@
                 repeating-linear-gradient(0deg, rgba(59,130,246,0.03) 0 2px, transparent 2px 32px),
                 repeating-linear-gradient(90deg, rgba(59,130,246,0.03) 0 2px, transparent 2px 32px);
             background-blend-mode: overlay, normal;
+            margin: 0 !important;
+            padding: 0 !important;
+            min-height: 100vh !important;
+            overflow-x: hidden !important;
         }
         
-        /* Área de Anúncios - Barra Horizontal Compacta */
-        .advertisement-area {
-            position: fixed;
-            bottom: 24px;
-            left: 24px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            width: auto;
-            max-width: 600px;
-            min-width: 300px;
-            z-index: 1000;
-        }
         
-        /* Desktop - Anúncio menor e menos vivo */
-        @media (min-width: 769px) {
-            .advertisement-area {
-                position: static !important;
-                bottom: auto !important;
-                left: auto !important;
-                right: auto !important;
-                width: 100% !important;
-                max-width: 600px !important;
-                min-width: 400px !important;
-                max-height: 60px !important;
-                opacity: 0.9;
-                z-index: auto !important;
-                margin: 1rem auto 0 auto !important;
-            }
-            
-            /* Anúncio integrado para desktop */
-            .advertisement-area-desktop {
-                display: block !important;
-            }
-            
-            .advertisement-area-mobile {
-                display: none !important;
-            }
-            
-            .advertisement-area .bg-blue-600 {
-                background-color: #475569 !important; /* slate-600 menos vivo */
-            }
-            
-            .advertisement-area .bg-green-600 {
-                background-color: #64748b !important; /* slate-500 menos vivo */
-            }
-            
-            .advertisement-area .bg-purple-600 {
-                background-color: #475569 !important; /* slate-600 menos vivo */
-            }
-            
-            .advertisement-area .bg-orange-500 {
-                background-color: #64748b !important; /* slate-500 menos vivo */
-            }
-            
-            .advertisement-area .text-white {
-                color: #e2e8f0 !important; /* slate-200 menos vivo */
-            }
-            
-            .advertisement-area .text-blue-100 {
-                color: #cbd5e1 !important; /* slate-300 menos vivo */
-            }
-        }
         
-        /* Melhorias para mobile */
-        .advertisement-area .flex {
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .advertisement-area button:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-        }
         
         /* Responsividade para dispositivos móveis */
         @media (max-width: 768px) {
@@ -661,79 +626,6 @@
                 width: 150px !important;
             }
             
-            /* Área de anúncios compacta para mobile */
-            .advertisement-area {
-                position: fixed !important;
-                bottom: 8px !important;
-                left: 8px !important;
-                right: 8px !important;
-                width: auto !important;
-                max-width: calc(100vw - 16px) !important;
-                min-width: 280px !important;
-                height: auto !important;
-                max-height: 60px !important;
-                z-index: 1000 !important;
-                opacity: 1 !important;
-            }
-            
-            /* Anúncio integrado para mobile */
-            .advertisement-area-desktop {
-                display: none !important;
-            }
-            
-            .advertisement-area-mobile {
-                display: block !important;
-            }
-            
-            .advertisement-area .flex {
-                flex-wrap: wrap;
-                gap: 6px !important;
-                justify-content: center !important;
-                padding: 0.5rem !important;
-            }
-            
-            /* Ajustes específicos para mobile */
-            .advertisement-area .flex > div:first-child {
-                order: 1;
-                margin-bottom: 0.25rem !important;
-            }
-            
-            .advertisement-area .flex > div:nth-child(2) {
-                order: 2;
-                margin-bottom: 0.25rem !important;
-            }
-            
-            .advertisement-area .flex > div:nth-child(3) {
-                order: 3;
-                margin-bottom: 0.25rem !important;
-            }
-            
-            .advertisement-area .flex > div:last-child {
-                order: 4;
-            }
-            
-            /* Reduzir tamanho dos elementos internos */
-            .advertisement-area .text-base {
-                font-size: 0.75rem !important;
-            }
-            
-            .advertisement-area .text-sm {
-                font-size: 0.625rem !important;
-            }
-            
-            .advertisement-area .text-xs {
-                font-size: 0.5rem !important;
-            }
-            
-            .advertisement-area .px-3 {
-                padding-left: 0.5rem !important;
-                padding-right: 0.5rem !important;
-            }
-            
-            .advertisement-area .py-2 {
-                padding-top: 0.375rem !important;
-                padding-bottom: 0.375rem !important;
-            }
         }
         
         @media (max-width: 480px) {
@@ -801,56 +693,6 @@
                 width: 130px !important;
             }
             
-            /* Área de anúncios ultra-compacta para mobile pequeno */
-            .advertisement-area {
-                position: fixed !important;
-                bottom: 6px !important;
-                left: 6px !important;
-                right: 6px !important;
-                max-width: calc(100vw - 12px) !important;
-                min-width: 250px !important;
-                max-height: 50px !important;
-                z-index: 1000 !important;
-                opacity: 1 !important;
-            }
-            
-            .advertisement-area .space-x-4 {
-                flex-direction: column;
-                gap: 6px !important;
-            }
-            
-            /* Ajustes para mobile pequeno */
-            .advertisement-area .flex {
-                gap: 4px !important;
-                padding: 0.375rem !important;
-            }
-            
-            .advertisement-area .flex > div {
-                margin-bottom: 0.125rem !important;
-            }
-            
-            /* Reduzir ainda mais os tamanhos */
-            .advertisement-area .text-base {
-                font-size: 0.625rem !important;
-            }
-            
-            .advertisement-area .text-sm {
-                font-size: 0.5rem !important;
-            }
-            
-            .advertisement-area .text-xs {
-                font-size: 0.375rem !important;
-            }
-            
-            .advertisement-area .px-3 {
-                padding-left: 0.375rem !important;
-                padding-right: 0.375rem !important;
-            }
-            
-            .advertisement-area .py-2 {
-                padding-top: 0.25rem !important;
-                padding-bottom: 0.25rem !important;
-            }
         }
         
         /* Responsividade para dispositivos muito pequenos */
@@ -919,55 +761,6 @@
                 width: 110px !important;
             }
             
-            /* Área de anúncios ultra-compacta para mobile muito pequeno */
-            .advertisement-area {
-                position: fixed !important;
-                bottom: 4px !important;
-                left: 4px !important;
-                right: 4px !important;
-                max-width: calc(100vw - 8px) !important;
-                min-width: 200px !important;
-                max-height: 45px !important;
-                z-index: 1000 !important;
-                opacity: 1 !important;
-            }
-            
-            /* Ajustes para mobile muito pequeno */
-            .advertisement-area .flex {
-                gap: 3px !important;
-                padding: 0.25rem !important;
-            }
-            
-            .advertisement-area .flex > div {
-                margin-bottom: 0.125rem !important;
-            }
-            
-            .advertisement-area .flex > div:first-child {
-                margin-bottom: 0.25rem !important;
-            }
-            
-            /* Reduzir ao máximo os tamanhos */
-            .advertisement-area .text-base {
-                font-size: 0.5rem !important;
-            }
-            
-            .advertisement-area .text-sm {
-                font-size: 0.375rem !important;
-            }
-            
-            .advertisement-area .text-xs {
-                font-size: 0.25rem !important;
-            }
-            
-            .advertisement-area .px-3 {
-                padding-left: 0.25rem !important;
-                padding-right: 0.25rem !important;
-            }
-            
-            .advertisement-area .py-2 {
-                padding-top: 0.125rem !important;
-                padding-bottom: 0.125rem !important;
-            }
         }
     </style>
 </head>
@@ -983,7 +776,9 @@
     
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar" role="navigation" aria-label="Menu principal">
-        <div class="p-6">
+        <div class="flex flex-col h-full">
+            <!-- Conteúdo principal -->
+            <div class="flex-1 p-6 overflow-y-auto">
             <div class="flex items-center mb-8">
                 <h2 class="text-2xl font-bold text-white flex items-center">
                     <span class="mr-2">🥋</span>
@@ -1084,7 +879,7 @@
                     {% endif %}
                     
                     <!-- Botões de ação -->
-                    <div>
+                    <div class="space-y-2">
                         {% if user.is_authenticated %}
                             {% if assinatura %}
                                 <button onclick="cancelarAssinatura()" class="sidebar-button w-full" style="background: rgba(239, 68, 68, 0.08) !important; border: 1px solid rgba(239, 68, 68, 0.2) !important; color: #fca5a5 !important;">
@@ -1121,8 +916,10 @@
                     </div>
                 </div>
             </div>
+            </div> <!-- Fechamento da div flex-1 p-6 overflow-y-auto -->
             
-            <div class="absolute bottom-4 left-4 right-4">
+            <!-- Footer fixo na parte inferior -->
+            <div class="p-4 border-t border-white/10">
                 <div class="bg-white/5 rounded-lg p-3 text-center backdrop-filter blur(10px)">
                     <p class="text-white/60 text-xs font-medium">© 2024 Academia de Judô</p>
                     <p class="text-white/40 text-xs mt-1">Desenvolvido por Caio Campos</p>
@@ -1136,44 +933,6 @@
         <span class="text-2xl">☰</span>
     </button>
 
-    <!-- Área de Anúncios - Barra Horizontal Compacta (apenas mobile) -->
-    <div class="advertisement-area bg-white rounded-2xl border border-gray-200 shadow-xl hidden lg:hidden">
-        <div class="flex items-center px-3 sm:px-4 py-2 sm:py-3 flex-wrap gap-2">
-            <!-- Logo/Identificação -->
-            <div class="flex items-center space-x-2 mr-3 sm:mr-6">
-                <span class="text-blue-600 text-base sm:text-lg">📢</span>
-                <span class="text-gray-700 text-xs sm:text-sm font-medium">Anúncios</span>
-            </div>
-            
-            <!-- Anúncios Horizontais -->
-            <div class="flex items-center space-x-2 sm:space-x-4 flex-wrap gap-1">
-                <div class="flex items-center space-x-1 sm:space-x-2 bg-blue-50 border border-blue-200 rounded-md px-2 sm:px-3 py-1.5 sm:py-2">
-                    <span class="text-blue-600 text-xs font-semibold">🎯 PROMO</span>
-                    <span class="text-blue-600 text-xs hidden sm:inline">Faixa nova -20%</span>
-                </div>
-                <div class="flex items-center space-x-1 sm:space-x-2 bg-green-50 border border-green-200 rounded-md px-2 sm:px-3 py-1.5 sm:py-2">
-                    <span class="text-green-600 text-xs font-semibold">🥋 GRÁTIS</span>
-                    <span class="text-green-600 text-xs hidden sm:inline">Primeira experiência</span>
-                </div>
-                <div class="flex items-center space-x-1 sm:space-x-2 bg-purple-50 border border-purple-200 rounded-md px-2 sm:px-3 py-1.5 sm:py-2">
-                    <span class="text-purple-600 text-xs font-semibold">⭐ NOVO</span>
-                    <span class="text-purple-600 text-xs hidden sm:inline">Desconto especial</span>
-                </div>
-            </div>
-            
-            <!-- Botão CTA -->
-            <div class="ml-3 sm:ml-6">
-                <button class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-medium px-3 py-1.5 sm:px-4 sm:py-2 rounded-md transition-colors duration-200">
-                    Ver Todas
-                </button>
-            </div>
-            
-            <!-- Botão Fechar -->
-            <button class="text-gray-400 hover:text-gray-600 text-xs transition-colors">
-                ✕
-            </button>
-        </div>
-    </div>
 
     <!-- Mensagem de Boas-vindas após Pagamento -->
     {% if from_payment and new_subscription %}
@@ -1874,6 +1633,24 @@
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('from_payment') === 'true') {
                 verificarAssinatura();
+            }
+        });
+        
+        // Garantir que o conteúdo seja visível
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroSection = document.querySelector('.hero-section');
+            const welcomeSection = document.querySelector('.welcome-section');
+            
+            if (heroSection) {
+                heroSection.style.display = 'flex';
+                heroSection.style.visibility = 'visible';
+                heroSection.style.opacity = '1';
+            }
+            
+            if (welcomeSection) {
+                welcomeSection.style.display = 'flex';
+                welcomeSection.style.visibility = 'visible';
+                welcomeSection.style.opacity = '1';
             }
         });
     </script>
