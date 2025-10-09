@@ -5,8 +5,8 @@ set -o errexit
 # Instalar dependências
 pip install -r requirements.txt
 
-# Executar migrações
-python manage.py migrate
+# Executar migrações (--fake-initial ignora tabelas que já existem)
+python manage.py migrate --fake-initial
 
 # Coletar arquivos estáticos
 python manage.py collectstatic --noinput
