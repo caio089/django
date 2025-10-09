@@ -71,16 +71,34 @@ def register_view(request):
             senha = register_form.cleaned_data['senha']
             
             try:
+                # Verificar se já existe usuário com este email
+                if User.objects.filter(email=email).exists():
+                    messages.error(request, 'Já existe uma conta com este email. Use outro email ou faça login.')
+                    return render(request, 'home/home.html', {
+                        'form': form,
+                        'register_form': register_form,
+                        'show_register': show_register
+                    })
+                
                 # Criar usuário
                 user = User.objects.create_user(username=email, email=email, password=senha)
                 
-                # Criar profile
-                profile = Profile.objects.create(
-                    user=user,
-                    nome=nome,
-                    idade=idade,
-                    faixa=faixa
-                )
+                # Verificar se já existe profile (segurança extra)
+                if Profile.objects.filter(user=user).exists():
+                    logger.warning(f"Profile já existe para usuário {user.id}, atualizando...")
+                    profile = Profile.objects.get(user=user)
+                    profile.nome = nome
+                    profile.idade = idade
+                    profile.faixa = faixa
+                    profile.save()
+                else:
+                    # Criar novo profile
+                    profile = Profile.objects.create(
+                        user=user,
+                        nome=nome,
+                        idade=idade,
+                        faixa=faixa
+                    )
                 
                 logger.info(f"Usuário criado com sucesso: {email}, Profile ID: {profile.id}")
                 
