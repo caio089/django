@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
+import random
+import string
+from datetime import datetime, timedelta
 
 # Create your models here.
 
@@ -70,3 +73,49 @@ class HistoricoFaixas(models.Model):
         verbose_name = "Histórico de Faixas"
         verbose_name_plural = "Históricos de Faixas"
         ordering = ['-data_mudanca']
+
+
+class CodigoRecuperacao(models.Model):
+    """
+    Modelo para armazenar códigos de recuperação de senha
+    """
+    email = models.EmailField(verbose_name="Email do usuário")
+    codigo = models.CharField(max_length=6, verbose_name="Código de 6 dígitos")
+    usado = models.BooleanField(default=False, verbose_name="Código já foi usado")
+    data_criacao = models.DateTimeField(auto_now_add=True, verbose_name="Data de criação")
+    data_expiracao = models.DateTimeField(verbose_name="Data de expiração")
+    
+    @classmethod
+    def gerar_codigo(cls, email):
+        """Gera um novo código de recuperação para o email"""
+        # Deletar códigos antigos para este email
+        cls.objects.filter(email=email).delete()
+        
+        # Gerar código de 6 dígitos
+        codigo = ''.join([str(random.randint(0, 9)) for _ in range(6)])
+        
+        # Criar novo código (expira em 15 minutos)
+        data_expiracao = datetime.now() + timedelta(minutes=15)
+        
+        return cls.objects.create(
+            email=email,
+            codigo=codigo,
+            data_expiracao=data_expiracao
+        )
+    
+    def is_valido(self):
+        """Verifica se o código ainda é válido"""
+        return not self.usado and datetime.now() < self.data_expiracao
+    
+    def marcar_como_usado(self):
+        """Marca o código como usado"""
+        self.usado = True
+        self.save()
+    
+    def __str__(self):
+        return f"Código {self.codigo} para {self.email}"
+    
+    class Meta:
+        verbose_name = "Código de Recuperação"
+        verbose_name_plural = "Códigos de Recuperação"
+        ordering = ['-data_criacao']
