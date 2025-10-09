@@ -70,14 +70,34 @@ def register_view(request):
             email = register_form.cleaned_data['email']
             senha = register_form.cleaned_data['senha']
             
-            # Criar usuário
-            user = User.objects.create_user(username=email, email=email, password=senha)
-            Profile.objects.create(user=user, nome=nome, idade=idade, faixa=faixa)
-            
-            # Fazer login automaticamente após registro
-            login(request, user)
-            messages.success(request, f'Conta criada com sucesso! Bem-vindo, {nome}!')
-            return redirect('index')
+            try:
+                # Criar usuário
+                user = User.objects.create_user(username=email, email=email, password=senha)
+                
+                # Criar profile
+                profile = Profile.objects.create(
+                    user=user,
+                    nome=nome,
+                    idade=idade,
+                    faixa=faixa
+                )
+                
+                logger.info(f"Usuário criado com sucesso: {email}, Profile ID: {profile.id}")
+                
+                # Fazer login automaticamente após registro
+                login(request, user)
+                messages.success(request, f'Conta criada com sucesso! Bem-vindo, {nome}!')
+                return redirect('index')
+                
+            except Exception as e:
+                logger.error(f"Erro ao criar usuário/profile: {e}")
+                messages.error(request, f'Erro ao criar conta: {str(e)}')
+                # Se deu erro, deletar o usuário se foi criado
+                try:
+                    if 'user' in locals():
+                        user.delete()
+                except:
+                    pass
         else:
             # Mostrar erros do formulário
             for field, errors in register_form.errors.items():

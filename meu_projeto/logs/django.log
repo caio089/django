@@ -8511,3 +8511,10 @@ Erro ao corrigir assinaturas expiradas: current transaction is aborted, commands
 
 Erro na verificação de integridade: current transaction is aborted, commands ignored until end of transaction block
 
+  - Usuários: 1
+  - Assinaturas: 0
+  - Assinaturas ativas: 0
+  - Pagamentos: 0
+  - Usuários premium: 0
+Erro ao coletar estatísticas: could not translate host name "aws-1-us-east-2.pooler.supabase.com" to address: Name or service not known
+
