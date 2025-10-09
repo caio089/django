@@ -2,8 +2,23 @@
 # exit on error
 set -o errexit
 
-# Instalar dependências
-pip install -r requirements.txt
+# Instalar dependências essenciais primeiro
+echo "📦 Instalando dependências essenciais..."
+pip install Django==5.2.5
+pip install psycopg2-binary==2.9.10
+pip install gunicorn==23.0.0
+pip install whitenoise==6.10.0
+pip install python-dotenv==1.0.0
+pip install dj-database-url==2.1.0
+
+# Instalar dependências opcionais (se falhar, continua)
+echo "📦 Instalando dependências opcionais..."
+set +e
+pip install mercadopago==2.3.0
+pip install qrcode==8.2
+pip install pillow==10.4.0
+pip install cryptography==43.0.3
+set -e
 
 # Executar migrações de forma segura
 echo "🔄 Aplicando migrações..."
