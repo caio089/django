@@ -14,29 +14,42 @@ class PaymentsConfig(AppConfig):
     def ready(self):
         """
         Executa sincronização automática quando o Django inicia
+        NOTA: Evita acessar DB durante ready() - executa em thread separada
         """
+        # Só executar sincronizações se não estiver em migrations/testes
+        import sys
+        if 'migrate' in sys.argv or 'makemigrations' in sys.argv or 'test' in sys.argv:
+            return
+            
         try:
             # Importar signals para auto-sincronização
             from . import signals
             
-            # Importar e executar sincronização de inicialização
-            from .startup_sync import StartupPaymentSync
-            StartupPaymentSync.run_automatic_sync()
+            # Agendar sincronização para executar após inicialização completa
+            import threading
             
-            # Iniciar sincronização periódica
-            from .signals import PeriodicSyncManager
-            PeriodicSyncManager.start_periodic_sync()
+            def delayed_startup():
+                """Executa tarefas de inicialização em thread separada"""
+                try:
+                    from .startup_sync import StartupPaymentSync
+                    StartupPaymentSync.run_automatic_sync()
+                    
+                    from .signals import PeriodicSyncManager
+                    PeriodicSyncManager.start_periodic_sync()
+                    
+                    from .auto_monitor import AutoMonitor
+                    AutoMonitor.start_monitoring()
+                    
+                    from .auto_notifications import AutoNotificationManager
+                    AutoNotificationManager.send_system_health_report()
+                    
+                    logger.info("Sistema de pagamentos inicializado com sucesso")
+                except Exception as e:
+                    logger.error(f"Erro na inicialização de pagamentos: {e}")
             
-            # Iniciar monitor automático
-            from .auto_monitor import AutoMonitor
-            AutoMonitor.start_monitoring()
-            
-            # Iniciar notificações automáticas
-            from .auto_notifications import AutoNotificationManager
-            # Enviar relatório inicial
-            AutoNotificationManager.send_system_health_report()
-            
-            logger.info("🚀 Sistema de pagamentos inicializado com sincronização automática completa")
+            # Executar em thread separada para não bloquear a inicialização
+            thread = threading.Thread(target=delayed_startup, daemon=True)
+            thread.start()
             
         except Exception as e:
-            logger.error(f"Erro na inicialização automática de pagamentos: {e}")
+            logger.error(f"Erro ao agendar inicialização de pagamentos: {e}")
