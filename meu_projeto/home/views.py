@@ -52,9 +52,11 @@ def login_view(request):
 
 
 def register_view(request):
-    # Se já estiver logado, redirecionar para index
+    # Se já estiver logado e tentar acessar página de registro, fazer logout primeiro
     if request.user.is_authenticated:
-        return redirect('index')
+        from django.contrib.auth import logout
+        logout(request)
+        messages.info(request, 'Você foi desconectado para criar uma nova conta.')
     
     form = EmailLoginForm()
     register_form = RegisterForm(request.POST or None)

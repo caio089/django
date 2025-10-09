@@ -14,17 +14,17 @@ def index(request):
     if request.user.is_authenticated:
         try:
             profile = Profile.objects.get(user=request.user)
-            # Atualizar nome se estiver vazio ou for o valor padrão
-            if not profile.nome or profile.nome == 'Teste Usuario':
-                profile.nome = request.user.get_full_name() or request.user.username
-                profile.save()
         except Profile.DoesNotExist:
+            # Se não existir profile, criar com valores padrão
+            # O nome será definido durante o registro
             profile = Profile.objects.create(
                 user=request.user,
-                nome=request.user.get_full_name() or request.user.username,
+                nome=request.user.username,  # Temporário, será atualizado no registro
                 idade=18,
                 faixa='branca'
             )
+        
+        # Usar sempre o nome do profile (que foi definido no registro)
         nome = profile.nome
         faixa = profile.get_faixa_display()
         
