@@ -8,40 +8,56 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .models import CodigoRecuperacao
 import logging
+import traceback
 
 logger = logging.getLogger(__name__)
 
 def esqueci_senha(request):
     """Página inicial para solicitar recuperação de senha"""
-    if request.method == 'POST':
-        email = request.POST.get('email')
+    try:
+        if request.method == 'POST':
+            email = request.POST.get('email', '').strip()
+            
+            if not email:
+                messages.error(request, 'Por favor, digite seu email.')
+                return render(request, 'home/esqueci_senha.html')
+            
+            # Verificar se o email existe
+            if not User.objects.filter(email=email).exists():
+                messages.error(request, 'Email não encontrado em nosso sistema.')
+                return render(request, 'home/esqueci_senha.html')
+            
+            try:
+                # Gerar código de recuperação
+                codigo_obj = CodigoRecuperacao.gerar_codigo(email)
+                logger.info(f"Código gerado para {email}: {codigo_obj.codigo}")
+                
+                # Enviar email com o código (em ambiente de desenvolvimento, apenas loga)
+                try:
+                    enviar_email_codigo(email, codigo_obj.codigo)
+                    logger.info(f"Email enviado para {email}")
+                except Exception as email_error:
+                    logger.warning(f"Erro ao enviar email: {email_error}")
+                    # Mesmo se o email falhar, continua (para desenvolvimento)
+                    logger.info(f"CÓDIGO DE RECUPERAÇÃO (desenvolvimento): {codigo_obj.codigo}")
+                
+                messages.success(request, f'Código enviado para {email}! Verifique sua caixa de entrada.')
+                
+                # Redirecionar para página de verificação
+                return redirect('verificar_codigo', email=email)
+                
+            except Exception as e:
+                logger.error(f"Erro ao gerar código de recuperação: {e}")
+                traceback.print_exc()
+                messages.error(request, f'Erro ao processar solicitação: {str(e)}')
         
-        if not email:
-            messages.error(request, 'Por favor, digite seu email.')
-            return render(request, 'home/esqueci_senha.html')
+        return render(request, 'home/esqueci_senha.html')
         
-        # Verificar se o email existe
-        if not User.objects.filter(email=email).exists():
-            messages.error(request, 'Email não encontrado em nosso sistema.')
-            return render(request, 'home/esqueci_senha.html')
-        
-        try:
-            # Gerar código de recuperação
-            codigo_obj = CodigoRecuperacao.gerar_codigo(email)
-            
-            # Enviar email com o código
-            enviar_email_codigo(email, codigo_obj.codigo)
-            
-            messages.success(request, f'Código enviado para {email}! Verifique sua caixa de entrada.')
-            
-            # Redirecionar para página de verificação
-            return redirect('verificar_codigo', email=email)
-            
-        except Exception as e:
-            logger.error(f"Erro ao gerar código de recuperação: {e}")
-            messages.error(request, 'Erro ao enviar código. Tente novamente.')
-    
-    return render(request, 'home/esqueci_senha.html')
+    except Exception as e:
+        logger.error(f"Erro geral em esqueci_senha: {e}")
+        traceback.print_exc()
+        messages.error(request, 'Erro ao carregar página. Tente novamente.')
+        return render(request, 'home/esqueci_senha.html')
 
 
 def verificar_codigo(request, email):
@@ -114,6 +130,18 @@ def redefinir_senha(request, email):
 def enviar_email_codigo(email, codigo):
     """Envia email com o código de recuperação"""
     try:
+        # Verificar se o email está configurado
+        email_host_user = getattr(settings, 'EMAIL_HOST_USER', '')
+        
+        if not email_host_user:
+            # Modo desenvolvimento - apenas loga o código
+            logger.warning(f"Email não configurado. Código para {email}: {codigo}")
+            print(f"\n{'='*50}")
+            print(f"CÓDIGO DE RECUPERAÇÃO PARA {email}")
+            print(f"CÓDIGO: {codigo}")
+            print(f"{'='*50}\n")
+            return
+        
         assunto = 'Código de Recuperação de Senha - Dojo Online'
         
         mensagem = f"""
@@ -145,4 +173,13 @@ Equipe Dojo Online
         
     except Exception as e:
         logger.error(f"Erro ao enviar email para {email}: {e}")
-        raise
+        # Em desenvolvimento, não falha se o email não funcionar
+        if settings.DEBUG:
+            logger.warning(f"Modo DEBUG: Continuando apesar do erro de email")
+            print(f"\n{'='*50}")
+            print(f"ERRO AO ENVIAR EMAIL, MAS CÓDIGO GERADO:")
+            print(f"Email: {email}")
+            print(f"Código: {codigo}")
+            print(f"{'='*50}\n")
+        else:
+            raise

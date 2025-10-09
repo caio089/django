@@ -2,9 +2,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
+from django.utils import timezone
 import random
 import string
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 # Create your models here.
 
@@ -95,7 +96,7 @@ class CodigoRecuperacao(models.Model):
         codigo = ''.join([str(random.randint(0, 9)) for _ in range(6)])
         
         # Criar novo código (expira em 15 minutos)
-        data_expiracao = datetime.now() + timedelta(minutes=15)
+        data_expiracao = timezone.now() + timedelta(minutes=15)
         
         return cls.objects.create(
             email=email,
@@ -105,7 +106,7 @@ class CodigoRecuperacao(models.Model):
     
     def is_valido(self):
         """Verifica se o código ainda é válido"""
-        return not self.usado and datetime.now() < self.data_expiracao
+        return not self.usado and timezone.now() < self.data_expiracao
     
     def marcar_como_usado(self):
         """Marca o código como usado"""
