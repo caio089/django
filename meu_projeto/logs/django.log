@@ -8769,3 +8769,16 @@ Erro na verificação de saúde: connection already closed
 "GET /static/pag5/css/styles.css HTTP/1.1" 304 0
 "GET /pagina5/ HTTP/1.1" 200 106422
 Sistema de pagamentos inicializado com sucesso
+"GET / HTTP/1.1" 200 41564
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 63271
+"GET /pagina6/ HTTP/1.1" 200 159224
+"GET /static/pag6/css/styles.css HTTP/1.1" 200 29478
+"GET /static/pag6/js/scripts.js HTTP/1.1" 200 7488
+Erro na verificação de saúde: connection already closed
+Erro na verificação de saúde: connection already closed
+"GET /pagina6/ HTTP/1.1" 200 159269
+"GET /static/pag6/css/styles.css HTTP/1.1" 304 0
+"GET /pagina6/ HTTP/1.1" 200 159269
+"GET /pagina6/ HTTP/1.1" 200 159321
+"GET /static/pag6/css/styles.css HTTP/1.1" 304 0

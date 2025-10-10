@@ -25,36 +25,8 @@
             }
         }
     </script>
-  <link rel="stylesheet" href="{% static 'pag5/css/styles.css' %}">
-     <script src="{% static 'pag5/js/scripts.js' %}"></script>
-    <style>
-        /* Estilos para lazy loading */
-        .lazy-video {
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-        
-        .lazy-video:hover {
-            transform: scale(1.02);
-        }
-        
-        .video-placeholder {
-            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
-            border: 2px dashed #d1d5db;
-        }
-        
-        .lazy-video.loaded .video-placeholder {
-            display: none;
-        }
-        
-        .lazy-video iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 12px;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'pag5/css/styles.css' %}">
+    <script src="{% static 'pag5/js/scripts.js' %}" defer></script>
 </head>
 <body class="bg-gray-50 font-display">
     <!-- Header com Progresso -->
@@ -1425,17 +1397,6 @@
         <!-- Container para partículas -->
         <div id="scrollParticles" class="scroll-particles"></div>
         
-        <style>
-        .scroll-particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-        }
-        </style>
         <!-- Botão Flutuante de Voltar ao Topo -->
         <button id="backToTop" class="fixed bottom-8 right-8 bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-lg floating-action transition-colors hidden font-buttons">
             <span class="text-2xl">↑</span>
@@ -1511,7 +1472,5 @@
             </p>
         </div>
     </footer>
-
-    <!-- Script de Lazy Loading Otimizado -->
 </body>
 </html>

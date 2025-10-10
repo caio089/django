@@ -1,42 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // --- SISTEMA DE VÍDEOS COM LAZY LOADING ---
-    
-    // Carregar vídeo ao clicar no placeholder
-    const lazyVideos = document.querySelectorAll('.lazy-video');
-    console.log('🎥 Encontrados ' + lazyVideos.length + ' vídeos com lazy loading');
-    
-    lazyVideos.forEach((lazyVideo, index) => {
-        const videoSrc = lazyVideo.getAttribute('data-src');
-        const videoTitle = lazyVideo.getAttribute('data-title') || 'YouTube video player';
-        
-        console.log('Vídeo ' + (index + 1) + ':', videoSrc);
-        
-        if (videoSrc) {
-            lazyVideo.addEventListener('click', function() {
-                console.log('🎬 Carregando vídeo:', videoSrc);
-                
-                // Criar iframe
-                const iframe = document.createElement('iframe');
-                iframe.src = videoSrc;
-                iframe.title = videoTitle;
-                iframe.frameBorder = '0';
-                iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-                iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-                iframe.allowFullscreen = true;
-                iframe.style.width = '100%';
-                iframe.style.height = '100%';
-                iframe.style.borderRadius = '12px';
-                
-                // Substituir placeholder pelo iframe
-                this.innerHTML = '';
-                this.appendChild(iframe);
-                
-                console.log('✅ Vídeo carregado com sucesso!');
-            }, { once: true }); // Remove listener após o primeiro clique
-        }
-    });
-    
-    // --- ANIMAÇÕES SIMPLIFICADAS ---
+    // --- ANIMAÇÕES ---
     function animateHabilidades() {
         document.querySelectorAll('.habilidade-item').forEach((item, index) => {
             item.style.opacity = '0';
