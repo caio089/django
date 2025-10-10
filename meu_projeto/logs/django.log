@@ -8518,3 +8518,254 @@ Erro na verificação de integridade: current transaction is aborted, commands ign
   - Usuários premium: 0
 Erro ao coletar estatísticas: could not translate host name "aws-1-us-east-2.pooler.supabase.com" to address: Name or service not known
 
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+Forbidden (CSRF cookie not set.): /login/
+"POST /login/ HTTP/1.1" 403 2901
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+Forbidden (CSRF cookie not set.): /login/
+"POST /login/ HTTP/1.1" 403 2901
+"GET / HTTP/1.1" 200 41225
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+"GET / HTTP/1.1" 200 41225
+"GET / HTTP/1.1" 200 41201
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 63271
+"GET /pagina1/ HTTP/1.1" 200 91890
+"GET /pagina1/carregar-progresso/?pagina=pagina1 HTTP/1.1" 200 34
+"GET /index/ HTTP/1.1" 200 63506
+"GET /static/css/navigation-buttons.css HTTP/1.1" 200 9152
+"GET /static/js/navigation-buttons.js HTTP/1.1" 200 10156
+"GET /index/ HTTP/1.1" 200 63506
+"GET /static/css/navigation-buttons.css HTTP/1.1" 304 0
+"GET /static/js/navigation-buttons.js HTTP/1.1" 304 0
+"GET /index/ HTTP/1.1" 200 63506
+"GET /static/css/navigation-buttons.css HTTP/1.1" 304 0
+"GET /static/js/navigation-buttons.js HTTP/1.1" 304 0
+- Broken pipe from ('127.0.0.1', 51834)
+"GET /index/ HTTP/1.1" 200 63506
+"GET /static/css/navigation-buttons.css HTTP/1.1" 404 2005
+"GET /static/js/navigation-buttons.js HTTP/1.1" 404 1999
+"GET /index/ HTTP/1.1" 200 63384
+"GET /static/js/navigation-buttons.js HTTP/1.1" 404 1999
+"GET /pagina3/ HTTP/1.1" 200 86737
+"GET /static/pag3/css/styles.css HTTP/1.1" 200 41164
+"GET /static/pag3/js/script.js HTTP/1.1" 200 36447
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 86737
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 86737
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 86737
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina3/ HTTP/1.1" 200 86737
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 86737
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 86737
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /index/ HTTP/1.1" 200 63384
+"GET /static/js/navigation-buttons.js HTTP/1.1" 404 1999
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /index/ HTTP/1.1" 200 63271
+Not Found: /index/url('https://fonts.googleapis.com/css2
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 6934
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina4/ HTTP/1.1" 200 105391
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /index/ HTTP/1.1" 200 63271
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+Not Found: /index/url('https://fonts.googleapis.com/css2
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 6934
+"GET /regras/ HTTP/1.1" 200 40760
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /regras/url('https://fonts.googleapis.com/css2
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /regras/url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@400;600&famil HTTP/1.1" 404 6664
+"GET /index/ HTTP/1.1" 200 63271
+Not Found: /index/url('https://fonts.googleapis.com/css2
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 6934
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /palavras/ HTTP/1.1" 200 24004
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /index/ HTTP/1.1" 200 63271
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+Not Found: /index/url('https://fonts.googleapis.com/css2
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 6934
+"GET /historia HTTP/1.1" 301 0
+"GET /historia/ HTTP/1.1" 200 82867
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina4/ HTTP/1.1" 200 105391
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /index/ HTTP/1.1" 200 63271
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina1/ HTTP/1.1" 200 99537
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina1/carregar-progresso/?pagina=pagina1 HTTP/1.1" 200 34
+"GET /index/ HTTP/1.1" 200 63271
+Not Found: /index/url('https://fonts.googleapis.com/css2
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 6934
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina2/ HTTP/1.1" 200 124080
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina2/carregar-progresso/?pagina=pagina2 HTTP/1.1" 200 34
+"GET /index/ HTTP/1.1" 200 63271
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /index/url('https://fonts.googleapis.com/css2
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 6934
+"GET /pagina3/ HTTP/1.1" 200 86737
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /index/ HTTP/1.1" 200 63271
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /index/url('https://fonts.googleapis.com/css2
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 6934
+"GET /pagina3/ HTTP/1.1" 200 86737
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /index/ HTTP/1.1" 200 63271
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina1/ HTTP/1.1" 200 99537
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+- Broken pipe from ('127.0.0.1', 49670)
+"GET /index/ HTTP/1.1" 200 63271
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+Not Found: /index/url('https://fonts.googleapis.com/css2
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 6934
+"GET /pagina4/ HTTP/1.1" 200 105391
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /index/ HTTP/1.1" 200 63271
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina5/ HTTP/1.1" 200 111383
+"GET /static/pag5/css/styles.css HTTP/1.1" 200 22598
+"GET /static/pag5/js/scripts.js HTTP/1.1" 200 8096
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /index/ HTTP/1.1" 200 63271
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+Not Found: /index/url('https://fonts.googleapis.com/css2
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 6934
+"GET /index/ HTTP/1.1" 200 63271
+Not Found: /index/url('https://fonts.googleapis.com/css2
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 6934
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina4/ HTTP/1.1" 200 105391
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina4/ HTTP/1.1" 200 105616
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina4/ HTTP/1.1" 200 105616
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina4/ HTTP/1.1" 200 105628
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina4/ HTTP/1.1" 200 105480
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+"GET /pagina4/ HTTP/1.1" 200 105586
+"GET /pagina4/ HTTP/1.1" 200 106944
+"GET /pagina4/ HTTP/1.1" 200 106990
+"GET /index/ HTTP/1.1" 200 63271
+"GET /pagina5/ HTTP/1.1" 200 111383
+"GET /static/pag5/css/styles.css HTTP/1.1" 200 21769
+"GET /pagina5/ HTTP/1.1" 200 111390
+"GET /static/pag5/css/styles.css HTTP/1.1" 304 0
+"GET /pagina5/ HTTP/1.1" 200 111404
+"GET /pagina5/ HTTP/1.1" 200 111404
+"GET /static/pag5/css/styles.css HTTP/1.1" 304 0
+"GET /pagina5/ HTTP/1.1" 200 111404
+"GET /static/pag5/css/styles.css HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina5/ HTTP/1.1" 200 111404
+"GET /static/pag5/css/styles.css HTTP/1.1" 200 22544
+"GET /pagina5/ HTTP/1.1" 200 110737
+"GET /static/pag5/css/styles.css HTTP/1.1" 200 22544
+"GET /pagina5/ HTTP/1.1" 200 110070
+"GET /static/pag5/css/styles.css HTTP/1.1" 304 0
+"GET /pagina5/ HTTP/1.1" 200 110323
+"GET /static/pag5/css/styles.css HTTP/1.1" 304 0
+Erro ao verificar perfis ausentes: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Erro ao verificar inconsistências: connection already closed
+Erro ao verificar assinaturas expiradas: connection already closed
+Erro na verificação de integridade: connection already closed
+Erro na verificação de saúde: connection already closed
+Erro ao verificar perfis ausentes: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Erro ao verificar inconsistências: connection already closed
+Erro ao verificar assinaturas expiradas: connection already closed
+Erro na verificação de integridade: connection already closed
+Erro na verificação de saúde: connection already closed
+"GET /pagina5/ HTTP/1.1" 200 106374
+"GET /static/pag5/css/styles.css HTTP/1.1" 304 0
+- Broken pipe from ('127.0.0.1', 56817)
+"GET /pagina5/ HTTP/1.1" 200 106397
+"GET /static/pag5/css/styles.css HTTP/1.1" 304 0
+"GET /pagina5/ HTTP/1.1" 200 106422
+Sistema de pagamentos inicializado com sucesso

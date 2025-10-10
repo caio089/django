@@ -1,38 +1,39 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // --- SISTEMA DE VÍDEOS OTIMIZADO ---
+    // --- SISTEMA DE VÍDEOS COM LAZY LOADING ---
     
-    // Função simplificada para extrair ID do YouTube
-    function extractYouTubeId(url) {
-        const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/);
-        return match ? match[1] : null;
-    }
+    // Carregar vídeo ao clicar no placeholder
+    const lazyVideos = document.querySelectorAll('.lazy-video');
+    console.log('🎥 Encontrados ' + lazyVideos.length + ' vídeos com lazy loading');
     
-    // Função otimizada para criar thumbnail
-    function createVideoThumbnail(iframe) {
-        const src = iframe.getAttribute('src');
-        const videoId = extractYouTubeId(src);
-        if (!videoId) return iframe;
+    lazyVideos.forEach((lazyVideo, index) => {
+        const videoSrc = lazyVideo.getAttribute('data-src');
+        const videoTitle = lazyVideo.getAttribute('data-title') || 'YouTube video player';
         
-        const container = document.createElement('div');
-        container.className = 'video-thumbnail-container';
-        container.innerHTML = `
-            <img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg" alt="Vídeo" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
-            <div class="play-overlay">
-                <div class="play-button">▶</div>
-            </div>
-        `;
+        console.log('Vídeo ' + (index + 1) + ':', videoSrc);
         
-        container.addEventListener('click', () => {
-            container.parentNode.replaceChild(iframe, container);
-        });
-        
-        return container;
-    }
-    
-    // Inicializar thumbnails
-    document.querySelectorAll('.video-container iframe[src*="youtube.com"]').forEach(iframe => {
-        const thumbnail = createVideoThumbnail(iframe);
-        iframe.parentNode.replaceChild(thumbnail, iframe);
+        if (videoSrc) {
+            lazyVideo.addEventListener('click', function() {
+                console.log('🎬 Carregando vídeo:', videoSrc);
+                
+                // Criar iframe
+                const iframe = document.createElement('iframe');
+                iframe.src = videoSrc;
+                iframe.title = videoTitle;
+                iframe.frameBorder = '0';
+                iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+                iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+                iframe.allowFullscreen = true;
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
+                iframe.style.borderRadius = '12px';
+                
+                // Substituir placeholder pelo iframe
+                this.innerHTML = '';
+                this.appendChild(iframe);
+                
+                console.log('✅ Vídeo carregado com sucesso!');
+            }, { once: true }); // Remove listener após o primeiro clique
+        }
     });
     
     // --- ANIMAÇÕES SIMPLIFICADAS ---

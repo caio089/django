@@ -1456,3 +1456,204 @@ html body #kaeshi-waza-section .card-hover {
     text-align: center !important;
 }
 
+/* ===== BOTÕES DE NAVEGAÇÃO APRIMORADOS ===== */
+
+/* Botão Flutuante "Voltar ao Topo" - SEMPRE FIXO E VISÍVEL */
+#backToTop {
+    position: fixed !important;
+    bottom: 24px !important;
+    right: 24px !important;
+    z-index: 9999 !important;
+    width: 60px !important;
+    height: 60px !important;
+    background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%) !important;
+    color: white !important;
+    border: 3px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 50% !important;
+    box-shadow: 0 8px 24px rgba(251, 191, 36, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 28px !important;
+    font-weight: bold !important;
+    opacity: 0 !important;
+    transform: scale(0.8) !important;
+    pointer-events: none !important;
+}
+
+#backToTop.visible {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    pointer-events: auto !important;
+    animation: pulse-glow-yellow 2s ease-in-out infinite !important;
+}
+
+#backToTop:hover {
+    transform: translateY(-6px) scale(1.15) !important;
+    box-shadow: 0 16px 40px rgba(251, 191, 36, 0.7), 0 8px 20px rgba(0, 0, 0, 0.4) !important;
+    border-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+#backToTop:active {
+    transform: translateY(-2px) scale(1.05) !important;
+}
+
+@keyframes pulse-glow-yellow {
+    0%, 100% {
+        box-shadow: 0 8px 24px rgba(251, 191, 36, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    50% {
+        box-shadow: 0 12px 36px rgba(251, 191, 36, 0.8), 0 6px 16px rgba(0, 0, 0, 0.4);
+    }
+}
+
+/* Mobile - Botão Voltar ao Topo */
+@media (max-width: 768px) {
+    #backToTop {
+        bottom: 20px !important;
+        right: 20px !important;
+        width: 56px !important;
+        height: 56px !important;
+        font-size: 24px !important;
+        border-width: 2px !important;
+    }
+}
+
+/* Botão de Voltar (no header) - COR DA FAIXA AMARELA */
+header a[href*="index"],
+header a[href*="home"],
+.back-button {
+    background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%) !important;
+    color: white !important;
+    padding: 12px 24px !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4), 0 3px 10px rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    text-decoration: none !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+header a[href*="index"]:hover,
+header a[href*="home"]:hover,
+.back-button:hover {
+    transform: translateX(-4px) scale(1.05) !important;
+    box-shadow: 0 10px 28px rgba(251, 191, 36, 0.6), 0 5px 14px rgba(0, 0, 0, 0.3) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Botões de Voltar ao Topo de Seção - MAIS DESTACADOS */
+.back-to-top-section {
+    background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%) !important;
+    color: white !important;
+    padding: 16px 32px !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    font-size: 18px !important;
+    box-shadow: 0 8px 24px rgba(251, 191, 36, 0.4), 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    cursor: pointer !important;
+}
+
+.back-to-top-section:hover {
+    transform: translateY(-6px) scale(1.08) !important;
+    box-shadow: 0 12px 32px rgba(251, 191, 36, 0.6), 0 6px 16px rgba(0, 0, 0, 0.3) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.back-to-top-section:active {
+    transform: translateY(-2px) scale(1.02) !important;
+}
+
+/* Mobile - Botões de Seção */
+@media (max-width: 768px) {
+    .back-to-top-section {
+        padding: 12px 24px !important;
+        font-size: 16px !important;
+    }
+    
+    header a[href*="index"],
+    header a[href*="home"],
+    .back-button {
+        padding: 10px 20px !important;
+        font-size: 14px !important;
+    }
+}
+
+/* Setas de Carrossel - MAIS VISÍVEIS */
+button[id*="carousel"],
+button[class*="carousel"] {
+    position: absolute !important;
+    z-index: 100 !important;
+    width: 56px !important;
+    height: 56px !important;
+    border-radius: 50% !important;
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.95) 0%, rgba(245, 158, 11, 0.95) 100%) !important;
+    color: white !important;
+    border: 3px solid rgba(255, 255, 255, 0.4) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(251, 191, 36, 0.5) !important;
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+button[id*="carousel"]:hover,
+button[class*="carousel"]:hover {
+    transform: scale(1.2) !important;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4), 0 6px 18px rgba(251, 191, 36, 0.7) !important;
+    border-color: rgba(255, 255, 255, 0.7) !important;
+    background: linear-gradient(135deg, rgba(251, 191, 36, 1) 0%, rgba(245, 158, 11, 1) 100%) !important;
+}
+
+button[id*="Left"],
+button[class*="left"] {
+    left: 16px !important;
+}
+
+button[id*="Right"],
+button[class*="right"] {
+    right: 16px !important;
+}
+
+/* Mobile - Setas */
+@media (max-width: 768px) {
+    button[id*="carousel"],
+    button[class*="carousel"] {
+        width: 50px !important;
+        height: 50px !important;
+    }
+    
+    button[id*="Left"],
+    button[class*="left"] {
+        left: 10px !important;
+    }
+    
+    button[id*="Right"],
+    button[class*="right"] {
+        right: 10px !important;
+    }
+}
+
+/* Barra de Progresso de Scroll */
+#scroll-progress-bar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 0% !important;
+    height: 4px !important;
+    background: linear-gradient(90deg, #FBBF24, #F59E0B) !important;
+    z-index: 10000 !important;
+    transition: width 0.1s ease-out !important;
+    box-shadow: 0 2px 8px rgba(251, 191, 36, 0.6) !important;
+}
+
