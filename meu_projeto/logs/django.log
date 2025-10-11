@@ -8975,3 +8975,296 @@ Erro na verificação de saúde: connection already closed
 "GET /static/pag7/js/scripts.js HTTP/1.1" 304 0
 "GET /static/pag7/css/styles.css HTTP/1.1" 200 21335
 "GET /pagina7/ HTTP/1.1" 200 203656
+"GET /static/pag7/css/styles.css HTTP/1.1" 304 0
+Erro na verificação de saúde: connection already closed
+Erro na verificação de saúde: connection already closed
+"GET /pagina7/ HTTP/1.1" 200 203656
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\models.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+Sistema de pagamentos inicializado com sucesso
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\admin.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\admin.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\admin.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários: 6
+ium: 3
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+Erro na sincronização periódica: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Erro na verificação de saúde: connection already closed
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+Sistema de pagamentos inicializado com sucesso
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Usuários: 6
+3
+  - Assinaturas: 3
+as: 3
+  - Pagamentos: 3
+vas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+  - Usuários premium: 3
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+Sistema de pagamentos inicializado com sucesso
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+Sistema de pagamentos inicializado com sucesso
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+"GET /dashboard/admin-dashboard/ HTTP/1.1" 302 0
+- Broken pipe from ('127.0.0.1', 51898)
+"GET /dashboard/admin-dashboard/ HTTP/1.1" 302 0
+"GET /admin/login/?next=/dashboard/admin-dashboard/ HTTP/1.1" 200 4249
+"GET /static/admin/css/base.css HTTP/1.1" 200 22120
+"GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+"GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+"GET /static/admin/css/login.css HTTP/1.1" 200 951
+"GET /static/admin/css/responsive.css HTTP/1.1" 200 16565
+"GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+"GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6522
+"POST /admin/login/?next=/dashboard/admin-dashboard/ HTTP/1.1" 302 0
+"GET /dashboard/admin-dashboard/ HTTP/1.1" 200 14853
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+Sistema de pagamentos inicializado com sucesso
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\urls.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+"GET /dashboard/admin-dashboard/ HTTP/1.1" 200 24560
+"POST /dashboard/give-premium/ HTTP/1.1" 302 0
+"GET /dashboard/admin-dashboard/ HTTP/1.1" 200 25714
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6633
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 4
+  - Assinaturas ativas: 4
+  - Pagamentos: 3
+  - Usuários premium: 4
+  - Usuários: 6
+  - Assinaturas: 4
+  - Assinaturas ativas: 4
+  - Pagamentos: 3
+  - Usuários premium: 4
+"GET /admin/ HTTP/1.1" 200 11151
+"GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+"GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+"GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380

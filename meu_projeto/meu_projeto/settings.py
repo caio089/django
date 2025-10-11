@@ -13,10 +13,12 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'chave_de_teste_local')
 DEBUG = os.getenv('DEBUG', 'True') == 'True'  # True local, False no Render via .env
 
 # Hosts
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,testserver').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,testserver,www.dojoon.com.br,dojoon.com.br').split(',')
 
 # CSRF Trusted Origins
 CSRF_TRUSTED_ORIGINS = [
+    'https://www.dojoon.com.br',
+    'https://dojoon.com.br',
     'https://dojo-on.onrender.com',
     'https://*.onrender.com',
     'http://localhost:8000',
@@ -35,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.admin','django.contrib.auth','django.contrib.contenttypes',
     'django.contrib.sessions','django.contrib.messages','django.contrib.staticfiles',
     'core','pag1','pag2','pag3','pag4','pag5','pag6','pag7',
-    'home','ukemis','quiz','historia','palavras','regras','payments',
+    'home','ukemis','quiz','historia','palavras','regras','payments','dashboard',
 ]
 
 MIDDLEWARE = [
@@ -176,7 +178,7 @@ EMAIL_PORT = int(os.getenv('EMAIL_PORT', '587'))
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True') == 'True'
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'noreply@dojo-on.com')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'noreply@dojoon.com.br')
 
 # Configurações de logging para debug
 LOGGING = {

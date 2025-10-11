@@ -36,6 +36,7 @@ urlpatterns = [
     path('palavras/', include('palavras.urls')),  
     path('regras/', include('regras.urls')),
     path('payments/', include('payments.urls')),
+    path('dashboard/', include('dashboard.urls')),
 ]
 
 # Configuração para servir arquivos estáticos durante o desenvolvimento
