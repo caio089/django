@@ -48,6 +48,55 @@
     transition: width 0.5s ease;
 }
 
+/* === BARRA FLUTUANTE DE PROGRESSO === */
+#floatingProgress {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(139, 92, 42, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    min-width: 250px;
+}
+
+#floatingProgress.hidden {
+    display: none;
+}
+
+#floatingProgressBar {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    height: 8px;
+    width: 100%;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+#floatingProgressBar::after {
+    content: '';
+    display: block;
+    height: 100%;
+    background: white;
+    border-radius: 10px;
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+#floatingProgressText {
+    color: white;
+    font-weight: 600;
+    text-align: center;
+    font-size: 16px;
+    margin: 0;
+}
+
 /* Divisor de seção */
 .section-divider {
     background: linear-gradient(90deg, transparent, var(--judo-brown), transparent);
@@ -265,7 +314,11 @@
 .technique-card {
     min-width: 450px !important;
     max-width: 520px !important;
+    min-height: 500px !important;
     padding: 1.5rem !important;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
 }
 .technique-card .bg-orange-50,
 .technique-card .bg-green-50,
@@ -274,6 +327,10 @@
     margin-top: auto;
     margin-bottom: 0;
     flex-shrink: 0;
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .technique-card h3 {
     line-height: 1.2;
@@ -300,6 +357,32 @@
     /* Barra de progresso mobile */
     .progress-bar {
         height: 0.75rem !important;
+    }
+    
+    /* Barra flutuante mobile - PERFEITAMENTE CENTRALIZADA */
+    #floatingProgress {
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        width: 90% !important;
+        max-width: 300px !important;
+        min-width: 250px !important;
+        padding: 20px 25px !important;
+        margin: 0 !important;
+        border-radius: 15px !important;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4) !important;
+    }
+    
+    #floatingProgressBar {
+        height: 6px !important;
+        border-radius: 8px !important;
+        margin: 12px 0 !important;
+    }
+    
+    #floatingProgressText {
+        font-size: 14px !important;
+        font-weight: 700 !important;
     }
     
     /* Cards de habilidades mobile */

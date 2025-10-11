@@ -15,12 +15,27 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const container = document.createElement('div');
         container.className = 'video-thumbnail-container';
-        container.innerHTML = `
-            <img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg" alt="Vídeo" style="width:100%;height:200px;object-fit:cover;border-radius:8px;">
-            <div class="play-overlay">
-                <div class="play-button">▶</div>
-            </div>
-        `;
+        
+        // Criar imagem com fallback para sddefault se maxresdefault falhar
+        const img = document.createElement('img');
+        img.style.cssText = 'width:100%;height:200px;object-fit:cover;border-radius:8px;';
+        img.alt = 'Vídeo';
+        
+        // Tentar maxresdefault primeiro
+        img.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+        
+        // Fallback para sddefault se maxresdefault falhar
+        img.onerror = function() {
+            this.onerror = null; // Evitar loop infinito
+            this.src = `https://img.youtube.com/vi/${videoId}/sddefault.jpg`;
+        };
+        
+        const playOverlay = document.createElement('div');
+        playOverlay.className = 'play-overlay';
+        playOverlay.innerHTML = '<div class="play-button">▶</div>';
+        
+        container.appendChild(img);
+        container.appendChild(playOverlay);
         
         container.addEventListener('click', () => {
             container.parentNode.replaceChild(iframe, container);
@@ -38,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- ANIMAÇÕES REMOVIDAS PARA PERFORMANCE ---
     // Animações removidas para melhorar performance mobile
     
-    // --- SISTEMA DE PROGRESSO SIMPLIFICADO ---
+    // --- SISTEMA DE PROGRESSO OTIMIZADO ---
     const progressBar = document.getElementById('progressBar');
     const progressText = document.getElementById('progressText');
     let hasShownCongratulations = false;
@@ -48,8 +63,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const checked = document.querySelectorAll('input[type="checkbox"]:checked');
         const progress = (checked.length / allCheckboxes.length) * 100;
         
-        progressBar.style.width = progress + '%';
-        progressText.textContent = Math.round(progress) + '%';
+        // Atualizar barra do header
+        if (progressBar) progressBar.style.width = progress + '%';
+        if (progressText) progressText.textContent = Math.round(progress) + '%';
         
         if (progress >= 100 && !hasShownCongratulations) {
             hasShownCongratulations = true;
@@ -59,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Adicionar listeners a todos os checkboxes
     document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-        checkbox.addEventListener('change', updateProgress);
+        checkbox.addEventListener('change', updateProgress, { passive: true });
     });
     
     updateProgress();
@@ -99,11 +115,11 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 backToTopBtn.classList.add('hidden');
             }
-        });
+        }, { passive: true });
         
         backToTopBtn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        }, { passive: true });
     }
 
     // --- ANIMAÇÕES DE NAVEGAÇÃO REMOVIDAS ---
@@ -163,11 +179,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         leftBtn.addEventListener('click', () => {
             carousel.scrollBy({ left: -carousel.offsetWidth * 0.8, behavior: 'smooth' });
-        });
+        }, { passive: true });
         
         rightBtn.addEventListener('click', () => {
             carousel.scrollBy({ left: carousel.offsetWidth * 0.8, behavior: 'smooth' });
-        });
+        }, { passive: true });
     }
     
     // Inicializar carrosséis

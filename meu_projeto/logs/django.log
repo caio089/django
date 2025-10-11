@@ -8808,3 +8808,170 @@ Erro na verificação de saúde: connection already closed
 "GET /pagina6/ HTTP/1.1" 200 159578
 "GET /pagina6/ HTTP/1.1" 200 159791
 "GET /pagina6/ HTTP/1.1" 200 159818
+Sistema de pagamentos inicializado com sucesso
+Watching for file changes with StatReloader
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+"GET / HTTP/1.1" 200 41225
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6369
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 63271
+"GET /pagina6/ HTTP/1.1" 200 159818
+"GET /static/pag6/css/styles.css HTTP/1.1" 304 0
+"GET /static/pag6/js/scripts.js HTTP/1.1" 304 0
+"GET /pagina6/ HTTP/1.1" 200 159874
+"GET /pagina6/ HTTP/1.1" 200 159912
+"GET /pagina6/ HTTP/1.1" 200 159940
+"GET /pagina6/ HTTP/1.1" 200 160131
+"GET /pagina6/ HTTP/1.1" 200 160139
+"GET /pagina6/ HTTP/1.1" 200 160139
+"GET /pagina6/ HTTP/1.1" 200 160167
+"GET /pagina6/ HTTP/1.1" 200 160167
+"GET /pagina6/ HTTP/1.1" 200 160167
+"GET /pagina6/ HTTP/1.1" 200 160167
+"GET /index/ HTTP/1.1" 200 63271
+"GET /pagina5/ HTTP/1.1" 200 106059
+"GET /static/pag5/js/scripts.js HTTP/1.1" 200 8057
+"GET /static/pag5/css/styles.css HTTP/1.1" 200 23037
+"GET /static/pag5/js/lazy-video.js HTTP/1.1" 200 1959
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /index/ HTTP/1.1" 200 63271
+Not Found: /index/url('https://fonts.googleapis.com/css2
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 6934
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina6/ HTTP/1.1" 200 160167
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina6/ HTTP/1.1" 200 160009
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+"GET /pagina6/ HTTP/1.1" 200 160044
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /index/ HTTP/1.1" 200 63271
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina5/ HTTP/1.1" 200 106059
+"GET /static/pag5/js/scripts.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina5/ HTTP/1.1" 200 106059
+"GET /static/pag5/js/scripts.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /index/ HTTP/1.1" 200 63271
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+Not Found: /index/url('https://fonts.googleapis.com/css2
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 6934
+"GET /pagina6/ HTTP/1.1" 200 155404
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina6/ HTTP/1.1" 200 155688
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina6/ HTTP/1.1" 200 155527
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina6/ HTTP/1.1" 200 156068
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina6/ HTTP/1.1" 200 159390
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /index/ HTTP/1.1" 200 63271
+Not Found: /index/url('https://fonts.googleapis.com/css2
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 6934
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina4/ HTTP/1.1" 200 108274
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /index/ HTTP/1.1" 200 63271
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina4/ HTTP/1.1" 200 108274
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /index/ HTTP/1.1" 200 63271
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /pagina5/ HTTP/1.1" 200 106059
+"GET /static/pag5/js/scripts.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6480
+"GET /index/ HTTP/1.1" 200 63271
+"GET /pagina7/ HTTP/1.1" 200 210456
+"GET /static/pag7/css/styles.css HTTP/1.1" 200 21137
+"GET /static/pag7/js/scripts.js HTTP/1.1" 200 8857
+"GET /pagina7/ HTTP/1.1" 200 210456
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6369
+"GET /pagina7/ HTTP/1.1" 200 209213
+"GET /static/pag7/js/scripts.js HTTP/1.1" 304 0
+"GET /static/pag7/css/styles.css HTTP/1.1" 304 0
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6369
+"GET /pagina7/ HTTP/1.1" 200 209213
+Erro ao verificar perfis ausentes: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Erro ao verificar inconsistências: connection already closed
+Erro ao verificar assinaturas expiradas: connection already closed
+Erro na verificação de integridade: connection already closed
+Erro na verificação de saúde: connection already closed
+Erro ao verificar perfis ausentes: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Erro ao verificar inconsistências: connection already closed
+Erro ao verificar assinaturas expiradas: connection already closed
+Erro na verificação de integridade: connection already closed
+Erro na verificação de saúde: connection already closed
+"GET /pagina7/ HTTP/1.1" 200 203141
+"GET /static/pag7/js/scripts.js HTTP/1.1" 304 0
+"GET /static/pag7/css/styles.css HTTP/1.1" 304 0
+- Broken pipe from ('127.0.0.1', 52790)
+"GET /pagina7/ HTTP/1.1" 200 203656
+"GET /pagina7/ HTTP/1.1" 200 203656
+"GET /static/pag7/css/styles.css HTTP/1.1" 304 0
+"GET /pagina7/ HTTP/1.1" 200 203656
+"GET /static/pag7/js/scripts.js HTTP/1.1" 200 9450
+"GET /pagina7/ HTTP/1.1" 200 203656
+"GET /static/pag7/js/scripts.js HTTP/1.1" 304 0
+"GET /pagina7/ HTTP/1.1" 200 203656
+"GET /static/pag7/js/scripts.js HTTP/1.1" 304 0
+"GET /static/pag7/css/styles.css HTTP/1.1" 304 0
+"GET /pagina7/ HTTP/1.1" 200 203656
+"GET /static/pag7/js/scripts.js HTTP/1.1" 304 0
+"GET /static/pag7/css/styles.css HTTP/1.1" 200 21335
+"GET /pagina7/ HTTP/1.1" 200 203656

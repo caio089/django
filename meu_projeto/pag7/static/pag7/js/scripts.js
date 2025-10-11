@@ -15,12 +15,27 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const container = document.createElement('div');
         container.className = 'video-thumbnail-container';
-        container.innerHTML = `
-            <img src="https://img.youtube.com/vi/${videoId}/maxresdefault.jpg" alt="Vídeo" style="width:100%;height:200px;object-fit:cover;border-radius:8px;">
-            <div class="play-overlay">
-                <div class="play-button">▶</div>
-            </div>
-        `;
+        
+        // Criar imagem com fallback para sddefault se maxresdefault falhar
+        const img = document.createElement('img');
+        img.style.cssText = 'width:100%;height:200px;object-fit:cover;border-radius:8px;';
+        img.alt = 'Vídeo';
+        
+        // Tentar maxresdefault primeiro
+        img.src = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+        
+        // Fallback para sddefault se maxresdefault falhar
+        img.onerror = function() {
+            this.onerror = null; // Evitar loop infinito
+            this.src = `https://img.youtube.com/vi/${videoId}/sddefault.jpg`;
+        };
+        
+        const playOverlay = document.createElement('div');
+        playOverlay.className = 'play-overlay';
+        playOverlay.innerHTML = '<div class="play-button">▶</div>';
+        
+        container.appendChild(img);
+        container.appendChild(playOverlay);
         
         container.addEventListener('click', () => {
             container.parentNode.replaceChild(iframe, container);
@@ -41,15 +56,50 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- SISTEMA DE PROGRESSO SIMPLIFICADO ---
     const progressBar = document.getElementById('progressBar');
     const progressText = document.getElementById('progressText');
+    const floatingProgress = document.getElementById('floatingProgress');
+    const floatingProgressBar = document.getElementById('floatingProgressBar');
+    const floatingProgressText = document.getElementById('floatingProgressText');
     let hasShownCongratulations = false;
+    let hideFloatingTimeout = null;
+    
+    function showFloatingProgress(progress) {
+        if (!floatingProgress) return;
+        
+        // Cancelar timeout anterior se existir
+        if (hideFloatingTimeout) {
+            clearTimeout(hideFloatingTimeout);
+        }
+        
+        // Atualizar barra flutuante
+        if (floatingProgressBar) floatingProgressBar.style.width = progress + '%';
+        if (floatingProgressText) floatingProgressText.textContent = Math.round(progress) + '%';
+        
+        // Mostrar barra flutuante
+        floatingProgress.classList.remove('hidden');
+        setTimeout(() => {
+            floatingProgress.style.opacity = '1';
+        }, 10);
+        
+        // Esconder automaticamente após 3 segundos
+        hideFloatingTimeout = setTimeout(() => {
+            floatingProgress.style.opacity = '0';
+            setTimeout(() => {
+                floatingProgress.classList.add('hidden');
+            }, 300);
+        }, 3000);
+    }
     
     function updateProgress() {
         const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
         const checked = document.querySelectorAll('input[type="checkbox"]:checked');
         const progress = (checked.length / allCheckboxes.length) * 100;
         
-        progressBar.style.width = progress + '%';
-        progressText.textContent = Math.round(progress) + '%';
+        // Atualizar barra do header
+        if (progressBar) progressBar.style.width = progress + '%';
+        if (progressText) progressText.textContent = Math.round(progress) + '%';
+        
+        // Mostrar barra flutuante
+        showFloatingProgress(progress);
         
         if (progress >= 100 && !hasShownCongratulations) {
             hasShownCongratulations = true;

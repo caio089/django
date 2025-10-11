@@ -7,6 +7,9 @@
     <title>Faixa Roxa - Aulas</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fontes locais como fallback -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"></noscript>
     <script>
         tailwind.config = {
             theme: {
@@ -29,6 +32,11 @@
    <script src="{% static 'pag6/js/scripts.js' %}"></script>
     
     <style>
+        /* Otimizações de performance */
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
         /* Estilos otimizados para mobile */
         .video-thumbnail-container {
             position: relative;
@@ -95,7 +103,7 @@
             </div>
             <!-- Barra de Progresso -->
             <div class="bg-white/20 rounded-full h-5 mb-3 shadow-inner">
-                <div class="progress-bar bg-gradient-to-r from-roxa-400 to-roxa-600 rounded-full h-5 shadow-lg transition-all duration-500" style="width: 0%" id="progressBar"></div>
+                <div class="progress-bar bg-gradient-to-r from-green-400 to-green-600 rounded-full h-5 shadow-lg transition-all duration-500" style="width: 0%" id="progressBar"></div>
             </div>
             <p class="text-sm text-judo-purpleLight"><span class="text-white">Progresso:</span> <span id="progressText" class="text-white">0%</span></p>
         </div>
@@ -665,57 +673,6 @@
             #carouselChave > div { min-width: 98vw; max-width: 99vw; height: 320px; }
         }
         </style>
-        <script>
-        // Carrossel Projeções
-        const carousel = document.getElementById('carouselProj');
-        const leftBtn = document.getElementById('carouselLeft');
-        const rightBtn = document.getElementById('carouselRight');
-        function getCardCenters() {
-            const cards = Array.from(carousel.children);
-            return cards.map(card => card.offsetLeft + card.offsetWidth / 2);
-        }
-        function setActiveCard() {
-            const cards = Array.from(carousel.children);
-            const scrollCenter = carousel.scrollLeft + carousel.offsetWidth / 2;
-            let minDist = Infinity, activeIdx = 0;
-            getCardCenters().forEach((center, i) => {
-                const dist = Math.abs(center - scrollCenter);
-                if (dist < minDist) { minDist = dist; activeIdx = i; }
-            });
-            cards.forEach((card, i) => {
-                card.classList.toggle('active', i === activeIdx);
-            });
-        }
-        if (carousel && leftBtn && rightBtn) {
-            leftBtn.addEventListener('click', () => {
-                carousel.scrollBy({ left: -carousel.offsetWidth * 0.6, behavior: 'smooth' });
-                leftBtn.classList.add('carousel-arrow-anim');
-                setTimeout(() => leftBtn.classList.remove('carousel-arrow-anim'), 700);
-            });
-            rightBtn.addEventListener('click', () => {
-                // Se estiver próximo do final, ir direto para o final
-                const remainingScroll = carousel.scrollWidth - carousel.scrollLeft - carousel.offsetWidth;
-                if (remainingScroll < carousel.offsetWidth * 0.8) {
-                    carousel.scrollTo({ left: carousel.scrollWidth - carousel.offsetWidth, behavior: 'smooth' });
-                } else {
-                    carousel.scrollBy({ left: carousel.offsetWidth * 0.6, behavior: 'smooth' });
-                }
-                rightBtn.classList.add('carousel-arrow-anim');
-                setTimeout(() => rightBtn.classList.remove('carousel-arrow-anim'), 700);
-            });
-            // Botões sempre visíveis - removida a lógica de ocultar/mostrar
-            carousel.addEventListener('scroll', () => {
-                setActiveCard();
-            });
-            window.addEventListener('resize', () => {
-                setActiveCard();
-            });
-            setTimeout(() => {
-                setActiveCard();
-            }, 300);
-        }
-        // Removido o snap elástico para permitir scroll livre
-        </script>
         <!-- Seção de Imobilizações -->
         <section id="imobilizacoes-section" class="mb-12 hidden">
             <div class="text-center mb-8">
@@ -1188,8 +1145,8 @@
                         <h4 class="text-lg font-bold text-gray-800">O-SOTO-GARI</h4>
                         <p class="text-gray-600 text-sm">Gancho Externo Grande</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/92KbCm6pQeI?si=g_Y6Nf7qCSDkoLkt" 
-                                    title="O-SOTO-GARI" 
+                            <iframe src="https://www.youtube.com/embed/c-A_nP7mKAc?si=7tfCrVEOGDhdDgJq" 
+                                    title="O-SOTO-GARI - Gancho Externo Grande" 
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
@@ -1198,7 +1155,7 @@
                         </div>
                         <div class="bg-indigo-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-indigo-800 mb-1 text-sm">💡 Dica:</h5>
-                            <p class="text-indigo-700 text-xs">Use o quadril para girar e projetar com força.</p>
+                            <p class="text-indigo-700 text-xs">Use a perna como alavanca e mantenha o equilíbrio.</p>
                         </div>
                     </div>
                     
@@ -1242,8 +1199,8 @@
                         <h4 class="text-lg font-bold text-gray-800">O-SOTO-GARI</h4>
                         <p class="text-gray-600 text-sm">Gancho Externo Grande</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/92KbCm6pQeI?si=g_Y6Nf7qCSDkoLkt" 
-                                    title="O-SOTO-GARI" 
+                            <iframe src="https://www.youtube.com/embed/c-A_nP7mKAc?si=7tfCrVEOGDhdDgJq" 
+                                    title="O-SOTO-GARI - Gancho Externo Grande" 
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
@@ -1252,7 +1209,7 @@
                         </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h5>
-                            <p class="text-orange-700 text-xs">Use o movimento circular do quadril para desequilibrar o oponente.</p>
+                            <p class="text-orange-700 text-xs">Use a perna como alavanca e mantenha o equilíbrio.</p>
                         </div>
                     </div>
                     
@@ -1750,8 +1707,8 @@
                         <h4 class="text-lg font-bold text-gray-800">KATA-GURUMA</h4>
                         <p class="text-gray-600 text-sm">Roda de Ombros</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/bvFuhJwg6AY?si=TvKWV5Ph-Bq07WI4" 
-                                    title="KATA-GURUMA" 
+                            <iframe src="https://www.youtube.com/embed/cnHRhSy8yi4?si=-Ts8cHa3589Ft2z9" 
+                                    title="KATA-GURUMA - Roda sobre os Ombros" 
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
@@ -1804,8 +1761,8 @@
                         <h4 class="text-lg font-bold text-gray-800">O-SOTO-GARI</h4>
                         <p class="text-gray-600 text-sm">Gancho Externo Grande</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/92KbCm6pQeI?si=g_Y6Nf7qCSDkoLkt" 
-                                    title="O-SOTO-GARI" 
+                            <iframe src="https://www.youtube.com/embed/c-A_nP7mKAc?si=7tfCrVEOGDhdDgJq" 
+                                    title="O-SOTO-GARI - Gancho Externo Grande" 
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
@@ -1814,7 +1771,7 @@
                         </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h5>
-                            <p class="text-orange-700 text-xs">Use o quadril para girar e projetar com força.</p>
+                            <p class="text-orange-700 text-xs">Use a perna como alavanca e mantenha o equilíbrio.</p>
                         </div>
                     </div>
                     
@@ -1858,8 +1815,8 @@
                         <h4 class="text-lg font-bold text-gray-800">O-SOTO-GARI</h4>
                         <p class="text-gray-600 text-sm">Gancho Externo Grande</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/92KbCm6pQeI?si=g_Y6Nf7qCSDkoLkt" 
-                                    title="O-SOTO-GARI" 
+                            <iframe src="https://www.youtube.com/embed/c-A_nP7mKAc?si=7tfCrVEOGDhdDgJq" 
+                                    title="O-SOTO-GARI - Gancho Externo Grande" 
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
@@ -1868,7 +1825,7 @@
                         </div>
                         <div class="bg-red-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-red-800 mb-1 text-sm">💡 Dica:</h5>
-                            <p class="text-red-700 text-xs">Use o gancho externo para desequilibrar o oponente.</p>
+                            <p class="text-red-700 text-xs">Use a perna como alavanca e mantenha o equilíbrio.</p>
                         </div>
                     </div>
                     
@@ -1882,8 +1839,8 @@
                         <h4 class="text-lg font-bold text-gray-800">USHIRO-TE-GURUMA</h4>
                         <p class="text-gray-600 text-sm">Roda de Mãos para Trás</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/92KbCm6pQeI?si=g_Y6Nf7qCSDkoLkt" 
-                                    title="USHIRO-TE-GURUMA" 
+                            <iframe src="https://www.youtube.com/embed/3Vy55J8_TeU?si=RO2grwEIvGUDR-Yd" 
+                                    title="USHIRO-TE-GURUMA - Roda de Mãos para Trás" 
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
@@ -1892,7 +1849,7 @@
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
-                            <p class="text-green-700 text-xs">A chave está na precisão do gancho e no desequilíbrio do oponente.</p>
+                            <p class="text-green-700 text-xs">Use as mãos por trás para girar e desequilibrar o oponente.</p>
                         </div>
                     </div>
                     
@@ -1912,8 +1869,8 @@
                         <h4 class="text-lg font-bold text-gray-800">O-TSURI-GOSHI</h4>
                         <p class="text-gray-600 text-sm">Quadril Elevado</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/92KbCm6pQeI?si=g_Y6Nf7qCSDkoLkt" 
-                                    title="O-TSURI-GOSHI" 
+                            <iframe src="https://www.youtube.com/embed/oB3hwIbdzqM?si=fUTkhnn9fgTK6o8p" 
+                                    title="O-TSURI-GOSHI - Quadril Elevado" 
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
@@ -1922,7 +1879,7 @@
                         </div>
                         <div class="bg-purple-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-purple-800 mb-1 text-sm">💡 Dica:</h5>
-                            <p class="text-purple-700 text-xs">Use o corpo para desequilibrar o oponente.</p>
+                            <p class="text-purple-700 text-xs">Eleve o oponente com o quadril para desequilibrá-lo.</p>
                         </div>
                     </div>
                     
@@ -1936,8 +1893,8 @@
                         <h4 class="text-lg font-bold text-gray-800">USHIRO-GOSHI</h4>
                         <p class="text-gray-600 text-sm">Quadril para Trás</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/3Jb3tZvr9Ng?si=1uT1iQUT5xVArgrY" 
-                                    title="USHIRO-GOSHI" 
+                            <iframe src="https://www.youtube.com/embed/ORIYstuxYT8?si=j1snmhcSTK0QkuYK" 
+                                    title="USHIRO-GOSHI - Quadril para Trás" 
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
@@ -1946,7 +1903,7 @@
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
-                            <p class="text-green-700 text-xs">A chave está na precisão do gancho e no desequilíbrio do oponente.</p>
+                            <p class="text-green-700 text-xs">Use o quadril por trás para levantar e projetar o oponente.</p>
                         </div>
                     </div>
                     
@@ -1966,8 +1923,8 @@
                         <h4 class="text-lg font-bold text-gray-800">MOROTE-GARI</h4>
                         <p class="text-gray-600 text-sm">Colheita Dupla</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/92KbCm6pQeI?si=g_Y6Nf7qCSDkoLkt" 
-                                    title="MOROTE-GARI" 
+                            <iframe src="https://www.youtube.com/embed/BHLQS4K85bs?si=ufzQofQkz4zrZVix" 
+                                    title="MOROTE-GARI - Colheita Dupla" 
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
@@ -1976,7 +1933,7 @@
                         </div>
                         <div class="bg-blue-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-blue-800 mb-1 text-sm">💡 Dica:</h5>
-                            <p class="text-blue-700 text-xs">Use a gola para desequilibrar o oponente.</p>
+                            <p class="text-blue-700 text-xs">Use ambas as mãos para controlar as pernas do oponente.</p>
                         </div>
                     </div>
                     
@@ -1990,8 +1947,8 @@
                         <h4 class="text-lg font-bold text-gray-800">TAWARA-GAESHI</h4>
                         <p class="text-gray-600 text-sm">Contra Ataque do Fardo</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/3Jb3tZvr9Ng?si=1uT1iQUT5xVArgrY" 
-                                    title="TAWARA-GAESHI" 
+                            <iframe src="https://www.youtube.com/embed/TmTWgrmViZc?si=Uw6JqpgCpzt7xr-_" 
+                                    title="TAWARA-GAESHI - Contra Ataque do Fardo" 
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
@@ -2000,7 +1957,7 @@
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
-                            <p class="text-green-700 text-xs">A chave está na precisão do gancho e no desequilíbrio do oponente.</p>
+                            <p class="text-green-700 text-xs">Role como um fardo para reverter o ataque do oponente.</p>
                         </div>
                     </div>
                     
@@ -2044,8 +2001,8 @@
                         <h4 class="text-lg font-bold text-gray-800">UKI-WAZA</h4>
                         <p class="text-gray-600 text-sm">Técnica Flutuante</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/92KbCm6pQeI?si=g_Y6Nf7qCSDkoLkt" 
-                                    title="UKI-WAZA" 
+                            <iframe src="https://www.youtube.com/embed/weVOpJ63gII?si=i0u1hcUqKARsM654" 
+                                    title="UKI-WAZA - Técnica Flutuante" 
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
@@ -2054,7 +2011,7 @@
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
-                            <p class="text-green-700 text-xs">A chave está na precisão do gancho e no desequilíbrio do oponente.</p>
+                            <p class="text-green-700 text-xs">Flutue junto com o movimento do oponente para contra-atacar.</p>
                         </div>
                     </div>
                     
@@ -2074,8 +2031,8 @@
                         <h4 class="text-lg font-bold text-gray-800">OKURI-DE-ASHI-HARAI</h4>
                         <p class="text-gray-600 text-sm">Varredura dos Pés em Movimento</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/3Jb3tZvr9Ng?si=1uT1iQUT5xVArgrY" 
-                                    title="OKURI-DE-ASHI-HARAI" 
+                            <iframe src="https://www.youtube.com/embed/nw1ZdRjrdRI?si=WdY8oEM7a2ipQWBg" 
+                                    title="OKURI-DE-ASHI-HARAI - Varredura dos Pés em Movimento" 
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
@@ -2084,7 +2041,7 @@
                         </div>
                         <div class="bg-red-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-red-800 mb-1 text-sm">💡 Dica:</h5>
-                            <p class="text-red-700 text-xs">Use o gancho interno para desequilibrar o oponente.</p>
+                            <p class="text-red-700 text-xs">Varra ambos os pés quando o oponente estiver em movimento.</p>
                         </div>
                     </div>
                     
@@ -2098,8 +2055,8 @@
                         <h4 class="text-lg font-bold text-gray-800">O-UCHI-GARI</h4>
                         <p class="text-gray-600 text-sm">Gancho Interno Grande</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/92KbCm6pQeI?si=g_Y6Nf7qCSDkoLkt" 
-                                    title="O-UCHI-GARI" 
+                            <iframe src="https://www.youtube.com/embed/65u6c7FQOMU?si=2kBa5-TBk1W7iHpV" 
+                                    title="O-UCHI-GARI - Gancho Interno" 
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
@@ -2108,7 +2065,7 @@
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
-                            <p class="text-green-700 text-xs">A chave está na precisão do gancho e no desequilíbrio do oponente.</p>
+                            <p class="text-green-700 text-xs">Use a perna como alavanca e mantenha o equilíbrio durante a execução.</p>
                         </div>
                     </div>
                     
@@ -2126,10 +2083,10 @@
                     <!-- Técnica da Esquerda -->
                     <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
                         <h4 class="text-lg font-bold text-gray-800">UCHI-MATA</h4>
-                        <p class="text-gray-600 text-sm">Quadril Interno</p>
+                        <p class="text-gray-600 text-sm">Varredura Interna da Coxa</p>
                         <div class="video-container my-3">
                             <iframe src="https://www.youtube.com/embed/iUpSu5J-bgw?si=9WtD4HFq_8663MB-" 
-                                    title="UCHI-MATA" 
+                                    title="UCHI-MATA - Varredura Interna da Coxa" 
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
@@ -2138,7 +2095,7 @@
                         </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h5>
-                            <p class="text-orange-700 text-xs">Use o movimento circular do quadril para desequilibrar o oponente.</p>
+                            <p class="text-orange-700 text-xs">Use o movimento da coxa interna para desequilibrar o oponente.</p>
                         </div>
                     </div>
                     
@@ -2152,8 +2109,8 @@
                         <h4 class="text-lg font-bold text-gray-800">USHIRO-TE-GURUMA</h4>
                         <p class="text-gray-600 text-sm">Roda de Mãos para Trás</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/3Jb3tZvr9Ng?si=1uT1iQUT5xVArgrY" 
-                                    title="USHIRO-TE-GURUMA" 
+                            <iframe src="https://www.youtube.com/embed/3Vy55J8_TeU?si=RO2grwEIvGUDR-Yd" 
+                                    title="USHIRO-TE-GURUMA - Roda de Mãos para Trás" 
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
@@ -2162,7 +2119,7 @@
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
-                            <p class="text-green-700 text-xs">A chave está na precisão do gancho e no desequilíbrio do oponente.</p>
+                            <p class="text-green-700 text-xs">Use as mãos por trás para girar e desequilibrar o oponente.</p>
                         </div>
                     </div>
                     
@@ -2182,8 +2139,8 @@
                         <h4 class="text-lg font-bold text-gray-800">KOSHI-NAGUE</h4>
                         <p class="text-gray-600 text-sm">Projeção do Quadril</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/92KbCm6pQeI?si=g_Y6Nf7qCSDkoLkt" 
-                                    title="KOSHI-NAGUE" 
+                            <iframe src="https://www.youtube.com/embed/A7UR2FF13bQ?si=cqEQYzkmlAa5JSIF" 
+                                    title="KOSHI-NAGUE - Projeção do Quadril" 
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
@@ -2192,7 +2149,7 @@
                         </div>
                         <div class="bg-amber-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-amber-800 mb-1 text-sm">💡 Dica:</h5>
-                            <p class="text-amber-700 text-xs">Use o gancho externo pequeno para desequilibrar o oponente.</p>
+                            <p class="text-amber-700 text-xs">Use o quadril para projetar o oponente com força.</p>
                         </div>
                     </div>
                     
@@ -2206,8 +2163,8 @@
                         <h4 class="text-lg font-bold text-gray-800">OBI-OTOSHI</h4>
                         <p class="text-gray-600 text-sm">Queda do Cinto</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/3Jb3tZvr9Ng?si=1uT1iQUT5xVArgrY" 
-                                    title="OBI-OTOSHI" 
+                            <iframe src="https://www.youtube.com/embed/ff8U2TVZIYI?si=8cRJwy0l7Wr9xR1w" 
+                                    title="OBI-OTOSHI - Queda do Cinto" 
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                     referrerpolicy="strict-origin-when-cross-origin" 
@@ -2216,7 +2173,7 @@
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
-                            <p class="text-green-700 text-xs">A chave está na precisão do gancho e no desequilíbrio do oponente.</p>
+                            <p class="text-green-700 text-xs">Use o cinto como ponto de apoio para a queda.</p>
                         </div>
                     </div>
                     
@@ -2237,51 +2194,73 @@
             </div>
         </section>
 
-        <script>
-        // Carrossel Chave de Braço
-        const carouselChave = document.getElementById('carouselChave');
-        const chaveLeftBtn = document.getElementById('carouselChaveLeft');
-        const chaveRightBtn = document.getElementById('carouselChaveRight');
-        if (carouselChave && chaveLeftBtn && chaveRightBtn) {
-            chaveLeftBtn.addEventListener('click', () => {
-                carouselChave.scrollBy({ left: -carouselChave.offsetWidth * 0.8, behavior: 'smooth' });
-                chaveLeftBtn.classList.add('carousel-arrow-anim');
-                setTimeout(() => chaveLeftBtn.classList.remove('carousel-arrow-anim'), 700);
-            });
-            chaveRightBtn.addEventListener('click', () => {
-                carouselChave.scrollBy({ left: carouselChave.offsetWidth * 0.8, behavior: 'smooth' });
-                chaveRightBtn.classList.add('carousel-arrow-anim');
-                setTimeout(() => chaveRightBtn.classList.remove('carousel-arrow-anim'), 700);
-            });
-
-        }
-        // Carrossel Estrangulamento
-        const carouselEstrang = document.getElementById('carouselEstrang');
-        const estrangLeftBtn = document.getElementById('carouselEstrangLeft');
-        const estrangRightBtn = document.getElementById('carouselEstrangRight');
-        if (carouselEstrang && estrangLeftBtn && estrangRightBtn) {
-            estrangLeftBtn.addEventListener('click', () => {
-                carouselEstrang.scrollBy({ left: -carouselEstrang.offsetWidth * 0.8, behavior: 'smooth' });
-                estrangLeftBtn.classList.add('carousel-arrow-anim');
-                setTimeout(() => estrangLeftBtn.classList.remove('carousel-arrow-anim'), 700);
-            });
-            estrangRightBtn.addEventListener('click', () => {
-                carouselEstrang.scrollBy({ left: carouselEstrang.offsetWidth * 0.8, behavior: 'smooth' });
-                estrangRightBtn.classList.add('carousel-arrow-anim');
-                setTimeout(() => estrangRightBtn.classList.remove('carousel-arrow-anim'), 700);
-            });
-
-        }
-        </script>
         <!-- Barra de Progresso Flutuante -->
         <div id="floatingProgress" class="fixed top-4 left-0 right-0 mx-auto w-fit bg-white border border-gray-300 rounded-lg shadow-lg p-3 z-50 opacity-0 transition-opacity duration-300 pointer-events-none">
             <div class="flex items-center gap-5">
                 <div class="w-80 bg-gray-200 rounded-full h-3">
-                    <div id="floatingProgressBar" class="bg-gradient-to-r from-purple-400 to-purple-600 h-3 rounded-full transition-all duration-500 shadow-sm" style="width: 0%"></div>
+                    <div id="floatingProgressBar" class="bg-gradient-to-r from-green-400 to-green-600 h-3 rounded-full transition-all duration-500 shadow-sm" style="width: 0%"></div>
                 </div>
                 <span id="floatingProgressText" class="text-base font-bold text-gray-800">0%</span>
             </div>
         </div>
+
+        <!-- SCRIPT INLINE PARA BARRA FLUTUANTE -->
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let hideFloatingTimeout = null;
+            
+            // Função para mostrar barra flutuante
+            function showFloatingProgress(progress) {
+                const floatingProgress = document.getElementById('floatingProgress');
+                const floatingProgressBar = document.getElementById('floatingProgressBar');
+                const floatingProgressText = document.getElementById('floatingProgressText');
+                
+                if (!floatingProgress) return;
+                
+                // Cancelar timeout anterior se existir
+                if (hideFloatingTimeout) {
+                    clearTimeout(hideFloatingTimeout);
+                }
+                
+                // Atualizar conteúdo
+                if (floatingProgressBar) floatingProgressBar.style.width = progress + '%';
+                if (floatingProgressText) floatingProgressText.textContent = Math.round(progress) + '%';
+                
+                // Mostrar barra flutuante
+                floatingProgress.style.display = 'block';
+                floatingProgress.style.opacity = '1';
+                floatingProgress.style.visibility = 'visible';
+                floatingProgress.style.zIndex = '9999';
+                
+                // Esconder após 3 segundos
+                hideFloatingTimeout = setTimeout(() => {
+                    floatingProgress.style.opacity = '0';
+                    setTimeout(() => {
+                        floatingProgress.style.display = 'none';
+                    }, 300);
+                }, 3000);
+            }
+            
+            // Adicionar listeners aos checkboxes
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+                    const checked = document.querySelectorAll('input[type="checkbox"]:checked');
+                    const progress = (checked.length / allCheckboxes.length) * 100;
+                    
+                    // Atualizar barra do header
+                    const progressBar = document.getElementById('progressBar');
+                    const progressText = document.getElementById('progressText');
+                    
+                    if (progressBar) progressBar.style.width = progress + '%';
+                    if (progressText) progressText.textContent = Math.round(progress) + '%';
+                    
+                    // Mostrar barra flutuante
+                    showFloatingProgress(progress);
+                });
+            });
+        });
+        </script>
 
         <!-- Botão Flutuante de Voltar ao Topo -->
         <button id="backToTop" class="fixed bottom-8 right-8 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-lg floating-action transition-colors hidden font-buttons z-50">

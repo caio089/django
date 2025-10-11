@@ -42,18 +42,36 @@
             object-fit: cover;
         }
         
-        .video-thumbnail-container .play-button {
+        .video-thumbnail-container .play-overlay {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .video-thumbnail-container .play-button {
             width: 50px;
             height: 50px;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 0, 0, 0.9);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: white;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+        }
+        
+        .video-thumbnail-container:hover .play-button {
+            background: rgba(255, 0, 0, 1);
+            transform: scale(1.1);
         }
         
         .video-loaded iframe {
@@ -844,31 +862,6 @@
                             <p class="text-yellow-700 text-xs">Mantenha o peso distribuído uniformemente e controle os braços do oponente.</p>
                         </div>
                     </div>
-                    <!-- Imobilização 5: Faixa Amarela -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
-                        <div class="flex items-center mb-3 justify-between">
-                            <div class="flex items-center">
-                                <div class="bg-amber-100 p-2 rounded-full mr-3">
-                                    <span class="text-lg">🥋</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-bold text-gray-800">KUSURE-KESA-GATAME</h3>
-                                    <p class="text-gray-600 text-sm">Imobilização lateral modificada</p>
-                                </div>
-                            </div>
-                            <label class="flex items-center ml-2 select-none">
-                                <input type="checkbox" class="imob-checkbox accent-judo-brown w-5 h-5 mr-1" />
-                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
-                            </label>
-                        </div>
-                        <div class="video-container">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/TT7XJVSEQxA?si=y4zqjOqjyM4leinj" title="Kusure-kesa-gatame técnica" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                        <div class="bg-amber-50 p-2 rounded-xl">
-                            <h4 class="font-semibold text-amber-800 mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-amber-700 text-xs">Use os quatro pontos de contato para máxima estabilidade e controle.</p>
-                        </div>
-                    </div>
                     <!-- Imobilização 6: Faixa Amarela -->
                     <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
                         <div class="flex items-center mb-3 justify-between">
@@ -1012,7 +1005,7 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/zQR3IOXxO_Q?si=6MfNkIzaGr3N0KI-" title="Kata-gatame técnica" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/e5HrhANfDcU?si=GgrI9WraB9ZTBvwW" title="Kata-gatame técnica" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
@@ -1175,7 +1168,7 @@
                         </div>
                         <div class="bg-judo-brownLight p-2 rounded-xl">
                             <h4 class="font-semibold text-judo-brownDark mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-judo-brown text-xs">Use o abdômen para pressionar o braço do oponente com firmeza.</p>
+                            <p class="text-judo-brown text-sm">Use o abdômen para pressionar o braço do oponente com firmeza.</p>
                         </div>
                     </div>
                     <!-- Chave de Braço 2 -->
@@ -1200,7 +1193,7 @@
                         </div>
                         <div class="bg-judo-brownLight p-2 rounded-xl">
                             <h4 class="font-semibold text-judo-brownDark mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-judo-brown text-xs">Envolva o braço do oponente usando o abdômen para travar o movimento.</p>
+                            <p class="text-judo-brown text-sm">Envolva o braço do oponente usando o abdômen para travar o movimento.</p>
                         </div>
                     </div>
                     <!-- Chave de Braço 3 -->
@@ -1225,7 +1218,7 @@
                         </div>
                         <div class="bg-judo-brownLight p-2 rounded-xl">
                             <h4 class="font-semibold text-judo-brownDark mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-judo-brown text-xs">Aplique pressão constante para controlar o braço do oponente.</p>
+                            <p class="text-judo-brown text-sm">Aplique pressão constante para controlar o braço do oponente.</p>
                         </div>
                     </div>
                     <!-- Chave de Braço 4 -->
@@ -1250,7 +1243,7 @@
                         </div>
                         <div class="bg-judo-brownLight p-2 rounded-xl">
                             <h4 class="font-semibold text-judo-brownDark mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-judo-brown text-xs">Envolva o braço do oponente com a perna para limitar o movimento.</p>
+                            <p class="text-judo-brown text-sm">Envolva o braço do oponente com a perna para limitar o movimento.</p>
                         </div>
                     </div>
                     <!-- Chave de Braço 5 -->
@@ -1275,32 +1268,7 @@
                         </div>
                         <div class="bg-judo-brownLight p-2 rounded-xl">
                             <h4 class="font-semibold text-judo-brownDark mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-judo-brown text-xs">Utilize a perna para pressionar e finalizar o braço do oponente.</p>
-                        </div>
-                    </div>
-                    <!-- Chave de Braço 6 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
-                        <div class="flex items-center mb-3 justify-between">
-                            <div class="flex items-center">
-                                <div class="bg-judo-brownLight p-2 rounded-full mr-3">
-                                    <span class="text-lg">🥋</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-bold text-gray-800">KESA-GARAME</h3>
-                                    <p class="text-gray-600 text-sm">Enrolamento lateral com o braço</p>
-                                </div>
-                            </div>
-                            <label class="flex items-center ml-2 select-none">
-                                <input type="checkbox" class="estrang-checkbox accent-judo-brown w-5 h-5 mr-1" />
-                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
-                            </label>
-                        </div>
-                        <div class="video-container">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/HK8VLgEDU4s?si=LlxV6v6eoxJsWqIm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                        <div class="bg-judo-brownLight p-2 rounded-xl">
-                            <h4 class="font-semibold text-judo-brownDark mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-judo-brown text-xs">Enrole o braço do oponente lateralmente para imobilizar.</p>
+                            <p class="text-judo-brown text-sm">Utilize a perna para pressionar e finalizar o braço do oponente.</p>
                         </div>
                     </div>
                 </div>
@@ -1359,7 +1327,7 @@
                         </div>
                         <div class="bg-judo-brownLight p-2 rounded-xl">
                             <h4 class="font-semibold text-judo-brownDark mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-judo-brown text-xs">Utilize as mangas do judogi para aplicar pressão no pescoço do oponente.</p>
+                            <p class="text-judo-brown text-sm">Utilize as mangas do judogi para aplicar pressão no pescoço do oponente.</p>
                         </div>
                     </div>
                     <!-- Estrangulamento 2 -->
@@ -1384,7 +1352,7 @@
                         </div>
                         <div class="bg-judo-brownLight p-2 rounded-xl">
                             <h4 class="font-semibold text-judo-brownDark mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-judo-brown text-xs">Envolva o pescoço do oponente com a perna para aplicar o estrangulamento.</p>
+                            <p class="text-judo-brown text-sm">Envolva o pescoço do oponente com a perna para aplicar o estrangulamento.</p>
                         </div>
                     </div>
                     <!-- Estrangulamento 3 -->
@@ -1405,11 +1373,11 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/SFz5FdXJzA4?si=VeLDMN_qNbEJH3FC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/cnHRhSy8yi4?si=-Ts8cHa3589Ft2z9" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-judo-brownLight p-2 rounded-xl">
                             <h4 class="font-semibold text-judo-brownDark mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-judo-brown text-xs">Aperte o pescoço do oponente como uma tesoura, usando os braços ou pernas.</p>
+                            <p class="text-judo-brown text-sm">Aperte o pescoço do oponente como uma tesoura, usando os braços ou pernas.</p>
                         </div>
                     </div>
                     <!-- Estrangulamento 4 -->
@@ -1434,7 +1402,7 @@
                         </div>
                         <div class="bg-judo-brownLight p-2 rounded-xl">
                             <h4 class="font-semibold text-judo-brownDark mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-judo-brown text-xs">Utilize pernas e braços para prender e estrangular simultaneamente.</p>
+                            <p class="text-judo-brown text-sm">Utilize pernas e braços para prender e estrangular simultaneamente.</p>
                         </div>
                     </div>
                     <!-- Estrangulamento 5 -->
@@ -1459,57 +1427,7 @@
                         </div>
                         <div class="bg-judo-brownLight p-2 rounded-xl">
                             <h4 class="font-semibold text-judo-brownDark mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-judo-brown text-xs">Aplique o estrangulamento usando apenas uma mão na gola do oponente.</p>
-                        </div>
-                    </div>
-                    <!-- Estrangulamento 6 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
-                        <div class="flex items-center mb-3 justify-between">
-                            <div class="flex items-center">
-                                <div class="bg-judo-brownLight p-2 rounded-full mr-3">
-                                    <span class="text-lg">🥋</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-bold text-gray-800">URA-JIME</h3>
-                                    <p class="text-gray-600 text-sm">Estrangulamento invertido</p>
-                                </div>
-                            </div>
-                            <label class="flex items-center ml-2 select-none">
-                                <input type="checkbox" class="estrang-checkbox accent-judo-brown w-5 h-5 mr-1" />
-                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
-                            </label>
-                        </div>
-                        <div class="video-container">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/GevTyK9yaAA?si=fMVMDZ4fdlVTkS1r" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                        <div class="bg-judo-brownLight p-2 rounded-xl">
-                            <h4 class="font-semibold text-judo-brownDark mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-judo-brown text-xs">Aplique o estrangulamento por trás do oponente.</p>
-                        </div>
-                    </div>
-                    <!-- Estrangulamento 7 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
-                        <div class="flex items-center mb-3 justify-between">
-                            <div class="flex items-center">
-                                <div class="bg-judo-brownLight p-2 rounded-full mr-3">
-                                    <span class="text-lg">🥋</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-bold text-gray-800">TAWARA-JIME</h3>
-                                    <p class="text-gray-600 text-sm">Estrangulamento do fardo de arroz</p>
-                                </div>
-                            </div>
-                            <label class="flex items-center ml-2 select-none">
-                                <input type="checkbox" class="estrang-checkbox accent-judo-brown w-5 h-5 mr-1" />
-                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
-                            </label>
-                        </div>
-                        <div class="video-container">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/HrfxhGmQCDk?si=rBFSyzQisuEuoOeM" title="Tawara-jime técnica" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share \\semvideo" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                        <div class="bg-judo-brownLight p-2 rounded-xl">
-                            <h4 class="font-semibold text-judo-brownDark mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-judo-brown text-xs">Envolva o oponente como um "fardo" para aplicar o estrangulamento.</p>
+                            <p class="text-judo-brown text-sm">Aplique o estrangulamento usando apenas uma mão na gola do oponente.</p>
                         </div>
                     </div>
                     <!-- Estrangulamento 8 -->
@@ -1530,11 +1448,11 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/rc83elvWdeY?si=yVR-Asp9h6QoXxQZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/f353HP2h_7o?si=mvgtmM3aLkyY9aEO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-judo-brownLight p-2 rounded-xl">
                             <h4 class="font-semibold text-judo-brownDark mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-judo-brown text-xs">Utilize o movimento de "camarão" para criar espaço e aplicar o estrangulamento.</p>
+                            <p class="text-judo-brown text-sm">Utilize o movimento de "camarão" para criar espaço e aplicar o estrangulamento.</p>
                         </div>
                     </div>
                     <!-- Estrangulamento 9 -->
@@ -1555,36 +1473,11 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/aaxrPH_w7CE?si=3SGzUpDiEZRccxWu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/cHeIs-fSqwE?si=InWheqOxvkSj-abU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-judo-brownLight p-2 rounded-xl">
                             <h4 class="font-semibold text-judo-brownDark mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-judo-brown text-xs">Aplique pressão constante para finalizar o oponente.</p>
-                        </div>
-                    </div>
-                    <!-- Estrangulamento 10 -->
-                    <div class="technique-card bg-white rounded-2xl shadow-lg p-4 min-w-[400px] max-w-[480px] flex-shrink-0 snap-center">
-                        <div class="flex items-center mb-3 justify-between">
-                            <div class="flex items-center">
-                                <div class="bg-judo-brownLight p-2 rounded-full mr-3">
-                                    <span class="text-lg">🥋</span>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-bold text-gray-800">KAMI-JIME</h3>
-                                    <p class="text-gray-600 text-sm">Estrangulamento por cima</p>
-                                </div>
-                            </div>
-                            <label class="flex items-center ml-2 select-none">
-                                <input type="checkbox" class="estrang-checkbox accent-judo-brown w-5 h-5 mr-1" />
-                                <span class="text-xs font-bold text-gray-800 bg-yellow-100 px-2 py-1 rounded-md">Aprendi</span>
-                            </label>
-                        </div>
-                        <div class="video-container">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/7M7o3YAKlO8?si=BS2Hs5ZiUbzotkeL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                        <div class="bg-judo-brownLight p-2 rounded-xl">
-                            <h4 class="font-semibold text-judo-brownDark mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-judo-brown text-xs">Aplique o estrangulamento por cima do oponente, controlando a cabeça.</p>
+                            <p class="text-judo-brown text-sm">Aplique pressão constante para finalizar o oponente.</p>
                         </div>
                     </div>
                     <!-- Estrangulamento 11 -->
@@ -1605,11 +1498,11 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/TT7XJVSEQxA?si=y4zqjOqjyM4leinj" title="Tomo-jime técnica" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share \\semvideo" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/TT7XJVSEQxA?si=y4zqjOqjyM4leinj" title="Tomo-jime técnica" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-judo-brownLight p-2 rounded-xl">
                             <h4 class="font-semibold text-judo-brownDark mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-judo-brown text-xs">Use o apoio do corpo ou das pernas para aumentar a pressão do estrangulamento.</p>
+                            <p class="text-judo-brown text-sm">Use o apoio do corpo ou das pernas para aumentar a pressão do estrangulamento.</p>
                         </div>
                     </div>
                     <!-- Estrangulamento 12 -->
@@ -1634,7 +1527,7 @@
                         </div>
                         <div class="bg-judo-brownLight p-2 rounded-xl">
                             <h4 class="font-semibold text-judo-brownDark mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-judo-brown text-xs">Utilize o quadril para aumentar a pressão do estrangulamento.</p>
+                            <p class="text-judo-brown text-sm">Utilize o quadril para aumentar a pressão do estrangulamento.</p>
                         </div>
                     </div>
                     <!-- Estrangulamento 13 -->
@@ -1659,7 +1552,7 @@
                         </div>
                         <div class="bg-judo-brownLight p-2 rounded-xl">
                             <h4 class="font-semibold text-judo-brownDark mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-judo-brown text-xs">Aplique o estrangulamento com técnica e precisão.</p>
+                            <p class="text-judo-brown text-sm">Aplique o estrangulamento com técnica e precisão.</p>
                         </div>
                     </div>
                     <!-- Estrangulamento 14 -->
@@ -1680,11 +1573,11 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/_PQ3cp_bDOY?si=cIOeahJdt62X1czB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/2DsVvDw7b8g?si=QVKC007iV2pwiCPP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-judo-brownLight p-2 rounded-xl">
                             <h4 class="font-semibold text-judo-brownDark mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-judo-brown text-xs">Aproveite o movimento do oponente para aplicar o estrangulamento.</p>
+                            <p class="text-judo-brown text-sm">Aproveite o movimento do oponente para aplicar o estrangulamento.</p>
                         </div>
                     </div>
                     <!-- Estrangulamento 15 -->
@@ -1709,7 +1602,7 @@
                         </div>
                         <div class="bg-judo-brownLight p-2 rounded-xl">
                             <h4 class="font-semibold text-judo-brownDark mb-1 text-sm">💡 Dica:</h4>
-                            <p class="text-judo-brown text-xs">Aplique o estrangulamento invertido aproveitando a reação do oponente.</p>
+                            <p class="text-judo-brown text-sm">Aplique o estrangulamento invertido aproveitando a reação do oponente.</p>
                         </div>
                     </div>
                 </div>
@@ -2903,6 +2796,64 @@
                 <span id="floatingProgressText" class="text-base font-bold text-gray-800">0%</span>
             </div>
         </div>
+
+        <!-- SCRIPT INLINE PARA BARRA FLUTUANTE -->
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let hideFloatingTimeout = null;
+            
+            // Função para mostrar barra flutuante
+            function showFloatingProgress(progress) {
+                const floatingProgress = document.getElementById('floatingProgress');
+                const floatingProgressBar = document.getElementById('floatingProgressBar');
+                const floatingProgressText = document.getElementById('floatingProgressText');
+                
+                if (!floatingProgress) return;
+                
+                // Cancelar timeout anterior se existir
+                if (hideFloatingTimeout) {
+                    clearTimeout(hideFloatingTimeout);
+                }
+                
+                // Atualizar conteúdo
+                if (floatingProgressBar) floatingProgressBar.style.width = progress + '%';
+                if (floatingProgressText) floatingProgressText.textContent = Math.round(progress) + '%';
+                
+                // Mostrar barra flutuante
+                floatingProgress.style.display = 'block';
+                floatingProgress.style.opacity = '1';
+                floatingProgress.style.visibility = 'visible';
+                floatingProgress.style.zIndex = '9999';
+                
+                // Esconder após 3 segundos
+                hideFloatingTimeout = setTimeout(() => {
+                    floatingProgress.style.opacity = '0';
+                    setTimeout(() => {
+                        floatingProgress.style.display = 'none';
+                    }, 300);
+                }, 3000);
+            }
+            
+            // Adicionar listeners aos checkboxes
+            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+                    const checked = document.querySelectorAll('input[type="checkbox"]:checked');
+                    const progress = (checked.length / allCheckboxes.length) * 100;
+                    
+                    // Atualizar barra do header
+                    const progressBar = document.getElementById('progressBar');
+                    const progressText = document.getElementById('progressText');
+                    
+                    if (progressBar) progressBar.style.width = progress + '%';
+                    if (progressText) progressText.textContent = Math.round(progress) + '%';
+                    
+                    // Mostrar barra flutuante
+                    showFloatingProgress(progress);
+                });
+            });
+        });
+        </script>
 
         <!-- Botão Flutuante de Voltar ao Topo -->
         <button id="backToTop" class="fixed bottom-8 right-8 bg-amber-700 hover:bg-amber-800 text-white p-4 rounded-full shadow-lg floating-action transition-colors hidden z-50">

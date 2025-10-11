@@ -19,15 +19,50 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- SISTEMA DE PROGRESSO OTIMIZADO ---
     const progressBar = document.getElementById('progressBar');
     const progressText = document.getElementById('progressText');
+    const floatingProgress = document.getElementById('floatingProgress');
+    const floatingProgressBar = document.getElementById('floatingProgressBar');
+    const floatingProgressText = document.getElementById('floatingProgressText');
     let hasShownCongratulations = false;
+    let hideFloatingTimeout = null;
+    
+    function showFloatingProgress(progress) {
+        if (!floatingProgress) return;
+        
+        // Cancelar timeout anterior se existir
+        if (hideFloatingTimeout) {
+            clearTimeout(hideFloatingTimeout);
+        }
+        
+        // Atualizar barra flutuante
+        if (floatingProgressBar) floatingProgressBar.style.width = progress + '%';
+        if (floatingProgressText) floatingProgressText.textContent = Math.round(progress) + '%';
+        
+        // Mostrar barra flutuante
+        floatingProgress.classList.remove('hidden');
+        setTimeout(() => {
+            floatingProgress.style.opacity = '1';
+        }, 10);
+        
+        // Esconder automaticamente após 3 segundos
+        hideFloatingTimeout = setTimeout(() => {
+            floatingProgress.style.opacity = '0';
+            setTimeout(() => {
+                floatingProgress.classList.add('hidden');
+            }, 300);
+        }, 3000);
+    }
     
     function updateProgress() {
         const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
         const checked = document.querySelectorAll('input[type="checkbox"]:checked');
         const progress = (checked.length / allCheckboxes.length) * 100;
         
-        progressBar.style.width = progress + '%';
-        progressText.textContent = Math.round(progress) + '%';
+        // Atualizar barra do header
+        if (progressBar) progressBar.style.width = progress + '%';
+        if (progressText) progressText.textContent = Math.round(progress) + '%';
+        
+        // Mostrar barra flutuante
+        showFloatingProgress(progress);
         
         if (progress >= 100 && !hasShownCongratulations) {
             hasShownCongratulations = true;
