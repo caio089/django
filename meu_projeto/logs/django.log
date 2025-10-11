@@ -8782,3 +8782,29 @@ Erro na verificação de saúde: connection already closed
 "GET /pagina6/ HTTP/1.1" 200 159269
 "GET /pagina6/ HTTP/1.1" 200 159321
 "GET /static/pag6/css/styles.css HTTP/1.1" 304 0
+Erro na verificação de saúde: connection already closed
+Erro na verificação de saúde: connection already closed
+Erro na sincronização periódica: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Erro na sincronização periódica: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+"GET / HTTP/1.1" 200 41225
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 63271
+"GET /pagina6/ HTTP/1.1" 200 159544
+"GET /static/pag6/css/styles.css HTTP/1.1" 304 0
+Erro na verificação de saúde: connection already closed
+Erro na verificação de saúde: connection already closed
+"GET /pagina6/ HTTP/1.1" 200 159578
+"GET /pagina6/ HTTP/1.1" 200 159791
+"GET /pagina6/ HTTP/1.1" 200 159818

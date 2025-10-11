@@ -3,7 +3,13 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Aprenda todas as técnicas da Faixa Verde de Judô">
+    
+    <!-- Preconnect para otimizar carregamento do YouTube -->
+    <link rel="preconnect" href="https://www.youtube.com">
+    <link rel="preconnect" href="https://i.ytimg.com">
+    
     <title>Faixa Verde - Aulas</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -26,6 +32,7 @@
         }
     </script>
     <link rel="stylesheet" href="{% static 'pag5/css/styles.css' %}">
+    <script src="{% static 'pag5/js/lazy-video.js' %}" defer></script>
     <script src="{% static 'pag5/js/scripts.js' %}" defer></script>
 </head>
 <body class="bg-gray-50 font-display">
@@ -193,7 +200,7 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/MnNG67pF_a0?si=f54RNb2lFp41gP2G" title="YOKO-OTOSHI - Queda Lateral" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/MnNG67pF_a0?si=f54RNb2lFp41gP2G" title="YOKO-OTOSHI - Queda Lateral" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
                         </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
@@ -219,7 +226,7 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/cnHRhSy8yi4?si=dSr37kdAM27zob-V" title="KATA-GURUMA - Roda sobre os Ombros" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/cnHRhSy8yi4?si=dSr37kdAM27zob-V" title="KATA-GURUMA - Roda sobre os Ombros" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
                         </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
@@ -245,7 +252,7 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/BHLQS4K85bs?si=ufzQofQkz4zrZVix" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/BHLQS4K85bs?si=ufzQofQkz4zrZVix" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
                         </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
@@ -271,7 +278,7 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/3b9Me3Fohpk?si=DF1hRvDBNuctm4vt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/3b9Me3Fohpk?si=DF1hRvDBNuctm4vt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
                         </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
@@ -297,7 +304,7 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/880WbHvHv6A?si=gd2NKWwCMUDaa5BU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/880WbHvHv6A?si=gd2NKWwCMUDaa5BU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
                         </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
@@ -323,7 +330,7 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/mHhccqTONjM?si=Xeh7mH5aEeaD8-E-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/mHhccqTONjM?si=Xeh7mH5aEeaD8-E-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
                         </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
@@ -349,7 +356,7 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/SnZciTAY9vc?si=w2t1XY3kYq4a1zin" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/SnZciTAY9vc?si=w2t1XY3kYq4a1zin" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
                         </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
@@ -375,7 +382,7 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/QsmAxpmYLOI?si=M6DGz3q7bdjCags2" title="SODE-TSURI-KOMI-GOSHI - Quadril com Elevação" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/QsmAxpmYLOI?si=M6DGz3q7bdjCags2" title="SODE-TSURI-KOMI-GOSHI - Quadril com Elevação" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
                         </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h4>
@@ -433,7 +440,7 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/lIt5vywPBF0?si=0O8rE2_BiF_xngiJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/lIt5vywPBF0?si=0O8rE2_BiF_xngiJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h4>
@@ -459,7 +466,7 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/eeAHZB0v3XY?si=F34Kd9z7leLr69BL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/eeAHZB0v3XY?si=F34Kd9z7leLr69BL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h4>
@@ -485,7 +492,7 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/HrfxhGmQCDk?si=Ijb9n8ZuyR6WS3Oy" title="KATA-OSSAE-GATAME - Imobilização Lateral" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/HrfxhGmQCDk?si=Ijb9n8ZuyR6WS3Oy" title="KATA-OSSAE-GATAME - Imobilização Lateral" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h4>
@@ -511,7 +518,7 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/omioagb6ZNk?si=dZfQ_lL3-EB9FrSp&amp;start=42" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/omioagb6ZNk?si=dZfQ_lL3-EB9FrSp&amp;start=42" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h4>
@@ -569,7 +576,7 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/AIlTvZb4RlE?si=ailjO1ATAo9k0wS-&amp;start=42" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/AIlTvZb4RlE?si=ailjO1ATAo9k0wS-&amp;start=42" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h4>
@@ -595,7 +602,7 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/H2HtAJdiJcE?si=hvs6fuI2yrmgN91X&amp;start=42" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/H2HtAJdiJcE?si=hvs6fuI2yrmgN91X&amp;start=42" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h4>
@@ -621,7 +628,7 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/H3GjtQXu1y8?si=WMQeu2JRmEPqfe7s&amp;start=42" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/H3GjtQXu1y8?si=WMQeu2JRmEPqfe7s&amp;start=42" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h4>
@@ -674,7 +681,7 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/k2cHry9HByQ?si=YtXEL5RnZRU-MIZs&amp;start=42" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/k2cHry9HByQ?si=YtXEL5RnZRU-MIZs&amp;start=42" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h4>
@@ -700,7 +707,7 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/k2cHry9HByQ?si=wAkjvbo_VyUEDt_o&amp;start=42" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/k2cHry9HByQ?si=wAkjvbo_VyUEDt_o&amp;start=42" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h4>
@@ -726,7 +733,7 @@
                             </label>
                         </div>
                         <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/t3tQriIPdlI?si=dW3aUrhmuq0mG3wQ&amp;start=42" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube.com/embed/t3tQriIPdlI?si=dW3aUrhmuq0mG3wQ&amp;start=42" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h4 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h4>

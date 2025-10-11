@@ -843,3 +843,49 @@ button[class*="right"] {
     pointer-events: none;
     z-index: 9999;
 }
+
+/* === OTIMIZAÇÕES PARA MOBILE === */
+/* Lazy loading para iframes */
+iframe {
+    content-visibility: auto;
+}
+
+/* Reduzir animações no mobile para melhor performance */
+@media (max-width: 768px) {
+    * {
+        animation-duration: 0.3s !important;
+        transition-duration: 0.2s !important;
+    }
+    
+    /* Simplificar gradientes no mobile */
+    .gradient-bg {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+    }
+    
+    /* Otimizar sombras no mobile */
+    .card-hover,
+    .technique-card {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .card-hover:hover,
+    .technique-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    }
+    
+    /* Desabilitar efeitos de partículas no mobile */
+    .celebration-particle,
+    .scroll-particles {
+        display: none !important;
+    }
+    
+    /* Otimizar vídeos para mobile */
+    .video-container {
+        max-height: 250px;
+        overflow: hidden;
+    }
+    
+    .video-container iframe {
+        will-change: auto;
+    }
+}
