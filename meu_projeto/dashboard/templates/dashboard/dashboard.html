@@ -41,10 +41,16 @@
                     <p class="text-blue-100 mt-2">Painel Administrativo - Assinaturas Premium</p>
                 </div>
                 <div class="text-right">
-                    <p class="text-blue-100">Atualizado em: {{ current_date }}</p>
-                    <a href="/admin/" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors inline-block mt-2">
-                        🔧 Admin Django
-                    </a>
+                    <p class="text-blue-100 mb-2">👤 Logado como: <strong>{{ request.user.username }}</strong></p>
+                    <p class="text-blue-100 text-sm mb-3">Atualizado em: {{ current_date }}</p>
+                    <div class="flex gap-2 justify-end">
+                        <a href="/admin/" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors inline-block text-sm">
+                            🔧 Admin Django
+                        </a>
+                        <a href="{% url 'admin_logout' %}" class="bg-red-500/80 hover:bg-red-600 px-4 py-2 rounded-lg transition-colors inline-block text-sm font-semibold">
+                            🚪 Sair
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -236,6 +242,7 @@
                             <th class="text-left py-3 px-4">Email</th>
                             <th class="text-left py-3 px-4">Data Cadastro</th>
                             <th class="text-left py-3 px-4">Status</th>
+                            <th class="text-center py-3 px-4">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -256,14 +263,81 @@
                                     </span>
                                 {% endif %}
                             </td>
+                            <td class="py-3 px-4">
+                                <div class="flex gap-2 justify-center">
+                                    <!-- Botão Remover Premium -->
+                                    {% if user.assinaturas.filter %}
+                                    <form method="post" action="{% url 'remove_premium' %}" class="inline" onsubmit="return confirm('Tem certeza que deseja remover o premium de {{ user.username }}?');">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="user_id" value="{{ user.id }}">
+                                        <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold py-1 px-3 rounded transition-colors" title="Remover Premium">
+                                            ❌ Premium
+                                        </button>
+                                    </form>
+                                    {% endif %}
+                                    
+                                    <!-- Botão Excluir Conta -->
+                                    {% if not user.is_superuser %}
+                                    <button onclick="openDeleteModal({{ user.id }}, '{{ user.username }}', '{{ user.email }}')" class="bg-red-500 hover:bg-red-600 text-white text-xs font-bold py-1 px-3 rounded transition-colors" title="Excluir Conta">
+                                        🗑️ Excluir
+                                    </button>
+                                    {% else %}
+                                    <span class="text-xs text-gray-400 italic">Admin</span>
+                                    {% endif %}
+                                </div>
+                            </td>
                         </tr>
                         {% empty %}
                         <tr>
-                            <td colspan="5" class="py-8 text-center text-gray-500">Nenhum usuário encontrado</td>
+                            <td colspan="6" class="py-8 text-center text-gray-500">Nenhum usuário encontrado</td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
+            </div>
+        </div>
+        
+        <!-- Modal de Confirmação para Excluir Usuário -->
+        <div id="deleteModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+            <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl">
+                <div class="text-center mb-6">
+                    <div class="text-6xl mb-4">⚠️</div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Excluir Usuário</h3>
+                    <p class="text-gray-600">Esta ação é <span class="font-bold text-red-600">IRREVERSÍVEL</span>!</p>
+                </div>
+                
+                <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-6">
+                    <p class="text-sm text-red-800">
+                        <strong>Usuário:</strong> <span id="deleteUsername"></span><br>
+                        <strong>Email:</strong> <span id="deleteEmail"></span>
+                    </p>
+                </div>
+                
+                <form method="post" action="{% url 'delete_user' %}" id="deleteForm">
+                    {% csrf_token %}
+                    <input type="hidden" name="user_id" id="deleteUserId">
+                    
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-semibold mb-2">
+                            Digite <span class="text-red-600 font-bold">"excluir"</span> para confirmar:
+                        </label>
+                        <input type="text" name="confirm" required 
+                               class="w-full p-3 border-2 border-red-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                               placeholder="Digite: excluir"
+                               autocomplete="off">
+                    </div>
+                    
+                    <div class="flex gap-3">
+                        <button type="button" onclick="closeDeleteModal()" 
+                                class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-6 rounded-lg transition-colors">
+                            Cancelar
+                        </button>
+                        <button type="submit" 
+                                class="flex-1 bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                            🗑️ Excluir
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
 
@@ -380,6 +454,37 @@
                         }
                     }
                 }
+            }
+        });
+    </script>
+    
+    <!-- Script para Modal de Exclusão -->
+    <script>
+        function openDeleteModal(userId, username, email) {
+            document.getElementById('deleteUserId').value = userId;
+            document.getElementById('deleteUsername').textContent = username;
+            document.getElementById('deleteEmail').textContent = email;
+            document.getElementById('deleteModal').classList.remove('hidden');
+            document.getElementById('deleteModal').classList.add('flex');
+        }
+        
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').classList.add('hidden');
+            document.getElementById('deleteModal').classList.remove('flex');
+            document.getElementById('deleteForm').reset();
+        }
+        
+        // Fechar modal ao clicar fora
+        document.getElementById('deleteModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDeleteModal();
+            }
+        });
+        
+        // Fechar modal com ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeDeleteModal();
             }
         });
     </script>

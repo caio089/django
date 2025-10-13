@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
 from django.db.models import Count, Sum, Q
 from django.utils import timezone
 from datetime import datetime, timedelta
@@ -8,14 +9,59 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 import json
 
-@login_required(login_url='/admin/login/')
+
+def admin_login(request):
+    """
+    Página de login exclusiva para o dashboard administrativo
+    Credenciais: admin / limueiro
+    """
+    # Se já está logado como admin, redireciona para o dashboard
+    if request.user.is_authenticated and request.user.is_superuser:
+        return redirect('dashboard_admin')
+    
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        
+        # Autenticar usuário
+        user = authenticate(request, username=username, password=password)
+        
+        if user is not None:
+            # Verificar se é superusuário
+            if user.is_superuser:
+                login(request, user)
+                messages.success(request, f'Bem-vindo, {user.username}! 🎉')
+                
+                # Redirecionar para o dashboard ou para a página solicitada
+                next_url = request.GET.get('next', 'dashboard_admin')
+                return redirect(next_url)
+            else:
+                messages.error(request, '❌ Acesso negado! Apenas administradores podem acessar.')
+        else:
+            messages.error(request, '❌ Usuário ou senha incorretos!')
+    
+    return render(request, 'dashboard/admin_login.html')
+
+
+def admin_logout(request):
+    """
+    Logout do dashboard administrativo
+    """
+    logout(request)
+    messages.success(request, '✅ Logout realizado com sucesso!')
+    return redirect('admin_login')
+
+
+@login_required(login_url='/dashboard/login/')
 def dashboard_admin(request):
     """
     Dashboard administrativo para visualizar assinaturas premium e receitas
+    Requer login de superusuário
     """
     
     # Verificar se o usuário é admin ou tem permissão
     if not request.user.is_superuser:
+        messages.error(request, 'Você não tem permissão para acessar o dashboard administrativo.')
         return render(request, 'dashboard/access_denied.html')
     
     # Data atual
@@ -162,7 +208,7 @@ def dashboard_admin(request):
     return render(request, 'dashboard/dashboard.html', context)
 
 
-@login_required(login_url='/admin/login/')
+@login_required(login_url='/dashboard/login/')
 def give_premium(request):
     """
     Função para atribuir plano premium a um usuário
@@ -209,5 +255,94 @@ def give_premium(request):
             messages.error(request, 'Plano não encontrado.')
         except Exception as e:
             messages.error(request, f'Erro ao atribuir plano: {str(e)}')
+    
+    return redirect('dashboard_admin')
+
+
+@login_required(login_url='/dashboard/login/')
+def remove_premium(request):
+    """
+    Função para remover plano premium de um usuário
+    """
+    if not request.user.is_superuser:
+        messages.error(request, 'Você não tem permissão para esta ação.')
+        return redirect('dashboard_admin')
+    
+    if request.method == 'POST':
+        user_id = request.POST.get('user_id')
+        
+        try:
+            user = User.objects.get(id=user_id)
+            
+            # Buscar assinaturas ativas do usuário
+            assinaturas_ativas = Assinatura.objects.filter(
+                usuario=user,
+                status='ativa'
+            )
+            
+            if not assinaturas_ativas.exists():
+                messages.warning(request, f'{user.username} não possui assinatura ativa.')
+            else:
+                # Cancelar todas as assinaturas ativas
+                count = 0
+                for assinatura in assinaturas_ativas:
+                    assinatura.status = 'cancelada'
+                    assinatura.ativo = False
+                    assinatura.save()
+                    count += 1
+                
+                messages.success(request, f'{count} assinatura(s) cancelada(s) para {user.username}!')
+        
+        except User.DoesNotExist:
+            messages.error(request, 'Usuário não encontrado.')
+        except Exception as e:
+            messages.error(request, f'Erro ao remover premium: {str(e)}')
+    
+    return redirect('dashboard_admin')
+
+
+@login_required(login_url='/dashboard/login/')
+def delete_user(request):
+    """
+    Função para excluir um usuário
+    """
+    if not request.user.is_superuser:
+        messages.error(request, 'Você não tem permissão para esta ação.')
+        return redirect('dashboard_admin')
+    
+    if request.method == 'POST':
+        user_id = request.POST.get('user_id')
+        confirm = request.POST.get('confirm', '').lower()
+        
+        try:
+            user = User.objects.get(id=user_id)
+            
+            # Proteção: não permitir excluir a si mesmo
+            if user.id == request.user.id:
+                messages.error(request, 'Você não pode excluir sua própria conta!')
+                return redirect('dashboard_admin')
+            
+            # Proteção: não permitir excluir outros superusuários
+            if user.is_superuser:
+                messages.error(request, 'Você não pode excluir outros administradores!')
+                return redirect('dashboard_admin')
+            
+            # Verificar confirmação
+            if confirm != 'excluir':
+                messages.error(request, 'Confirmação inválida. Digite "excluir" para confirmar.')
+                return redirect('dashboard_admin')
+            
+            username = user.username
+            email = user.email
+            
+            # Excluir usuário (isso também exclui assinaturas e perfil por cascade)
+            user.delete()
+            
+            messages.success(request, f'Usuário {username} ({email}) excluído com sucesso!')
+        
+        except User.DoesNotExist:
+            messages.error(request, 'Usuário não encontrado.')
+        except Exception as e:
+            messages.error(request, f'Erro ao excluir usuário: {str(e)}')
     
     return redirect('dashboard_admin')

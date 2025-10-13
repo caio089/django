@@ -54,6 +54,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Animações removidas para melhorar performance mobile
     
     // --- SISTEMA DE PROGRESSO SIMPLIFICADO ---
+    // Total de técnicas da Faixa Marrom:
+    // - Nage Waza (Projeções): 7 técnicas
+    // - Imobilizações: 5 técnicas
+    // - Chave de Braço: 5 técnicas
+    // - Estrangulamento: 7 técnicas
+    // - Ataque Combinado: 10 combinações
+    // - Contra-Ataque: 9 técnicas (removido: SASSAE-TSURI-KOMI-ASHI → MAE-TE-GURUMA)
+    // TOTAL: 43 checkboxes
+    
     const progressBar = document.getElementById('progressBar');
     const progressText = document.getElementById('progressText');
     const floatingProgress = document.getElementById('floatingProgress');
@@ -70,8 +79,10 @@ document.addEventListener('DOMContentLoaded', function() {
             clearTimeout(hideFloatingTimeout);
         }
         
-        // Atualizar barra flutuante
-        if (floatingProgressBar) floatingProgressBar.style.width = progress + '%';
+        // Atualizar barra flutuante com !important para sobrescrever CSS
+        if (floatingProgressBar) {
+            floatingProgressBar.style.setProperty('width', progress + '%', 'important');
+        }
         if (floatingProgressText) floatingProgressText.textContent = Math.round(progress) + '%';
         
         // Mostrar barra flutuante
@@ -90,9 +101,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function updateProgress() {
+        // Contar todos os checkboxes dinamicamente
         const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
         const checked = document.querySelectorAll('input[type="checkbox"]:checked');
-        const progress = (checked.length / allCheckboxes.length) * 100;
+        const progress = allCheckboxes.length > 0 ? (checked.length / allCheckboxes.length) * 100 : 0;
         
         // Atualizar barra do header
         if (progressBar) progressBar.style.width = progress + '%';
@@ -101,6 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Mostrar barra flutuante
         showFloatingProgress(progress);
         
+        // Mostrar parabéns quando completar 100%
         if (progress >= 100 && !hasShownCongratulations) {
             hasShownCongratulations = true;
             showCongratulations();
@@ -112,6 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
         checkbox.addEventListener('change', updateProgress);
     });
     
+    // Inicializar progresso ao carregar a página
     updateProgress();
     
     // --- SISTEMA DE PARABÉNS SIMPLIFICADO ---
@@ -221,7 +235,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Inicializar carrosséis
-    initializeCarousel('carouselProj', 'carouselLeft', 'carouselRight');
+    initializeCarousel('carousel', 'carouselLeft', 'carouselRight');
+    initializeCarousel('carouselProj', 'carouselProjLeft', 'carouselProjRight');
     initializeCarousel('carouselImob', 'carouselImobLeft', 'carouselImobRight');
     initializeCarousel('carouselChave', 'carouselChaveLeft', 'carouselChaveRight');
     initializeCarousel('carouselEstrang', 'carouselEstrangLeft', 'carouselEstrangRight');

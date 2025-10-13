@@ -2198,7 +2198,7 @@
         <div id="floatingProgress" class="fixed top-4 left-0 right-0 mx-auto w-fit bg-white border border-gray-300 rounded-lg shadow-lg p-3 z-50 opacity-0 transition-opacity duration-300 pointer-events-none">
             <div class="flex items-center gap-5">
                 <div class="w-80 bg-gray-200 rounded-full h-3">
-                    <div id="floatingProgressBar" class="bg-gradient-to-r from-green-400 to-green-600 h-3 rounded-full transition-all duration-500 shadow-sm" style="width: 0%"></div>
+                    <div id="floatingProgressBar" style="width: 0%"></div>
                 </div>
                 <span id="floatingProgressText" class="text-base font-bold text-gray-800">0%</span>
             </div>
@@ -2223,7 +2223,9 @@
                 }
                 
                 // Atualizar conteúdo
-                if (floatingProgressBar) floatingProgressBar.style.width = progress + '%';
+                if (floatingProgressBar) {
+                    floatingProgressBar.style.setProperty('width', progress + '%', 'important');
+                }
                 if (floatingProgressText) floatingProgressText.textContent = Math.round(progress) + '%';
                 
                 // Mostrar barra flutuante

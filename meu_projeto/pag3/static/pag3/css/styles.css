@@ -504,12 +504,56 @@ p, span, div {
     
     #floatingProgress {
         top: max(1rem, env(safe-area-inset-top)) !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
     }
 }
 
 /* ===== CSS ESPECÍFICO DA PÁGINA 3 - TÉCNICAS DE PROJEÇÃO, ATAQUES COMBINADOS E CONTRA-ATAQUES ===== */
 
 @media (max-width: 768px) {
+    /* Barra flutuante mobile - garantir visibilidade */
+    #floatingProgress {
+        position: fixed !important;
+        top: 20px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 90% !important;
+        max-width: 300px !important;
+        min-width: 250px !important;
+        padding: 15px 20px !important;
+        margin: 0 !important;
+        border-radius: 15px !important;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4) !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        z-index: 1000 !important;
+        background: rgba(251, 191, 36, 0.95) !important;
+        backdrop-filter: blur(10px) !important;
+        border: 2px solid rgba(255, 255, 255, 0.2) !important;
+    }
+    
+    #floatingProgress.hidden {
+        opacity: 0 !important;
+        visibility: hidden !important;
+    }
+    
+    #floatingProgressBar {
+        height: 6px !important;
+        border-radius: 8px !important;
+        margin: 10px 0 !important;
+    }
+    
+    #floatingProgressText {
+        font-size: 14px !important;
+        font-weight: 700 !important;
+        color: white !important;
+    }
+    
     /* Layout mobile para técnicas de projeção - Cards lado a lado como carrossel horizontal */
     #nage-waza-section .relative {
         position: relative !important;
@@ -643,6 +687,34 @@ p, span, div {
         width: 100% !important;
         text-align: center !important;
         margin-top: 1rem !important;
+    }
+    
+    /* Remover setas não funcionais do mobile na seção de imobilizações */
+    #imobilizacoes-section .carousel-arrow-left,
+    #imobilizacoes-section .carousel-arrow-right,
+    #imobilizacoes-section .debug-arrow,
+    #imobilizacoes-section .force-arrow,
+    #carouselImobLeft,
+    #carouselImobRight {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+    
+    /* Remover botões Voltar ao Topo que não funcionam no mobile */
+    .back-to-top-section {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+    
+    /* Remover setas de navegação do carrossel mobile */
+    #imobilizacoes-section .text-4xl,
+    #imobilizacoes-section .arrow-container,
+    #imobilizacoes-section .carousel-nav {
+        display: none !important;
     }
     
     /* Layout vertical para ataques combinados - sem indicadores de scroll */
@@ -902,49 +974,56 @@ p, span, div {
     display: none !important;
 }
 
+/* Remover todas as setas do mobile */
+@media (max-width: 768px) {
+    .carousel-arrow-left,
+    .carousel-arrow-right,
+    button[id*="carousel"],
+    button[class*="carousel"],
+    button[id*="Left"],
+    button[class*="left"],
+    button[id*="Right"],
+    button[class*="right"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+}
+
 /* Setas específicas removidas - layout vertical */
 
 /* Todas as regras específicas das setas removidas */
 
-/* CSS para setas de debug */
+/* CSS para setas de debug - REMOVIDAS */
 .debug-arrow {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: absolute !important;
-    z-index: 9999 !important;
-    background: rgba(249, 115, 22, 1) !important;
-    border: 2px solid white !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
 
-/* Forçar visibilidade das setas na seção de projeção */
-#nage-waza-section .debug-arrow {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-
-/* CSS para setas forçadas */
+/* CSS para setas forçadas - REMOVIDAS */
 .force-arrow {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: absolute !important;
-    z-index: 99999 !important;
-    background: rgba(249, 115, 22, 1) !important;
-    border: 3px solid white !important;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6) !important;
-    pointer-events: auto !important;
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
 
-/* Override para setas forçadas na seção de projeção */
-#nage-waza-section .force-arrow {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: absolute !important;
-    z-index: 99999 !important;
+/* Remover todas as setas em todas as seções no mobile */
+@media (max-width: 768px) {
+    .debug-arrow,
+    .force-arrow,
+    #nage-waza-section .debug-arrow,
+    #nage-waza-section .force-arrow,
+    #imobilizacoes-section .debug-arrow,
+    #imobilizacoes-section .force-arrow {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
 }
 
 /* Todas as regras de posicionamento e hover das setas removidas */
@@ -1587,60 +1666,41 @@ header a[href*="home"]:hover,
     }
 }
 
-/* Setas de Carrossel - MAIS VISÍVEIS */
+/* Setas de Carrossel - REMOVIDAS */
 button[id*="carousel"],
 button[class*="carousel"] {
-    position: absolute !important;
-    z-index: 100 !important;
-    width: 56px !important;
-    height: 56px !important;
-    border-radius: 50% !important;
-    background: linear-gradient(135deg, rgba(251, 191, 36, 0.95) 0%, rgba(245, 158, 11, 0.95) 100%) !important;
-    color: white !important;
-    border: 3px solid rgba(255, 255, 255, 0.4) !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(251, 191, 36, 0.5) !important;
-    cursor: pointer !important;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    backdrop-filter: blur(10px) !important;
-}
-
-button[id*="carousel"]:hover,
-button[class*="carousel"]:hover {
-    transform: scale(1.2) !important;
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4), 0 6px 18px rgba(251, 191, 36, 0.7) !important;
-    border-color: rgba(255, 255, 255, 0.7) !important;
-    background: linear-gradient(135deg, rgba(251, 191, 36, 1) 0%, rgba(245, 158, 11, 1) 100%) !important;
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
 
 button[id*="Left"],
-button[class*="left"] {
-    left: 16px !important;
-}
-
+button[class*="left"],
 button[id*="Right"],
-button[class*="right"] {
-    right: 16px !important;
+button[class*="right"],
+#carouselImobLeft,
+#carouselImobRight {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
 
-/* Mobile - Setas */
+/* Mobile - Setas REMOVIDAS */
 @media (max-width: 768px) {
     button[id*="carousel"],
-    button[class*="carousel"] {
-        width: 50px !important;
-        height: 50px !important;
-    }
-    
+    button[class*="carousel"],
     button[id*="Left"],
-    button[class*="left"] {
-        left: 10px !important;
-    }
-    
+    button[class*="left"],
     button[id*="Right"],
-    button[class*="right"] {
-        right: 10px !important;
+    button[class*="right"],
+    #carouselImobLeft,
+    #carouselImobRight {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
     }
 }
 

@@ -122,14 +122,14 @@ def listar_planos(request):
     Lista apenas o plano mensal premium
     """
     # Buscar apenas o plano mensal ativo
-    plano_mensal = PlanoPremium.objects.filter(ativo=True, preco=39.90).first()
+    plano_mensal = PlanoPremium.objects.filter(ativo=True, preco=49.90).first()
     
     # Se não existir, criar um plano mensal padrão
     if not plano_mensal:
         plano_mensal = PlanoPremium.objects.create(
             nome="Plano Mensal Premium",
             descricao="Acesso completo à plataforma de judô com todos os recursos premium",
-            preco=39.90,
+            preco=49.90,
             duracao_dias=30,
             ativo=True,
             acesso_ilimitado_quiz=True,

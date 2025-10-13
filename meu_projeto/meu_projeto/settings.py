@@ -13,12 +13,15 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'chave_de_teste_local')
 DEBUG = os.getenv('DEBUG', 'True') == 'True'  # True local, False no Render via .env
 
 # Hosts
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,testserver,www.dojoon.com.br,dojoon.com.br').split(',')
+ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,testserver,www.dojoon.com.br,dojoon.com.br,dojoon.onrender.com').split(',')]
 
 # CSRF Trusted Origins
 CSRF_TRUSTED_ORIGINS = [
     'https://www.dojoon.com.br',
     'https://dojoon.com.br',
+    'http://www.dojoon.com.br',
+    'http://dojoon.com.br',
+    'https://dojoon.onrender.com',
     'https://dojo-on.onrender.com',
     'https://*.onrender.com',
     'http://localhost:8000',

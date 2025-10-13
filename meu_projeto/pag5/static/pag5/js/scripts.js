@@ -34,7 +34,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Atualizar barra flutuante
-        if (floatingProgressBar) floatingProgressBar.style.width = progress + '%';
+        console.log('Progresso:', progress + '%');
+        if (floatingProgressBar) {
+            console.log('Alterando largura da barra para:', progress + '%');
+            floatingProgressBar.style.setProperty('width', progress + '%', 'important');
+            console.log('Largura atual da barra:', floatingProgressBar.style.width);
+        }
         if (floatingProgressText) floatingProgressText.textContent = Math.round(progress) + '%';
         
         // Mostrar barra flutuante

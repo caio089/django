@@ -155,6 +155,29 @@ staticfiles/
 .DS_Store
 Thumbs.db
 
+# Documentação de desenvolvimento (não necessária em produção)
+*.md
+!README.md
+!payments/README_PAYMENT_PERSISTENCE.md
+!dashboard/README.md
+
+# Scripts de teste e desenvolvimento
+test_*.py
+verificar_*.py
+criar_*.py
+
+# Node modules (se existir)
+node_modules/
+
+# Logs
+logs/
+*.log
+
+# Cache do Python
+__pycache__/
+*.pyc
+*.pyo
+
 
 
 

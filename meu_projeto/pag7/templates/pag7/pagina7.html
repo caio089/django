@@ -238,6 +238,12 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                     </svg>
                 </button>
+                <!-- Botão Esquerda -->
+                <button id="carouselProjLeft" type="button" class="flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-judo-brownDark/80 hover:bg-judo-brownDark text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                </button>
                 <!-- Carrossel -->
                 <div id="carouselProj" class="flex overflow-x-auto gap-8 pb-4 scroll-smooth snap-x snap-mandatory hide-scrollbar">
                     <!-- Técnica 1 -->
@@ -542,7 +548,7 @@
                     </div>
                 </div>
                         <!-- Botão Direita -->
-        <button id="carouselRight" type="button" class="flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-judo-brownDark/80 hover:bg-judo-brownDark text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
+                <button id="carouselProjRight" type="button" class="flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-judo-brownDark/80 hover:bg-judo-brownDark text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                     </svg>
@@ -567,7 +573,8 @@
             min-width: 350px;
             max-width: 420px;
             flex: 0 0 auto;
-            height: 380px;
+            height: auto;
+            min-height: 300px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -594,7 +601,7 @@
             filter: blur(0px);
         }
         @media (max-width: 700px) {
-            #carouselProj > div { min-width: 98vw; max-width: 99vw; height: 320px; }
+            #carouselProj > div { min-width: 98vw; max-width: 99vw; height: auto; min-height: 280px; }
         }
         .carousel-arrow-anim {
             animation: arrow-bounce 0.7s;
@@ -629,11 +636,12 @@
             margin-top: 2px;
         }
         .technique-card {
-            height: 420px;
+            height: auto;
+            min-height: 320px;
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            justify-content: space-between;
+            justify-content: flex-start;
         }
         .technique-card .video-container {
             flex-shrink: 0;
@@ -754,8 +762,8 @@
                 </p>
             </div>
             <div class="relative">
-                <!-- Botão Esquerda -->
-                <button id="imobLeft" type="button" class="flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-judo-brownDark/80 hover:bg-judo-brownDark text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
+                        <!-- Botão Esquerda -->
+                <button id="carouselImobLeft" type="button" class="flex items-center justify-center absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-judo-brownDark/80 hover:bg-judo-brownDark text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                     </svg>
@@ -1113,8 +1121,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- Botão Direita -->
-                <button id="imobRight" type="button" class="flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-judo-brownDark/80 hover:bg-judo-brownDark text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
+                        <!-- Botão Direita -->
+                <button id="carouselImobRight" type="button" class="flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-judo-brownDark/80 hover:bg-judo-brownDark text-white rounded-full w-10 h-10 shadow-lg transition-all focus:outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                     </svg>
@@ -1640,13 +1648,7 @@
                         <h4 class="text-lg font-bold text-gray-800">HARAI-TSURI-KOMI-ASHI</h4>
                         <p class="text-gray-600 text-sm">Varredura com Puxada e Elevação</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/bp1tscHlePI?si=5H1ICg6aBM-B-X-5" 
-                                    title="HARAI-TSURI-KOMI-ASHI" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/gGPXvWL8VbE?si=wBTz2v0tNLEvMB1r" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-indigo-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-indigo-800 mb-1 text-sm">💡 Dica:</h5>
@@ -1693,13 +1695,7 @@
                         <h4 class="text-lg font-bold text-gray-800">O-UCHI-GARI</h4>
                         <p class="text-gray-600 text-sm">Gancho Interno Grande</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/tP1Sj1uDfSo?si=PFBamwcYNW5-T-Kk" 
-                                    title="O-UCHI-GARI" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/65u6c7FQOMU?si=amKO_ExcEfZBH328" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h5>
@@ -1717,13 +1713,7 @@
                         <h4 class="text-lg font-bold text-gray-800">URA-NAGUE</h4>
                         <p class="text-gray-600 text-sm">Projeção Reversa</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/Fgi9b8DJ5sQ?si=GXuO08cMw5LtFvuU" 
-                                    title="URA-NAGUE" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/Fgi9b8DJ5sQ?si=0G6I6lRNoo6INJGR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
@@ -1746,13 +1736,7 @@
                         <h4 class="text-lg font-bold text-gray-800">SASSAE-TSURI-KOMI-ASHI</h4>
                         <p class="text-gray-600 text-sm">Varredura com Puxada e Elevação</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/2DsVvDw7b8g?si=QVKC007iV2pwiCPP" 
-                                    title="SASSAE-TSURI-KOMI-ASHI" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/699i--pvYmE?si=EMxVZqpltQ8ayKPy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-red-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-red-800 mb-1 text-sm">💡 Dica:</h5>
@@ -1799,13 +1783,7 @@
                         <h4 class="text-lg font-bold text-gray-800">KATA-GURUMA</h4>
                         <p class="text-gray-600 text-sm">Roda do Ombro</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/lLU9wv52ni0?si=08tR2g6go3Pd-vwh" 
-                                    title="KATA-GURUMA" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/-ginKJbQoV4?si=4pJHbUuQzmy581zt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-purple-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-purple-800 mb-1 text-sm">💡 Dica:</h5>
@@ -1823,13 +1801,7 @@
                         <h4 class="text-lg font-bold text-gray-800">KIBISSU-GAESHI</h4>
                         <p class="text-gray-600 text-sm">Contra-Ataque</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/MehP6I5cY2c?si=1KN7OWUQuM2Hu4lt" 
-                                    title="KIBISSU-GAESHI" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/tJylJYfBliA?si=OGJPscik90L7Aw94" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
@@ -1852,13 +1824,7 @@
                         <h4 class="text-lg font-bold text-gray-800">HARAI-GOSHI</h4>
                         <p class="text-gray-600 text-sm">Varredura do Quadril</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/MehP6I5cY2c?si=1KN7OWUQuM2Hu4lt" 
-                                    title="HARAI-GOSHI" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/qTo8HlAAkOo?si=vKmrNw78_A6IhMeX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-amber-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-amber-800 mb-1 text-sm">💡 Dica:</h5>
@@ -1876,13 +1842,7 @@
                         <h4 class="text-lg font-bold text-gray-800">HARAI-MAKI-KOMI</h4>
                         <p class="text-gray-600 text-sm">Enrolamento com Varredura</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/6CRBGLGz9j8?si=UIzfjVDnGggGK-kZ" 
-                                    title="HARAI-MAKI-KOMI" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/VBaHzKaCXss?si=u6-_l7vR6PUU2Wfo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
@@ -1905,13 +1865,7 @@
                         <h4 class="text-lg font-bold text-gray-800">UCHI-MATA</h4>
                         <p class="text-gray-600 text-sm">Movimento Interno</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/vU6aJ2kFxoI?si=zLDPXbl_pwgwZxVh" 
-                                    title="UCHI-MATA" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/iUpSu5J-bgw?si=ijxpMxcSxYG0MCxU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-teal-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-teal-800 mb-1 text-sm">💡 Dica:</h5>
@@ -1929,13 +1883,7 @@
                         <h4 class="text-lg font-bold text-gray-800">UCHI-MATA-MAKI-KOMI</h4>
                         <p class="text-gray-600 text-sm">Enrolamento com Movimento Interno</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/4pQd_bEnlf0?si=t-gGdMRJRUwGrf_R" 
-                                    title="UCHI-MATA-MAKI-KOMI" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/Ju07qVw4Mm8?si=N2iE4OZrrKd0yKCc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
@@ -1958,13 +1906,7 @@
                         <h4 class="text-lg font-bold text-gray-800">O-UCHI-GARI</h4>
                         <p class="text-gray-600 text-sm">Gancho Interno Grande</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/Fgi9b8DJ5sQ?si=GXuO08cMw5LtFvuU" 
-                                    title="O-UCHI-GARI" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/65u6c7FQOMU?si=amKO_ExcEfZBH328" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-lime-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-lime-800 mb-1 text-sm">💡 Dica:</h5>
@@ -1982,13 +1924,7 @@
                         <h4 class="text-lg font-bold text-gray-800">HARAI-TSURI-KOMI-ASHI</h4>
                         <p class="text-gray-600 text-sm">Varredura com Puxada e Elevação</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/bp1tscHlePI?si=5H1ICg6aBM-B-X-5" 
-                                    title="HARAI-TSURI-KOMI-ASHI" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/gGPXvWL8VbE?si=wBTz2v0tNLEvMB1r" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
@@ -2011,13 +1947,7 @@
                         <h4 class="text-lg font-bold text-gray-800">URA-NAGUE</h4>
                         <p class="text-gray-600 text-sm">Projeção Reversa</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/DGDv2oMwmas?si=XhY_xZmYEQ_jJsWU" 
-                                    title="URA-NAGUE" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/Fgi9b8DJ5sQ?si=0G6I6lRNoo6INJGR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-rose-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-rose-800 mb-1 text-sm">💡 Dica:</h5>
@@ -2064,13 +1994,7 @@
                         <h4 class="text-lg font-bold text-gray-800">ASHI-GURUMA</h4>
                         <p class="text-gray-600 text-sm">Roda da Perna</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/6CRBGLGz9j8?si=UIzfjVDnGggGK-kZ" 
-                                    title="ASHI-GURUMA" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/ROeayhvom9U?si=HnCV2JyLNS3ewsZg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-sky-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-sky-800 mb-1 text-sm">💡 Dica:</h5>
@@ -2088,13 +2012,7 @@
                         <h4 class="text-lg font-bold text-gray-800">TAI-OTOSHI</h4>
                         <p class="text-gray-600 text-sm">Projeção do Corpo</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/92KbCm6pQeI?si=g_Y6Nf7qCSDkoLkt" 
-                                    title="TAI-OTOSHI" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/4x6S3Q-Ktv8?si=1fu2zRO4eqt0YuqL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
@@ -2117,13 +2035,7 @@
                         <h4 class="text-lg font-bold text-gray-800">IPPON-SEOI-NAGUE</h4>
                         <p class="text-gray-600 text-sm">Projeção do Ombro</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/4pQd_bEnlf0?si=t-gGdMRJRUwGrf_R" 
-                                    title="IPPON-SEOI-NAGUE" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/FQnOlCxo4oI?si=WIVxY7gGuPWm9lFa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-emerald-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-emerald-800 mb-1 text-sm">💡 Dica:</h5>
@@ -2141,13 +2053,16 @@
                         <h4 class="text-lg font-bold text-gray-800">TAMA-GURUMA</h4>
                         <p class="text-gray-600 text-sm">Roda da Bola</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/Ji9MSQvmkQw?si=IdPQ4VjU_VOltIUo" 
-                                    title="TAMA-GURUMA" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <div class="video-thumbnail-container" style="position: relative; cursor: pointer;">
+                                <img src="https://img.youtube.com/vi/nFwzi9iXcyE/maxresdefault.jpg" 
+                                     alt="TAMA-GURUMA" 
+                                     style="width:100%;height:200px;object-fit:cover;border-radius:8px;"
+                                     onerror="this.onerror=null; this.src='https://img.youtube.com/vi/nFwzi9iXcyE/sddefault.jpg';">
+                                <div class="play-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3); border-radius: 8px;">
+                                    <div class="play-button" style="width: 60px; height: 60px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #D97706;">▶</div>
+                                </div>
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/nFwzi9iXcyE?si=BMIIJObww1xn-vgp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="display:none;"></iframe>
+                            </div>
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
@@ -2159,59 +2074,6 @@
                     <div class="flex items-center justify-center mt-4 lg:mt-0">
                         <label class="flex items-center select-none">
                             <input type="checkbox" class="ataque-combinado-checkbox accent-emerald-500 w-5 h-5 mr-2" />
-                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
-                        </label>
-                    </div>
-                </div>
-                <!-- Linha 11: O-UCHI-GARI → GUYAKU-SUMI-AESHI -->
-                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
-                    <!-- Técnica da Esquerda -->
-                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
-                        <h4 class="text-lg font-bold text-gray-800">O-UCHI-GARI</h4>
-                        <p class="text-gray-600 text-sm">Gancho Interno Grande</p>
-                        <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/Ji9MSQvmkQw?si=IdPQ4VjU_VOltIUo" 
-                                    title="O-UCHI-GARI" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
-                        </div>
-                        <div class="bg-violet-50 p-2 rounded-xl">
-                            <h5 class="font-semibold text-violet-800 mb-1 text-sm">💡 Dica:</h5>
-                            <p class="text-violet-700 text-xs">Use o gancho interno para desequilibrar o oponente.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Seta Conectando -->
-                    <div class="flex items-center justify-center">
-                        <div class="text-3xl text-violet-500 font-bold">→</div>
-                    </div>
-                    
-                    <!-- Técnica da Direita -->
-                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
-                        <h4 class="text-lg font-bold text-gray-800">GUYAKU-SUMI-AESHI</h4>
-                        <p class="text-gray-600 text-sm">Projeção da Esquina Invertida</p>
-                        <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/McfzA0yRVt4?si=scfjxFyPEo1NhPJH" 
-                                    title="GUYAKU-SUMI-AESHI" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
-                        </div>
-                        <div class="bg-green-50 p-2 rounded-xl">
-                            <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
-                            <p class="text-green-700 text-xs">A chave está na precisão do gancho e no desequilíbrio do oponente.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Checkbox único para a combinação -->
-                    <div class="flex items-center justify-center mt-4 lg:mt-0">
-                        <label class="flex items-center select-none">
-                            <input type="checkbox" class="ataque-combinado-checkbox accent-violet-500 w-5 h-5 mr-2" />
                             <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
                         </label>
                     </div>
@@ -2246,13 +2108,7 @@
                         <h4 class="text-lg font-bold text-gray-800">KOSHI-GURUMA</h4>
                         <p class="text-gray-600 text-sm">Roda do Quadril</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/4pQd_bEnlf0?si=t-gGdMRJRUwGrf_R" 
-                                    title="KOSHI-GURUMA" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/SU7Id6uVJ44?si=7cw62V1NuNiFlnPJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-indigo-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-indigo-800 mb-1 text-sm">💡 Dica:</h5>
@@ -2300,13 +2156,7 @@
                         <h4 class="text-lg font-bold text-gray-800">TAI-OTOSHI</h4>
                         <p class="text-gray-600 text-sm">Queda do Corpo</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/92KbCm6pQeI?si=g_Y6Nf7qCSDkoLkt" 
-                                    title="TAI-OTOSHI" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/4x6S3Q-Ktv8?si=1fu2zRO4eqt0YuqL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-orange-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-orange-800 mb-1 text-sm">💡 Dica:</h5>
@@ -2354,13 +2204,7 @@
                         <h4 class="text-lg font-bold text-gray-800">UCHI-MATA</h4>
                         <p class="text-gray-600 text-sm">Movimento Interno</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/vU6aJ2kFxoI?si=zLDPXbl_pwgwZxVh" 
-                                    title="UCHI-MATA" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/iUpSu5J-bgw?si=ijxpMxcSxYG0MCxU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-red-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-red-800 mb-1 text-sm">💡 Dica:</h5>
@@ -2378,13 +2222,7 @@
                         <h4 class="text-lg font-bold text-gray-800">TANI-OTOSHI</h4>
                         <p class="text-gray-600 text-sm">Queda do Vale</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/92KbCm6pQeI?si=g_Y6Nf7qCSDkoLkt" 
-                                    title="TANI-OTOSHI" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/3b9Me3Fohpk?si=N-WPHrGcUvVODzrp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
@@ -2408,13 +2246,7 @@
                         <h4 class="text-lg font-bold text-gray-800">O-UCHI-GARI</h4>
                         <p class="text-gray-600 text-sm">Gancho Interno Grande</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/tP1Sj1uDfSo?si=PFBamwcYNW5-T-Kk" 
-                                    title="O-UCHI-GARI" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/65u6c7FQOMU?si=amKO_ExcEfZBH328" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-purple-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-purple-800 mb-1 text-sm">💡 Dica:</h5>
@@ -2432,13 +2264,7 @@
                         <h4 class="text-lg font-bold text-gray-800">NI-DAN-KO-SOTO-GARI</h4>
                         <p class="text-gray-600 text-sm">Gancho Externo Pequeno Duplo</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/3Jb3tZvr9Ng?si=1uT1iQUT5xVArgrY" 
-                                    title="NI-DAN-KO-SOTO-GARI" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/4kdBgXd2mYE?si=DcK1d7tox7eFsoBq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
@@ -2462,13 +2288,7 @@
                         <h4 class="text-lg font-bold text-gray-800">KATA-GURUMA</h4>
                         <p class="text-gray-600 text-sm">Roda do Ombro</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/lLU9wv52ni0?si=08tR2g6go3Pd-vwh" 
-                                    title="KATA-GURUMA" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/-ginKJbQoV4?si=4pJHbUuQzmy581zt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-amber-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-amber-800 mb-1 text-sm">💡 Dica:</h5>
@@ -2486,13 +2306,7 @@
                         <h4 class="text-lg font-bold text-gray-800">TAWARA-GAESHI</h4>
                         <p class="text-gray-600 text-sm">Contra-Ataque do Fardo</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/MehP6I5cY2c?si=1KN7OWUQuM2Hu4lt" 
-                                    title="TAWARA-GAESHI" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/TmTWgrmViZc?si=rYAUkNeX9LMWEgGd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
@@ -2516,13 +2330,7 @@
                         <h4 class="text-lg font-bold text-gray-800">O-UCHI-GARI</h4>
                         <p class="text-gray-600 text-sm">Gancho Interno Grande</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/Fgi9b8DJ5sQ?si=GXuO08cMw5LtFvuU" 
-                                    title="O-UCHI-GARI" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/65u6c7FQOMU?si=amKO_ExcEfZBH328" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-teal-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-teal-800 mb-1 text-sm">💡 Dica:</h5>
@@ -2540,13 +2348,7 @@
                         <h4 class="text-lg font-bold text-gray-800">URA-NAGUE</h4>
                         <p class="text-gray-600 text-sm">Projeção Reversa</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/DGDv2oMwmas?si=XhY_xZmYEQ_jJsWU" 
-                                    title="URA-NAGUE" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/Fgi9b8DJ5sQ?si=0G6I6lRNoo6INJGR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
@@ -2570,13 +2372,7 @@
                         <h4 class="text-lg font-bold text-gray-800">HARAI-GOSHI</h4>
                         <p class="text-gray-600 text-sm">Varredura do Quadril</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/MehP6I5cY2c?si=1KN7OWUQuM2Hu4lt" 
-                                    title="HARAI-GOSHI" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/qTo8HlAAkOo?si=vKmrNw78_A6IhMeX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-lime-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-lime-800 mb-1 text-sm">💡 Dica:</h5>
@@ -2624,13 +2420,7 @@
                         <h4 class="text-lg font-bold text-gray-800">KATA-GURUMA</h4>
                         <p class="text-gray-600 text-sm">Roda do Ombro</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/lLU9wv52ni0?si=08tR2g6go3Pd-vwh" 
-                                    title="KATA-GURUMA" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/-ginKJbQoV4?si=4pJHbUuQzmy581zt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-rose-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-rose-800 mb-1 text-sm">💡 Dica:</h5>
@@ -2648,13 +2438,7 @@
                         <h4 class="text-lg font-bold text-gray-800">HIKI-KOMI-GAESHI</h4>
                         <p class="text-gray-600 text-sm">Contra-Ataque com Puxada</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/MehP6I5cY2c?si=1KN7OWUQuM2Hu4lt" 
-                                    title="HIKI-KOMI-GAESHI" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/92zUYWBp5N8?si=zrg9fd8FCgVeVkgl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-green-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
@@ -2678,13 +2462,7 @@
                         <h4 class="text-lg font-bold text-gray-800">O-UCHI-GARI</h4>
                         <p class="text-gray-600 text-sm">Gancho Interno Grande</p>
                         <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/tP1Sj1uDfSo?si=PFBamwcYNW5-T-Kk" 
-                                    title="O-UCHI-GARI" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/65u6c7FQOMU?si=amKO_ExcEfZBH328" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="bg-sky-50 p-2 rounded-xl">
                             <h5 class="font-semibold text-sky-800 mb-1 text-sm">💡 Dica:</h5>
@@ -2725,60 +2503,6 @@
                     </div>
                 </div>
 
-                <!-- Linha 10: SASSAE-TSURI-KOMI-ASHI → MAE-TE-GURUMA -->
-                <div class="flex flex-col lg:flex-row items-center justify-center gap-4">
-                    <!-- Técnica da Esquerda -->
-                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
-                        <h4 class="text-lg font-bold text-gray-800">SASSAE-TSURI-KOMI-ASHI</h4>
-                        <p class="text-gray-600 text-sm">Varredura com Puxada e Elevação</p>
-                        <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/2DsVvDw7b8g?si=QVKC007iV2pwiCPP" 
-                                    title="SASSAE-TSURI-KOMI-ASHI" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
-                        </div>
-                        <div class="bg-emerald-50 p-2 rounded-xl">
-                            <h5 class="font-semibold text-emerald-800 mb-1 text-sm">💡 Dica:</h5>
-                            <p class="text-emerald-700 text-xs">Use o ombro para desequilibrar o oponente.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Seta Conectando -->
-                    <div class="flex items-center justify-center">
-                        <div class="text-3xl text-emerald-500 font-bold">→</div>
-                    </div>
-                    
-                    <!-- Técnica da Direita -->
-                    <div class="card-hover bg-white rounded-2xl shadow-lg p-4 w-[300px] sm:w-[360px] md:w-[400px] max-w-[440px]">
-                        <h4 class="text-lg font-bold text-gray-800">MAE-TE-GURUMA</h4>
-                        <p class="text-gray-600 text-sm">Roda da Mão Frontal</p>
-                        <div class="video-container my-3">
-                            <iframe src="https://www.youtube.com/embed/92KbCm6pQeI?si=g_Y6Nf7qCSDkoLkt" 
-                                    title="MAE-TE-GURUMA" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    referrerpolicy="strict-origin-when-cross-origin" 
-                                    allowfullscreen>
-                            </iframe>
-                        </div>
-                        <div class="bg-green-50 p-2 rounded-xl">
-                            <h5 class="font-semibold text-green-800 mb-1 text-sm">💡 Dica:</h5>
-                            <p class="text-green-700 text-xs">A chave está na precisão do gancho e no desequilíbrio do oponente.</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Checkbox único para a combinação -->
-                    <div class="flex items-center justify-center mt-4 lg:mt-0">
-                        <label class="flex items-center select-none">
-                            <input type="checkbox" class="contra-ataque-checkbox accent-emerald-500 w-5 h-5 mr-2" />
-                            <span class="text-sm font-bold text-gray-700 bg-yellow-100 px-3 py-1 rounded-md">Aprendi</span>
-                        </label>
-                    </div>
-                </div>
-                
             </div>
             <div class="text-center mt-8">
                 <button class="back-to-top-section bg-amber-700 hover:bg-amber-800 text-white px-6 py-3 rounded-lg font-buttons transition-colors shadow-lg">
@@ -2791,7 +2515,7 @@
         <div id="floatingProgress" class="fixed top-4 left-0 right-0 mx-auto w-fit bg-white border border-gray-300 rounded-lg shadow-lg p-3 z-50 opacity-0 transition-opacity duration-300 pointer-events-none">
             <div class="flex items-center gap-5">
                 <div class="w-80 bg-gray-200 rounded-full h-3">
-                    <div id="floatingProgressBar" class="bg-gradient-to-r from-green-400 to-emerald-500 h-3 rounded-full transition-all duration-500 shadow-sm" style="width: 0%"></div>
+                    <div id="floatingProgressBar" style="width: 0%"></div>
                 </div>
                 <span id="floatingProgressText" class="text-base font-bold text-gray-800">0%</span>
             </div>
@@ -2799,6 +2523,10 @@
 
         <!-- SCRIPT INLINE PARA BARRA FLUTUANTE -->
         <script>
+        // Sistema de Progresso da Faixa Marrom
+        // Total de técnicas: 43 checkboxes
+        // - Nage Waza: 7 | Imobilizações: 5 | Chave de Braço: 5
+        // - Estrangulamento: 7 | Ataque Combinado: 10 | Contra-Ataque: 9
         document.addEventListener('DOMContentLoaded', function() {
             let hideFloatingTimeout = null;
             
@@ -2815,8 +2543,10 @@
                     clearTimeout(hideFloatingTimeout);
                 }
                 
-                // Atualizar conteúdo
-                if (floatingProgressBar) floatingProgressBar.style.width = progress + '%';
+                // Atualizar conteúdo com !important para sobrescrever CSS
+                if (floatingProgressBar) {
+                    floatingProgressBar.style.setProperty('width', progress + '%', 'important');
+                }
                 if (floatingProgressText) floatingProgressText.textContent = Math.round(progress) + '%';
                 
                 // Mostrar barra flutuante
@@ -2834,12 +2564,12 @@
                 }, 3000);
             }
             
-            // Adicionar listeners aos checkboxes
+            // Adicionar listeners aos checkboxes - conta dinamicamente
             document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
                 checkbox.addEventListener('change', function() {
                     const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
                     const checked = document.querySelectorAll('input[type="checkbox"]:checked');
-                    const progress = (checked.length / allCheckboxes.length) * 100;
+                    const progress = allCheckboxes.length > 0 ? (checked.length / allCheckboxes.length) * 100 : 0;
                     
                     // Atualizar barra do header
                     const progressBar = document.getElementById('progressBar');
@@ -2850,6 +2580,33 @@
                     
                     // Mostrar barra flutuante
                     showFloatingProgress(progress);
+                });
+            });
+            
+            // Sistema de thumbnail para vídeo TAMA-GURUMA
+            document.querySelectorAll('.video-thumbnail-container').forEach(container => {
+                container.addEventListener('click', function() {
+                    const iframe = this.querySelector('iframe');
+                    const img = this.querySelector('img');
+                    const overlay = this.querySelector('.play-overlay');
+                    
+                    if (iframe && img && overlay) {
+                        // Esconder thumbnail e overlay
+                        img.style.display = 'none';
+                        overlay.style.display = 'none';
+                        
+                        // Mostrar e reproduzir vídeo
+                        iframe.style.display = 'block';
+                        iframe.style.width = '100%';
+                        iframe.style.height = '200px';
+                        iframe.style.borderRadius = '8px';
+                        
+                        // Adicionar autoplay ao src
+                        const currentSrc = iframe.getAttribute('src');
+                        if (currentSrc && !currentSrc.includes('autoplay')) {
+                            iframe.setAttribute('src', currentSrc + '&autoplay=1');
+                        }
+                    }
                 });
             });
         });

@@ -51,9 +51,11 @@
 /* === BARRA FLUTUANTE DE PROGRESSO === */
 #floatingProgress {
     position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 1rem;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: fit-content;
     background: rgba(139, 92, 42, 0.95);
     backdrop-filter: blur(10px);
     border-radius: 20px;
@@ -71,22 +73,13 @@
 }
 
 #floatingProgressBar {
-    background: rgba(255, 255, 255, 0.3);
+    background: linear-gradient(90deg, #D97706, #92400E);
     border-radius: 10px;
-    height: 8px;
-    width: 100%;
-    margin: 10px 0;
-    overflow: hidden;
-}
-
-#floatingProgressBar::after {
-    content: '';
-    display: block;
     height: 100%;
-    background: white;
-    border-radius: 10px;
     width: 0%;
     transition: width 0.5s ease;
+    display: block;
+    position: relative;
 }
 
 #floatingProgressText {
@@ -271,7 +264,8 @@
     min-width: 350px;
     max-width: 420px;
     flex: 0 0 auto;
-    height: 380px;
+    height: auto;
+    min-height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -298,14 +292,15 @@
     filter: blur(0px);
 }
 @media (max-width: 700px) {
-    #carouselEstrang > div { min-width: 98vw; max-width: 99vw; height: 320px; }
+    #carouselEstrang > div { min-width: 98vw; max-width: 99vw; height: auto; min-height: 280px; }
 }
 .technique-card {
-    height: 420px;
+    height: auto;
+    min-height: 320px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 .technique-card .video-container {
     flex-shrink: 0;
@@ -314,8 +309,8 @@
 .technique-card {
     min-width: 450px !important;
     max-width: 520px !important;
-    min-height: 500px !important;
-    padding: 1.5rem !important;
+    min-height: 320px !important;
+    padding: 1rem !important;
     display: flex;
     flex-direction: column;
     overflow: visible;
@@ -324,10 +319,10 @@
 .technique-card .bg-green-50,
 .technique-card .bg-judo-brownLight,
 .technique-card .bg-brown-50 {
-    margin-top: auto;
+    margin-top: 0.5rem;
     margin-bottom: 0;
     flex-shrink: 0;
-    min-height: 60px;
+    min-height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -362,9 +357,9 @@
     /* Barra flutuante mobile - PERFEITAMENTE CENTRALIZADA */
     #floatingProgress {
         position: fixed !important;
-        top: 50% !important;
+        top: 20px !important;
         left: 50% !important;
-        transform: translate(-50%, -50%) !important;
+        transform: translateX(-50%) !important;
         width: 90% !important;
         max-width: 300px !important;
         min-width: 250px !important;
@@ -375,9 +370,14 @@
     }
     
     #floatingProgressBar {
-        height: 6px !important;
+        height: 100% !important;
         border-radius: 8px !important;
-        margin: 12px 0 !important;
+        margin: 0 !important;
+        background: linear-gradient(90deg, #D97706, #92400E) !important;
+        width: 0% !important;
+        transition: width 0.5s ease !important;
+        display: block !important;
+        position: relative !important;
     }
     
     #floatingProgressText {

@@ -184,9 +184,11 @@
 /* === BARRA FLUTUANTE DE PROGRESSO === */
 #floatingProgress {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 1rem;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: fit-content;
     background: rgba(34, 197, 94, 0.95);
     backdrop-filter: blur(10px);
     border-radius: 20px;
@@ -204,22 +206,13 @@
 }
 
 #floatingProgressBar {
-    background: rgba(255, 255, 255, 0.3);
+    background: linear-gradient(90deg, #10B981, #059669);
     border-radius: 10px;
-    height: 8px;
-    width: 100%;
-    margin: 10px 0;
-    overflow: hidden;
-}
-
-#floatingProgressBar::after {
-    content: '';
-    display: block;
     height: 100%;
-    background: white;
-    border-radius: 10px;
     width: 0%;
     transition: width 0.5s ease;
+    display: block;
+    position: relative;
 }
 
 #floatingProgressText {
@@ -487,9 +480,9 @@
     /* Barra flutuante mobile - PERFEITAMENTE CENTRALIZADA */
     #floatingProgress {
         position: fixed !important;
-        top: 50% !important;
+        top: 20px !important;
         left: 50% !important;
-        transform: translate(-50%, -50%) !important;
+        transform: translateX(-50%) !important;
         width: 90% !important;
         max-width: 300px !important;
         min-width: 250px !important;
@@ -500,9 +493,14 @@
     }
     
     #floatingProgressBar {
-        height: 6px !important;
+        height: 100% !important;
         border-radius: 8px !important;
-        margin: 12px 0 !important;
+        margin: 0 !important;
+        background: linear-gradient(90deg, #10B981, #059669) !important;
+        width: 0% !important;
+        transition: width 0.5s ease !important;
+        display: block !important;
+        position: relative !important;
     }
     
     #floatingProgressText {

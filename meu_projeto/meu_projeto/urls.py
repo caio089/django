@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from dashboard import views as dashboard_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -37,6 +38,7 @@ urlpatterns = [
     path('regras/', include('regras.urls')),
     path('payments/', include('payments.urls')),
     path('dashboard/', include('dashboard.urls')),
+    path('admin-dashboard/', dashboard_views.dashboard_admin, name='admin_dashboard_direct'),  # Atalho direto
 ]
 
 # Configuração para servir arquivos estáticos durante o desenvolvimento

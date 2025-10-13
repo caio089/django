@@ -9268,3 +9268,536 @@ Sistema de pagamentos inicializado com sucesso
 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+Sistema de pagamentos inicializado com sucesso
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 4
+  - Assinaturas ativas: 4
+  - Pagamentos: 3
+  - Usuários premium: 4
+  - Usuários: 6
+  - Assinaturas: 4
+  - Assinaturas ativas: 4
+  - Pagamentos: 3
+  - Usuários premium: 4
+"GET / HTTP/1.1" 200 41225
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6522
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 63271
+"GET /pagina3/ HTTP/1.1" 200 86737
+"GET /static/pag3/js/script.js HTTP/1.1" 304 0
+"GET /static/pag3/css/styles.css HTTP/1.1" 200 47525
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6633
+"GET /pagina3/ HTTP/1.1" 200 86737
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6633
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 85631
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6633
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6633
+"GET /pagina5/ HTTP/1.1" 200 106059
+"GET /static/pag5/css/styles.css HTTP/1.1" 200 24801
+"GET /static/pag5/js/lazy-video.js HTTP/1.1" 304 0
+"GET /static/pag5/js/scripts.js HTTP/1.1" 200 8057
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6633
+"GET /pagina5/ HTTP/1.1" 200 106059
+"GET /static/pag5/css/styles.css HTTP/1.1" 200 25227
+"GET /static/pag5/js/scripts.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6633
+"GET /pagina5/ HTTP/1.1" 200 106059
+"GET /static/pag5/css/styles.css HTTP/1.1" 200 25360
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6633
+  - Usuários: 6
+  - Assinaturas: 4
+  - Assinaturas ativas: 4
+  - Pagamentos: 3
+  - Usuários premium: 4
+  - Usuários: 6
+  - Assinaturas: 4
+  - Assinaturas ativas: 4
+  - Pagamentos: 3
+  - Usuários premium: 4
+"GET /pagina5/ HTTP/1.1" 200 106059
+"GET /static/pag5/css/styles.css HTTP/1.1" 200 25397
+"GET /static/pag5/js/scripts.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6633
+"GET /pagina5/ HTTP/1.1" 200 106059
+"GET /static/pag5/css/styles.css HTTP/1.1" 200 25395
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6633
+"GET /pagina5/ HTTP/1.1" 200 106059
+"GET /static/pag5/css/styles.css HTTP/1.1" 200 24952
+"GET /static/pag5/js/scripts.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6633
+"GET /pagina5/ HTTP/1.1" 200 106059
+"GET /static/pag5/css/styles.css HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6633
+"GET /pagina5/ HTTP/1.1" 200 105949
+"GET /static/pag5/css/styles.css HTTP/1.1" 304 0
+"GET /static/pag5/js/scripts.js HTTP/1.1" 200 8321
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6633
+"GET /pagina5/ HTTP/1.1" 200 105949
+"GET /static/pag5/css/styles.css HTTP/1.1" 200 25022
+"GET /static/pag5/js/scripts.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6633
+"GET /index/ HTTP/1.1" 200 63271
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6633
+"GET /pagina6/ HTTP/1.1" 200 158847
+"GET /static/pag6/js/scripts.js HTTP/1.1" 200 8245
+"GET /static/pag6/css/styles.css HTTP/1.1" 200 32155
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6633
+"GET /index/ HTTP/1.1" 200 63271
+Not Found: /index/url('https://fonts.googleapis.com/css2
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 7087
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6633
+"GET /pagina7/ HTTP/1.1" 200 203613
+"GET /static/pag7/css/styles.css HTTP/1.1" 200 21552
+"GET /static/pag7/js/scripts.js HTTP/1.1" 200 9501
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6633
+"GET /pagina7/ HTTP/1.1" 200 203613
+"GET /static/pag7/js/scripts.js HTTP/1.1" 304 0
+"GET /static/pag7/css/styles.css HTTP/1.1" 200 21571
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6633
+"GET /pagina7/ HTTP/1.1" 200 203688
+"GET /static/pag7/css/styles.css HTTP/1.1" 200 21611
+"GET /static/pag7/js/scripts.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6633
+Erro ao verificar perfis ausentes: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Erro ao verificar inconsistências: connection already closed
+Erro ao verificar assinaturas expiradas: connection already closed
+Erro na verificação de integridade: connection already closed
+Erro na verificação de saúde: connection already closed
+"GET /pagina7/ HTTP/1.1" 200 204357
+Erro ao verificar perfis ausentes: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Erro ao verificar inconsistências: connection already closed
+Erro ao verificar assinaturas expiradas: connection already closed
+Erro na verificação de integridade: connection already closed
+Erro na verificação de saúde: connection already closed
+"GET /static/pag7/css/styles.css HTTP/1.1" 200 21611
+"GET /static/pag7/js/scripts.js HTTP/1.1" 200 9578
+"GET /index/ HTTP/1.1" 200 63271
+"GET /pagina6/ HTTP/1.1" 200 158847
+"GET /static/pag6/js/scripts.js HTTP/1.1" 304 0
+"GET /static/pag6/css/styles.css HTTP/1.1" 304 0
+"GET /index/ HTTP/1.1" 200 63271
+"GET /pagina5/ HTTP/1.1" 200 105949
+"GET /static/pag5/css/styles.css HTTP/1.1" 200 25022
+"GET /static/pag5/js/scripts.js HTTP/1.1" 304 0
+"GET /index/ HTTP/1.1" 200 63271
+"GET /pagina4/ HTTP/1.1" 200 108274
+"GET /pagina7/ HTTP/1.1" 200 204357
+"GET /static/pag7/js/scripts.js HTTP/1.1" 304 0
+"GET /static/pag7/css/styles.css HTTP/1.1" 200 21634
+"GET /index/ HTTP/1.1" 200 63271
+"GET /pagina6/ HTTP/1.1" 200 158847
+"GET /static/pag6/css/styles.css HTTP/1.1" 200 32197
+"GET /index/ HTTP/1.1" 200 63271
+"GET /pagina5/ HTTP/1.1" 200 105949
+"GET /static/pag5/css/styles.css HTTP/1.1" 200 25045
+"GET /static/pag5/js/scripts.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6633
+"GET /pagina5/ HTTP/1.1" 200 105949
+"GET /static/pag5/css/styles.css HTTP/1.1" 200 24936
+"GET /static/pag5/js/scripts.js HTTP/1.1" 304 0
+"GET /index/ HTTP/1.1" 200 63271
+"GET /pagina5/ HTTP/1.1" 200 105949
+"GET /static/pag5/css/styles.css HTTP/1.1" 200 24936
+"GET /index/ HTTP/1.1" 200 63271
+"GET /pagina6/ HTTP/1.1" 200 158847
+"GET /static/pag6/js/scripts.js HTTP/1.1" 304 0
+"GET /static/pag6/css/styles.css HTTP/1.1" 200 32034
+"GET /pagina6/ HTTP/1.1" 200 158847
+"GET /static/pag6/css/styles.css HTTP/1.1" 200 31991
+"GET /index/ HTTP/1.1" 200 63271
+"GET /pagina6/ HTTP/1.1" 200 158847
+"GET /static/pag6/css/styles.css HTTP/1.1" 304 0
+"GET /index/ HTTP/1.1" 200 63271
+"GET /pagina5/ HTTP/1.1" 200 105949
+"GET /static/pag5/js/scripts.js HTTP/1.1" 304 0
+"GET /static/pag5/css/styles.css HTTP/1.1" 200 24911
+"GET /index/ HTTP/1.1" 200 63271
+"GET /pagina7/ HTTP/1.1" 200 204357
+"GET /static/pag7/js/scripts.js HTTP/1.1" 304 0
+"GET /static/pag7/css/styles.css HTTP/1.1" 200 21500
+"GET /index/ HTTP/1.1" 200 63271
+"GET /pagina7/ HTTP/1.1" 200 204357
+"GET /static/pag7/css/styles.css HTTP/1.1" 304 0
+"GET /pagina7/ HTTP/1.1" 200 202515
+"GET /static/pag7/css/styles.css HTTP/1.1" 304 0
+"GET /static/pag7/js/scripts.js HTTP/1.1" 304 0
+Erro na verificação de saúde: connection already closed
+Erro na verificação de saúde: connection already closed
+Erro na sincronização periódica: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Erro na verificação de saúde: connection already closed
+Erro na sincronização periódica: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Erro na verificação de saúde: connection already closed
+Erro na verificação de saúde: connection already closed
+Erro na verificação de saúde: connection already closed
+Erro na sincronização periódica: connection already closed
+Erro na sincronização periódica: connection already closed
+"GET /pagina7/ HTTP/1.1" 200 195793
+"GET /static/pag7/js/scripts.js HTTP/1.1" 304 0
+"GET /static/pag7/css/styles.css HTTP/1.1" 304 0
+"GET /pagina7/ HTTP/1.1" 200 196118
+Erro na verificação de saúde: connection already closed
+Erro na verificação de saúde: connection already closed
+"GET /pagina7/ HTTP/1.1" 200 194171
+"GET /index/ HTTP/1.1" 200 63271
+"GET /pagina1/ HTTP/1.1" 200 99545
+"GET /pagina1/carregar-progresso/?pagina=pagina1 HTTP/1.1" 200 34
+"POST /pagina1/salvar-progresso/ HTTP/1.1" 200 358
+"GET /index/ HTTP/1.1" 200 63271
+"GET /pagina2/ HTTP/1.1" 200 124085
+"GET /pagina2/carregar-progresso/?pagina=pagina2 HTTP/1.1" 200 34
+"GET /index/ HTTP/1.1" 200 63271
+- Broken pipe from ('127.0.0.1', 49959)
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 4
+  - Assinaturas ativas: 4
+  - Pagamentos: 3
+  - Usuários premium: 4
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 4
+  - Assinaturas ativas: 4
+  - Pagamentos: 3
+  - Usuários premium: 4
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 4
+  - Assinaturas ativas: 4
+  - Pagamentos: 3
+  - Usuários premium: 4
+Sistema de pagamentos inicializado com sucesso
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 4
+  - Assinaturas ativas: 4
+  - Pagamentos: 3
+  - Usuários premium: 4
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 4
+  - Assinaturas ativas: 4
+  - Pagamentos: 3
+  - Usuários premium: 4
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 4
+  - Assinaturas ativas: 4
+  - Pagamentos: 3
+  - Usuários premium: 4
+Sistema de pagamentos inicializado com sucesso
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 4
+  - Assinaturas ativas: 4
+  - Pagamentos: 3
+  - Usuários premium: 4
+"GET /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 63271
+"GET /static/faixa-cinza.png HTTP/1.1" 304 0
+"GET /static/faixa-azul.png HTTP/1.1" 304 0
+"GET /static/faixa-amarela.png HTTP/1.1" 304 0
+"GET /static/faixa-laranja.png HTTP/1.1" 304 0
+"GET /static/faixa-verde.png HTTP/1.1" 304 0
+"GET /static/faixa-roxa.png HTTP/1.1" 304 0
+"GET /static/faixa-marrom.png HTTP/1.1" 304 0
+"GET /dashboard HTTP/1.1" 301 0
+"GET /dashboard/ HTTP/1.1" 200 25445
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 4
+  - Assinaturas ativas: 4
+  - Pagamentos: 3
+  - Usuários premium: 4
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 4
+  - Assinaturas ativas: 4
+  - Pagamentos: 3
+  - Usuários premium: 4
+"GET /dashboard/ HTTP/1.1" 200 37173
+"POST /dashboard/delete-user/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 35685
+Erro na auto-sincronização de ccamposs18@gmail.com: User has no profile.
+"POST /dashboard/delete-user/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 32210
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 4
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+Erro na auto-sincronização de ccamposs1010@gmail.com: User has no profile.
+"POST /dashboard/delete-user/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 28723
+Erro na verificação de saúde: connection already closed
+Erro na auto-sincronização de raqueline_coracao@hotmail.com: User has no profile.
+"POST /dashboard/delete-user/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 25186
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 2
+  - Assinaturas: 1
+  - Assinaturas ativas: 1
+  - Pagamentos: 1
+  - Usuários premium: 1
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 2
+  - Assinaturas: 1
+  - Assinaturas ativas: 1
+  - Pagamentos: 1
+  - Usuários premium: 1
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 2
+  - Assinaturas: 1
+  - Assinaturas ativas: 1
+  - Pagamentos: 1
+  - Usuários premium: 1
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\urls.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 2
+  - Assinaturas: 1
+  - Assinaturas ativas: 1
+  - Pagamentos: 1
+  - Usuários premium: 1
+Sistema de pagamentos inicializado com sucesso
+"GET /dashboard/ HTTP/1.1" 200 25366
+"GET /dashboard/logout/ HTTP/1.1" 302 0
+"GET /dashboard/login/ HTTP/1.1" 200 6063
+- Broken pipe from ('127.0.0.1', 51123)
+- Broken pipe from ('127.0.0.1', 59628)
+"POST /dashboard/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 25564
+"GET / HTTP/1.1" 200 41225
+Internal Server Error: /esqueci-senha/
+Traceback (most recent call last):
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        template_name,
+        ^^^^^^^^^^^^^^
+        skip=history,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\engine.py", line 163, in find_template
+    raise TemplateDoesNotExist(name, tried=tried)
+django.template.exceptions.TemplateDoesNotExist: home/base.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\home\views_recuperacao.py", line 54, in esqueci_senha
+    return render(request, 'home/esqueci_senha.html')
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\backends\django.py", line 109, in render
+    reraise(exc, self.backend)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\backends\django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: home/base.html
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+           ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        template_name,
+        ^^^^^^^^^^^^^^
+        skip=history,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\engine.py", line 163, in find_template
+    raise TemplateDoesNotExist(name, tried=tried)
+django.template.exceptions.TemplateDoesNotExist: home/base.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\home\views_recuperacao.py", line 60, in esqueci_senha
+    return render(request, 'home/esqueci_senha.html')
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\backends\django.py", line 109, in render
+    reraise(exc, self.backend)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\backends\django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: home/base.html
+"GET /esqueci-senha/ HTTP/1.1" 500 205826
+"GET /esqueci-senha/ HTTP/1.1" 200 3794
+"POST /esqueci-senha/ HTTP/1.1" 302 0
+"GET /verificar-codigo/ccamposs2007@gmail.com/ HTTP/1.1" 200 4913
+"POST /verificar-codigo/ccamposs2007@gmail.com/ HTTP/1.1" 302 0
+"GET /redefinir-senha/ccamposs2007@gmail.com/ HTTP/1.1" 200 7312
+"POST /redefinir-senha/ccamposs2007@gmail.com/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 62324
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 2
+  - Assinaturas: 1
+  - Assinaturas ativas: 1
+  - Pagamentos: 1
+  - Usuários premium: 1
+"GET /index/ HTTP/1.1" 200 62277
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 2
+  - Assinaturas: 1
+  - Assinaturas ativas: 1
+  - Pagamentos: 1
+  - Usuários premium: 1
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 2
+  - Assinaturas: 1
+  - Assinaturas ativas: 1
+  - Pagamentos: 1
+  - Usuários premium: 1
+Erro na sincronização periódica: connection already closed
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\payments\views.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 2
+  - Assinaturas: 1
+  - Assinaturas ativas: 1
+  - Pagamentos: 1
+  - Usuários premium: 1
