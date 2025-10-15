@@ -703,7 +703,7 @@
                         <input id="nome" type="text" name="nome" placeholder=" " required aria-label="Nome completo" 
                                class="input peer w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-judo-blue focus:ring-4 focus:ring-judo-blue/20 outline-none bg-white/95 text-judo-black placeholder-transparent text-sm transition-all duration-300 shadow-lg hover:shadow-xl" 
                                value="{{ register_form.nome.value|default:'' }}" />
-                        <label for="nome" class="floating-label absolute left-12 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-200 text-xs font-medium">NOME COMPLETO</label>
+                        <label for="nome" class="floating-label absolute left-12 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-200 text-xs font-medium">NOME DO ALUNO</label>
                         <span class="absolute left-4 top-1/2 -translate-y-1/2 text-judo-blue pointer-events-none text-base">
                             <i class="fa-regular fa-user" aria-hidden="true"></i>
                         </span>
@@ -715,7 +715,7 @@
                         <input id="idade" type="number" name="idade" placeholder=" " min="3" max="120" required aria-label="Idade" 
                                class="input peer w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-judo-blue focus:ring-4 focus:ring-judo-blue/20 outline-none bg-white/95 text-judo-black placeholder-transparent text-sm transition-all duration-300 shadow-lg hover:shadow-xl" 
                                value="{{ register_form.idade.value|default:'' }}" />
-                        <label for="idade" class="floating-label absolute left-12 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-200 text-xs font-medium">IDADE</label>
+                        <label for="idade" class="floating-label absolute left-12 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 transition-all duration-200 text-xs font-medium">IDADE DO ALUNO</label>
                         <span class="absolute left-4 top-1/2 -translate-y-1/2 text-judo-blue pointer-events-none text-base">
                             <i class="fa-solid fa-calendar" aria-hidden="true"></i>
                         </span>
@@ -786,18 +786,6 @@
     </div>
     
     <script>
-        // Mostrar/ocultar senha
-        const senhaInput = document.getElementById('senha');
-        const togglePassword = document.getElementById('togglePassword');
-        if (senhaInput && togglePassword) {
-            togglePassword.addEventListener('click', () => {
-                const type = senhaInput.type === 'password' ? 'text' : 'password';
-                senhaInput.type = type;
-                togglePassword.innerHTML = type === 'password' ? '<i class="fa-regular fa-eye"></i>' : '<i class="fa-regular fa-eye-slash"></i>';
-                togglePassword.setAttribute('aria-label', type === 'password' ? 'Mostrar senha' : 'Ocultar senha');
-            });
-        }
-
         // Validação de formulário
         function showError(fieldId, message) {
             const field = document.getElementById(fieldId);

@@ -13,7 +13,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'chave_de_teste_local')
 DEBUG = os.getenv('DEBUG', 'True') == 'True'  # True local, False no Render via .env
 
 # Hosts
-ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,testserver,www.dojoon.com.br,dojoon.com.br,dojoon.onrender.com').split(',')]
+ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,testserver,www.dojoon.com.br,dojoon.com.br,dojo-on.onrender.com,dojoon.onrender.com').split(',')]
 
 # CSRF Trusted Origins
 CSRF_TRUSTED_ORIGINS = [
@@ -27,6 +27,10 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8000',
     'http://127.0.0.1:8000',
 ]
+
+# Configurações adicionais para domínios customizados
+USE_TZ = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # CSRF Settings
 CSRF_COOKIE_SECURE = not DEBUG  # True em produção (HTTPS)
@@ -45,6 +49,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'meu_projeto.middleware.WWWRedirectMiddleware',  # Redirecionamento www
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -74,15 +79,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'meu_projeto.wsgi.application'
 
-# Database - Configuração para Supabase PostgreSQL e Render
+# Database - Configuração para Supabase PostgreSQL (local e produção)
 import dj_database_url
 
-# Prioridade 1: DATABASE_URL (Supabase/Render)
+# Prioridade 1: DATABASE_URL (Supabase/Render) - funciona em ambos os ambientes
 if os.getenv('DATABASE_URL'):
     DATABASES = {
         'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
     }
-# Prioridade 2: Configuração individual (Supabase)
+# Prioridade 2: Configuração individual (Supabase) - funciona em ambos os ambientes
 elif os.getenv('DB_HOST'):
     DATABASES = {
         'default': {
@@ -97,7 +102,7 @@ elif os.getenv('DB_HOST'):
             },
         }
     }
-# Prioridade 3: SQLite (apenas se não houver nenhuma configuração)
+# Prioridade 3: SQLite (apenas se não houver configuração do Supabase)
 else:
     DATABASES = {
         'default': {
@@ -163,6 +168,10 @@ if not DEBUG:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    
+    # Configurações específicas para domínios customizados
+    SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
+    SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin'
 
 # =====================================================
 # CONFIGURAÇÕES DO MERCADO PAGO

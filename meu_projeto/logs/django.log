@@ -9801,3 +9801,408 @@ Sistema de pagamentos inicializado com sucesso
   - Assinaturas ativas: 1
   - Pagamentos: 1
   - Usuários premium: 1
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 5
+  - Usuários premium: 3
+"GET /index/ HTTP/1.1" 200 63190
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 5
+  - Usuários premium: 3
+"GET /redefinir-senha/ccamposs2007@gmail.com/ HTTP/1.1" 200 7576
+"GET /verificar-codigo/ccamposs2007@gmail.com/ HTTP/1.1" 200 4632
+"GET / HTTP/1.1" 200 42677
+"GET / HTTP/1.1" 200 42677
+"GET / HTTP/1.1" 200 42677
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 6712
+"GET / HTTP/1.1" 200 40537
+"GET / HTTP/1.1" 200 40537
+"GET / HTTP/1.1" 200 40537
+"GET / HTTP/1.1" 200 40549
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 63190
+"GET /pagina3/ HTTP/1.1" 200 84449
+"GET /static/pag3/js/script.js HTTP/1.1" 304 0
+"GET /static/pag3/css/styles.css HTTP/1.1" 200 49163
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 84250
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 84254
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+- Broken pipe from ('127.0.0.1', 60189)
+"GET /pagina3/ HTTP/1.1" 200 84049
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 84049
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 84049
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 84049
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 83844
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 83645
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /index/ HTTP/1.1" 200 63190
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 5
+  - Usuários premium: 3
+  - Usuários: 6
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 5
+  - Usuários premium: 3
+Internal Server Error: /index/logout/
+Traceback (most recent call last):
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\sessions\backends\base.py", line 244, in _get_session
+    return self._session_cache
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\psycopg2\__init__.py", line 135, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: could not translate host name "aws-1-us-east-2.pooler.supabase.com" to address: Name or service not known
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\payments\middleware_payment_sync.py", line 26, in __call__
+    if request.user.is_authenticated:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\functional.py", line 251, in inner
+    self._setup()
+    ~~~~~~~~~~~^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\functional.py", line 404, in _setup
+    self._wrapped = self._setupfunc()
+                    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\middleware.py", line 40, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ~~~~~~~~^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\middleware.py", line 20, in get_user
+    request._cached_user = auth.get_user(request)
+                           ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\__init__.py", line 304, in get_user
+    user_id = _get_user_session_key(request)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\__init__.py", line 95, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+                                               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\sessions\backends\base.py", line 55, in __getitem__
+    return self._session[key]
+           ^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\sessions\backends\base.py", line 249, in _get_session
+    self._session_cache = self.load()
+                          ~~~~~~~~~^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\sessions\backends\db.py", line 55, in load
+    s = self._get_session_from_db()
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\sessions\backends\db.py", line 34, in _get_session_from_db
+    return self.model.objects.get(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        session_key=self.session_key, expire_date__gt=timezone.now()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 629, in get
+    num = len(clone)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 366, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1621, in execute_sql
+    cursor = self.connection.cursor()
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 320, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 296, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 278, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\psycopg2\__init__.py", line 135, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+django.db.utils.OperationalError: could not translate host name "aws-1-us-east-2.pooler.supabase.com" to address: Name or service not known
+
+"POST /index/logout/ HTTP/1.1" 500 217929
+Internal Server Error: /index/logout/
+Traceback (most recent call last):
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\sessions\backends\base.py", line 244, in _get_session
+    return self._session_cache
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\psycopg2\__init__.py", line 135, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: could not translate host name "aws-1-us-east-2.pooler.supabase.com" to address: Name or service not known
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\payments\middleware_payment_sync.py", line 26, in __call__
+    if request.user.is_authenticated:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\functional.py", line 251, in inner
+    self._setup()
+    ~~~~~~~~~~~^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\functional.py", line 404, in _setup
+    self._wrapped = self._setupfunc()
+                    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\middleware.py", line 40, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ~~~~~~~~^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\middleware.py", line 20, in get_user
+    request._cached_user = auth.get_user(request)
+                           ~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\__init__.py", line 304, in get_user
+    user_id = _get_user_session_key(request)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\__init__.py", line 95, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+                                               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\sessions\backends\base.py", line 55, in __getitem__
+    return self._session[key]
+           ^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\sessions\backends\base.py", line 249, in _get_session
+    self._session_cache = self.load()
+                          ~~~~~~~~~^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\sessions\backends\db.py", line 55, in load
+    s = self._get_session_from_db()
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\sessions\backends\db.py", line 34, in _get_session_from_db
+    return self.model.objects.get(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        session_key=self.session_key, expire_date__gt=timezone.now()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 629, in get
+    num = len(clone)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 366, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 1949, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\models\sql\compiler.py", line 1621, in execute_sql
+    cursor = self.connection.cursor()
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 320, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 296, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 278, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\psycopg2\__init__.py", line 135, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+django.db.utils.OperationalError: could not translate host name "aws-1-us-east-2.pooler.supabase.com" to address: Name or service not known
+
+"GET /index/logout/ HTTP/1.1" 500 217072
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 4
+  - Assinaturas: 4
+  - Assinaturas ativas: 4
+  - Pagamentos: 4
+  - Usuários premium: 2
+"GET /index/logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 40549
+"GET /register/ HTTP/1.1" 200 40541
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Sistema de pagamentos inicializado com sucesso
+Watching for file changes with StatReloader
+  - Usuários: 4
+  - Assinaturas: 4
+  - Assinaturas ativas: 4
+  - Pagamentos: 4
+  - Usuários premium: 2
+"POST /login/ HTTP/1.1" 200 40886
+"POST /login/ HTTP/1.1" 200 40886
+"POST /login/ HTTP/1.1" 200 40886
+"POST /login/ HTTP/1.1" 200 40886
+"POST /login/ HTTP/1.1" 200 40886
+"POST /login/ HTTP/1.1" 200 40870
+"POST /login/ HTTP/1.1" 200 40870
+"GET / HTTP/1.1" 200 40549
+"POST /login/ HTTP/1.1" 200 40886
+"GET /register/ HTTP/1.1" 200 40541
+Erro ao verificar perfis ausentes: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+Erro ao verificar inconsistências: connection already closed
+Erro ao verificar assinaturas expiradas: connection already closed
+Erro na verificação de integridade: connection already closed
+Erro na verificação de saúde: connection already closed
+Erro na sincronização periódica: could not translate host name "aws-1-us-east-2.pooler.supabase.com" to address: Name or service not known
+
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 3
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 3
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 3
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 3
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 3
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 3
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 3
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\middleware.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 3
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Sistema de pagamentos inicializado com sucesso
+  - Usuários: 3
+  - Assinaturas: 3
+  - Assinaturas ativas: 3
+  - Pagamentos: 3
+  - Usuários premium: 3
