@@ -57,11 +57,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Total de técnicas da Faixa Marrom:
     // - Nage Waza (Projeções): 7 técnicas
     // - Imobilizações: 5 técnicas
-    // - Chave de Braço: 5 técnicas
-    // - Estrangulamento: 7 técnicas
-    // - Ataque Combinado: 10 combinações
+    // - Chave de Braço: 4 técnicas (removido: HARA-GARAME)
+    // - Estrangulamento: 6 técnicas (removido: UDO-JIME, restaurado: TOMO-JIME)
+    // - Ataque Combinado: 9 combinações (removido: IPPON-SEOI-NAGUE → TAMA-GURUMA)
     // - Contra-Ataque: 9 técnicas (removido: SASSAE-TSURI-KOMI-ASHI → MAE-TE-GURUMA)
-    // TOTAL: 43 checkboxes
+    // TOTAL: 40 checkboxes
     
     const progressBar = document.getElementById('progressBar');
     const progressText = document.getElementById('progressText');

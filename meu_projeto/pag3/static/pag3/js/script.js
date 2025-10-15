@@ -391,17 +391,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 const rect = this.getBoundingClientRect();
                 createParticles(rect.left + rect.width / 2, rect.top + rect.height / 2);
                 
-                // Mostrar indicador
-                const scrollIndicator = document.getElementById('scrollIndicator');
-                const scrollText = document.getElementById('scrollText');
-                scrollText.textContent = 'Em desenvolvimento...';
-                scrollIndicator.classList.add('show');
-                
                 // Remover efeitos após animação
                 setTimeout(() => {
                     this.classList.remove('clicked');
-                    scrollIndicator.classList.remove('show');
-                }, 1500);
+                }, 500);
             }
         });
     });

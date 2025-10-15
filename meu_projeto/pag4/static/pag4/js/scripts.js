@@ -37,22 +37,84 @@ document.addEventListener('DOMContentLoaded', function() {
         backToTopBtn: document.getElementById('backToTop')
     };
     
-    const checkboxes = {
-        proj: document.querySelectorAll('.proj-checkbox'),
-        imob: document.querySelectorAll('.imob-checkbox'),
-        chave: document.querySelectorAll('.chave-checkbox'),
-        renrakuenka: document.querySelectorAll('.renrakuenka-checkbox'),
-        kaeshiWaza: document.querySelectorAll('.kaeshi-waza-checkbox')
-    };
+    // Remover objeto checkboxes estático - usar apenas allCheckboxes dinâmico
     
     let hasShownCongratulations = false;
     
     // ===== SISTEMA DE PROGRESSO OTIMIZADO =====
     function updateProgress() {
-        const totalQuestions = Object.values(checkboxes).reduce((total, checkboxList) => total + checkboxList.length, 0);
-        const completedQuestions = Object.values(checkboxes).reduce((total, checkboxList) => 
-            total + Array.from(checkboxList).filter(cb => cb.checked).length, 0);
-        const progress = (completedQuestions / totalQuestions) * 100;
+        // Buscar TODOS os checkboxes da página, incluindo os ocultos
+        const allCheckboxes = {
+            proj: document.querySelectorAll('.proj-checkbox'),
+            imob: document.querySelectorAll('.imob-checkbox'),
+            chave: document.querySelectorAll('.chave-checkbox'),
+            shime: document.querySelectorAll('.shime-checkbox'),
+            henkakuenka: document.querySelectorAll('.henkakuenka-checkbox'),
+            kaeshiWaza: document.querySelectorAll('.kaeshi-waza-checkbox')
+        };
+        
+        console.log('=== PROGRESS DEBUG ===');
+        console.log('Henkakuenka checkboxes found:', allCheckboxes.henkakuenka.length);
+        
+        // Debug específico para henkakuenka
+        if (allCheckboxes.henkakuenka.length === 0) {
+            console.log('❌ PROBLEMA: Nenhum checkbox henkakuenka encontrado!');
+            console.log('Tentando buscar novamente...');
+            const henkakuenkaCheckboxes = document.querySelectorAll('.henkakuenka-checkbox');
+            console.log('Nova busca encontrou:', henkakuenkaCheckboxes.length);
+        } else {
+            console.log('✅ Henkakuenka checkboxes encontrados:', allCheckboxes.henkakuenka.length);
+        }
+        
+        // Contar total e completados
+        let totalQuestions = 0;
+        let completedQuestions = 0;
+        
+        Object.keys(allCheckboxes).forEach(category => {
+            const categoryCheckboxes = allCheckboxes[category];
+            totalQuestions += categoryCheckboxes.length;
+            completedQuestions += Array.from(categoryCheckboxes).filter(cb => cb.checked).length;
+        });
+        
+        // Calcular progresso (cada checkbox = 100/totalQuestions %)
+        const progressPerCheckbox = totalQuestions > 0 ? 100 / totalQuestions : 0;
+        const progress = completedQuestions * progressPerCheckbox;
+        
+        console.log('=== PROGRESS DEBUG ===');
+        console.log('Total Questions:', totalQuestions);
+        console.log('Completed Questions:', completedQuestions);
+        console.log('Progress per checkbox:', progressPerCheckbox.toFixed(2) + '%');
+        console.log('Current Progress:', Math.round(progress) + '%');
+        
+        // Debug por categoria
+        console.log('=== CATEGORY DEBUG ===');
+        Object.keys(allCheckboxes).forEach(category => {
+            const categoryCheckboxes = allCheckboxes[category];
+            const checkedCount = Array.from(categoryCheckboxes).filter(cb => cb.checked).length;
+            const remaining = categoryCheckboxes.length - checkedCount;
+            console.log(`${category}: ${checkedCount}/${categoryCheckboxes.length} checked (${remaining} remaining)`);
+            
+            // Debug específico para henkakuenka
+            if (category === 'henkakuenka') {
+                console.log('=== HENKAKUENKA DETAILED DEBUG ===');
+                categoryCheckboxes.forEach((checkbox, index) => {
+                    console.log(`Henkakuenka ${index + 1}:`, {
+                        element: checkbox,
+                        checked: checkbox.checked,
+                        visible: checkbox.offsetParent !== null,
+                        className: checkbox.className
+                    });
+                });
+            }
+        });
+        
+        // Mostrar o que falta para completar
+        const totalRemaining = totalQuestions - completedQuestions;
+        if (totalRemaining > 0) {
+            console.log(`🎯 Faltam ${totalRemaining} checkboxes para completar 100%!`);
+        } else {
+            console.log('🎉 Todos os checkboxes estão marcados!');
+        }
         
         elements.progressBar.style.width = progress + '%';
         elements.progressText.textContent = Math.round(progress) + '%';
@@ -89,17 +151,70 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // ===== EVENT LISTENERS CONSOLIDADOS =====
-    function addCheckboxListeners() {
-        Object.values(checkboxes).forEach(checkboxList => {
-            checkboxList.forEach(checkbox => {
-                checkbox.addEventListener('change', updateProgress);
+    // ===== EVENT LISTENERS SIMPLIFICADOS =====
+    // Event listener universal para TODOS os checkboxes
+    document.addEventListener('change', function(e) {
+        if (e.target.type === 'checkbox') {
+            console.log('Checkbox changed:', e.target.className, e.target.checked);
+            updateProgress();
+        }
+    });
+    
+    // Event listener específico para henkakuenka checkboxes
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('henkakuenka-checkbox')) {
+            console.log('=== HENKAKUENKA CLICK ===');
+            console.log('Antes:', e.target.checked);
+            
+            // Aguardar um pouco para o estado mudar
+            setTimeout(() => {
+                console.log('Depois:', e.target.checked);
+                updateProgress();
+            }, 10);
+        }
+    });
+    
+    // Event listener adicional com mousedown para garantir funcionamento
+    document.addEventListener('mousedown', function(e) {
+        if (e.target.classList.contains('henkakuenka-checkbox')) {
+            console.log('=== HENKAKUENKA MOUSEDOWN ===');
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Forçar toggle e atualização
+            setTimeout(() => {
+                e.target.checked = !e.target.checked;
+                updateProgress();
+            }, 10);
+        }
+    });
+    
+    // Event listener adicional para garantir que funcione mesmo com seção oculta
+    document.addEventListener('change', function(e) {
+        if (e.target.classList.contains('henkakuenka-checkbox')) {
+            console.log('=== HENKAKUENKA CHANGE ===');
+            console.log('Checkbox changed:', e.target.checked);
+            updateProgress();
+        }
+    });
+    
+    // Aguardar um pouco para garantir que todos os elementos estejam carregados
+    setTimeout(() => {
+        updateProgress();
+        
+        // Debug para verificar se os checkboxes estão sendo encontrados
+        console.log('=== CHECKBOX DEBUG ===');
+        const henkakuenkaCheckboxes = document.querySelectorAll('.henkakuenka-checkbox');
+        console.log('Henkakuenka checkboxes found:', henkakuenkaCheckboxes.length);
+        
+        henkakuenkaCheckboxes.forEach((checkbox, index) => {
+            console.log(`Henkakuenka ${index + 1}:`, {
+                exists: !!checkbox,
+                visible: checkbox.offsetParent !== null,
+                checked: checkbox.checked
             });
         });
-    }
-    
-    addCheckboxListeners();
-    updateProgress();
+    }, 100);
     
     // ===== SISTEMA DE PARABÉNS OTIMIZADO =====
     function showCongratulations() {
@@ -182,6 +297,12 @@ document.addEventListener('DOMContentLoaded', function() {
         kaeshiWaza: { nav: 'kaeshi-waza-nav', section: 'kaeshi-waza-section' }
     };
     
+    // Função para re-adicionar event listeners quando seções são mostradas
+    function reAddEventListeners() {
+        // Agora não é mais necessário, pois usamos listeners universais
+        console.log('Event listeners are now universal - no need to re-add');
+    }
+    
     function hideAllSections() {
         Object.values(sections).forEach(({ section }) => {
             const element = document.getElementById(section);
@@ -200,6 +321,27 @@ document.addEventListener('DOMContentLoaded', function() {
         section.classList.remove('hidden');
         section.classList.add('animate-fade-in');
         setTimeout(() => section.classList.remove('animate-fade-in'), 1300);
+        
+        // Atualizar progresso após mostrar a seção
+        setTimeout(() => {
+            updateProgress();
+            
+            // Debug específico para seção de ataques combinados
+            if (section.id === 'henkakuenka-section') {
+                console.log('=== HENKAKUENKA SECTION SHOWN ===');
+                const henkakuenkaCheckboxes = section.querySelectorAll('.henkakuenka-checkbox');
+                console.log('Henkakuenka checkboxes in section:', henkakuenkaCheckboxes.length);
+                
+                // Debug para cada checkbox
+                henkakuenkaCheckboxes.forEach((checkbox, index) => {
+                    console.log(`Section henkakuenka ${index + 1}:`, {
+                        checked: checkbox.checked,
+                        className: checkbox.className,
+                        visible: checkbox.offsetParent !== null
+                    });
+                });
+            }
+        }, 100);
     }
     
     function animateJapaneseNavCard(card) {
@@ -217,6 +359,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 hideAllSections();
                 showSectionWithAnimation(sectionElement);
                 setTimeout(() => smoothScrollTo(section), 300);
+                
+                // Forçar atualização do progresso após mostrar seção
+                setTimeout(() => {
+                    console.log('Forcing progress update after showing section:', section);
+                    updateProgress();
+                }, 500);
             });
         }
     });

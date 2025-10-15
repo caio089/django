@@ -31,6 +31,13 @@ class PaymentsConfig(AppConfig):
             def delayed_startup():
                 """Executa tarefas de inicialização em thread separada"""
                 try:
+                    from django.conf import settings
+                    
+                    # Verificar se processos pesados estão desabilitados
+                    if getattr(settings, 'DISABLE_HEAVY_PROCESSES', False):
+                        logger.info("Processos pesados desabilitados - modo leve ativado")
+                        return
+                    
                     from .startup_sync import StartupPaymentSync
                     StartupPaymentSync.run_automatic_sync()
                     

@@ -60,7 +60,7 @@
          }
 
          #floatingProgressBar {
-             background: linear-gradient(90deg, #8B5CF6, #7C3AED);
+             background: linear-gradient(90deg, #10B981, #059669);
              border-radius: 10px;
              height: 100%;
              width: 0%;
@@ -502,7 +502,7 @@
                  height: 100% !important;
                  border-radius: 8px !important;
                  margin: 0 !important;
-                 background: linear-gradient(90deg, #8B5CF6, #7C3AED) !important;
+                 background: linear-gradient(90deg, #10B981, #059669) !important;
                  width: 0% !important;
                  transition: width 0.5s ease !important;
                  display: block !important;

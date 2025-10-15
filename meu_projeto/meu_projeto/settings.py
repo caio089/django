@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'meu_projeto.middleware.WWWRedirectMiddleware',  # Redirecionamento www
+    'meu_projeto.supabase_session_middleware.SupabaseSessionMiddleware',  # Middleware para modo Session
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -85,7 +86,19 @@ import dj_database_url
 # Prioridade 1: DATABASE_URL (Supabase/Render) - funciona em ambos os ambientes
 if os.getenv('DATABASE_URL'):
     DATABASES = {
-        'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
+        'default': dj_database_url.parse(
+            os.getenv('DATABASE_URL'),
+            conn_max_age=300,  # Manter conexões por 5 minutos (plano Pro)
+            conn_health_checks=True,  # Habilitar verificações de saúde
+        )
+    }
+    # Configurações otimizadas para Supabase Pro (mais conexões permitidas)
+    DATABASES['default']['OPTIONS'] = {
+        'sslmode': 'require',
+        'connect_timeout': 30,  # Timeout maior para plano Pro
+        'application_name': 'django_app',
+        # Configurações otimizadas para plano Pro
+        'options': '-c default_transaction_isolation=read_committed -c statement_timeout=60000 -c idle_in_transaction_session_timeout=300000'
     }
 # Prioridade 2: Configuração individual (Supabase) - funciona em ambos os ambientes
 elif os.getenv('DB_HOST'):
@@ -110,6 +123,35 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+
+# Cache otimizado para reduzir carga no Supabase
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+        'OPTIONS': {
+            'MAX_ENTRIES': 1000,
+            'CULL_FREQUENCY': 3,
+        }
+    }
+}
+
+# Configurações para resolver problema do modo Session do Supabase
+DISABLE_HEAVY_PROCESSES = True  # Desabilitar processos que consomem conexões
+LIGHT_MODE = True  # Modo leve para evitar esgotamento do pool
+SUPABASE_SESSION_MODE = True  # Supabase está em modo Session (limitado)
+MAX_CONCURRENT_CONNECTIONS = 3  # Limite muito baixo para modo Session
+
+# Configurações de sessão otimizadas
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'  # Usar apenas cache, não banco
+SESSION_CACHE_ALIAS = 'default'
+SESSION_COOKIE_AGE = 3600  # 1 hora
+SESSION_SAVE_EVERY_REQUEST = False
+
+# Configurações adicionais para reduzir uso de banco
+DATABASE_ROUTERS = []  # Sem roteadores de banco
+CONN_MAX_AGE = 0  # Fechar conexões imediatamente
+DATABASES['default']['CONN_MAX_AGE'] = 0  # Forçar fechamento imediato
 
 # Senhas
 AUTH_PASSWORD_VALIDATORS = [
