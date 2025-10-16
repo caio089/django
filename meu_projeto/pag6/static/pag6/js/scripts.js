@@ -201,4 +201,90 @@ document.addEventListener('DOMContentLoaded', function() {
             button.setAttribute('data-initialized', 'true');
         }
     });
+
+    // ===== SISTEMA DE PROGRESSO NO BANCO DE DADOS =====
+    
+    // Salvar progresso no banco de dados
+    function saveProgress() {
+        const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+        
+        const elementos = [];
+        
+        allCheckboxes.forEach((checkbox, index) => {
+            let tipo = 'proj-checkbox';
+            if (checkbox.classList.contains('imob-checkbox')) tipo = 'imob-checkbox';
+            else if (checkbox.classList.contains('chave-checkbox')) tipo = 'chave-checkbox';
+            else if (checkbox.classList.contains('shime-checkbox')) tipo = 'shime-checkbox';
+            else if (checkbox.classList.contains('ataques-combinados-checkbox')) tipo = 'ataques-combinados-checkbox';
+            else if (checkbox.classList.contains('contra-ataques-checkbox')) tipo = 'contra-ataques-checkbox';
+            
+            elementos.push({
+                id: `checkbox_${index}`,
+                tipo: tipo,
+                aprendido: checkbox.checked
+            });
+        });
+        
+        // Salvar no banco de dados
+        fetch('/pagina6/salvar-progresso/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            },
+            body: JSON.stringify({
+                pagina: 'pagina6',
+                elementos: elementos
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log('Progresso salvo no banco de dados:', data.message);
+            } else {
+                console.error('Erro ao salvar progresso:', data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao salvar progresso:', error);
+        });
+    }
+    
+    // Carregar progresso do banco de dados
+    function loadProgress() {
+        fetch('/pagina6/carregar-progresso/?pagina=pagina6')
+        .then(response => response.json())
+        .then(data => {
+            if (data.success && data.elementos.length > 0) {
+                console.log('Carregando progresso do banco de dados:', data.elementos);
+                
+                const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+                
+                data.elementos.forEach(elemento => {
+                    const index = parseInt(elemento.id.replace('checkbox_', ''));
+                    if (allCheckboxes[index]) {
+                        allCheckboxes[index].checked = elemento.aprendido;
+                    }
+                });
+                
+                updateProgress();
+            } else {
+                console.log('Nenhum progresso no banco, usando estado atual');
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao carregar progresso do banco:', error);
+        });
+    }
+    
+    // Modificar o event listener para salvar progresso
+    document.addEventListener('change', function(e) {
+        if (e.target.type === 'checkbox') {
+            updateProgress();
+            saveProgress(); // Salvar no banco quando mudar
+        }
+    });
+    
+    // Carregar progresso ao inicializar
+    loadProgress();
 });

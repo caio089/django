@@ -268,43 +268,28 @@
                             <td class="py-3 px-4">{{ user.email|default:"Sem email" }}</td>
                             <td class="py-3 px-4 text-gray-600">{{ user.date_joined|date:"d/m/Y H:i" }}</td>
                             <td class="py-3 px-4">
-                                {% with user.assinaturas.all as user_assinaturas %}
-                                    {% for assinatura in user_assinaturas %}
-                                        {% if assinatura.status == 'ativa' and assinatura.ativo %}
-                                            <span class="px-2 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800">
-                                                Premium ⭐
-                                            </span>
-                                            {% break %}
-                                        {% endif %}
-                                    {% empty %}
-                                        <span class="px-2 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-800">
-                                            Gratuito
-                                        </span>
-                                    {% endfor %}
-                                    {% if user_assinaturas and not forloop.last %}
-                                        <span class="px-2 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-800">
-                                            Gratuito
-                                        </span>
-                                    {% endif %}
-                                {% endwith %}
+                                {% if user.has_active_subscription %}
+                                    <span class="px-2 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800">
+                                        Premium ⭐
+                                    </span>
+                                {% else %}
+                                    <span class="px-2 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-800">
+                                        Gratuito
+                                    </span>
+                                {% endif %}
                             </td>
                             <td class="py-3 px-4">
                                 <div class="flex gap-2 justify-center">
                                     <!-- Botão Remover Premium -->
-                                    {% with user.assinaturas.all as user_assinaturas %}
-                                        {% for assinatura in user_assinaturas %}
-                                            {% if assinatura.status == 'ativa' and assinatura.ativo %}
-                                                <form method="post" action="{% url 'remove_premium' %}" class="inline" onsubmit="return confirm('Tem certeza que deseja remover o premium de {{ user.username }}?');">
-                                                    {% csrf_token %}
-                                                    <input type="hidden" name="user_id" value="{{ user.id }}">
-                                                    <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold py-1 px-3 rounded transition-colors" title="Remover Premium">
-                                                        ❌ Premium
-                                                    </button>
-                                                </form>
-                                                {% break %}
-                                            {% endif %}
-                                        {% endfor %}
-                                    {% endwith %}
+                                    {% if user.has_active_subscription %}
+                                    <form method="post" action="{% url 'remove_premium' %}" class="inline" onsubmit="return confirm('Tem certeza que deseja remover o premium de {{ user.username }}?');">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="user_id" value="{{ user.id }}">
+                                        <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold py-1 px-3 rounded transition-colors" title="Remover Premium">
+                                            ❌ Premium
+                                        </button>
+                                    </form>
+                                    {% endif %}
                                     
                                     <!-- Botão Excluir Conta -->
                                     {% if not user.is_superuser %}

@@ -35,7 +35,77 @@
         }
     </script>
     
-
+    <style>
+        /* CSS específico para barra flutuante - igual à página 1 */
+        #floatingProgress.hidden {
+            display: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+        
+        @media (max-width: 768px) {
+            #floatingProgress {
+                width: calc(100vw - 2rem) !important;
+                margin: 0 1rem !important;
+                padding: 0.75rem !important;
+            }
+            
+            #floatingProgress .w-80 {
+                width: calc(100% - 4rem) !important;
+            }
+            
+            #floatingProgressBar {
+                position: relative !important;
+                top: -8px !important;
+                height: 100% !important;
+                border-radius: 9999px !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            #floatingProgress {
+                width: calc(100vw - 1rem) !important;
+                margin: 0 0.5rem !important;
+                padding: 0.5rem !important;
+            }
+            
+            #floatingProgress .w-80 {
+                width: calc(100% - 3rem) !important;
+            }
+            
+            #floatingProgressBar {
+                position: relative !important;
+                top: -8px !important;
+                height: 100% !important;
+                border-radius: 9999px !important;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            #floatingProgress {
+                width: calc(100vw - 0.5rem) !important;
+                margin: 0 0.25rem !important;
+                padding: 0.375rem !important;
+            }
+            
+            #floatingProgress .w-80 {
+                width: calc(100% - 2rem) !important;
+            }
+            
+            #floatingProgressBar {
+                position: relative !important;
+                top: -8px !important;
+                height: 100% !important;
+                border-radius: 9999px !important;
+            }
+        }
+        
+        @media (max-width: 768px) and (orientation: landscape) {
+            #floatingProgress {
+                top: max(1rem, env(safe-area-inset-top)) !important;
+            }
+        }
+    </style>
 
 </head>
 <body class="bg-gray-50 font-sans">
@@ -58,10 +128,10 @@
             </div>
             
             <!-- Barra de Progresso -->
-            <div class="bg-white/20 rounded-full h-5 mb-3 shadow-inner">
-                <div class="progress-bar bg-gradient-to-r from-green-400 to-green-400 rounded-full h-5 shadow-lg transition-all duration-500" style="width: 0%" id="progressBar"></div>
+            <div class="bg-white/20 rounded-full h-4 mb-2 shadow-inner">
+                <div class="progress-bar bg-lime-400 from-blue-400 to-blue-600 rounded-full h-4 shadow-lg transition-all duration-500" style="width: 0%" id="progressBar"></div>
             </div>
-            <p class="text-base font-semibold text-white">Progresso: <span id="progressText" class="text-white">0%</span></p>
+            <p class="text-sm font-semibold text-white">Progresso: <span id="progressText" class="text-blue-200">0%</span></p>
         </div>
     </header>
 
@@ -1144,7 +1214,7 @@
         <div class="section-divider h-px my-8"></div>
 
         <!-- Barra de Progresso Flutuante -->
-        <div id="floatingProgress" class="fixed top-4 left-0 right-0 mx-auto w-fit bg-white border border-gray-300 rounded-lg shadow-lg p-3 z-50 opacity-0 transition-opacity duration-300 pointer-events-none hidden">
+        <div id="floatingProgress" class="fixed top-4 left-0 right-0 mx-auto w-fit bg-white/95 backdrop-blur-sm border border-gray-300 rounded-lg shadow-xl p-3 z-50 opacity-0 transition-all duration-500 pointer-events-none hidden transform translate-y-[-10px]">
             <div class="flex items-center gap-5">
                 <div class="w-80 bg-gray-200 rounded-full h-3">
                     <div id="floatingProgressBar" class="bg-gradient-to-r from-green-400 to-emerald-500 h-3 rounded-full transition-all duration-500 shadow-sm" style="width: 0%"></div>

@@ -5,10 +5,19 @@ from django.db.models import Count, Sum, Q
 from django.utils import timezone
 from datetime import datetime, timedelta
 from django.db import transaction
+from django.core.cache import cache
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 from payments.models import Pagamento, Assinatura, PlanoPremium
 from django.contrib.auth.models import User
 from django.contrib import messages
 import json
+
+
+def clear_dashboard_cache():
+    """Limpa o cache do dashboard quando há mudanças importantes"""
+    cache.delete('dashboard_stats')
+    cache.delete('dashboard_recent_users')
 
 
 def admin_login(request):
@@ -53,6 +62,8 @@ def admin_logout(request):
     return redirect('admin_login')
 
 
+
+
 @login_required(login_url='/dashboard/login/')
 def dashboard_admin(request):
     """
@@ -72,15 +83,29 @@ def dashboard_admin(request):
     
     # === ESTATÍSTICAS GERAIS ===
     
-    # Total de assinaturas ativas
-    active_subscriptions = Assinatura.objects.filter(
-        status='ativa'
-    ).count()
+    # Cache das estatísticas por 5 minutos
+    cache_key_stats = 'dashboard_stats'
+    stats = cache.get(cache_key_stats)
     
-    # Total de usuários premium únicos
-    unique_premium_users = Assinatura.objects.filter(
-        status='ativa'
-    ).values('usuario').distinct().count()
+    if not stats:
+        # Total de assinaturas ativas
+        active_subscriptions = Assinatura.objects.filter(
+            status='ativa'
+        ).count()
+        
+        # Total de usuários premium únicos
+        unique_premium_users = Assinatura.objects.filter(
+            status='ativa'
+        ).values('usuario').distinct().count()
+        
+        stats = {
+            'active_subscriptions': active_subscriptions,
+            'unique_premium_users': unique_premium_users
+        }
+        cache.set(cache_key_stats, stats, 300)  # Cache por 5 minutos
+    else:
+        active_subscriptions = stats['active_subscriptions']
+        unique_premium_users = stats['unique_premium_users']
     
     # === RECEITAS ===
     
@@ -160,7 +185,7 @@ def dashboard_admin(request):
     
     # === ASSINATURAS RECENTES ===
     
-    recent_subscriptions = Assinatura.objects.filter(
+    recent_subscriptions = Assinatura.objects.select_related('usuario', 'plano').filter(
         status='ativa'
     ).order_by('-data_criacao')[:10]
     
@@ -179,24 +204,29 @@ def dashboard_admin(request):
         date_joined__month=current_month
     ).count()
     
-    # Últimos usuários cadastrados com informação de assinatura ativa
-    recent_users = User.objects.order_by('-date_joined')[:20]
+    # Cache dos usuários recentes por 2 minutos
+    cache_key_users = 'dashboard_recent_users'
+    recent_users_data = cache.get(cache_key_users)
     
-    # Adicionar informação de assinatura ativa para cada usuário
-    for user in recent_users:
-        # Buscar TODAS as assinaturas do usuário para debug
-        all_subscriptions = Assinatura.objects.filter(usuario=user)
-        active_subscriptions = Assinatura.objects.filter(
-            usuario=user,
-            status='ativa'
-        )
-        user.has_active_subscription = active_subscriptions.exists()
+    if not recent_users_data:
+        # Últimos usuários cadastrados com informação de assinatura ativa
+        # OTIMIZAÇÃO: Usar select_related e prefetch_related para evitar N+1 queries
+        recent_users = User.objects.select_related().prefetch_related('assinaturas').order_by('-date_joined')[:20]
         
-        print(f"DEBUG: Usuário {user.username} - Total assinaturas: {all_subscriptions.count()}")
-        for sub in all_subscriptions:
-            print(f"  - Assinatura {sub.id}: status='{sub.status}', ativo={sub.ativo}")
-        print(f"  - Assinaturas ativas: {active_subscriptions.count()}")
-        print(f"  - has_active_subscription: {user.has_active_subscription}")
+        # OTIMIZAÇÃO: Buscar todas as assinaturas ativas de uma vez
+        active_subscription_user_ids = Assinatura.objects.filter(
+            status='ativa',
+            ativo=True
+        ).values_list('usuario_id', flat=True)
+        
+        # Adicionar informação de assinatura ativa para cada usuário (sem consultas extras)
+        for user in recent_users:
+            user.has_active_subscription = user.id in active_subscription_user_ids
+        
+        recent_users_data = recent_users
+        cache.set(cache_key_users, recent_users_data, 120)  # Cache por 2 minutos
+    else:
+        recent_users = recent_users_data
     
     # Planos disponíveis para atribuir
     available_plans = PlanoPremium.objects.filter(ativo=True)
@@ -280,6 +310,9 @@ def give_premium(request):
                 )
                 
                 messages.success(request, f'Plano {plan.nome} atribuído com sucesso para {user.username}!')
+                
+                # Limpar cache após mudanças
+                clear_dashboard_cache()
         
         except User.DoesNotExist:
             if user_email:
@@ -320,38 +353,27 @@ def remove_premium(request):
                     status='ativa'
                 )
                 
-                print(f"DEBUG: Usuário {user.username} - Assinaturas ativas encontradas: {assinaturas_ativas.count()}")
+            if not assinaturas_ativas.exists():
+                messages.warning(request, f'{user.username} não possui assinatura ativa.')
+            else:
+                # Cancelar todas as assinaturas ativas
+                count = 0
+                for assinatura in assinaturas_ativas:
+                    assinatura.status = 'cancelada'
+                    assinatura.ativo = False
+                    assinatura.data_cancelamento = timezone.now()
+                    assinatura.save()
+                    count += 1
                 
-                if not assinaturas_ativas.exists():
-                    messages.warning(request, f'{user.username} não possui assinatura ativa.')
-                else:
-                    # Cancelar todas as assinaturas ativas
-                    count = 0
-                    for assinatura in assinaturas_ativas:
-                        print(f"DEBUG: Cancelando assinatura {assinatura.id} - Status atual: {assinatura.status}")
-                        print(f"DEBUG: Antes - status: {assinatura.status}, ativo: {assinatura.ativo}")
-                        
-                        assinatura.status = 'cancelada'
-                        assinatura.ativo = False
-                        assinatura.data_cancelamento = timezone.now()
-                        assinatura.save()
-                        
-                        print(f"DEBUG: Depois - status: {assinatura.status}, ativo: {assinatura.ativo}")
-                        
-                        # Verificar se realmente salvou
-                        assinatura.refresh_from_db()
-                        print(f"DEBUG: Após refresh - status: {assinatura.status}, ativo: {assinatura.ativo}")
-                        
-                        count += 1
-                        print(f"DEBUG: Assinatura {assinatura.id} cancelada com sucesso")
-                    
-                    messages.success(request, f'{count} assinatura(s) cancelada(s) para {user.username}!')
+                messages.success(request, f'{count} assinatura(s) cancelada(s) para {user.username}!')
+                
+                # Limpar cache após mudanças
+                clear_dashboard_cache()
         
         except User.DoesNotExist:
             messages.error(request, f'Usuário com ID {user_id} não encontrado.')
         except Exception as e:
             messages.error(request, f'Erro ao remover premium: {str(e)}')
-            print(f"DEBUG: Erro ao remover premium: {str(e)}")
     
     return redirect('dashboard_admin')
 

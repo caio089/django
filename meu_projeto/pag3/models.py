@@ -8,7 +8,7 @@ class ProgressoElemento(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='progresso_elementos_pag3')
     pagina = models.CharField(max_length=50, verbose_name="Página")
     elemento_id = models.CharField(max_length=100, verbose_name="ID do Elemento")
-    elemento_tipo = models.CharField(max_length=50, verbose_name="Tipo do Elemento")  # proj-checkbox, imob-checkbox, henkakuenka-checkbox, kaeshi-waza-checkbox
+    elemento_tipo = models.CharField(max_length=50, verbose_name="Tipo do Elemento")  # proj-checkbox, imob-checkbox, etc.
     aprendido = models.BooleanField(default=False, verbose_name="Aprendido")
     data_aprendizado = models.DateTimeField(null=True, blank=True, verbose_name="Data do Aprendizado")
     data_criacao = models.DateTimeField(auto_now_add=True)

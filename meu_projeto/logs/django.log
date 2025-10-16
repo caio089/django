@@ -249,3 +249,723 @@ C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py 
 C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
 Processos pesados desabilitados - modo leve ativado
 Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 40895
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"POST /login/ HTTP/1.1" 200 40905
+"POST /login/ HTTP/1.1" 200 40893
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 62051
+"GET /payments/planos/ HTTP/1.1" 200 23059
+"GET /static/demosntra%C3%A7ao1.png HTTP/1.1" 304 0
+"GET /static/demonstra%C3%A7ao2.png HTTP/1.1" 304 0
+"GET /static/demonstra%C3%A7ao3.png HTTP/1.1" 304 0
+"GET /static/demonstra%C3%A7ao4.png HTTP/1.1" 304 0
+"GET / HTTP/1.1" 200 40568
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /dashboard HTTP/1.1" 301 0
+"GET /dashboard/ HTTP/1.1" 302 0
+"GET /dashboard/login/?next=/dashboard/ HTTP/1.1" 200 5810
+- Broken pipe from ('127.0.0.1', 55248)
+- Broken pipe from ('127.0.0.1', 65121)
+- Broken pipe from ('127.0.0.1', 53585)
+- Broken pipe from ('127.0.0.1', 61894)
+- Broken pipe from ('127.0.0.1', 60212)
+"POST /dashboard/login/ HTTP/1.1" 302 0
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'break'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py", line 221, in dashboard_admin
+    return render(request, 'dashboard/dashboard.html', context)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\defaulttags.py", line 1540, in do_with
+    nodelist = parser.parse(("endwith",))
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 567, in invalid_block_tag
+    raise self.error(
+    ...<8 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 277: 'break', expected 'elif', 'else' or 'endif'. Did you forget to register or load this tag?
+"GET /dashboard/ HTTP/1.1" 500 330008
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /dashboard/ HTTP/1.1" 302 0
+"GET /dashboard/login/?next=/dashboard/ HTTP/1.1" 200 6093
+"POST /dashboard/login/ HTTP/1.1" 302 0
+Forbidden (CSRF token from POST incorrect.): /dashboard/login/
+"POST /dashboard/login/ HTTP/1.1" 403 2504
+Forbidden (CSRF token from POST incorrect.): /dashboard/login/
+"POST /dashboard/login/ HTTP/1.1" 403 2504
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'break'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py", line 251, in dashboard_admin
+    return render(request, 'dashboard/dashboard.html', context)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\defaulttags.py", line 1540, in do_with
+    nodelist = parser.parse(("endwith",))
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 567, in invalid_block_tag
+    raise self.error(
+    ...<8 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 277: 'break', expected 'elif', 'else' or 'endif'. Did you forget to register or load this tag?
+- Broken pipe from ('127.0.0.1', 51785)
+Forbidden (CSRF token from POST incorrect.): /dashboard/login/
+"POST /dashboard/login/ HTTP/1.1" 403 2504
+"GET /dashboard/login/?next=/dashboard/ HTTP/1.1" 302 0
+Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'break'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py", line 251, in dashboard_admin
+    return render(request, 'dashboard/dashboard.html', context)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\defaulttags.py", line 1540, in do_with
+    nodelist = parser.parse(("endwith",))
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+        (
+    ...<2 lines>...
+        )
+    )
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\caioc\AppData\Local\Programs\Python\Python313\Lib\site-packages\django\template\base.py", line 567, in invalid_block_tag
+    raise self.error(
+    ...<8 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 277: 'break', expected 'elif', 'else' or 'endif'. Did you forget to register or load this tag?
+"GET /dashboard/ HTTP/1.1" 500 330676
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+"GET /dashboard/ HTTP/1.1" 302 0
+"GET /dashboard/login/?next=/dashboard/ HTTP/1.1" 200 6093
+"POST /dashboard/login/ HTTP/1.1" 302 0
+Forbidden (CSRF token from POST incorrect.): /dashboard/login/
+"POST /dashboard/login/ HTTP/1.1" 403 2504
+- Broken pipe from ('127.0.0.1', 59477)
+Forbidden (CSRF token from POST incorrect.): /dashboard/login/
+"POST /dashboard/login/ HTTP/1.1" 403 2504
+Forbidden (CSRF token from POST incorrect.): /dashboard/login/
+"POST /dashboard/login/ HTTP/1.1" 403 2504
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Forbidden (CSRF token from POST incorrect.): /dashboard/login/
+"POST /dashboard/login/ HTTP/1.1" 403 2504
+"GET /dashboard/login/?next=/dashboard/ HTTP/1.1" 200 6093
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"POST /dashboard/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 41636
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\urls.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\urls.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"POST /dashboard/remove-premium/ HTTP/1.1" 302 0
+- Broken pipe from ('127.0.0.1', 64509)
+"GET /dashboard/ HTTP/1.1" 200 39940
+"GET /payments/planos/ HTTP/1.1" 200 7008
+"GET /index/ HTTP/1.1" 200 63190
+"GET /pagina3/ HTTP/1.1" 200 83452
+"GET /static/pag3/js/script.js HTTP/1.1" 304 0
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /pagina3/ HTTP/1.1" 200 83452
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina3/ HTTP/1.1" 200 83452
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 83452
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 83452
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /index/ HTTP/1.1" 200 63190
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina2/ HTTP/1.1" 200 124326
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina2/carregar-progresso/?pagina=pagina2 HTTP/1.1" 200 886
+"POST /pagina2/salvar-progresso/ HTTP/1.1" 200 904
+"GET /index/ HTTP/1.1" 200 63190
+Not Found: /index/url('https://fonts.googleapis.com/css2
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 7277
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina3/ HTTP/1.1" 200 83492
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 85038
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 85038
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 85626
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag3\models.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag3\models.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag4\models.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag4\models.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag5\models.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag5\models.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag6\models.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag6\models.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag7\models.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag7\models.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag4\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag4\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag5\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag5\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag6\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag6\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag7\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag7\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag4\urls.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag4\urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag5\urls.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag5\urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag6\urls.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag6\urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag7\urls.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag7\urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag7\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag5\models.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag4\urls.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag4\urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag5\urls.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag5\urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag6\urls.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag6\urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag7\urls.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag7\urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag4\urls.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag7\urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /pagina3/ HTTP/1.1" 200 85626
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina3/ HTTP/1.1" 200 85680
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina1/ HTTP/1.1" 200 99545
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina1/carregar-progresso/?pagina=pagina1 HTTP/1.1" 200 398
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina3/ HTTP/1.1" 200 85038
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 85276
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 85514
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 85752
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 302 0
+"GET /login/?next=/pagina3/carregar-progresso/%3Fpagina%3Dpagina3 HTTP/1.1" 200 40568
+"GET /pagina3/ HTTP/1.1" 200 85752
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 302 0
+"GET /login/?next=/pagina3/carregar-progresso/%3Fpagina%3Dpagina3 HTTP/1.1" 200 40568
+"GET /index/ HTTP/1.1" 302 0
+"GET /login/?next=/index/ HTTP/1.1" 200 40568
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"POST /login/ HTTP/1.1" 200 40893
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 62051
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+Not Found: /index/url('https://fonts.googleapis.com/css2
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 7277
+"GET /payments/planos/ HTTP/1.1" 200 23059
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"POST /index/logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 40568
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"POST /login/ HTTP/1.1" 200 40905
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"POST /login/ HTTP/1.1" 200 40893
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /dashboard/ HTTP/1.1" 302 0
+"GET /dashboard/login/?next=/dashboard/ HTTP/1.1" 200 5810
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 62051
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"POST /dashboard/login/ HTTP/1.1" 302 0
+Not Found: /index/url('https://fonts.googleapis.com/css2
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 7277
+"GET /dashboard/ HTTP/1.1" 200 39898
+"POST /dashboard/give-premium/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 41669
+"GET /index/ HTTP/1.1" 200 63190
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+Not Found: /index/url('https://fonts.googleapis.com/css2
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 7277
+"GET /pagina4/ HTTP/1.1" 200 108387
+"GET /static/pag4/js/scripts.js HTTP/1.1" 200 19843
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina4/carregar-progresso/?pagina=pagina4 HTTP/1.1" 200 34
+"GET /index/ HTTP/1.1" 200 63190
+"GET /index/ HTTP/1.1" 200 63190
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina5/ HTTP/1.1" 200 106366
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+- Broken pipe from ('127.0.0.1', 50587)
+"GET /index/ HTTP/1.1" 200 63190
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823

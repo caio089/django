@@ -502,57 +502,11 @@ p, span, div {
         right: max(1rem, env(safe-area-inset-right)) !important;
     }
     
-    #floatingProgress {
-        top: max(1rem, env(safe-area-inset-top)) !important;
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        pointer-events: auto !important;
-    }
 }
 
 /* ===== CSS ESPECÍFICO DA PÁGINA 3 - TÉCNICAS DE PROJEÇÃO, ATAQUES COMBINADOS E CONTRA-ATAQUES ===== */
 
 @media (max-width: 768px) {
-    /* Barra flutuante mobile - garantir visibilidade */
-    #floatingProgress {
-        position: fixed !important;
-        top: 20px !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        width: 90% !important;
-        max-width: 300px !important;
-        min-width: 250px !important;
-        padding: 15px 20px !important;
-        margin: 0 !important;
-        border-radius: 15px !important;
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4) !important;
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        pointer-events: auto !important;
-        z-index: 1000 !important;
-        background: rgba(251, 191, 36, 0.95) !important;
-        backdrop-filter: blur(10px) !important;
-        border: 2px solid rgba(255, 255, 255, 0.2) !important;
-    }
-    
-    #floatingProgress.hidden {
-        opacity: 0 !important;
-        visibility: hidden !important;
-    }
-    
-    #floatingProgressBar {
-        height: 6px !important;
-        border-radius: 8px !important;
-        margin: 10px 0 !important;
-    }
-    
-    #floatingProgressText {
-        font-size: 14px !important;
-        font-weight: 700 !important;
-        color: white !important;
-    }
     
     /* Layout mobile para técnicas de projeção - Cards lado a lado como carrossel horizontal */
     #nage-waza-section .relative {

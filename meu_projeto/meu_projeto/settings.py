@@ -33,11 +33,13 @@ USE_TZ = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # CSRF Settings
-CSRF_COOKIE_SECURE = not DEBUG  # True em produção (HTTPS)
+CSRF_COOKIE_SECURE = False  # Desabilitar para desenvolvimento local
 CSRF_COOKIE_HTTPONLY = False
 CSRF_COOKIE_SAMESITE = 'Lax'
 CSRF_USE_SESSIONS = False
 CSRF_COOKIE_AGE = 3600  # 1 hora
+CSRF_FAILURE_VIEW = 'django.views.csrf.csrf_failure'  # View padrão para falhas CSRF
+CSRF_COOKIE_DOMAIN = None  # Permitir em localhost
 
 # Apps e Middleware (sem mudanças)
 INSTALLED_APPS = [
@@ -58,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'dashboard.middleware.DashboardPerformanceMiddleware',  # Otimização do dashboard
     'payments.middleware_payment_sync.PaymentSyncMiddleware',  # Sincronização automática de pagamento
     'payments.middleware.PremiumAccessMiddleware',
     'payments.security.SecurityMiddleware',
@@ -143,10 +146,12 @@ SUPABASE_SESSION_MODE = True  # Supabase está em modo Session (limitado)
 MAX_CONCURRENT_CONNECTIONS = 3  # Limite muito baixo para modo Session
 
 # Configurações de sessão otimizadas
-SESSION_ENGINE = 'django.contrib.sessions.backends.cache'  # Usar apenas cache, não banco
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Usar banco para evitar problemas CSRF
 SESSION_CACHE_ALIAS = 'default'
 SESSION_COOKIE_AGE = 3600  # 1 hora
 SESSION_SAVE_EVERY_REQUEST = False
+SESSION_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_HTTPONLY = True
 
 # Configurações adicionais para reduzir uso de banco
 DATABASE_ROUTERS = []  # Sem roteadores de banco
