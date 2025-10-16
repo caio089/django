@@ -120,9 +120,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Adicionar listeners a todos os checkboxes
-    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-        checkbox.addEventListener('change', updateProgress);
+    // Event listener único para todos os checkboxes
+    document.addEventListener('change', function(e) {
+        if (e.target.type === 'checkbox') {
+            updateProgress();
+            saveProgress(); // Salvar no banco quando mudar
+        }
     });
     
     // Inicializar progresso ao carregar a página
@@ -326,13 +329,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Modificar o event listener para salvar progresso
-    document.addEventListener('change', function(e) {
-        if (e.target.type === 'checkbox') {
-            updateProgress();
-            saveProgress(); // Salvar no banco quando mudar
-        }
-    });
+    // Event listener já configurado acima
     
     // Carregar progresso ao inicializar
     loadProgress();

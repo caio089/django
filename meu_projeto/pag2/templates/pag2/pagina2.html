@@ -2545,22 +2545,22 @@ function initializeProgressSystem() {
         console.log(`Checkbox ${index + 1} desmarcado`);
     });
     
-    // Adicionar event listeners
-    checkboxes.forEach((checkbox, index) => {
-        checkbox.addEventListener('change', function() {
-            console.log(`Checkbox ${index + 1} mudou para:`, this.checked);
+    // Event listener único para todos os checkboxes
+    document.addEventListener('change', function(e) {
+        if (e.target.type === 'checkbox' && (e.target.classList.contains('proj-checkbox') || e.target.classList.contains('imob-checkbox'))) {
+            console.log(`Checkbox mudou para:`, e.target.checked);
             calculateProgress();
             saveProgress();
             
             // Efeito visual quando marca/desmarca
-            const label = this.closest('label');
-            if (this.checked) {
+            const label = e.target.closest('label');
+            if (e.target.checked) {
                 label.style.transform = 'scale(1.05)';
                 setTimeout(() => {
                     label.style.transform = 'scale(1)';
                 }, 200);
             }
-        });
+        }
     });
     
     // Calcular progresso inicial
