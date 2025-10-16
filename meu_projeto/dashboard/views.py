@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.db.models import Count, Sum, Q
 from django.utils import timezone
 from datetime import datetime, timedelta
+from django.db import transaction
 from payments.models import Pagamento, Assinatura, PlanoPremium
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -178,8 +179,24 @@ def dashboard_admin(request):
         date_joined__month=current_month
     ).count()
     
-    # Últimos usuários cadastrados
+    # Últimos usuários cadastrados com informação de assinatura ativa
     recent_users = User.objects.order_by('-date_joined')[:20]
+    
+    # Adicionar informação de assinatura ativa para cada usuário
+    for user in recent_users:
+        # Buscar TODAS as assinaturas do usuário para debug
+        all_subscriptions = Assinatura.objects.filter(usuario=user)
+        active_subscriptions = Assinatura.objects.filter(
+            usuario=user,
+            status='ativa'
+        )
+        user.has_active_subscription = active_subscriptions.exists()
+        
+        print(f"DEBUG: Usuário {user.username} - Total assinaturas: {all_subscriptions.count()}")
+        for sub in all_subscriptions:
+            print(f"  - Assinatura {sub.id}: status='{sub.status}', ativo={sub.ativo}")
+        print(f"  - Assinaturas ativas: {active_subscriptions.count()}")
+        print(f"  - has_active_subscription: {user.has_active_subscription}")
     
     # Planos disponíveis para atribuir
     available_plans = PlanoPremium.objects.filter(ativo=True)
@@ -219,10 +236,25 @@ def give_premium(request):
     
     if request.method == 'POST':
         user_id = request.POST.get('user_id')
+        user_email = request.POST.get('user_email')
         plan_id = request.POST.get('plan_id')
         
+        # Validar se pelo menos um método foi fornecido
+        if not user_id and not user_email:
+            messages.error(request, 'Você deve fornecer um email ou selecionar um usuário da lista.')
+            return redirect('dashboard_admin')
+        
+        if not plan_id:
+            messages.error(request, 'Você deve selecionar um plano.')
+            return redirect('dashboard_admin')
+        
         try:
-            user = User.objects.get(id=user_id)
+            # Buscar usuário por ID ou email
+            if user_id:
+                user = User.objects.get(id=user_id)
+            else:
+                user = User.objects.get(email=user_email.strip())
+            
             plan = PlanoPremium.objects.get(id=plan_id)
             
             # Verificar se já tem assinatura ativa
@@ -250,7 +282,10 @@ def give_premium(request):
                 messages.success(request, f'Plano {plan.nome} atribuído com sucesso para {user.username}!')
         
         except User.DoesNotExist:
-            messages.error(request, 'Usuário não encontrado.')
+            if user_email:
+                messages.error(request, f'Usuário com email "{user_email}" não encontrado.')
+            else:
+                messages.error(request, 'Usuário não encontrado.')
         except PlanoPremium.DoesNotExist:
             messages.error(request, 'Plano não encontrado.')
         except Exception as e:
@@ -271,32 +306,52 @@ def remove_premium(request):
     if request.method == 'POST':
         user_id = request.POST.get('user_id')
         
+        if not user_id:
+            messages.error(request, 'ID do usuário não fornecido.')
+            return redirect('dashboard_admin')
+        
         try:
-            user = User.objects.get(id=user_id)
-            
-            # Buscar assinaturas ativas do usuário
-            assinaturas_ativas = Assinatura.objects.filter(
-                usuario=user,
-                status='ativa'
-            )
-            
-            if not assinaturas_ativas.exists():
-                messages.warning(request, f'{user.username} não possui assinatura ativa.')
-            else:
-                # Cancelar todas as assinaturas ativas
-                count = 0
-                for assinatura in assinaturas_ativas:
-                    assinatura.status = 'cancelada'
-                    assinatura.ativo = False
-                    assinatura.save()
-                    count += 1
+            with transaction.atomic():
+                user = User.objects.get(id=user_id)
                 
-                messages.success(request, f'{count} assinatura(s) cancelada(s) para {user.username}!')
+                # Buscar assinaturas ativas do usuário
+                assinaturas_ativas = Assinatura.objects.filter(
+                    usuario=user,
+                    status='ativa'
+                )
+                
+                print(f"DEBUG: Usuário {user.username} - Assinaturas ativas encontradas: {assinaturas_ativas.count()}")
+                
+                if not assinaturas_ativas.exists():
+                    messages.warning(request, f'{user.username} não possui assinatura ativa.')
+                else:
+                    # Cancelar todas as assinaturas ativas
+                    count = 0
+                    for assinatura in assinaturas_ativas:
+                        print(f"DEBUG: Cancelando assinatura {assinatura.id} - Status atual: {assinatura.status}")
+                        print(f"DEBUG: Antes - status: {assinatura.status}, ativo: {assinatura.ativo}")
+                        
+                        assinatura.status = 'cancelada'
+                        assinatura.ativo = False
+                        assinatura.data_cancelamento = timezone.now()
+                        assinatura.save()
+                        
+                        print(f"DEBUG: Depois - status: {assinatura.status}, ativo: {assinatura.ativo}")
+                        
+                        # Verificar se realmente salvou
+                        assinatura.refresh_from_db()
+                        print(f"DEBUG: Após refresh - status: {assinatura.status}, ativo: {assinatura.ativo}")
+                        
+                        count += 1
+                        print(f"DEBUG: Assinatura {assinatura.id} cancelada com sucesso")
+                    
+                    messages.success(request, f'{count} assinatura(s) cancelada(s) para {user.username}!')
         
         except User.DoesNotExist:
-            messages.error(request, 'Usuário não encontrado.')
+            messages.error(request, f'Usuário com ID {user_id} não encontrado.')
         except Exception as e:
             messages.error(request, f'Erro ao remover premium: {str(e)}')
+            print(f"DEBUG: Erro ao remover premium: {str(e)}")
     
     return redirect('dashboard_admin')
 

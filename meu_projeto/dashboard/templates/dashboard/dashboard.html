@@ -203,10 +203,25 @@
                 <form method="POST" action="{% url 'give_premium' %}" class="space-y-4">
                     {% csrf_token %}
                     
+                    <!-- Opção 1: Digitar Email -->
                     <div>
-                        <label class="block text-gray-700 font-semibold mb-2">Selecione o Usuário:</label>
-                        <select name="user_id" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
-                            <option value="">-- Escolha um usuário --</option>
+                        <label class="block text-gray-700 font-semibold mb-2">📧 Email do Usuário:</label>
+                        <input type="email" id="user_email" name="user_email" placeholder="Digite o email do usuário" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" />
+                        <p class="text-sm text-gray-500 mt-1">Digite o email exato do usuário que você quer dar premium</p>
+                    </div>
+                    
+                    <!-- Divisor -->
+                    <div class="flex items-center my-4">
+                        <div class="flex-1 border-t border-gray-300"></div>
+                        <span class="px-3 text-gray-500 text-sm">OU</span>
+                        <div class="flex-1 border-t border-gray-300"></div>
+                    </div>
+                    
+                    <!-- Opção 2: Selecionar da Lista -->
+                    <div>
+                        <label class="block text-gray-700 font-semibold mb-2">👤 Selecionar da Lista:</label>
+                        <select id="user_id" name="user_id" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                            <option value="">-- Escolha um usuário da lista --</option>
                             {% for user in recent_users %}
                             <option value="{{ user.id }}">{{ user.username }} - {{ user.email }}</option>
                             {% endfor %}
@@ -253,28 +268,43 @@
                             <td class="py-3 px-4">{{ user.email|default:"Sem email" }}</td>
                             <td class="py-3 px-4 text-gray-600">{{ user.date_joined|date:"d/m/Y H:i" }}</td>
                             <td class="py-3 px-4">
-                                {% if user.assinaturas.filter %}
-                                    <span class="px-2 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800">
-                                        Premium ⭐
-                                    </span>
-                                {% else %}
-                                    <span class="px-2 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-800">
-                                        Gratuito
-                                    </span>
-                                {% endif %}
+                                {% with user.assinaturas.all as user_assinaturas %}
+                                    {% for assinatura in user_assinaturas %}
+                                        {% if assinatura.status == 'ativa' and assinatura.ativo %}
+                                            <span class="px-2 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800">
+                                                Premium ⭐
+                                            </span>
+                                            {% break %}
+                                        {% endif %}
+                                    {% empty %}
+                                        <span class="px-2 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-800">
+                                            Gratuito
+                                        </span>
+                                    {% endfor %}
+                                    {% if user_assinaturas and not forloop.last %}
+                                        <span class="px-2 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-800">
+                                            Gratuito
+                                        </span>
+                                    {% endif %}
+                                {% endwith %}
                             </td>
                             <td class="py-3 px-4">
                                 <div class="flex gap-2 justify-center">
                                     <!-- Botão Remover Premium -->
-                                    {% if user.assinaturas.filter %}
-                                    <form method="post" action="{% url 'remove_premium' %}" class="inline" onsubmit="return confirm('Tem certeza que deseja remover o premium de {{ user.username }}?');">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="user_id" value="{{ user.id }}">
-                                        <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold py-1 px-3 rounded transition-colors" title="Remover Premium">
-                                            ❌ Premium
-                                        </button>
-                                    </form>
-                                    {% endif %}
+                                    {% with user.assinaturas.all as user_assinaturas %}
+                                        {% for assinatura in user_assinaturas %}
+                                            {% if assinatura.status == 'ativa' and assinatura.ativo %}
+                                                <form method="post" action="{% url 'remove_premium' %}" class="inline" onsubmit="return confirm('Tem certeza que deseja remover o premium de {{ user.username }}?');">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="user_id" value="{{ user.id }}">
+                                                    <button type="submit" class="bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold py-1 px-3 rounded transition-colors" title="Remover Premium">
+                                                        ❌ Premium
+                                                    </button>
+                                                </form>
+                                                {% break %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endwith %}
                                     
                                     <!-- Botão Excluir Conta -->
                                     {% if not user.is_superuser %}
@@ -485,6 +515,49 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeDeleteModal();
+            }
+        });
+        
+        // Funcionalidade para alternar entre email e seleção de usuário
+        document.addEventListener('DOMContentLoaded', function() {
+            const emailInput = document.getElementById('user_email');
+            const userSelect = document.getElementById('user_id');
+            
+            if (emailInput && userSelect) {
+                // Limpar select quando digitar email
+                emailInput.addEventListener('input', function() {
+                    if (this.value.trim() !== '') {
+                        userSelect.value = '';
+                    }
+                });
+                
+                // Limpar email quando selecionar usuário
+                userSelect.addEventListener('change', function() {
+                    if (this.value !== '') {
+                        emailInput.value = '';
+                    }
+                });
+                
+                // Validação do formulário
+                const form = document.querySelector('form[action*="give_premium"]');
+                if (form) {
+                    form.addEventListener('submit', function(e) {
+                        const emailValue = emailInput.value.trim();
+                        const selectValue = userSelect.value;
+                        
+                        if (!emailValue && !selectValue) {
+                            e.preventDefault();
+                            alert('Por favor, digite um email ou selecione um usuário da lista.');
+                            return false;
+                        }
+                        
+                        if (emailValue && selectValue) {
+                            e.preventDefault();
+                            alert('Por favor, use apenas uma opção: email OU seleção da lista.');
+                            return false;
+                        }
+                    });
+                }
             }
         });
     </script>
