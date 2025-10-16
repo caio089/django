@@ -43,11 +43,11 @@
                 <div class="text-right">
                     <p class="text-blue-100 mb-2">👤 Logado como: <strong>{{ request.user.username }}</strong></p>
                     <p class="text-blue-100 text-sm mb-3">Atualizado em: {{ current_date }}</p>
-                    <div class="flex gap-2 justify-end">
-                        <a href="/admin/" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors inline-block text-sm">
+                    <div class="flex gap-3 justify-end">
+                        <a href="/admin/" class="bg-white/25 hover:bg-white/40 px-5 py-3 rounded-xl transition-all duration-300 inline-block text-sm font-semibold shadow-lg hover:shadow-xl border-2 border-white/30 hover:border-white/50 transform hover:scale-105 active:scale-95 backdrop-blur-sm">
                             🔧 Admin Django
                         </a>
-                        <a href="{% url 'admin_logout' %}" class="bg-red-500/80 hover:bg-red-600 px-4 py-2 rounded-lg transition-colors inline-block text-sm font-semibold">
+                        <a href="{% url 'admin_logout' %}" class="bg-red-500/90 hover:bg-red-600 px-5 py-3 rounded-xl transition-all duration-300 inline-block text-sm font-bold shadow-lg hover:shadow-xl border-2 border-red-400/50 hover:border-red-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm">
                             🚪 Sair
                         </a>
                     </div>

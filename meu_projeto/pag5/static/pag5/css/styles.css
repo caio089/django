@@ -206,17 +206,18 @@
 }
 
 #floatingProgressBar {
-    background: linear-gradient(90deg, #10B981, #059669);
-    border-radius: 10px;
+    background: linear-gradient(90deg, #ffffff, #f8f9fa);
+    border-radius: 8px;
     height: 100%;
     width: 0%;
     transition: width 0.5s ease;
     display: block;
     position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 #floatingProgressText {
-    color: white;
+    color: #16a34a;
     font-weight: 600;
     text-align: center;
     font-size: 16px;
@@ -496,16 +497,18 @@
         height: 100% !important;
         border-radius: 8px !important;
         margin: 0 !important;
-        background: linear-gradient(90deg, #10B981, #059669) !important;
+        background: linear-gradient(90deg, #ffffff, #f8f9fa) !important;
         width: 0% !important;
         transition: width 0.5s ease !important;
         display: block !important;
         position: relative !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
     }
     
     #floatingProgressText {
         font-size: 14px !important;
-        font-weight: 700 !important;
+        font-weight: 600 !important;
+        color: #16a34a !important;
     }
     
     /* Cards de habilidades mobile */

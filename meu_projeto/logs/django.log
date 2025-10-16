@@ -4,3 +4,41 @@ Processos pesados desabilitados - modo leve ativado
 Processos pesados desabilitados - modo leve ativado
 Processos pesados desabilitados - modo leve ativado
 Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 40885
+"GET / HTTP/1.1" 200 40549
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 63188
+"GET /index/ HTTP/1.1" 200 63188
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina1/ HTTP/1.1" 200 99545
+"GET /pagina1/carregar-progresso/?pagina=pagina1 HTTP/1.1" 200 34
+"GET /index/ HTTP/1.1" 200 63188
+"GET /pagina5/ HTTP/1.1" 200 106219
+"GET /static/pag5/js/scripts.js HTTP/1.1" 304 0
+"GET /static/pag5/css/styles.css HTTP/1.1" 304 0
+"GET /static/pag5/js/lazy-video.js HTTP/1.1" 304 0
+"GET /index/ HTTP/1.1" 200 63188
+"GET /index/ HTTP/1.1" 200 63188
+"GET /pagina3/ HTTP/1.1" 200 83452
+"GET /static/pag3/css/styles.css HTTP/1.1" 304 0
+"GET /static/pag3/js/script.js HTTP/1.1" 200 36044
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /index/ HTTP/1.1" 200 63188
+"GET /pagina4/ HTTP/1.1" 200 108257
+"GET /static/pag4/css/styles1.css HTTP/1.1" 304 0
+"GET /static/pag4/js/scripts.js HTTP/1.1" 304 0
+"GET /pagina4/ HTTP/1.1" 200 108315
+"GET /pagina4/ HTTP/1.1" 200 108261
+"GET /index/ HTTP/1.1" 200 63188
+"GET /pagina5/ HTTP/1.1" 200 106219
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+- Broken pipe from ('127.0.0.1', 49670)
+"GET /pagina5/ HTTP/1.1" 200 106239
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+- Broken pipe from ('127.0.0.1', 61161)

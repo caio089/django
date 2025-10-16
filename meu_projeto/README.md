@@ -87,5 +87,5 @@ Desenvolvido por Caio Campos
 
 ---
 
-© 2024 Dojo On - Todos os direitos reservados
+© 2025 Academia de Judô - Desenvolvido por Caio Campos - Todos os direitos reservados
 
