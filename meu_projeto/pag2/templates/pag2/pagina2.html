@@ -2188,35 +2188,7 @@
             floatingProgress.style.opacity = '0';
             floatingProgress.style.pointerEvents = 'none';
 
-            // Event listeners para as opções
-            projCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', function(e) {
-                    updateProgress();
-                    // Mostrar barra flutuante apenas quando marcar (não desmarcar)
-                    if (e.target.checked) {
-                        const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
-                        const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
-                        const totalQuestions = projCheckboxes.length + imobCheckboxes.length;
-                        const completedQuestions = totalProjChecked + totalImobChecked;
-                        const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
-                        showFloatingProgress(progress);
-                    }
-                });
-            });
-            imobCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener('change', function(e) {
-                    updateProgress();
-                    // Mostrar barra flutuante apenas quando marcar (não desmarcar)
-                    if (e.target.checked) {
-                        const totalProjChecked = Array.from(projCheckboxes).filter(cb => cb.checked).length;
-                        const totalImobChecked = Array.from(imobCheckboxes).filter(cb => cb.checked).length;
-                        const totalQuestions = projCheckboxes.length + imobCheckboxes.length;
-                        const completedQuestions = totalProjChecked + totalImobChecked;
-                        const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
-                        showFloatingProgress(progress);
-                    }
-                });
-            });
+            // Event listeners removidos - usando listener único abaixo
 
             // Botão voltar ao topo
             window.addEventListener('scroll', function() {
@@ -2548,8 +2520,10 @@ function initializeProgressSystem() {
     // Event listener único para todos os checkboxes
     document.addEventListener('change', function(e) {
         if (e.target.type === 'checkbox' && (e.target.classList.contains('proj-checkbox') || e.target.classList.contains('imob-checkbox'))) {
-            console.log(`Checkbox mudou para:`, e.target.checked);
+            console.log(`[DEBUG] Checkbox mudou para:`, e.target.checked);
+            console.log(`[DEBUG] Chamando calculateProgress...`);
             calculateProgress();
+            console.log(`[DEBUG] Chamando saveProgress...`);
             saveProgress();
             
             // Efeito visual quando marca/desmarca
@@ -2590,7 +2564,9 @@ window.addEventListener('scroll', function() {
 
 // Salvar progresso no banco de dados
 function saveProgress() {
+    console.log('[DEBUG] saveProgress() chamada');
     const checkboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
+    console.log('[DEBUG] Checkboxes encontrados:', checkboxes.length);
     const elementos = [];
     
     checkboxes.forEach((checkbox, index) => {

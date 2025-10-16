@@ -994,3 +994,28 @@ Not Found: /.well-known/appspecific/com.chrome.devtools.json
 Not Found: /index/url('https://fonts.googleapis.com/css2
 Not Found: /.well-known/appspecific/com.chrome.devtools.json
 "GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 7277
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Not Found: /pagina7/carregar-progresso/
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag7\urls.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag7\urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag7\urls.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag7\urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /pagina6/ HTTP/1.1" 200 158956
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /static/pag6/js/scripts.js HTTP/1.1" 200 11535
+"GET /static/pag6/css/styles.css HTTP/1.1" 200 31991
+"GET /pagina6/carregar-progresso/?pagina=pagina6 HTTP/1.1" 302 0
+"GET /login/?next=/pagina6/carregar-progresso/%3Fpagina%3Dpagina6 HTTP/1.1" 200 40568

@@ -258,8 +258,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Salvar progresso no banco de dados
     function saveProgress() {
+        console.log('[DEBUG] saveProgress() chamada - Página 7');
         const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
-        
+        console.log('[DEBUG] Checkboxes encontrados:', allCheckboxes.length);
         const elementos = [];
         
         allCheckboxes.forEach((checkbox, index) => {

@@ -10,8 +10,48 @@
     <style>
         body { font-family: 'DM Sans', sans-serif; }
         
+        /* Animação personalizada para o botão do topo */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .floating-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Efeito de hover para o botão principal */
+        .hero-button {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .hero-button:hover::before {
+            left: 100%;
+        }
+        
         /* Responsividade para mobile - Design Minimalista */
         @media (max-width: 768px) {
+            /* Botão do topo mobile */
+            .hero-button {
+                font-size: 1rem !important;
+                padding: 0.875rem 1.5rem !important;
+            }
+            
+            .floating-animation {
+                animation-duration: 4s !important;
+            }
             .plano-container {
                 max-width: 95% !important;
                 margin: 0 auto !important;
@@ -164,8 +204,60 @@
     </div>
 
     {% if not assinatura_ativa %}
+    <!-- Botão "Começar Agora" no Topo - Design Moderno -->
+    <div class="flex justify-center mb-8 sm:mb-12">
+        <div class="max-w-2xl mx-auto px-4 sm:px-6">
+            <div class="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 rounded-2xl p-8 text-center shadow-2xl relative overflow-hidden floating-animation">
+                <!-- Efeito de fundo animado -->
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-blue-700/20 animate-pulse"></div>
+                <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+                
+                <div class="relative z-10">
+                    <div class="flex items-center justify-center mb-4">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-3xl">🚀</span>
+                        </div>
+                        <div class="text-left">
+                            <h2 class="text-2xl sm:text-3xl font-bold text-white mb-1">Comece Agora!</h2>
+                            <p class="text-blue-100 text-sm sm:text-base">Acesso imediato ao conteúdo premium</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                        <div class="text-white">
+                            <div class="text-3xl sm:text-4xl font-bold mb-1">R$ {{ plano.preco|floatformat:2 }}</div>
+                            <div class="text-blue-100 text-sm">por mês</div>
+                        </div>
+                        
+                        <a href="#planos" class="hero-button group bg-white hover:bg-gray-50 text-blue-600 font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl flex items-center gap-3 text-lg">
+                            <span>Começar Agora</span>
+                            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <div class="mt-6 flex items-center justify-center gap-6 text-blue-100 text-sm">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Acesso Imediato</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Cancele Quando Quiser</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- Plano Mensal Único - Design Minimalista -->
-        <div class="flex justify-center mb-6 sm:mb-8">
+        <div id="planos" class="flex justify-center mb-6 sm:mb-8">
         {% if plano %}
             <div class="bg-white rounded-2xl sm:rounded-3xl shadow-2xl border-0 p-0 max-w-5xl w-full relative plano-container overflow-hidden">
             <!-- Header com gradiente sutil -->
