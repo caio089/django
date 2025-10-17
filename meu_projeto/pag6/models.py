@@ -5,7 +5,8 @@ class ProgressoElemento(models.Model):
     """
     Modelo para salvar o progresso dos elementos "Aprendi" em cada página
     """
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='progresso_elementos_pag6')
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='progresso_elementos_pag6', null=True, blank=True)
+    session_key = models.CharField(max_length=40, null=True, blank=True, verbose_name="Chave da Sessão")
     pagina = models.CharField(max_length=50, verbose_name="Página")
     elemento_id = models.CharField(max_length=100, verbose_name="ID do Elemento")
     elemento_tipo = models.CharField(max_length=50, verbose_name="Tipo do Elemento")  # proj-checkbox, imob-checkbox, etc.
@@ -15,7 +16,7 @@ class ProgressoElemento(models.Model):
     data_atualizacao = models.DateTimeField(auto_now=True)
     
     class Meta:
-        unique_together = ['usuario', 'pagina', 'elemento_id']
+        unique_together = [['usuario', 'pagina', 'elemento_id'], ['session_key', 'pagina', 'elemento_id']]
         verbose_name = "Progresso de Elemento"
         verbose_name_plural = "Progressos de Elementos"
         ordering = ['-data_atualizacao']

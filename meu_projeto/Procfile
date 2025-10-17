@@ -1,1 +1,1 @@
-web: gunicorn meu_projeto.wsgi:application
+web: python startup_supabase.py && gunicorn meu_projeto.wsgi:application

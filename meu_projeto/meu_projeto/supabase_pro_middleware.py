@@ -1,10 +1,13 @@
 """
 Middleware otimizado para Supabase Pro - aproveita melhor o plano pago
+Sistema anti-hibernação com keep-alive automático
 """
 import time
+import threading
 import logging
 from django.db import connection, connections
 from django.conf import settings
+from .supabase_keepalive import start_supabase_keepalive, get_supabase_status
 
 logger = logging.getLogger(__name__)
 
@@ -19,6 +22,16 @@ class SupabaseProMiddleware:
         self.last_cleanup = time.time()
         self.max_connections = 20  # Aproveitar limite do plano Pro
         self.connection_timeout = 300  # 5 minutos
+        self.keep_alive_started = False
+        
+        # Iniciar keep-alive automaticamente
+        if not self.keep_alive_started:
+            try:
+                start_supabase_keepalive()
+                self.keep_alive_started = True
+                logger.info("🚀 Keep-alive automático iniciado")
+            except Exception as e:
+                logger.warning(f"⚠️ Erro ao iniciar keep-alive: {e}")
 
     def __call__(self, request):
         # Limpeza inteligente a cada 30 segundos (menos agressiva)

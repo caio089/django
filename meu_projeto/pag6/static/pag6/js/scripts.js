@@ -58,6 +58,40 @@ document.addEventListener('DOMContentLoaded', function() {
     const progressText = document.getElementById('progressText');
     let hasShownCongratulations = false;
     
+    // Função para mostrar barra flutuante
+    function showFloatingProgress(progress) {
+        const floatingProgress = document.getElementById('floatingProgress');
+        const floatingProgressBar = document.getElementById('floatingProgressBar');
+        const floatingProgressText = document.getElementById('floatingProgressText');
+        
+        if (!floatingProgress) return;
+        
+        // Cancelar timeout anterior se existir
+        if (window.hideFloatingTimeout) {
+            clearTimeout(window.hideFloatingTimeout);
+        }
+        
+        // Atualizar conteúdo
+        if (floatingProgressBar) {
+            floatingProgressBar.style.setProperty('width', progress + '%', 'important');
+        }
+        if (floatingProgressText) floatingProgressText.textContent = Math.round(progress) + '%';
+        
+        // Mostrar barra flutuante
+        floatingProgress.style.display = 'block';
+        floatingProgress.style.opacity = '1';
+        floatingProgress.style.visibility = 'visible';
+        floatingProgress.style.zIndex = '9999';
+        
+        // Esconder após 3 segundos
+        window.hideFloatingTimeout = setTimeout(() => {
+            floatingProgress.style.opacity = '0';
+            setTimeout(() => {
+                floatingProgress.style.display = 'none';
+            }, 300);
+        }, 3000);
+    }
+
     function updateProgress() {
         const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
         const checked = document.querySelectorAll('input[type="checkbox"]:checked');
@@ -68,9 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (progressText) progressText.textContent = Math.round(progress) + '%';
         
         // Mostrar barra flutuante quando marcar checkbox
-        if (typeof showFloatingProgress === 'function') {
-            showFloatingProgress(progress);
-        }
+        showFloatingProgress(progress);
         
         if (progress >= 100 && !hasShownCongratulations) {
             hasShownCongratulations = true;

@@ -1,4 +1,5 @@
 // ===== FUNÇÃO GLOBAL PARA MOSTRAR/ESCONDER SEÇÕES =====
+// Definir a função globalmente ANTES do DOMContentLoaded
 window.showSection = function(sectionId) {
     console.log('🔍 showSection chamada com:', sectionId);
     console.log('🔍 Função showSection está definida:', typeof window.showSection);
@@ -40,6 +41,16 @@ window.showSection = function(sectionId) {
         console.error('❌ Elementos disponíveis:', document.querySelectorAll('[id$="-section"]'));
     }
 };
+
+// Verificar se a função foi definida
+console.log('🔍 Função showSection definida:', typeof window.showSection);
+
+// Garantir que a função esteja disponível globalmente
+if (typeof window.showSection === 'undefined') {
+    console.error('❌ ERRO: showSection não foi definida!');
+} else {
+    console.log('✅ showSection definida com sucesso!');
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     // ===== LAZY LOADING PARA VÍDEOS =====
@@ -83,6 +94,15 @@ document.addEventListener('DOMContentLoaded', function() {
         backToTopBtn: document.getElementById('backToTop')
     };
     
+    // Debug: Verificar se elementos foram encontrados
+    console.log('[DEBUG] Elementos encontrados na Página 3:', {
+        progressBar: !!elements.progressBar,
+        progressText: !!elements.progressText,
+        floatingProgress: !!elements.floatingProgress,
+        floatingProgressBar: !!elements.floatingProgressBar,
+        floatingProgressText: !!elements.floatingProgressText
+    });
+    
     // ===== FUNÇÃO PARA MOSTRAR/ESCONDER SEÇÕES =====
     // Função será definida globalmente após o DOMContentLoaded
     
@@ -103,6 +123,15 @@ document.addEventListener('DOMContentLoaded', function() {
                                  Array.from(imobCheckboxes).filter(cb => cb.checked).length +
                                  Array.from(henkakuenkaCheckboxes).filter(cb => cb.checked).length +
                                  Array.from(kaeshiWazaCheckboxes).filter(cb => cb.checked).length;
+        
+        console.log('[DEBUG] Checkboxes encontrados na Página 3:', {
+            proj: projCheckboxes.length,
+            imob: imobCheckboxes.length,
+            henkakuenka: henkakuenkaCheckboxes.length,
+            kaeshi: kaeshiWazaCheckboxes.length,
+            total: totalQuestions,
+            completed: completedQuestions
+        });
         
         console.log('[DEBUG] Progress calculation:', {
             totalQuestions,
@@ -151,9 +180,17 @@ document.addEventListener('DOMContentLoaded', function() {
     if (continueBtn) continueBtn.addEventListener('click', closeCongratulations);
     if (closeBtn) closeBtn.addEventListener('click', closeCongratulations);
 
+    // Variável para controlar timeout da barra flutuante
+    let hideFloatingTimeout = null;
+    
     // Função otimizada para barra de progresso flutuante
     function showFloatingProgress(progress) {
         if (!elements.floatingProgress || !elements.floatingProgressBar || !elements.floatingProgressText) return;
+        
+        // Cancelar timeout anterior se existir
+        if (hideFloatingTimeout) {
+            clearTimeout(hideFloatingTimeout);
+        }
         
         elements.floatingProgressBar.style.width = progress + '%';
         elements.floatingProgressText.textContent = Math.round(progress) + '%';
@@ -161,10 +198,11 @@ document.addEventListener('DOMContentLoaded', function() {
         elements.floatingProgress.classList.remove('hidden');
         elements.floatingProgress.style.opacity = '1';
         
-        setTimeout(() => {
+        // Esconder após 3 segundos
+        hideFloatingTimeout = setTimeout(() => {
             elements.floatingProgress.style.opacity = '0';
             setTimeout(() => elements.floatingProgress.classList.add('hidden'), 300);
-        }, 2000);
+        }, 3000);
     }
 
     // Inicializar barra flutuante
@@ -666,10 +704,7 @@ function initializeCarouselArrows() {
     console.log('✅ Inicialização das setas concluída');
 }
 
-}); // End of DOMContentLoaded
-
-// Inicializar setas de navegação quando o DOM estiver carregado
-document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar setas de navegação quando o DOM estiver carregado
     console.log('🚀 DOM carregado, aguardando inicialização das setas...');
     // Aguardar um pouco para garantir que todas as seções estejam carregadas
     setTimeout(() => {
@@ -680,45 +715,13 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('⚠️ initializeCarouselArrows não está disponível ainda');
         }
     }, 1000);
-});
-
-// Função showSection já está definida no início do arquivo
 
 
 
 
 
-    // ===== FUNÇÕES DE TÉCNICAS INDIVIDUAIS =====
-    window.showTechniqueCard = function(techniqueId) {
-        document.getElementById('henkakuenka-section').classList.add('hidden');
-        document.getElementById('technique-cards-section').classList.remove('hidden');
-        
-        document.querySelectorAll('.technique-individual-card').forEach(card => {
-            card.classList.add('hidden');
-        });
-        
-        const selectedCard = document.getElementById(techniqueId + '-card');
-        if (selectedCard) {
-            selectedCard.classList.remove('hidden');
-        }
-        
-        setTimeout(() => {
-            document.getElementById('technique-cards-section').scrollIntoView({ 
-                behavior: 'smooth', block: 'start' 
-            });
-        }, 100);
-    };
-    
-    window.backToHenkakuenka = function() {
-        document.getElementById('technique-cards-section').classList.add('hidden');
-        document.getElementById('henkakuenka-section').classList.remove('hidden');
-        
-        setTimeout(() => {
-            document.getElementById('henkakuenka-section').scrollIntoView({ 
-                behavior: 'smooth', block: 'start' 
-            });
-        }, 100);
-    };
+    // ===== FUNÇÕES DE TÉCNICAS INDIVIDUAIS - REMOVIDO DUPLICADO =====
+    // As funções showTechniqueCard e backToHenkakuenka já estão definidas acima
     
     // Navegação para Ukemi
     const ukemiNav = document.getElementById('ukemi-nav');
@@ -824,28 +827,47 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Modificar a função addCheckboxListeners para salvar progresso
+    // Modificar a função addCheckboxListeners para salvar progresso - VERSÃO ROBUSTA
     function addCheckboxListeners(checkboxes) {
         checkboxes.forEach(checkbox => {
             checkbox.addEventListener('change', function(e) {
                 console.log(`[DEBUG] Checkbox mudou para:`, e.target.checked);
-                console.log(`[DEBUG] Chamando updateProgress...`);
-                updateProgress();
+                
+                // Calcular progresso uma única vez
+                const totalQuestions = projCheckboxes.length + imobCheckboxes.length + henkakuenkaCheckboxes.length + kaeshiWazaCheckboxes.length;
+                const completedQuestions = Array.from(projCheckboxes).filter(cb => cb.checked).length +
+                                         Array.from(imobCheckboxes).filter(cb => cb.checked).length +
+                                         Array.from(henkakuenkaCheckboxes).filter(cb => cb.checked).length +
+                                         Array.from(kaeshiWazaCheckboxes).filter(cb => cb.checked).length;
+                const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
+                
+                // Atualizar elementos DOM
+                if (elements.progressBar) elements.progressBar.style.width = progress + '%';
+                if (elements.progressText) elements.progressText.textContent = Math.round(progress) + '%';
+                
                 console.log(`[DEBUG] Chamando saveProgress...`);
                 saveProgress(); // Salvar no banco quando mudar
                 
+                // Mostrar barra flutuante apenas quando marcar (não desmarcar)
                 if (e.target.checked) {
-                    const totalQuestions = projCheckboxes.length + imobCheckboxes.length + henkakuenkaCheckboxes.length + kaeshiWazaCheckboxes.length;
-                    const completedQuestions = Array.from(projCheckboxes).filter(cb => cb.checked).length +
-                                             Array.from(imobCheckboxes).filter(cb => cb.checked).length +
-                                             Array.from(henkakuenkaCheckboxes).filter(cb => cb.checked).length +
-                                             Array.from(kaeshiWazaCheckboxes).filter(cb => cb.checked).length;
-                    const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
                     showFloatingProgress(progress);
                 }
             });
         });
     }
+    
+    // Event listener adicional para cliques (backup) - PÁGINA 3
+    document.addEventListener('click', function(e) {
+        if (e.target.type === 'checkbox') {
+            console.log(`[DEBUG] Click em checkbox detectado na Página 3:`, e.target.checked);
+            // Aguardar um pouco para o estado mudar
+            setTimeout(() => {
+                console.log(`[DEBUG] Estado após click na Página 3:`, e.target.checked);
+                updateProgress();
+                saveProgress();
+            }, 50);
+        }
+    });
     
     // Adicionar listeners para todos os checkboxes
     addCheckboxListeners(projCheckboxes);
@@ -856,8 +878,33 @@ document.addEventListener('DOMContentLoaded', function() {
     // Carregar progresso ao inicializar
     loadProgress();
     
+    // Teste manual para verificar se tudo está funcionando - PÁGINA 3
+    setTimeout(() => {
+        console.log('[DEBUG] Teste manual - verificando elementos na Página 3 após 2 segundos:');
+        const testCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+        console.log('[DEBUG] Checkboxes encontrados no teste da Página 3:', testCheckboxes.length);
+        
+        if (testCheckboxes.length > 0) {
+            console.log('[DEBUG] Primeiro checkbox da Página 3:', testCheckboxes[0]);
+            console.log('[DEBUG] Testando clique manual no primeiro checkbox da Página 3...');
+            // Simular um clique para testar
+            testCheckboxes[0].click();
+            setTimeout(() => {
+                testCheckboxes[0].click(); // Desmarcar
+            }, 1000);
+        }
+    }, 2000);
+    
     // ===== INICIALIZAÇÃO FINAL =====
     console.log('✅ Script da Página 3 otimizado carregado!');
     console.log('📱 Mobile:', window.innerWidth <= 768);
+    
+    // Verificação final da função showSection
+    console.log('🔍 Verificação final - showSection disponível:', typeof window.showSection);
+    if (typeof window.showSection === 'function') {
+        console.log('✅ showSection está funcionando!');
+    } else {
+        console.error('❌ ERRO CRÍTICO: showSection não está disponível!');
+    }
     
 }); // Fim do DOMContentLoaded

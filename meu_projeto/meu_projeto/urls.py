@@ -19,6 +19,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from dashboard import views as dashboard_views
+from meu_projeto import views_supabase
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -39,6 +40,12 @@ urlpatterns = [
     path('payments/', include('payments.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('admin-dashboard/', dashboard_views.dashboard_admin, name='admin_dashboard_direct'),  # Atalho direto
+    
+    # Endpoints de monitoramento do Supabase
+    path('api/supabase/status/', views_supabase.supabase_status, name='supabase_status'),
+    path('api/supabase/start/', views_supabase.start_keepalive, name='supabase_start'),
+    path('api/supabase/stop/', views_supabase.stop_keepalive, name='supabase_stop'),
+    path('api/supabase/test/', views_supabase.test_connection, name='supabase_test'),
 ]
 
 # Configuração para servir arquivos estáticos durante o desenvolvimento

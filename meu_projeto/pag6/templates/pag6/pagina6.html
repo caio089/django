@@ -2205,65 +2205,8 @@
             </div>
         </div>
 
-        <!-- SCRIPT INLINE PARA BARRA FLUTUANTE -->
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let hideFloatingTimeout = null;
-            
-            // Função para mostrar barra flutuante
-            function showFloatingProgress(progress) {
-                const floatingProgress = document.getElementById('floatingProgress');
-                const floatingProgressBar = document.getElementById('floatingProgressBar');
-                const floatingProgressText = document.getElementById('floatingProgressText');
-                
-                if (!floatingProgress) return;
-                
-                // Cancelar timeout anterior se existir
-                if (hideFloatingTimeout) {
-                    clearTimeout(hideFloatingTimeout);
-                }
-                
-                // Atualizar conteúdo
-                if (floatingProgressBar) {
-                    floatingProgressBar.style.setProperty('width', progress + '%', 'important');
-                }
-                if (floatingProgressText) floatingProgressText.textContent = Math.round(progress) + '%';
-                
-                // Mostrar barra flutuante
-                floatingProgress.style.display = 'block';
-                floatingProgress.style.opacity = '1';
-                floatingProgress.style.visibility = 'visible';
-                floatingProgress.style.zIndex = '9999';
-                
-                // Esconder após 3 segundos
-                hideFloatingTimeout = setTimeout(() => {
-                    floatingProgress.style.opacity = '0';
-                    setTimeout(() => {
-                        floatingProgress.style.display = 'none';
-                    }, 300);
-                }, 3000);
-            }
-            
-            // Adicionar listeners aos checkboxes
-            document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-                checkbox.addEventListener('change', function() {
-                    const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
-                    const checked = document.querySelectorAll('input[type="checkbox"]:checked');
-                    const progress = (checked.length / allCheckboxes.length) * 100;
-                    
-                    // Atualizar barra do header
-                    const progressBar = document.getElementById('progressBar');
-                    const progressText = document.getElementById('progressText');
-                    
-                    if (progressBar) progressBar.style.width = progress + '%';
-                    if (progressText) progressText.textContent = Math.round(progress) + '%';
-                    
-                    // Mostrar barra flutuante
-                    showFloatingProgress(progress);
-                });
-            });
-        });
-        </script>
+        <!-- SCRIPT INLINE REMOVIDO - CÓDIGO DUPLICADO -->
+        <!-- Todo o código JavaScript foi movido para scripts.js para evitar duplicação -->
 
         <!-- Botão Flutuante de Voltar ao Topo -->
         <button id="backToTop" class="fixed bottom-8 right-8 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-lg floating-action transition-colors hidden font-buttons z-50">

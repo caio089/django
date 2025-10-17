@@ -68,6 +68,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const floatingProgress = document.getElementById('floatingProgress');
     const floatingProgressBar = document.getElementById('floatingProgressBar');
     const floatingProgressText = document.getElementById('floatingProgressText');
+    
+    // Debug: Verificar se elementos foram encontrados
+    console.log('[DEBUG] Elementos encontrados:', {
+        progressBar: !!progressBar,
+        progressText: !!progressText,
+        floatingProgress: !!floatingProgress,
+        floatingProgressBar: !!floatingProgressBar,
+        floatingProgressText: !!floatingProgressText
+    });
     let hasShownCongratulations = false;
     let hideFloatingTimeout = null;
     
@@ -107,6 +116,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const checked = document.querySelectorAll('input[type="checkbox"]:checked');
         const progress = allCheckboxes.length > 0 ? (checked.length / allCheckboxes.length) * 100 : 0;
         
+        console.log(`[DEBUG] Checkboxes encontrados:`, {
+            total: allCheckboxes.length,
+            checked: checked.length,
+            progress: progress
+        });
+        
         console.log(`[DEBUG] Progress calculation:`, {
             totalCheckboxes: allCheckboxes.length,
             checkedCheckboxes: checked.length,
@@ -127,15 +142,30 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Event listener único para todos os checkboxes
+    // Event listener único para todos os checkboxes - VERSÃO ROBUSTA
     document.addEventListener('change', function(e) {
-        console.log(`[DEBUG] Event listener disparado para:`, e.target.type, e.target.className);
+        console.log(`[DEBUG] Event listener disparado para:`, e.target.type, e.target.className, e.target);
         if (e.target.type === 'checkbox') {
             console.log(`[DEBUG] Checkbox válido mudou para:`, e.target.checked);
             console.log(`[DEBUG] Chamando updateProgress...`);
             updateProgress();
             console.log(`[DEBUG] Chamando saveProgress...`);
             saveProgress(); // Salvar no banco quando mudar
+        } else {
+            console.log(`[DEBUG] Evento não é de checkbox:`, e.target.type);
+        }
+    });
+    
+    // Event listener adicional para cliques (backup)
+    document.addEventListener('click', function(e) {
+        if (e.target.type === 'checkbox') {
+            console.log(`[DEBUG] Click em checkbox detectado:`, e.target.checked);
+            // Aguardar um pouco para o estado mudar
+            setTimeout(() => {
+                console.log(`[DEBUG] Estado após click:`, e.target.checked);
+                updateProgress();
+                saveProgress();
+            }, 50);
         }
     });
     
@@ -341,13 +371,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         allCheckboxes[index].checked = elemento.aprendido;
                     }
                 });
-                
-                updateProgress();
             } else {
                 console.log('Nenhum progresso no banco, usando estado atual');
             }
             
-            // Sempre atualizar progresso após carregar (com ou sem dados)
+            // Atualizar progresso apenas uma vez após carregar
             console.log('[DEBUG] Chamando updateProgress após carregar progresso...');
             updateProgress();
         })
@@ -363,4 +391,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Carregar progresso ao inicializar
     loadProgress();
+    
+    // Teste manual para verificar se tudo está funcionando
+    setTimeout(() => {
+        console.log('[DEBUG] Teste manual - verificando elementos após 2 segundos:');
+        const testCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+        console.log('[DEBUG] Checkboxes encontrados no teste:', testCheckboxes.length);
+        
+        if (testCheckboxes.length > 0) {
+            console.log('[DEBUG] Primeiro checkbox:', testCheckboxes[0]);
+            console.log('[DEBUG] Testando clique manual no primeiro checkbox...');
+            // Simular um clique para testar
+            testCheckboxes[0].click();
+            setTimeout(() => {
+                testCheckboxes[0].click(); // Desmarcar
+            }, 1000);
+        }
+    }, 2000);
 });

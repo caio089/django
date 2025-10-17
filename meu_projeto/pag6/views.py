@@ -11,7 +11,6 @@ def pagina6(request):
     """View principal da página 6"""
     return render(request, 'pag6/pagina6.html')
 
-@login_required
 @csrf_exempt
 @require_http_methods(["POST"])
 def salvar_progresso(request):
@@ -33,17 +32,35 @@ def salvar_progresso(request):
             if not elemento_id or not elemento_tipo:
                 continue
             
+            # Usar sessão para usuários não logados
+            session_key = request.session.session_key
+            if not session_key:
+                request.session.create()
+                session_key = request.session.session_key
+            
             # Buscar ou criar progresso
-            progresso, created = ProgressoElemento.objects.get_or_create(
-                usuario=request.user,
-                pagina=pagina,
-                elemento_id=elemento_id,
-                defaults={
-                    'elemento_tipo': elemento_tipo,
-                    'aprendido': aprendido,
-                    'data_aprendizado': timezone.now() if aprendido else None
-                }
-            )
+            if request.user.is_authenticated:
+                progresso, created = ProgressoElemento.objects.get_or_create(
+                    usuario=request.user,
+                    pagina=pagina,
+                    elemento_id=elemento_id,
+                    defaults={
+                        'elemento_tipo': elemento_tipo,
+                        'aprendido': aprendido,
+                        'data_aprendizado': timezone.now() if aprendido else None
+                    }
+                )
+            else:
+                progresso, created = ProgressoElemento.objects.get_or_create(
+                    session_key=session_key,
+                    pagina=pagina,
+                    elemento_id=elemento_id,
+                    defaults={
+                        'elemento_tipo': elemento_tipo,
+                        'aprendido': aprendido,
+                        'data_aprendizado': timezone.now() if aprendido else None
+                    }
+                )
             
             # Se já existe, atualizar
             if not created:
@@ -74,7 +91,6 @@ def salvar_progresso(request):
             'error': str(e)
         }, status=500)
 
-@login_required
 @require_http_methods(["GET"])
 def carregar_progresso(request):
     """
@@ -83,10 +99,22 @@ def carregar_progresso(request):
     try:
         pagina = request.GET.get('pagina', 'pagina6')
         
-        progressos = ProgressoElemento.objects.filter(
-            usuario=request.user,
-            pagina=pagina
-        )
+        # Usar sessão para usuários não logados
+        session_key = request.session.session_key
+        if not session_key:
+            request.session.create()
+            session_key = request.session.session_key
+        
+        if request.user.is_authenticated:
+            progressos = ProgressoElemento.objects.filter(
+                usuario=request.user,
+                pagina=pagina
+            )
+        else:
+            progressos = ProgressoElemento.objects.filter(
+                session_key=session_key,
+                pagina=pagina
+            )
         
         elementos = []
         for progresso in progressos:

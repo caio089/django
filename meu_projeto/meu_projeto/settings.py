@@ -52,7 +52,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'meu_projeto.middleware.WWWRedirectMiddleware',  # Redirecionamento www
-    'meu_projeto.supabase_session_middleware.SupabaseSessionMiddleware',  # Middleware para modo Session
+    'meu_projeto.supabase_pro_middleware.SupabaseProMiddleware',  # Middleware otimizado para Supabase Pro
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -91,17 +91,21 @@ if os.getenv('DATABASE_URL'):
     DATABASES = {
         'default': dj_database_url.parse(
             os.getenv('DATABASE_URL'),
-            conn_max_age=300,  # Manter conexões por 5 minutos (plano Pro)
+            conn_max_age=600,  # Manter conexões por 10 minutos (anti-hibernação)
             conn_health_checks=True,  # Habilitar verificações de saúde
         )
     }
-    # Configurações otimizadas para Supabase Pro (mais conexões permitidas)
+    # Configurações otimizadas para Supabase Pro (anti-hibernação)
     DATABASES['default']['OPTIONS'] = {
         'sslmode': 'require',
-        'connect_timeout': 30,  # Timeout maior para plano Pro
+        'connect_timeout': 30,
         'application_name': 'django_app',
-        # Configurações otimizadas para plano Pro
-        'options': '-c default_transaction_isolation=read_committed -c statement_timeout=60000 -c idle_in_transaction_session_timeout=300000'
+        # Configurações anti-hibernação (compatíveis com Supabase)
+        'keepalives_idle': 600,  # 10 minutos
+        'keepalives_interval': 30,  # 30 segundos
+        'keepalives_count': 3,  # 3 tentativas
+        # Configurações de timeout otimizadas
+        'options': '-c default_transaction_isolation=read_committed -c statement_timeout=60000 -c idle_in_transaction_session_timeout=600000'
     }
 # Prioridade 2: Configuração individual (Supabase) - funciona em ambos os ambientes
 elif os.getenv('DB_HOST'):
