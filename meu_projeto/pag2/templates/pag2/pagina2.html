@@ -2139,14 +2139,17 @@
 
         });
 
+        // Variáveis globais para a barra flutuante
+        let floatingProgress, floatingProgressBar, floatingProgressText;
+
         document.addEventListener('DOMContentLoaded', function() {
             const projCheckboxes = document.querySelectorAll('.proj-checkbox');
             const imobCheckboxes = document.querySelectorAll('.imob-checkbox');
             const progressBar = document.getElementById('progressBar');
             const progressText = document.getElementById('progressText');
-            const floatingProgress = document.getElementById('floatingProgress');
-            const floatingProgressBar = document.getElementById('floatingProgressBar');
-            const floatingProgressText = document.getElementById('floatingProgressText');
+            floatingProgress = document.getElementById('floatingProgress');
+            floatingProgressBar = document.getElementById('floatingProgressBar');
+            floatingProgressText = document.getElementById('floatingProgressText');
             const backToTopBtn = document.getElementById('backToTop');
             let answeredQuestions = 0;
             const totalQuestions = projCheckboxes.length + imobCheckboxes.length;
@@ -2162,26 +2165,7 @@
                 progressText.textContent = Math.round(progress) + '%';
             }
 
-            // Função para mostrar barra de progresso flutuante
-            function showFloatingProgress(progress) {
-                // Atualizar valores da barra flutuante
-                floatingProgressBar.style.width = progress + '%';
-                floatingProgressText.textContent = Math.round(progress) + '%';
-                
-                // Mostrar a barra
-                floatingProgress.classList.remove('hidden');
-                floatingProgress.style.opacity = '1';
-                floatingProgress.style.pointerEvents = 'auto';
-                
-                // Esconder após 5 segundos
-                setTimeout(() => {
-                    floatingProgress.style.opacity = '0';
-                    floatingProgress.style.pointerEvents = 'none';
-                    setTimeout(() => {
-                        floatingProgress.classList.add('hidden');
-                    }, 300); // Aguarda a transição de opacity
-                }, 5000);
-            }
+            // Função movida para escopo global abaixo
 
             // Garantir que a barra flutuante comece escondida
             floatingProgress.classList.add('hidden');
@@ -2437,6 +2421,7 @@ function countTotalItems() {
 
 // Função para calcular progresso
 function calculateProgress() {
+    console.log('[DEBUG] calculateProgress() chamada');
     // Contar checkboxes diretamente
     const allCheckboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
     const checkedCheckboxes = document.querySelectorAll('.proj-checkbox:checked, .imob-checkbox:checked');
@@ -2447,13 +2432,13 @@ function calculateProgress() {
     // Calcular progresso
     progress = totalItems > 0 ? Math.round((checkedItems / totalItems) * 100) : 0;
     
-    console.log('Progress calculation:', { 
+    console.log('[DEBUG] Progress calculation:', { 
         totalItems, 
         checkedItems, 
         progress, 
         allCheckboxes: allCheckboxes.length,
         checkedCheckboxes: checkedCheckboxes.length
-    }); // Debug
+    });
     
     // Atualizar barra de progresso principal
     const progressBar = document.getElementById('progressBar');
@@ -2509,22 +2494,61 @@ function initializeProgressSystem() {
     console.log('=== INICIALIZANDO SISTEMA DE PROGRESSO ===');
     
     const checkboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
-    console.log('Checkboxes encontrados:', checkboxes.length);
+    console.log('[DEBUG] Checkboxes encontrados:', checkboxes.length);
     
-    // Garantir que todos os checkboxes começam desmarcados
-    checkboxes.forEach((checkbox, index) => {
-        checkbox.checked = false;
-        console.log(`Checkbox ${index + 1} desmarcado`);
-    });
+    // NÃO desmarcar checkboxes - deixar como estão (carregados do banco)
+    console.log('[DEBUG] Mantendo estado atual dos checkboxes');
     
+    // Função global para mostrar barra de progresso flutuante
+    function showFloatingProgress(progress) {
+        console.log(`[DEBUG] showFloatingProgress chamada com progresso: ${progress}%`);
+        console.log(`[DEBUG] floatingProgress encontrado:`, !!floatingProgress);
+        console.log(`[DEBUG] floatingProgressBar encontrado:`, !!floatingProgressBar);
+        console.log(`[DEBUG] floatingProgressText encontrado:`, !!floatingProgressText);
+        
+        // Atualizar valores da barra flutuante
+        if (floatingProgressBar) {
+            floatingProgressBar.style.width = progress + '%';
+        }
+        if (floatingProgressText) {
+            floatingProgressText.textContent = Math.round(progress) + '%';
+        }
+        
+        // Mostrar a barra
+        if (floatingProgress) {
+            floatingProgress.classList.remove('hidden');
+            floatingProgress.style.opacity = '1';
+            floatingProgress.style.pointerEvents = 'auto';
+            
+            // Esconder após 5 segundos
+            setTimeout(() => {
+                floatingProgress.style.opacity = '0';
+                floatingProgress.style.pointerEvents = 'none';
+                setTimeout(() => {
+                    floatingProgress.classList.add('hidden');
+                }, 300); // Aguarda a transição de opacity
+            }, 5000);
+        }
+    }
+
     // Event listener único para todos os checkboxes
     document.addEventListener('change', function(e) {
+        console.log(`[DEBUG] Event listener disparado para:`, e.target.type, e.target.className);
         if (e.target.type === 'checkbox' && (e.target.classList.contains('proj-checkbox') || e.target.classList.contains('imob-checkbox'))) {
-            console.log(`[DEBUG] Checkbox mudou para:`, e.target.checked);
+            console.log(`[DEBUG] Checkbox válido mudou para:`, e.target.checked);
             console.log(`[DEBUG] Chamando calculateProgress...`);
             calculateProgress();
             console.log(`[DEBUG] Chamando saveProgress...`);
             saveProgress();
+            
+            // Mostrar barra flutuante apenas quando marcar (não desmarcar)
+            if (e.target.checked) {
+                console.log(`[DEBUG] Mostrando barra flutuante...`);
+                const allCheckboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
+                const checkedCheckboxes = document.querySelectorAll('.proj-checkbox:checked, .imob-checkbox:checked');
+                const progress = allCheckboxes.length > 0 ? (checkedCheckboxes.length / allCheckboxes.length) * 100 : 0;
+                showFloatingProgress(progress);
+            }
             
             // Efeito visual quando marca/desmarca
             const label = e.target.closest('label');
@@ -2538,6 +2562,7 @@ function initializeProgressSystem() {
     });
     
     // Calcular progresso inicial
+    console.log('[DEBUG] Chamando calculateProgress na inicialização...');
     calculateProgress();
     
     console.log('Sistema de progresso inicializado com sucesso!');
@@ -2578,6 +2603,9 @@ function saveProgress() {
     });
     
     // Salvar no banco de dados
+    console.log(`[DEBUG] Enviando ${elementos.length} elementos para salvar`);
+    console.log(`[DEBUG] Elementos:`, elementos);
+    
     fetch('/pagina2/salvar-progresso/', {
         method: 'POST',
         headers: {
@@ -2589,16 +2617,20 @@ function saveProgress() {
             elementos: elementos
         })
     })
-    .then(response => response.json())
+    .then(response => {
+        console.log(`[DEBUG] Resposta recebida:`, response.status);
+        return response.json();
+    })
     .then(data => {
+        console.log(`[DEBUG] Dados recebidos:`, data);
         if (data.success) {
-            console.log('Progresso salvo no banco de dados:', data.message);
+            console.log('✅ Progresso salvo no banco de dados:', data.message);
         } else {
-            console.error('Erro ao salvar progresso:', data.error);
+            console.error('❌ Erro ao salvar progresso:', data.error);
         }
     })
     .catch(error => {
-        console.error('Erro ao salvar progresso:', error);
+        console.error('❌ Erro ao salvar progresso:', error);
     });
     
     // Também salvar no localStorage como backup
@@ -2611,12 +2643,17 @@ function saveProgress() {
 
 // Carregar progresso do banco de dados
 function loadProgress() {
+    console.log(`[DEBUG] loadProgress() chamada`);
     // Primeiro tentar carregar do banco de dados
     fetch('/pagina2/carregar-progresso/?pagina=pagina2')
-    .then(response => response.json())
+    .then(response => {
+        console.log(`[DEBUG] Resposta do carregar-progresso:`, response.status);
+        return response.json();
+    })
     .then(data => {
+        console.log(`[DEBUG] Dados carregados:`, data);
         if (data.success && data.elementos.length > 0) {
-            console.log('Carregando progresso do banco de dados:', data.elementos);
+            console.log('✅ Carregando progresso do banco de dados:', data.elementos);
             
             const checkboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
             
@@ -2624,9 +2661,11 @@ function loadProgress() {
                 const index = parseInt(elemento.id.replace('checkbox_', ''));
                 if (checkboxes[index]) {
                     checkboxes[index].checked = elemento.aprendido;
+                    console.log(`[DEBUG] Checkbox ${index + 1} restaurado para:`, elemento.aprendido);
                 }
             });
             
+            console.log('[DEBUG] Chamando calculateProgress após carregar do banco...');
             calculateProgress();
         } else {
             // Se não há dados no banco, tentar localStorage como fallback
@@ -2654,6 +2693,7 @@ function loadProgressFromLocalStorage() {
             }
         });
         
+        console.log('[DEBUG] Chamando calculateProgress após carregar do localStorage...');
         calculateProgress();
     }
 }

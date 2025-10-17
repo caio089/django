@@ -1,3 +1,46 @@
+// ===== FUNÇÃO GLOBAL PARA MOSTRAR/ESCONDER SEÇÕES =====
+window.showSection = function(sectionId) {
+    console.log('🔍 showSection chamada com:', sectionId);
+    console.log('🔍 Função showSection está definida:', typeof window.showSection);
+    
+    const allSections = [
+        'nage-waza-section',
+        'imobilizacoes-section', 
+        'henkakuenka-section',
+        'technique-cards-section',
+        'kaeshi-waza-section'
+    ];
+    
+    console.log('🔍 Seções disponíveis:', allSections);
+    
+    // Esconder todas as seções primeiro
+    allSections.forEach(id => {
+        const section = document.getElementById(id);
+        if (section) {
+            section.classList.add('hidden');
+            console.log('🔍 Escondendo seção:', id);
+        } else {
+            console.log('⚠️ Seção não encontrada:', id);
+        }
+    });
+    
+    // Mostrar a seção selecionada
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) {
+        targetSection.classList.remove('hidden');
+        console.log('✅ Removendo classe hidden de:', sectionId);
+        targetSection.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+        });
+        
+        console.log('✅ Seção', sectionId, 'mostrada com sucesso!');
+    } else {
+        console.error('❌ Seção', sectionId, 'não encontrada!');
+        console.error('❌ Elementos disponíveis:', document.querySelectorAll('[id$="-section"]'));
+    }
+};
+
 document.addEventListener('DOMContentLoaded', function() {
     // ===== LAZY LOADING PARA VÍDEOS =====
     function initLazyLoading() {
@@ -41,26 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     // ===== FUNÇÃO PARA MOSTRAR/ESCONDER SEÇÕES =====
-    window.showSection = function(sectionId) {
-        const allSections = [
-            'nage-waza-section',
-            'imobilizacoes-section', 
-            'henkakuenka-section',
-            'technique-cards-section',
-            'kaeshi-waza-section'
-        ];
-        
-        allSections.forEach(id => {
-            const section = document.getElementById(id);
-            if (section) section.classList.add('hidden');
-        });
-        
-        const targetSection = document.getElementById(sectionId);
-        if (targetSection) {
-            targetSection.classList.remove('hidden');
-            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    };
+    // Função será definida globalmente após o DOMContentLoaded
     
 
     
@@ -73,11 +97,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Função otimizada para atualizar progresso
     function updateProgress() {
+        console.log('[DEBUG] updateProgress() chamada - Página 3');
         const totalQuestions = projCheckboxes.length + imobCheckboxes.length + henkakuenkaCheckboxes.length + kaeshiWazaCheckboxes.length;
         const completedQuestions = Array.from(projCheckboxes).filter(cb => cb.checked).length +
                                  Array.from(imobCheckboxes).filter(cb => cb.checked).length +
                                  Array.from(henkakuenkaCheckboxes).filter(cb => cb.checked).length +
                                  Array.from(kaeshiWazaCheckboxes).filter(cb => cb.checked).length;
+        
+        console.log('[DEBUG] Progress calculation:', {
+            totalQuestions,
+            completedQuestions,
+            progress: Math.round((completedQuestions / totalQuestions) * 100)
+        });
         const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
         
         if (elements.progressBar) elements.progressBar.style.width = progress + '%';
@@ -152,28 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // ===== EVENT LISTENERS OTIMIZADOS =====
-    function addCheckboxListeners(checkboxes) {
-        checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function(e) {
-            updateProgress();
-            if (e.target.checked) {
-                const totalQuestions = projCheckboxes.length + imobCheckboxes.length + henkakuenkaCheckboxes.length + kaeshiWazaCheckboxes.length;
-                    const completedQuestions = Array.from(projCheckboxes).filter(cb => cb.checked).length +
-                                             Array.from(imobCheckboxes).filter(cb => cb.checked).length +
-                                             Array.from(henkakuenkaCheckboxes).filter(cb => cb.checked).length +
-                                             Array.from(kaeshiWazaCheckboxes).filter(cb => cb.checked).length;
-                const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
-                showFloatingProgress(progress);
-            }
-        });
-    });
-    }
-    
-    // Adicionar listeners para todos os checkboxes
-    addCheckboxListeners(projCheckboxes);
-    addCheckboxListeners(imobCheckboxes);
-    addCheckboxListeners(henkakuenkaCheckboxes);
-    addCheckboxListeners(kaeshiWazaCheckboxes);
+    // Função addCheckboxListeners será definida mais abaixo com salvamento de progresso
     // ===== SCROLL OTIMIZADO =====
     if (elements.backToTopBtn) {
     window.addEventListener('scroll', function() {
@@ -189,24 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     }
 
-    // Animação para as divs de navegação japonesa (OTIMIZADA PARA MOBILE)
-    document.querySelectorAll('.japanese-nav-card').forEach((card, index) => {
-        if (isMobile) {
-            // Em mobile: mostrar imediatamente sem animação
-            card.style.opacity = '1';
-            card.style.transform = 'none';
-        } else {
-            // Em desktop: animação completa
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            
-            setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            }, 200 + (index * 100)); // Delay escalonado para cada card
-        }
-    });
+    // Animação para as divs de navegação japonesa - removido duplicado
 
         // Função para criar partículas (APENAS EM DESKTOP)
     function createParticles(x, y, count = 8) {
@@ -426,10 +419,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Botões sempre visíveis - removida a lógica de ocultar/mostrar
     }
 
-    // Navegação para Ukemi
-    document.getElementById('ukemi-nav').addEventListener('click', function() {
-        window.location.href = '/ukemis/';
-    });
+    // Navegação para Ukemi - removido duplicado
 
     // --- FUNÇÕES PARA CARDS DE TÉCNICAS INDIVIDUAIS ---
     
@@ -482,13 +472,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Log de inicialização com informações sobre otimizações
     console.log('Script da Página 3 carregado com sucesso!');
-    console.log('Dispositivo detectado:', isMobile ? 'Mobile' : 'Desktop');
-    console.log('Animações otimizadas para:', isMobile ? 'Performance mobile' : 'Experiência completa desktop');
+    console.log('Dispositivo detectado:', window.innerWidth <= 768 ? 'Mobile' : 'Desktop');
+    console.log('Animações otimizadas para:', window.innerWidth <= 768 ? 'Performance mobile' : 'Experiência completa desktop');
     
     // Verificar se é mobile e aplicar otimizações imediatas
-    if (isMobile) {
+    if (window.innerWidth <= 768) {
         console.log('Aplicando otimizações mobile...');
-        disableMobileAnimations();
+        // Função de otimização mobile será implementada se necessário
     }
     
     // ===== ANIMAÇÕES DO MODAL =====
@@ -684,54 +674,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Aguardar um pouco para garantir que todas as seções estejam carregadas
     setTimeout(() => {
         console.log('⏰ Inicializando setas após delay...');
-        initializeCarouselArrows();
+        if (typeof initializeCarouselArrows === 'function') {
+            initializeCarouselArrows();
+        } else {
+            console.log('⚠️ initializeCarouselArrows não está disponível ainda');
+        }
     }, 1000);
 });
 
-// Inicializar setas quando uma seção é mostrada
-window.showSection = function(sectionId) {
-    console.log('Mostrando seção:', sectionId);
-    
-    // Esconder todas as seções primeiro
-    const allSections = [
-        'nage-waza-section',
-        'imobilizacoes-section', 
-        'henkakuenka-section',
-        'technique-cards-section',
-        'kaeshi-waza-section'
-    ];
-    
-    allSections.forEach(id => {
-        const section = document.getElementById(id);
-        if (section) {
-            section.classList.add('hidden');
-        }
-    });
-    
-    const targetSection = document.getElementById(sectionId);
-    if (targetSection) {
-        targetSection.classList.remove('hidden');
-        
-        targetSection.scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'start' 
-        });
-        
-        // Inicializar setas para a seção mostrada
-        setTimeout(() => {
-            console.log('🎯 Inicializando setas para seção:', sectionId);
-            initializeCarouselArrows();
-            
-            // Se for a seção de projeção, também testar as setas
-            if (sectionId === 'nage-waza-section') {
-                setTimeout(() => {
-                    console.log('🎯 Testando setas para seção de projeção...');
-                    forceProjectionArrows(); // Usar a função forçada
-                }, 200);
-            }
-        }, 500);
-    }
-};
+// Função showSection já está definida no início do arquivo
 
 
 
@@ -781,6 +732,7 @@ window.showSection = function(sectionId) {
     
     // Salvar progresso no banco de dados
     function saveProgress() {
+        console.log('[DEBUG] saveProgress() chamada - Página 3');
         const allCheckboxes = [
             ...projCheckboxes,
             ...imobCheckboxes,
@@ -788,6 +740,7 @@ window.showSection = function(sectionId) {
             ...kaeshiWazaCheckboxes
         ];
         
+        console.log('[DEBUG] Checkboxes encontrados:', allCheckboxes.length);
         const elementos = [];
         
         allCheckboxes.forEach((checkbox, index) => {
@@ -830,11 +783,16 @@ window.showSection = function(sectionId) {
     
     // Carregar progresso do banco de dados
     function loadProgress() {
+        console.log('[DEBUG] loadProgress() chamada - Página 3');
         fetch('/pagina3/carregar-progresso/?pagina=pagina3')
-        .then(response => response.json())
+        .then(response => {
+            console.log('[DEBUG] Resposta do carregar-progresso:', response.status);
+            return response.json();
+        })
         .then(data => {
+            console.log('[DEBUG] Dados carregados:', data);
             if (data.success && data.elementos.length > 0) {
-                console.log('Carregando progresso do banco de dados:', data.elementos);
+                console.log('✅ Carregando progresso do banco de dados:', data.elementos);
                 
                 const allCheckboxes = [
                     ...projCheckboxes,
@@ -853,10 +811,16 @@ window.showSection = function(sectionId) {
                 updateProgress();
             } else {
                 console.log('Nenhum progresso no banco, usando estado atual');
+                // Atualizar progresso mesmo sem dados
+                console.log('[DEBUG] Chamando updateProgress após carregar progresso...');
+                updateProgress();
             }
         })
         .catch(error => {
             console.error('Erro ao carregar progresso do banco:', error);
+            // Mesmo em caso de erro, atualizar progresso
+            console.log('[DEBUG] Chamando updateProgress após erro no carregamento...');
+            updateProgress();
         });
     }
     
@@ -864,7 +828,10 @@ window.showSection = function(sectionId) {
     function addCheckboxListeners(checkboxes) {
         checkboxes.forEach(checkbox => {
             checkbox.addEventListener('change', function(e) {
+                console.log(`[DEBUG] Checkbox mudou para:`, e.target.checked);
+                console.log(`[DEBUG] Chamando updateProgress...`);
                 updateProgress();
+                console.log(`[DEBUG] Chamando saveProgress...`);
                 saveProgress(); // Salvar no banco quando mudar
                 
                 if (e.target.checked) {
@@ -880,11 +847,17 @@ window.showSection = function(sectionId) {
         });
     }
     
+    // Adicionar listeners para todos os checkboxes
+    addCheckboxListeners(projCheckboxes);
+    addCheckboxListeners(imobCheckboxes);
+    addCheckboxListeners(henkakuenkaCheckboxes);
+    addCheckboxListeners(kaeshiWazaCheckboxes);
+    
     // Carregar progresso ao inicializar
     loadProgress();
     
     // ===== INICIALIZAÇÃO FINAL =====
     console.log('✅ Script da Página 3 otimizado carregado!');
-    console.log('📱 Mobile:', isMobile);
+    console.log('📱 Mobile:', window.innerWidth <= 768);
     
- // Fim do DOMContentLoaded
+}); // Fim do DOMContentLoaded

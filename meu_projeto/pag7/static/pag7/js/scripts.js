@@ -101,10 +101,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function updateProgress() {
+        console.log(`[DEBUG] updateProgress() chamada - Página 7`);
         // Contar todos os checkboxes dinamicamente
         const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
         const checked = document.querySelectorAll('input[type="checkbox"]:checked');
         const progress = allCheckboxes.length > 0 ? (checked.length / allCheckboxes.length) * 100 : 0;
+        
+        console.log(`[DEBUG] Progress calculation:`, {
+            totalCheckboxes: allCheckboxes.length,
+            checkedCheckboxes: checked.length,
+            progress: progress
+        });
         
         // Atualizar barra do header
         if (progressBar) progressBar.style.width = progress + '%';
@@ -122,14 +129,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Event listener único para todos os checkboxes
     document.addEventListener('change', function(e) {
+        console.log(`[DEBUG] Event listener disparado para:`, e.target.type, e.target.className);
         if (e.target.type === 'checkbox') {
+            console.log(`[DEBUG] Checkbox válido mudou para:`, e.target.checked);
+            console.log(`[DEBUG] Chamando updateProgress...`);
             updateProgress();
+            console.log(`[DEBUG] Chamando saveProgress...`);
             saveProgress(); // Salvar no banco quando mudar
         }
     });
     
-    // Inicializar progresso ao carregar a página
-    updateProgress();
+    // NÃO inicializar progresso aqui - será chamado após loadProgress()
     
     // --- SISTEMA DE PARABÉNS SIMPLIFICADO ---
     function showCongratulations() {
@@ -279,6 +289,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         // Salvar no banco de dados
+        console.log(`[DEBUG] Enviando ${elementos.length} elementos para salvar`);
+        console.log(`[DEBUG] Elementos:`, elementos);
+        
         fetch('/pagina7/salvar-progresso/', {
             method: 'POST',
             headers: {
@@ -290,26 +303,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 elementos: elementos
             })
         })
-        .then(response => response.json())
+        .then(response => {
+            console.log(`[DEBUG] Resposta recebida:`, response.status);
+            return response.json();
+        })
         .then(data => {
+            console.log(`[DEBUG] Dados recebidos:`, data);
             if (data.success) {
-                console.log('Progresso salvo no banco de dados:', data.message);
+                console.log('✅ Progresso salvo no banco de dados:', data.message);
             } else {
-                console.error('Erro ao salvar progresso:', data.error);
+                console.error('❌ Erro ao salvar progresso:', data.error);
             }
         })
         .catch(error => {
-            console.error('Erro ao salvar progresso:', error);
+            console.error('❌ Erro ao salvar progresso:', error);
         });
     }
     
     // Carregar progresso do banco de dados
     function loadProgress() {
+        console.log(`[DEBUG] loadProgress() chamada - Página 7`);
         fetch('/pagina7/carregar-progresso/?pagina=pagina7')
-        .then(response => response.json())
+        .then(response => {
+            console.log(`[DEBUG] Resposta do carregar-progresso:`, response.status);
+            return response.json();
+        })
         .then(data => {
+            console.log(`[DEBUG] Dados carregados:`, data);
             if (data.success && data.elementos.length > 0) {
-                console.log('Carregando progresso do banco de dados:', data.elementos);
+                console.log('✅ Carregando progresso do banco de dados:', data.elementos);
                 
                 const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
                 
@@ -324,9 +346,16 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 console.log('Nenhum progresso no banco, usando estado atual');
             }
+            
+            // Sempre atualizar progresso após carregar (com ou sem dados)
+            console.log('[DEBUG] Chamando updateProgress após carregar progresso...');
+            updateProgress();
         })
         .catch(error => {
             console.error('Erro ao carregar progresso do banco:', error);
+            // Mesmo em caso de erro, atualizar progresso
+            console.log('[DEBUG] Chamando updateProgress após erro no carregamento...');
+            updateProgress();
         });
     }
     

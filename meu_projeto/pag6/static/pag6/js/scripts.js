@@ -67,6 +67,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (progressBar) progressBar.style.width = progress + '%';
         if (progressText) progressText.textContent = Math.round(progress) + '%';
         
+        // Mostrar barra flutuante quando marcar checkbox
+        if (typeof showFloatingProgress === 'function') {
+            showFloatingProgress(progress);
+        }
+        
         if (progress >= 100 && !hasShownCongratulations) {
             hasShownCongratulations = true;
             showCongratulations();
@@ -75,7 +80,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Adicionar listeners a todos os checkboxes
     document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-        checkbox.addEventListener('change', updateProgress, { passive: true });
+        checkbox.addEventListener('change', function() {
+            updateProgress();
+            saveProgress(); // Salvar no banco quando mudar
+        }, { passive: true });
     });
     
     updateProgress();
@@ -277,13 +285,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Modificar o event listener para salvar progresso
-    document.addEventListener('change', function(e) {
-        if (e.target.type === 'checkbox') {
-            updateProgress();
-            saveProgress(); // Salvar no banco quando mudar
-        }
-    });
+    // Event listener já configurado acima
     
     // Carregar progresso ao inicializar
     loadProgress();

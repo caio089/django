@@ -1019,3 +1019,177 @@ Not Found: /.well-known/appspecific/com.chrome.devtools.json
 "GET /static/pag6/css/styles.css HTTP/1.1" 200 31991
 "GET /pagina6/carregar-progresso/?pagina=pagina6 HTTP/1.1" 302 0
 "GET /login/?next=/pagina6/carregar-progresso/%3Fpagina%3Dpagina6 HTTP/1.1" 200 40568
+"POST /pagina6/salvar-progresso/ HTTP/1.1" 302 0
+"GET /login/?next=/pagina6/salvar-progresso/ HTTP/1.1" 200 40568
+"GET /index/ HTTP/1.1" 302 0
+"GET /login/?next=/index/ HTTP/1.1" 200 40568
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+"POST /login/ HTTP/1.1" 200 40893
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 63188
+"GET /pagina3/ HTTP/1.1" 200 85752
+"GET /static/pag3/css/styles.css HTTP/1.1" 200 47667
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 85752
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /index/ HTTP/1.1" 200 63188
+"GET /pagina3/ HTTP/1.1" 200 85752
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /index/ HTTP/1.1" 200 63188
+"GET /pagina3/ HTTP/1.1" 200 85752
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 85752
+"GET /static/pag3/css/styles.css HTTP/1.1" 304 0
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 85752
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /index/ HTTP/1.1" 200 63188
+"GET /pagina7/ HTTP/1.1" 200 185881
+"GET /static/pag7/css/styles.css HTTP/1.1" 304 0
+"GET /static/pag7/js/scripts.js HTTP/1.1" 200 13547
+"GET /pagina7/carregar-progresso/?pagina=pagina7 HTTP/1.1" 200 34
+"GET /pagina7/ HTTP/1.1" 200 185881
+"GET /pagina7/carregar-progresso/?pagina=pagina7 HTTP/1.1" 200 741
+"GET /index/ HTTP/1.1" 200 63188
+"GET /pagina3/ HTTP/1.1" 200 85752
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+- Broken pipe from ('127.0.0.1', 55212)
+- Broken pipe from ('127.0.0.1', 52507)
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+"GET /pagina3/ HTTP/1.1" 200 85752
+"GET /static/pag3/css/styles.css HTTP/1.1" 304 0
+"GET /static/pag3/js/script.js HTTP/1.1" 200 37340
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /pagina3/ HTTP/1.1" 200 85752
+"GET /static/pag3/js/script.js HTTP/1.1" 200 37340
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina3/ HTTP/1.1" 200 85752
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /static/pag3/js/script.js HTTP/1.1" 200 37515
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /index/ HTTP/1.1" 200 63188
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina3/ HTTP/1.1" 200 85752
+"GET /static/pag3/js/script.js HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag7\urls.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag2\urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /pagina3/ HTTP/1.1" 200 85752
+"GET /static/pag3/css/styles.css HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /static/pag3/js/script.js HTTP/1.1" 200 36692
+"GET /pagina3/ HTTP/1.1" 200 85752
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /static/pag3/js/script.js HTTP/1.1" 304 0
+"GET /pagina3/ HTTP/1.1" 200 85759
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /static/pag3/js/script.js HTTP/1.1" 200 34437
+"GET /pagina3/ HTTP/1.1" 200 85759
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /static/pag3/css/styles.css HTTP/1.1" 304 0
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /static/pag3/js/script.js HTTP/1.1" 200 34774
+"GET /pagina3/ HTTP/1.1" 200 85759
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+Processos pesados desabilitados - modo leve ativado
+"GET /pagina3/ HTTP/1.1" 200 85773
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /static/pag3/js/script.js?v=20251016001 HTTP/1.1" 200 34840
+Processos pesados desabilitados - modo leve ativado
+"GET /pagina3/ HTTP/1.1" 200 85773
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /static/pag3/js/script.js?v=20251016002 HTTP/1.1" 200 34013
+Processos pesados desabilitados - modo leve ativado
+"GET /pagina3/ HTTP/1.1" 200 85776
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /static/pag3/js/script.js?v=20251016003 HTTP/1.1" 200 34485
+Processos pesados desabilitados - modo leve ativado
+"GET /pagina3/ HTTP/1.1" 200 85780
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /static/pag3/js/script_new.js?v=20251016004 HTTP/1.1" 200 7149
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 40904
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 63188
+"GET /pagina3/ HTTP/1.1" 200 85780
+"GET /static/pag3/js/script_new.js?v=20251016004 HTTP/1.1" 304 0
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 34
+"GET /index/ HTTP/1.1" 200 63188
+"GET /pagina3/ HTTP/1.1" 200 85780
+"GET /static/pag3/js/script_new.js?v=20251016004 HTTP/1.1" 304 0
+- Broken pipe from ('127.0.0.1', 59112)
+- Broken pipe from ('127.0.0.1', 50167)
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 1626
+"GET /index/ HTTP/1.1" 200 63188
+"GET /pagina5/ HTTP/1.1" 200 106366
+"GET /static/pag5/css/styles.css HTTP/1.1" 200 25054
+"GET /static/pag5/js/scripts.js HTTP/1.1" 200 11591
+"GET /static/pag5/js/lazy-video.js HTTP/1.1" 304 0
+"GET /pagina5/carregar-progresso/?pagina=pagina5 HTTP/1.1" 200 34
+"GET /index/ HTTP/1.1" 200 63188
+"GET /pagina3/ HTTP/1.1" 200 85780
+"GET /static/pag3/js/script_new.js?v=20251016004 HTTP/1.1" 304 0
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 1626
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1703
+Processos pesados desabilitados - modo leve ativado
+"GET /pagina3/ HTTP/1.1" 200 85780
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 6823
+"GET /static/pag3/js/script_new.js?v=20251016005 HTTP/1.1" 200 8771
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 1655
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1732
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1761
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag2\urls.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag2\urls.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag7\urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag7\urls.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag7\urls.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag2\urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag7\urls.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag7\urls.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\pag7\urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader

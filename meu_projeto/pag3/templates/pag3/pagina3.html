@@ -193,7 +193,7 @@
                     <div class="text-gray-600 text-xs transition-all duration-300 group-hover:text-blue-600">Japonês</div>
                 </a>
                 
-                <div id="ukemi-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-green-400 hover:bg-gradient-to-br hover:from-green-50 hover:to-white transform hover:-translate-y-2" onclick="showSection('ukemi-section')">
+                <div id="ukemi-nav" class="japanese-nav-card bg-white border border-gray-300 rounded-lg p-2 text-center cursor-pointer w-40 group relative overflow-hidden transition-all duration-500 ease-out hover:scale-110 hover:shadow-2xl hover:border-green-400 hover:bg-gradient-to-br hover:from-green-50 hover:to-white transform hover:-translate-y-2" onclick="window.location.href='/ukemis/'">
                     <div class="absolute inset-0 bg-gradient-to-r from-green-400/0 to-green-400/0 group-hover:from-green-400/10 group-hover:to-green-400/5 transition-all duration-500"></div>
                     <div class="text-lg mb-1 transition-all duration-300 group-hover:scale-125 group-hover:animate-spin">🔄</div>
                     <div class="font-bold text-gray-800 text-sm transition-all duration-300 group-hover:text-green-700 group-hover:scale-105">Rolamentos</div>
@@ -445,7 +445,7 @@
         <div class="section-divider h-px my-6"></div>
 
         <!-- Seção de Imobilizações -->
-        <section id="imobilizacoes-section" class="mb-12">
+        <section id="imobilizacoes-section" class="mb-12 hidden">
             <div class="text-center mb-6">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">
                     <span class="text-gradient">Técnicas de Imobilização</span>
@@ -1311,7 +1311,7 @@
         </div>
     </div>
 
-    <script src="{% static 'pag3/js/script.js' %}"></script>
+    <script src="{% static 'pag3/js/script_new.js' %}?v=20251016005"></script>
 </body>
 </html>
 
