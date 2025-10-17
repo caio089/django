@@ -31,9 +31,9 @@
             }
         }
     </script>
-    <link rel="stylesheet" href="{% static 'pag5/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'pag5/css/styles.css' %}?v=20250117002">
     <script src="{% static 'pag5/js/lazy-video.js' %}" defer></script>
-    <script src="{% static 'pag5/js/scripts.js' %}" defer></script>
+    <script src="{% static 'pag5/js/scripts.js' %}?v=20250117001" defer></script>
 </head>
 <body class="bg-gray-50 font-display">
     {% csrf_token %}
@@ -53,8 +53,8 @@
                 </a>
             </div>
             <!-- Barra de Progresso -->
-            <div class="bg-white/20 rounded-full h-5 mb-3 shadow-inner">
-                <div class="progress-bar bg-gradient-to-r from-emerald-300 to-emerald-400 rounded-full h-5 shadow-lg transition-all duration-500" style="width: 0%" id="progressBar"></div>
+            <div class="bg-white rounded-full h-5 mb-3 shadow-inner relative overflow-hidden">
+                <div class="progress-bar bg-gradient-to-r from-emerald-300 to-emerald-400 rounded-full h-5 shadow-lg transition-all duration-500 absolute top-0 left-0" style="width: 0%" id="progressBar"></div>
             </div>
             <p class="text-base font-semibold text-white">Progresso: <span id="progressText" class="text-green-200">0%</span></p>
         </div>
@@ -1480,5 +1480,39 @@
             </p>
         </div>
     </footer>
+    
+    <!-- JavaScript inline para corrigir barra verde no mobile -->
+    <script>
+        // Função para forçar posicionamento correto da barra verde no mobile
+        function fixProgressBarMobile() {
+            if (window.innerWidth <= 768) {
+                const progressBar = document.getElementById('progressBar');
+                
+                if (progressBar) {
+                    // Forçar posicionamento correto
+                    progressBar.style.position = 'absolute';
+                    progressBar.style.top = '0';
+                    progressBar.style.left = '0';
+                    progressBar.style.height = '100%';
+                    progressBar.style.margin = '0';
+                    progressBar.style.padding = '0';
+                    
+                    console.log('[DEBUG] Barra de progresso corrigida na página 5 mobile');
+                }
+            }
+        }
+        
+        // Executar imediatamente
+        fixProgressBarMobile();
+        
+        // Executar quando carregar
+        document.addEventListener('DOMContentLoaded', fixProgressBarMobile);
+        
+        // Executar quando redimensionar
+        window.addEventListener('resize', fixProgressBarMobile);
+        
+        // Executar a cada 2 segundos para garantir funcionamento
+        setInterval(fixProgressBarMobile, 2000);
+    </script>
 </body>
 </html>

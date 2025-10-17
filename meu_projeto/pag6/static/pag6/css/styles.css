@@ -478,25 +478,21 @@
                  font-size: var(--mobile-font-sm) !important;
              }
              
-             /* Componentes mobile - AJUSTADA PARA CENTRALIZAR A BARRA VERDE */
-             .progress-bar {
-                 height: 0.75rem !important;
-                 position: relative !important;
-                 top: 0 !important;
-                 margin: 0 !important;
-                 padding: 0 !important;
-             }
-             
-             /* Ajuste específico para a barra verde dentro da barra de progresso */
-             #progressBar {
-                 position: relative !important;
-                 top: 0 !important;
-                 margin: 0 !important;
-                 padding: 0 !important;
-                 height: 100% !important;
-                 border-radius: 9999px !important;
-                 transform: none !important;
-             }
+            /* Barra de progresso mobile - CENTRALIZADA */
+            .progress-bar {
+                height: 0.75rem !important;
+                transition: width 0.5s ease !important;
+            }
+            
+            /* Forçar posicionamento correto da barra verde no mobile */
+            #progressBar {
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                height: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
              
              /* Container da barra de progresso mobile */
              .bg-white\/20.rounded-full.h-5 {
@@ -518,13 +514,8 @@
                      margin: 0 !important;
                  }
                  
-                 /* Barra verde dentro do container - AJUSTADA PARA FICAR DENTRO */
-                 #progressBar {
-                     position: relative !important;
-                     top: 1px !important;
-                     left: 0 !important;
-                     margin: 0 !important;
-                     padding: 0 !important;
+                 /* Barra verde dentro do container - REMOVIDO CONFLITO */
+                 /* Regra removida para evitar conflito com posicionamento absoluto */
                      height: calc(100% - 2px) !important;
                      width: 0% !important;
                      border-radius: 9999px !important;

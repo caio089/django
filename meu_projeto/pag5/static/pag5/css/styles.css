@@ -473,9 +473,19 @@
         font-size: var(--mobile-font-sm) !important;
     }
     
-    /* Barra de progresso mobile */
+    /* Barra de progresso mobile - CENTRALIZADA */
     .progress-bar {
         height: 0.75rem !important;
+    }
+    
+    /* Forçar posicionamento correto da barra verde no mobile */
+    #progressBar {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
     
     /* Barra flutuante mobile - PERFEITAMENTE CENTRALIZADA */
