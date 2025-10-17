@@ -372,7 +372,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
             } else {
-                console.log('Nenhum progresso no banco, usando estado atual');
+                console.log('Nenhum progresso no banco, iniciando com 0%');
+                // Garantir que todos os checkboxes estão desmarcados
+                const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+                allCheckboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
             }
             
             // Atualizar progresso apenas uma vez após carregar

@@ -399,12 +399,6 @@
 
         
         /* Efeitos de scroll removidos para melhorar performance mobile */
-            width: 4px;
-            height: 4px;
-            background: #3B82F6;
-            border-radius: 50%;
-            animation: particleFloat 1.5s ease-out forwards;
-        }
         
         @keyframes particleFloat {
             0% {
@@ -2445,7 +2439,11 @@ function calculateProgress() {
     const progressText = document.getElementById('progressText');
     if (progressBar && progressText) {
         progressBar.style.width = progress + '%';
+        // Forçar cor verde para garantir que apareça
+        progressBar.style.backgroundColor = '#4ade80'; // Verde lime-400
+        progressBar.style.background = 'linear-gradient(90deg, #4ade80 0%, #22c55e 100%)';
         progressText.textContent = progress + '%';
+        console.log('[DEBUG] Barra de progresso Página 2 atualizada para:', progress + '%');
     }
     
     // Atualizar barra flutuante
@@ -2668,9 +2666,15 @@ function loadProgress() {
             console.log('[DEBUG] Chamando calculateProgress após carregar do banco...');
             calculateProgress();
         } else {
-            // Se não há dados no banco, tentar localStorage como fallback
-            console.log('Nenhum progresso no banco, tentando localStorage...');
-            loadProgressFromLocalStorage();
+            // Se não há dados no banco, iniciar com 0%
+            console.log('Nenhum progresso no banco, iniciando com 0%');
+            // Garantir que todos os checkboxes estão desmarcados
+            const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+            allCheckboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            // Atualizar progresso para 0%
+            calculateProgress();
         }
     })
     .catch(error => {

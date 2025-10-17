@@ -232,11 +232,18 @@ form.addEventListener('submit', async function(e) {
         const data = await response.json();
         
         if (data.success) {
+            console.log('✅ Pagamento criado com sucesso!');
+            console.log('📊 Dados recebidos:', data);
+            console.log('🆔 Payment ID:', data.payment_id);
+            console.log('🔗 URL de redirecionamento:', `{% url "payments:checkout_pagamento" 0 %}`.replace('0', data.payment_id));
+            
             showStatus('success', 'Pagamento criado!', 'Redirecionando para o checkout...');
             
             // Redirecionar para checkout após 1 segundo
             setTimeout(() => {
-                window.location.href = `{% url "payments:checkout_pagamento" 0 %}`.replace('0', data.payment_id);
+                const redirectUrl = `{% url "payments:checkout_pagamento" 0 %}`.replace('0', data.payment_id);
+                console.log('🚀 Redirecionando para:', redirectUrl);
+                window.location.href = redirectUrl;
             }, 1000);
             
         } else {
@@ -247,7 +254,12 @@ form.addEventListener('submit', async function(e) {
         }
         
     } catch (error) {
-        console.error('Erro:', error);
+        console.error('❌ Erro ao processar pagamento:', error);
+        console.error('📊 Detalhes do erro:', {
+            message: error.message,
+            stack: error.stack,
+            name: error.name
+        });
         showStatus('error', 'Erro de conexão', 'Verifique sua internet e tente novamente');
         submitButton.disabled = false;
         submitText.classList.remove('hidden');

@@ -140,8 +140,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         const progress = totalQuestions > 0 ? (completedQuestions / totalQuestions) * 100 : 0;
         
-        if (elements.progressBar) elements.progressBar.style.width = progress + '%';
-        if (elements.progressText) elements.progressText.textContent = Math.round(progress) + '%';
+        if (elements.progressBar) {
+            elements.progressBar.style.width = progress + '%';
+            // Forçar cor verde para garantir que apareça
+            elements.progressBar.style.backgroundColor = '#4ade80'; // Verde lime-400
+            elements.progressBar.style.background = 'linear-gradient(90deg, #4ade80 0%, #22c55e 100%)';
+            console.log('[DEBUG] Barra de progresso atualizada para:', progress + '%');
+            console.log('[DEBUG] Elemento progressBar encontrado:', !!elements.progressBar);
+            console.log('[DEBUG] Style width aplicado:', elements.progressBar.style.width);
+            console.log('[DEBUG] Style background aplicado:', elements.progressBar.style.backgroundColor);
+        } else {
+            console.log('[DEBUG] ERRO: Elemento progressBar não encontrado!');
+        }
+        if (elements.progressText) {
+            elements.progressText.textContent = Math.round(progress) + '%';
+            console.log('[DEBUG] Texto de progresso atualizado para:', Math.round(progress) + '%');
+        } else {
+            console.log('[DEBUG] ERRO: Elemento progressText não encontrado!');
+        }
         
         // Mostrar parabéns quando completar
         if (progress >= 100 && !hasShownCongratulations) {
@@ -813,8 +829,18 @@ function initializeCarouselArrows() {
                 
                 updateProgress();
             } else {
-                console.log('Nenhum progresso no banco, usando estado atual');
-                // Atualizar progresso mesmo sem dados
+                console.log('Nenhum progresso no banco, iniciando com 0%');
+                // Garantir que todos os checkboxes estão desmarcados
+                const allCheckboxes = [
+                    ...projCheckboxes,
+                    ...imobCheckboxes,
+                    ...henkakuenkaCheckboxes,
+                    ...kaeshiWazaCheckboxes
+                ];
+                allCheckboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                // Atualizar progresso para 0%
                 console.log('[DEBUG] Chamando updateProgress após carregar progresso...');
                 updateProgress();
             }

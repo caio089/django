@@ -1561,3 +1561,4 @@ Watching for file changes with StatReloader
 Processos pesados desabilitados - modo leve ativado
 Processos pesados desabilitados - modo leve ativado
 Processos pesados desabilitados - modo leve ativado
+"POST /login/ HTTP/1.1" 302 0
