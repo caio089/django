@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faixa Amarela - Aulas e Quiz</title>
-    <link rel="stylesheet" href="{% static 'pag3/css/styles.css' %}?v=20250117006">
+    <link rel="stylesheet" href="{% static 'pag3/css/styles.css' %}">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -134,8 +134,8 @@
             </div>
             
             <!-- Barra de Progresso -->
-            <div class="bg-white/20 rounded-full h-4 mb-2 shadow-inner relative overflow-hidden">
-                <div class="progress-bar rounded-full h-4 transition-all duration-500 absolute top-0 left-0" style="width: 0%" id="progressBar"></div>
+            <div class="bg-white/20 rounded-full h-4 mb-2 shadow-inner">
+                <div class="progress-bar bg-lime-400 from-blue-400 to-blue-600 rounded-full h-4 shadow-lg transition-all duration-500" style="width: 0%" id="progressBar"></div>
             </div>
             <p class="text-sm font-semibold text-white">Progresso: <span id="progressText" class="text-blue-200">0%</span></p>
         </div>
@@ -1317,64 +1317,7 @@
         </div>
     </div>
 
-    <script src="{% static 'pag3/js/script.js' %}?v=20250117006"></script>
-    
-    <!-- JavaScript inline para corrigir barras no mobile -->
-    <script>
-        // Função para forçar cor verde e visibilidade no mobile
-        function forceGreenMobile() {
-            if (window.innerWidth <= 768) {
-                const progressBar = document.getElementById('progressBar');
-                const floatingProgressBar = document.getElementById('floatingProgressBar');
-                
-                if (progressBar) {
-                    // Forçar cor verde
-                    progressBar.style.backgroundColor = '#4ade80';
-                    progressBar.style.background = 'linear-gradient(90deg, #4ade80 0%, #22c55e 100%)';
-                    
-                    // Garantir posicionamento correto
-                    progressBar.style.position = 'absolute';
-                    progressBar.style.top = '0';
-                    progressBar.style.left = '0';
-                    progressBar.style.height = '100%';
-                    progressBar.style.margin = '0';
-                    progressBar.style.padding = '0';
-                    
-                    // Garantir visibilidade
-                    progressBar.style.display = 'block';
-                    progressBar.style.opacity = '1';
-                    progressBar.style.visibility = 'visible';
-                    progressBar.style.minWidth = '2px';
-                }
-                
-                if (floatingProgressBar) {
-                    // Forçar cor verde
-                    floatingProgressBar.style.backgroundColor = '#4ade80';
-                    floatingProgressBar.style.background = 'linear-gradient(90deg, #4ade80 0%, #22c55e 100%)';
-                    
-                    // Garantir visibilidade
-                    floatingProgressBar.style.display = 'block';
-                    floatingProgressBar.style.opacity = '1';
-                    floatingProgressBar.style.visibility = 'visible';
-                    floatingProgressBar.style.minWidth = '2px';
-                }
-                
-                console.log('[DEBUG] Barras corrigidas no mobile');
-            }
-        }
-        
-        // Executar imediatamente
-        forceGreenMobile();
-        
-        // Executar quando carregar
-        document.addEventListener('DOMContentLoaded', forceGreenMobile);
-        
-        // Executar quando redimensionar
-        window.addEventListener('resize', forceGreenMobile);
-        
-        // Executar a cada 2 segundos para garantir funcionamento
-        setInterval(forceGreenMobile, 2000);
-    </script>
+    <script src="{% static 'pag3/js/script.js' %}?v=20251017002"></script>
 </body>
 </html>
 

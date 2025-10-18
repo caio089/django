@@ -213,11 +213,11 @@ def dashboard_admin(request):
         # OTIMIZAÇÃO: Usar select_related e prefetch_related para evitar N+1 queries
         recent_users = User.objects.select_related().prefetch_related('assinaturas').order_by('-date_joined')[:20]
         
-        # OTIMIZAÇÃO: Buscar todas as assinaturas ativas de uma vez
-        active_subscription_user_ids = Assinatura.objects.filter(
+        # OTIMIZAÇÃO: Buscar todas as assinaturas ativas de uma vez usando bulk operations
+        active_subscription_user_ids = set(Assinatura.objects.filter(
             status='ativa',
             ativo=True
-        ).values_list('usuario_id', flat=True)
+        ).values_list('usuario_id', flat=True))
         
         # Adicionar informação de assinatura ativa para cada usuário (sem consultas extras)
         for user in recent_users:
@@ -381,7 +381,7 @@ def remove_premium(request):
 @login_required(login_url='/dashboard/login/')
 def delete_user(request):
     """
-    Função para excluir um usuário
+    Função para excluir um usuário com otimizações de performance
     """
     if not request.user.is_superuser:
         messages.error(request, 'Você não tem permissão para esta ação.')
@@ -392,34 +392,52 @@ def delete_user(request):
         confirm = request.POST.get('confirm', '').lower()
         
         try:
-            user = User.objects.get(id=user_id)
-            
-            # Proteção: não permitir excluir a si mesmo
-            if user.id == request.user.id:
-                messages.error(request, 'Você não pode excluir sua própria conta!')
-                return redirect('dashboard_admin')
-            
-            # Proteção: não permitir excluir outros superusuários
-            if user.is_superuser:
-                messages.error(request, 'Você não pode excluir outros administradores!')
-                return redirect('dashboard_admin')
-            
-            # Verificar confirmação
-            if confirm != 'excluir':
-                messages.error(request, 'Confirmação inválida. Digite "excluir" para confirmar.')
-                return redirect('dashboard_admin')
-            
-            username = user.username
-            email = user.email
-            
-            # Excluir usuário (isso também exclui assinaturas e perfil por cascade)
-            user.delete()
-            
-            messages.success(request, f'Usuário {username} ({email}) excluído com sucesso!')
+            with transaction.atomic():
+                # Buscar usuário com select_related para otimizar
+                user = User.objects.select_related().get(id=user_id)
+                
+                # Proteção: não permitir excluir a si mesmo
+                if user.id == request.user.id:
+                    messages.error(request, 'Você não pode excluir sua própria conta!')
+                    return redirect('dashboard_admin')
+                
+                # Proteção: não permitir excluir outros superusuários
+                if user.is_superuser:
+                    messages.error(request, 'Você não pode excluir outros administradores!')
+                    return redirect('dashboard_admin')
+                
+                # Verificar confirmação
+                if confirm != 'excluir':
+                    messages.error(request, 'Confirmação inválida. Digite "excluir" para confirmar.')
+                    return redirect('dashboard_admin')
+                
+                username = user.username
+                email = user.email
+                
+                # Cancelar assinaturas ativas antes de excluir
+                assinaturas_ativas = Assinatura.objects.filter(
+                    usuario=user,
+                    status='ativa'
+                )
+                
+                if assinaturas_ativas.exists():
+                    assinaturas_ativas.update(
+                        status='cancelada',
+                        ativo=False,
+                        data_cancelamento=timezone.now()
+                    )
+                
+                # Excluir usuário (isso também exclui assinaturas e perfil por cascade)
+                user.delete()
+                
+                # Limpar cache imediatamente após exclusão
+                clear_dashboard_cache()
+                
+                messages.success(request, f'✅ Usuário {username} ({email}) excluído com sucesso!')
         
         except User.DoesNotExist:
-            messages.error(request, 'Usuário não encontrado.')
+            messages.error(request, '❌ Usuário não encontrado.')
         except Exception as e:
-            messages.error(request, f'Erro ao excluir usuário: {str(e)}')
+            messages.error(request, f'❌ Erro ao excluir usuário: {str(e)}')
     
     return redirect('dashboard_admin')

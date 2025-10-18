@@ -328,7 +328,7 @@
                     </p>
                 </div>
                 
-                <form method="post" action="{% url 'delete_user' %}" id="deleteForm">
+                <form method="post" action="{% url 'delete_user' %}" id="deleteForm" onsubmit="showDeleteLoading()">
                     {% csrf_token %}
                     <input type="hidden" name="user_id" id="deleteUserId">
                     
@@ -339,15 +339,26 @@
                         <input type="text" name="confirm" required 
                                class="w-full p-3 border-2 border-red-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
                                placeholder="Digite: excluir"
-                               autocomplete="off">
+                               autocomplete="off"
+                               id="confirmInput">
                     </div>
                     
-                    <div class="flex gap-3">
+                    <!-- Loading State -->
+                    <div id="deleteLoading" class="hidden mb-6">
+                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+                            <div class="flex items-center">
+                                <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600 mr-3"></div>
+                                <p class="text-blue-800 font-semibold">Excluindo usuário... Aguarde...</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-3" id="deleteButtons">
                         <button type="button" onclick="closeDeleteModal()" 
                                 class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-6 rounded-lg transition-colors">
                             Cancelar
                         </button>
-                        <button type="submit" 
+                        <button type="submit" id="deleteSubmitBtn"
                                 class="flex-1 bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg transition-colors">
                             🗑️ Excluir
                         </button>
@@ -487,6 +498,7 @@
             document.getElementById('deleteModal').classList.add('hidden');
             document.getElementById('deleteModal').classList.remove('flex');
             document.getElementById('deleteForm').reset();
+            resetDeleteModal(); // Resetar estado do modal
         }
         
         // Fechar modal ao clicar fora
@@ -495,6 +507,41 @@
                 closeDeleteModal();
             }
         });
+        
+        // Função para mostrar loading durante exclusão
+        function showDeleteLoading() {
+            const loadingDiv = document.getElementById('deleteLoading');
+            const buttonsDiv = document.getElementById('deleteButtons');
+            const submitBtn = document.getElementById('deleteSubmitBtn');
+            const confirmInput = document.getElementById('confirmInput');
+            
+            // Validar confirmação antes de mostrar loading
+            if (confirmInput.value.toLowerCase() !== 'excluir') {
+                return false; // Impede o envio se não confirmou
+            }
+            
+            // Mostrar loading e esconder botões
+            loadingDiv.classList.remove('hidden');
+            buttonsDiv.classList.add('hidden');
+            submitBtn.disabled = true;
+            confirmInput.disabled = true;
+            
+            return true; // Permite o envio do formulário
+        }
+        
+        // Função para resetar modal quando fechado
+        function resetDeleteModal() {
+            const loadingDiv = document.getElementById('deleteLoading');
+            const buttonsDiv = document.getElementById('deleteButtons');
+            const submitBtn = document.getElementById('deleteSubmitBtn');
+            const confirmInput = document.getElementById('confirmInput');
+            
+            loadingDiv.classList.add('hidden');
+            buttonsDiv.classList.remove('hidden');
+            submitBtn.disabled = false;
+            confirmInput.disabled = false;
+            confirmInput.value = '';
+        }
         
         // Fechar modal com ESC
         document.addEventListener('keydown', function(e) {
