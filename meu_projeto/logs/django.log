@@ -1896,3 +1896,37 @@ Watching for file changes with StatReloader
 C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
 Processos pesados desabilitados - modo leve ativado
 Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 40568
+"GET /dashboard HTTP/1.1" 301 0
+"GET /dashboard/ HTTP/1.1" 302 0
+"GET /dashboard/login/?next=/dashboard/ HTTP/1.1" 200 5810
+"POST /dashboard/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 50446
+"POST /dashboard/delete-user/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 50499
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /dashboard/ HTTP/1.1" 200 50420
+"POST /dashboard/delete-user/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 48966
+"POST /dashboard/delete-user/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 47278
+"POST /dashboard/give-premium/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 49051
+"GET /dashboard/ HTTP/1.1" 200 48777
+Erro na auto-sincronização de egygdgdgy@gmail.com: User has no profile.
+Erro na auto-sincronização de egygdgdgy@gmail.com: User has no profile.
+"POST /dashboard/delete-user/ HTTP/1.1" 302 0

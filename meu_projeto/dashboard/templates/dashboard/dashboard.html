@@ -60,12 +60,12 @@
         <!-- Cards Principais -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
             
-            <!-- Total de Assinaturas Ativas -->
+            <!-- Total de Usuários no Sistema -->
             <div class="card-hover metric-card rounded-2xl p-6 text-white shadow-lg">
                 <div class="flex items-center justify-between">
                     <div>
-                        <p class="text-white/80 text-sm">Assinaturas Ativas</p>
-                        <p class="text-3xl font-bold">{{ active_subscriptions }}</p>
+                        <p class="text-white/80 text-sm">Usuários no Sistema</p>
+                        <p class="text-3xl font-bold">{{ total_users }}</p>
                     </div>
                     <div class="text-4xl">👥</div>
                 </div>
@@ -516,28 +516,18 @@
             const submitBtn = document.getElementById('deleteSubmitBtn');
             const confirmInput = document.getElementById('confirmInput');
             
-            // Validar confirmação antes de mostrar loading
-            const confirmValue = confirmInput.value.trim().toLowerCase();
-            if (confirmValue !== 'excluir') {
-                // Destacar o campo com erro
-                confirmInput.classList.add('border-red-500', 'ring-2', 'ring-red-500');
-                confirmInput.classList.remove('border-red-300');
-                
-                // Mostrar mensagem de erro
-                alert('❌ Por favor, digite exatamente "excluir" para confirmar a exclusão.');
-                confirmInput.focus();
-                return false; // Impede o envio se não confirmou
-            }
+            // Debug do valor ANTES de desabilitar
+            console.log('DEBUG JS: Valor original:', confirmInput.value);
+            console.log('DEBUG JS: Valor limpo:', confirmInput.value.toLowerCase().replace(/[^\w]/g, ''));
+            console.log('DEBUG JS: Campo disabled antes:', confirmInput.disabled);
             
-            // Remover destaque de erro se estiver correto
-            confirmInput.classList.remove('border-red-500', 'ring-2', 'ring-red-500');
-            confirmInput.classList.add('border-red-300');
+            // NÃO desabilitar o campo - isso impede o envio!
+            // confirmInput.disabled = true;
             
             // Mostrar loading e esconder botões
             loadingDiv.classList.remove('hidden');
             buttonsDiv.classList.add('hidden');
             submitBtn.disabled = true;
-            confirmInput.disabled = true;
             
             return true; // Permite o envio do formulário
         }
@@ -552,7 +542,7 @@
             loadingDiv.classList.add('hidden');
             buttonsDiv.classList.remove('hidden');
             submitBtn.disabled = false;
-            confirmInput.disabled = false;
+            // confirmInput.disabled = false; // Não precisa desabilitar
             confirmInput.value = '';
             
             // Resetar estilos do input
@@ -563,7 +553,7 @@
         // Função para validar input em tempo real
         function validateConfirmInput() {
             const confirmInput = document.getElementById('confirmInput');
-            const confirmValue = confirmInput.value.trim().toLowerCase();
+            const confirmValue = confirmInput.value.toLowerCase().replace(/[^\w]/g, '');
             
             // Remover estilos anteriores
             confirmInput.classList.remove('border-red-500', 'ring-2', 'ring-red-500', 'border-green-500');

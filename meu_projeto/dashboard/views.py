@@ -406,9 +406,25 @@ def delete_user(request):
                     messages.error(request, 'Você não pode excluir outros administradores!')
                     return redirect('dashboard_admin')
                 
-                # Verificar confirmação (case-insensitive)
-                if confirm.lower() != 'excluir':
-                    messages.error(request, 'Confirmação inválida. Digite "excluir" para confirmar.')
+                # Debug completo dos dados recebidos
+                print(f"DEBUG: Dados POST completos: {request.POST}")
+                print(f"DEBUG: Campo 'confirm': '{confirm}'")
+                print(f"DEBUG: Tipo: {type(confirm)}")
+                print(f"DEBUG: É None: {confirm is None}")
+                print(f"DEBUG: É string vazia: {confirm == ''}")
+                
+                # Verificar se o campo existe
+                if not confirm:
+                    messages.error(request, 'Campo de confirmação não foi preenchido.')
+                    return redirect('dashboard_admin')
+                
+                # Verificar confirmação (case-insensitive e sem espaços/caracteres especiais)
+                import re
+                confirm_clean = re.sub(r'[^\w]', '', confirm.lower())
+                print(f"DEBUG: Valor limpo: '{confirm_clean}' | Tamanho: {len(confirm_clean)}")
+                
+                if confirm_clean != 'excluir':
+                    messages.error(request, f'Confirmação inválida. Recebido: "{confirm_clean}" | Esperado: "excluir"')
                     return redirect('dashboard_admin')
                 
                 username = user.username
