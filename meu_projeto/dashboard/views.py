@@ -406,8 +406,8 @@ def delete_user(request):
                     messages.error(request, 'Você não pode excluir outros administradores!')
                     return redirect('dashboard_admin')
                 
-                # Verificar confirmação
-                if confirm != 'excluir':
+                # Verificar confirmação (case-insensitive)
+                if confirm.lower() != 'excluir':
                     messages.error(request, 'Confirmação inválida. Digite "excluir" para confirmar.')
                     return redirect('dashboard_admin')
                 

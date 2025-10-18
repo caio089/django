@@ -340,7 +340,8 @@
                                class="w-full p-3 border-2 border-red-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
                                placeholder="Digite: excluir"
                                autocomplete="off"
-                               id="confirmInput">
+                               id="confirmInput"
+                               oninput="validateConfirmInput()">
                     </div>
                     
                     <!-- Loading State -->
@@ -516,9 +517,21 @@
             const confirmInput = document.getElementById('confirmInput');
             
             // Validar confirmação antes de mostrar loading
-            if (confirmInput.value.toLowerCase() !== 'excluir') {
+            const confirmValue = confirmInput.value.trim().toLowerCase();
+            if (confirmValue !== 'excluir') {
+                // Destacar o campo com erro
+                confirmInput.classList.add('border-red-500', 'ring-2', 'ring-red-500');
+                confirmInput.classList.remove('border-red-300');
+                
+                // Mostrar mensagem de erro
+                alert('❌ Por favor, digite exatamente "excluir" para confirmar a exclusão.');
+                confirmInput.focus();
                 return false; // Impede o envio se não confirmou
             }
+            
+            // Remover destaque de erro se estiver correto
+            confirmInput.classList.remove('border-red-500', 'ring-2', 'ring-red-500');
+            confirmInput.classList.add('border-red-300');
             
             // Mostrar loading e esconder botões
             loadingDiv.classList.remove('hidden');
@@ -541,6 +554,30 @@
             submitBtn.disabled = false;
             confirmInput.disabled = false;
             confirmInput.value = '';
+            
+            // Resetar estilos do input
+            confirmInput.classList.remove('border-red-500', 'ring-2', 'ring-red-500', 'border-green-500');
+            confirmInput.classList.add('border-red-300');
+        }
+        
+        // Função para validar input em tempo real
+        function validateConfirmInput() {
+            const confirmInput = document.getElementById('confirmInput');
+            const confirmValue = confirmInput.value.trim().toLowerCase();
+            
+            // Remover estilos anteriores
+            confirmInput.classList.remove('border-red-500', 'ring-2', 'ring-red-500', 'border-green-500');
+            
+            if (confirmValue === 'excluir') {
+                // Valor correto - destacar em verde
+                confirmInput.classList.add('border-green-500', 'ring-2', 'ring-green-500');
+            } else if (confirmValue.length > 0) {
+                // Valor incorreto - destacar em vermelho
+                confirmInput.classList.add('border-red-500', 'ring-2', 'ring-red-500');
+            } else {
+                // Campo vazio - estilo padrão
+                confirmInput.classList.add('border-red-300');
+            }
         }
         
         // Fechar modal com ESC
