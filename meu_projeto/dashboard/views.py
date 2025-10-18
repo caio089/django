@@ -16,8 +16,37 @@ import json
 
 def clear_dashboard_cache():
     """Limpa o cache do dashboard quando há mudanças importantes"""
-    cache.delete('dashboard_stats')
-    cache.delete('dashboard_recent_users')
+    try:
+        # Lista de todas as chaves de cache do dashboard
+        cache_keys = [
+            'dashboard_stats',
+            'dashboard_recent_users',
+            'dashboard_recent_subscriptions', 
+            'dashboard_status_counts',
+            'dashboard_monthly_data',
+            'dashboard_growth_data'
+        ]
+        
+        # Limpar caches individuais
+        for key in cache_keys:
+            cache.delete(key)
+        
+        # Limpar cache em lote (mais eficiente)
+        cache.delete_many(cache_keys)
+        
+        # Forçar limpeza de todos os caches relacionados a usuários
+        try:
+            cache.delete_pattern('*user*')
+            cache.delete_pattern('*subscription*')
+            cache.delete_pattern('*premium*')
+        except:
+            pass  # delete_pattern pode não estar disponível em todos os backends
+        
+        print("✅ Cache do dashboard limpo com sucesso")
+        return True
+    except Exception as e:
+        print(f"❌ Erro ao limpar cache do dashboard: {e}")
+        return False
 
 
 def admin_login(request):
@@ -87,16 +116,53 @@ def dashboard_admin(request):
     cache_key_stats = 'dashboard_stats'
     stats = cache.get(cache_key_stats)
     
+    # Forçar recálculo para debug
+    stats = None
+    
     if not stats:
         # Total de assinaturas ativas
         active_subscriptions = Assinatura.objects.filter(
-            status='ativa'
+            status='ativa',
+            ativo=True
         ).count()
+        
+        # Se não encontrar nenhuma, tentar apenas com status ativa
+        if active_subscriptions == 0:
+            print("🔍 DEBUG: Nenhuma assinatura ativa encontrada com status='ativa' e ativo=True, tentando apenas status='ativa'")
+            active_subscriptions = Assinatura.objects.filter(
+                status='ativa'
+            ).count()
+        
+        # Se ainda não encontrar, tentar apenas com ativo=True
+        if active_subscriptions == 0:
+            print("🔍 DEBUG: Nenhuma assinatura ativa encontrada com status='ativa', tentando apenas ativo=True")
+            active_subscriptions = Assinatura.objects.filter(
+                ativo=True
+            ).count()
+        
+        print(f"🔍 DEBUG: Total de assinaturas ativas: {active_subscriptions}")
         
         # Total de usuários premium únicos
         unique_premium_users = Assinatura.objects.filter(
-            status='ativa'
+            status='ativa',
+            ativo=True
         ).values('usuario').distinct().count()
+        
+        # Se não encontrar nenhuma, tentar apenas com status ativa
+        if unique_premium_users == 0:
+            print("🔍 DEBUG: Nenhum usuário premium encontrado com status='ativa' e ativo=True, tentando apenas status='ativa'")
+            unique_premium_users = Assinatura.objects.filter(
+                status='ativa'
+            ).values('usuario').distinct().count()
+        
+        # Se ainda não encontrar, tentar apenas com ativo=True
+        if unique_premium_users == 0:
+            print("🔍 DEBUG: Nenhum usuário premium encontrado com status='ativa', tentando apenas ativo=True")
+            unique_premium_users = Assinatura.objects.filter(
+                ativo=True
+            ).values('usuario').distinct().count()
+        
+        print(f"🔍 DEBUG: Total de usuários premium únicos: {unique_premium_users}")
         
         stats = {
             'active_subscriptions': active_subscriptions,
@@ -208,20 +274,57 @@ def dashboard_admin(request):
     cache_key_users = 'dashboard_recent_users'
     recent_users_data = cache.get(cache_key_users)
     
+    # Debug: verificar se o cache está sendo usado
+    if recent_users_data:
+        print("🔍 DEBUG: Usando dados do cache para usuários recentes")
+    else:
+        print("🔍 DEBUG: Cache vazio, buscando dados do banco")
+    
     if not recent_users_data:
         # Últimos usuários cadastrados com informação de assinatura ativa
         # OTIMIZAÇÃO: Usar select_related e prefetch_related para evitar N+1 queries
         recent_users = User.objects.select_related().prefetch_related('assinaturas').order_by('-date_joined')[:20]
         
         # OTIMIZAÇÃO: Buscar todas as assinaturas ativas de uma vez usando bulk operations
-        active_subscription_user_ids = set(Assinatura.objects.filter(
+        # Vamos verificar TODAS as assinaturas primeiro para debug
+        all_subscriptions = Assinatura.objects.all()
+        print(f"🔍 DEBUG: Total de assinaturas no banco: {all_subscriptions.count()}")
+        for assinatura in all_subscriptions:
+            print(f"  - ID: {assinatura.id}, Usuário: {assinatura.usuario.username} (ID: {assinatura.usuario_id}), Status: {assinatura.status}, Ativo: {assinatura.ativo}, Data: {assinatura.data_criacao}")
+        
+        # Filtrar apenas as ativas (verificar diferentes combinações)
+        active_subscriptions = Assinatura.objects.filter(
             status='ativa',
             ativo=True
-        ).values_list('usuario_id', flat=True))
+        )
+        
+        # Se não encontrar nenhuma, tentar apenas com status ativa
+        if not active_subscriptions.exists():
+            print("🔍 DEBUG: Nenhuma assinatura encontrada com status='ativa' e ativo=True, tentando apenas status='ativa'")
+            active_subscriptions = Assinatura.objects.filter(status='ativa')
+        
+        # Se ainda não encontrar, tentar apenas com ativo=True
+        if not active_subscriptions.exists():
+            print("🔍 DEBUG: Nenhuma assinatura encontrada com status='ativa', tentando apenas ativo=True")
+            active_subscriptions = Assinatura.objects.filter(ativo=True)
+        
+        print(f"🔍 DEBUG: Total de assinaturas ativas encontradas: {active_subscriptions.count()}")
+        for assinatura in active_subscriptions:
+            print(f"  - Usuário ID: {assinatura.usuario_id}, Status: {assinatura.status}, Ativo: {assinatura.ativo}, Data: {assinatura.data_criacao}")
+        
+        active_subscription_user_ids = set(active_subscriptions.values_list('usuario_id', flat=True))
+        print(f"🔍 DEBUG: IDs de usuários com assinatura ativa: {active_subscription_user_ids}")
         
         # Adicionar informação de assinatura ativa para cada usuário (sem consultas extras)
         for user in recent_users:
             user.has_active_subscription = user.id in active_subscription_user_ids
+            if user.has_active_subscription:
+                print(f"✅ Usuário {user.username} (ID: {user.id}) marcado como PREMIUM")
+            else:
+                print(f"❌ Usuário {user.username} (ID: {user.id}) marcado como GRATUITO")
+        
+        print(f"🔍 DEBUG: Total de usuários recentes: {len(recent_users)}")
+        print(f"🔍 DEBUG: Usuários com premium: {sum(1 for user in recent_users if user.has_active_subscription)}")
         
         recent_users_data = recent_users
         cache.set(cache_key_users, recent_users_data, 120)  # Cache por 2 minutos
@@ -457,3 +560,70 @@ def delete_user(request):
             messages.error(request, f'❌ Erro ao excluir usuário: {str(e)}')
     
     return redirect('dashboard_admin')
+
+
+@login_required(login_url='/dashboard/login/')
+def refresh_dashboard_cache(request):
+    """
+    View para forçar atualização do cache do dashboard
+    Útil para atualizar dados em tempo real
+    """
+    if not request.user.is_superuser:
+        return JsonResponse({'error': 'Acesso negado'}, status=403)
+    
+    try:
+        # Limpar cache
+        success = clear_dashboard_cache()
+        
+        if success:
+            return JsonResponse({
+                'success': True,
+                'message': 'Cache do dashboard atualizado com sucesso',
+                'timestamp': timezone.now().isoformat()
+            })
+        else:
+            return JsonResponse({
+                'success': False,
+                'message': 'Erro ao atualizar cache do dashboard'
+            }, status=500)
+            
+    except Exception as e:
+        return JsonResponse({
+            'success': False,
+            'message': f'Erro interno: {str(e)}'
+        }, status=500)
+
+
+@login_required(login_url='/dashboard/login/')
+def debug_subscriptions(request):
+    """
+    View para debug das assinaturas - mostra todas as assinaturas no banco
+    """
+    if not request.user.is_superuser:
+        return JsonResponse({'error': 'Acesso negado'}, status=403)
+    
+    try:
+        # Buscar todas as assinaturas
+        all_subscriptions = Assinatura.objects.select_related('usuario', 'plano').all()
+        
+        subscriptions_data = []
+        for assinatura in all_subscriptions:
+            subscriptions_data.append({
+                'id': assinatura.id,
+                'usuario_id': assinatura.usuario_id,
+                'usuario_username': assinatura.usuario.username,
+                'plano_nome': assinatura.plano.nome,
+                'status': assinatura.status,
+                'ativo': assinatura.ativo,
+                'data_criacao': assinatura.data_criacao.strftime('%d/%m/%Y %H:%M:%S'),
+                'data_inicio': assinatura.data_inicio.strftime('%d/%m/%Y %H:%M:%S'),
+                'data_vencimento': assinatura.data_vencimento.strftime('%d/%m/%Y %H:%M:%S'),
+            })
+        
+        return JsonResponse({
+            'success': True,
+            'total_subscriptions': all_subscriptions.count(),
+            'subscriptions': subscriptions_data
+        })
+    except Exception as e:
+        return JsonResponse({'success': False, 'message': f'Erro ao buscar assinaturas: {str(e)}'})

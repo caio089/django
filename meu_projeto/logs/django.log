@@ -1930,3 +1930,304 @@ Watching for file changes with StatReloader
 Erro na auto-sincronização de egygdgdgy@gmail.com: User has no profile.
 Erro na auto-sincronização de egygdgdgy@gmail.com: User has no profile.
 "POST /dashboard/delete-user/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 47292
+"GET / HTTP/1.1" 200 40568
+"POST /login/ HTTP/1.1" 200 40905
+"POST /login/ HTTP/1.1" 200 40889
+"POST /login/ HTTP/1.1" 200 40893
+"POST /login/ HTTP/1.1" 200 40905
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"POST /login/ HTTP/1.1" 200 40893
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /dashboard/ HTTP/1.1" 302 0
+"GET /dashboard/login/?next=/dashboard/ HTTP/1.1" 200 5810
+"POST /dashboard/login/ HTTP/1.1" 302 0
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /dashboard/ HTTP/1.1" 200 57938
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Forbidden (CSRF token from POST incorrect.): /login/
+"POST /login/ HTTP/1.1" 403 2504
+Forbidden (CSRF token from POST incorrect.): /login/
+"POST /login/ HTTP/1.1" 403 2504
+Forbidden (CSRF token from POST incorrect.): /login/
+"POST /login/ HTTP/1.1" 403 2504
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /dashboard/ HTTP/1.1" 200 60798
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 63190
+"GET /pagina3/ HTTP/1.1" 200 85998
+"GET /static/pag3/js/script.js?v=20251017002 HTTP/1.1" 200 38189
+"GET /static/pag3/css/styles.css HTTP/1.1" 200 48669
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 1655
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1674
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1674
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1703
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1703
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1674
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1674
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1703
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1703
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1674
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1674
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1703
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1703
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1732
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1732
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1761
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1761
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1732
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1732
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1761
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1761
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1790
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1790
+"GET /pagina3/ HTTP/1.1" 200 85998
+"GET /pagina3/ HTTP/1.1" 200 85998
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 1742
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1790
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1761
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1761
+"GET /pagina3/ HTTP/1.1" 200 85998
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 1713
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1761
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1790
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1790
+"GET /pagina3/ HTTP/1.1" 200 85998
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 1742
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1761
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1761
+"GET /pagina3/ HTTP/1.1" 200 85998
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 1713
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1790
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1790
+"GET /pagina3/ HTTP/1.1" 200 85998
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 1742
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1790
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1761
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1761
+"GET /pagina3/ HTTP/1.1" 200 85998
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 1713
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1761
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1790
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1790
+"GET /pagina3/ HTTP/1.1" 200 85998
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 1742
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1761
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1761
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina4/ HTTP/1.1" 200 108387
+"GET /static/pag4/js/scripts.js HTTP/1.1" 304 0
+"GET /static/pag4/css/styles1.css HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina4/carregar-progresso/?pagina=pagina4 HTTP/1.1" 200 2683
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina3/ HTTP/1.1" 200 85998
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 1713
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1790
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1790
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1761
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1761
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1732
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1732
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1703
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1703
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1674
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1674
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1616
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1616
+"GET /pagina3/ HTTP/1.1" 200 85998
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 1568
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"GET /pagina3/ HTTP/1.1" 200 85998
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 1597
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1616
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1616
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1616
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1616
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"GET /pagina3/ HTTP/1.1" 200 85998
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 1597
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1616
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1616
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"GET /pagina3/ HTTP/1.1" 200 85998
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 63190
+"GET /pagina4/ HTTP/1.1" 200 108397
+"GET /pagina4/carregar-progresso/?pagina=pagina4 HTTP/1.1" 200 2683
+"GET /index/ HTTP/1.1" 200 63190
+"GET /pagina3/ HTTP/1.1" 200 86018
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 1597
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1616
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1616
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1645
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1674
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1674
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /dashboard HTTP/1.1" 301 0
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+- Broken pipe from ('127.0.0.1', 55275)
+"GET /dashboard/ HTTP/1.1" 200 66941
+"POST /dashboard/refresh-cache/ HTTP/1.1" 200 122
+"GET /dashboard/ HTTP/1.1" 200 66941
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader

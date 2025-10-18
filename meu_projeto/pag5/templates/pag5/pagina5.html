@@ -52,11 +52,12 @@
                     ← Voltar
                 </a>
             </div>
-            <!-- Barra de Progresso -->
-            <div class="bg-white rounded-full h-5 mb-3 shadow-inner relative overflow-hidden">
-                <div class="progress-bar bg-gradient-to-r from-emerald-300 to-emerald-400 rounded-full h-5 shadow-lg transition-all duration-500 absolute top-0 left-0" style="width: 0%" id="progressBar"></div>
+            
+            <!-- Barra de Progresso Pequena -->
+            <div class="bg-white/20 rounded-full h-2 mb-3 shadow-inner relative overflow-hidden">
+                <div class="bg-gradient-to-r from-emerald-400 to-emerald-500 rounded-full h-2 transition-all duration-500" style="width: 0%" id="progressBar"></div>
             </div>
-            <p class="text-base font-semibold text-white">Progresso: <span id="progressText" class="text-green-200">0%</span></p>
+            <p class="text-sm font-medium text-white">Progresso: <span id="progressText" class="text-green-200">0%</span></p>
         </div>
     </header>
     <main class="max-w-6xl mx-auto px-4 py-6">
@@ -1392,15 +1393,6 @@
             </div>
         </section>
         
-        <!-- Barra de Progresso Flutuante -->
-        <div id="floatingProgress" class="fixed top-4 left-0 right-0 mx-auto w-fit bg-white border border-gray-300 rounded-lg shadow-lg p-3 z-50 opacity-0 transition-opacity duration-300 pointer-events-none">
-            <div class="flex items-center gap-5">
-                <div class="w-80 bg-white rounded-full h-3 border border-gray-300">
-                    <div id="floatingProgressBar" style="width: 0%"></div>
-                </div>
-                <span id="floatingProgressText" class="text-base font-bold text-green-600">0%</span>
-            </div>
-        </div>
 
         <!-- Container para partículas -->
         <div id="scrollParticles" class="scroll-particles"></div>
@@ -1481,38 +1473,5 @@
         </div>
     </footer>
     
-    <!-- JavaScript inline para corrigir barra verde no mobile -->
-    <script>
-        // Função para forçar posicionamento correto da barra verde no mobile
-        function fixProgressBarMobile() {
-            if (window.innerWidth <= 768) {
-                const progressBar = document.getElementById('progressBar');
-                
-                if (progressBar) {
-                    // Forçar posicionamento correto
-                    progressBar.style.position = 'absolute';
-                    progressBar.style.top = '0';
-                    progressBar.style.left = '0';
-                    progressBar.style.height = '100%';
-                    progressBar.style.margin = '0';
-                    progressBar.style.padding = '0';
-                    
-                    console.log('[DEBUG] Barra de progresso corrigida na página 5 mobile');
-                }
-            }
-        }
-        
-        // Executar imediatamente
-        fixProgressBarMobile();
-        
-        // Executar quando carregar
-        document.addEventListener('DOMContentLoaded', fixProgressBarMobile);
-        
-        // Executar quando redimensionar
-        window.addEventListener('resize', fixProgressBarMobile);
-        
-        // Executar a cada 2 segundos para garantir funcionamento
-        setInterval(fixProgressBarMobile, 2000);
-    </script>
 </body>
 </html>

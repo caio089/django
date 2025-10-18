@@ -990,6 +990,25 @@ def ativar_assinatura(pagamento, payment_data):
         
         logger.info(f"Assinatura ativada para usuário {pagamento.usuario.id}: {plano.nome}")
         
+        # Limpar cache do dashboard após ativar assinatura
+        try:
+            from django.core.cache import cache
+            # Limpar todos os caches relacionados ao dashboard
+            cache.delete('dashboard_stats')
+            cache.delete('dashboard_recent_users')
+            cache.delete('dashboard_recent_subscriptions')
+            cache.delete('dashboard_status_counts')
+            # Limpar cache geral do dashboard
+            cache.delete_many([
+                'dashboard_stats',
+                'dashboard_recent_users', 
+                'dashboard_recent_subscriptions',
+                'dashboard_status_counts'
+            ])
+            logger.info("Cache do dashboard limpo após ativação de assinatura")
+        except Exception as cache_error:
+            logger.error(f"Erro ao limpar cache do dashboard: {cache_error}")
+        
     except Exception as e:
         logger.error(f"Erro ao ativar assinatura: {e}")
 

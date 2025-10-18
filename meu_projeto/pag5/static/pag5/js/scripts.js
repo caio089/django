@@ -16,71 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar animações
     setTimeout(animateHabilidades, 300);
     
-    // --- SISTEMA DE PROGRESSO OTIMIZADO ---
-    const progressBar = document.getElementById('progressBar');
-    const progressText = document.getElementById('progressText');
-    const floatingProgress = document.getElementById('floatingProgress');
-    const floatingProgressBar = document.getElementById('floatingProgressBar');
-    const floatingProgressText = document.getElementById('floatingProgressText');
+    // --- SISTEMA DE PROGRESSO REMOVIDO ---
+    // O sistema de progresso foi removido conforme solicitado
     let hasShownCongratulations = false;
-    let hideFloatingTimeout = null;
-    
-    function showFloatingProgress(progress) {
-        if (!floatingProgress) return;
-        
-        // Cancelar timeout anterior se existir
-        if (hideFloatingTimeout) {
-            clearTimeout(hideFloatingTimeout);
-        }
-        
-        // Atualizar barra flutuante
-        console.log('Progresso:', progress + '%');
-        if (floatingProgressBar) {
-            console.log('Alterando largura da barra para:', progress + '%');
-            floatingProgressBar.style.setProperty('width', progress + '%', 'important');
-            console.log('Largura atual da barra:', floatingProgressBar.style.width);
-        }
-        if (floatingProgressText) floatingProgressText.textContent = Math.round(progress) + '%';
-        
-        // Mostrar barra flutuante
-        floatingProgress.classList.remove('hidden');
-        setTimeout(() => {
-            floatingProgress.style.opacity = '1';
-        }, 10);
-        
-        // Esconder automaticamente após 3 segundos
-        hideFloatingTimeout = setTimeout(() => {
-            floatingProgress.style.opacity = '0';
-            setTimeout(() => {
-                floatingProgress.classList.add('hidden');
-            }, 300);
-        }, 3000);
-    }
-    
-    function updateProgress() {
-        const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
-        const checked = document.querySelectorAll('input[type="checkbox"]:checked');
-        const progress = (checked.length / allCheckboxes.length) * 100;
-        
-        // Atualizar barra do header
-        if (progressBar) progressBar.style.width = progress + '%';
-        if (progressText) progressText.textContent = Math.round(progress) + '%';
-        
-        // Mostrar barra flutuante
-        showFloatingProgress(progress);
-        
-        if (progress >= 100 && !hasShownCongratulations) {
-            hasShownCongratulations = true;
-            showCongratulations();
-        }
-    }
-    
-    // Adicionar listeners a todos os checkboxes
-    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-        checkbox.addEventListener('change', updateProgress);
-    });
-    
-    updateProgress();
     
     // --- SISTEMA DE PARABÉNS SIMPLIFICADO ---
     function showCongratulations() {
@@ -272,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
                 
-                updateProgress();
+                // updateProgress(); // Removido - sistema de progresso desabilitado
             } else {
                 console.log('Nenhum progresso no banco, usando estado atual');
             }
@@ -282,11 +220,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Modificar o event listener para salvar progresso
+    // Event listener para salvar progresso (sem barras de progresso)
     document.addEventListener('change', function(e) {
         if (e.target.type === 'checkbox') {
-            updateProgress();
-            saveProgress(); // Salvar no banco quando mudar
+            // Salvar progresso no banco de dados
+            saveProgress();
+            
+            // Verificar se completou 100% (sem barras de progresso)
+            const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+            const checked = document.querySelectorAll('input[type="checkbox"]:checked');
+            const progress = (checked.length / allCheckboxes.length) * 100;
+            
+            if (progress >= 100 && !hasShownCongratulations) {
+                hasShownCongratulations = true;
+                showCongratulations();
+            }
         }
     });
     

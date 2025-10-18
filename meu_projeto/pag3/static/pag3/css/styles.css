@@ -1000,36 +1000,40 @@ p, span, div {
         font-size: 0.875rem !important;
     }
     
-    /* Barra de progresso mobile - SIMPLIFICADA */
+    /* Barra de progresso mobile - CORRIGIDA */
     .progress-bar {
+        height: 0.75rem !important;
         transition: width 0.5s ease !important;
     }
     
-    /* Forçar cor verde e visibilidade no mobile */
-    @media (max-width: 768px) {
-        #progressBar {
-            background-color: #4ade80 !important;
-            background: linear-gradient(90deg, #4ade80 0%, #22c55e 100%) !important;
-            min-width: 2px !important;
-            display: block !important;
-            opacity: 1 !important;
-            visibility: visible !important;
-            position: absolute !important;
-            top: 0 !important;
-            left: 0 !important;
-            height: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
-        }
-        
-        #floatingProgressBar {
-            background-color: #4ade80 !important;
-            background: linear-gradient(90deg, #4ade80 0%, #22c55e 100%) !important;
-            min-width: 2px !important;
-            display: block !important;
-            opacity: 1 !important;
-            visibility: visible !important;
-        }
+    /* Container da barra de progresso mobile */
+    .bg-white\/20.rounded-full.h-2 {
+        position: relative !important;
+        overflow: hidden !important;
+        width: 100% !important;
+    }
+    
+    /* Barra de progresso mobile - CORRIGIDA */
+    #progressBar {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 0% !important;
+        max-width: 100% !important;
+        transition: width 0.5s ease !important;
+    }
+    
+    /* Barra flutuante mobile */
+    #floatingProgressBar {
+        background-color: #4ade80 !important;
+        background: linear-gradient(90deg, #4ade80 0%, #22c55e 100%) !important;
+        min-width: 2px !important;
+        display: block !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
     
     /* Cards de habilidades mobile */
@@ -1645,6 +1649,18 @@ header a[href*="home"]:hover,
         padding: 10px 20px !important;
         font-size: 14px !important;
     }
+}
+
+/* === PROTEÇÃO CONTRA BARRAS GIGANTES === */
+.progress-bar, #progressBar {
+    max-width: 100% !important;
+    max-height: 20px !important;
+    overflow: hidden !important;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
 }
 
 /* Setas de Carrossel - REMOVIDAS */

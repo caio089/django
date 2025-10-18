@@ -9,4 +9,6 @@ urlpatterns = [
     path('give-premium/', views.give_premium, name='give_premium'),
     path('remove-premium/', views.remove_premium, name='remove_premium'),
     path('delete-user/', views.delete_user, name='delete_user'),
+    path('refresh-cache/', views.refresh_dashboard_cache, name='refresh_dashboard_cache'),
+    path('debug-subscriptions/', views.debug_subscriptions, name='debug_subscriptions'),
 ]
