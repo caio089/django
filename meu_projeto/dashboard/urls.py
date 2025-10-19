@@ -11,4 +11,7 @@ urlpatterns = [
     path('delete-user/', views.delete_user, name='delete_user'),
     path('refresh-cache/', views.refresh_dashboard_cache, name='refresh_dashboard_cache'),
     path('debug-subscriptions/', views.debug_subscriptions, name='debug_subscriptions'),
+    path('debug-usuario/', views.debug_usuario_especifico, name='debug_usuario_especifico'),
+    path('ativar-assinatura-manual/', views.ativar_assinatura_manual, name='ativar_assinatura_manual'),
+    path('corrigir-assinaturas/', views.corrigir_assinaturas_inativas, name='corrigir_assinaturas_inativas'),
 ]

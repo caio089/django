@@ -954,30 +954,46 @@ def ativar_assinatura(pagamento, payment_data):
     Ativa a assinatura do usuário após pagamento aprovado
     """
     try:
+        logger.info(f"🔍 ATIVAR ASSINATURA: Iniciando para pagamento {pagamento.id}, usuário {pagamento.usuario.email}")
+        logger.info(f"🔍 ATIVAR ASSINATURA: Payment data: {payment_data}")
+        
         # Buscar plano pelo valor (simplificado)
         plano = PlanoPremium.objects.filter(preco=pagamento.valor, ativo=True).first()
         if not plano:
-            logger.error(f"Plano não encontrado para valor {pagamento.valor}")
+            logger.error(f"❌ ATIVAR ASSINATURA: Plano não encontrado para valor {pagamento.valor}")
             return
+        
+        logger.info(f"✅ ATIVAR ASSINATURA: Plano encontrado: {plano.nome} (R$ {plano.preco})")
         
         # Calcular datas
         data_inicio = timezone.now()
         data_vencimento = data_inicio + timedelta(days=plano.duracao_dias)
         
         # Criar assinatura
+        logger.info(f"🔍 ATIVAR ASSINATURA: Criando assinatura com dados:")
+        logger.info(f"  - Usuário: {pagamento.usuario.email}")
+        logger.info(f"  - Plano: {plano.nome}")
+        logger.info(f"  - Status: ativa")
+        logger.info(f"  - Ativo: True")
+        logger.info(f"  - External Reference: {pagamento.external_reference}")
+        
         assinatura = Assinatura.objects.create(
             usuario=pagamento.usuario,
             plano=plano,
             status='ativa',
+            ativo=True,  # IMPORTANTE: Definir ativo=True
             data_inicio=data_inicio,
             data_vencimento=data_vencimento,
             external_reference=pagamento.external_reference,
             subscription_id=payment_data.get("id")
         )
         
+        logger.info(f"✅ ATIVAR ASSINATURA: Assinatura criada com ID {assinatura.id}")
+        
         # Vincular pagamento à assinatura
         pagamento.assinatura = assinatura
         pagamento.save()
+        logger.info(f"✅ ATIVAR ASSINATURA: Pagamento vinculado à assinatura")
         
         # Atualizar perfil do usuário
         try:
@@ -985,10 +1001,11 @@ def ativar_assinatura(pagamento, payment_data):
             profile.conta_premium = True
             profile.data_vencimento_premium = data_vencimento
             profile.save()
-        except:
-            logger.error(f"Erro ao atualizar perfil do usuário {pagamento.usuario.id}")
+            logger.info(f"✅ ATIVAR ASSINATURA: Perfil do usuário atualizado - conta_premium=True")
+        except Exception as e:
+            logger.error(f"❌ ATIVAR ASSINATURA: Erro ao atualizar perfil do usuário {pagamento.usuario.id}: {e}")
         
-        logger.info(f"Assinatura ativada para usuário {pagamento.usuario.id}: {plano.nome}")
+        logger.info(f"🎉 ATIVAR ASSINATURA: Assinatura ativada com sucesso para usuário {pagamento.usuario.id}: {plano.nome}")
         
         # Limpar cache do dashboard após ativar assinatura
         try:

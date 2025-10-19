@@ -50,6 +50,15 @@
                         <button onclick="debugSubscriptions()" class="bg-purple-500/90 hover:bg-purple-600 px-5 py-3 rounded-xl transition-all duration-300 inline-block text-sm font-semibold shadow-lg hover:shadow-xl border-2 border-purple-400/50 hover:border-purple-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm">
                             🔍 Debug
                         </button>
+                        <button onclick="debugUsuarioEspecifico()" class="bg-orange-500/90 hover:bg-orange-600 px-5 py-3 rounded-xl transition-all duration-300 inline-block text-sm font-semibold shadow-lg hover:shadow-xl border-2 border-orange-400/50 hover:border-orange-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm">
+                            👤 Debug Usuário
+                        </button>
+                        <button onclick="ativarAssinaturaManual()" class="bg-green-500/90 hover:bg-green-600 px-5 py-3 rounded-xl transition-all duration-300 inline-block text-sm font-semibold shadow-lg hover:shadow-xl border-2 border-green-400/50 hover:border-green-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm">
+                            ✅ Ativar Premium
+                        </button>
+                        <button onclick="corrigirAssinaturas()" class="bg-yellow-500/90 hover:bg-yellow-600 px-5 py-3 rounded-xl transition-all duration-300 inline-block text-sm font-semibold shadow-lg hover:shadow-xl border-2 border-yellow-400/50 hover:border-yellow-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm">
+                            🔧 Corrigir Assinaturas
+                        </button>
                         <a href="/admin/" class="bg-white/25 hover:bg-white/40 px-5 py-3 rounded-xl transition-all duration-300 inline-block text-sm font-semibold shadow-lg hover:shadow-xl border-2 border-white/30 hover:border-white/50 transform hover:scale-105 active:scale-95 backdrop-blur-sm">
                             🔧 Admin Django
                         </a>
@@ -719,6 +728,240 @@
                     button.classList.remove('bg-red-500/90', 'hover:bg-red-600');
                     button.classList.add('bg-purple-500/90', 'hover:bg-purple-600');
                 }, 2000);
+            });
+        }
+        
+        function debugUsuarioEspecifico() {
+            const email = prompt('Digite o email do usuário para debug:', 'gregoriobaldocs@gmail.com');
+            if (!email) return;
+            
+            const button = event.target;
+            const originalText = button.textContent;
+            
+            // Mostrar loading
+            button.disabled = true;
+            button.textContent = '👤 Analisando...';
+            
+            fetch(`/dashboard/debug-usuario/?email=${encodeURIComponent(email)}`, {
+                method: 'GET',
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('DEBUG - Usuário específico:', data);
+                console.log('DEBUG - Tipo de data:', typeof data);
+                console.log('DEBUG - data.success:', data.success);
+                console.log('DEBUG - data.usuario:', data.usuario);
+                console.log('DEBUG - data.pagamentos:', data.pagamentos);
+                console.log('DEBUG - data.assinaturas:', data.assinaturas);
+                
+                if (data.success) {
+                    let debugInfo = `🔍 DEBUG DO USUÁRIO: ${data.usuario ? data.usuario.username : 'N/A'}\n`;
+                    debugInfo += `📧 Email: ${data.usuario ? data.usuario.email : 'N/A'}\n`;
+                    debugInfo += `🆔 ID: ${data.usuario ? data.usuario.id : 'N/A'}\n`;
+                    debugInfo += `⭐ Conta Premium: ${data.usuario && data.usuario.conta_premium ? 'SIM' : 'NÃO'}\n`;
+                    debugInfo += `📅 Data Vencimento: ${data.usuario && data.usuario.data_vencimento_premium ? data.usuario.data_vencimento_premium : 'N/A'}\n\n`;
+                    
+                    // Verificar se pagamentos existe e é array
+                    const pagamentos = data.pagamentos || [];
+                    debugInfo += `📊 PAGAMENTOS (${pagamentos.length}):\n`;
+                    if (Array.isArray(pagamentos)) {
+                        pagamentos.forEach((p, index) => {
+                            debugInfo += `${index + 1}. ID: ${p.id}, Status: ${p.status}, Valor: R$ ${p.valor}\n`;
+                            debugInfo += `   Data: ${p.data_criacao}\n`;
+                            debugInfo += `   External Ref: ${p.external_reference}\n`;
+                            debugInfo += `   Payment ID: ${p.payment_id}\n---\n`;
+                        });
+                    } else {
+                        debugInfo += `   Erro: dados de pagamentos não são um array\n`;
+                    }
+                    
+                    // Verificar se assinaturas existe e é array
+                    const assinaturas = data.assinaturas || [];
+                    debugInfo += `\n📊 ASSINATURAS (${assinaturas.length}):\n`;
+                    if (Array.isArray(assinaturas)) {
+                        assinaturas.forEach((a, index) => {
+                            debugInfo += `${index + 1}. ID: ${a.id}, Status: ${a.status}, Ativo: ${a.ativo}\n`;
+                            debugInfo += `   Plano: ${a.plano || 'N/A'}\n`;
+                            debugInfo += `   Início: ${a.data_inicio}\n`;
+                            debugInfo += `   Vencimento: ${a.data_vencimento}\n`;
+                            debugInfo += `   External Ref: ${a.external_reference}\n---\n`;
+                        });
+                    } else {
+                        debugInfo += `   Erro: dados de assinaturas não são um array\n`;
+                    }
+                    
+                    alert(debugInfo);
+                    
+                    // Mostrar sucesso
+                    button.textContent = '✅ Debug OK';
+                    button.classList.remove('bg-orange-500/90', 'hover:bg-orange-600');
+                    button.classList.add('bg-green-500/90', 'hover:bg-green-600');
+                } else {
+                    // Mostrar erro
+                    button.textContent = '❌ Erro';
+                    button.classList.remove('bg-orange-500/90', 'hover:bg-orange-600');
+                    button.classList.add('bg-red-500/90', 'hover:bg-red-600');
+                    alert('Erro: ' + data.message);
+                }
+                
+                // Restaurar botão após 2 segundos
+                setTimeout(() => {
+                    button.disabled = false;
+                    button.textContent = originalText;
+                    button.classList.remove('bg-green-500/90', 'hover:bg-green-600', 'bg-red-500/90', 'hover:bg-red-600');
+                    button.classList.add('bg-orange-500/90', 'hover:bg-orange-600');
+                }, 2000);
+            })
+            .catch(error => {
+                console.error('Erro ao buscar dados do usuário:', error);
+                button.textContent = '❌ Erro';
+                button.classList.remove('bg-orange-500/90', 'hover:bg-orange-600');
+                button.classList.add('bg-red-500/90', 'hover:bg-red-600');
+                
+                // Restaurar botão após 2 segundos
+                setTimeout(() => {
+                    button.disabled = false;
+                    button.textContent = originalText;
+                    button.classList.remove('bg-red-500/90', 'hover:bg-red-600');
+                    button.classList.add('bg-orange-500/90', 'hover:bg-orange-600');
+                }, 2000);
+            });
+        }
+        
+        function ativarAssinaturaManual() {
+            const email = prompt('Digite o email do usuário para ativar premium:', 'gregoriobaldocs@gmail.com');
+            if (!email) return;
+            
+            if (!confirm(`Tem certeza que deseja ativar o premium para ${email}?`)) return;
+            
+            const button = event.target;
+            const originalText = button.textContent;
+            
+            // Mostrar loading
+            button.disabled = true;
+            button.textContent = '⏳ Ativando...';
+            
+            fetch(`/dashboard/ativar-assinatura-manual/?email=${encodeURIComponent(email)}`, {
+                method: 'GET',
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Ativação manual:', data);
+                
+                if (data.success) {
+                    alert(`✅ ${data.message}\n\nPlano: ${data.plano}\nVencimento: ${new Date(data.data_vencimento).toLocaleDateString('pt-BR')}`);
+                    
+                    // Mostrar sucesso
+                    button.textContent = '✅ Ativado!';
+                    button.classList.remove('bg-green-500/90', 'hover:bg-green-600');
+                    button.classList.add('bg-blue-500/90', 'hover:bg-blue-600');
+                    
+                    // Recarregar a página após 2 segundos
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 2000);
+                } else {
+                    // Mostrar erro
+                    button.textContent = '❌ Erro';
+                    button.classList.remove('bg-green-500/90', 'hover:bg-green-600');
+                    button.classList.add('bg-red-500/90', 'hover:bg-red-600');
+                    alert('Erro: ' + data.message);
+                }
+                
+                // Restaurar botão após 3 segundos
+                setTimeout(() => {
+                    button.disabled = false;
+                    button.textContent = originalText;
+                    button.classList.remove('bg-blue-500/90', 'hover:bg-blue-600', 'bg-red-500/90', 'hover:bg-red-600');
+                    button.classList.add('bg-green-500/90', 'hover:bg-green-600');
+                }, 3000);
+            })
+            .catch(error => {
+                console.error('Erro ao ativar assinatura:', error);
+                button.textContent = '❌ Erro';
+                button.classList.remove('bg-green-500/90', 'hover:bg-green-600');
+                button.classList.add('bg-red-500/90', 'hover:bg-red-600');
+                
+                // Restaurar botão após 3 segundos
+                setTimeout(() => {
+                    button.disabled = false;
+                    button.textContent = originalText;
+                    button.classList.remove('bg-red-500/90', 'hover:bg-red-600');
+                    button.classList.add('bg-green-500/90', 'hover:bg-green-600');
+                }, 3000);
+            });
+        }
+        
+        function corrigirAssinaturas() {
+            if (!confirm('Tem certeza que deseja corrigir todas as assinaturas inativas? Esta ação irá ativar todas as assinaturas que estão com status="ativa" mas ativo=False.')) return;
+            
+            const button = event.target;
+            const originalText = button.textContent;
+            
+            // Mostrar loading
+            button.disabled = true;
+            button.textContent = '⏳ Corrigindo...';
+            
+            fetch('/dashboard/corrigir-assinaturas/', {
+                method: 'GET',
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Correção de assinaturas:', data);
+                
+                if (data.success) {
+                    alert(`✅ ${data.message}\n\nAssinaturas corrigidas: ${data.assinaturas_corrigidas}`);
+                    
+                    // Mostrar sucesso
+                    button.textContent = '✅ Corrigido!';
+                    button.classList.remove('bg-yellow-500/90', 'hover:bg-yellow-600');
+                    button.classList.add('bg-blue-500/90', 'hover:bg-blue-600');
+                    
+                    // Recarregar a página após 2 segundos
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 2000);
+                } else {
+                    // Mostrar erro
+                    button.textContent = '❌ Erro';
+                    button.classList.remove('bg-yellow-500/90', 'hover:bg-yellow-600');
+                    button.classList.add('bg-red-500/90', 'hover:bg-red-600');
+                    alert('Erro: ' + data.message);
+                }
+                
+                // Restaurar botão após 3 segundos
+                setTimeout(() => {
+                    button.disabled = false;
+                    button.textContent = originalText;
+                    button.classList.remove('bg-blue-500/90', 'hover:bg-blue-600', 'bg-red-500/90', 'hover:bg-red-600');
+                    button.classList.add('bg-yellow-500/90', 'hover:bg-yellow-600');
+                }, 3000);
+            })
+            .catch(error => {
+                console.error('Erro ao corrigir assinaturas:', error);
+                button.textContent = '❌ Erro';
+                button.classList.remove('bg-yellow-500/90', 'hover:bg-yellow-600');
+                button.classList.add('bg-red-500/90', 'hover:bg-red-600');
+                
+                // Restaurar botão após 3 segundos
+                setTimeout(() => {
+                    button.disabled = false;
+                    button.textContent = originalText;
+                    button.classList.remove('bg-red-500/90', 'hover:bg-red-600');
+                    button.classList.add('bg-yellow-500/90', 'hover:bg-yellow-600');
+                }, 3000);
             });
         }
         

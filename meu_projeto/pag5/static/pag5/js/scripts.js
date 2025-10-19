@@ -210,7 +210,20 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
                 
-                // updateProgress(); // Removido - sistema de progresso desabilitado
+                // Atualizar barra de progresso após carregar do banco
+                const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+                const checked = document.querySelectorAll('input[type="checkbox"]:checked');
+                const progress = (checked.length / allCheckboxes.length) * 100;
+                
+                const progressBar = document.getElementById('progressBar');
+                const progressText = document.getElementById('progressText');
+                
+                if (progressBar) {
+                    progressBar.style.width = progress + '%';
+                }
+                if (progressText) {
+                    progressText.textContent = Math.round(progress) + '%';
+                }
             } else {
                 console.log('Nenhum progresso no banco, usando estado atual');
             }
@@ -220,17 +233,29 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Event listener para salvar progresso (sem barras de progresso)
+    // Event listener para salvar progresso e atualizar barra
     document.addEventListener('change', function(e) {
         if (e.target.type === 'checkbox') {
-            // Salvar progresso no banco de dados
-            saveProgress();
-            
-            // Verificar se completou 100% (sem barras de progresso)
+            // Calcular progresso
             const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
             const checked = document.querySelectorAll('input[type="checkbox"]:checked');
             const progress = (checked.length / allCheckboxes.length) * 100;
             
+            // Atualizar barra de progresso
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            
+            if (progressBar) {
+                progressBar.style.width = progress + '%';
+            }
+            if (progressText) {
+                progressText.textContent = Math.round(progress) + '%';
+            }
+            
+            // Salvar progresso no banco de dados
+            saveProgress();
+            
+            // Verificar se completou 100%
             if (progress >= 100 && !hasShownCongratulations) {
                 hasShownCongratulations = true;
                 showCongratulations();

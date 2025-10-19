@@ -43,6 +43,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // ===== SISTEMA DE PROGRESSO OTIMIZADO =====
     function updateProgress() {
+        console.log('=== UPDATE PROGRESS CHAMADO ===');
+        
         // Buscar TODOS os checkboxes da página, incluindo os ocultos
         const allCheckboxes = {
             proj: document.querySelectorAll('.proj-checkbox'),
@@ -116,8 +118,23 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('🎉 Todos os checkboxes estão marcados!');
         }
         
-        elements.progressBar.style.width = progress + '%';
-        elements.progressText.textContent = Math.round(progress) + '%';
+        console.log('=== ATUALIZANDO BARRA ===');
+        console.log('ProgressBar element:', elements.progressBar);
+        console.log('Setting width to:', progress + '%');
+        
+        if (elements.progressBar) {
+            elements.progressBar.style.width = progress + '%';
+            console.log('Barra atualizada! Nova largura:', elements.progressBar.style.width);
+        } else {
+            console.error('❌ progressBar element não encontrado!');
+        }
+        
+        if (elements.progressText) {
+            elements.progressText.textContent = Math.round(progress) + '%';
+            console.log('Texto atualizado!');
+        } else {
+            console.error('❌ progressText element não encontrado!');
+        }
         
         showFloatingProgress(progress);
         

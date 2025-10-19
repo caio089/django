@@ -164,6 +164,36 @@ def dashboard_admin(request):
         
         print(f"🔍 DEBUG: Total de usuários premium únicos: {unique_premium_users}")
         
+        # Debug adicional: listar todos os usuários premium
+        usuarios_premium_detalhado = Assinatura.objects.filter(
+            status='ativa',
+            ativo=True
+        ).select_related('usuario').values('usuario__id', 'usuario__username', 'status', 'ativo')
+        
+        print("🔍 DEBUG: Usuários premium detalhado:")
+        for user in usuarios_premium_detalhado:
+            print(f"  - ID: {user['usuario__id']}, Username: {user['usuario__username']}, Status: {user['status']}, Ativo: {user['ativo']}")
+        
+        # Verificar se há usuários com status diferente de 'ativa'
+        usuarios_nao_ativa = Assinatura.objects.filter(
+            ativo=True
+        ).exclude(status='ativa').select_related('usuario').values('usuario__id', 'usuario__username', 'status', 'ativo')
+        
+        if usuarios_nao_ativa.exists():
+            print("🔍 DEBUG: Usuários com ativo=True mas status diferente de 'ativa':")
+            for user in usuarios_nao_ativa:
+                print(f"  - ID: {user['usuario__id']}, Username: {user['usuario__username']}, Status: {user['status']}, Ativo: {user['ativo']}")
+        
+        # Verificar se há usuários com status='ativa' mas ativo=False
+        usuarios_ativa_nao_ativo = Assinatura.objects.filter(
+            status='ativa'
+        ).exclude(ativo=True).select_related('usuario').values('usuario__id', 'usuario__username', 'status', 'ativo')
+        
+        if usuarios_ativa_nao_ativo.exists():
+            print("🔍 DEBUG: Usuários com status='ativa' mas ativo=False:")
+            for user in usuarios_ativa_nao_ativo:
+                print(f"  - ID: {user['usuario__id']}, Username: {user['usuario__username']}, Status: {user['status']}, Ativo: {user['ativo']}")
+        
         stats = {
             'active_subscriptions': active_subscriptions,
             'unique_premium_users': unique_premium_users
@@ -620,10 +650,382 @@ def debug_subscriptions(request):
                 'data_vencimento': assinatura.data_vencimento.strftime('%d/%m/%Y %H:%M:%S'),
             })
         
+        # Debug específico para usuários premium
+        print("🔍 DEBUG COMPLETO DAS ASSINATURAS:")
+        print(f"Total de assinaturas no banco: {all_subscriptions.count()}")
+        
+        # Contar por status
+        status_counts = {}
+        for assinatura in all_subscriptions:
+            status = assinatura.status
+            if status not in status_counts:
+                status_counts[status] = 0
+            status_counts[status] += 1
+        
+        print("Contagem por status:", status_counts)
+        
+        # Contar por ativo
+        ativo_counts = {}
+        for assinatura in all_subscriptions:
+            ativo = assinatura.ativo
+            if ativo not in ativo_counts:
+                ativo_counts[ativo] = 0
+            ativo_counts[ativo] += 1
+        
+        print("Contagem por ativo:", ativo_counts)
+        
+        # Usuários únicos premium
+        usuarios_premium = set()
+        for assinatura in all_subscriptions:
+            if assinatura.status == 'ativa' and assinatura.ativo and assinatura.usuario:
+                usuarios_premium.add(assinatura.usuario.id)
+        
+        print(f"Usuários premium únicos (status='ativa' e ativo=True): {len(usuarios_premium)}")
+        print(f"IDs dos usuários premium: {list(usuarios_premium)}")
+        
+        # Debug: mostrar assinaturas canceladas para ver se há o 5º usuário
+        assinaturas_canceladas = Assinatura.objects.filter(
+            status='cancelada'
+        ).select_related('usuario').values('usuario__id', 'usuario__username', 'status', 'ativo', 'data_criacao', 'data_vencimento')
+        
+        print("🔍 DEBUG: Assinaturas canceladas:")
+        for assinatura in assinaturas_canceladas:
+            print(f"  - ID: {assinatura['usuario__id']}, Username: {assinatura['usuario__username']}, Status: {assinatura['status']}, Ativo: {assinatura['ativo']}, Criada: {assinatura['data_criacao']}, Vencimento: {assinatura['data_vencimento']}")
+        
+        # Verificar se há usuários que tiveram assinatura ativa mas agora estão cancelados
+        usuarios_cancelados_ids = [a['usuario__id'] for a in assinaturas_canceladas]
+        print(f"IDs dos usuários com assinaturas canceladas: {usuarios_cancelados_ids}")
+        
+        # Verificar se algum desses usuários cancelados já foi premium
+        usuarios_que_ja_foram_premium = set(usuarios_premium) & set(usuarios_cancelados_ids)
+        if usuarios_que_ja_foram_premium:
+            print(f"Usuários que já foram premium mas agora estão cancelados: {usuarios_que_ja_foram_premium}")
+        else:
+            print("Nenhum usuário cancelado já foi premium anteriormente")
+        
+        # Debug: verificar webhooks falhados
+        from payments.models import WebhookEvent
+        webhooks_falhados = WebhookEvent.objects.filter(
+            processado=False,
+            data_criacao__gte=timezone.now() - timedelta(days=7)
+        ).order_by('-data_criacao')
+        
+        print(f"\n🔍 DEBUG: Webhooks falhados nos últimos 7 dias: {webhooks_falhados.count()}")
+        for webhook in webhooks_falhados[:5]:  # Mostrar apenas os 5 mais recentes
+            print(f"  - ID: {webhook.id}, Tipo: {webhook.tipo}, Status: {webhook.status}, Data: {webhook.data_criacao}")
+            if webhook.erro_processamento:
+                print(f"    Erro: {webhook.erro_processamento}")
+        
+        # Debug: verificar pagamentos pendentes
+        pagamentos_pendentes = Pagamento.objects.filter(
+            status__in=['pending', 'in_process'],
+            data_criacao__gte=timezone.now() - timedelta(days=7)
+        ).order_by('-data_criacao')
+        
+        print(f"\n🔍 DEBUG: Pagamentos pendentes nos últimos 7 dias: {pagamentos_pendentes.count()}")
+        for pagamento in pagamentos_pendentes[:5]:  # Mostrar apenas os 5 mais recentes
+            print(f"  - ID: {pagamento.id}, Usuário: {pagamento.usuario.email}, Status: {pagamento.status}, Data: {pagamento.data_criacao}")
+            print(f"    External Ref: {pagamento.external_reference}, Payment ID: {pagamento.get_payment_id()}")
+        
         return JsonResponse({
             'success': True,
             'total_subscriptions': all_subscriptions.count(),
+            'status_counts': status_counts,
+            'ativo_counts': ativo_counts,
+            'usuarios_premium_unicos': len(usuarios_premium),
+            'usuarios_premium_ids': list(usuarios_premium),
             'subscriptions': subscriptions_data
         })
     except Exception as e:
         return JsonResponse({'success': False, 'message': f'Erro ao buscar assinaturas: {str(e)}'})
+
+def debug_usuario_especifico(request):
+    """
+    Debug específico para um usuário - verificar pagamentos e assinaturas
+    """
+    print("🔍 DEBUG: Função debug_usuario_especifico chamada")
+    
+    if not request.user.is_superuser:
+        print("❌ DEBUG: Usuário não é superuser")
+        return JsonResponse({'error': 'Acesso negado'}, status=403)
+    
+    try:
+        print("🔍 DEBUG: Iniciando debug do usuário específico")
+        
+        # Buscar usuário por email
+        email = request.GET.get('email', 'gregoriobaldocs@gmail.com')
+        print(f"🔍 DEBUG: Buscando usuário com email: {email}")
+        
+        try:
+            usuario = User.objects.get(email=email)
+            print(f"🔍 DEBUG: Usuário encontrado: {usuario.username} (ID: {usuario.id})")
+        except User.DoesNotExist:
+            print(f"❌ DEBUG: Usuário com email {email} não encontrado")
+            return JsonResponse({'error': f'Usuário com email {email} não encontrado'})
+        except Exception as e:
+            print(f"❌ DEBUG: Erro ao buscar usuário: {e}")
+            return JsonResponse({'error': f'Erro ao buscar usuário: {str(e)}'})
+        
+        # Buscar pagamentos do usuário
+        print("🔍 DEBUG: Buscando pagamentos do usuário")
+        pagamentos = Pagamento.objects.filter(usuario=usuario).order_by('-data_criacao')
+        print(f"🔍 DEBUG: Encontrados {pagamentos.count()} pagamentos")
+        
+        # Buscar assinaturas do usuário
+        print("🔍 DEBUG: Buscando assinaturas do usuário")
+        assinaturas = Assinatura.objects.filter(usuario=usuario).order_by('-data_criacao')
+        print(f"🔍 DEBUG: Encontradas {assinaturas.count()} assinaturas")
+        
+        # Verificar perfil do usuário
+        try:
+            profile = usuario.profile
+            conta_premium = profile.conta_premium
+            data_vencimento_premium = profile.data_vencimento_premium
+        except:
+            conta_premium = False
+            data_vencimento_premium = None
+        
+        # Debug detalhado
+        print(f"🔍 DEBUG USUÁRIO: {usuario.username} ({usuario.email})")
+        print(f"ID do usuário: {usuario.id}")
+        print(f"Conta premium no perfil: {conta_premium}")
+        print(f"Data vencimento premium: {data_vencimento_premium}")
+        
+        print(f"\n📊 PAGAMENTOS ({pagamentos.count()}):")
+        for pagamento in pagamentos:
+            print(f"  - ID: {pagamento.id}, Status: {pagamento.status}, Valor: {pagamento.valor}, Data: {pagamento.data_criacao}")
+            print(f"    External Reference: {pagamento.external_reference}")
+            print(f"    Payment ID: {pagamento.get_payment_id()}")
+        
+        print(f"\n📊 ASSINATURAS ({assinaturas.count()}):")
+        for assinatura in assinaturas:
+            print(f"  - ID: {assinatura.id}, Status: {assinatura.status}, Ativo: {assinatura.ativo}")
+            print(f"    Plano: {assinatura.plano.nome if assinatura.plano else 'N/A'}")
+            print(f"    Data Início: {assinatura.data_inicio}")
+            print(f"    Data Vencimento: {assinatura.data_vencimento}")
+            print(f"    External Reference: {assinatura.external_reference}")
+        
+        # Verificar se há pagamentos aprovados sem assinatura
+        pagamentos_aprovados = pagamentos.filter(status='approved')
+        assinaturas_ativas = assinaturas.filter(status='ativa', ativo=True)
+        
+        print(f"\n🔍 ANÁLISE:")
+        print(f"Pagamentos aprovados: {pagamentos_aprovados.count()}")
+        print(f"Assinaturas ativas: {assinaturas_ativas.count()}")
+        
+        if pagamentos_aprovados.exists() and not assinaturas_ativas.exists():
+            print("❌ PROBLEMA: Usuário tem pagamento aprovado mas não tem assinatura ativa!")
+            
+            # Tentar ativar assinatura manualmente
+            pagamento_aprovado = pagamentos_aprovados.first()
+            print(f"Tentando ativar assinatura para pagamento {pagamento_aprovado.id}...")
+            
+            # Simular dados de pagamento para ativar assinatura
+            payment_data = {
+                'id': pagamento_aprovado.get_payment_id() or str(pagamento_aprovado.id),
+                'status': 'approved'
+            }
+            
+            try:
+                # Importar a função ativar_assinatura
+                from payments.views import ativar_assinatura
+                ativar_assinatura(pagamento_aprovado, payment_data)
+                print("✅ Assinatura ativada com sucesso!")
+                
+                # Atualizar dados após ativação
+                assinaturas = Assinatura.objects.filter(usuario=usuario).order_by('-data_criacao')
+                assinaturas_ativas = assinaturas.filter(status='ativa', ativo=True)
+                print(f"Assinaturas ativas após correção: {assinaturas_ativas.count()}")
+                
+            except Exception as e:
+                print(f"❌ Erro ao ativar assinatura: {e}")
+                import traceback
+                traceback.print_exc()
+        
+        print("🔍 DEBUG: Preparando resposta JSON")
+        
+        # Preparar dados do usuário
+        usuario_data = {
+            'id': usuario.id,
+            'username': usuario.username,
+            'email': usuario.email,
+            'conta_premium': conta_premium,
+            'data_vencimento_premium': data_vencimento_premium.isoformat() if data_vencimento_premium else None
+        }
+        
+        # Preparar dados dos pagamentos
+        pagamentos_data = []
+        for p in pagamentos:
+            try:
+                pagamentos_data.append({
+                    'id': p.id,
+                    'status': p.status,
+                    'valor': float(p.valor),
+                    'data_criacao': p.data_criacao.isoformat(),
+                    'external_reference': p.external_reference,
+                    'payment_id': p.get_payment_id()
+                })
+            except Exception as e:
+                print(f"❌ DEBUG: Erro ao processar pagamento {p.id}: {e}")
+        
+        # Preparar dados das assinaturas
+        assinaturas_data = []
+        for a in assinaturas:
+            try:
+                assinaturas_data.append({
+                    'id': a.id,
+                    'status': a.status,
+                    'ativo': a.ativo,
+                    'plano': a.plano.nome if a.plano else None,
+                    'data_inicio': a.data_inicio.isoformat(),
+                    'data_vencimento': a.data_vencimento.isoformat(),
+                    'external_reference': a.external_reference
+                })
+            except Exception as e:
+                print(f"❌ DEBUG: Erro ao processar assinatura {a.id}: {e}")
+        
+        print("🔍 DEBUG: Enviando resposta JSON")
+        
+        # Versão simplificada para teste
+        return JsonResponse({
+            'success': True,
+            'message': 'Debug executado com sucesso',
+            'usuario': usuario_data,
+            'total_pagamentos': len(pagamentos_data),
+            'total_assinaturas': len(assinaturas_data)
+        })
+        
+    except Exception as e:
+        return JsonResponse({'success': False, 'message': f'Erro ao buscar dados do usuário: {str(e)}'})
+
+def ativar_assinatura_manual(request):
+    """
+    Ativar assinatura manualmente para um usuário específico
+    """
+    if not request.user.is_superuser:
+        return JsonResponse({'error': 'Acesso negado'}, status=403)
+    
+    try:
+        email = request.GET.get('email', 'gregoriobaldocs@gmail.com')
+        print(f"🔍 DEBUG: Ativando assinatura manual para: {email}")
+        
+        # Buscar usuário
+        try:
+            usuario = User.objects.get(email=email)
+            print(f"🔍 DEBUG: Usuário encontrado: {usuario.username} (ID: {usuario.id})")
+        except User.DoesNotExist:
+            return JsonResponse({'error': f'Usuário com email {email} não encontrado'})
+        
+        # Buscar plano Pro (assumindo que é o mais caro)
+        plano_pro = PlanoPremium.objects.filter(ativo=True).order_by('-preco').first()
+        if not plano_pro:
+            return JsonResponse({'error': 'Nenhum plano ativo encontrado'})
+        
+        print(f"🔍 DEBUG: Plano encontrado: {plano_pro.nome} (R$ {plano_pro.preco})")
+        
+        # Calcular datas
+        data_inicio = timezone.now()
+        data_vencimento = data_inicio + timedelta(days=plano_pro.duracao_dias)
+        
+        # Criar assinatura manual
+        assinatura = Assinatura.objects.create(
+            usuario=usuario,
+            plano=plano_pro,
+            status='ativa',
+            ativo=True,
+            data_inicio=data_inicio,
+            data_vencimento=data_vencimento,
+            external_reference=f'manual_{usuario.id}_{int(timezone.now().timestamp())}',
+            subscription_id=f'manual_{usuario.id}_{int(timezone.now().timestamp())}'
+        )
+        
+        print(f"✅ DEBUG: Assinatura criada com ID: {assinatura.id}")
+        
+        # Atualizar perfil do usuário
+        try:
+            profile = usuario.profile
+            profile.conta_premium = True
+            profile.data_vencimento_premium = data_vencimento
+            profile.save()
+            print(f"✅ DEBUG: Perfil do usuário atualizado")
+        except Exception as e:
+            print(f"⚠️ DEBUG: Erro ao atualizar perfil: {e}")
+        
+        # Limpar cache do dashboard
+        try:
+            clear_dashboard_cache()
+            print(f"✅ DEBUG: Cache do dashboard limpo")
+        except Exception as e:
+            print(f"⚠️ DEBUG: Erro ao limpar cache: {e}")
+        
+        return JsonResponse({
+            'success': True,
+            'message': f'Assinatura ativada com sucesso para {usuario.email}',
+            'assinatura_id': assinatura.id,
+            'plano': plano_pro.nome,
+            'data_vencimento': data_vencimento.isoformat()
+        })
+        
+    except Exception as e:
+        print(f"❌ DEBUG: Erro ao ativar assinatura manual: {e}")
+        import traceback
+        traceback.print_exc()
+        return JsonResponse({'success': False, 'message': f'Erro ao ativar assinatura: {str(e)}'})
+
+def corrigir_assinaturas_inativas(request):
+    """
+    Corrigir assinaturas que foram criadas sem ativo=True
+    """
+    if not request.user.is_superuser:
+        return JsonResponse({'error': 'Acesso negado'}, status=403)
+    
+    try:
+        print("🔍 CORRIGIR ASSINATURAS: Iniciando correção de assinaturas inativas")
+        
+        # Buscar assinaturas com status='ativa' mas ativo=False ou None
+        assinaturas_problema = Assinatura.objects.filter(
+            status='ativa'
+        ).filter(
+            Q(ativo=False) | Q(ativo__isnull=True)
+        )
+        
+        print(f"🔍 CORRIGIR ASSINATURAS: Encontradas {assinaturas_problema.count()} assinaturas com problema")
+        
+        corrigidas = 0
+        for assinatura in assinaturas_problema:
+            print(f"🔍 CORRIGIR ASSINATURAS: Corrigindo assinatura {assinatura.id} - Usuário: {assinatura.usuario.email}")
+            
+            # Corrigir assinatura
+            assinatura.ativo = True
+            assinatura.save()
+            
+            # Atualizar perfil do usuário
+            try:
+                profile = assinatura.usuario.profile
+                profile.conta_premium = True
+                profile.data_vencimento_premium = assinatura.data_vencimento
+                profile.save()
+                print(f"✅ CORRIGIR ASSINATURAS: Perfil atualizado para {assinatura.usuario.email}")
+            except Exception as e:
+                print(f"❌ CORRIGIR ASSINATURAS: Erro ao atualizar perfil de {assinatura.usuario.email}: {e}")
+            
+            corrigidas += 1
+        
+        # Limpar cache
+        try:
+            clear_dashboard_cache()
+            print(f"✅ CORRIGIR ASSINATURAS: Cache limpo")
+        except Exception as e:
+            print(f"⚠️ CORRIGIR ASSINATURAS: Erro ao limpar cache: {e}")
+        
+        return JsonResponse({
+            'success': True,
+            'message': f'Correção concluída! {corrigidas} assinaturas foram corrigidas.',
+            'assinaturas_corrigidas': corrigidas
+        })
+        
+    except Exception as e:
+        print(f"❌ CORRIGIR ASSINATURAS: Erro geral: {e}")
+        import traceback
+        traceback.print_exc()
+        return JsonResponse({'success': False, 'message': f'Erro ao corrigir assinaturas: {str(e)}'})
