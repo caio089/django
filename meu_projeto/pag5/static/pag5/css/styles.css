@@ -209,7 +209,6 @@
     background: linear-gradient(90deg, #22c55e, #16a34a);
     border-radius: 8px;
     height: 100%;
-    width: 0%;
     transition: width 0.5s ease;
     display: block;
     position: relative;
@@ -493,9 +492,9 @@
         height: 12px !important;
         margin: 0 !important;
         padding: 0 !important;
-        width: 0% !important;
         max-width: 100% !important;
         transition: width 0.5s ease !important;
+        background: linear-gradient(90deg, #22c55e, #16a34a) !important;
     }
     
     /* Barra flutuante mobile - PERFEITAMENTE CENTRALIZADA */
@@ -518,7 +517,6 @@
         border-radius: 8px !important;
         margin: 0 !important;
         background: linear-gradient(90deg, #22c55e, #16a34a) !important;
-        width: 0% !important;
         max-width: 100% !important;
         transition: width 0.5s ease !important;
         display: block !important;

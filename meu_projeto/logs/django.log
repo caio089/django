@@ -2532,3 +2532,105 @@ Processos pesados desabilitados - modo leve ativado
 Processos pesados desabilitados - modo leve ativado
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 40568
+"POST /login/ HTTP/1.1" 200 40893
+"POST /login/ HTTP/1.1" 200 40893
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 63224
+"GET /pagina3/ HTTP/1.1" 200 86018
+"GET /static/pag3/js/script.js?v=20251017002 HTTP/1.1" 304 0
+"GET /static/pag3/css/styles.css HTTP/1.1" 200 48951
+"GET /pagina3/carregar-progresso/?pagina=pagina3 HTTP/1.1" 200 1655
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1674
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1674
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1703
+"POST /pagina3/salvar-progresso/ HTTP/1.1" 200 1703
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /index/ HTTP/1.1" 200 63224
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina4/ HTTP/1.1" 200 108397
+"GET /static/pag4/js/scripts.js HTTP/1.1" 200 20519
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina4/carregar-progresso/?pagina=pagina4 HTTP/1.1" 200 2770
+"GET /index/ HTTP/1.1" 200 63224
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina5/ HTTP/1.1" 200 105796
+"GET /static/pag5/css/styles.css?v=20250117002 HTTP/1.1" 200 26365
+"GET /static/pag5/js/lazy-video.js HTTP/1.1" 304 0
+"GET /static/pag5/js/scripts.js?v=20250117001 HTTP/1.1" 200 10774
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina5/ HTTP/1.1" 200 105796
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina5/ HTTP/1.1" 200 105796
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina5/ HTTP/1.1" 200 105796
+"GET /static/pag5/js/scripts.js?v=20250118001 HTTP/1.1" 200 12651
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina5/carregar-progresso/?pagina=pagina5 HTTP/1.1" 200 2872
+"GET /pagina5/ HTTP/1.1" 200 105796
+"GET /static/pag5/css/styles.css?v=20250118002 HTTP/1.1" 200 26290
+"GET /static/pag5/js/scripts.js?v=20250118001 HTTP/1.1" 200 11695
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina5/carregar-progresso/?pagina=pagina5 HTTP/1.1" 200 2872
+"GET /pagina5/ HTTP/1.1" 200 105796
+"GET /static/pag5/css/styles.css?v=20250118002 HTTP/1.1" 200 26258
+"GET /static/pag5/js/scripts.js?v=20250118001 HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina5/carregar-progresso/?pagina=pagina5 HTTP/1.1" 200 2872
+"GET /pagina5/ HTTP/1.1" 200 105796
+"GET /static/pag5/css/styles.css?v=20250118004 HTTP/1.1" 200 26363
+"GET /static/pag5/js/scripts.js?v=20250118001 HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina5/carregar-progresso/?pagina=pagina5 HTTP/1.1" 200 2872
+"GET /pagina5/ HTTP/1.1" 200 106995
+"GET /static/pag5/css/styles.css?v=20250118004 HTTP/1.1" 304 0
+"GET /static/pag5/js/scripts.js?v=20250118001 HTTP/1.1" 304 0
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina5/carregar-progresso/?pagina=pagina5 HTTP/1.1" 200 2872
+"POST /pagina5/salvar-progresso/ HTTP/1.1" 200 2891
+"POST /pagina5/salvar-progresso/ HTTP/1.1" 200 2920
+"POST /pagina5/salvar-progresso/ HTTP/1.1" 200 2891
+"POST /pagina5/salvar-progresso/ HTTP/1.1" 200 2920
+"POST /pagina5/salvar-progresso/ HTTP/1.1" 200 2949
+"GET /pagina5/ HTTP/1.1" 200 107554
+"GET /static/pag5/css/styles.css?v=20250118004 HTTP/1.1" 304 0
+"GET /static/pag5/js/scripts.js?v=20250118002 HTTP/1.1" 200 12797
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina5/carregar-progresso/?pagina=pagina5 HTTP/1.1" 200 2901
+"POST /pagina5/salvar-progresso/ HTTP/1.1" 200 2920
+"POST /pagina5/salvar-progresso/ HTTP/1.1" 200 2949
+"GET /pagina5/ HTTP/1.1" 200 107554
+"GET /static/pag5/css/styles.css?v=20250118004 HTTP/1.1" 304 0
+"GET /static/pag5/js/scripts.js?v=20250118002 HTTP/1.1" 200 12797
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina5/carregar-progresso/?pagina=pagina5 HTTP/1.1" 200 2901
+"POST /pagina5/salvar-progresso/ HTTP/1.1" 200 2978
+"GET /pagina5/ HTTP/1.1" 200 107757
+"GET /static/pag5/css/styles.css?v=20250118004 HTTP/1.1" 304 0
+"GET /static/pag5/js/scripts.js?v=20250118004 HTTP/1.1" 200 13993
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina5/carregar-progresso/?pagina=pagina5 HTTP/1.1" 200 2930
+"POST /pagina5/salvar-progresso/ HTTP/1.1" 200 2949
+"POST /pagina5/salvar-progresso/ HTTP/1.1" 200 2978
+"GET /pagina5/ HTTP/1.1" 200 107719
+"GET /static/pag5/css/styles.css?v=20250118004 HTTP/1.1" 304 0
+"GET /static/pag5/js/scripts.js?v=20250118005 HTTP/1.1" 200 12794
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
+"GET /pagina5/carregar-progresso/?pagina=pagina5 HTTP/1.1" 200 2930
+"POST /pagina5/salvar-progresso/ HTTP/1.1" 200 2949

@@ -31,9 +31,9 @@
             }
         }
     </script>
-    <link rel="stylesheet" href="{% static 'pag5/css/styles.css' %}?v=20250117002">
+    <link rel="stylesheet" href="{% static 'pag5/css/styles.css' %}?v=20250118004">
     <script src="{% static 'pag5/js/lazy-video.js' %}" defer></script>
-    <script src="{% static 'pag5/js/scripts.js' %}?v=20250117001" defer></script>
+    <script src="{% static 'pag5/js/scripts.js' %}?v=20250118005" defer></script>
 </head>
 <body class="bg-gray-50 font-display">
     {% csrf_token %}
@@ -60,6 +60,15 @@
             <p class="text-sm font-medium text-white">Progresso: <span id="progressText" class="text-green-200">0%</span></p>
         </div>
     </header>
+
+    <!-- Barra de Progresso Flutuante -->
+    <div id="floatingProgress" style="display: none; position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 9999; background: #22c55e; color: white; padding: 16px 24px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+        <div style="width: 200px; height: 8px; background: rgba(255,255,255,0.3); border-radius: 4px; overflow: hidden;">
+            <div id="floatingProgressBar" style="height: 100%; background: white; border-radius: 4px; transition: width 0.5s ease; width: 0%;"></div>
+        </div>
+        <p id="floatingProgressText" style="text-align: center; margin-top: 8px; font-weight: 600; margin: 0;">Progresso: 0%</p>
+    </div>
+
     <main class="max-w-6xl mx-auto px-4 py-6">
         <!-- Seção de Condições -->
         <div class="w-full text-center mb-2">
@@ -1472,6 +1481,33 @@
             </p>
         </div>
     </footer>
+    
+    <!-- JavaScript para botões da barra japonesa -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mapear IDs dos botões para IDs das seções
+            const buttonToSection = {
+                'nage-waza-nav': 'nage-waza-section',
+                'imobilizacoes-nav': 'imobilizacoes-section',
+                'chave-braco-nav': 'chave-braco-section',
+                'estrangulamento-nav': 'estrangulamento-section',
+                'henkakuenka-nav': 'henkakuenka-section',
+                'kaeshi-waza-nav': 'kaeshi-waza-section'
+            };
+            
+            // Adicionar eventos de clique aos botões
+            Object.keys(buttonToSection).forEach(buttonId => {
+                const button = document.getElementById(buttonId);
+                if (button) {
+                    button.addEventListener('click', function() {
+                        const sectionId = buttonToSection[buttonId];
+                        console.log('🔍 Botão clicado:', buttonId, '-> Seção:', sectionId);
+                        showSection(sectionId);
+                    });
+                }
+            });
+        });
+    </script>
     
 </body>
 </html>

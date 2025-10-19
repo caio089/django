@@ -1,4 +1,67 @@
+// --- VARIÁVEIS GLOBAIS ---
+let allCheckboxes;
+let hasShownCongratulations = false;
+
+// --- FUNÇÕES GLOBAIS ---
+function showSection(sectionId) {
+    console.log('🔍 showSection chamada com:', sectionId);
+    
+    // Esconder todas as seções primeiro
+    const sections = [
+        'nage-waza-section', 'imobilizacoes-section', 'chave-braco-section',
+        'estrangulamento-section', 'henkakuenka-section', 'kaeshi-waza-section'
+    ];
+    sections.forEach(id => {
+        const section = document.getElementById(id);
+        if (section) section.classList.add('hidden');
+    });
+    
+    // Mostrar a seção selecionada
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) {
+        targetSection.classList.remove('hidden');
+        console.log('✅ Seção', sectionId, 'mostrada com sucesso!');
+        targetSection.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+        });
+    } else {
+        console.error('❌ Seção', sectionId, 'não encontrada!');
+    }
+}
+
+// Tornar a função globalmente acessível
+window.showSection = showSection;
+
+// Função para mostrar barra flutuante de progresso
+function showFloatingProgress(progress) {
+    const floatingProgress = document.getElementById('floatingProgress');
+    const floatingProgressBar = document.getElementById('floatingProgressBar');
+    const floatingProgressText = document.getElementById('floatingProgressText');
+    
+    if (floatingProgress && floatingProgressBar && floatingProgressText) {
+        // Atualizar barra e texto
+        floatingProgressBar.style.width = progress + '%';
+        floatingProgressText.textContent = `Progresso: ${Math.round(progress)}%`;
+        
+        // Mostrar barra
+        floatingProgress.style.display = 'block';
+        
+        // Esconder após 3 segundos
+        setTimeout(() => {
+            floatingProgress.style.display = 'none';
+        }, 3000);
+    }
+}
+
+// Tornar a função globalmente acessível
+window.showFloatingProgress = showFloatingProgress;
+
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar variáveis
+    allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+    
     // --- ANIMAÇÕES ---
     function animateHabilidades() {
         document.querySelectorAll('.habilidade-item').forEach((item, index) => {
@@ -18,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // --- SISTEMA DE PROGRESSO REMOVIDO ---
     // O sistema de progresso foi removido conforme solicitado
-    let hasShownCongratulations = false;
     
     // --- SISTEMA DE PARABÉNS SIMPLIFICADO ---
     function showCongratulations() {
@@ -124,16 +186,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeCarousel('carouselChave', 'carouselChaveLeft', 'carouselChaveRight');
     initializeCarousel('carouselEstrang', 'carouselEstrangLeft', 'carouselEstrangRight');
 
-    function hideAllSections() {
-        const sections = [
-            'nage-waza-section', 'imobilizacoes-section', 'chave-braco-section',
-            'estrangulamento-section', 'henkakuenka-section', 'kaeshi-waza-section'
-        ];
-        sections.forEach(id => {
-            const section = document.getElementById(id);
-            if (section) section.classList.add('hidden');
-        });
-    }
     
     // Inicializar botões de voltar ao topo das seções
     document.querySelectorAll('.back-to-top-section').forEach(button => {
@@ -149,7 +201,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Salvar progresso no banco de dados
     function saveProgress() {
-        const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+        // Atualizar variável global
+        allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
         
         const elementos = [];
         
@@ -201,7 +254,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.success && data.elementos.length > 0) {
                 console.log('Carregando progresso do banco de dados:', data.elementos);
                 
-                const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+                // Atualizar variável global
+        allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
                 
                 data.elementos.forEach(elemento => {
                     const index = parseInt(elemento.id.replace('checkbox_', ''));
@@ -211,7 +265,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 
                 // Atualizar barra de progresso após carregar do banco
-                const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+                // Atualizar variável global
+        allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
                 const checked = document.querySelectorAll('input[type="checkbox"]:checked');
                 const progress = (checked.length / allCheckboxes.length) * 100;
                 
@@ -237,7 +292,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('change', function(e) {
         if (e.target.type === 'checkbox') {
             // Calcular progresso
-            const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+            // Atualizar variável global
+            allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
             const checked = document.querySelectorAll('input[type="checkbox"]:checked');
             const progress = (checked.length / allCheckboxes.length) * 100;
             
@@ -250,6 +306,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             if (progressText) {
                 progressText.textContent = Math.round(progress) + '%';
+            }
+            
+            // Mostrar barra flutuante quando checkbox é marcado
+            if (e.target.checked) {
+                showFloatingProgress(progress);
             }
             
             // Salvar progresso no banco de dados
