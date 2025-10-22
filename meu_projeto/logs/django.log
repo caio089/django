@@ -2634,3 +2634,19 @@ Not Found: /.well-known/appspecific/com.chrome.devtools.json
 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 7561
 "GET /pagina5/carregar-progresso/?pagina=pagina5 HTTP/1.1" 200 2930
 "POST /pagina5/salvar-progresso/ HTTP/1.1" 200 2949
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 40568
+"GET /static/judo.png HTTP/1.1" 304 0
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 7450
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 63224
+Processos pesados desabilitados - modo leve ativado
+"GET / HTTP/1.1" 200 40907
+- Broken pipe from ('127.0.0.1', 57744)
+"GET /register/ HTTP/1.1" 200 40914
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
