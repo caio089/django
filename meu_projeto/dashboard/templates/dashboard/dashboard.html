@@ -33,37 +33,46 @@
 </head>
 <body class="bg-gray-100">
     <!-- Header -->
-    <header class="gradient-bg text-white p-6 shadow-lg">
+    <header class="gradient-bg text-white p-4 md:p-6 shadow-lg">
         <div class="max-w-7xl mx-auto">
-            <div class="flex justify-between items-center">
-                <div>
-                    <h1 class="text-3xl font-bold">🥋 Dashboard Dojoon</h1>
-                    <p class="text-blue-100 mt-2">Painel Administrativo - Assinaturas Premium</p>
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+                <div class="flex-1">
+                    <h1 class="text-2xl md:text-3xl font-bold">🥋 Dashboard Dojoon</h1>
+                    <p class="text-blue-100 mt-1 md:mt-2 text-sm md:text-base">Painel Administrativo - Assinaturas Premium</p>
                 </div>
-                <div class="text-right">
-                    <p class="text-blue-100 mb-2">👤 Logado como: <strong>{{ request.user.username }}</strong></p>
-                    <p class="text-blue-100 text-sm mb-3">Atualizado em: {{ current_date }}</p>
-                    <div class="flex gap-3 justify-end">
-                        <button onclick="refreshDashboardCache()" class="bg-blue-500/90 hover:bg-blue-600 px-5 py-3 rounded-xl transition-all duration-300 inline-block text-sm font-semibold shadow-lg hover:shadow-xl border-2 border-blue-400/50 hover:border-blue-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm">
-                            🔄 Atualizar
+                <div class="w-full lg:w-auto">
+                    <p class="text-blue-100 mb-2 text-sm md:text-base">👤 Logado como: <strong>{{ request.user.username }}</strong></p>
+                    <p class="text-blue-100 text-xs md:text-sm mb-3">Atualizado em: {{ current_date }}</p>
+                    
+                    <!-- Botões em grid responsivo -->
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-2 md:gap-3">
+                        <button onclick="refreshDashboardCache()" class="bg-blue-500/90 hover:bg-blue-600 px-2 md:px-3 lg:px-5 py-2 md:py-3 rounded-lg md:rounded-xl transition-all duration-300 text-xs md:text-sm font-semibold shadow-lg hover:shadow-xl border-2 border-blue-400/50 hover:border-blue-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm">
+                            <span class="hidden md:inline">🔄 Atualizar</span>
+                            <span class="md:hidden">🔄</span>
                         </button>
-                        <button onclick="debugSubscriptions()" class="bg-purple-500/90 hover:bg-purple-600 px-5 py-3 rounded-xl transition-all duration-300 inline-block text-sm font-semibold shadow-lg hover:shadow-xl border-2 border-purple-400/50 hover:border-purple-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm">
-                            🔍 Debug
+                        <button onclick="debugSubscriptions()" class="bg-purple-500/90 hover:bg-purple-600 px-2 md:px-3 lg:px-5 py-2 md:py-3 rounded-lg md:rounded-xl transition-all duration-300 text-xs md:text-sm font-semibold shadow-lg hover:shadow-xl border-2 border-purple-400/50 hover:border-purple-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm">
+                            <span class="hidden md:inline">🔍 Debug</span>
+                            <span class="md:hidden">🔍</span>
                         </button>
-                        <button onclick="debugUsuarioEspecifico()" class="bg-orange-500/90 hover:bg-orange-600 px-5 py-3 rounded-xl transition-all duration-300 inline-block text-sm font-semibold shadow-lg hover:shadow-xl border-2 border-orange-400/50 hover:border-orange-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm">
-                            👤 Debug Usuário
+                        <button onclick="debugUsuarioEspecifico()" class="bg-orange-500/90 hover:bg-orange-600 px-2 md:px-3 lg:px-5 py-2 md:py-3 rounded-lg md:rounded-xl transition-all duration-300 text-xs md:text-sm font-semibold shadow-lg hover:shadow-xl border-2 border-orange-400/50 hover:border-orange-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm">
+                            <span class="hidden md:inline">👤 Debug Usuário</span>
+                            <span class="md:hidden">👤</span>
                         </button>
-                        <button onclick="ativarAssinaturaManual()" class="bg-green-500/90 hover:bg-green-600 px-5 py-3 rounded-xl transition-all duration-300 inline-block text-sm font-semibold shadow-lg hover:shadow-xl border-2 border-green-400/50 hover:border-green-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm">
-                            ✅ Ativar Premium
+                        <button onclick="ativarAssinaturaManual()" class="bg-green-500/90 hover:bg-green-600 px-2 md:px-3 lg:px-5 py-2 md:py-3 rounded-lg md:rounded-xl transition-all duration-300 text-xs md:text-sm font-semibold shadow-lg hover:shadow-xl border-2 border-green-400/50 hover:border-green-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm">
+                            <span class="hidden md:inline">✅ Ativar Premium</span>
+                            <span class="md:hidden">✅</span>
                         </button>
-                        <button onclick="corrigirAssinaturas()" class="bg-yellow-500/90 hover:bg-yellow-600 px-5 py-3 rounded-xl transition-all duration-300 inline-block text-sm font-semibold shadow-lg hover:shadow-xl border-2 border-yellow-400/50 hover:border-yellow-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm">
-                            🔧 Corrigir Assinaturas
+                        <button onclick="corrigirAssinaturas()" class="bg-yellow-500/90 hover:bg-yellow-600 px-2 md:px-3 lg:px-5 py-2 md:py-3 rounded-lg md:rounded-xl transition-all duration-300 text-xs md:text-sm font-semibold shadow-lg hover:shadow-xl border-2 border-yellow-400/50 hover:border-yellow-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm">
+                            <span class="hidden md:inline">🔧 Corrigir</span>
+                            <span class="md:hidden">🔧</span>
                         </button>
-                        <a href="/admin/" class="bg-white/25 hover:bg-white/40 px-5 py-3 rounded-xl transition-all duration-300 inline-block text-sm font-semibold shadow-lg hover:shadow-xl border-2 border-white/30 hover:border-white/50 transform hover:scale-105 active:scale-95 backdrop-blur-sm">
-                            🔧 Admin Django
+                        <a href="/admin/" class="bg-white/25 hover:bg-white/40 px-2 md:px-3 lg:px-5 py-2 md:py-3 rounded-lg md:rounded-xl transition-all duration-300 text-xs md:text-sm font-semibold shadow-lg hover:shadow-xl border-2 border-white/30 hover:border-white/50 transform hover:scale-105 active:scale-95 backdrop-blur-sm text-center">
+                            <span class="hidden md:inline">🔧 Admin Django</span>
+                            <span class="md:hidden">🔧</span>
                         </a>
-                        <a href="{% url 'admin_logout' %}" class="bg-red-500/90 hover:bg-red-600 px-5 py-3 rounded-xl transition-all duration-300 inline-block text-sm font-bold shadow-lg hover:shadow-xl border-2 border-red-400/50 hover:border-red-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm">
-                            🚪 Sair
+                        <a href="{% url 'admin_logout' %}" class="bg-red-500/90 hover:bg-red-600 px-2 md:px-3 lg:px-5 py-2 md:py-3 rounded-lg md:rounded-xl transition-all duration-300 text-xs md:text-sm font-bold shadow-lg hover:shadow-xl border-2 border-red-400/50 hover:border-red-300 transform hover:scale-105 active:scale-95 backdrop-blur-sm text-center">
+                            <span class="hidden md:inline">🚪 Sair</span>
+                            <span class="md:hidden">🚪</span>
                         </a>
                     </div>
                 </div>
@@ -261,9 +270,11 @@
         </div>
 
         <!-- Todos os Usuários -->
-        <div class="bg-white rounded-2xl p-6 shadow-lg mb-8">
-            <h3 class="text-xl font-bold text-gray-800 mb-4">👥 Todos os Usuários (Últimos 20)</h3>
-            <div class="overflow-x-auto">
+        <div class="bg-white rounded-2xl p-4 md:p-6 shadow-lg mb-8">
+            <h3 class="text-lg md:text-xl font-bold text-gray-800 mb-4">👥 Todos os Usuários (Últimos 20)</h3>
+            
+            <!-- Desktop Table -->
+            <div class="hidden md:block overflow-x-auto">
                 <table class="w-full">
                     <thead>
                         <tr class="border-b">
@@ -295,6 +306,11 @@
                             </td>
                             <td class="py-3 px-4">
                                 <div class="flex gap-2 justify-center">
+                                    <!-- Botão Ver Dados -->
+                                    <button onclick="verDadosUsuario({{ user.id }}, '{{ user.username }}', '{{ user.email }}')" class="bg-blue-500 hover:bg-blue-600 text-white text-xs font-bold py-1 px-3 rounded transition-colors" title="Ver Dados do Usuário">
+                                        👤 Dados
+                                    </button>
+                                    
                                     <!-- Botão Remover Premium -->
                                     {% if user.has_active_subscription %}
                                     <form method="post" action="{% url 'remove_premium' %}" class="inline" onsubmit="return confirm('Tem certeza que deseja remover o premium de {{ user.username }}?');">
@@ -325,8 +341,85 @@
                     </tbody>
                 </table>
             </div>
+            
+            <!-- Mobile Cards -->
+            <div class="md:hidden space-y-4">
+                {% for user in recent_users %}
+                <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="flex-1">
+                            <h4 class="font-bold text-gray-800">{{ user.username }}</h4>
+                            <p class="text-sm text-gray-600">{{ user.email|default:"Sem email" }}</p>
+                            <p class="text-xs text-gray-500 mt-1">ID: {{ user.id }} | {{ user.date_joined|date:"d/m/Y H:i" }}</p>
+                        </div>
+                        <div>
+                            {% if user.has_active_subscription %}
+                                <span class="px-2 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800">
+                                    Premium ⭐
+                                </span>
+                            {% else %}
+                                <span class="px-2 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-800">
+                                    Gratuito
+                                </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2">
+                        <!-- Botão Ver Dados -->
+                        <button onclick="verDadosUsuario({{ user.id }}, '{{ user.username }}', '{{ user.email }}')" class="bg-blue-500 hover:bg-blue-600 text-white text-xs font-bold py-2 px-3 rounded transition-colors flex-1">
+                            👤 Ver Dados
+                        </button>
+                        
+                        <!-- Botão Remover Premium -->
+                        {% if user.has_active_subscription %}
+                        <form method="post" action="{% url 'remove_premium' %}" class="flex-1" onsubmit="return confirm('Tem certeza que deseja remover o premium de {{ user.username }}?');">
+                            {% csrf_token %}
+                            <input type="hidden" name="user_id" value="{{ user.id }}">
+                            <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold py-2 px-3 rounded transition-colors">
+                                ❌ Remover Premium
+                            </button>
+                        </form>
+                        {% endif %}
+                        
+                        <!-- Botão Excluir Conta -->
+                        {% if not user.is_superuser %}
+                        <button onclick="openDeleteModal({{ user.id }}, '{{ user.username }}', '{{ user.email }}')" class="bg-red-500 hover:bg-red-600 text-white text-xs font-bold py-2 px-3 rounded transition-colors flex-1">
+                            🗑️ Excluir
+                        </button>
+                        {% else %}
+                        <span class="text-xs text-gray-400 italic flex-1 text-center py-2">Admin</span>
+                        {% endif %}
+                    </div>
+                </div>
+                {% empty %}
+                <div class="text-center py-8 text-gray-500">Nenhum usuário encontrado</div>
+                {% endfor %}
+            </div>
         </div>
         
+        <!-- Modal de Dados do Usuário -->
+        <div id="userDataModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+            <div class="bg-white rounded-2xl p-6 max-w-2xl w-full mx-4 shadow-2xl max-h-[90vh] overflow-y-auto">
+                <div class="text-center mb-6">
+                    <div class="text-6xl mb-4">👤</div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Dados do Usuário</h3>
+                    <p class="text-gray-600">Informações completas do usuário selecionado</p>
+                </div>
+                
+                <div id="userDataContent" class="space-y-4">
+                    <!-- Conteúdo será preenchido via JavaScript -->
+                </div>
+                
+                <div class="flex justify-center mt-6">
+                    <button onclick="closeUserDataModal()" 
+                            class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <!-- Modal de Confirmação para Excluir Usuário -->
         <div id="deleteModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
             <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl">
@@ -496,6 +589,177 @@
                         }
                     }
                 }
+            }
+        });
+    </script>
+    
+    <!-- Script para Modal de Dados do Usuário -->
+    <script>
+        function verDadosUsuario(userId, username, email) {
+            // Mostrar modal
+            document.getElementById('userDataModal').classList.remove('hidden');
+            document.getElementById('userDataModal').classList.add('flex');
+            
+            // Mostrar loading
+            document.getElementById('userDataContent').innerHTML = `
+                <div class="flex items-center justify-center py-8">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mr-3"></div>
+                    <span class="text-gray-600">Carregando dados do usuário...</span>
+                </div>
+            `;
+            
+            // Buscar dados do usuário
+            fetch(`/dashboard/dados-usuario/${userId}/`, {
+                method: 'GET',
+                headers: {
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    const user = data.usuario;
+                    const profile = data.perfil;
+                    
+                    document.getElementById('userDataContent').innerHTML = `
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Informações Básicas -->
+                            <div class="bg-blue-50 rounded-lg p-4">
+                                <h4 class="font-bold text-blue-800 mb-3">📋 Informações Básicas</h4>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">ID:</span>
+                                        <span class="font-semibold">${user.id}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Usuário:</span>
+                                        <span class="font-semibold">${user.username}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Email:</span>
+                                        <span class="font-semibold">${user.email || 'Não informado'}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Nome:</span>
+                                        <span class="font-semibold">${user.first_name} ${user.last_name}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Data Cadastro:</span>
+                                        <span class="font-semibold">${new Date(user.date_joined).toLocaleDateString('pt-BR')}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Último Login:</span>
+                                        <span class="font-semibold">${user.last_login ? new Date(user.last_login).toLocaleDateString('pt-BR') : 'Nunca'}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Perfil do Usuário -->
+                            <div class="bg-green-50 rounded-lg p-4">
+                                <h4 class="font-bold text-green-800 mb-3">🥋 Perfil do Judoca</h4>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Nome Completo:</span>
+                                        <span class="font-semibold">${profile.nome || 'Não informado'}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Idade:</span>
+                                        <span class="font-semibold">${profile.idade || 'Não informado'} anos</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Faixa Atual:</span>
+                                        <span class="font-semibold px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">${profile.faixa_display || 'Não informado'}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Pontos XP:</span>
+                                        <span class="font-semibold">${profile.pontos_experiencia || 0}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Nível:</span>
+                                        <span class="font-semibold">${profile.nivel || 1}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Conta Premium:</span>
+                                        <span class="font-semibold px-2 py-1 rounded-full text-xs ${profile.conta_premium ? 'bg-yellow-100 text-yellow-800' : 'bg-gray-100 text-gray-800'}">${profile.conta_premium ? 'SIM' : 'NÃO'}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Status da Conta -->
+                            <div class="bg-purple-50 rounded-lg p-4">
+                                <h4 class="font-bold text-purple-800 mb-3">⭐ Status da Conta</h4>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Status:</span>
+                                        <span class="font-semibold px-2 py-1 rounded-full text-xs ${user.has_active_subscription ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}">${user.has_active_subscription ? 'PREMIUM' : 'GRATUITO'}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Data Vencimento:</span>
+                                        <span class="font-semibold">${profile.data_vencimento_premium ? new Date(profile.data_vencimento_premium).toLocaleDateString('pt-BR') : 'N/A'}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Notificações:</span>
+                                        <span class="font-semibold">${profile.notificacoes_ativadas ? 'Ativadas' : 'Desativadas'}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Tema:</span>
+                                        <span class="font-semibold">${profile.tema_preferido || 'Claro'}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Estatísticas -->
+                            <div class="bg-orange-50 rounded-lg p-4">
+                                <h4 class="font-bold text-orange-800 mb-3">📊 Estatísticas</h4>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Total de Assinaturas:</span>
+                                        <span class="font-semibold">${data.total_assinaturas || 0}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Total de Pagamentos:</span>
+                                        <span class="font-semibold">${data.total_pagamentos || 0}</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-600">Valor Total Pago:</span>
+                                        <span class="font-semibold">R$ ${data.valor_total_pago || '0,00'}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    document.getElementById('userDataContent').innerHTML = `
+                        <div class="text-center py-8">
+                            <div class="text-6xl mb-4">❌</div>
+                            <p class="text-red-600 font-semibold">Erro ao carregar dados do usuário</p>
+                            <p class="text-gray-600 text-sm mt-2">${data.message || 'Erro desconhecido'}</p>
+                        </div>
+                    `;
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao buscar dados do usuário:', error);
+                document.getElementById('userDataContent').innerHTML = `
+                    <div class="text-center py-8">
+                        <div class="text-6xl mb-4">❌</div>
+                        <p class="text-red-600 font-semibold">Erro de conexão</p>
+                        <p class="text-gray-600 text-sm mt-2">Não foi possível carregar os dados do usuário</p>
+                    </div>
+                `;
+            });
+        }
+        
+        function closeUserDataModal() {
+            document.getElementById('userDataModal').classList.add('hidden');
+            document.getElementById('userDataModal').classList.remove('flex');
+        }
+        
+        // Fechar modal ao clicar fora
+        document.getElementById('userDataModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeUserDataModal();
             }
         });
     </script>

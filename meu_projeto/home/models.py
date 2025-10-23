@@ -68,7 +68,11 @@ class HistoricoFaixas(models.Model):
     motivo = models.TextField(blank=True, null=True, verbose_name="Motivo da mudança")
     
     def __str__(self):
-        return f"{self.usuario.profile.nome} - {self.faixa_anterior} → {self.faixa_atual}"
+        try:
+            nome = self.usuario.profile.nome if hasattr(self.usuario, 'profile') else self.usuario.username
+        except:
+            nome = self.usuario.username
+        return f"{nome} - {self.faixa_anterior} → {self.faixa_atual}"
     
     class Meta:
         verbose_name = "Histórico de Faixas"

@@ -11,6 +11,7 @@ from django.http import JsonResponse
 from payments.models import Pagamento, Assinatura, PlanoPremium
 from django.contrib.auth.models import User
 from django.contrib import messages
+from home.models import Profile
 import json
 
 
@@ -1029,3 +1030,79 @@ def corrigir_assinaturas_inativas(request):
         import traceback
         traceback.print_exc()
         return JsonResponse({'success': False, 'message': f'Erro ao corrigir assinaturas: {str(e)}'})
+
+
+@login_required
+def dados_usuario(request, user_id):
+    """
+    View para buscar dados completos de um usuário específico
+    """
+    try:
+        # Buscar usuário
+        user = User.objects.get(id=user_id)
+        
+        # Buscar perfil
+        try:
+            profile = user.profile
+        except Profile.DoesNotExist:
+            profile = None
+        
+        # Buscar assinaturas
+        assinaturas = Assinatura.objects.filter(usuario=user)
+        total_assinaturas = assinaturas.count()
+        
+        # Buscar pagamentos
+        pagamentos = Pagamento.objects.filter(usuario=user)
+        total_pagamentos = pagamentos.count()
+        valor_total_pago = pagamentos.aggregate(total=Sum('valor'))['total'] or 0
+        
+        # Preparar dados do usuário
+        user_data = {
+            'id': user.id,
+            'username': user.username,
+            'email': user.email,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'date_joined': user.date_joined.isoformat(),
+            'last_login': user.last_login.isoformat() if user.last_login else None,
+            'is_active': user.is_active,
+            'is_staff': user.is_staff,
+            'is_superuser': user.is_superuser,
+            'has_active_subscription': hasattr(user, 'has_active_subscription') and user.has_active_subscription
+        }
+        
+        # Preparar dados do perfil
+        profile_data = {}
+        if profile:
+            profile_data = {
+                'nome': profile.nome,
+                'idade': profile.idade,
+                'faixa': profile.faixa,
+                'faixa_display': profile.get_faixa_display(),
+                'pontos_experiencia': profile.pontos_experiencia,
+                'nivel': profile.nivel,
+                'conta_premium': profile.conta_premium,
+                'data_vencimento_premium': profile.data_vencimento_premium.isoformat() if profile.data_vencimento_premium else None,
+                'notificacoes_ativadas': profile.notificacoes_ativadas,
+                'tema_preferido': profile.tema_preferido
+            }
+        
+        return JsonResponse({
+            'success': True,
+            'usuario': user_data,
+            'perfil': profile_data,
+            'total_assinaturas': total_assinaturas,
+            'total_pagamentos': total_pagamentos,
+            'valor_total_pago': f"{valor_total_pago:.2f}"
+        })
+        
+    except User.DoesNotExist:
+        return JsonResponse({
+            'success': False,
+            'message': 'Usuário não encontrado'
+        })
+    except Exception as e:
+        return JsonResponse({
+            'success': False,
+            'message': f'Erro ao buscar dados do usuário: {str(e)}'
+        })

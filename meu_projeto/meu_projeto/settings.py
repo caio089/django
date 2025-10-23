@@ -33,7 +33,7 @@ USE_TZ = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # CSRF Settings
-CSRF_COOKIE_SECURE = False  # Desabilitar para desenvolvimento local
+CSRF_COOKIE_SECURE = not DEBUG  # True em produção, False em desenvolvimento
 CSRF_COOKIE_HTTPONLY = False
 CSRF_COOKIE_SAMESITE = 'Lax'
 CSRF_USE_SESSIONS = False

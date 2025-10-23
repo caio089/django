@@ -190,7 +190,10 @@ class ProgressoUsuario(models.Model):
         return round((self.total_acertos / self.total_perguntas_respondidas) * 100, 2)
     
     def __str__(self):
-        return f"Progresso de {self.usuario.profile.nome}"
+        try:
+            return f"Progresso de {self.usuario.profile.nome}"
+        except:
+            return f"Progresso de {self.usuario.username}"
     
     class Meta:
         verbose_name = "Progresso do Usuário"

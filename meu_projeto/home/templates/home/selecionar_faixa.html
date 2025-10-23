@@ -1,0 +1,239 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolha sua Faixa - Academia de Judô</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Animação de entrada suave */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Efeito de hover para os cards de faixa */
+        .faixa-card {
+            transition: all 0.3s ease;
+        }
+        
+        .faixa-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        /* Gradiente animado de fundo */
+        .gradient-bg {
+            background: linear-gradient(-45deg, #22c55e, #16a34a, #15803d, #166534);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-6 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="flex items-center justify-center mb-4">
+                <img src="{% static 'judo.png' %}" alt="Judo" class="w-12 h-12 mr-4">
+                <h1 class="text-3xl md:text-4xl font-bold">Academia de Judô</h1>
+            </div>
+            <p class="text-green-100 text-lg">Escolha sua faixa para continuar</p>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        <!-- Informações do Usuário -->
+        <div class="bg-white rounded-2xl shadow-xl p-6 mb-8 fade-in">
+            <div class="flex items-center">
+                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                    <span class="text-xl">👤</span>
+                </div>
+                <div>
+                    <h3 class="font-bold text-gray-800">Login realizado com sucesso!</h3>
+                    <p class="text-gray-600" id="nome-usuario">Bem-vindo!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seleção de Faixa -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 fade-in">
+            <!-- CSRF Token -->
+            {% csrf_token %}
+            
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">Escolha sua Faixa</h2>
+                <p class="text-gray-600">Selecione sua faixa atual para acessar o conteúdo correspondente</p>
+            </div>
+            
+            <!-- Grid de Faixas -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Faixa Cinza -->
+                <div class="faixa-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center cursor-pointer hover:border-gray-400 hover:bg-gray-50" 
+                     onclick="selecionarFaixa('cinza')">
+                    <div class="w-16 h-16 bg-gray-200 border-2 border-gray-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🥋</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-800 mb-2">Faixa Cinza</h4>
+                    <p class="text-sm text-gray-600">Iniciante</p>
+                </div>
+                
+                <!-- Faixa Azul -->
+                <div class="faixa-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center cursor-pointer hover:border-blue-400 hover:bg-blue-50" 
+                     onclick="selecionarFaixa('azul')">
+                    <div class="w-16 h-16 bg-blue-200 border-2 border-blue-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🥋</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-800 mb-2">Faixa Azul</h4>
+                    <p class="text-sm text-gray-600">Básico</p>
+                </div>
+                
+                <!-- Faixa Amarela -->
+                <div class="faixa-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center cursor-pointer hover:border-yellow-400 hover:bg-yellow-50" 
+                     onclick="selecionarFaixa('amarela')">
+                    <div class="w-16 h-16 bg-yellow-200 border-2 border-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🥋</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-800 mb-2">Faixa Amarela</h4>
+                    <p class="text-sm text-gray-600">Intermediário</p>
+                </div>
+                
+                <!-- Faixa Laranja -->
+                <div class="faixa-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center cursor-pointer hover:border-orange-400 hover:bg-orange-50" 
+                     onclick="selecionarFaixa('laranja')">
+                    <div class="w-16 h-16 bg-orange-200 border-2 border-orange-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🥋</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-800 mb-2">Faixa Laranja</h4>
+                    <p class="text-sm text-gray-600">Intermediário</p>
+                </div>
+                
+                <!-- Faixa Verde -->
+                <div class="faixa-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center cursor-pointer hover:border-green-400 hover:bg-green-50" 
+                     onclick="selecionarFaixa('verde')">
+                    <div class="w-16 h-16 bg-green-200 border-2 border-green-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🥋</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-800 mb-2">Faixa Verde</h4>
+                    <p class="text-sm text-gray-600">Avançado</p>
+                </div>
+                
+                <!-- Faixa Roxa -->
+                <div class="faixa-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center cursor-pointer hover:border-purple-400 hover:bg-purple-50" 
+                     onclick="selecionarFaixa('roxa')">
+                    <div class="w-16 h-16 bg-purple-200 border-2 border-purple-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🥋</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-800 mb-2">Faixa Roxa</h4>
+                    <p class="text-sm text-gray-600">Avançado</p>
+                </div>
+                
+                <!-- Faixa Marrom -->
+                <div class="faixa-card bg-white border-2 border-gray-200 rounded-xl p-6 text-center cursor-pointer hover:border-amber-400 hover:bg-amber-50" 
+                     onclick="selecionarFaixa('marrom')">
+                    <div class="w-16 h-16 bg-amber-200 border-2 border-amber-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🥋</span>
+                    </div>
+                    <h4 class="text-lg font-bold text-gray-800 mb-2">Faixa Marrom</h4>
+                    <p class="text-sm text-gray-600">Experiente</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <p class="text-gray-300">© 2025 Academia de Judô - Desenvolvido por Caio Campos</p>
+        </div>
+    </footer>
+
+    <script>
+        // Função para selecionar faixa
+        async function selecionarFaixa(faixa) {
+            console.log(`🥋 Faixa selecionada: ${faixa}`);
+            
+            // Mostrar loading
+            showLoading();
+            
+            try {
+                // Obter CSRF token
+                const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]');
+                if (!csrfToken) {
+                    throw new Error('CSRF token não encontrado');
+                }
+                
+                // Enviar dados para o backend
+                const response = await fetch('{% url "selecionar_faixa" %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken.value
+                    },
+                    body: JSON.stringify({ faixa: faixa })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Mostrar mensagem de sucesso
+                    alert(`🥋 ${data.message}`);
+                    
+                    // Redirecionar para a página da faixa
+                    window.location.href = data.redirect_url;
+                } else {
+                    hideLoading();
+                    alert(`❌ Erro: ${data.error}`);
+                }
+                
+            } catch (error) {
+                console.error('❌ Erro ao selecionar faixa:', error);
+                hideLoading();
+                alert('❌ Erro de conexão. Tente novamente.');
+            }
+        }
+        
+        // Funções de loading
+        function showLoading() {
+            const loadingDiv = document.createElement('div');
+            loadingDiv.id = 'loading-indicator';
+            loadingDiv.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            loadingDiv.innerHTML = `
+                <div class="bg-white rounded-lg p-6 flex items-center gap-3">
+                    <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                    <span class="text-gray-700">Processando seleção...</span>
+                </div>
+            `;
+            document.body.appendChild(loadingDiv);
+        }
+        
+        function hideLoading() {
+            const loadingDiv = document.getElementById('loading-indicator');
+            if (loadingDiv) {
+                loadingDiv.remove();
+            }
+        }
+        
+        // Verificar se já está logado
+        document.addEventListener('DOMContentLoaded', function() {
+            const usuario = localStorage.getItem('usuario_google');
+            
+            if (usuario) {
+                const dadosUsuario = JSON.parse(usuario);
+                document.getElementById('nome-usuario').textContent = `Olá, ${dadosUsuario.nome}!`;
+            }
+        });
+    </script>
+</body>
+</html>

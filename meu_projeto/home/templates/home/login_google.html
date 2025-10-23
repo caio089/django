@@ -1,0 +1,251 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login com Google - Academia de Judô</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Animação de entrada suave */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Gradiente animado de fundo */
+        .gradient-bg {
+            background: linear-gradient(-45deg, #22c55e, #16a34a, #15803d, #166534);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Efeito de hover para o botão do Google */
+        .google-button {
+            transition: all 0.3s ease;
+        }
+        
+        .google-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-6 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="flex items-center justify-center mb-4">
+                <img src="{% static 'judo.png' %}" alt="Judo" class="w-12 h-12 mr-4">
+                <h1 class="text-3xl md:text-4xl font-bold">Academia de Judô</h1>
+            </div>
+            <p class="text-green-100 text-lg">Seu caminho para a excelência no judô</p>
+        </div>
+    </header>
+
+    <main class="max-w-2xl mx-auto px-4 py-12">
+        <!-- Card de Login com Google -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 fade-in">
+            <div class="text-center">
+                <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span class="text-3xl">🥋</span>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Login com Google</h2>
+                <p class="text-gray-600 mb-8">Faça login com sua conta Google para continuar</p>
+                
+                <!-- Botão do Google (Desenvolvimento) -->
+                <div class="mb-6">
+                    <button onclick="simularLoginGoogle()" 
+                            class="w-full py-3 px-6 bg-white border-2 border-gray-300 hover:border-gray-400 text-gray-700 font-semibold rounded-lg transition-all duration-300 flex items-center justify-center gap-3">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                        </svg>
+                        <span>Continuar com Google</span>
+                    </button>
+                </div>
+                
+                <!-- CSRF Token -->
+                {% csrf_token %}
+                
+                <!-- Informações de segurança -->
+                <div class="mt-8 p-4 bg-gray-50 rounded-lg">
+                    <div class="flex items-center justify-center mb-2">
+                        <svg class="w-5 h-5 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-sm font-medium text-gray-700">Login Seguro</span>
+                    </div>
+                    <p class="text-xs text-gray-600 text-center">
+                        Seus dados são protegidos e não são compartilhados com terceiros
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Link para voltar -->
+        <div class="text-center mt-6">
+            <a href="{% url 'home' %}" class="text-gray-600 hover:text-gray-800 transition-colors">
+                ← Voltar para a página inicial
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <p class="text-gray-300">© 2025 Academia de Judô - Desenvolvido por Caio Campos</p>
+        </div>
+    </footer>
+
+    <script>
+        // Função para lidar com a resposta do Google
+        async function handleCredentialResponse(response) {
+            console.log('🔐 Resposta do Google:', response);
+            
+            // Mostrar loading
+            showLoading();
+            
+            // Decodificar o JWT
+            try {
+                const payload = JSON.parse(atob(response.credential.split('.')[1]));
+                console.log('👤 Dados do usuário:', payload);
+                
+                // Obter CSRF token
+                const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]');
+                if (!csrfToken) {
+                    throw new Error('CSRF token não encontrado');
+                }
+                
+                // Enviar dados para o backend
+                const backendResponse = await fetch('{% url "processar_login_google" %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken.value
+                    },
+                    body: JSON.stringify({
+                        email: payload.email,
+                        name: payload.name,
+                        picture: payload.picture
+                    })
+                });
+                
+                const backendData = await backendResponse.json();
+                
+                if (backendData.success) {
+                    console.log('✅ Login processado com sucesso no backend');
+                    
+                    // Redirecionar para seleção de faixa
+                    window.location.href = '{% url "selecionar_faixa" %}';
+                } else {
+                    console.error('❌ Erro no backend:', backendData.error);
+                    hideLoading();
+                    alert(`Erro no servidor: ${backendData.error}`);
+                }
+                
+            } catch (error) {
+                console.error('❌ Erro ao processar login:', error);
+                hideLoading();
+                alert('Erro ao processar login. Tente novamente.');
+            }
+        }
+        
+        // Função para simular login (desenvolvimento)
+        async function simularLoginGoogle() {
+            console.log('🔐 Simulando login com Google...');
+            
+            showLoading();
+            
+            // Dados simulados
+            const usuarioSimulado = {
+                name: 'Usuário Teste',
+                email: 'usuario@teste.com',
+                picture: 'https://via.placeholder.com/100'
+            };
+            
+            try {
+                // Obter CSRF token
+                const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]');
+                if (!csrfToken) {
+                    throw new Error('CSRF token não encontrado');
+                }
+                
+                // Enviar dados simulados para o backend
+                const backendResponse = await fetch('{% url "processar_login_google" %}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken.value
+                    },
+                    body: JSON.stringify(usuarioSimulado)
+                });
+                
+                const backendData = await backendResponse.json();
+                
+                if (backendData.success) {
+                    console.log('✅ Login simulado processado com sucesso no backend');
+                    
+                    // Redirecionar para seleção de faixa
+                    window.location.href = '{% url "selecionar_faixa" %}';
+                } else {
+                    console.error('❌ Erro no backend:', backendData.error);
+                    hideLoading();
+                    alert(`Erro no servidor: ${backendData.error}`);
+                }
+                
+            } catch (error) {
+                console.error('❌ Erro ao simular login:', error);
+                hideLoading();
+                alert('Erro de conexão. Tente novamente.');
+            }
+        }
+        
+        // Funções de loading
+        function showLoading() {
+            const button = document.querySelector('.g_id_signin');
+            if (button) {
+                button.style.opacity = '0.5';
+                button.style.pointerEvents = 'none';
+            }
+            
+            // Mostrar indicador de loading
+            const loadingDiv = document.createElement('div');
+            loadingDiv.id = 'loading-indicator';
+            loadingDiv.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            loadingDiv.innerHTML = `
+                <div class="bg-white rounded-lg p-6 flex items-center gap-3">
+                    <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                    <span class="text-gray-700">Processando login...</span>
+                </div>
+            `;
+            document.body.appendChild(loadingDiv);
+        }
+        
+        function hideLoading() {
+            const button = document.querySelector('.g_id_signin');
+            if (button) {
+                button.style.opacity = '1';
+                button.style.pointerEvents = 'auto';
+            }
+            
+            const loadingDiv = document.getElementById('loading-indicator');
+            if (loadingDiv) {
+                loadingDiv.remove();
+            }
+        }
+    </script>
+</body>
+</html>
