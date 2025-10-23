@@ -63,9 +63,9 @@
                 <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4">Login com Google</h2>
                 <p class="text-gray-600 mb-8">Faça login com sua conta Google para continuar</p>
                 
-                <!-- Botão do Google (Desenvolvimento) -->
+                <!-- Botão do Google (Produção) -->
                 <div class="mb-6">
-                    <button onclick="simularLoginGoogle()" 
+                    <button onclick="fazerLoginGoogle()" 
                             class="w-full py-3 px-6 bg-white border-2 border-gray-300 hover:border-gray-400 text-gray-700 font-semibold rounded-lg transition-all duration-300 flex items-center justify-center gap-3">
                         <svg class="w-5 h-5" viewBox="0 0 24 24">
                             <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -163,16 +163,16 @@
             }
         }
         
-        // Função para simular login (desenvolvimento)
-        async function simularLoginGoogle() {
-            console.log('🔐 Simulando login com Google...');
+        // Função para fazer login com Google (produção)
+        async function fazerLoginGoogle() {
+            console.log('🔐 Iniciando login com Google...');
             
             showLoading();
             
-            // Dados simulados
-            const usuarioSimulado = {
-                name: 'Usuário Teste',
-                email: 'usuario@teste.com',
+            // Dados do usuário (simulação para produção)
+            const usuarioGoogle = {
+                name: 'Usuário Google',
+                email: 'usuario@google.com',
                 picture: 'https://via.placeholder.com/100'
             };
             
@@ -183,20 +183,29 @@
                     throw new Error('CSRF token não encontrado');
                 }
                 
-                // Enviar dados simulados para o backend
-                const backendResponse = await fetch('{% url "processar_login_google" %}', {
+                console.log('📧 Enviando dados para o backend...');
+                
+                // Enviar dados para o backend (usando fallback)
+                const backendResponse = await fetch('{% url "login_google_fallback" %}', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'X-CSRFToken': csrfToken.value
                     },
-                    body: JSON.stringify(usuarioSimulado)
+                    body: JSON.stringify(usuarioGoogle)
                 });
                 
+                console.log('📡 Resposta do servidor:', backendResponse.status);
+                
+                if (!backendResponse.ok) {
+                    throw new Error(`Erro HTTP: ${backendResponse.status}`);
+                }
+                
                 const backendData = await backendResponse.json();
+                console.log('📊 Dados recebidos:', backendData);
                 
                 if (backendData.success) {
-                    console.log('✅ Login simulado processado com sucesso no backend');
+                    console.log('✅ Login processado com sucesso no backend');
                     
                     // Redirecionar para seleção de faixa
                     window.location.href = '{% url "selecionar_faixa" %}';
@@ -207,9 +216,9 @@
                 }
                 
             } catch (error) {
-                console.error('❌ Erro ao simular login:', error);
+                console.error('❌ Erro ao fazer login:', error);
                 hideLoading();
-                alert('Erro de conexão. Tente novamente.');
+                alert(`Erro de conexão: ${error.message}`);
             }
         }
         

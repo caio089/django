@@ -2764,3 +2764,32 @@ C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\dashboard\views.py 
 Processos pesados desabilitados - modo leve ativado
 Watching for file changes with StatReloader
 "POST /dashboard/login/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 157499
+"GET /dashboard/dados-usuario/39/ HTTP/1.1" 200 678
+"GET /dashboard/dados-usuario/38/ HTTP/1.1" 200 664
+"GET /dashboard/dados-usuario/29/ HTTP/1.1" 200 722
+"GET /dashboard/dados-usuario/24/ HTTP/1.1" 200 691
+"GET /dashboard/dados-usuario/14/ HTTP/1.1" 200 704
+"POST /dashboard/delete-user/ HTTP/1.1" 302 0
+"GET /dashboard/ HTTP/1.1" 200 158601
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\home\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\home\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\home\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\home\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\home\urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\home\views_fallback.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader

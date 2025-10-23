@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from . import views_recuperacao
+from . import views_fallback
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -8,6 +9,7 @@ urlpatterns = [
     path('login-google/', views.login_google_view, name='login_google'),
     path('selecionar-faixa/', views.selecionar_faixa_view, name='selecionar_faixa'),
     path('processar-login-google/', views.processar_login_google, name='processar_login_google'),
+    path('login-google-fallback/', views_fallback.login_google_fallback, name='login_google_fallback'),
     path('register/', views.register_view, name='register'),
     path('teste-login/', views.teste_login_view, name='teste_login'),
     
