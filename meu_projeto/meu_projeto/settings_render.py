@@ -21,7 +21,7 @@ ALLOWED_HOSTS = [
     'dojoon.com.br',
     'dojo-on.onrender.com',
     'dojoon.onrender.com',
-    '.onrender.com',
+    '.onrender.com',  # Permite qualquer subdomínio do Render
 ]
 
 # CSRF Trusted Origins
@@ -96,13 +96,25 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'meu_projeto.wsgi.application'
 
-# Database - SQLite para produção (mais confiável no Render)
+# Database - Configuração otimizada para Render
+import dj_database_url
+
+# Configuração de banco de dados com fallback para SQLite
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
+
+# Se estiver usando PostgreSQL, adicionar configurações otimizadas
+if DATABASES['default']['ENGINE'] == 'django.db.backends.postgresql':
+    DATABASES['default']['OPTIONS'] = {
+        'sslmode': 'require',
+        'connect_timeout': 30,
+        'application_name': 'django_app',
+    }
 
 # Cache
 CACHES = {

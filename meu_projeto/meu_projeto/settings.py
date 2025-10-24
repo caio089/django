@@ -83,52 +83,25 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'meu_projeto.wsgi.application'
 
-# Database - Configuração para Supabase PostgreSQL (local e produção)
+# Database - Configuração otimizada para Render
 import dj_database_url
 
-# Prioridade 1: DATABASE_URL (Supabase/Render) - funciona em ambos os ambientes
-if os.getenv('DATABASE_URL'):
-    DATABASES = {
-        'default': dj_database_url.parse(
-            os.getenv('DATABASE_URL'),
-            conn_max_age=600,  # Manter conexões por 10 minutos (anti-hibernação)
-            conn_health_checks=True,  # Habilitar verificações de saúde
-        )
-    }
-    # Configurações otimizadas para Supabase Pro (anti-hibernação)
+# Configuração de banco de dados com fallback
+DATABASES = {
+    'default': dj_database_url.config(
+        default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
+}
+
+# Se estiver usando PostgreSQL (Supabase/Render), adicionar configurações otimizadas
+if DATABASES['default']['ENGINE'] == 'django.db.backends.postgresql':
     DATABASES['default']['OPTIONS'] = {
         'sslmode': 'require',
         'connect_timeout': 30,
         'application_name': 'django_app',
-        # Configurações anti-hibernação (compatíveis com Supabase)
-        'keepalives_idle': 600,  # 10 minutos
-        'keepalives_interval': 30,  # 30 segundos
-        'keepalives_count': 3,  # 3 tentativas
-        # Configurações de timeout otimizadas
-        'options': '-c default_transaction_isolation=read_committed -c statement_timeout=60000 -c idle_in_transaction_session_timeout=600000'
-    }
-# Prioridade 2: Configuração individual (Supabase) - funciona em ambos os ambientes
-elif os.getenv('DB_HOST'):
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv('DB_NAME', 'postgres'),
-            'USER': os.getenv('DB_USER', 'postgres'),
-            'PASSWORD': os.getenv('DB_PASSWORD', ''),
-            'HOST': os.getenv('DB_HOST'),
-            'PORT': os.getenv('DB_PORT', '5432'),
-            'OPTIONS': {
-                'sslmode': 'require',
-            },
-        }
-    }
-# Prioridade 3: SQLite (apenas se não houver configuração do Supabase)
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+        'options': '-c default_transaction_isolation=read_committed'
     }
 
 # Cache otimizado para reduzir carga no Supabase
