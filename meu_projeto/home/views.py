@@ -2,9 +2,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 from .models import Profile
 from .forms import EmailLoginForm, RegisterForm
 import logging
+import json
 
 logger = logging.getLogger(__name__)
 
@@ -144,15 +146,6 @@ def teste_login_view(request):
     return render(request, 'home/teste_login.html', {'form': form})
 
 
-def login_google_view(request):
-    """
-    View para login com Google
-    """
-    # Se já estiver logado, redirecionar para seleção de faixa
-    if request.user.is_authenticated:
-        return redirect('selecionar_faixa')
-    
-    return render(request, 'home/login_google.html')
 
 
 def selecionar_faixa_view(request):
@@ -161,129 +154,19 @@ def selecionar_faixa_view(request):
     """
     # Se não estiver logado, redirecionar para login
     if not request.user.is_authenticated:
-        return redirect('login_google')
+        return redirect('login')
     
     return render(request, 'home/selecionar_faixa.html')
 
 
-def processar_login_google(request):
-    """
-    Processa o login via Google e cria/atualiza o usuário
-    """
-    from django.http import JsonResponse
-    
-    if request.method != 'POST':
-        logger.warning("⚠️ Método não permitido para login Google")
-        return JsonResponse({'success': False, 'error': 'Método não permitido'})
-    
-    try:
-        import json
-        
-        logger.info("🔐 Iniciando processamento de login Google...")
-        
-        # Verificar se o corpo da requisição não está vazio
-        if not request.body:
-            logger.error("❌ Corpo da requisição vazio")
-            return JsonResponse({'success': False, 'error': 'Dados não fornecidos'})
-        
-        # Dados do usuário do Google
-        try:
-            dados_usuario = json.loads(request.body)
-        except json.JSONDecodeError as e:
-            logger.error(f"❌ Erro ao decodificar JSON: {e}")
-            return JsonResponse({'success': False, 'error': 'Dados inválidos'})
-        
-        email = dados_usuario.get('email')
-        nome = dados_usuario.get('name', '')
-        picture = dados_usuario.get('picture', '')
-        
-        logger.info(f"📧 Dados recebidos - Email: {email}, Nome: {nome}")
-        
-        if not email:
-            logger.error("❌ Email não fornecido")
-            return JsonResponse({'success': False, 'error': 'Email não fornecido'})
-        
-        # Buscar ou criar usuário
-        from django.contrib.auth.models import User
-        from django.contrib.auth import login
-        from home.models import Profile
-        
-        logger.info("👤 Criando/buscando usuário...")
-        user, created = User.objects.get_or_create(
-            username=email,
-            defaults={
-                'email': email,
-                'first_name': nome.split(' ')[0] if nome else '',
-                'last_name': ' '.join(nome.split(' ')[1:]) if nome and len(nome.split(' ')) > 1 else '',
-            }
-        )
-        
-        if created:
-            logger.info("🔑 Configurando senha do usuário...")
-            user.set_unusable_password()  # Usuário não precisa de senha
-            user.save()
-            logger.info(f"✅ Novo usuário criado via Google: {email}")
-            
-            # Criar perfil automaticamente
-            try:
-                logger.info("👤 Criando perfil do usuário...")
-                profile = Profile.objects.create(
-                    user=user,
-                    nome=nome or user.first_name or user.username,
-                    idade=18,  # Idade padrão
-                    faixa='cinza'  # Faixa padrão (primeira faixa)
-                )
-                logger.info(f"✅ Perfil criado para usuário Google: {email}")
-            except Exception as e:
-                logger.error(f"❌ Erro ao criar perfil: {e}")
-                # Continuar mesmo sem perfil
-        else:
-            logger.info(f"✅ Usuário existente logado via Google: {email}")
-            
-            # Verificar se tem perfil, se não tiver, criar
-            try:
-                profile = Profile.objects.get(user=user)
-                logger.info("👤 Perfil existente encontrado")
-            except Profile.DoesNotExist:
-                logger.info("👤 Criando perfil para usuário existente...")
-                profile = Profile.objects.create(
-                    user=user,
-                    nome=nome or user.first_name or user.username,
-                    idade=18,
-                    faixa='cinza'
-                )
-                logger.info(f"✅ Perfil criado para usuário existente: {email}")
-        
-        # Fazer login do usuário
-        logger.info("🔐 Fazendo login do usuário...")
-        login(request, user)
-        
-        logger.info("✅ Login Google processado com sucesso!")
-        return JsonResponse({
-            'success': True,
-            'message': f'Bem-vindo, {nome}!',
-            'user': {
-                'name': nome,
-                'email': email,
-                'picture': picture
-            }
-        })
-        
-    except Exception as e:
-        logger.error(f"❌ Erro no login Google: {e}")
-        import traceback
-        logger.error(f"❌ Traceback: {traceback.format_exc()}")
-        return JsonResponse({'success': False, 'error': str(e)})
 
 
-def selecionar_faixa_view(request):
+def processar_selecao_faixa(request):
     """
     View para processar a seleção de faixa do usuário
     """
     if request.method == 'POST':
         try:
-            import json
-            
             # Dados da faixa selecionada
             dados_faixa = json.loads(request.body)
             faixa = dados_faixa.get('faixa')
@@ -320,4 +203,87 @@ def selecionar_faixa_view(request):
             logger.error(f"❌ Erro ao processar seleção de faixa: {e}")
             return JsonResponse({'success': False, 'error': str(e)})
     
-    return JsonResponse({'success': False, 'error': 'Método não permitido'})  
+    return JsonResponse({'success': False, 'error': 'Método não permitido'})
+
+
+def processar_cadastro_completo(request):
+    """
+    Processa o cadastro completo do usuário com dados do Google + formulário
+    """
+    if request.method != 'POST':
+        logger.warning("⚠️ Método não permitido para cadastro completo")
+        return JsonResponse({'success': False, 'error': 'Método não permitido'})
+    
+    try:
+        logger.info("📝 Iniciando processamento de cadastro completo...")
+        
+        # Dados do usuário
+        dados_usuario = json.loads(request.body)
+        nome = dados_usuario.get('nome')
+        idade = dados_usuario.get('idade')
+        email = dados_usuario.get('email')
+        senha = dados_usuario.get('senha')
+        faixa = dados_usuario.get('faixa')
+        
+        logger.info(f"📧 Dados recebidos - Nome: {nome}, Email: {email}, Idade: {idade}, Faixa: {faixa}")
+        
+        # Validar dados obrigatórios
+        if not all([nome, idade, email, senha, faixa]):
+            return JsonResponse({'success': False, 'error': 'Todos os campos são obrigatórios'})
+        
+        # Verificar se email já existe
+        if User.objects.filter(email=email).exists():
+            return JsonResponse({'success': False, 'error': 'Este email já está em uso'})
+        
+        # Criar usuário
+        logger.info("👤 Criando usuário...")
+        user = User.objects.create_user(
+            username=email,
+            email=email,
+            password=senha,
+            first_name=nome.split(' ')[0] if nome else '',
+            last_name=' '.join(nome.split(' ')[1:]) if nome and len(nome.split(' ')) > 1 else ''
+        )
+        
+        logger.info(f"✅ Usuário criado: {email}")
+        
+        # Criar perfil (verificar se já existe devido ao signal)
+        logger.info("👤 Criando/atualizando perfil...")
+        try:
+            profile = Profile.objects.get(user=user)
+            # Atualizar perfil existente
+            profile.nome = nome
+            profile.idade = idade
+            profile.faixa = faixa
+            profile.save()
+            logger.info("✅ Perfil atualizado")
+        except Profile.DoesNotExist:
+            # Criar novo perfil
+            profile = Profile.objects.create(
+                user=user,
+                nome=nome,
+                idade=idade,
+                faixa=faixa
+            )
+            logger.info("✅ Perfil criado")
+        
+        logger.info(f"✅ Perfil criado: {nome}, Idade: {idade}, Faixa: {faixa}")
+        
+        # Fazer login
+        logger.info("🔐 Fazendo login...")
+        login(request, user)
+        
+        logger.info("✅ Cadastro completo processado com sucesso!")
+        
+        return JsonResponse({
+            'success': True,
+            'message': f'Cadastro realizado com sucesso! Bem-vindo, {nome}!',
+            'redirect_url': '/dashboard/'
+        })
+        
+    except Exception as e:
+        logger.error(f"❌ Erro no cadastro completo: {e}")
+        import traceback
+        logger.error(f"❌ Traceback: {traceback.format_exc()}")
+        return JsonResponse({'success': False, 'error': str(e)})
+

@@ -115,3 +115,4 @@ class GoogleLoginMiddleware:
             
         except Exception as e:
             logger.error(f"❌ Erro ao processar dados do Google: {e}")
+

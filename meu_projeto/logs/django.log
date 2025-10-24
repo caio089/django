@@ -2793,3 +2793,78 @@ Watching for file changes with StatReloader
 Processos pesados desabilitados - modo leve ativado
 Processos pesados desabilitados - modo leve ativado
 Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\home\views_fallback.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 41999
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 8853
+"GET /login-google/ HTTP/1.1" 200 11343
+"POST /login-google-fallback/ HTTP/1.1" 200 101
+"GET /selecionar-faixa/ HTTP/1.1" 200 11171
+"GET /login-google/ HTTP/1.1" 302 0
+"GET /selecionar-faixa/ HTTP/1.1" 200 11171
+Processos pesados desabilitados - modo leve ativado
+"GET / HTTP/1.1" 200 41999
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\home\urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /login-google/ HTTP/1.1" 302 0
+"GET /selecionar-faixa/ HTTP/1.1" 200 11171
+"POST /selecionar-faixa/ HTTP/1.1" 200 11171
+Processos pesados desabilitados - modo leve ativado
+"GET /selecionar-faixa/ HTTP/1.1" 200 11178
+"POST /processar-selecao-faixa/ HTTP/1.1" 200 93
+Not Found: /pag2/
+"GET /pag2/ HTTP/1.1" 404 8835
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\home\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\home\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\home\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /login-google/ HTTP/1.1" 302 0
+"GET /selecionar-faixa/ HTTP/1.1" 200 16382
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\home\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\home\urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\home\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\home\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\home\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\home\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\home\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\home\urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\home\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 40581
+C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\home\urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader

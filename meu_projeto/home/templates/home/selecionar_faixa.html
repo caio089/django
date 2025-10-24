@@ -67,11 +67,55 @@
             </div>
         </div>
 
+        <!-- Formulário de Dados do Usuário -->
+        <div class="bg-white rounded-2xl shadow-xl p-8 mb-8 fade-in">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">Complete seus Dados</h2>
+                <p class="text-gray-600">Preencha as informações para finalizar seu cadastro</p>
+            </div>
+            
+            <form id="dados-usuario-form" class="space-y-6">
+                <!-- CSRF Token -->
+                {% csrf_token %}
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Nome -->
+                    <div>
+                        <label for="nome" class="block text-sm font-medium text-gray-700 mb-2">Nome Completo</label>
+                        <input type="text" id="nome" name="nome" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                               placeholder="Seu nome completo">
+                    </div>
+                    
+                    <!-- Idade -->
+                    <div>
+                        <label for="idade" class="block text-sm font-medium text-gray-700 mb-2">Idade</label>
+                        <input type="number" id="idade" name="idade" required min="5" max="100"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                               placeholder="Sua idade">
+                    </div>
+                    
+                    <!-- Email -->
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <input type="email" id="email" name="email" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                               placeholder="seu@email.com">
+                    </div>
+                    
+                    <!-- Senha -->
+                    <div>
+                        <label for="senha" class="block text-sm font-medium text-gray-700 mb-2">Senha</label>
+                        <input type="password" id="senha" name="senha" required minlength="6"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+                               placeholder="Mínimo 6 caracteres">
+                    </div>
+                </div>
+            </form>
+        </div>
+
         <!-- Seleção de Faixa -->
         <div class="bg-white rounded-2xl shadow-xl p-8 fade-in">
-            <!-- CSRF Token -->
-            {% csrf_token %}
-            
             <div class="text-center mb-8">
                 <h2 class="text-2xl font-bold text-gray-800 mb-2">Escolha sua Faixa</h2>
                 <p class="text-gray-600">Selecione sua faixa atual para acessar o conteúdo correspondente</p>
@@ -149,6 +193,14 @@
                     <p class="text-sm text-gray-600">Experiente</p>
                 </div>
             </div>
+            
+            <!-- Botão Finalizar Cadastro -->
+            <div class="text-center mt-8">
+                <button id="finalizar-cadastro" 
+                        class="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    🥋 Finalizar Cadastro
+                </button>
+            </div>
         </div>
     </main>
 
@@ -160,9 +212,44 @@
     </footer>
 
     <script>
+        let faixaSelecionada = null;
+        
         // Função para selecionar faixa
-        async function selecionarFaixa(faixa) {
+        function selecionarFaixa(faixa) {
             console.log(`🥋 Faixa selecionada: ${faixa}`);
+            faixaSelecionada = faixa;
+            
+            // Remover seleção anterior
+            document.querySelectorAll('.faixa-card').forEach(card => {
+                card.classList.remove('ring-4', 'ring-green-500', 'bg-green-50');
+            });
+            
+            // Destacar faixa selecionada
+            event.currentTarget.classList.add('ring-4', 'ring-green-500', 'bg-green-50');
+        }
+        
+        // Função para finalizar cadastro
+        async function finalizarCadastro() {
+            // Validar formulário
+            const nome = document.getElementById('nome').value.trim();
+            const idade = document.getElementById('idade').value;
+            const email = document.getElementById('email').value.trim();
+            const senha = document.getElementById('senha').value;
+            
+            if (!nome || !idade || !email || !senha) {
+                alert('❌ Por favor, preencha todos os campos.');
+                return;
+            }
+            
+            if (!faixaSelecionada) {
+                alert('❌ Por favor, selecione uma faixa.');
+                return;
+            }
+            
+            if (senha.length < 6) {
+                alert('❌ A senha deve ter pelo menos 6 caracteres.');
+                return;
+            }
             
             // Mostrar loading
             showLoading();
@@ -174,23 +261,34 @@
                     throw new Error('CSRF token não encontrado');
                 }
                 
+                // Dados completos do usuário
+                const dadosUsuario = {
+                    nome: nome,
+                    idade: parseInt(idade),
+                    email: email,
+                    senha: senha,
+                    faixa: faixaSelecionada
+                };
+                
+                console.log('📝 Dados do usuário:', dadosUsuario);
+                
                 // Enviar dados para o backend
-                const response = await fetch('{% url "selecionar_faixa" %}', {
+                const response = await fetch('{% url "processar_cadastro_completo" %}', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'X-CSRFToken': csrfToken.value
                     },
-                    body: JSON.stringify({ faixa: faixa })
+                    body: JSON.stringify(dadosUsuario)
                 });
                 
                 const data = await response.json();
                 
                 if (data.success) {
                     // Mostrar mensagem de sucesso
-                    alert(`🥋 ${data.message}`);
+                    alert(`✅ ${data.message}`);
                     
-                    // Redirecionar para a página da faixa
+                    // Redirecionar para o dashboard
                     window.location.href = data.redirect_url;
                 } else {
                     hideLoading();
@@ -198,7 +296,7 @@
                 }
                 
             } catch (error) {
-                console.error('❌ Erro ao selecionar faixa:', error);
+                console.error('❌ Erro ao finalizar cadastro:', error);
                 hideLoading();
                 alert('❌ Erro de conexão. Tente novamente.');
             }
@@ -225,14 +323,10 @@
             }
         }
         
-        // Verificar se já está logado
+        // Inicializar página
         document.addEventListener('DOMContentLoaded', function() {
-            const usuario = localStorage.getItem('usuario_google');
-            
-            if (usuario) {
-                const dadosUsuario = JSON.parse(usuario);
-                document.getElementById('nome-usuario').textContent = `Olá, ${dadosUsuario.nome}!`;
-            }
+            // Event listener para o botão finalizar
+            document.getElementById('finalizar-cadastro').addEventListener('click', finalizarCadastro);
         });
     </script>
 </body>

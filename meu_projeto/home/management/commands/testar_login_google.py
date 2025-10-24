@@ -96,3 +96,4 @@ class Command(BaseCommand):
                 self.style.ERROR(f"❌ Erro durante o teste: {e}")
             )
             logger.error(f"❌ Erro no teste: {e}")
+

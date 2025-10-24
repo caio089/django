@@ -119,3 +119,4 @@ class Command(BaseCommand):
                 self.style.ERROR(f"❌ Erro durante a simulação: {e}")
             )
             logger.error(f"❌ Erro na simulação: {e}")
+
