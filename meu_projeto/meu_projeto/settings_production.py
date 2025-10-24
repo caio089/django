@@ -96,13 +96,59 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'meu_projeto.wsgi.application'
 
-# Database - SQLite para produção (mais confiável no Render)
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Database - Configuração para Supabase PostgreSQL
+import dj_database_url
+
+# Configuração do Supabase - SEMPRE usar PostgreSQL
+if os.getenv('DATABASE_URL'):
+    # Usar DATABASE_URL do Supabase
+    DATABASES = {
+        'default': dj_database_url.parse(
+            os.getenv('DATABASE_URL'),
+            conn_max_age=0,  # Não reutilizar conexões
+            conn_health_checks=False,  # Desabilitar verificações de saúde
+        )
     }
-}
+    
+    # Configurações específicas para Supabase
+    DATABASES['default']['OPTIONS'] = {
+        'sslmode': 'require',
+        'connect_timeout': 60,  # Aumentar timeout
+        'application_name': 'django_app',
+        'options': '-c default_transaction_isolation=read_committed'
+    }
+    
+    # Configurações de pool de conexões para Supabase
+    DATABASES['default']['CONN_MAX_AGE'] = 0
+    DATABASES['default']['AUTOCOMMIT'] = True
+    
+elif os.getenv('DB_HOST'):
+    # Configuração manual do Supabase
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv('DB_NAME', 'postgres'),
+            'USER': os.getenv('DB_USER', 'postgres'),
+            'PASSWORD': os.getenv('DB_PASSWORD', ''),
+            'HOST': os.getenv('DB_HOST'),
+            'PORT': os.getenv('DB_PORT', '5432'),
+            'OPTIONS': {
+                'sslmode': 'require',
+                'connect_timeout': 60,
+                'application_name': 'django_app',
+            },
+            'CONN_MAX_AGE': 0,
+            'AUTOCOMMIT': True,
+        }
+    }
+else:
+    # Fallback para SQLite apenas em desenvolvimento local
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Cache
 CACHES = {
