@@ -120,3 +120,4 @@ class Command(BaseCommand):
             )
             logger.error(f"❌ Erro na simulação: {e}")
 
+

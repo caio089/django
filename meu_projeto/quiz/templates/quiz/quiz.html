@@ -362,15 +362,15 @@
         },
         {
           question: "Quantas faixas coloridas existem antes da faixa preta no judô?",
-          answers: ["4", "5", "6", "7"],
-          correct: 2,
-          explanation: "Existem 6 faixas coloridas: branca, amarela, laranja, verde, azul e marrom."
+          answers: ["4", "5", "6", "8"],
+          correct: 3,
+          explanation: "Existem 8 faixas coloridas antes da faixa preta no judô."
         },
         {
           question: "O que significa 'Ukemi' no judô?",
-          answers: ["Técnica de projeção", "Técnica de imobilização", "Técnica de queda", "Técnica de estrangulamento"],
-          correct: 2,
-          explanation: "Ukemi são as técnicas de queda que protegem o praticante durante as projeções."
+          answers: ["Técnica de projeção", "Técnica de rolamentos", "Técnica de queda", "Técnica de estrangulamento"],
+          correct: 1,
+          explanation: "Ukemi são as técnicas de rolamentos que protegem o praticante durante as projeções."
         },
         {
           question: "Qual é o objetivo principal do judô?",
@@ -393,8 +393,8 @@
         {
           question: "Qual é a duração de uma luta de judô em competição?",
           answers: ["3 minutos", "4 minutos", "5 minutos", "6 minutos"],
-          correct: 2,
-          explanation: "Uma luta de judô em competição dura 5 minutos para adultos."
+          correct: 1,
+          explanation: "Uma luta de judô em competição dura 4 minutos para adultos."
         },
         {
           question: "O que significa 'Ippon' no judô?",
@@ -426,7 +426,7 @@
           question: "Qual é uma das técnicas mais fundamentais do judô?",
           answers: ["Uke-goshi", "Seoi-nage", "O-goshi", "Tai-otoshi"],
           correct: 2,
-          explanation: "O-goshi (grande quadril) é uma das primeiras técnicas ensinadas no judô, sendo fundamental para o aprendizado."
+          explanation: "Seoi-nage é uma das primeiras técnicas ensinadas no judô, sendo fundamental para o aprendizado."
         },
         {
           question: "O que significa 'Kata' no judô?",
@@ -459,7 +459,7 @@
           explanation: "O-soto-gari é uma técnica de projeção que utiliza a perna para derrubar o oponente."
         },
         {
-          question: "Qual é o nome da técnica de projeção com ombro?",
+          question: "Qual é o nome da técnica de projeção com biceps?",
           answers: ["O-goshi", "Seoi-nage", "Uke-goshi", "Tai-otoshi"],
           correct: 1,
           explanation: "Seoi-nage é uma técnica de projeção que utiliza o ombro como ponto de apoio."
@@ -484,15 +484,15 @@
         },
         {
           question: "O que significa 'Sonomama' no judô?",
-          answers: ["Continue", "Pare", "Lute", "Descanso"],
-          correct: 1,
-          explanation: "Sonomama é o comando para parar a luta e manter a posição atual."
+          answers: ["Interrupção temporária", "Continue", "Lute", "Descanso"],
+          correct: 0,
+          explanation: "Sonomama é o comando para parar a luta temporariamente e manter a posição atual."
         },
         {
           question: "O que significa 'Yoshi' no judô?",
-          answers: ["Pare", "Continue", "Lute", "Descanso"],
+          answers: ["Pare", "Interrupção de luta", "Lute", "Descanso"],
           correct: 1,
-          explanation: "Yoshi é o comando para continuar a luta após uma pausa."
+          explanation: "Yoshi é o comando para interromper a luta temporariamente."
         },
         {
           question: "O que significa 'Mate' no judô?",
@@ -643,6 +643,10 @@
       currentDifficulty = difficulty; // Definir a dificuldade atual
       
       console.log('🎯 Selecionando dificuldade:', difficulty);
+      
+      // Limpar cache das perguntas para forçar recarregamento
+      localStorage.removeItem(`quiz_questions_${difficulty}`);
+      console.log('🗑️ Cache de perguntas limpo para dificuldade:', difficulty);
       
       // Carregar perguntas SEM randomização (para manter progresso)
       loadQuestionsWithoutRandom(difficulty);
@@ -812,7 +816,7 @@
       q.answers.forEach((answer, index) => {
         const btn = document.createElement("button");
         btn.textContent = answer;
-        btn.className = "answer-btn bg-gray-50 text-gray-800 py-3 sm:py-4 px-4 sm:px-6 rounded-xl border-2 border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-300 text-left font-medium text-sm sm:text-base";
+        btn.className = "answer-btn bg-white text-gray-800 py-3 sm:py-4 px-4 sm:px-6 rounded-xl border-2 border-gray-200 hover:border-blue-300 hover:bg-gray-50 transition-all duration-300 text-left font-medium text-sm sm:text-base";
         btn.onclick = () => handleAnswer(index, btn, answersDiv);
         answersDiv.appendChild(btn);
       });

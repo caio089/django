@@ -97,3 +97,4 @@ class Command(BaseCommand):
             )
             logger.error(f"❌ Erro no teste: {e}")
 
+

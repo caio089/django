@@ -2880,3 +2880,269 @@ Watching for file changes with StatReloader
 C:\Users\caioc\OneDrive\Documentos\GitHub\django\meu_projeto\meu_projeto\supabase_middleware.py changed, reloading.
 Processos pesados desabilitados - modo leve ativado
 Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 40581
+"GET /static/judo.png HTTP/1.1" 200 158297
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 8311
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 63224
+"GET /static/faixa-cinza.png HTTP/1.1" 200 23948
+"GET /static/faixa-azul.png HTTP/1.1" 200 163875
+"GET /static/faixa-laranja.png HTTP/1.1" 200 38025
+"GET /static/faixa-amarela.png HTTP/1.1" 200 155038
+"GET /static/faixa-verde.png HTTP/1.1" 200 102267
+"GET /static/faixa-marrom.png HTTP/1.1" 200 134181
+"GET /static/faixa-roxa.png HTTP/1.1" 200 145067
+"GET /quiz HTTP/1.1" 301 0
+"GET /quiz/ HTTP/1.1" 200 49959
+"GET /quiz/carregar-progresso/?dificuldade=medium HTTP/1.1" 200 171
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 213
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 213
+Internal Server Error: /quiz/salvar-progresso/
+"POST /quiz/salvar-progresso/ HTTP/1.1" 500 302
+Internal Server Error: /quiz/salvar-progresso/
+"POST /quiz/salvar-progresso/ HTTP/1.1" 500 302
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 231
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 231
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 231
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 231
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 231
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 231
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 218
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 218
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 218
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 218
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 231
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 231
+"GET /quiz/ HTTP/1.1" 200 49965
+"GET /quiz/carregar-progresso/?dificuldade=medium HTTP/1.1" 200 188
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 231
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 231
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 231
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 231
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 231
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 231
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 231
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 231
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 218
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 218
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 218
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 213
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 213
+"GET /quiz/carregar-progresso/?dificuldade=medium HTTP/1.1" 200 171
+"GET /quiz/carregar-progresso/?dificuldade=medium HTTP/1.1" 200 171
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 213
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 213
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 213
+Internal Server Error: /quiz/salvar-progresso/
+Internal Server Error: /quiz/salvar-progresso/
+"POST /quiz/salvar-progresso/ HTTP/1.1" 500 302
+"POST /quiz/salvar-progresso/ HTTP/1.1" 500 301
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+Internal Server Error: /quiz/salvar-progresso/
+Internal Server Error: /quiz/salvar-progresso/
+"POST /quiz/salvar-progresso/ HTTP/1.1" 500 317
+"POST /quiz/salvar-progresso/ HTTP/1.1" 500 317
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+Processos pesados desabilitados - modo leve ativado
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 216
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 216
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 216
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 216
+"GET /quiz/ HTTP/1.1" 200 49966
+- Broken pipe from ('127.0.0.1', 62727)
+- Broken pipe from ('127.0.0.1', 50500)
+"GET /quiz/carregar-progresso/?dificuldade=medium HTTP/1.1" 200 186
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 216
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 216
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 216
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 213
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 213
+"GET /quiz/carregar-progresso/?dificuldade=medium HTTP/1.1" 200 171
+"GET /quiz/carregar-progresso/?dificuldade=medium HTTP/1.1" 200 171
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 213
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 213
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 213
+Internal Server Error: /quiz/salvar-progresso/
+"POST /quiz/salvar-progresso/ HTTP/1.1" 500 302
+Internal Server Error: /quiz/salvar-progresso/
+"POST /quiz/salvar-progresso/ HTTP/1.1" 500 302
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 216
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 216
+"GET /index/ HTTP/1.1" 200 63224
+"GET /quiz/ HTTP/1.1" 200 49986
+"GET /quiz/carregar-progresso/?dificuldade=easy HTTP/1.1" 200 171
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 213
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 213
+Internal Server Error: /quiz/salvar-progresso/
+"POST /quiz/salvar-progresso/ HTTP/1.1" 500 299
+Internal Server Error: /quiz/salvar-progresso/
+"POST /quiz/salvar-progresso/ HTTP/1.1" 500 300
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+Internal Server Error: /quiz/salvar-progresso/
+"POST /quiz/salvar-progresso/ HTTP/1.1" 500 315
+Internal Server Error: /quiz/salvar-progresso/
+"POST /quiz/salvar-progresso/ HTTP/1.1" 500 315
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+Internal Server Error: /quiz/salvar-progresso/
+Internal Server Error: /quiz/salvar-progresso/
+"POST /quiz/salvar-progresso/ HTTP/1.1" 500 315
+"POST /quiz/salvar-progresso/ HTTP/1.1" 500 315
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+Internal Server Error: /quiz/salvar-progresso/
+Internal Server Error: /quiz/salvar-progresso/
+"POST /quiz/salvar-progresso/ HTTP/1.1" 500 301
+"POST /quiz/salvar-progresso/ HTTP/1.1" 500 301
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 229
+Internal Server Error: /quiz/salvar-progresso/
+Internal Server Error: /quiz/salvar-progresso/
+"POST /quiz/salvar-progresso/ HTTP/1.1" 500 315
+"POST /quiz/salvar-progresso/ HTTP/1.1" 500 315
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 228
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"GET /quiz/ HTTP/1.1" 200 49968
+"GET /quiz/carregar-progresso/?dificuldade=easy HTTP/1.1" 200 173
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
+"GET /quiz/ HTTP/1.1" 200 50187
