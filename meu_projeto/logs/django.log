@@ -3146,3 +3146,468 @@ Internal Server Error: /quiz/salvar-progresso/
 "POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
 "POST /quiz/salvar-progresso/ HTTP/1.1" 200 215
 "GET /quiz/ HTTP/1.1" 200 50187
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 40581
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 8311
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 63224
+"GET /static/faixa-cinza.png HTTP/1.1" 200 23948
+"GET /static/faixa-azul.png HTTP/1.1" 200 163875
+"GET /static/faixa-marrom.png HTTP/1.1" 200 134181
+"GET /static/faixa-roxa.png HTTP/1.1" 200 145067
+"GET /static/faixa-laranja.png HTTP/1.1" 200 38025
+"GET /static/faixa-amarela.png HTTP/1.1" 200 155038
+"GET /static/faixa-verde.png HTTP/1.1" 200 102267
+D:\github\django\meu_projeto\home\models.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\home\models.py changed, reloading.
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\home\models.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\home\models.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\home\views.py changed, reloading.
+D:\github\django\meu_projeto\home\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\home\views.py changed, reloading.
+D:\github\django\meu_projeto\home\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Erro ao sincronizar status de pagamento para ccamposs2007@gmail.com: column home_profile.trial_inicio does not exist
+LINE 1: ...emium", "home_profile"."data_vencimento_premium", "home_prof...
+                                                             ^
+
+"GET /index/ HTTP/1.1" 200 61674
+"GET /index/ HTTP/1.1" 200 61674
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Erro ao sincronizar status de pagamento para ccamposs2007@gmail.com: column home_profile.trial_inicio does not exist
+LINE 1: ...emium", "home_profile"."data_vencimento_premium", "home_prof...
+                                                             ^
+
+"GET / HTTP/1.1" 200 40920
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 61674
+"GET /payments/planos/ HTTP/1.1" 200 8182
+"GET /index/ HTTP/1.1" 200 61674
+D:\github\django\meu_projeto\home\views.py changed, reloading.
+D:\github\django\meu_projeto\home\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\home\views.py changed, reloading.
+D:\github\django\meu_projeto\home\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\home\views.py changed, reloading.
+D:\github\django\meu_projeto\home\views.py changed, reloading.
+D:\github\django\meu_projeto\home\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\home\views.py changed, reloading.
+D:\github\django\meu_projeto\home\views.py changed, reloading.
+D:\github\django\meu_projeto\home\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Erro ao sincronizar status de pagamento para ccamposs2007@gmail.com: column home_profile.trial_inicio does not exist
+LINE 1: ...emium", "home_profile"."data_vencimento_premium", "home_prof...
+                                                             ^
+
+Internal Server Error: /payments/planos/
+Traceback (most recent call last):
+  File "D:\github\django\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\github\django\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\github\django\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "D:\github\django\meu_projeto\payments\views.py", line 125, in listar_planos
+    plano_mensal, _ = PlanoPremium.objects.get_or_create(
+                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        nome="Plano Mensal Premium",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<8 lines>...
+        },
+        ^^
+    )
+    ^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\models\query.py", line 946, in get_or_create
+    return self.get(**kwargs), False
+           ~~~~~~~~^^^^^^^^^^
+  File "D:\github\django\.venv\Lib\site-packages\django\db\models\query.py", line 636, in get
+    raise self.model.MultipleObjectsReturned(
+    ...<5 lines>...
+    )
+payments.models.PlanoPremium.MultipleObjectsReturned: get() returned more than one PlanoPremium -- it returned 4!
+"GET /payments/planos/ HTTP/1.1" 500 94395
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Erro ao sincronizar status de pagamento para ccamposs2007@gmail.com: column home_profile.trial_inicio does not exist
+LINE 1: ...emium", "home_profile"."data_vencimento_premium", "home_prof...
+                                                             ^
+
+"GET /payments/planos/ HTTP/1.1" 200 8182
+"GET /payments/assinaturas/ HTTP/1.1" 200 11809
+"POST /index/logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 40581
+"GET /register/ HTTP/1.1" 200 40573
+Erro no signal de usuário: column home_profile.trial_inicio does not exist
+LINE 1: ...emium", "home_profile"."data_vencimento_premium", "home_prof...
+                                                             ^
+
+"POST /register/ HTTP/1.1" 200 41179
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8422
+Processos pesados desabilitados - modo leve ativado
+"POST /register/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 62274
+"GET /payments/planos/ HTTP/1.1" 200 36812
+"GET /static/demosntra%C3%A7ao1.png HTTP/1.1" 200 227956
+"GET /static/demonstra%C3%A7ao2.png HTTP/1.1" 200 332519
+"GET /static/demonstra%C3%A7ao3.png HTTP/1.1" 200 137497
+"GET /static/demonstra%C3%A7ao4.png HTTP/1.1" 200 359249
+"GET /payments/planos/ HTTP/1.1" 200 36481
+"GET /payments/planos/ HTTP/1.1" 200 36481
+"GET /payments/planos/ HTTP/1.1" 200 36481
+"GET /payments/planos/ HTTP/1.1" 200 44533
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /payments/planos/ HTTP/1.1" 200 44533
+"GET /payments/planos/ HTTP/1.1" 200 44533
+"GET /payments/planos/ HTTP/1.1" 200 44533
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+"GET /payments/planos/ HTTP/1.1" 200 44533
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /payments/planos/ HTTP/1.1" 200 37156
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+- Broken pipe from ('127.0.0.1', 50271)
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /payments/planos/ HTTP/1.1" 200 37156
+"GET /payments/plano/5/ HTTP/1.1" 200 15073
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /index/ HTTP/1.1" 200 62274
+"GET /payments/planos/ HTTP/1.1" 200 37156
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /index/ HTTP/1.1" 200 62274
+"GET /payments/planos/ HTTP/1.1" 200 37156
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /index/ HTTP/1.1" 200 62926
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /payments/planos/ HTTP/1.1" 200 37156
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /index/ HTTP/1.1" 200 62926
+"GET /payments/planos/ HTTP/1.1" 200 37156
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader

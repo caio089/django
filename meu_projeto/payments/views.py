@@ -119,12 +119,10 @@ def criar_perfil_usuario(user):
 @login_required
 def listar_planos(request):
     """
-    Lista apenas o plano mensal premium
+    Lista planos premium disponíveis
     """
-    # Buscar apenas o plano mensal ativo
-    plano_mensal = PlanoPremium.objects.filter(ativo=True, preco=19.90).first()
-    
-    # Se não existir, criar um plano mensal padrão
+    # Garantir existência de planos padrão sem provocar erro em caso de duplicatas
+    plano_mensal = PlanoPremium.objects.filter(nome="Plano Mensal Premium").order_by('id').first()
     if not plano_mensal:
         plano_mensal = PlanoPremium.objects.create(
             nome="Plano Mensal Premium",
@@ -134,8 +132,69 @@ def listar_planos(request):
             ativo=True,
             acesso_ilimitado_quiz=True,
             relatorios_detalhados=True,
-            suporte_prioritario=True
+            suporte_prioritario=True,
         )
+    # Atualizar preço/duração caso tenham mudado no código
+    if plano_mensal.preco != 19.90 or plano_mensal.duracao_dias != 30:
+        plano_mensal.preco = 19.90
+        plano_mensal.duracao_dias = 30
+        plano_mensal.ativo = True
+        plano_mensal.save(update_fields=["preco", "duracao_dias", "ativo"])
+    
+    plano_trimestral = PlanoPremium.objects.filter(nome="Plano Trimestral Premium").order_by('id').first()
+    if not plano_trimestral:
+        plano_trimestral = PlanoPremium.objects.create(
+            nome="Plano Trimestral Premium",
+            descricao="Assinatura por 3 meses com acesso completo aos recursos premium",
+            preco=50.00,
+            duracao_dias=90,
+            ativo=True,
+            acesso_ilimitado_quiz=True,
+            relatorios_detalhados=True,
+            suporte_prioritario=True,
+        )
+    if plano_trimestral.preco != 50.00 or plano_trimestral.duracao_dias != 90:
+        plano_trimestral.preco = 50.00
+        plano_trimestral.duracao_dias = 90
+        plano_trimestral.ativo = True
+        plano_trimestral.save(update_fields=["preco", "duracao_dias", "ativo"])
+    
+    plano_semestral = PlanoPremium.objects.filter(nome="Plano Semestral Premium").order_by('id').first()
+    if not plano_semestral:
+        plano_semestral = PlanoPremium.objects.create(
+            nome="Plano Semestral Premium",
+            descricao="Assinatura por 6 meses com acesso completo aos recursos premium",
+            preco=99.90,
+            duracao_dias=180,
+            ativo=True,
+            acesso_ilimitado_quiz=True,
+            relatorios_detalhados=True,
+            suporte_prioritario=True,
+        )
+    if plano_semestral.preco != 99.90 or plano_semestral.duracao_dias != 180:
+        plano_semestral.preco = 99.90
+        plano_semestral.duracao_dias = 180
+        plano_semestral.ativo = True
+        plano_semestral.save(update_fields=["preco", "duracao_dias", "ativo"])
+    
+    # Lista de planos ativos para o usuário escolher (apenas os três desejados)
+    # Escolher exatamente 3 planos por duração, priorizando menor preço (garante 19,90/50,00/99,90 se existirem)
+    plano_30 = (
+        PlanoPremium.objects.filter(ativo=True, duracao_dias=30)
+        .order_by('preco', '-id')
+        .first()
+    )
+    plano_90 = (
+        PlanoPremium.objects.filter(ativo=True, duracao_dias=90)
+        .order_by('preco', '-id')
+        .first()
+    )
+    plano_180 = (
+        PlanoPremium.objects.filter(ativo=True, duracao_dias=180)
+        .order_by('preco', '-id')
+        .first()
+    )
+    planos = [p for p in [plano_30, plano_90, plano_180] if p]
     
     # Verificar se usuário já tem assinatura ativa
     assinatura_ativa = Assinatura.objects.filter(
@@ -145,7 +204,8 @@ def listar_planos(request):
     ).first()
     
     return render(request, 'payments/planos.html', {
-        'plano': plano_mensal,  # Enviar apenas um plano
+        'plano': plano_mensal,  # destaque mensal existente
+        'planos': planos,       # lista completa para escolha
         'assinatura_ativa': assinatura_ativa
     })
 
@@ -1255,7 +1315,42 @@ def verificar_acesso_premium(user):
             data_vencimento__gt=timezone.now()
         ).first()
         
-        return assinatura is not None, assinatura
+        # Acesso por assinatura ativa
+        if assinatura is not None:
+            return True, assinatura
+        
+        # Acesso por período grátis (trial): iniciar se ainda não houver e validar
+        try:
+            profile = user.profile
+            # Inicializa trial na primeira verificação, caso ainda não tenha sido iniciado
+            if not getattr(profile, "trial_inicio", None):
+                now = timezone.now()
+                profile.trial_inicio = now
+                profile.trial_fim = now + timedelta(days=3)
+                profile.save(update_fields=["trial_inicio", "trial_fim"])
+            # Concede acesso se o trial estiver ativo (checagem direta por datas + método auxiliar)
+            if (profile.trial_fim and timezone.now() < profile.trial_fim) or (
+                getattr(profile, "is_trial_ativo", None) and profile.is_trial_ativo()
+            ):
+                return True, None
+        except Profile.DoesNotExist:
+            # Criar profile e iniciar trial imediatamente para garantir acesso de boas-vindas
+            try:
+                profile = Profile.objects.create(
+                    user=user,
+                    nome=user.get_full_name() or user.username or (user.email if hasattr(user, "email") else "Usuário"),
+                    idade=18,
+                    faixa='branca'
+                )
+                now = timezone.now()
+                profile.trial_inicio = now
+                profile.trial_fim = now + timedelta(days=3)
+                profile.save(update_fields=["trial_inicio", "trial_fim"])
+                return True, None
+            except Exception as _e:
+                logger.error(f"Falha ao criar profile e iniciar trial para user {user.id}: {_e}")
+        
+        return False, None
         
     except Exception as e:
         logger.error(f"Erro ao verificar acesso premium: {e}")

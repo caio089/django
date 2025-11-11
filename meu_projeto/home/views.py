@@ -7,6 +7,8 @@ from .models import Profile
 from .forms import EmailLoginForm, RegisterForm
 import logging
 import json
+from django.utils import timezone
+from datetime import timedelta
 
 logger = logging.getLogger(__name__)
 
@@ -36,6 +38,26 @@ def login_view(request):
             user = form.cleaned_data['user']
             logger.info(f"Login bem-sucedido para: {user.email}")
             login(request, user)
+            
+            # Iniciar trial de 3 dias após login (se ainda não houver)
+            try:
+                profile = Profile.objects.get(user=user)
+            except Profile.DoesNotExist:
+                profile = Profile.objects.create(
+                    user=user,
+                    nome=user.username or user.email or "Usuário",
+                    idade=18,
+                    faixa='branca'
+                )
+            try:
+                if not profile.trial_inicio:
+                    now = timezone.now()
+                    profile.trial_inicio = now
+                    profile.trial_fim = now + timedelta(days=3)
+                    profile.save()
+            except Exception as e:
+                logger.error(f"Falha ao iniciar trial no login para {user.email}: {e}")
+            
             messages.success(request, f'Bem-vindo, {user.email}!')
             return redirect('index')
         else:
@@ -101,6 +123,16 @@ def register_view(request):
                         idade=idade,
                         faixa=faixa
                     )
+                
+                # Iniciar trial de 3 dias para novos usuários (se ainda não houver)
+                try:
+                    if not profile.trial_inicio:
+                        now = timezone.now()
+                        profile.trial_inicio = now
+                        profile.trial_fim = now + timedelta(days=3)
+                        profile.save()
+                except Exception as e:
+                    logger.error(f"Falha ao iniciar trial para usuário {email}: {e}")
                 
                 logger.info(f"Usuário criado com sucesso: {email}, Profile ID: {profile.id}")
                 
@@ -266,6 +298,16 @@ def processar_cadastro_completo(request):
                 faixa=faixa
             )
             logger.info("✅ Perfil criado")
+        
+        # Iniciar trial de 3 dias para novos usuários (se ainda não houver)
+        try:
+            if not profile.trial_inicio:
+                now = timezone.now()
+                profile.trial_inicio = now
+                profile.trial_fim = now + timedelta(days=3)
+                profile.save()
+        except Exception as e:
+            logger.error(f"Falha ao iniciar trial para usuário {email}: {e}")
         
         logger.info(f"✅ Perfil criado: {nome}, Idade: {idade}, Faixa: {faixa}")
         

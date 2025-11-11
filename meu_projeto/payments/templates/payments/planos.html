@@ -292,7 +292,61 @@
         </div>
     </div>
     
-    <!-- Plano Mensal Único - Design Minimalista -->
+    <!-- Grade de Planos para Escolha (moderna e sofisticada) -->
+        <div class="flex justify-center mb-10 sm:mb-14">
+        <div class="max-w-6xl w-full mx-auto px-4 sm:px-6">
+            <h2 class="text-center text-2xl sm:text-3xl font-semibold text-gray-900 mb-3">Escolha seu plano</h2>
+            <p class="text-center text-sm sm:text-base text-gray-600 mb-8">As formas de pagamento continuam as mesmas. Selecione a duração que preferir.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-7">
+                {% for p in planos %}
+                <div class="relative group rounded-2xl bg-white/90 backdrop-blur-sm border border-gray-200 hover:border-gray-300 transition-shadow shadow-sm hover:shadow-xl">
+                    <!-- selo -->
+                    {% if p.duracao_dias == 90 %}
+                        <div class="absolute -top-2 right-3 px-2.5 py-1 rounded-full text-xs font-semibold bg-gray-900 text-white shadow-sm">Mais popular</div>
+                    {% elif p.duracao_dias == 180 %}
+                        <div class="absolute -top-2 right-3 px-2.5 py-1 rounded-full text-xs font-semibold bg-gray-800 text-white shadow-sm">Melhor valor</div>
+                    {% elif p.duracao_dias == 30 %}
+                        <div class="absolute -top-2 right-3 px-2.5 py-1 rounded-full text-xs font-semibold bg-gray-700 text-white shadow-sm">Comece hoje</div>
+                    {% endif %}
+
+                    <div class="p-6 sm:p-7">
+                        <h3 class="text-xl font-semibold text-gray-900 tracking-tight">{{ p.nome }}</h3>
+                        <p class="text-sm text-gray-600 mt-1.5">{{ p.descricao }}</p>
+
+                        <div class="mt-5 flex items-baseline gap-1">
+                            <span class="text-4xl sm:text-5xl font-light text-gray-900 leading-none">R$</span>
+                            <span class="text-5xl sm:text-6xl font-extrabold text-gray-900 leading-none">{{ p.preco|floatformat:2 }}</span>
+                        </div>
+                        <div class="text-xs text-gray-500 mt-1.5">Duração: {{ p.duracao_dias }} dias</div>
+
+                        <div class="mt-6 space-y-2.5 text-sm text-gray-700">
+                            <div class="flex items-center gap-2">
+                                <span class="inline-block w-1.5 h-1.5 rounded-full bg-gray-900"></span>
+                                Acesso imediato ao conteúdo premium
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="inline-block w-1.5 h-1.5 rounded-full bg-gray-900"></span>
+                                Renovação simples • Cancelamento a qualquer momento
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="inline-block w-1.5 h-1.5 rounded-full bg-gray-900"></span>
+                                Pagamento seguro Mercado Pago
+                            </div>
+                        </div>
+
+                        <a href="{% url 'payments:escolher_plano' p.id %}"
+                           class="mt-7 inline-flex w-full items-center justify-center rounded-xl bg-gray-900 hover:bg-black text-white text-sm font-semibold px-4 py-3.5 transition">
+                            Assinar {{ p.nome }}
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Plano Mensal em Destaque - Design Minimalista -->
         <div id="planos" class="flex justify-center mb-6 sm:mb-8">
         {% if plano %}
             <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 p-0 max-w-5xl w-full relative plano-container overflow-hidden">

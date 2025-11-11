@@ -40,6 +40,10 @@ class Profile(models.Model):
     conta_premium = models.BooleanField(default=False, verbose_name="Conta Premium")
     data_vencimento_premium = models.DateTimeField(null=True, blank=True, verbose_name="Data de vencimento Premium")
     
+    # Trial/gratuidade de boas-vindas
+    trial_inicio = models.DateTimeField(null=True, blank=True, verbose_name="Início do período grátis")
+    trial_fim = models.DateTimeField(null=True, blank=True, verbose_name="Fim do período grátis")
+    
     # Campos de configuração
     notificacoes_ativadas = models.BooleanField(default=True, verbose_name="Notificações ativadas")
     tema_preferido = models.CharField(max_length=20, default='claro', choices=[('claro', 'Claro'), ('escuro', 'Escuro')])
@@ -48,6 +52,19 @@ class Profile(models.Model):
     # data_criacao = models.DateTimeField(auto_now_add=True, verbose_name="Data de criação")
     # data_atualizacao = models.DateTimeField(auto_now=True, verbose_name="Última atualização")
 
+    def is_trial_ativo(self):
+        """Retorna True se o período grátis está ativo."""
+        if self.trial_inicio and self.trial_fim:
+            return timezone.now() < self.trial_fim
+        return False
+    
+    def dias_trial_restantes(self):
+        """Quantidade de dias inteiros restantes no trial."""
+        if self.is_trial_ativo():
+            restante = self.trial_fim - timezone.now()
+            return max(restante.days, 0)
+        return 0
+    
     def __str__(self):
         return f"{self.nome} - {self.get_faixa_display()}"
 

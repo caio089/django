@@ -5,6 +5,9 @@ from django.shortcuts import redirect
 from django.contrib import messages
 from django.urls import reverse
 from .views import verificar_acesso_premium
+from django.utils import timezone
+from datetime import timedelta
+from home.models import Profile
 import logging
 
 logger = logging.getLogger(__name__)
@@ -66,8 +69,27 @@ class PremiumAccessMiddleware:
             tem_acesso, assinatura = verificar_acesso_premium(request.user)
             
             if not tem_acesso:
-                messages.warning(request, 'Esta página requer assinatura premium. Escolha um plano para continuar.')
-                return redirect('payments:planos')
+                # Fallback: garantir trial ativo direto no middleware (robustez extra)
+                try:
+                    profile = request.user.profile
+                except Profile.DoesNotExist:
+                    profile = Profile.objects.create(
+                        user=request.user,
+                        nome=request.user.get_full_name() or request.user.username or (request.user.email if hasattr(request.user, "email") else "Usuário"),
+                        idade=18,
+                        faixa='branca'
+                    )
+                if not getattr(profile, "trial_inicio", None):
+                    now = timezone.now()
+                    profile.trial_inicio = now
+                    profile.trial_fim = now + timedelta(days=3)
+                    profile.save(update_fields=["trial_inicio", "trial_fim"])
+                # Se trial estiver ativo, permitir acesso
+                if getattr(profile, "is_trial_ativo", None) and profile.is_trial_ativo():
+                    request.assinatura = None
+                else:
+                    messages.warning(request, 'Esta página requer assinatura premium. Escolha um plano para continuar.')
+                    return redirect('payments:planos')
             
             # Adicionar assinatura ao contexto da requisição
             request.assinatura = assinatura

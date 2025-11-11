@@ -1,7 +1,10 @@
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
+from django.utils import timezone
 from home.models import Profile
+
+from datetime import timedelta
 
 # Create your views here.
 
@@ -13,6 +16,9 @@ def index(request):
     assinatura_cancelada = None
     from_payment = False
     new_subscription = None
+    trial_expirado = False
+    trial_dias_restantes = 0
+    trial_ativo = False
     
     try:
         if request.user.is_authenticated:
@@ -40,6 +46,26 @@ def index(request):
                 # Se houver erro ao verificar assinatura, continuar sem ela
                 print(f"Erro ao verificar assinatura: {e}")
                 assinatura = None
+                
+            # Garantir inicialização do trial se ainda não existir (boas-vindas)
+            try:
+                if not getattr(profile, "trial_inicio", None):
+                    now = timezone.now()
+                    profile.trial_inicio = now
+                    profile.trial_fim = now + timedelta(days=3)
+                    profile.save(update_fields=["trial_inicio", "trial_fim"])
+            except Exception:
+                pass
+
+            # Calcular status do trial (ativo/expirado e dias restantes)
+            try:
+                trial_dias_restantes = profile.dias_trial_restantes()
+                trial_ativo = bool(profile.trial_inicio) and profile.is_trial_ativo() and not assinatura
+                trial_expirado = bool(profile.trial_inicio) and not profile.is_trial_ativo() and not assinatura
+            except Exception as e:
+                trial_expirado = False
+                trial_dias_restantes = 0
+                trial_ativo = False
             
             # Verificar se tem assinatura cancelada recentemente
             if not assinatura:
@@ -78,7 +104,10 @@ def index(request):
         'assinatura': assinatura,
         'assinatura_cancelada': assinatura_cancelada,
         'from_payment': from_payment,
-        'new_subscription': new_subscription
+        'new_subscription': new_subscription,
+        'trial_expirado': trial_expirado,
+        'trial_dias_restantes': trial_dias_restantes,
+        'trial_ativo': trial_ativo
     })
 
 def logout_view(request):
