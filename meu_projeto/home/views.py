@@ -211,13 +211,13 @@ def processar_selecao_faixa(request):
             
             # Mapeamento de faixas para URLs
             faixas_urls = {
-                'cinza': '/pag1/',
-                'azul': '/pag2/',
-                'amarela': '/pag3/',
-                'laranja': '/pag4/',
-                'verde': '/pag5/',
-                'roxa': '/pag6/',
-                'marrom': '/pag7/'
+                'cinza': '/pagina1/',
+                'azul': '/pagina2/',
+                'amarela': '/pagina3/',
+                'laranja': '/pagina4/',
+                'verde': '/pagina5/',
+                'roxa': '/pagina6/',
+                'marrom': '/pagina7/'
             }
             
             url_destino = faixas_urls.get(faixa.lower())

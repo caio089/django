@@ -3611,3 +3611,295 @@ Processos pesados desabilitados - modo leve ativado
 Watching for file changes with StatReloader
 Processos pesados desabilitados - modo leve ativado
 Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 40581
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 8311
+"POST /login/ HTTP/1.1" 200 40906
+"GET /esqueci-senha/ HTTP/1.1" 200 3553
+"POST /esqueci-senha/ HTTP/1.1" 302 0
+"GET /verificar-codigo/anacampos3@gmail.com/ HTTP/1.1" 200 4909
+"POST /verificar-codigo/anacampos3@gmail.com/ HTTP/1.1" 302 0
+"GET /redefinir-senha/anacampos3@gmail.com/ HTTP/1.1" 200 7310
+"POST /redefinir-senha/anacampos3@gmail.com/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 40945
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 62926
+"GET /payments/planos/ HTTP/1.1" 200 37477
+"GET /quiz HTTP/1.1" 301 0
+"GET /quiz/ HTTP/1.1" 200 50187
+"GET /quiz/ HTTP/1.1" 200 50187
+"GET /index/ HTTP/1.1" 200 62926
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /index/ HTTP/1.1" 200 62926
+"GET /payments/planos/ HTTP/1.1" 200 37156
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /index/ HTTP/1.1" 200 62926
+"GET /payments/planos/ HTTP/1.1" 200 37156
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /index/ HTTP/1.1" 200 62926
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8422
+"GET /payments/planos/ HTTP/1.1" 200 37156
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /index/ HTTP/1.1" 200 62926
+"GET /payments/planos/ HTTP/1.1" 200 37156
+"GET /payments/planos/ HTTP/1.1" 200 37156
+"GET /payments/planos/ HTTP/1.1" 200 37156
+"GET /payments/planos/ HTTP/1.1" 200 37156
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /payments/planos/ HTTP/1.1" 200 37156
+"POST /index/logout/ HTTP/1.1" 302 0
+"GET /login/ HTTP/1.1" 200 40581
+"GET /register/ HTTP/1.1" 200 40573
+"POST /register/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 62934
+"GET /payments/planos/ HTTP/1.1" 200 37493
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /payments/planos/ HTTP/1.1" 200 37157
+"GET /index/ HTTP/1.1" 200 62934
+"GET /payments/planos/ HTTP/1.1" 200 37157
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /index/ HTTP/1.1" 200 62934
+"GET /payments/planos/ HTTP/1.1" 200 37157
+"GET /index/ HTTP/1.1" 200 62934
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 40581
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 62934
+"GET /payments/planos/ HTTP/1.1" 200 37157
+D:\github\django\meu_projeto\home\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /index/ HTTP/1.1" 200 62934
+"GET /payments/planos/ HTTP/1.1" 200 37157
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 40581
+"POST /login/ HTTP/1.1" 302 0
+"GET /index/ HTTP/1.1" 200 62934
+"GET /payments/planos/ HTTP/1.1" 200 37157
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8422
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/index/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/
+[verificar_acesso_premium] user_id=173
+[verificar_acesso_premium] Trial datas: inicio=2025-11-12 17:12:09.349978+00:00 fim=2025-11-15 17:12:09.349978+00:00 now=2025-11-12 17:42:43.178984+00:00
+[verificar_acesso_premium] Acesso por trial ativo
+"GET /index/ HTTP/1.1" 200 62934
+[PremiumAccessMiddleware] Path=/.well-known/appspecific/com.chrome.devtools.json
+[PremiumAccessMiddleware] Path=/index/url('https://fonts.googleapis.com/css2
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/url('https://fonts.googleapis.com/css2
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /index/url('https://fonts.googleapis.com/css2
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 8876
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8422
+[PremiumAccessMiddleware] Path=/payments/planos/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/planos/
+"GET /payments/planos/ HTTP/1.1" 200 37157
+[PremiumAccessMiddleware] Path=/.well-known/appspecific/com.chrome.devtools.json
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8422
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/.well-known/appspecific/com.chrome.devtools.json
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8422
+[PremiumAccessMiddleware] Path=/.well-known/appspecific/com.chrome.devtools.json
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8422
+[PremiumAccessMiddleware] Path=/index/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/
+[verificar_acesso_premium] user_id=173
+[verificar_acesso_premium] Trial datas: inicio=2025-11-12 17:12:09.349978+00:00 fim=2025-11-15 17:12:09.349978+00:00 now=2025-11-12 17:48:39.694432+00:00
+[verificar_acesso_premium] Acesso por trial ativo
+"GET /index/ HTTP/1.1" 200 62934
+[PremiumAccessMiddleware] Path=/.well-known/appspecific/com.chrome.devtools.json
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8422
+[PremiumAccessMiddleware] Path=/payments/planos/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/planos/
+"GET /payments/planos/ HTTP/1.1" 200 37157
+[PremiumAccessMiddleware] Path=/.well-known/appspecific/com.chrome.devtools.json
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8422
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/.well-known/appspecific/com.chrome.devtools.json
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8422
+[PremiumAccessMiddleware] Path=/index/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/
+[verificar_acesso_premium] user_id=173
+[verificar_acesso_premium] Trial datas: inicio=2025-11-12 17:12:09.349978+00:00 fim=2025-11-15 17:12:09.349978+00:00 now=2025-11-12 17:57:26.321566+00:00
+[verificar_acesso_premium] Acesso por trial ativo
+"GET /index/ HTTP/1.1" 200 62934
+[PremiumAccessMiddleware] Path=/.well-known/appspecific/com.chrome.devtools.json
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8422
+[PremiumAccessMiddleware] Path=/index/url('https://fonts.googleapis.com/css2
+[PremiumAccessMiddleware] Path=/.well-known/appspecific/com.chrome.devtools.json
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/url('https://fonts.googleapis.com/css2
+Not Found: /index/url('https://fonts.googleapis.com/css2
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 8876
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8422
+[PremiumAccessMiddleware] Path=/payments/planos/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/planos/
+"GET /payments/planos/ HTTP/1.1" 200 37157
+[PremiumAccessMiddleware] Path=/.well-known/appspecific/com.chrome.devtools.json
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8422
+[PremiumAccessMiddleware] Path=/.well-known/appspecific/com.chrome.devtools.json
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8422
+[PremiumAccessMiddleware] Path=/.well-known/appspecific/com.chrome.devtools.json
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8422
+D:\github\django\meu_projeto\home\apps.py changed, reloading.
+D:\github\django\meu_projeto\home\apps.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+D:\github\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+D:\github\django\meu_projeto\home\apps.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader

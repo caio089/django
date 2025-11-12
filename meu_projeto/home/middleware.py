@@ -64,12 +64,12 @@ class FaixaRedirectMiddleware:
         
         # Mapeamento de faixas para URLs
         faixas_urls = {
-            'branca': '/pag1/',
-            'amarela': '/pag2/',
-            'laranja': '/pag3/',
-            'verde': '/pag5/',
-            'azul': '/pag6/',
-            'marrom': '/pag7/'
+            'branca': '/pagina1/',
+            'amarela': '/pagina3/',
+            'laranja': '/pagina4/',
+            'verde': '/pagina5/',
+            'azul': '/pagina2/',
+            'marrom': '/pagina7/'
         }
         
         url_destino = faixas_urls.get(faixa.lower())

@@ -1309,6 +1309,7 @@ def verificar_acesso_premium(user):
     Retorna: (tem_acesso, assinatura) ou (False, None)
     """
     try:
+        logger.info(f"[verificar_acesso_premium] user_id={user.id}")
         assinatura = Assinatura.objects.filter(
             usuario=user,
             status='ativa',
@@ -1317,21 +1318,30 @@ def verificar_acesso_premium(user):
         
         # Acesso por assinatura ativa
         if assinatura is not None:
+            logger.info(f"[verificar_acesso_premium] Assinatura ativa encontrada. vence_em={assinatura.data_vencimento}")
             return True, assinatura
         
         # Acesso por período grátis (trial): iniciar se ainda não houver e validar
         try:
             profile = user.profile
+            logger.info(f"[verificar_acesso_premium] Trial datas: inicio={profile.trial_inicio} fim={profile.trial_fim} now={timezone.now()}")
+            print(f"[verificar_acesso_premium] Trial datas: inicio={profile.trial_inicio} fim={profile.trial_fim} now={timezone.now()}")
             # Inicializa trial na primeira verificação, caso ainda não tenha sido iniciado
             if not getattr(profile, "trial_inicio", None):
                 now = timezone.now()
                 profile.trial_inicio = now
                 profile.trial_fim = now + timedelta(days=3)
                 profile.save(update_fields=["trial_inicio", "trial_fim"])
+                logger.info(f"[verificar_acesso_premium] Trial iniciado (views). inicio={profile.trial_inicio} fim={profile.trial_fim}")
+                print(f"[verificar_acesso_premium] Trial iniciado (views). inicio={profile.trial_inicio} fim={profile.trial_fim}")
             # Concede acesso se o trial estiver ativo (checagem direta por datas + método auxiliar)
             if (profile.trial_fim and timezone.now() < profile.trial_fim) or (
                 getattr(profile, "is_trial_ativo", None) and profile.is_trial_ativo()
+            ) or (
+                profile.trial_inicio and timezone.now() < (profile.trial_inicio + timedelta(days=3))
             ):
+                logger.info("[verificar_acesso_premium] Acesso por trial ativo")
+                print("[verificar_acesso_premium] Acesso por trial ativo")
                 return True, None
         except Profile.DoesNotExist:
             # Criar profile e iniciar trial imediatamente para garantir acesso de boas-vindas
@@ -1346,10 +1356,15 @@ def verificar_acesso_premium(user):
                 profile.trial_inicio = now
                 profile.trial_fim = now + timedelta(days=3)
                 profile.save(update_fields=["trial_inicio", "trial_fim"])
+                logger.info("[verificar_acesso_premium] Profile criado + trial iniciado (views)")
+                print("[verificar_acesso_premium] Profile criado + trial iniciado (views)")
                 return True, None
             except Exception as _e:
                 logger.error(f"Falha ao criar profile e iniciar trial para user {user.id}: {_e}")
+                print(f"[verificar_acesso_premium] ERRO criar profile/trial: {_e}")
         
+        logger.info("[verificar_acesso_premium] Acesso negado (sem assinatura e trial inativo)")
+        print("[verificar_acesso_premium] Acesso negado (sem assinatura e trial inativo)")
         return False, None
         
     except Exception as e:

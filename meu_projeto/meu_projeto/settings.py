@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.admin','django.contrib.auth','django.contrib.contenttypes',
     'django.contrib.sessions','django.contrib.messages','django.contrib.staticfiles',
     'core','pag1','pag2','pag3','pag4','pag5','pag6','pag7',
-    'home','ukemis','quiz','historia','palavras','regras','payments','dashboard',
+    'home.apps.HomeConfig','ukemis','quiz','historia','palavras','regras','payments','dashboard',
 ]
 
 MIDDLEWARE = [
