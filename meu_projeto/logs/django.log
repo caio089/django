@@ -4156,3 +4156,71 @@ Watching for file changes with StatReloader
 D:\github\django\meu_projeto\payments\models.py changed, reloading.
 Processos pesados desabilitados - modo leve ativado
 Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /
+"GET / HTTP/1.1" 200 40917
+[PremiumAccessMiddleware] Path=/login/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /login/
+"POST /login/ HTTP/1.1" 302 0
+[PremiumAccessMiddleware] Path=/index/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/
+[verificar_acesso_premium] user_id=179
+[verificar_acesso_premium] Trial datas: inicio=2025-11-14 17:04:43.379016+00:00 fim=2025-11-17 17:04:43.379016+00:00 now=2025-11-14 18:01:22.221155+00:00
+[verificar_acesso_premium] Acesso por trial ativo
+"GET /index/ HTTP/1.1" 200 66071
+[PremiumAccessMiddleware] Path=/pagina5/
+[PremiumAccessMiddleware] Path=/index/page5.html
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /pagina5/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/page5.html
+"GET /pagina5/ HTTP/1.1" 200 107719
+Not Found: /index/page5.html
+- Broken pipe from ('127.0.0.1', 58642)
+"GET /static/pag5/js/scripts.js?v=20250118005 HTTP/1.1" 200 13122
+"GET /static/pag5/js/lazy-video.js HTTP/1.1" 200 1959
+"GET /static/pag5/css/styles.css?v=20250118004 HTTP/1.1" 200 27372
+[PremiumAccessMiddleware] Path=/pagina5/carregar-progresso/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /pagina5/carregar-progresso/
+"GET /pagina5/carregar-progresso/?pagina=pagina5 HTTP/1.1" 200 34
+[PremiumAccessMiddleware] Path=/pagina5/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /pagina5/
+"GET /pagina5/ HTTP/1.1" 200 107731
+[PremiumAccessMiddleware] Path=/pagina5/carregar-progresso/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /pagina5/carregar-progresso/
+"GET /pagina5/carregar-progresso/?pagina=pagina5 HTTP/1.1" 200 34
+[PremiumAccessMiddleware] Path=/ukemis/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /ukemis/
+"GET /ukemis/ HTTP/1.1" 200 40688
+"GET /static/rolamento.png HTTP/1.1" 200 211154
+[PremiumAccessMiddleware] Path=/ukemis/carregar-progresso/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /ukemis/carregar-progresso/
+"GET /ukemis/carregar-progresso/?pagina=ukemis HTTP/1.1" 200 34
+[PremiumAccessMiddleware] Path=/index/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/
+[verificar_acesso_premium] user_id=179
+[verificar_acesso_premium] Trial datas: inicio=2025-11-14 17:04:43.379016+00:00 fim=2025-11-17 17:04:43.379016+00:00 now=2025-11-14 18:03:29.399877+00:00
+[verificar_acesso_premium] Acesso por trial ativo
+"GET /index/ HTTP/1.1" 200 66071
+[PremiumAccessMiddleware] Path=/pagina4/
+[PremiumAccessMiddleware] Path=/index/page4.html
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /pagina4/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/page4.html
+"GET /pagina4/ HTTP/1.1" 200 108409
+Not Found: /index/page4.html
+- Broken pipe from ('127.0.0.1', 60141)
+"GET /static/pag4/css/styles1.css HTTP/1.1" 200 27404
+"GET /static/pag4/js/scripts.js HTTP/1.1" 200 21027
+[PremiumAccessMiddleware] Path=/pagina4/carregar-progresso/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /pagina4/carregar-progresso/
+"GET /pagina4/carregar-progresso/?pagina=pagina4 HTTP/1.1" 200 34
+[PremiumAccessMiddleware] Path=/ukemis/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /ukemis/
+"GET /ukemis/ HTTP/1.1" 200 40688
+[PremiumAccessMiddleware] Path=/ukemis/carregar-progresso/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /ukemis/carregar-progresso/
+"GET /ukemis/carregar-progresso/?pagina=ukemis HTTP/1.1" 200 34
+[PremiumAccessMiddleware] Path=/index/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/
+[verificar_acesso_premium] user_id=179
+[verificar_acesso_premium] Trial datas: inicio=2025-11-14 17:04:43.379016+00:00 fim=2025-11-17 17:04:43.379016+00:00 now=2025-11-14 18:03:43.552558+00:00
+[verificar_acesso_premium] Acesso por trial ativo
+"GET /index/ HTTP/1.1" 200 66071

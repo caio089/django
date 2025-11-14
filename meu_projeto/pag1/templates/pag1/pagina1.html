@@ -2021,6 +2021,10 @@ document.addEventListener('DOMContentLoaded', function() {
 let progress = 0;
 let totalItems = 0;
 let hasShownCongratulations = false;
+// Namespacing por usuário e página para evitar reaproveitar progresso de outro login
+const USER_ID = '{{ request.user.id|default:"anon" }}';
+const PAGE_ID = 'pagina1';
+const STORAGE_KEY = `judoProgress_${USER_ID}_${PAGE_ID}`;
 
 // Função para contar total de checkboxes "Aprendi"
 function countTotalItems() {
@@ -2181,12 +2185,16 @@ function saveProgress() {
         console.error('Erro ao salvar progresso:', error);
     });
     
-    // Também salvar no localStorage como backup
+    // Também salvar no localStorage como backup (namespaced por usuário/página)
     const progressData = {};
     checkboxes.forEach((checkbox, index) => {
         progressData[`checkbox_${index}`] = checkbox.checked;
     });
-    localStorage.setItem('judoProgress', JSON.stringify(progressData));
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(progressData));
+        // Remover chave antiga global (legado) para evitar interferência
+        localStorage.removeItem('judoProgress');
+    } catch (e) { /* noop */ }
 }
 
 // Carregar progresso do banco de dados
@@ -2223,15 +2231,16 @@ function loadProgress() {
 
 // Função auxiliar para carregar do localStorage
 function loadProgressFromLocalStorage() {
-    const savedProgress = localStorage.getItem('judoProgress');
+    // Tentar chave namespaced
+    let savedProgress = localStorage.getItem(STORAGE_KEY);
+    // Fallback: chave antiga global (será removida após salvar)
+    if (!savedProgress) savedProgress = localStorage.getItem('judoProgress');
     if (savedProgress) {
         const progressData = JSON.parse(savedProgress);
         const checkboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
         
         checkboxes.forEach((checkbox, index) => {
-            if (progressData[`checkbox_${index}`]) {
-                checkbox.checked = true;
-            }
+            checkbox.checked = !!progressData[`checkbox_${index}`];
         });
         
         calculateProgress();
@@ -2246,6 +2255,13 @@ document.addEventListener('DOMContentLoaded', function() {
     loadProgress();
     initializeProgressSystem();
     initializeCongratulationsButtons();
+    
+    // Se não autenticado, limpar chave antiga para não vazar progresso
+    try {
+        if (!USER_ID || USER_ID === 'anon') {
+            localStorage.removeItem('judoProgress');
+        }
+    } catch (e) { /* noop */ }
     
     console.log('Progress system initialized'); // Debug
 });
