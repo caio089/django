@@ -9,6 +9,7 @@ import logging
 import json
 from django.utils import timezone
 from datetime import timedelta
+from .trial import trial_delta
 
 logger = logging.getLogger(__name__)
 
@@ -53,7 +54,7 @@ def login_view(request):
                 if not profile.trial_inicio:
                     now = timezone.now()
                     profile.trial_inicio = now
-                    profile.trial_fim = now + timedelta(days=3)
+                    profile.trial_fim = now + trial_delta()
                     profile.save()
             except Exception as e:
                 logger.error(f"Falha ao iniciar trial no login para {user.email}: {e}")
@@ -129,7 +130,7 @@ def register_view(request):
                     if not profile.trial_inicio:
                         now = timezone.now()
                         profile.trial_inicio = now
-                        profile.trial_fim = now + timedelta(days=3)
+                        profile.trial_fim = now + trial_delta()
                         profile.save()
                 except Exception as e:
                     logger.error(f"Falha ao iniciar trial para usuário {email}: {e}")
@@ -304,7 +305,7 @@ def processar_cadastro_completo(request):
             if not profile.trial_inicio:
                 now = timezone.now()
                 profile.trial_inicio = now
-                profile.trial_fim = now + timedelta(days=3)
+                profile.trial_fim = now + trial_delta()
                 profile.save()
         except Exception as e:
             logger.error(f"Falha ao iniciar trial para usuário {email}: {e}")

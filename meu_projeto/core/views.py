@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.utils import timezone
 from home.models import Profile
+from home.trial import trial_delta
 
 from datetime import timedelta
 
@@ -52,7 +53,7 @@ def index(request):
                 if not getattr(profile, "trial_inicio", None):
                     now = timezone.now()
                     profile.trial_inicio = now
-                    profile.trial_fim = now + timedelta(days=3)
+                    profile.trial_fim = now + trial_delta()
                     profile.save(update_fields=["trial_inicio", "trial_fim"])
             except Exception:
                 pass

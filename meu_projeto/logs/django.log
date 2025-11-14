@@ -3903,3 +3903,256 @@ Processos pesados desabilitados - modo leve ativado
 Watching for file changes with StatReloader
 Processos pesados desabilitados - modo leve ativado
 Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/
+"GET / HTTP/1.1" 200 40581
+"GET /static/judo.png HTTP/1.1" 200 158297
+[PremiumAccessMiddleware] Path=/favicon.ico
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 8311
+[PremiumAccessMiddleware] Path=/login/
+[PremiumAccessMiddleware] URL excluída: /login/
+"POST /login/ HTTP/1.1" 302 0
+[PremiumAccessMiddleware] Path=/index/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/
+[verificar_acesso_premium] user_id=171
+[verificar_acesso_premium] Trial datas: inicio=2025-11-11 18:17:46.999684+00:00 fim=2025-11-14 18:17:46.999684+00:00 now=2025-11-14 16:57:25.249334+00:00
+[verificar_acesso_premium] Acesso por trial ativo
+"GET /index/ HTTP/1.1" 200 62926
+"GET /static/faixa-cinza.png HTTP/1.1" 200 23948
+"GET /static/faixa-azul.png HTTP/1.1" 200 163875
+"GET /static/faixa-amarela.png HTTP/1.1" 200 155038
+"GET /static/faixa-laranja.png HTTP/1.1" 200 38025
+"GET /static/faixa-verde.png HTTP/1.1" 200 102267
+"GET /static/faixa-roxa.png HTTP/1.1" 200 145067
+"GET /static/faixa-marrom.png HTTP/1.1" 200 134181
+[PremiumAccessMiddleware] Path=/payments/planos/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/planos/
+"GET /payments/planos/ HTTP/1.1" 200 37477
+"GET /static/demosntra%C3%A7ao1.png HTTP/1.1" 200 227956
+"GET /static/demonstra%C3%A7ao3.png HTTP/1.1" 200 137497
+"GET /static/demonstra%C3%A7ao4.png HTTP/1.1" 200 359249
+"GET /static/demonstra%C3%A7ao2.png HTTP/1.1" 200 332519
+D:\github\django\meu_projeto\home\apps.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+D:\github\django\meu_projeto\home\apps.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/index/logout/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/logout/
+"POST /index/logout/ HTTP/1.1" 302 0
+[PremiumAccessMiddleware] Path=/login/
+[PremiumAccessMiddleware] URL excluída: /login/
+"GET /login/ HTTP/1.1" 200 40581
+[PremiumAccessMiddleware] Path=/register/
+[PremiumAccessMiddleware] URL excluída: /register/
+"GET /register/ HTTP/1.1" 200 40573
+[PremiumAccessMiddleware] Path=/register/
+[PremiumAccessMiddleware] URL excluída: /register/
+"POST /register/ HTTP/1.1" 302 0
+[PremiumAccessMiddleware] Path=/index/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/
+[verificar_acesso_premium] user_id=179
+[verificar_acesso_premium] Trial datas: inicio=2025-11-14 17:04:43.379016+00:00 fim=2025-11-17 17:04:43.379016+00:00 now=2025-11-14 17:04:46.990569+00:00
+[verificar_acesso_premium] Acesso por trial ativo
+"GET /index/ HTTP/1.1" 200 62922
+[PremiumAccessMiddleware] Path=/payments/planos/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/planos/
+"GET /payments/planos/ HTTP/1.1" 200 37485
+[PremiumAccessMiddleware] Path=/index/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/
+[verificar_acesso_premium] user_id=179
+[verificar_acesso_premium] Trial datas: inicio=2025-11-14 17:04:43.379016+00:00 fim=2025-11-17 17:04:43.379016+00:00 now=2025-11-14 17:08:54.569157+00:00
+[verificar_acesso_premium] Acesso por trial ativo
+"GET /index/ HTTP/1.1" 200 64067
+[PremiumAccessMiddleware] Path=/pagina2/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /pagina2/
+"GET /pagina2/ HTTP/1.1" 200 125429
+[PremiumAccessMiddleware] Path=/pagina2/carregar-progresso/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /pagina2/carregar-progresso/
+"GET /pagina2/carregar-progresso/?pagina=pagina2 HTTP/1.1" 200 34
+[PremiumAccessMiddleware] Path=/pagina7/
+[PremiumAccessMiddleware] Path=/index/page7.html
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /pagina7/
+"GET /pagina7/ HTTP/1.1" 200 184224
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/page7.html
+Not Found: /index/page7.html
+- Broken pipe from ('127.0.0.1', 54705)
+"GET /static/pag7/js/scripts.js?v=20250117001 HTTP/1.1" 200 17646
+"GET /static/pag7/css/styles.css?v=20250117001 HTTP/1.1" 200 24314
+[PremiumAccessMiddleware] Path=/pagina7/carregar-progresso/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /pagina7/carregar-progresso/
+- Broken pipe from ('127.0.0.1', 64632)
+D:\github\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\home\signals.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\home\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\core\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\meu_projeto\settings.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/index/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/
+[verificar_acesso_premium] user_id=179
+[verificar_acesso_premium] Trial datas: inicio=2025-11-14 17:04:43.379016+00:00 fim=2025-11-17 17:04:43.379016+00:00 now=2025-11-14 17:17:39.811194+00:00
+[verificar_acesso_premium] Acesso por trial ativo
+"GET /index/ HTTP/1.1" 200 64067
+[PremiumAccessMiddleware] Path=/index/logout/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/logout/
+"POST /index/logout/ HTTP/1.1" 302 0
+[PremiumAccessMiddleware] Path=/login/
+[PremiumAccessMiddleware] URL excluída: /login/
+"GET /login/ HTTP/1.1" 200 40581
+[PremiumAccessMiddleware] Path=/login/
+[PremiumAccessMiddleware] URL excluída: /login/
+"POST /login/ HTTP/1.1" 302 0
+[PremiumAccessMiddleware] Path=/index/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/
+[verificar_acesso_premium] user_id=179
+[verificar_acesso_premium] Trial datas: inicio=2025-11-14 17:04:43.379016+00:00 fim=2025-11-17 17:04:43.379016+00:00 now=2025-11-14 17:18:28.513053+00:00
+[verificar_acesso_premium] Acesso por trial ativo
+"GET /index/ HTTP/1.1" 200 64067
+[PremiumAccessMiddleware] Path=/index/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/
+[verificar_acesso_premium] user_id=179
+[verificar_acesso_premium] Trial datas: inicio=2025-11-14 17:04:43.379016+00:00 fim=2025-11-17 17:04:43.379016+00:00 now=2025-11-14 17:21:57.509120+00:00
+[verificar_acesso_premium] Acesso por trial ativo
+"GET /index/ HTTP/1.1" 200 65873
+[PremiumAccessMiddleware] Path=/.well-known/appspecific/com.chrome.devtools.json
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8422
+[PremiumAccessMiddleware] Path=/index/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/
+[verificar_acesso_premium] user_id=179
+[verificar_acesso_premium] Trial datas: inicio=2025-11-14 17:04:43.379016+00:00 fim=2025-11-17 17:04:43.379016+00:00 now=2025-11-14 17:29:52.889387+00:00
+[verificar_acesso_premium] Acesso por trial ativo
+"GET /index/ HTTP/1.1" 200 66071
+[PremiumAccessMiddleware] Path=/index/url('https://fonts.googleapis.com/css2
+[PremiumAccessMiddleware] Path=/.well-known/appspecific/com.chrome.devtools.json
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/url('https://fonts.googleapis.com/css2
+Not Found: /index/url('https://fonts.googleapis.com/css2
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 8876
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8422
+[PremiumAccessMiddleware] Path=/pagina1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /pagina1/
+"GET /pagina1/ HTTP/1.1" 200 99545
+[PremiumAccessMiddleware] Path=/.well-known/appspecific/com.chrome.devtools.json
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8422
+[PremiumAccessMiddleware] Path=/pagina1/carregar-progresso/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /pagina1/carregar-progresso/
+"GET /pagina1/carregar-progresso/?pagina=pagina1 HTTP/1.1" 200 34
+[PremiumAccessMiddleware] Path=/index/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/
+[verificar_acesso_premium] user_id=179
+[verificar_acesso_premium] Trial datas: inicio=2025-11-14 17:04:43.379016+00:00 fim=2025-11-17 17:04:43.379016+00:00 now=2025-11-14 17:30:07.124853+00:00
+[verificar_acesso_premium] Acesso por trial ativo
+"GET /index/ HTTP/1.1" 200 66071
+[PremiumAccessMiddleware] Path=/index/url('https://fonts.googleapis.com/css2
+[PremiumAccessMiddleware] Path=/.well-known/appspecific/com.chrome.devtools.json
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/url('https://fonts.googleapis.com/css2
+Not Found: /index/url('https://fonts.googleapis.com/css2
+"GET /index/url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800 HTTP/1.1" 404 8876
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+- Broken pipe from ('127.0.0.1', 56057)
+[PremiumAccessMiddleware] Path=/index/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/
+[verificar_acesso_premium] user_id=179
+[verificar_acesso_premium] Trial datas: inicio=2025-11-14 17:04:43.379016+00:00 fim=2025-11-17 17:04:43.379016+00:00 now=2025-11-14 17:30:10.864366+00:00
+[verificar_acesso_premium] Acesso por trial ativo
+"GET /index/ HTTP/1.1" 200 66071
+[PremiumAccessMiddleware] Path=/index/page6.html
+[PremiumAccessMiddleware] Path=/pagina6/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/page6.html
+Not Found: /index/page6.html
+- Broken pipe from ('127.0.0.1', 61810)
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /pagina6/
+"GET /pagina6/ HTTP/1.1" 200 158153
+"GET /static/pag6/js/scripts.js?v=20250117002 HTTP/1.1" 200 13560
+"GET /static/pag6/css/styles.css?v=20250117002 HTTP/1.1" 200 35751
+[PremiumAccessMiddleware] Path=/pagina6/carregar-progresso/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /pagina6/carregar-progresso/
+"GET /pagina6/carregar-progresso/?pagina=pagina6 HTTP/1.1" 200 34
+[PremiumAccessMiddleware] Path=/.well-known/appspecific/com.chrome.devtools.json
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8422
+[PremiumAccessMiddleware] Path=/.well-known/appspecific/com.chrome.devtools.json
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8422
+[PremiumAccessMiddleware] Path=/pagina6/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /pagina6/
+"GET /pagina6/ HTTP/1.1" 200 158237
+[PremiumAccessMiddleware] Path=/.well-known/appspecific/com.chrome.devtools.json
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /.well-known/appspecific/com.chrome.devtools.json
+Not Found: /.well-known/appspecific/com.chrome.devtools.json
+"GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 8422
+[PremiumAccessMiddleware] Path=/pagina6/carregar-progresso/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /pagina6/carregar-progresso/
+"GET /pagina6/carregar-progresso/?pagina=pagina6 HTTP/1.1" 200 34
+[PremiumAccessMiddleware] Path=/favicon.ico
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /favicon.ico
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 8311
+[PremiumAccessMiddleware] Path=/index/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/
+[verificar_acesso_premium] user_id=179
+[verificar_acesso_premium] Trial datas: inicio=2025-11-14 17:04:43.379016+00:00 fim=2025-11-17 17:04:43.379016+00:00 now=2025-11-14 17:35:23.588153+00:00
+[verificar_acesso_premium] Acesso por trial ativo
+"GET /index/ HTTP/1.1" 200 66071
+[PremiumAccessMiddleware] Path=/quiz
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz
+"GET /quiz HTTP/1.1" 301 0
+[PremiumAccessMiddleware] Path=/quiz/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/
+[verificar_acesso_premium] user_id=179
+[verificar_acesso_premium] Trial datas: inicio=2025-11-14 17:04:43.379016+00:00 fim=2025-11-17 17:04:43.379016+00:00 now=2025-11-14 17:35:37.045030+00:00
+[verificar_acesso_premium] Acesso por trial ativo
+"GET /quiz/ HTTP/1.1" 200 50187
+[PremiumAccessMiddleware] Path=/quiz/carregar-progresso/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/carregar-progresso/
+"GET /quiz/carregar-progresso/?dificuldade=easy HTTP/1.1" 200 171
+[PremiumAccessMiddleware] Path=/quiz/salvar-progresso/
+[PremiumAccessMiddleware] Path=/quiz/salvar-progresso/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/salvar-progresso/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/salvar-progresso/
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 213
+"POST /quiz/salvar-progresso/ HTTP/1.1" 200 213
+[PremiumAccessMiddleware] Path=/index/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /index/
+[verificar_acesso_premium] user_id=179
+[verificar_acesso_premium] Trial datas: inicio=2025-11-14 17:04:43.379016+00:00 fim=2025-11-17 17:04:43.379016+00:00 now=2025-11-14 17:36:17.620395+00:00
+[verificar_acesso_premium] Acesso por trial ativo
+"GET /index/ HTTP/1.1" 200 66071
+D:\github\django\meu_projeto\payments\models.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+D:\github\django\meu_projeto\payments\models.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader

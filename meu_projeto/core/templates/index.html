@@ -803,24 +803,24 @@
                 Ver planos
             </a>
             <button id="close-trial-modal-2" class="inline-flex items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-gray-700 text-sm font-medium hover:bg-gray-50 transition">
-                Fechar
+                Ir depois
             </button>
         </div>
         <p class="mt-3 text-xs text-gray-500">
-            Observação: fechar este aviso não libera o conteúdo premium. Ao realizar o pagamento, este aviso não será mais exibido.
+            Observação: sem assinatura o conteúdo premium permanece bloqueado. Você será redirecionado para os planos automaticamente.
         </p>
     </div>
 </div>
 <script>
     (function () {
         var m = document.getElementById('trial-expired-modal');
-        function closeModal() {
-            if (m) { m.style.display = 'none'; }
-        }
+        function goPlans() { window.location.href = '{% url "payments:planos" %}'; }
         var b1 = document.getElementById('close-trial-modal');
         var b2 = document.getElementById('close-trial-modal-2');
-        if (b1) b1.addEventListener('click', closeModal);
-        if (b2) b2.addEventListener('click', closeModal);
+        if (b1) b1.addEventListener('click', goPlans);
+        if (b2) b2.addEventListener('click', goPlans);
+        // Redirecionamento automático após breve atraso
+        setTimeout(goPlans, 5000);
     })();
 </script>
 {% endif %}
@@ -966,6 +966,58 @@
         </div>
     </div>
 
+    {% if trial_ativo %}
+    <!-- Modal de Boas-vindas ao Trial (aparece 1x por login/usuário) -->
+    <div id="trial-start-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-11/12 p-6">
+            <div class="flex items-start justify-between">
+                <h3 class="text-lg font-semibold text-gray-900">Bem-vindo ao período grátis!</h3>
+                <button id="trial-start-close" class="text-gray-400 hover:text-gray-600 transition" aria-label="Fechar">✕</button>
+            </div>
+            <p class="mt-3 text-sm text-gray-700">
+                Você tem acesso gratuito por 3 dias aos conteúdos premium. Aproveite!
+            </p>
+            <div class="mt-5 flex items-center gap-3">
+                <button id="trial-start-ok" class="inline-flex items-center justify-center rounded-lg bg-emerald-600 px-4 py-2 text-white text-sm font-medium hover:bg-emerald-700 transition">
+                    Começar agora
+                </button>
+                <a href="/pagina1/" class="inline-flex items-center justify-center rounded-lg border border-gray-300 px-4 py-2 text-gray-700 text-sm font-medium hover:bg-gray-50 transition">
+                    Ver conteúdo
+                </a>
+            </div>
+            <p class="mt-3 text-xs text-gray-500">
+                Dica: você verá este aviso apenas uma vez por sessão.
+            </p>
+        </div>
+    </div>
+    <script>
+        (function () {
+            try {
+                var modal = document.getElementById('trial-start-modal');
+                var btnOk = document.getElementById('trial-start-ok');
+                var btnClose = document.getElementById('trial-start-close');
+                var userId = '{{ request.user.id|default:"0" }}';
+                var key = 'trial_welcome_shown_' + userId;
+                if (userId && !localStorage.getItem(key)) {
+                    // Mostrar modal
+                    if (modal) {
+                        modal.classList.remove('hidden');
+                        modal.classList.add('flex');
+                    }
+                }
+                function closeModal() {
+                    if (modal) {
+                        modal.classList.add('hidden');
+                        modal.classList.remove('flex');
+                    }
+                    localStorage.setItem(key, '1');
+                }
+                if (btnOk) btnOk.addEventListener('click', closeModal);
+                if (btnClose) btnClose.addEventListener('click', closeModal);
+            } catch (e) { console.log('trial-start-modal error', e); }
+        })();
+    </script>
+    {% endif %}
     <!-- Menu Toggle Button -->
     <button class="menu-toggle fixed top-6 right-6 z-50 bg-white/20 hover:bg-white/30 text-white p-3 rounded-full backdrop-blur-sm shadow-lg" id="menuToggle" style="position: fixed !important;">
         <span class="text-2xl">☰</span>
@@ -992,19 +1044,7 @@
     </div>
     {% endif %}
 
-    {% if trial_ativo %}
-    <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 mt-4">
-        <div class="bg-blue-50 border border-blue-200 text-blue-900 rounded-xl p-4 sm:p-5 flex items-center justify-between shadow-sm">
-            <div class="text-sm sm:text-base">
-                <span class="font-semibold">Período grátis ativo</span> —
-                <span>{{ trial_dias_restantes }} dia{% if trial_dias_restantes != 1 %}s{% endif %} restante{% if trial_dias_restantes != 1 %}s{% endif %}.</span>
-            </div>
-            <a href="{% url 'payments:planos' %}" class="ml-4 inline-flex items-center rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-medium px-3 py-2 transition">
-                Ver planos
-            </a>
-        </div>
-    </div>
-    {% endif %}
+    {# Trial ativo não exibe mais banner inline #}
 
     <!-- Main Content -->
     <div class="hero-section flex items-start justify-center min-h-screen pb-16 sm:pb-20 lg:pb-32">
@@ -1059,7 +1099,7 @@
                 
                 <!-- Right Side - Belts Grid -->
                 <div class="flex items-center justify-center">
-                    {% if assinatura %}
+                    {% if assinatura or trial_ativo %}
                         <!-- Belts Grid - Layout Original 3-3-1 -->
                         <div class="grid grid-cols-3 gap-3 sm:gap-4 lg:gap-6 justify-items-center">
                         <!-- Primeira linha: 3 faixas -->
@@ -1224,7 +1264,7 @@
                 
                 <!-- Faixas Grid para Mobile -->
                 <div class="flex items-center justify-center">
-                    {% if assinatura %}
+                    {% if assinatura or trial_ativo %}
                         <div class="grid grid-cols-2 gap-4 justify-items-center">
                             <!-- Primeira linha: 2 faixas -->
                             <a href="/pagina1/" class="block">

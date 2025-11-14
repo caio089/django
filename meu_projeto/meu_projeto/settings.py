@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.admin','django.contrib.auth','django.contrib.contenttypes',
     'django.contrib.sessions','django.contrib.messages','django.contrib.staticfiles',
     'core','pag1','pag2','pag3','pag4','pag5','pag6','pag7',
-    'home.apps.HomeConfig','ukemis','quiz','historia','palavras','regras','payments','dashboard',
+    'home.apps.HomeConfig','ukemis','quiz','historia','palavras','regras','payments.apps.PaymentsConfig','dashboard',
 ]
 
 MIDDLEWARE = [
@@ -278,3 +278,10 @@ LOGGING = {
         },
     },
 }
+
+# =====================================================
+# CONFIGURAÇÕES DE TRIAL (PERÍODO GRÁTIS)
+# =====================================================
+# Permite encurtar o trial para testes locais (ex.: 30 segundos)
+TRIAL_DAYS = int(os.getenv('TRIAL_DAYS', '3'))
+TRIAL_SECONDS_OVERRIDE = int(os.getenv('TRIAL_SECONDS_OVERRIDE', '0'))  # 0 = desligado

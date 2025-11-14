@@ -17,6 +17,7 @@ import uuid
 from datetime import datetime, timedelta
 from django.utils import timezone
 import logging
+from home.trial import trial_delta
 
 # Configurar logging para debug
 logger = logging.getLogger(__name__)
@@ -1330,7 +1331,7 @@ def verificar_acesso_premium(user):
             if not getattr(profile, "trial_inicio", None):
                 now = timezone.now()
                 profile.trial_inicio = now
-                profile.trial_fim = now + timedelta(days=3)
+                profile.trial_fim = now + trial_delta()
                 profile.save(update_fields=["trial_inicio", "trial_fim"])
                 logger.info(f"[verificar_acesso_premium] Trial iniciado (views). inicio={profile.trial_inicio} fim={profile.trial_fim}")
                 print(f"[verificar_acesso_premium] Trial iniciado (views). inicio={profile.trial_inicio} fim={profile.trial_fim}")
@@ -1338,7 +1339,7 @@ def verificar_acesso_premium(user):
             if (profile.trial_fim and timezone.now() < profile.trial_fim) or (
                 getattr(profile, "is_trial_ativo", None) and profile.is_trial_ativo()
             ) or (
-                profile.trial_inicio and timezone.now() < (profile.trial_inicio + timedelta(days=3))
+                profile.trial_inicio and timezone.now() < (profile.trial_inicio + trial_delta())
             ):
                 logger.info("[verificar_acesso_premium] Acesso por trial ativo")
                 print("[verificar_acesso_premium] Acesso por trial ativo")
@@ -1354,7 +1355,7 @@ def verificar_acesso_premium(user):
                 )
                 now = timezone.now()
                 profile.trial_inicio = now
-                profile.trial_fim = now + timedelta(days=3)
+                profile.trial_fim = now + trial_delta()
                 profile.save(update_fields=["trial_inicio", "trial_fim"])
                 logger.info("[verificar_acesso_premium] Profile criado + trial iniciado (views)")
                 print("[verificar_acesso_premium] Profile criado + trial iniciado (views)")

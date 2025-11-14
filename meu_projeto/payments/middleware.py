@@ -8,6 +8,7 @@ from .views import verificar_acesso_premium
 from django.utils import timezone
 from datetime import timedelta
 from home.models import Profile
+from home.trial import trial_delta
 import logging
 
 logger = logging.getLogger(__name__)
@@ -73,13 +74,13 @@ class PremiumAccessMiddleware:
             if not getattr(profile, "trial_inicio", None):
                 now = timezone.now()
                 profile.trial_inicio = now
-                profile.trial_fim = now + timedelta(days=3)
+                profile.trial_fim = now + trial_delta()
                 profile.save(update_fields=["trial_inicio", "trial_fim"])
                 logger.info(f"[PremiumAccessMiddleware] Trial iniciado (global). inicio={profile.trial_inicio} fim={profile.trial_fim}")
                 print(f"[PremiumAccessMiddleware] Trial iniciado (global). inicio={profile.trial_inicio} fim={profile.trial_fim}")
             # Se trial ativo, seguir direto (libera conteúdo em qualquer rota)
             if (profile.trial_fim and timezone.now() < profile.trial_fim) or (
-                profile.trial_inicio and timezone.now() < (profile.trial_inicio + timedelta(days=3))
+                profile.trial_inicio and timezone.now() < (profile.trial_inicio + trial_delta())
             ):
                 logger.info(f"[PremiumAccessMiddleware] Trial ativo (global). Liberando: {request.path}")
                 print(f"[PremiumAccessMiddleware] Trial ativo (global). Liberando: {request.path}")
@@ -116,14 +117,14 @@ class PremiumAccessMiddleware:
             if not getattr(profile, "trial_inicio", None):
                 now = timezone.now()
                 profile.trial_inicio = now
-                profile.trial_fim = now + timedelta(days=3)
+                profile.trial_fim = now + trial_delta()
                 profile.save(update_fields=["trial_inicio", "trial_fim"])
                 logger.info(f"[PremiumAccessMiddleware] Trial iniciado (premium page). inicio={profile.trial_inicio} fim={profile.trial_fim}")
                 print(f"[PremiumAccessMiddleware] Trial iniciado (premium page). inicio={profile.trial_inicio} fim={profile.trial_fim}")
             
             # Se o trial estiver ativo, liberar imediatamente (fallback por início + 3 dias)
             if (profile.trial_fim and timezone.now() < profile.trial_fim) or (
-                profile.trial_inicio and timezone.now() < (profile.trial_inicio + timedelta(days=3))
+                profile.trial_inicio and timezone.now() < (profile.trial_inicio + trial_delta())
             ):
                 request.assinatura = None
                 response = self.get_response(request)

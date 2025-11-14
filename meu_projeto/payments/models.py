@@ -8,6 +8,17 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+# Criptografia segura (fallback para no-op se indisponível)
+try:
+	from .encryption import encryption_manager
+except Exception:  # pragma: no cover
+	class _NoopEnc:
+		def encrypt(self, data):
+			return data
+		def decrypt(self, data):
+			return data
+	encryption_manager = _NoopEnc()
+
 class PlanoPremium(models.Model):
     """
     Modelo para definir os planos premium disponíveis
@@ -347,30 +358,40 @@ class Reembolso(models.Model):
     _refund_data = models.TextField(blank=True, null=True, verbose_name="Dados do reembolso")
     
     def set_refund_id(self, refund_id):
-        """Criptografa e armazena o ID do reembolso"""
+        """Armazena (criptografado se disponível) o ID do reembolso"""
         if refund_id:
-            self._refund_id = payment_encryption.encrypt(refund_id)
+            try:
+                self._refund_id = encryption_manager.encrypt(str(refund_id))
+            except Exception as e:  # fallback
+                logger.error(f"Erro ao criptografar refund_id: {e}")
+                self._refund_id = str(refund_id)
     
     def get_refund_id(self):
         """Descriptografa e retorna o ID do reembolso"""
         if self._refund_id:
             try:
-                return payment_encryption.decrypt(self._refund_id)
+                return encryption_manager.decrypt(self._refund_id)
             except Exception as e:
                 logger.error(f"Erro ao descriptografar refund_id: {e}")
                 return None
         return None
     
     def set_refund_data(self, data):
-        """Criptografa e armazena os dados do reembolso"""
-        if data:
-            self._refund_data = payment_encryption.encrypt(json.dumps(data))
+        """Armazena (criptografado se disponível) os dados do reembolso"""
+        if data is not None:
+            payload = data if isinstance(data, str) else json.dumps(data)
+            try:
+                self._refund_data = encryption_manager.encrypt(payload)
+            except Exception as e:  # fallback
+                logger.error(f"Erro ao criptografar refund_data: {e}")
+                self._refund_data = payload
     
     def get_refund_data(self):
         """Descriptografa e retorna os dados do reembolso"""
         if self._refund_data:
             try:
-                return json.loads(payment_encryption.decrypt(self._refund_data))
+                decrypted = encryption_manager.decrypt(self._refund_data)
+                return json.loads(decrypted) if decrypted else None
             except Exception as e:
                 logger.error(f"Erro ao descriptografar refund_data: {e}")
                 return None
