@@ -2231,10 +2231,8 @@ function loadProgress() {
 
 // Função auxiliar para carregar do localStorage
 function loadProgressFromLocalStorage() {
-    // Tentar chave namespaced
+    // Carregar somente a chave namespaced (evita herdar progresso de outro usuário)
     let savedProgress = localStorage.getItem(STORAGE_KEY);
-    // Fallback: chave antiga global (será removida após salvar)
-    if (!savedProgress) savedProgress = localStorage.getItem('judoProgress');
     if (savedProgress) {
         const progressData = JSON.parse(savedProgress);
         const checkboxes = document.querySelectorAll('.proj-checkbox, .imob-checkbox');
