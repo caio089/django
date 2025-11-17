@@ -773,6 +773,62 @@
     <!-- Sidebar Overlay -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     
+    {% if trial_ativo %}
+    <!-- Lembrete conciso do trial (desktop e mobile) -->
+    <div class="fixed top-3 left-1/2 -translate-x-1/2 z-40 w-[92%] max-w-md">
+        <div class="relative mx-auto w-fit rounded-2xl border border-white/15 bg-white/10 backdrop-blur-md shadow-lg">
+            <div class="flex items-center gap-2 pl-3 pr-3 sm:pl-4 sm:pr-4 py-1.5">
+                <svg width="16" height="16" viewBox="0 0 24 24" class="text-white/90">
+                    <path fill="currentColor" d="M12 1a1 1 0 0 1 1 1v1.06a9 9 0 1 1-2 0V2a1 1 0 0 1 1-1m0 4a7 7 0 1 0 7 7a7 7 0 0 0-7-7m.75 3a.75.75 0 0 1 .75.75v3.69l2.22 2.22a.75.75 0 1 1-1.06 1.06l-2.4-2.4a1.5 1.5 0 0 1-.44-1.06V8.75A.75.75 0 0 1 12.75 8" />
+                </svg>
+                <span class="text-[11px] sm:text-xs uppercase tracking-wider text-white/80">Trial</span>
+                <span class="font-mono tabular-nums text-xs sm:text-sm text-white" id="trialCountdown">--:--:--</span>
+            </div>
+            <div class="h-1 overflow-hidden rounded-b-2xl">
+                <div id="trialProgress" class="h-full w-0 bg-gradient-to-r from-emerald-400 via-blue-400 to-indigo-400 transition-all duration-500"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function () {
+            try {
+                var endIso = '{{ trial_fim_iso|default:"" }}';
+                var startIso = '{{ trial_inicio_iso|default:"" }}';
+                var el = document.getElementById('trialCountdown');
+                var bar = document.getElementById('trialProgress');
+                var wrapper = el ? el.parentElement.parentElement : null;
+                if (!endIso || !el) return;
+                var end = new Date(endIso);
+                var start = startIso ? new Date(startIso) : null;
+                var totalMs = (start && end) ? (end - start) : (3 * 24 * 60 * 60 * 1000); // fallback 3 dias
+                function pad(n){ return (n<10?'0':'') + n; }
+                function tick() {
+                    var now = new Date();
+                    var ms = end - now;
+                    if (ms <= 0) {
+                        if (wrapper) wrapper.style.display = 'none';
+                        return;
+                    }
+                    var totalSeconds = Math.floor(ms / 1000);
+                    var days = Math.floor(totalSeconds / 86400);
+                    var hours = Math.floor((totalSeconds % 86400) / 3600);
+                    var minutes = Math.floor((totalSeconds % 3600) / 60);
+                    var seconds = totalSeconds % 60;
+                    var text = (days > 0 ? (days + 'd ') : '') + pad(hours) + ':' + pad(minutes) + ':' + pad(seconds);
+                    el.textContent = text;
+                    if (bar) {
+                        var used = (start ? (now - start) : (3 * 24 * 60 * 60 * 1000 - ms));
+                        var pct = Math.max(0, Math.min(100, Math.round((used / totalMs) * 100)));
+                        bar.style.width = pct + '%';
+                    }
+                }
+                tick();
+                setInterval(tick, 1000);
+            } catch (e) { /* noop */ }
+        })();
+    </script>
+    {% endif %}
+    
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar" role="navigation" aria-label="Menu principal">
         <div class="flex flex-col h-full">

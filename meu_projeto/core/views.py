@@ -63,10 +63,14 @@ def index(request):
                 trial_dias_restantes = profile.dias_trial_restantes()
                 trial_ativo = bool(profile.trial_inicio) and profile.is_trial_ativo() and not assinatura
                 trial_expirado = bool(profile.trial_inicio) and not profile.is_trial_ativo() and not assinatura
+                trial_fim_iso = profile.trial_fim.isoformat() if profile.trial_fim else None
+                trial_inicio_iso = profile.trial_inicio.isoformat() if profile.trial_inicio else None
             except Exception as e:
                 trial_expirado = False
                 trial_dias_restantes = 0
                 trial_ativo = False
+                trial_fim_iso = None
+                trial_inicio_iso = None
             
             # Verificar se tem assinatura cancelada recentemente
             if not assinatura:
@@ -108,7 +112,9 @@ def index(request):
         'new_subscription': new_subscription,
         'trial_expirado': trial_expirado,
         'trial_dias_restantes': trial_dias_restantes,
-        'trial_ativo': trial_ativo
+        'trial_ativo': trial_ativo,
+        'trial_fim_iso': trial_fim_iso,
+        'trial_inicio_iso': trial_inicio_iso
     })
 
 def logout_view(request):

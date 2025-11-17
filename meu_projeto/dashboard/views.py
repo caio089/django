@@ -12,6 +12,8 @@ from payments.models import Pagamento, Assinatura, PlanoPremium
 from django.contrib.auth.models import User
 from django.contrib import messages
 from home.models import Profile
+from django.core.mail import EmailMessage
+from django.conf import settings
 import json
 
 
@@ -1095,14 +1097,106 @@ def dados_usuario(request, user_id):
             'total_pagamentos': total_pagamentos,
             'valor_total_pago': f"{valor_total_pago:.2f}"
         })
-        
-    except User.DoesNotExist:
-        return JsonResponse({
-            'success': False,
-            'message': 'Usuário não encontrado'
-        })
     except Exception as e:
         return JsonResponse({
             'success': False,
-            'message': f'Erro ao buscar dados do usuário: {str(e)}'
-        })
+            'message': f'Erro ao obter dados do usuário: {str(e)}'
+        }, status=500)
+
+
+@login_required(login_url='/dashboard/login/')
+def email_marketing(request):
+    """
+    Envio de email (remarketing) para usuários selecionados ou para todos.
+    """
+    if not request.user.is_superuser:
+        messages.error(request, 'Você não tem permissão para acessar esta área.')
+        return redirect('dashboard_admin')
+    
+    # Apenas usuários no plano grátis (sem assinatura ativa)
+    users = User.objects.filter(is_active=True)\
+        .exclude(assinaturas__status='ativa', assinaturas__ativo=True)\
+        .distinct()\
+        .order_by('-date_joined')
+    
+    # Mensagem padrão (formal e direta) e assunto padrão
+    default_subject = 'Convite para ativar seu acesso Premium no Dojo Online'
+    default_body = (
+        'Olá!\n\n'
+        'Aqui é do Dojo Online. Vimos que você está aproveitando seu acesso gratuito e gostaríamos de '
+        'te convidar para ativar o plano Premium e liberar todos os conteúdos.\n\n'
+        'Ao assinar, você terá acesso a:\n'
+        '- Aulas e técnicas organizadas por faixa\n'
+        '- Vídeos, dicas práticas e imobilizações\n'
+        '- Quiz interativo e acompanhamento do seu progresso\n'
+        '- Atualizações frequentes e suporte\n\n'
+        'Para entrar e concluir sua assinatura agora, acesse:\n'
+        'Login: https://www.dojoon.com.br/login/\n'
+        'Planos: https://www.dojoon.com.br/payments/planos/\n\n'
+        'Qualquer dúvida, é só responder este email.\n\n'
+        'Bons treinos!\n'
+        'Equipe Dojo Online'
+    )
+    
+    if request.method == 'POST':
+        subject = request.POST.get('subject', '').strip()
+        body = request.POST.get('body', '').strip()
+        send_to = request.POST.get('send_to', 'selected')
+        selected_ids = request.POST.getlist('user_ids')
+        
+        if not subject or not body:
+            messages.error(request, 'Informe assunto e mensagem.')
+            return render(request, 'dashboard/email_marketing.html', {
+                'users': users,
+                'default_subject': default_subject,
+                'default_body': default_body,
+            })
+        
+        if send_to == 'all':
+            recipients_qs = users
+        else:
+            recipients_qs = users.filter(id__in=selected_ids)
+        
+        emails = list(recipients_qs.exclude(email__isnull=True).exclude(email='').values_list('email', flat=True))
+        emails = [e.strip().lower() for e in emails if '@' in e]
+        emails = sorted(list(set(emails)))
+        
+        if not emails:
+            messages.error(request, 'Nenhum destinatário válido.')
+            return render(request, 'dashboard/email_marketing.html', {
+                'users': users,
+                'default_subject': default_subject,
+                'default_body': default_body,
+            })
+        
+        from_email = getattr(settings, 'DEFAULT_FROM_EMAIL', None) or getattr(settings, 'EMAIL_HOST_USER', None)
+        if not from_email:
+            messages.error(request, 'DEFAULT_FROM_EMAIL não configurado.')
+            return render(request, 'dashboard/email_marketing.html', {
+                'users': users,
+                'default_subject': default_subject,
+                'default_body': default_body,
+            })
+        
+        sent = 0
+        batch_size = 100
+        for i in range(0, len(emails), batch_size):
+            batch = emails[i:i+batch_size]
+            msg = EmailMessage(
+                subject=subject,
+                body=body,
+                from_email=from_email,
+                to=[from_email],
+                bcc=batch
+            )
+            msg.send(fail_silently=False)
+            sent += len(batch)
+        
+        messages.success(request, f'Email enviado para {sent} destinatário(s).')
+        return redirect('email_marketing')
+    
+    return render(request, 'dashboard/email_marketing.html', {
+        'users': users,
+        'default_subject': default_subject,
+        'default_body': default_body,
+    })
