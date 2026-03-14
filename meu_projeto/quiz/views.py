@@ -10,16 +10,20 @@ from payments.views import verificar_acesso_premium
 from .models import ProgressoQuiz, QuizRanking, ProgressoUsuario
 import json
 
-# Categorias do ranking por nível (apenas 6 níveis)
+# Categorias do ranking por nível (10 níveis)
 CATEGORIAS_NIVEL = {
     1: 'Kohai',
     2: 'Aprendiz',
     3: 'Ninja',
     4: 'Samurai',
     5: 'Monge',
-    6: 'Sensei',
+    6: 'Mestre',
+    7: 'Yudansha',
+    8: 'Renshi',
+    9: 'Kyoshi',
+    10: 'Sensei',
 }
-MAX_NIVEL_QUIZ = 6
+MAX_NIVEL_QUIZ = 10
 
 # Create your views here.
 def quiz(request):

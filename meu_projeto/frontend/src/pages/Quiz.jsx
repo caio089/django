@@ -9,41 +9,128 @@ import { getQuizRanking, submitQuizResult, apiMe } from '../api';
 const STORAGE_NICKNAME = 'quiz_ranking_nickname';
 const STORAGE_CIDADE = 'quiz_ranking_cidade';
 const STORAGE_DOJO = 'quiz_ranking_dojo';
+const STORAGE_NIVEL = 'quiz_ranking_nivel';
 
 const ACCENT = 'rgb(59, 130, 246)';
 const CORRECT_COLOR = 'rgb(34, 197, 94)';
 const WRONG_COLOR = 'rgb(239, 68, 68)';
 
-const RANKING_MODE = { id: 'ranking', label: 'Quiz Ranking', desc: 'Níveis 1–3: 7 perguntas · Níveis 4–6: 10 perguntas — suba até Sensei', emoji: '🏆', color: 'rgb(234, 179, 8)', glow: 'rgba(234,179,8,0.4)' };
+const RANKING_MODE = { id: 'ranking', label: 'Quiz Ranking', desc: '8 perguntas por nível · 10 níveis — suba até Sensei', emoji: '🏆', color: 'rgb(234, 179, 8)', glow: 'rgba(234,179,8,0.4)' };
 
 const LETTERS = ['A', 'B', 'C', 'D'];
 
-function ConfettiBurst({ active }) {
+function ConfettiBurst({ active, intense }) {
   if (!active) return null;
-  const particles = Array.from({ length: 24 }, (_, i) => ({
+  const count = intense ? 48 : 24;
+  const colors = intense ? ['#22c55e', '#34d399', '#86efac', '#4ade80', '#fbbf24', '#f59e0b', '#ffffff'] : ['#22c55e', '#34d399', '#86efac', '#4ade80'];
+  const dist = intense ? 180 : 120;
+  const particles = Array.from({ length: count }, (_, i) => ({
     id: i,
-    angle: (i / 24) * 360,
-    color: ['#22c55e', '#34d399', '#86efac', '#4ade80'][i % 4],
-    delay: Math.random() * 0.1,
+    angle: (i / count) * 360,
+    color: colors[i % colors.length],
+    delay: Math.random() * 0.15,
+    size: intense ? (8 + Math.random() * 8) : 8,
   }));
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl">
       {particles.map((p) => (
         <motion.div
           key={p.id}
-          className="absolute left-1/2 top-1/2 w-2 h-2 rounded-full"
-          style={{ backgroundColor: p.color }}
-          initial={{ x: 0, y: 0, opacity: 1, scale: 1 }}
+          className="absolute left-1/2 top-1/2 rounded-full"
+          style={{ width: p.size, height: p.size, backgroundColor: p.color, transform: 'translate(-50%, -50%)' }}
+          initial={{ x: 0, y: 0, opacity: 1, scale: 1, rotate: 0 }}
           animate={{
-            x: Math.cos((p.angle * Math.PI) / 180) * 120,
-            y: Math.sin((p.angle * Math.PI) / 180) * 120,
+            x: Math.cos((p.angle * Math.PI) / 180) * dist,
+            y: Math.sin((p.angle * Math.PI) / 180) * dist,
             opacity: 0,
             scale: 0,
+            rotate: 360,
           }}
-          transition={{ duration: 0.6, delay: p.delay, ease: 'easeOut' }}
+          transition={{ duration: intense ? 0.9 : 0.6, delay: p.delay, ease: 'easeOut' }}
         />
       ))}
     </div>
+  );
+}
+
+function ModalUltimaPergunta({ onClose }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0, y: 20 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+        onClick={(e) => e.stopPropagation()}
+        className="max-w-md w-full rounded-3xl border-2 border-amber-500/50 bg-gradient-to-br from-amber-500/20 to-amber-900/30 p-8 text-center shadow-2xl"
+        style={{ boxShadow: '0 0 60px -10px rgba(245,158,11,0.4)' }}
+      >
+        <motion.span
+          className="font-jp text-4xl font-bold text-amber-400 block mb-4"
+          animate={{ scale: [1, 1.05, 1], opacity: [0.9, 1, 0.9] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          最後
+        </motion.span>
+        <h3 className="text-2xl font-bold text-white mb-2">Esta é a última pergunta!</h3>
+        <p className="text-slate-300 mb-6">Concentre-se. Respire. Você está preparado. Dê o seu melhor!</p>
+        <motion.button
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.98 }}
+          onClick={onClose}
+          className="py-4 px-8 rounded-2xl font-bold text-white bg-amber-500 hover:bg-amber-600 transition-colors"
+        >
+          Estou pronto!
+        </motion.button>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+function JudokaCelebration() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+      className="relative w-48 h-48 mx-auto mb-6"
+    >
+      <motion.svg
+        viewBox="0 0 120 180"
+        className="w-full h-full"
+        animate={{
+          y: [0, -8, 0],
+          rotate: [0, 2, -2, 0],
+        }}
+        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+      >
+        {/* Judoka em pose de vitória — torso e gi */}
+        <rect x="45" y="60" width="30" height="50" rx="4" fill="currentColor" className="text-amber-900/90" />
+        <rect x="42" y="55" width="36" height="25" rx="3" fill="currentColor" className="text-amber-800/90" />
+        {/* Cabeça */}
+        <circle cx="60" cy="40" r="18" fill="currentColor" className="text-amber-200/95" />
+        <circle cx="60" cy="38" r="14" fill="currentColor" className="text-amber-100" />
+        {/* Braços levantados */}
+        <path d="M 35 50 Q 20 20 25 5" stroke="currentColor" strokeWidth="6" fill="none" strokeLinecap="round" className="text-amber-800/90" />
+        <path d="M 85 50 Q 100 20 95 5" stroke="currentColor" strokeWidth="6" fill="none" strokeLinecap="round" className="text-amber-800/90" />
+        {/* Pernas */}
+        <rect x="48" y="108" width="14" height="55" rx="3" fill="currentColor" className="text-amber-900/90" />
+        <rect x="58" y="108" width="14" height="55" rx="3" fill="currentColor" className="text-amber-900/90" />
+        {/* Faixa */}
+        <rect x="42" y="75" width="36" height="8" rx="2" fill="#f59e0b" />
+      </motion.svg>
+      <motion.div
+        className="absolute -inset-4 rounded-full border-4 border-amber-400/40"
+        animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
+        transition={{ duration: 1.5, repeat: Infinity }}
+      />
+    </motion.div>
   );
 }
 
@@ -71,6 +158,11 @@ export default function Quiz() {
   const [submitting, setSubmitting] = useState(false);
   const [lastSubmitResult, setLastSubmitResult] = useState(null);
   const [mounted, setMounted] = useState(false);
+  const [maxStreak, setMaxStreak] = useState(0);
+  const [streakAtual, setStreakAtual] = useState(0);
+  const [showLastQuestionModal, setShowLastQuestionModal] = useState(false);
+  const [isTreinoNivelAnterior, setIsTreinoNivelAnterior] = useState(false);
+  const [nivelSalvo, setNivelSalvo] = useState(1);
 
   useEffect(() => {
     setMounted(true);
@@ -78,16 +170,36 @@ export default function Quiz() {
 
   useEffect(() => {
     if (!mounted || typeof window === 'undefined') return;
-    setNickname(localStorage.getItem(STORAGE_NICKNAME) || '');
-    setDojo(localStorage.getItem(STORAGE_DOJO) || '');
-    setCidade(localStorage.getItem(STORAGE_CIDADE) || '');
+    try {
+      setNickname(localStorage.getItem(STORAGE_NICKNAME) || '');
+      setDojo(localStorage.getItem(STORAGE_DOJO) || '');
+      setCidade(localStorage.getItem(STORAGE_CIDADE) || '');
+      const n = parseInt(localStorage.getItem(STORAGE_NIVEL) || '1', 10);
+      setNivelSalvo(Math.max(1, Math.min(MAX_NIVEL, n)) || 1);
+    } catch {
+      // localStorage pode estar bloqueado (ex.: modo privado)
+    }
   }, [mounted]);
 
   const loadRanking = useCallback(async () => {
     setLoadingRanking(true);
     try {
       const { ranking: r } = await getQuizRanking();
-      setRanking(r || []);
+      const arr = Array.isArray(r) ? r : [];
+      setRanking(arr);
+      try {
+        const nick = localStorage.getItem(STORAGE_NICKNAME) || '';
+        if (nick) {
+          const entry = arr.find((e) => (e?.nome || '').trim().toLowerCase() === nick.trim().toLowerCase());
+          if (entry?.nivel_quiz) {
+            const n = Math.max(1, Math.min(MAX_NIVEL, Number(entry.nivel_quiz) || 1));
+            setNivelSalvo(n);
+            localStorage.setItem(STORAGE_NIVEL, String(n));
+          }
+        }
+      } catch {
+        // ignorar erro ao sincronizar nivel
+      }
     } catch {
       setRanking([]);
     } finally {
@@ -100,79 +212,106 @@ export default function Quiz() {
   }, [phase, loadRanking]);
 
   useEffect(() => {
+    const len = questions.length;
+    if (phase === 'quiz' && len > 0 && current === len - 1) {
+      setShowLastQuestionModal(true);
+    }
+  }, [phase, questions.length, current]);
+
+  useEffect(() => {
     if (phase === 'nickname') {
-      if (typeof window !== 'undefined' && localStorage.getItem(STORAGE_NICKNAME)) {
-        setNickname(localStorage.getItem(STORAGE_NICKNAME) || '');
-        setDojo(localStorage.getItem(STORAGE_DOJO) || '');
-        setCidade(localStorage.getItem(STORAGE_CIDADE) || '');
-      } else {
-        apiMe().then((r) => {
-          if (r?.user?.nome) setNickname(r.user.nome);
-        }).catch(() => {});
+      try {
+        if (typeof window !== 'undefined' && localStorage.getItem(STORAGE_NICKNAME)) {
+          setNickname(localStorage.getItem(STORAGE_NICKNAME) || '');
+          setDojo(localStorage.getItem(STORAGE_DOJO) || '');
+          setCidade(localStorage.getItem(STORAGE_CIDADE) || '');
+        } else {
+          apiMe().then((r) => {
+            if (r?.user?.nome) setNickname(r.user.nome);
+          }).catch(() => {});
+        }
+      } catch {
+        // localStorage bloqueado
       }
     }
   }, [phase]);
 
   const hasDadosRanking = useCallback(() => {
-    if (typeof window === 'undefined') return false;
-    return !!localStorage.getItem(STORAGE_NICKNAME);
-  }, []);
-
-  const startQuiz = useCallback(() => {
-    setDifficulty('ranking');
-    if (hasDadosRanking()) {
-      setNickname(localStorage.getItem(STORAGE_NICKNAME) || '');
-      setDojo(localStorage.getItem(STORAGE_DOJO) || '');
-      setCidade(localStorage.getItem(STORAGE_CIDADE) || '');
-      startRankingQuizFromStorage();
-    } else {
-      setPhase('nickname');
+    try {
+      if (typeof window === 'undefined') return false;
+      return !!localStorage.getItem(STORAGE_NICKNAME);
+    } catch {
+      return false;
     }
-  }, [hasDadosRanking, startRankingQuizFromStorage]);
+  }, []);
 
   const startRankingQuizFromStorage = useCallback(async () => {
     const nome = (typeof window !== 'undefined' ? localStorage.getItem(STORAGE_NICKNAME) : null) || (nickname || '').trim() || 'Anônimo';
     const d = (typeof window !== 'undefined' ? localStorage.getItem(STORAGE_DOJO) : null) || (dojo || '').trim();
     const cid = (typeof window !== 'undefined' ? localStorage.getItem(STORAGE_CIDADE) : null) || (cidade || '').trim();
     try {
-      await submitQuizResult({ nickname: nome, dojo: d, cidade: cid, nivel_quiz: 1, xp_ganho: 0, passou_nivel: false, acertos: 0 });
+      const nivelInicial = Math.max(1, Math.min(MAX_NIVEL, nivelSalvo));
+      await submitQuizResult({ nickname: nome, dojo: d, cidade: cid, nivel_quiz: nivelInicial, xp_ganho: 0, passou_nivel: false, acertos: 0 });
     } catch {}
     setIsRankingMode(true);
-    setNivelAtual(1);
+    setIsTreinoNivelAnterior(false);
+    const nivelInicial = Math.max(1, Math.min(MAX_NIVEL, nivelSalvo));
+    setNivelAtual(nivelInicial);
     setXpNivel(0);
+    setMaxStreak(0);
+    setStreakAtual(0);
     setDifficulty('ranking');
-    setQuestions(getQuestionsForLevel(1));
+    setQuestions(getQuestionsForLevel(nivelInicial));
     setCurrent(0);
     setScore(0);
     setSelected(null);
     setAnswered(false);
     setLastSubmitResult(null);
+    setShowLastQuestionModal(false);
     setPhase('quiz');
-  }, [nickname, dojo, cidade]);
+  }, [nickname, dojo, cidade, nivelSalvo]);
+
+  const startQuiz = useCallback(() => {
+    setDifficulty('ranking');
+    if (hasDadosRanking()) {
+      try {
+        setNickname(localStorage.getItem(STORAGE_NICKNAME) || '');
+        setDojo(localStorage.getItem(STORAGE_DOJO) || '');
+        setCidade(localStorage.getItem(STORAGE_CIDADE) || '');
+      } catch {}
+      startRankingQuizFromStorage();
+    } else {
+      setPhase('nickname');
+    }
+  }, [hasDadosRanking, startRankingQuizFromStorage]);
 
   const startRankingQuiz = useCallback(() => {
     const nome = (nickname || '').trim() || 'Anônimo';
     const d = (dojo || '').trim();
     const cid = (cidade || '').trim();
+    const nivelInicial = Math.max(1, Math.min(MAX_NIVEL, nivelSalvo));
     if (typeof window !== 'undefined') {
       localStorage.setItem(STORAGE_NICKNAME, nome);
       localStorage.setItem(STORAGE_DOJO, d);
       localStorage.setItem(STORAGE_CIDADE, cid);
     }
-    submitQuizResult({ nickname: nome, dojo: d, cidade: cid, nivel_quiz: 1, xp_ganho: 0, passou_nivel: false, acertos: 0 })
+    submitQuizResult({ nickname: nome, dojo: d, cidade: cid, nivel_quiz: nivelInicial, xp_ganho: 0, passou_nivel: false, acertos: 0 })
       .catch(() => {});
     setIsRankingMode(true);
-    setNivelAtual(1);
+    setIsTreinoNivelAnterior(false);
+    setNivelAtual(nivelInicial);
     setXpNivel(0);
+    setMaxStreak(0);
+    setStreakAtual(0);
     setDifficulty('ranking');
-    setQuestions(getQuestionsForLevel(1));
+    setQuestions(getQuestionsForLevel(nivelInicial));
     setCurrent(0);
     setScore(0);
     setSelected(null);
     setAnswered(false);
     setLastSubmitResult(null);
     setPhase('quiz');
-  }, [nickname, dojo, cidade]);
+  }, [nickname, dojo, cidade, nivelSalvo]);
 
   const submitAndGoResult = useCallback(async (passou) => {
     const nome = (nickname || '').trim() || 'Anônimo';
@@ -190,6 +329,12 @@ export default function Quiz() {
         acertos: score,
       });
       setLastSubmitResult(res);
+      if (typeof window !== 'undefined' && res?.nivel_quiz) {
+        try {
+          localStorage.setItem(STORAGE_NIVEL, String(Math.max(1, Math.min(MAX_NIVEL, res.nivel_quiz))));
+        } catch {}
+      }
+      setNivelSalvo((prev) => (res?.nivel_quiz ? Math.max(1, Math.min(MAX_NIVEL, res.nivel_quiz)) : prev));
       await loadRanking();
       if (passou && nivelAtual < MAX_NIVEL) {
         setPhase('levelUp');
@@ -210,23 +355,32 @@ export default function Quiz() {
     const q = questions[current];
     if (idx === q.correct) {
       setScore((s) => s + 1);
-      if (isRankingMode) setXpNivel((x) => x + XP_POR_ACERTO);
+      const nextStreak = streakAtual + 1;
+      setStreakAtual(nextStreak);
+      setMaxStreak((m) => Math.max(m, nextStreak));
+      if (isRankingMode && !isTreinoNivelAnterior) setXpNivel((x) => x + XP_POR_ACERTO);
       setShowConfetti(true);
-      setTimeout(() => setShowConfetti(false), 700);
-    } else if (isRankingMode) {
-      submitAndGoResult(false);
+      setTimeout(() => setShowConfetti(false), 1200);
+    } else {
+      setStreakAtual(0);
+      if (isRankingMode && !isTreinoNivelAnterior) submitAndGoResult(false);
+      // em treino: continua mostrando explicação, depois vai pra result sem subir ranking
     }
-  }, [answered, questions, current, isRankingMode, submitAndGoResult]);
+  }, [answered, questions, current, streakAtual, isRankingMode, isTreinoNivelAnterior, submitAndGoResult]);
 
   const nextQuestion = useCallback(() => {
     const totalNivel = questions.length;
     if (isRankingMode && totalNivel > 0) {
       const completedLevel = current + 1 >= totalNivel;
-      if (completedLevel && score === totalNivel) {
-        submitAndGoResult(true);
-        return;
-      }
       if (completedLevel) {
+        if (isTreinoNivelAnterior) {
+          setPhase('result');
+          return;
+        }
+        if (score === totalNivel) {
+          submitAndGoResult(true);
+          return;
+        }
         submitAndGoResult(false);
         return;
       }
@@ -238,17 +392,40 @@ export default function Quiz() {
       setSelected(null);
       setAnswered(false);
     }
-  }, [current, questions.length, score, isRankingMode, submitAndGoResult]);
+  }, [current, questions.length, score, isRankingMode, isTreinoNivelAnterior, submitAndGoResult]);
 
   const goNextLevel = useCallback(() => {
     const next = Math.min(MAX_NIVEL, nivelAtual + 1);
     setNivelAtual(next);
+    setNivelSalvo(next);
+    try {
+      if (typeof window !== 'undefined') localStorage.setItem(STORAGE_NIVEL, String(next));
+    } catch {}
     setQuestions(getQuestionsForLevel(next));
     setCurrent(0);
     setScore(0);
     setXpNivel(0);
+    setStreakAtual(0);
+    setShowLastQuestionModal(false);
     setSelected(null);
     setAnswered(false);
+    setPhase('quiz');
+  }, [nivelAtual]);
+
+  const startTreinoNivelAnterior = useCallback(() => {
+    if (nivelAtual <= 1) return;
+    const nivelAnterior = nivelAtual - 1;
+    setIsTreinoNivelAnterior(true);
+    setNivelAtual(nivelAnterior);
+    setQuestions(getQuestionsForLevel(nivelAnterior));
+    setCurrent(0);
+    setScore(0);
+    setXpNivel(0);
+    setMaxStreak(0);
+    setStreakAtual(0);
+    setSelected(null);
+    setAnswered(false);
+    setShowLastQuestionModal(false);
     setPhase('quiz');
   }, [nivelAtual]);
 
@@ -257,7 +434,9 @@ export default function Quiz() {
     setDifficulty(null);
     setQuestions([]);
     setIsRankingMode(false);
+    setIsTreinoNivelAnterior(false);
     setLastSubmitResult(null);
+    setShowLastQuestionModal(false);
   }, []);
 
   const q = questions[current];
@@ -294,6 +473,11 @@ export default function Quiz() {
       </header>
 
       <main className="relative z-10 pt-20 pb-16 px-4 min-h-screen flex flex-col items-center justify-center">
+        <AnimatePresence>
+          {phase === 'quiz' && total > 0 && current === total - 1 && showLastQuestionModal && (
+            <ModalUltimaPergunta key="modal-ultima" onClose={() => setShowLastQuestionModal(false)} />
+          )}
+        </AnimatePresence>
         <div className="w-full max-w-4xl text-white">
 
           {/* ——— SELECÇÃO ——— */}
@@ -324,13 +508,26 @@ export default function Quiz() {
                   Quiz — Teoria do Judô
                 </motion.h1>
                 <motion.p
-                  className="text-slate-400 text-lg mb-6 max-w-lg mx-auto"
+                  className="text-slate-400 text-lg mb-4 max-w-lg mx-auto"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3 }}
                 >
-                  Níveis 1–3: 7 perguntas · Níveis 4–6: 10 perguntas. Acerte todas seguidas para subir.
+                  8 perguntas por nível · 10 níveis. Acerte todas seguidas para subir.
                 </motion.p>
+                {hasDadosRanking() && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mb-6 px-6 py-3 rounded-2xl inline-flex items-center gap-3 border-2 border-amber-500/30 bg-amber-500/10"
+                    style={{ boxShadow: '0 0 20px -4px rgba(245,158,11,0.2)' }}
+                  >
+                    <span className="text-amber-400 font-jp text-sm tracking-wider">SEU NÍVEL</span>
+                    <span className="text-2xl font-bold text-white">{nivelSalvo}</span>
+                    <span className="text-amber-300 font-medium">{CATEGORIAS_NIVEL[nivelSalvo]}</span>
+                    <span className="text-slate-500 text-sm">— continue de onde parou</span>
+                  </motion.div>
+                )}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
                   <motion.button
                     variants={item}
@@ -342,7 +539,7 @@ export default function Quiz() {
                     className="py-5 px-10 rounded-2xl font-bold text-white text-lg flex items-center justify-center gap-3"
                     style={{ backgroundColor: RANKING_MODE.color, boxShadow: `0 8px 28px -4px ${RANKING_MODE.glow}` }}
                   >
-                    <Trophy className="w-6 h-6" /> Jogar
+                    <Trophy className="w-6 h-6" /> {hasDadosRanking() && nivelSalvo > 1 ? 'Continuar' : 'Jogar'}
                   </motion.button>
                   {hasDadosRanking() && (
                     <motion.button
@@ -365,7 +562,7 @@ export default function Quiz() {
                   <div className="rounded-2xl border-2 border-white/10 bg-white/[0.04] overflow-hidden max-h-80 overflow-y-auto">
                     {loadingRanking ? (
                       <div className="p-6 text-slate-400 text-center">Carregando ranking...</div>
-                    ) : ranking.length === 0 ? (
+                    ) : !Array.isArray(ranking) || ranking.length === 0 ? (
                       <div className="p-6 text-slate-500 text-center">Nenhum resultado no ranking ainda. Seja o primeiro!</div>
                     ) : (
                       <table className="w-full text-sm">
@@ -380,15 +577,15 @@ export default function Quiz() {
                           </tr>
                         </thead>
                         <tbody>
-                          {ranking.slice(0, 25).map((e) => (
-                            <tr key={e.posicao} className="border-b border-white/5 hover:bg-white/5">
-                              <td className="py-2.5 px-3 font-medium text-slate-300">{e.posicao}</td>
-                              <td className="py-2.5 px-3 text-white font-medium">{e.nome}</td>
-                              <td className="py-2.5 px-3 text-slate-400 hidden sm:table-cell">{e.dojo || '—'}</td>
-                              <td className="py-2.5 px-3 text-slate-400 hidden md:table-cell">{e.cidade || '—'}</td>
-                              <td className="py-2.5 px-3 text-right text-amber-400 font-semibold">{e.xp_total}</td>
+                          {(Array.isArray(ranking) ? ranking : []).slice(0, 25).map((e, idx) => (
+                            <tr key={e?.posicao ?? idx} className="border-b border-white/5 hover:bg-white/5">
+                              <td className="py-2.5 px-3 font-medium text-slate-300">{e?.posicao ?? '—'}</td>
+                              <td className="py-2.5 px-3 text-white font-medium">{e?.nome ?? '—'}</td>
+                              <td className="py-2.5 px-3 text-slate-400 hidden sm:table-cell">{e?.dojo || '—'}</td>
+                              <td className="py-2.5 px-3 text-slate-400 hidden md:table-cell">{e?.cidade || '—'}</td>
+                              <td className="py-2.5 px-3 text-right text-amber-400 font-semibold">{e?.xp_total ?? '—'}</td>
                               <td className="py-2.5 px-3 text-center">
-                                <span className="px-2 py-0.5 rounded-lg bg-white/10 text-slate-300 text-xs">{e.nivel_quiz} · {e.categoria_titulo}</span>
+                                <span className="px-2 py-0.5 rounded-lg bg-white/10 text-slate-300 text-xs">{e?.nivel_quiz ?? '—'} · {e?.categoria_titulo || '—'}</span>
                               </td>
                             </tr>
                           ))}
@@ -460,34 +657,99 @@ export default function Quiz() {
             {phase === 'levelUp' && (
               <motion.section
                 key="levelUp"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="text-center max-w-lg mx-auto"
+                transition={{ duration: 0.6 }}
+                className="relative text-center max-w-2xl mx-auto overflow-visible"
               >
+                {/* Chuva de confetti */}
+                <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+                  {Array.from({ length: 60 }).map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-3 h-3 rounded-sm"
+                      style={{
+                        left: `${Math.random() * 100}%`,
+                        top: -20,
+                        backgroundColor: ['#fbbf24', '#f59e0b', '#22c55e', '#34d399', '#ffffff', '#fef3c7'][i % 6],
+                      }}
+                      initial={{ y: 0, rotate: 0, opacity: 1 }}
+                      animate={{ y: '100vh', rotate: 360 * 3, opacity: 0 }}
+                      transition={{ duration: 3 + Math.random() * 2, delay: Math.random() * 0.5, ease: 'easeIn' }}
+                    />
+                  ))}
+                </div>
+                <JudokaCelebration />
                 <motion.div
-                  className="w-24 h-24 rounded-3xl flex items-center justify-center mx-auto mb-6 border-2 border-amber-400/50 bg-amber-500/20"
-                  animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
-                  transition={{ duration: 0.6, repeat: 1 }}
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.3, type: 'spring', stiffness: 200, damping: 15 }}
+                  className="relative z-10"
                 >
-                  <Award className="w-12 h-12 text-amber-400" />
+                  <motion.h2
+                    className="font-jp text-4xl sm:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 mb-4"
+                    style={{ textShadow: '0 0 60px rgba(251,191,36,0.6)' }}
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 0.8, repeat: Infinity }}
+                  >
+                    祝！
+                  </motion.h2>
+                  <motion.h2
+                    className="text-4xl sm:text-6xl md:text-7xl font-black text-white mb-2 drop-shadow-[0_0_30px_rgba(251,191,36,0.8)]"
+                    initial={{ y: 30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.4, duration: 0.6 }}
+                  >
+                    PARABÉNS GIGANTE!
+                  </motion.h2>
+                  <motion.p
+                    className="text-xl sm:text-2xl text-amber-300 font-bold mb-2"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.7 }}
+                  >
+                    Vem comigo para o próximo nível
+                  </motion.p>
+                  <motion.p
+                    className="text-3xl sm:text-4xl font-bold text-amber-400 mb-6"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.9, type: 'spring', stiffness: 300 }}
+                  >
+                    Nível {nivelAtual + 1} — {CATEGORIAS_NIVEL[nivelAtual + 1] ?? 'Sensei'}
+                  </motion.p>
+                  {lastSubmitResult && (
+                    <p className="text-slate-400 text-sm mb-6">Total: {lastSubmitResult.xp_total} XP</p>
+                  )}
                 </motion.div>
-                <h2 className="font-jp text-2xl sm:text-3xl font-bold text-white mb-2">Subiu de nível!</h2>
-                <p className="text-amber-400/95 text-lg font-medium mb-2">
-                  Próximo: Nível {nivelAtual + 1} — {CATEGORIAS_NIVEL[nivelAtual + 1] || 'Sensei'}
-                </p>
-                {lastSubmitResult && (
-                  <p className="text-slate-400 text-sm mb-8">Total: {lastSubmitResult.xp_total} XP</p>
-                )}
-                <motion.button
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={goNextLevel}
-                  className="py-4 px-8 rounded-2xl font-bold text-white"
-                  style={{ backgroundColor: RANKING_MODE.color, boxShadow: `0 12px 32px -8px ${RANKING_MODE.glow}` }}
-                >
-                  Próximo nível →
-                </motion.button>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8 relative z-10">
+                  <motion.button
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.2 }}
+                    whileHover={{ scale: 1.06 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={goNextLevel}
+                    className="py-5 px-10 rounded-2xl font-bold text-white text-lg"
+                    style={{ backgroundColor: RANKING_MODE.color, boxShadow: `0 16px 40px -8px ${RANKING_MODE.glow}` }}
+                  >
+                    Próximo nível →
+                  </motion.button>
+                  {nivelAtual > 1 && (
+                    <motion.button
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 1.4 }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={startTreinoNivelAnterior}
+                      className="py-3 px-6 rounded-xl text-slate-400 hover:text-white text-sm font-medium border border-white/20 hover:border-white/40"
+                    >
+                      Treinar nível anterior (sem XP)
+                    </motion.button>
+                  )}
+                </div>
               </motion.section>
             )}
 
@@ -501,19 +763,39 @@ export default function Quiz() {
                 transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
                 className="space-y-8 max-w-3xl mx-auto relative"
               >
-                {/* Progresso elegante */}
+                {/* Nível em destaque + streak máximo */}
+                <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="mb-4">
+                  {isRankingMode && (
+                    <div className="flex items-center justify-center gap-3 mb-4 flex-wrap">
+                      <motion.div
+                        className="px-6 py-3 rounded-2xl border-2 bg-gradient-to-r from-amber-500/25 to-amber-600/15"
+                        style={{ borderColor: 'rgba(245,158,11,0.6)', boxShadow: '0 0 24px -4px rgba(245,158,11,0.3)' }}
+                        animate={{ scale: [1, 1.02, 1] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                      >
+                        <span className="text-amber-400 font-jp text-xs tracking-widest block">NÍVEL</span>
+                        <span className="text-3xl font-bold text-white">{nivelAtual}</span>
+                        <span className="text-amber-400 font-bold block text-lg">{CATEGORIAS_NIVEL[nivelAtual]}</span>
+                      </motion.div>
+                      {maxStreak > 0 && (
+                        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="px-4 py-2 rounded-xl bg-emerald-500/20 border-2 border-emerald-400/40">
+                          <span className="text-emerald-400 font-bold text-lg">{maxStreak}</span>
+                          <span className="text-emerald-300/90 text-sm block">máx. seguidos</span>
+                        </motion.div>
+                      )}
+                    </div>
+                  )}
+                </motion.div>
                 <div className="flex flex-wrap items-center justify-between gap-2 text-sm">
                   <span className="text-slate-500 font-jp tracking-wide">Pergunta {current + 1} / {total}</span>
                   <div className="flex items-center gap-3">
-                    {isRankingMode && (
-                      <span className="text-amber-400 font-medium px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20">
-                        Nível {nivelAtual} — {CATEGORIAS_NIVEL[nivelAtual]}
-                      </span>
-                    )}
                     <span className="text-emerald-400 font-semibold flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
                       <Check className="w-4 h-4" /> {score} acertos
-                      {isRankingMode && <span className="text-emerald-300/80">(+{xpNivel} XP)</span>}
+                      {isRankingMode && !isTreinoNivelAnterior && <span className="text-emerald-300/80">(+{xpNivel} XP)</span>}
                     </span>
+                    {streakAtual > 0 && (
+                      <span className="text-amber-300 font-bold px-3 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/40">{streakAtual} seguidos 🔥</span>
+                    )}
                   </div>
                 </div>
                 <div className="h-2 bg-white/5 rounded-full overflow-hidden border border-white/5">
@@ -534,7 +816,17 @@ export default function Quiz() {
                   className="relative rounded-3xl overflow-hidden border-2 border-white/10 bg-gradient-to-br from-white/[0.09] to-white/[0.02] backdrop-blur-sm p-8 sm:p-10"
                   style={{ boxShadow: '0 8px 32px -8px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08)' }}
                 >
-                  <ConfettiBurst active={showConfetti} />
+                  <ConfettiBurst active={showConfetti} intense={streakAtual >= 3 || score >= total - 1} />
+                  {showConfetti && (
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ type: 'spring', stiffness: 500, damping: 15 }}
+                      className="absolute top-6 right-6 px-4 py-2 rounded-xl bg-emerald-500/30 border-2 border-emerald-400/60 text-emerald-300 font-bold text-lg"
+                    >
+                      ACERTOU!
+                    </motion.div>
+                  )}
                   <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
                   <h2 className="text-xl sm:text-2xl font-bold text-white leading-relaxed mb-8 relative">
                     {q.question}
@@ -555,7 +847,7 @@ export default function Quiz() {
                           initial={false}
                           animate={
                             showAsCorrect
-                              ? { scale: [1, 1.02, 1], boxShadow: [`0 0 0 0 ${CORRECT_COLOR}00`, `0 0 32px 8px ${CORRECT_COLOR}50`, `0 0 0 0 ${CORRECT_COLOR}00`], transition: { duration: 0.5 } }
+                              ? { scale: [1, 1.05, 1.02], boxShadow: [`0 0 0 0 ${CORRECT_COLOR}00`, `0 0 48px 12px ${CORRECT_COLOR}60`, `0 0 24px 6px ${CORRECT_COLOR}40`], transition: { duration: 0.6 } }
                               : showAsWrong
                                 ? { x: [0, -8, 8, -6, 6, 0], transition: { duration: 0.5 } }
                                 : {}
@@ -665,10 +957,12 @@ export default function Quiz() {
                   <Trophy className="w-14 h-14 sm:w-16 sm:h-16" style={{ color: isRankingMode ? RANKING_MODE.color : ACCENT }} />
                 </motion.div>
                 <h2 className="font-jp text-3xl sm:text-4xl font-bold text-white mb-2 drop-shadow-[0_0_20px_rgba(59,130,246,0.3)]">
-                  {isRankingMode && lastSubmitResult?.nivel_quiz === MAX_NIVEL ? 'Sensei!' : '完了'}
+                  {isTreinoNivelAnterior ? 'Treino concluído!' : isRankingMode && lastSubmitResult?.nivel_quiz === MAX_NIVEL ? 'Sensei!' : '完了'}
                 </h2>
                 <p className="text-slate-400 text-lg mb-2">
-                  {isRankingMode && lastSubmitResult ? `Nível ${lastSubmitResult.nivel_quiz} — ${lastSubmitResult.categoria_titulo} · ${lastSubmitResult.xp_total} XP` : 'Quiz finalizado'}
+                  {isTreinoNivelAnterior
+                    ? `Nível ${nivelAtual} — ${CATEGORIAS_NIVEL[nivelAtual]} · Sem XP (apenas treino)`
+                    : isRankingMode && lastSubmitResult ? `Nível ${lastSubmitResult.nivel_quiz} — ${lastSubmitResult.categoria_titulo} · ${lastSubmitResult.xp_total} XP` : 'Quiz finalizado'}
                 </p>
                 {isRankingMode && total > 0 && score < total && (
                   <motion.div
@@ -764,7 +1058,7 @@ export default function Quiz() {
                   </motion.div>
                 )}
 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
                   <motion.button
                     whileHover={{ scale: 1.04 }}
                     whileTap={{ scale: 0.98 }}
@@ -772,8 +1066,18 @@ export default function Quiz() {
                     className="py-4 px-8 rounded-2xl font-bold text-white text-lg"
                     style={{ backgroundColor: isRankingMode ? RANKING_MODE.color : ACCENT, boxShadow: `0 12px 32px -8px ${isRankingMode ? RANKING_MODE.glow : ACCENT}60` }}
                   >
-                    {isRankingMode ? 'Jogar de novo' : 'Refazer quiz'}
+                    {isTreinoNivelAnterior ? 'Voltar ao quiz' : isRankingMode ? 'Jogar de novo' : 'Refazer quiz'}
                   </motion.button>
+                  {isRankingMode && nivelAtual > 1 && (
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={startTreinoNivelAnterior}
+                      className="py-4 px-8 rounded-2xl bg-white/10 text-white font-semibold hover:bg-white/20 border-2 border-white/20"
+                    >
+                      Treinar nível anterior (sem XP)
+                    </motion.button>
+                  )}
                   <Link
                     to="/index"
                     className="py-4 px-8 rounded-2xl bg-white/10 text-white font-semibold hover:bg-white/20 border-2 border-white/10 transition-all text-lg"

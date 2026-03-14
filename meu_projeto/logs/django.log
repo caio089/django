@@ -6262,3 +6262,589 @@ Watching for file changes with StatReloader
 [PremiumAccessMiddleware] Path=/quiz
 [PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz
 "GET /quiz HTTP/1.1" 301 0
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/login/
+"POST /api/login/ HTTP/1.1" 200 346
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 330
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 301
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 301
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 330
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 301
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 330
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 301
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 301
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 330
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 301
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 301
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 330
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 301
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 301
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 301
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 301
+[PremiumAccessMiddleware] Path=/quiz/api/submit/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/submit/
+"POST /quiz/api/submit/ HTTP/1.1" 200 79
+[PremiumAccessMiddleware] Path=/quiz/api/submit/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/submit/
+"POST /quiz/api/submit/ HTTP/1.1" 200 83
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/quiz/api/submit/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/submit/
+"POST /quiz/api/submit/ HTTP/1.1" 200 83
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 330
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 330
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 330
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 330
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 330
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/payments/planos/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/planos/
+"GET /payments/planos/ HTTP/1.1" 200 37162
+"GET /static/judo.png HTTP/1.1" 200 158297
+"GET /static/demosntra%C3%A7ao1.png HTTP/1.1" 200 227956
+"GET /static/demonstra%C3%A7ao3.png HTTP/1.1" 200 137497
+"GET /static/demonstra%C3%A7ao2.png HTTP/1.1" 200 332519
+"GET /static/demonstra%C3%A7ao4.png HTTP/1.1" 200 359249
+[PremiumAccessMiddleware] Path=/payments/planos
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/planos
+"GET /payments/planos HTTP/1.1" 301 0
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 330
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/quiz
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz
+"GET /quiz HTTP/1.1" 301 0
+[PremiumAccessMiddleware] Path=/quiz/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/
+"GET /quiz/ HTTP/1.1" 302 0
+[PremiumAccessMiddleware] Path=/quiz/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/
+"GET /quiz/ HTTP/1.1" 302 0
+[PremiumAccessMiddleware] Path=/quiz/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/
+"GET /quiz/ HTTP/1.1" 302 0
+[PremiumAccessMiddleware] Path=/quiz/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/
+"GET /quiz/ HTTP/1.1" 302 0
+[PremiumAccessMiddleware] Path=/quiz/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/
+"GET /quiz/ HTTP/1.1" 302 0
+[PremiumAccessMiddleware] Path=/quiz/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/
+"GET /quiz/ HTTP/1.1" 302 0
+[PremiumAccessMiddleware] Path=/quiz/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/
+"GET /quiz/ HTTP/1.1" 302 0
+[PremiumAccessMiddleware] Path=/quiz/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/
+"GET /quiz/ HTTP/1.1" 302 0
+[PremiumAccessMiddleware] Path=/quiz/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/
+"GET /quiz/ HTTP/1.1" 302 0
+[PremiumAccessMiddleware] Path=/quiz/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/login/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/login/
+"POST /api/login/ HTTP/1.1" 200 346
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 330
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 330
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 330
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 330
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/quiz/api/submit/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/submit/
+"POST /quiz/api/submit/ HTTP/1.1" 200 83
+[PremiumAccessMiddleware] Path=/quiz/api/submit/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/submit/
+"POST /quiz/api/submit/ HTTP/1.1" 200 83
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 305
+[PremiumAccessMiddleware] Path=/quiz/api/submit/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/submit/
+"POST /quiz/api/submit/ HTTP/1.1" 200 83
+[PremiumAccessMiddleware] Path=/quiz/api/submit/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/submit/
+"POST /quiz/api/submit/ HTTP/1.1" 200 83
+[PremiumAccessMiddleware] Path=/quiz/api/submit/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/submit/
+"POST /quiz/api/submit/ HTTP/1.1" 200 80
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 302
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/quiz/views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/api/logout/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/logout/
+"POST /api/logout/ HTTP/1.1" 200 34
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/login/
+"POST /api/login/ HTTP/1.1" 200 346
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 330
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/submit/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/submit/
+"POST /quiz/api/submit/ HTTP/1.1" 200 80
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 330
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/submit/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/submit/
+"POST /quiz/api/submit/ HTTP/1.1" 200 80
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 330
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/submit/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/submit/
+"POST /quiz/api/submit/ HTTP/1.1" 200 80
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 330
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/api/logout/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/logout/
+"POST /api/logout/ HTTP/1.1" 200 34
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/login/
+"POST /api/login/ HTTP/1.1" 200 346
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 330
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 330
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/api/logout/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/logout/
+"POST /api/logout/ HTTP/1.1" 200 34
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/register/
+🔄 Perfil criado automaticamente para ccamposs2066074433@gmail.com
+"POST /api/register/ HTTP/1.1" 200 365
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 302
+[PremiumAccessMiddleware] Path=/quiz/api/submit/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/submit/
+"POST /quiz/api/submit/ HTTP/1.1" 200 78
+[PremiumAccessMiddleware] Path=/quiz/api/submit/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/submit/
+"POST /quiz/api/submit/ HTTP/1.1" 200 79
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
