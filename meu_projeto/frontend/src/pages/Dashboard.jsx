@@ -14,10 +14,12 @@ import {
   Megaphone,
   Sparkles,
   ChevronRight,
+  Trophy,
+  MapPin,
 } from 'lucide-react';
 import DashboardBackground from '../components/DashboardBackground';
 import ScrollReveal from '../components/ScrollReveal';
-import { apiMe, apiLogout } from '../api';
+import { apiMe, apiLogout, getQuizRanking } from '../api';
 
 const FAIXAS = [
   { id: 1, nome: 'Faixa Cinza', sub: 'Ponteira Cinza', cor: 'from-gray-600 to-gray-700', img: '/static/faixa-cinza.png', href: '/pagina/1' },
@@ -127,7 +129,17 @@ export default function Dashboard() {
   const [trialProgress, setTrialProgress] = useState(0);
   const [showTrialWelcome, setShowTrialWelcome] = useState(false);
   const [trialExpirado, setTrialExpirado] = useState(false);
+  const [quizRanking, setQuizRanking] = useState([]);
+  const [loadingRanking, setLoadingRanking] = useState(false);
 
+  useEffect(() => {
+    if (!user) return;
+    setLoadingRanking(true);
+    getQuizRanking(15)
+      .then((data) => setQuizRanking(data.ranking || []))
+      .catch(() => setQuizRanking([]))
+      .finally(() => setLoadingRanking(false));
+  }, [user]);
 
   useEffect(() => {
     if (trialExpirado) {
@@ -495,6 +507,66 @@ export default function Dashboard() {
                 </div>
               </ScrollReveal>
             </div>
+
+            {/* Ranking do Quiz — seção própria, sem sobrepor */}
+            <ScrollReveal direction="up" delay={0.2}>
+              <section className="mt-12 md:mt-16 w-full max-w-4xl mx-auto">
+                <div className="rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-sm overflow-hidden">
+                  <div className="px-4 sm:px-6 py-4 border-b border-white/10 flex items-center justify-between flex-wrap gap-2">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 rounded-xl bg-amber-500/15 border border-amber-500/25">
+                        <Trophy className="w-5 h-5 text-amber-400" />
+                      </div>
+                      <div>
+                        <h2 className="text-lg font-semibold text-white">Ranking do Quiz</h2>
+                        <p className="text-xs text-slate-500">Teoria do Judô — XP por nível</p>
+                      </div>
+                    </div>
+                    <Link
+                      to="/quiz"
+                      className="text-sm font-medium px-4 py-2 rounded-xl transition-colors"
+                      style={{ color: themeColor, backgroundColor: `${themeColor}20` }}
+                    >
+                      Jogar quiz
+                    </Link>
+                  </div>
+                  <div className="overflow-x-auto">
+                    {loadingRanking ? (
+                      <div className="py-12 text-center text-slate-500 text-sm">Carregando ranking...</div>
+                    ) : quizRanking.length === 0 ? (
+                      <div className="py-12 text-center text-slate-500 text-sm">Nenhum resultado ainda. Seja o primeiro!</div>
+                    ) : (
+                      <table className="w-full min-w-[520px] text-sm">
+                        <thead>
+                          <tr className="border-b border-white/10 text-slate-400 text-left">
+                            <th className="py-3 px-3 font-medium">#</th>
+                            <th className="py-3 px-3 font-medium">Nome</th>
+                            <th className="py-3 px-3 font-medium hidden sm:table-cell">Dojo</th>
+                            <th className="py-3 px-3 font-medium hidden md:table-cell">Cidade</th>
+                            <th className="py-3 px-3 text-right font-medium">XP</th>
+                            <th className="py-3 px-3 text-center font-medium">Nível</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {quizRanking.map((e) => (
+                            <tr key={e.posicao} className="border-b border-white/5 hover:bg-white/[0.03] transition-colors">
+                              <td className="py-3 px-3 font-medium text-slate-400">{e.posicao}</td>
+                              <td className="py-3 px-3 text-white font-medium">{e.nome}</td>
+                              <td className="py-3 px-3 text-slate-500 hidden sm:table-cell">{e.dojo || '—'}</td>
+                              <td className="py-3 px-3 text-slate-500 hidden md:table-cell">{e.cidade ? <span className="inline-flex items-center gap-1"><MapPin className="w-3.5 h-3.5" /> {e.cidade}</span> : '—'}</td>
+                              <td className="py-3 px-3 text-right font-semibold" style={{ color: themeColor }}>{e.xp_total}</td>
+                              <td className="py-3 px-3 text-center">
+                                <span className="px-2 py-1 rounded-lg bg-white/10 text-slate-300 text-xs">{e.nivel_quiz} · {e.categoria_titulo}</span>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    )}
+                  </div>
+                </div>
+              </section>
+            </ScrollReveal>
           </>
         )}
       </div>

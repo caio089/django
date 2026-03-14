@@ -179,6 +179,10 @@ class ProgressoUsuario(models.Model):
     # Conquistas
     conquistas_desbloqueadas = models.JSONField(default=list, verbose_name="Conquistas desbloqueadas")
     
+    # Nível do quiz e título/categoria (Ninja, Samurai, ..., Jigoro Kano)
+    nivel_quiz = models.PositiveIntegerField(default=1, verbose_name="Nível atual do quiz")
+    categoria_titulo = models.CharField(max_length=50, default='Kohai', verbose_name="Título/Categoria no ranking")
+    
     # Timestamps
     data_criacao = models.DateTimeField(auto_now_add=True)
     data_atualizacao = models.DateTimeField(auto_now=True)
@@ -238,6 +242,31 @@ class Conquista(models.Model):
     class Meta:
         verbose_name = "Conquista"
         verbose_name_plural = "Conquistas"
+
+
+class QuizRanking(models.Model):
+    """
+    Ranking do quiz: nome, colocação, XP, nível e categoria.
+    Usado para jogadores anônimos (session_key + nickname) ou logados (usuario).
+    """
+    session_key = models.CharField(max_length=40, blank=True, null=True, db_index=True, verbose_name="Chave da sessão (anônimo)")
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='quiz_ranking', null=True, blank=True, verbose_name="Usuário (se logado)")
+    nickname = models.CharField(max_length=100, verbose_name="Nome/Apelido no ranking")
+    dojo = models.CharField(max_length=150, blank=True, verbose_name="Dojo onde treina")
+    cidade = models.CharField(max_length=100, blank=True, verbose_name="Cidade")
+    xp_total = models.PositiveIntegerField(default=0, verbose_name="XP total")
+    nivel_quiz = models.PositiveIntegerField(default=1, verbose_name="Nível do quiz")
+    categoria_titulo = models.CharField(max_length=50, default='Kohai', verbose_name="Categoria (Kohai, Ninja, Samurai, ..., Jigoro Kano)")
+    data_atualizacao = models.DateTimeField(auto_now=True, verbose_name="Última atualização")
+    data_criacao = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Entrada no Ranking do Quiz"
+        verbose_name_plural = "Ranking do Quiz"
+        ordering = ['-xp_total']
+
+    def __str__(self):
+        return f"{self.nickname} — Nível {self.nivel_quiz} ({self.categoria_titulo}) — {self.xp_total} XP"
 
 
 class ProgressoQuiz(models.Model):

@@ -50,7 +50,8 @@ class PremiumAccessMiddleware:
             '/sucesso/',
             '/bem-vindo/',
             '/falha/',
-            '/pendente/'
+            '/pendente/',
+            '/quiz/api/',  # ranking e submit públicos (sem login)
         ]
     
     def __call__(self, request):

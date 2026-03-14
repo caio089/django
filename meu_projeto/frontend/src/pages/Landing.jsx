@@ -1,17 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  Eye,
-  EyeOff,
-  Mail,
-  Lock,
-  User,
-  Calendar,
-  Award,
-} from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, User, Calendar, Award } from 'lucide-react';
 import { fetchCsrf, apiLogin, apiRegister } from '../api';
-import AnimatedBackground from '../components/AnimatedBackground';
 
 const FAIXAS = [
   { value: 'branca', label: 'Branca' },
@@ -54,6 +45,7 @@ export default function Landing() {
       return;
     }
     try {
+      await fetchCsrf().catch(() => {});
       if (showRegister) {
         const nome = form.nome?.value;
         const idade = form.idade?.value;
@@ -67,176 +59,122 @@ export default function Landing() {
         navigate(r.redirect === '/selecionar-faixa' ? '/index' : r.redirect || '/index');
       } else {
         const r = await apiLogin(email, senha);
-        navigate(r.redirect || '/index');
+        navigate(r?.redirect || '/index');
       }
     } catch (err) {
-      setError(err.message || 'Erro ao processar');
+      const msg = err && typeof err === 'object' && typeof err.message === 'string' ? err.message : 'Não foi possível fazer login. Verifique o email, a senha e se o backend está rodando.';
+      setError(msg);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col md:flex-row items-center justify-center md:justify-between md:px-12 lg:px-20 relative overflow-x-hidden overflow-y-auto font-display py-8 md:py-0">
-      {/* Fundo temático */}
-      <div className="fixed inset-0 z-0 bg-gradient-to-br from-judo-black via-slate-900 to-judo-blue" />
-      <AnimatedBackground variant="particles" />
-
-      {/* Padrão de faixas */}
+    <div className="min-h-screen w-full flex flex-col md:flex-row items-center justify-center md:justify-between gap-8 md:gap-16 px-4 md:px-12 lg:px-20 py-12 md:py-0 relative overflow-hidden font-display">
+      {/* Fundo — dojo escuro, tatami, atmosfera zen */}
+      <div className="fixed inset-0 -z-10 bg-[#0a0b0d]" />
       <div
-        className="fixed inset-0 z-[5] opacity-20 pointer-events-none"
+        className="fixed inset-0 -z-10 opacity-[0.04]"
         style={{
           backgroundImage: `
-            repeating-linear-gradient(45deg, rgba(30,64,175,0.15) 0 4px, transparent 4px 40px),
-            repeating-linear-gradient(-45deg, rgba(245,158,11,0.1) 0 4px, transparent 4px 40px)
+            linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)
+          `,
+          backgroundSize: '48px 48px',
+        }}
+      />
+      <div
+        className="fixed inset-0 -z-10"
+        style={{
+          background: `
+            radial-gradient(ellipse 120% 80% at 20% 50%, rgba(30, 64, 175, 0.12) 0%, transparent 55%),
+            radial-gradient(ellipse 80% 60% at 80% 80%, rgba(124, 58, 237, 0.08) 0%, transparent 50%),
+            radial-gradient(ellipse 60% 40% at 50% 10%, rgba(245, 158, 11, 0.05) 0%, transparent 45%)
           `,
         }}
       />
 
-      {/* Blur lateral esquerdo */}
-      <div className="fixed inset-y-0 left-0 z-10 w-[30vw] md:w-[40vw] max-w-md bg-gradient-to-r from-white/10 to-transparent blur-3xl pointer-events-none saturate-150" />
-      {/* Blur lateral direito */}
-      <div className="fixed inset-y-0 right-0 z-10 w-[30vw] md:w-[40vw] max-w-md bg-gradient-to-l from-white/10 to-transparent blur-3xl pointer-events-none saturate-150" />
+      {/* Lado esquerdo — identidade judô */}
+      <motion.div
+        initial={{ opacity: 0, x: -24 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="relative z-10 flex flex-col items-center md:items-start text-center md:text-left md:flex-1 md:max-w-xl"
+      >
+        <span className="font-jp text-amber-500/80 text-sm tracking-[0.3em] uppercase mb-4">
+          道場オンライン
+        </span>
+        <p className="font-display text-white/90 text-2xl sm:text-3xl font-light tracking-[0.25em] mb-6">
+          DOJO ONLINE
+        </p>
+        <h1
+          className="font-jp text-7xl sm:text-8xl md:text-9xl font-bold text-white/95 leading-none tracking-tight select-none"
+          style={{
+            textShadow: '0 0 80px rgba(30, 64, 175, 0.15), 0 0 40px rgba(245, 158, 11, 0.08)',
+          }}
+        >
+          柔道
+        </h1>
+        <p className="font-display text-slate-400 text-lg sm:text-xl mt-4 tracking-widest">
+          JUDÔ
+        </p>
+        <div
+          className="h-px w-24 mt-8 mb-8"
+          style={{ background: 'linear-gradient(90deg, transparent, rgba(245,158,11,0.6), transparent)' }}
+        />
+        <p className="font-jp text-slate-400/90 text-xl sm:text-2xl leading-relaxed max-w-sm">
+          「精力善用、自他共栄」
+        </p>
+        <p className="text-slate-500 text-sm mt-2 max-w-sm">
+          Máxima eficiência, prosperidade mútua — O caminho do judô.
+        </p>
+      </motion.div>
 
-      {/* Brand - esquerda no desktop, topo no mobile */}
+      {/* Card de Login/Registro — papel washi + moldura */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-20 text-center mb-8 md:mb-0 md:flex-1 md:max-w-xl"
+        transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+        className="relative z-20 w-full max-w-md"
       >
-        {/* Anéis decorativos rotativos */}
-        <motion.div
-          className="absolute -top-6 left-1/2 -translate-x-1/2 w-20 h-20 border-4 border-judo-blue/40 rounded-full"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-        />
-        <motion.div
-          className="absolute -top-4 left-1/2 -translate-x-1/2 w-16 h-16 border-[3px] border-judo-yellow/40 rounded-full"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
-        />
-        <motion.div
-          className="absolute -top-2 left-1/2 -translate-x-1/2 w-12 h-12 border-2 border-judo-white/60 rounded-full"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
-        />
-
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-light text-white leading-none tracking-wide">
-          DOJO
-        </h1>
-        <motion.h1
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-display font-light text-judo-blue leading-none tracking-wide"
-          initial={{ opacity: 0.8 }}
-          animate={{
-            opacity: [0.9, 1, 0.9],
-            textShadow: [
-              '0 0 30px rgba(30,64,175,0.3)',
-              '0 0 50px rgba(30,64,175,0.5)',
-              '0 0 30px rgba(30,64,175,0.3)',
-            ],
+        <div
+          className="relative rounded-2xl overflow-hidden"
+          style={{
+            background: 'linear-gradient(145deg, rgba(255,255,255,0.97) 0%, rgba(248,250,252,0.95) 100%)',
+            boxShadow: `
+              0 25px 50px -12px rgba(0,0,0,0.4),
+              0 0 0 1px rgba(255,255,255,0.5),
+              inset 0 1px 0 rgba(255,255,255,0.8)
+            `,
           }}
-          transition={{ duration: 4, repeat: Infinity }}
         >
-          ONLINE
-        </motion.h1>
-
-        {/* Linha decorativa com gradiente das faixas */}
-        <motion.div
-          className="mt-3 h-2 mx-auto max-w-xs md:max-w-sm bg-gradient-to-r from-judo-blue via-judo-yellow to-judo-green rounded-full shadow-lg"
-          animate={{ opacity: [0.7, 1, 0.7] }}
-          transition={{ duration: 2.5, repeat: Infinity }}
-        />
-
-        <div className="mt-6 text-center">
-          <p className="text-white/80 text-lg md:text-xl font-light tracking-wide">
-            ACADEMIA DE JUDÔ
-          </p>
-          <div className="flex justify-center mt-3 gap-4">
-            {['judo-blue', 'judo-yellow', 'judo-green'].map((color, i) => (
-              <motion.div
-                key={color}
-                className={`w-3 h-3 rounded-full bg-${color} shadow-lg`}
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.7, 1, 0.7],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  delay: i * 0.3,
-                }}
-                style={{
-                  backgroundColor:
-                    color === 'judo-blue'
-                      ? '#1E40AF'
-                      : color === 'judo-yellow'
-                        ? '#F59E0B'
-                        : '#059669',
-                }}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Elementos flutuantes */}
-        {[0, 1, 2].map((i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full"
-            style={{
-              top: `${20 + i * 15}px`,
-              left: '50%',
-              transform: 'translateX(-50%)',
-              width: 12 + i * 2,
-              height: 12 + i * 2,
-              backgroundColor:
-                i === 0
-                  ? 'rgba(30,64,175,0.6)'
-                  : i === 1
-                    ? 'rgba(245,158,11,0.6)'
-                    : 'rgba(5,150,105,0.6)',
-            }}
-            animate={{ y: [0, -12, 0] }}
-            transition={{
-              duration: 4 + i,
-              repeat: Infinity,
-              ease: 'easeInOut',
-              delay: i * 0.5,
-            }}
+          {/* Moldura estilo shodo — borda sutil */}
+          <div
+            className="absolute inset-0 rounded-2xl pointer-events-none border-2"
+            style={{ borderColor: 'rgba(30, 64, 175, 0.25)' }}
           />
-        ))}
-      </motion.div>
+          <div
+            className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-px"
+            style={{ background: 'linear-gradient(90deg, transparent, rgba(30,64,175,0.5), transparent)' }}
+          />
 
-      {/* Card de Login/Registro */}
-      <motion.div
-        initial={{ opacity: 0, x: 30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-30 w-full max-w-md mx-4 md:mx-0 md:flex-shrink-0"
-      >
-        <div className="bg-white/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl shadow-2xl px-6 sm:px-8 py-6 sm:py-8 border-2 border-judo-blue/20 overflow-hidden">
-          {/* Decoração interna */}
-          <div className="absolute inset-0 bg-gradient-to-br from-judo-blue/5 via-transparent to-judo-yellow/5 pointer-events-none" />
-          <div className="absolute top-0 right-0 w-20 h-20 bg-judo-blue/10 rounded-full -translate-y-10 translate-x-10" />
-          <div className="absolute bottom-0 left-0 w-16 h-16 bg-judo-yellow/10 rounded-full translate-y-8 -translate-x-8" />
-
-          <div className="relative z-10">
-            {/* Título */}
-            <div className="flex items-center gap-3 mb-4">
-              <span className="text-2xl">🥋</span>
-              <span className="font-display font-bold text-xl text-judo-black tracking-widest">
-                DOJO ONLINE
-              </span>
+          <div className="relative px-6 sm:px-8 py-8 sm:py-10">
+            <div className="text-center mb-8">
+              <span className="font-jp text-lg text-slate-500 block">道場オンライン</span>
+              <span className="font-display text-slate-800 text-xl font-semibold tracking-[0.2em] mt-1">DOJO ONLINE</span>
             </div>
 
-            <motion.h2
-              key={showRegister ? 'register' : 'login'}
-              initial={{ opacity: 0, y: 5 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-xl sm:text-2xl font-display font-light mb-6 text-judo-black text-center tracking-wide"
-            >
-              {showRegister ? 'CRIAR NOVA CONTA' : 'ACESSAR SUA CONTA'}
-            </motion.h2>
+            <AnimatePresence mode="wait">
+              <motion.h2
+                key={showRegister ? 'register' : 'login'}
+                initial={{ opacity: 0, y: 4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                className="text-lg font-display font-medium text-slate-700 text-center mb-6 tracking-wide"
+              >
+                {showRegister ? 'CRIAR CONTA' : 'ENTRAR'}
+              </motion.h2>
+            </AnimatePresence>
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <AnimatePresence mode="wait">
@@ -248,26 +186,25 @@ export default function Landing() {
                       exit={{ opacity: 0, height: 0 }}
                       className="relative"
                     >
-                      <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-judo-blue" />
+                      <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
                       <input
                         name="nome"
                         type="text"
                         placeholder=" "
                         required
-                        className="peer w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-judo-blue focus:ring-4 focus:ring-judo-blue/20 outline-none bg-white/95 text-judo-black placeholder-transparent text-sm transition-all shadow-lg hover:shadow-xl"
+                        className="peer w-full pl-12 pr-4 py-3.5 rounded-xl border border-slate-200 focus:border-amber-600/60 focus:ring-2 focus:ring-amber-500/20 outline-none bg-white/80 text-slate-800 transition-all"
                       />
-                      <label className="absolute left-12 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 text-xs font-medium transition-all pointer-events-none peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-90 peer-focus:text-judo-blue peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:-translate-y-1/2 peer-[:not(:placeholder-shown)]:scale-90 peer-[:not(:placeholder-shown)]:text-judo-blue">
+                      <label className="absolute left-12 top-1/2 -translate-y-1/2 text-slate-500 bg-white px-2 text-xs font-medium transition-all pointer-events-none peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-90 peer-focus:text-amber-700 peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:-translate-y-1/2 peer-[:not(:placeholder-shown)]:scale-90 peer-[:not(:placeholder-shown)]:text-slate-700">
                         NOME DO ALUNO
                       </label>
                     </motion.div>
-
                     <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0 }}
                       className="relative"
                     >
-                      <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-judo-blue" />
+                      <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
                       <input
                         name="idade"
                         type="number"
@@ -275,29 +212,22 @@ export default function Landing() {
                         min={3}
                         max={120}
                         required
-                        className="peer w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-judo-blue focus:ring-4 focus:ring-judo-blue/20 outline-none bg-white/95 text-judo-black placeholder-transparent text-sm transition-all shadow-lg hover:shadow-xl"
+                        className="peer w-full pl-12 pr-4 py-3.5 rounded-xl border border-slate-200 focus:border-amber-600/60 focus:ring-2 focus:ring-amber-500/20 outline-none bg-white/80 text-slate-800 transition-all"
                       />
-                      <label className="absolute left-12 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 text-xs font-medium transition-all pointer-events-none peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-90 peer-focus:text-judo-blue peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:-translate-y-1/2 peer-[:not(:placeholder-shown)]:scale-90">
+                      <label className="absolute left-12 top-1/2 -translate-y-1/2 text-slate-500 bg-white px-2 text-xs font-medium transition-all pointer-events-none peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-90 peer-focus:text-amber-700 peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:-translate-y-1/2 peer-[:not(:placeholder-shown)]:scale-90">
                         IDADE DO ALUNO
                       </label>
                     </motion.div>
-
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      className="relative"
-                    >
-                      <Award className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-judo-blue z-10" />
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="relative">
+                      <Award className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 z-10" />
                       <select
                         name="faixa"
                         required
-                        className="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-judo-blue focus:ring-4 focus:ring-judo-blue/20 outline-none bg-white/95 text-judo-black text-sm transition-all shadow-lg hover:shadow-xl appearance-none"
+                        className="w-full pl-12 pr-4 py-3.5 rounded-xl border border-slate-200 focus:border-amber-600/60 focus:ring-2 focus:ring-amber-500/20 outline-none bg-white/80 text-slate-800 transition-all appearance-none"
                       >
                         <option value="">Selecione sua faixa</option>
                         {FAIXAS.map((f) => (
-                          <option key={f.value} value={f.value}>
-                            {f.label}
-                          </option>
+                          <option key={f.value} value={f.value}>{f.label}</option>
                         ))}
                       </select>
                     </motion.div>
@@ -305,126 +235,103 @@ export default function Landing() {
                 )}
               </AnimatePresence>
 
-              {/* Email */}
               <div className="relative">
-                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-judo-blue" />
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
                 <input
                   name="email"
                   type="email"
                   placeholder=" "
                   required
-                  className="peer w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:border-judo-blue focus:ring-4 focus:ring-judo-blue/20 outline-none bg-white/95 text-judo-black placeholder-transparent text-sm transition-all shadow-lg hover:shadow-xl"
+                  className="peer w-full pl-12 pr-4 py-3.5 rounded-xl border border-slate-200 focus:border-amber-600/60 focus:ring-2 focus:ring-amber-500/20 outline-none bg-white/80 text-slate-800 transition-all"
                 />
-                <label className="absolute left-12 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 text-xs font-medium transition-all pointer-events-none peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-90 peer-focus:text-judo-blue peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:-translate-y-1/2 peer-[:not(:placeholder-shown)]:scale-90">
+                <label className="absolute left-12 top-1/2 -translate-y-1/2 text-slate-500 bg-white px-2 text-xs font-medium transition-all pointer-events-none peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-90 peer-focus:text-amber-700 peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:-translate-y-1/2 peer-[:not(:placeholder-shown)]:scale-90">
                   EMAIL
                 </label>
               </div>
 
-              {/* Senha */}
               <div className="relative">
-                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-judo-blue" />
+                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
                 <input
                   name="senha"
                   type={showPassword ? 'text' : 'password'}
                   placeholder=" "
                   required
-                  className="peer w-full pl-12 pr-12 py-3 rounded-xl border-2 border-gray-200 focus:border-judo-blue focus:ring-4 focus:ring-judo-blue/20 outline-none bg-white/95 text-judo-black placeholder-transparent text-sm transition-all shadow-lg hover:shadow-xl"
+                  className="peer w-full pl-12 pr-12 py-3.5 rounded-xl border border-slate-200 focus:border-amber-600/60 focus:ring-2 focus:ring-amber-500/20 outline-none bg-white/80 text-slate-800 transition-all"
                 />
-                <label className="absolute left-12 top-1/2 -translate-y-1/2 text-gray-500 bg-white px-2 text-xs font-medium transition-all pointer-events-none peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-90 peer-focus:text-judo-blue peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:-translate-y-1/2 peer-[:not(:placeholder-shown)]:scale-90">
+                <label className="absolute left-12 top-1/2 -translate-y-1/2 text-slate-500 bg-white px-2 text-xs font-medium transition-all pointer-events-none peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:scale-90 peer-focus:text-amber-700 peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:-translate-y-1/2 peer-[:not(:placeholder-shown)]:scale-90">
                   SENHA
                 </label>
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-judo-blue transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-amber-600 transition-colors"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
 
               {!showRegister && (
-                <div className="flex items-center justify-between text-sm text-gray-600">
-                  <label className="flex items-center gap-2 cursor-pointer hover:text-judo-blue transition-colors">
-                    <input
-                      type="checkbox"
-                      className="accent-judo-blue rounded"
-                    />
+                <div className="flex items-center justify-between text-sm text-slate-600">
+                  <label className="flex items-center gap-2 cursor-pointer hover:text-amber-600 transition-colors">
+                    <input type="checkbox" className="accent-amber-600 rounded" />
                     <span>Lembrar de mim</span>
                   </label>
-                  <Link
-                    to="/esqueci-senha"
-                    className="hover:text-judo-blue font-medium transition-colors"
-                  >
+                  <Link to="/esqueci-senha" className="hover:text-amber-600 font-medium transition-colors">
                     Esqueceu a senha?
                   </Link>
                 </div>
               )}
 
               {error && (
-                <motion.div
-                  initial={{ opacity: 0, y: -5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="p-3 rounded-lg bg-red-100 text-red-800 border border-red-200 text-sm"
-                >
+                <div className="p-3 rounded-xl bg-red-50 text-red-700 border border-red-100 text-sm">
                   {error}
-                </motion.div>
+                </div>
               )}
 
-              <motion.button
+              <button
                 type="submit"
                 disabled={isLoading}
-                whileHover={{ scale: 1.01 }}
-                whileTap={{ scale: 0.99 }}
-                className="relative mt-2 w-full py-4 rounded-xl bg-gradient-to-r from-judo-blue to-blue-600 hover:from-blue-700 hover:to-blue-700 text-white font-display font-medium text-base shadow-xl overflow-hidden group"
+                className="mt-2 w-full py-4 rounded-xl font-display font-semibold text-white transition-all duration-300 hover:opacity-95 active:scale-[0.99] disabled:opacity-70"
+                style={{
+                  background: 'linear-gradient(135deg, #1E40AF 0%, #7C3AED 100%)',
+                  boxShadow: '0 4px 20px -4px rgba(30, 64, 175, 0.4)',
+                }}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  {isLoading ? (
-                    <motion.span
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                      className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
-                    />
-                  ) : (
-                    showRegister ? 'CRIAR CONTA' : 'ENTRAR'
-                  )}
-                </span>
-              </motion.button>
+                {isLoading ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    Entrando...
+                  </span>
+                ) : (
+                  showRegister ? 'CRIAR CONTA' : 'ENTRAR'
+                )}
+              </button>
             </form>
 
-            {/* Toggle login/registro */}
-            <p className="mt-4 text-center text-sm text-gray-600">
+            <p className="mt-5 text-center text-sm text-slate-500">
               {showRegister ? (
                 <>
                   Já tem conta?{' '}
-                  <Link
-                    to="/login"
-                    className="text-judo-blue hover:text-blue-700 font-bold transition-colors"
-                  >
+                  <Link to="/login" className="text-amber-600 hover:text-amber-700 font-semibold transition-colors">
                     FAÇA LOGIN
                   </Link>
                 </>
               ) : (
                 <>
                   Não possui conta?{' '}
-                  <Link
-                    to="/register"
-                    className="text-judo-blue hover:text-blue-700 font-bold transition-colors"
-                  >
+                  <Link to="/register" className="text-amber-600 hover:text-amber-700 font-semibold transition-colors">
                     CRIE UMA CONTA GRÁTIS
                   </Link>
                 </>
               )}
             </p>
 
-            {/* Footer */}
-            <p className="mt-6 text-center text-xs text-gray-500 font-display tracking-wide">
-              © 2025 Academia de Judô — Desenvolvido por Caio Campos
+            <p className="mt-6 text-center text-xs text-slate-400 font-display">
+              © 2025 Dojo Online — Judô & Modernidade
             </p>
           </div>
         </div>
       </motion.div>
-
     </div>
   );
 }
