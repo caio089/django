@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #3b82f6, #7c3aed);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #2563eb, #6d28d9);
+}
+
+/* Efeito de texto gradiente animado */
+@keyframes textShine {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.text-gradient-animate {
+  background: linear-gradient(
+    90deg,
+    #f8fafc 0%,
+    #e2e8f0 25%,
+    #94a3b8 50%,
+    #e2e8f0 75%,
+    #f8fafc 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textShine 4s linear infinite;
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.glass-dark {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Dojo / Judô - estética japonesa */
+.font-jp {
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+/* Moldura estilo dojo */
+.dojo-frame {
+  position: relative;
+}
+.dojo-frame::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.08) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Brilho sutil em hover - "energia" do judô */
+.judo-glow {
+  transition: box-shadow 0.4s ease, transform 0.3s ease;
+}
+.judo-glow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -15px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+/* Animação respiração - calma do dojo */
+@keyframes dojo-breathe {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.02); }
+}
+.animate-dojo-breathe {
+  animation: dojo-breathe 4s ease-in-out infinite;
+}
+
+/* Kanji decorativo */
+.kanji-judo {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  opacity: 0.9;
+}

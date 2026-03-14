@@ -26,6 +26,18 @@ CSRF_TRUSTED_ORIGINS = [
     'https://*.onrender.com',
     'http://localhost:8000',
     'http://127.0.0.1:8000',
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'http://localhost:5175',
+    'http://localhost:5176',
+    'http://localhost:5177',
+    'http://localhost:5178',
+    'http://127.0.0.1:5173',
+    'http://127.0.0.1:5174',
+    'http://127.0.0.1:5175',
+    'http://127.0.0.1:5176',
+    'http://127.0.0.1:5177',
+    'http://127.0.0.1:5178',
 ]
 
 # Configurações adicionais para domínios customizados
@@ -43,6 +55,7 @@ CSRF_COOKIE_DOMAIN = None  # Permitir em localhost
 
 # Apps e Middleware (sem mudanças)
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin','django.contrib.auth','django.contrib.contenttypes',
     'django.contrib.sessions','django.contrib.messages','django.contrib.staticfiles',
     'core','pag1','pag2','pag3','pag4','pag5','pag6','pag7',
@@ -50,6 +63,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'meu_projeto.supabase_middleware.SupabaseConnectionMiddleware',  # Middleware para conexões Supabase
     'meu_projeto.middleware.WWWRedirectMiddleware',  # Redirecionamento www
@@ -213,6 +227,26 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'home'
+
+# CORS - frontend React
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'http://localhost:5175',
+    'http://localhost:5176',
+    'http://localhost:5177',
+    'http://localhost:5178',
+    'http://127.0.0.1:5173',
+    'http://127.0.0.1:5174',
+    'http://127.0.0.1:5175',
+    'http://127.0.0.1:5176',
+    'http://127.0.0.1:5177',
+    'http://127.0.0.1:5178',
+    'http://127.0.0.1:3000',
+]
+if DEBUG:
+    CORS_ALLOW_ALL_ORIGINS = False  # Manter restrito mesmo em debug
 
 # Configurações de segurança para produção
 if not DEBUG:

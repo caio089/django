@@ -4488,3 +4488,1094 @@ Watching for file changes with StatReloader
 "POST /dashboard/email-marketing/ HTTP/1.1" 302 0
 [PremiumAccessMiddleware] Path=/dashboard/email-marketing/
 "GET /dashboard/email-marketing/ HTTP/1.1" 200 51734
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/meu_projeto/settings.py changed, reloading.
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/meu_projeto/settings.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/meu_projeto/settings.py changed, reloading.
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/meu_projeto/settings.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/login/
+Forbidden (Origin checking failed - http://localhost:5178 does not match any trusted origins.): /api/login/
+"POST /api/login/ HTTP/1.1" 403 2555
+[PremiumAccessMiddleware] Path=/api/login/
+Forbidden (Origin checking failed - http://localhost:5178 does not match any trusted origins.): /api/login/
+"POST /api/login/ HTTP/1.1" 403 2555
+[PremiumAccessMiddleware] Path=/api/login/
+Forbidden (Origin checking failed - http://localhost:5178 does not match any trusted origins.): /api/login/
+"POST /api/login/ HTTP/1.1" 403 2555
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/api_views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/api_views.py changed, reloading.
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/api_views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/api_views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/api_views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/api/login/
+Bad Request: /api/login/
+"POST /api/login/ HTTP/1.1" 400 61
+[PremiumAccessMiddleware] Path=/api/login/
+Bad Request: /api/login/
+"POST /api/login/ HTTP/1.1" 400 61
+[PremiumAccessMiddleware] Path=/api/login/
+Bad Request: /api/login/
+"POST /api/login/ HTTP/1.1" 400 61
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/login/
+Bad Request: /api/login/
+"POST /api/login/ HTTP/1.1" 400 61
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/meu_projeto/settings.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/meu_projeto/settings.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/api/login/
+Bad Request: /api/login/
+"POST /api/login/ HTTP/1.1" 400 61
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/register/
+🔄 Perfil criado automaticamente para ccamposs200777@gmail.com
+Internal Server Error: /api/register/
+Traceback (most recent call last):
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "home_profile_user_id_key"
+DETAIL:  Key (user_id)=(196) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/api_views.py", line 114, in api_register
+    Profile.objects.create(user=user, nome=nome, idade=idade, faixa=faixa)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/sql/compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "home_profile_user_id_key"
+DETAIL:  Key (user_id)=(196) already exists.
+
+"POST /api/register/ HTTP/1.1" 500 26049
+Processos pesados desabilitados - modo leve ativado
+[PremiumAccessMiddleware] Path=/api/register/
+Internal Server Error: /api/register/
+Traceback (most recent call last):
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/base/base.py", line 279, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/base/base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/postgresql/base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: could not translate host name "aws-1-us-east-2.pooler.supabase.com" to address: nodename nor servname provided, or not known
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/api_views.py", line 103, in api_register
+    if form.is_valid():
+       ~~~~~~~~~~~~~^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/forms/forms.py", line 206, in is_valid
+    return self.is_bound and not self.errors
+                                 ^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/forms/forms.py", line 201, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/forms/forms.py", line 337, in full_clean
+    self._clean_fields()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/forms/forms.py", line 347, in _clean_fields
+    value = getattr(self, "clean_%s" % name)()
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/forms.py", line 79, in clean_email
+    if User.objects.filter(email=email).exists():
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/query.py", line 1296, in exists
+    return self.query.has_results(using=self.db)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/sql/query.py", line 674, in has_results
+    return compiler.has_results()
+           ~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/sql/compiler.py", line 1591, in has_results
+    return bool(self.execute_sql(SINGLE))
+                ~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/sql/compiler.py", line 1621, in execute_sql
+    cursor = self.connection.cursor()
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/base/base.py", line 320, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/base/base.py", line 296, in _cursor
+    self.ensure_connection()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/base/base.py", line 278, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/base/base.py", line 279, in ensure_connection
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/base/base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/postgresql/base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+django.db.utils.OperationalError: could not translate host name "aws-1-us-east-2.pooler.supabase.com" to address: nodename nor servname provided, or not known
+
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/api_views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/api_views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/api_views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/api_views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/api_views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/api_views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/api/register/
+Bad Request: /api/register/
+"POST /api/register/ HTTP/1.1" 400 77
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/api_views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/api_views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/api_views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/api/register/
+🔄 Perfil criado automaticamente para ccamposs20075477@gmail.com
+Internal Server Error: /api/register/
+Traceback (most recent call last):
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "home_profile_user_id_key"
+DETAIL:  Key (user_id)=(197) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/api_views.py", line 123, in api_register
+    Profile.objects.create(user=user, nome=nome, idade=idade, faixa=faixa)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/sql/compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "home_profile_user_id_key"
+DETAIL:  Key (user_id)=(197) already exists.
+
+"POST /api/register/ HTTP/1.1" 500 26049
+[PremiumAccessMiddleware] Path=/api/register/
+Bad Request: /api/register/
+"POST /api/register/ HTTP/1.1" 400 77
+[PremiumAccessMiddleware] Path=/api/register/
+Bad Request: /api/register/
+"POST /api/register/ HTTP/1.1" 400 77
+[PremiumAccessMiddleware] Path=/api/register/
+Bad Request: /api/register/
+"POST /api/register/ HTTP/1.1" 400 77
+[PremiumAccessMiddleware] Path=/api/register/
+Bad Request: /api/register/
+"POST /api/register/ HTTP/1.1" 400 77
+[PremiumAccessMiddleware] Path=/api/register/
+🔄 Perfil criado automaticamente para ccamposs55420075477@gmail.com
+Internal Server Error: /api/register/
+Traceback (most recent call last):
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "home_profile_user_id_key"
+DETAIL:  Key (user_id)=(198) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/api_views.py", line 123, in api_register
+    Profile.objects.create(user=user, nome=nome, idade=idade, faixa=faixa)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/sql/compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "home_profile_user_id_key"
+DETAIL:  Key (user_id)=(198) already exists.
+
+"POST /api/register/ HTTP/1.1" 500 26049
+[PremiumAccessMiddleware] Path=/api/register/
+Bad Request: /api/register/
+"POST /api/register/ HTTP/1.1" 400 77
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+[PremiumAccessMiddleware] Path=/api/register/
+Bad Request: /api/register/
+"POST /api/register/ HTTP/1.1" 400 77
+[PremiumAccessMiddleware] Path=/api/register/
+🔄 Perfil criado automaticamente para febfyfbsjcn@gmail.com
+Internal Server Error: /api/register/
+Traceback (most recent call last):
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "home_profile_user_id_key"
+DETAIL:  Key (user_id)=(199) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/api_views.py", line 123, in api_register
+    Profile.objects.create(user=user, nome=nome, idade=idade, faixa=faixa)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/base.py", line 1169, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/base.py", line 1210, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/query.py", line 1868, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/models/sql/compiler.py", line 1882, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/venv/lib/python3.14/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "home_profile_user_id_key"
+DETAIL:  Key (user_id)=(199) already exists.
+
+"POST /api/register/ HTTP/1.1" 500 26033
+[PremiumAccessMiddleware] Path=/api/register/
+Bad Request: /api/register/
+"POST /api/register/ HTTP/1.1" 400 77
+[PremiumAccessMiddleware] Path=/api/register/
+Bad Request: /api/register/
+"POST /api/register/ HTTP/1.1" 400 77
+[PremiumAccessMiddleware] Path=/api/register/
+Bad Request: /api/register/
+"POST /api/register/ HTTP/1.1" 400 77
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/login/
+Bad Request: /api/login/
+"POST /api/login/ HTTP/1.1" 400 61
+[PremiumAccessMiddleware] Path=/api/login/
+Bad Request: /api/login/
+"POST /api/login/ HTTP/1.1" 400 61
+Processos pesados desabilitados - modo leve ativado
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/api_views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/api/register/
+Bad Request: /api/register/
+"POST /api/register/ HTTP/1.1" 400 77
+[PremiumAccessMiddleware] Path=/api/register/
+🔄 Perfil criado automaticamente para teste.1773448715@teste.com
+"POST /api/register/ HTTP/1.1" 200 285
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/register/
+🔄 Perfil criado automaticamente para ccamposs2044407@gmail.com
+"POST /api/register/ HTTP/1.1" 200 272
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/login/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/login/
+"POST /api/login/ HTTP/1.1" 200 261
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 245
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 245
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 245
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 245
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 245
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 245
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 245
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 245
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 245
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 245
+[PremiumAccessMiddleware] Path=/api/logout/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/logout/
+"POST /api/logout/ HTTP/1.1" 200 34
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/login/
+"POST /api/login/ HTTP/1.1" 200 261
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 245
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 245
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 245
+"GET /static/faixa-cinza.png HTTP/1.1" 200 23948
+"GET /static/faixa-azul.png HTTP/1.1" 200 163875
+"GET /static/faixa-amarela.png HTTP/1.1" 200 155038
+"GET /static/faixa-verde.png HTTP/1.1" 200 102267
+"GET /static/faixa-laranja.png HTTP/1.1" 200 38025
+"GET /static/faixa-roxa.png HTTP/1.1" 200 145067
+"GET /static/faixa-marrom.png HTTP/1.1" 200 134181
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/api_views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/api/login/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/login/
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/api_views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/api/login/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/login/
+"POST /api/login/ HTTP/1.1" 200 337
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/home/api_views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/api/login/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/login/
+"POST /api/login/ HTTP/1.1" 200 337
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 321
