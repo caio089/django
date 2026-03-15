@@ -234,18 +234,17 @@ form.addEventListener('submit', async function(e) {
         if (data.success) {
             console.log('✅ Pagamento criado com sucesso!');
             console.log('📊 Dados recebidos:', data);
-            console.log('🆔 Payment ID:', data.payment_id);
-            console.log('🔗 URL de redirecionamento:', `{% url "payments:checkout_pagamento" 0 %}`.replace('0', data.payment_id));
-            
-            showStatus('success', 'Pagamento criado!', 'Redirecionando para o checkout...');
-            
-            // Redirecionar para checkout após 1 segundo
-            setTimeout(() => {
-                const redirectUrl = `{% url "payments:checkout_pagamento" 0 %}`.replace('0', data.payment_id);
-                console.log('🚀 Redirecionando para:', redirectUrl);
-                window.location.href = redirectUrl;
-            }, 1000);
-            
+            // Redirecionar direto para o checkout do Mercado Pago (nunca para a página HTML)
+            const checkoutUrl = data.init_point || (data.preference_id ? 'https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=' + data.preference_id : null);
+            if (checkoutUrl) {
+                showStatus('success', 'Pagamento criado!', 'Redirecionando para o Mercado Pago...');
+                setTimeout(() => { window.location.replace(checkoutUrl); }, 800);
+            } else {
+                showStatus('error', 'Erro', 'Resposta inválida do servidor');
+                submitButton.disabled = false;
+                submitText.classList.remove('hidden');
+                loadingSpinner.classList.add('hidden');
+            }
         } else {
             showStatus('error', 'Erro ao criar pagamento', data.error || 'Tente novamente');
             submitButton.disabled = false;

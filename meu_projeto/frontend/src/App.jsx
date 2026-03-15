@@ -10,6 +10,10 @@ import Historia from './pages/Historia';
 import Palavras from './pages/Palavras';
 import Regras from './pages/Regras';
 import Planos from './pages/Planos';
+import Payments from './pages/Payments';
+import PlanoPagamento from './pages/PlanoPagamento';
+import CheckoutRedirect from './pages/CheckoutRedirect';
+import Ranking from './pages/Ranking';
 
 class QuizErrorBoundary extends Component {
   state = { hasError: false };
@@ -50,7 +54,11 @@ function App() {
         <Route path="/historia" element={<Historia />} />
         <Route path="/palavras" element={<Palavras />} />
         <Route path="/regras" element={<Regras />} />
+        <Route path="/payments" element={<Payments />} />
         <Route path="/payments/planos" element={<Planos />} />
+        <Route path="/payments/plano/:planoId" element={<PlanoPagamento />} />
+        <Route path="/payments/checkout/:paymentId" element={<CheckoutRedirect />} />
+        <Route path="/ranking" element={<Ranking />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

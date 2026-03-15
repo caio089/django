@@ -128,7 +128,7 @@ def listar_planos(request):
         plano_mensal = PlanoPremium.objects.create(
             nome="Plano Mensal Premium",
             descricao="Acesso completo à plataforma de judô com todos os recursos premium",
-            preco=19.90,
+            preco=47.90,
             duracao_dias=30,
             ativo=True,
             acesso_ilimitado_quiz=True,
@@ -136,8 +136,8 @@ def listar_planos(request):
             suporte_prioritario=True,
         )
     # Atualizar preço/duração caso tenham mudado no código
-    if plano_mensal.preco != 19.90 or plano_mensal.duracao_dias != 30:
-        plano_mensal.preco = 19.90
+    if plano_mensal.preco != 47.90 or plano_mensal.duracao_dias != 30:
+        plano_mensal.preco = 47.90
         plano_mensal.duracao_dias = 30
         plano_mensal.ativo = True
         plano_mensal.save(update_fields=["preco", "duracao_dias", "ativo"])
@@ -147,15 +147,15 @@ def listar_planos(request):
         plano_trimestral = PlanoPremium.objects.create(
             nome="Plano Trimestral Premium",
             descricao="Assinatura por 3 meses com acesso completo aos recursos premium",
-            preco=50.00,
+            preco=119.90,
             duracao_dias=90,
             ativo=True,
             acesso_ilimitado_quiz=True,
             relatorios_detalhados=True,
             suporte_prioritario=True,
         )
-    if plano_trimestral.preco != 50.00 or plano_trimestral.duracao_dias != 90:
-        plano_trimestral.preco = 50.00
+    if plano_trimestral.preco != 119.90 or plano_trimestral.duracao_dias != 90:
+        plano_trimestral.preco = 119.90
         plano_trimestral.duracao_dias = 90
         plano_trimestral.ativo = True
         plano_trimestral.save(update_fields=["preco", "duracao_dias", "ativo"])
@@ -209,6 +209,22 @@ def listar_planos(request):
         'planos': planos,       # lista completa para escolha
         'assinatura_ativa': assinatura_ativa
     })
+
+@login_required
+@require_http_methods(["GET"])
+def api_plano_detail(request, plano_id):
+    """
+    API JSON: retorna detalhes do plano para o frontend React.
+    """
+    plano = get_object_or_404(PlanoPremium, id=plano_id, ativo=True)
+    return JsonResponse({
+        'id': plano.id,
+        'nome': plano.nome,
+        'descricao': plano.descricao,
+        'preco': str(plano.preco),
+        'duracao_dias': plano.duracao_dias,
+    })
+
 
 @login_required
 def escolher_plano(request, plano_id):
@@ -394,10 +410,21 @@ def criar_pagamento(request, plano_id):
                 pagamento.set_payer_document(cpf)
             pagamento.save()
             
-            # Retornar dados para o frontend
+            # URL direta para o checkout do Mercado Pago (frontend redireciona para aqui)
+            pref_id = preference_data.get("id") or preference_data.get("preference_id")
+            if pref_id is not None:
+                pref_id = str(pref_id)
+            init_point = (
+                preference_data.get("init_point")
+                or preference_data.get("sandbox_init_point")
+                or (f"https://www.mercadopago.com.br/checkout/v1/redirect?pref_id={pref_id}" if pref_id else None)
+            )
+            if init_point and not init_point.startswith("http"):
+                init_point = f"https://www.mercadopago.com.br/checkout/v1/redirect?pref_id={pref_id}" if pref_id else None
             return JsonResponse({
                 'success': True,
-                'preference_id': preference_data["id"],
+                'preference_id': pref_id,
+                'init_point': init_point,
                 'public_key': config.get_public_key(),
                 'payment_id': pagamento.id,
                 'external_reference': external_reference
@@ -678,6 +705,22 @@ def gerar_pix_direto(request, payment_id):
             'success': False,
             'error': 'Erro interno do servidor'
         })
+
+@login_required
+@require_http_methods(["GET"])
+def api_checkout_redirect(request, payment_id):
+    """
+    API: retorna a URL do Mercado Pago (init_point) para o frontend redirecionar.
+    Usado quando o usuário cai em /payments/checkout/:id para mandá-lo direto ao MP.
+    """
+    pagamento = get_object_or_404(Pagamento, id=payment_id, usuario=request.user)
+    payment_id_mp = pagamento.get_payment_id()
+    if payment_id_mp and str(payment_id_mp).startswith('pref_'):
+        preference_id = str(payment_id_mp).replace('pref_', '')
+        init_point = f"https://www.mercadopago.com.br/checkout/v1/redirect?pref_id={preference_id}"
+        return JsonResponse({'success': True, 'init_point': init_point, 'preference_id': preference_id})
+    return JsonResponse({'success': False, 'error': 'Preferência não encontrada'}, status=404)
+
 
 @login_required
 def checkout_pagamento(request, payment_id):

@@ -4,6 +4,8 @@ from . import views
 app_name = 'payments'
 
 urlpatterns = [
+    # API para frontend React
+    path('api/plano/<int:plano_id>/', views.api_plano_detail, name='api_plano_detail'),
     # Páginas de planos e pagamento
     path('planos/', views.listar_planos, name='planos'),
     path('plano/<int:plano_id>/', views.escolher_plano, name='escolher_plano'),

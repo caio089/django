@@ -20,6 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from dashboard import views as dashboard_views
 from meu_projeto import views_supabase
+from payments import views as payments_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -41,6 +42,11 @@ urlpatterns = [
     path('dashboard/', include('dashboard.urls')),
     path('admin-dashboard/', dashboard_views.dashboard_admin, name='admin_dashboard_direct'),  # Atalho direto
     
+    # API de pagamentos para o frontend React (mesmo prefixo /api do proxy)
+    path('api/payments/plano/<int:plano_id>/', payments_views.api_plano_detail, name='api_payments_plano_detail'),
+    path('api/payments/criar-pagamento/<int:plano_id>/', payments_views.criar_pagamento, name='api_payments_criar'),
+    path('api/payments/gerar-pix/<int:payment_id>/', payments_views.gerar_pix_direto, name='api_payments_gerar_pix'),
+    path('api/payments/checkout-redirect/<int:payment_id>/', payments_views.api_checkout_redirect, name='api_payments_checkout_redirect'),
     # Endpoints de monitoramento do Supabase
     path('api/supabase/status/', views_supabase.supabase_status, name='supabase_status'),
     path('api/supabase/start/', views_supabase.start_keepalive, name='supabase_start'),

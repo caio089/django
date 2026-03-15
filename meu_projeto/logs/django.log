@@ -6848,3 +6848,1534 @@ Watching for file changes with StatReloader
 [PremiumAccessMiddleware] Path=/quiz/api/ranking/
 [PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
 "GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/login/
+"POST /api/login/ HTTP/1.1" 200 354
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /static/faixa-cinza.png HTTP/1.1" 304 0
+"GET /static/faixa-laranja.png HTTP/1.1" 304 0
+"GET /static/faixa-amarela.png HTTP/1.1" 304 0
+"GET /static/faixa-verde.png HTTP/1.1" 304 0
+"GET /static/faixa-azul.png HTTP/1.1" 304 0
+"GET /static/faixa-marrom.png HTTP/1.1" 304 0
+"GET /static/faixa-roxa.png HTTP/1.1" 304 0
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+[PremiumAccessMiddleware] Path=/api/me/
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/me/
+"GET /api/me/ HTTP/1.1" 200 24
+[PremiumAccessMiddleware] Path=/api/me/
+"GET /api/me/ HTTP/1.1" 200 24
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/login/
+"POST /api/login/ HTTP/1.1" 200 354
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/payments/planos/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/planos/
+"GET /payments/planos/ HTTP/1.1" 200 37164
+"GET /static/judo.png HTTP/1.1" 304 0
+"GET /static/demosntra%C3%A7ao1.png HTTP/1.1" 304 0
+"GET /static/demonstra%C3%A7ao3.png HTTP/1.1" 304 0
+"GET /static/demonstra%C3%A7ao2.png HTTP/1.1" 304 0
+"GET /static/demonstra%C3%A7ao4.png HTTP/1.1" 304 0
+[PremiumAccessMiddleware] Path=/payments/planos/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/planos/
+"GET /payments/planos/ HTTP/1.1" 200 37164
+[PremiumAccessMiddleware] Path=/payments/planos/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/planos/
+"GET /payments/planos/ HTTP/1.1" 200 37164
+"GET /static/judo.png HTTP/1.1" 200 158297
+"GET /static/demosntra%C3%A7ao1.png HTTP/1.1" 200 227956
+"GET /static/demonstra%C3%A7ao3.png HTTP/1.1" 200 137497
+"GET /static/demonstra%C3%A7ao2.png HTTP/1.1" 200 332519
+"GET /static/demonstra%C3%A7ao4.png HTTP/1.1" 200 359249
+[PremiumAccessMiddleware] Path=/payments/planos
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/planos
+"GET /payments/planos HTTP/1.1" 301 0
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/payments/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/plano/1/
+"GET /payments/plano/1/ HTTP/1.1" 200 15099
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/payments/views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/payments/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/plano/1/
+"GET /payments/plano/1/ HTTP/1.1" 200 15099
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/payments/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/plano/1/
+"GET /payments/plano/1/ HTTP/1.1" 200 15099
+[PremiumAccessMiddleware] Path=/payments/criar-pagamento/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/criar-pagamento/1/
+PAYMENT_AUDIT: {"timestamp": "2026-03-15T15:38:02.838596+00:00", "event_type": "payment_attempt", "user_id": 203, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal Premium", "valor": 19.9}}
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+Criando preferência com dados: {'items': [{'title': 'Plano Mensal Premium', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'quantity': 1, 'unit_price': 19.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2066074433@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': ' 99407-7754'}}, 'back_urls': {'success': 'https://dojo-on.onrender.com/payments/sucesso/', 'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/'}, 'external_reference': 'd50fd091-e928-4142-aaca-0e5e49eaead2', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}, 'auto_return': 'approved', 'binary_mode': False, 'statement_descriptor': 'DOJO-ON', 'metadata': {'plano_id': '1', 'user_id': '203', 'external_reference': 'd50fd091-e928-4142-aaca-0e5e49eaead2'}, 'differential_pricing': {'id': 1}}
+Resposta da preferência: {'status': 201, 'response': {'additional_info': '', 'auto_return': 'approved', 'back_urls': {'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/', 'success': 'https://dojo-on.onrender.com/payments/sucesso/'}, 'binary_mode': False, 'client_id': '5519793243562045', 'collector_id': 463249815, 'coupon_code': None, 'coupon_labels': None, 'date_created': '2026-03-15T11:38:03.941-04:00', 'date_of_expiration': None, 'differential_pricing': {'id': None}, 'expiration_date_from': None, 'expiration_date_to': None, 'expires': False, 'external_reference': 'd50fd091-e928-4142-aaca-0e5e49eaead2', 'id': '463249815-7410e06d-9ba4-4edc-ac84-f8579badb18b', 'init_point': 'https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-7410e06d-9ba4-4edc-ac84-f8579badb18b', 'internal_metadata': None, 'items': [{'id': '', 'category_id': '', 'currency_id': 'BRL', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'title': 'Plano Mensal Premium', 'quantity': 1, 'unit_price': 19.9}], 'marketplace': 'NONE', 'marketplace_fee': 0, 'metadata': {'external_reference': 'd50fd091-e928-4142-aaca-0e5e49eaead2', 'plano_id': '1', 'user_id': '203'}, 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'operation_type': 'regular_payment', 'payer': {'phone': {'area_code': '89', 'number': ' 99407-7754'}, 'address': {'zip_code': '', 'street_name': '', 'street_number': None}, 'email': 'ccamposs2066074433@gmail.com', 'identification': {'number': '04217183313', 'type': 'CPF'}, 'name': '', 'surname': '', 'date_created': None, 'last_purchase': None}, 'payment_methods': {'default_card_id': None, 'default_payment_method_id': None, 'excluded_payment_methods': [{'id': ''}], 'excluded_payment_types': [{'id': ''}], 'installments': 12, 'default_installments': None}, 'processing_modes': None, 'product_id': None, 'preference_expired': False, 'redirect_urls': {'failure': '', 'pending': '', 'success': ''}, 'sandbox_init_point': 'https://sandbox.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-7410e06d-9ba4-4edc-ac84-f8579badb18b', 'site_id': 'MLB', 'shipments': {'default_shipping_method': None, 'receiver_address': {'zip_code': '', 'street_name': '', 'street_number': None, 'floor': '', 'apartment': '', 'city_name': None, 'state_name': None, 'country_name': None, 'neighborhood': None}}, 'statement_descriptor': 'DOJO-ON', 'total_amount': None, 'last_updated': None, 'financing_group': ''}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 226
+[PremiumAccessMiddleware] Path=/payments/checkout/60/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/checkout/60/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+Checkout - Payment ID: pref_463249815-7410e06d-9ba4-4edc-ac84-f8579badb18b
+Checkout - Payment status: pending
+Checkout - External reference: d50fd091-e928-4142-aaca-0e5e49eaead2
+Checkout - Init Point: https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-7410e06d-9ba4-4edc-ac84-f8579badb18b
+"GET /payments/checkout/60/ HTTP/1.1" 200 36835
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/payments/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/plano/1/
+"GET /payments/plano/1/ HTTP/1.1" 200 15099
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/payments/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/plano/1/
+"GET /payments/plano/1/ HTTP/1.1" 200 15099
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Path=/quiz/api/ranking/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /quiz/api/ranking/
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 448
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/payments/api/plano/1/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/api/plano/1/
+"GET /api/csrf/ HTTP/1.1" 200 14
+Not Found: /payments/api/plano/1/
+"GET /payments/api/plano/1/ HTTP/1.1" 404 13435
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/payments/api/plano/1/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/api/plano/1/
+Not Found: /payments/api/plano/1/
+"GET /payments/api/plano/1/ HTTP/1.1" 404 13435
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/payments/api/plano/1/
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/api/plano/1/
+Not Found: /payments/api/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /payments/api/plano/1/ HTTP/1.1" 404 13435
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/payments/api/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/api/plano/1/
+Not Found: /payments/api/plano/1/
+"GET /payments/api/plano/1/ HTTP/1.1" 404 13435
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/payments/api/plano/1/
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/api/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+Not Found: /payments/api/plano/1/
+"GET /payments/api/plano/1/ HTTP/1.1" 404 13435
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/payments/api/plano/1/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/api/plano/1/
+Not Found: /payments/api/plano/1/
+"GET /payments/api/plano/1/ HTTP/1.1" 404 13435
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Path=/payments/api/plano/1/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/api/plano/1/
+Not Found: /payments/api/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /payments/api/plano/1/ HTTP/1.1" 404 13435
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/payments/api/plano/1/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/api/plano/1/
+Not Found: /payments/api/plano/1/
+"GET /payments/api/plano/1/ HTTP/1.1" 404 13435
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/meu_projeto/urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Path=/api/payments/plano/1/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/payments/plano/1/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+Not Found: /api/payments/plano/1/
+"GET /api/payments/plano/1/ HTTP/1.1" 404 9556
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/payments/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/payments/plano/1/
+Not Found: /api/payments/plano/1/
+"GET /api/payments/plano/1/ HTTP/1.1" 404 9556
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Path=/api/payments/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/payments/plano/1/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /api/payments/plano/1/ HTTP/1.1" 200 172
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/payments/plano/1/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/payments/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/payments/plano/1/ HTTP/1.1" 200 172
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/payments/criar-pagamento/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/criar-pagamento/1/
+PAYMENT_AUDIT: {"timestamp": "2026-03-15T15:43:22.139054+00:00", "event_type": "payment_attempt", "user_id": 203, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal Premium", "valor": 19.9}}
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+Criando preferência com dados: {'items': [{'title': 'Plano Mensal Premium', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'quantity': 1, 'unit_price': 19.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': '994077754'}}, 'back_urls': {'success': 'https://dojo-on.onrender.com/payments/sucesso/', 'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/'}, 'external_reference': '23d215fb-3eea-4742-8362-b856bcf4b5e3', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}, 'auto_return': 'approved', 'binary_mode': False, 'statement_descriptor': 'DOJO-ON', 'metadata': {'plano_id': '1', 'user_id': '203', 'external_reference': '23d215fb-3eea-4742-8362-b856bcf4b5e3'}, 'differential_pricing': {'id': 1}}
+Resposta da preferência: {'status': 201, 'response': {'additional_info': '', 'auto_return': 'approved', 'back_urls': {'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/', 'success': 'https://dojo-on.onrender.com/payments/sucesso/'}, 'binary_mode': False, 'client_id': '5519793243562045', 'collector_id': 463249815, 'coupon_code': None, 'coupon_labels': None, 'date_created': '2026-03-15T11:43:22.953-04:00', 'date_of_expiration': None, 'differential_pricing': {'id': None}, 'expiration_date_from': None, 'expiration_date_to': None, 'expires': False, 'external_reference': '23d215fb-3eea-4742-8362-b856bcf4b5e3', 'id': '463249815-31eb9e5e-07da-4a8b-802d-9c74013ce230', 'init_point': 'https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-31eb9e5e-07da-4a8b-802d-9c74013ce230', 'internal_metadata': None, 'items': [{'id': '', 'category_id': '', 'currency_id': 'BRL', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'title': 'Plano Mensal Premium', 'quantity': 1, 'unit_price': 19.9}], 'marketplace': 'NONE', 'marketplace_fee': 0, 'metadata': {'external_reference': '23d215fb-3eea-4742-8362-b856bcf4b5e3', 'plano_id': '1', 'user_id': '203'}, 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'operation_type': 'regular_payment', 'payer': {'phone': {'area_code': '89', 'number': '994077754'}, 'address': {'zip_code': '', 'street_name': '', 'street_number': None}, 'email': 'ccamposs2007@gmail.com', 'identification': {'number': '04217183313', 'type': 'CPF'}, 'name': '', 'surname': '', 'date_created': None, 'last_purchase': None}, 'payment_methods': {'default_card_id': None, 'default_payment_method_id': None, 'excluded_payment_methods': [{'id': ''}], 'excluded_payment_types': [{'id': ''}], 'installments': 12, 'default_installments': None}, 'processing_modes': None, 'product_id': None, 'preference_expired': False, 'redirect_urls': {'failure': '', 'pending': '', 'success': ''}, 'sandbox_init_point': 'https://sandbox.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-31eb9e5e-07da-4a8b-802d-9c74013ce230', 'site_id': 'MLB', 'shipments': {'default_shipping_method': None, 'receiver_address': {'zip_code': '', 'street_name': '', 'street_number': None, 'floor': '', 'apartment': '', 'city_name': None, 'state_name': None, 'country_name': None, 'neighborhood': None}}, 'statement_descriptor': 'DOJO-ON', 'total_amount': None, 'last_updated': None, 'financing_group': ''}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 226
+[PremiumAccessMiddleware] Path=/payments/gerar-pix/61/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/gerar-pix/61/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+PIX gerado com sucesso - Payment ID: 149744396015
+QR Code: 00020126580014br.gov.bcb.pix013661abdfe4-acf3-4a0f...
+QR Code Base64 disponível: True
+📋 QR Code Base64 do Mercado Pago: True
+🔧 Adicionado prefixo data:image/png;base64 ao QR Code Base64
+🔍 Início do Base64 MP: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABWQAAAVkAQMAAABpQ4TyAAAABlBMVEX///8AAABVwtN+AAAKL0lEQV...
+🔍 Tem prefixo data: True
+"POST /payments/gerar-pix/61/ HTTP/1.1" 200 4218
+[PremiumAccessMiddleware] Path=/payments/criar-pagamento/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/criar-pagamento/1/
+PAYMENT_AUDIT: {"timestamp": "2026-03-15T15:43:30.529099+00:00", "event_type": "payment_attempt", "user_id": 203, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal Premium", "valor": 19.9}}
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+Criando preferência com dados: {'items': [{'title': 'Plano Mensal Premium', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'quantity': 1, 'unit_price': 19.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': '994077754'}}, 'back_urls': {'success': 'https://dojo-on.onrender.com/payments/sucesso/', 'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/'}, 'external_reference': 'e84bf0ae-284b-47e9-9720-e5cd4749ea47', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}, 'auto_return': 'approved', 'binary_mode': False, 'statement_descriptor': 'DOJO-ON', 'metadata': {'plano_id': '1', 'user_id': '203', 'external_reference': 'e84bf0ae-284b-47e9-9720-e5cd4749ea47'}, 'differential_pricing': {'id': 1}}
+Resposta da preferência: {'status': 201, 'response': {'additional_info': '', 'auto_return': 'approved', 'back_urls': {'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/', 'success': 'https://dojo-on.onrender.com/payments/sucesso/'}, 'binary_mode': False, 'client_id': '5519793243562045', 'collector_id': 463249815, 'coupon_code': None, 'coupon_labels': None, 'date_created': '2026-03-15T11:43:31.129-04:00', 'date_of_expiration': None, 'differential_pricing': {'id': None}, 'expiration_date_from': None, 'expiration_date_to': None, 'expires': False, 'external_reference': 'e84bf0ae-284b-47e9-9720-e5cd4749ea47', 'id': '463249815-64382ee1-3e68-4f2e-91fd-b3788600461a', 'init_point': 'https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-64382ee1-3e68-4f2e-91fd-b3788600461a', 'internal_metadata': None, 'items': [{'id': '', 'category_id': '', 'currency_id': 'BRL', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'title': 'Plano Mensal Premium', 'quantity': 1, 'unit_price': 19.9}], 'marketplace': 'NONE', 'marketplace_fee': 0, 'metadata': {'external_reference': 'e84bf0ae-284b-47e9-9720-e5cd4749ea47', 'plano_id': '1', 'user_id': '203'}, 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'operation_type': 'regular_payment', 'payer': {'phone': {'area_code': '89', 'number': '994077754'}, 'address': {'zip_code': '', 'street_name': '', 'street_number': None}, 'email': 'ccamposs2007@gmail.com', 'identification': {'number': '04217183313', 'type': 'CPF'}, 'name': '', 'surname': '', 'date_created': None, 'last_purchase': None}, 'payment_methods': {'default_card_id': None, 'default_payment_method_id': None, 'excluded_payment_methods': [{'id': ''}], 'excluded_payment_types': [{'id': ''}], 'installments': 12, 'default_installments': None}, 'processing_modes': None, 'product_id': None, 'preference_expired': False, 'redirect_urls': {'failure': '', 'pending': '', 'success': ''}, 'sandbox_init_point': 'https://sandbox.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-64382ee1-3e68-4f2e-91fd-b3788600461a', 'site_id': 'MLB', 'shipments': {'default_shipping_method': None, 'receiver_address': {'zip_code': '', 'street_name': '', 'street_number': None, 'floor': '', 'apartment': '', 'city_name': None, 'state_name': None, 'country_name': None, 'neighborhood': None}}, 'statement_descriptor': 'DOJO-ON', 'total_amount': None, 'last_updated': None, 'financing_group': ''}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 226
+[PremiumAccessMiddleware] Path=/payments/checkout/62/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/checkout/62/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+Checkout - Payment ID: pref_463249815-64382ee1-3e68-4f2e-91fd-b3788600461a
+Checkout - Payment status: pending
+Checkout - External reference: e84bf0ae-284b-47e9-9720-e5cd4749ea47
+Checkout - Init Point: https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-64382ee1-3e68-4f2e-91fd-b3788600461a
+"GET /payments/checkout/62/ HTTP/1.1" 200 36835
+[PremiumAccessMiddleware] Path=/payments/verificar-status/62/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/62/
+Buscando pagamento real para preferência pref_463249815-64382ee1-3e68-4f2e-91fd-b3788600461a
+"GET /payments/verificar-status/62/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/62/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/62/
+Buscando pagamento real para preferência pref_463249815-64382ee1-3e68-4f2e-91fd-b3788600461a
+"GET /payments/verificar-status/62/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/62/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/62/
+Buscando pagamento real para preferência pref_463249815-64382ee1-3e68-4f2e-91fd-b3788600461a
+"GET /payments/verificar-status/62/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/62/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/62/
+Buscando pagamento real para preferência pref_463249815-64382ee1-3e68-4f2e-91fd-b3788600461a
+"GET /payments/verificar-status/62/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/62/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/62/
+Buscando pagamento real para preferência pref_463249815-64382ee1-3e68-4f2e-91fd-b3788600461a
+"GET /payments/verificar-status/62/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/62/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/62/
+Buscando pagamento real para preferência pref_463249815-64382ee1-3e68-4f2e-91fd-b3788600461a
+"GET /payments/verificar-status/62/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/62/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/62/
+Buscando pagamento real para preferência pref_463249815-64382ee1-3e68-4f2e-91fd-b3788600461a
+"GET /payments/verificar-status/62/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/62/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/62/
+Buscando pagamento real para preferência pref_463249815-64382ee1-3e68-4f2e-91fd-b3788600461a
+"GET /payments/verificar-status/62/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/62/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/62/
+Buscando pagamento real para preferência pref_463249815-64382ee1-3e68-4f2e-91fd-b3788600461a
+"GET /payments/verificar-status/62/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/62/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/62/
+Buscando pagamento real para preferência pref_463249815-64382ee1-3e68-4f2e-91fd-b3788600461a
+"GET /payments/verificar-status/62/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/62/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/62/
+Buscando pagamento real para preferência pref_463249815-64382ee1-3e68-4f2e-91fd-b3788600461a
+"GET /payments/verificar-status/62/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/62/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/62/
+Buscando pagamento real para preferência pref_463249815-64382ee1-3e68-4f2e-91fd-b3788600461a
+"GET /payments/verificar-status/62/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/62/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/62/
+Buscando pagamento real para preferência pref_463249815-64382ee1-3e68-4f2e-91fd-b3788600461a
+"GET /payments/verificar-status/62/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Path=/api/payments/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/payments/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /api/payments/plano/1/ HTTP/1.1" 200 172
+[PremiumAccessMiddleware] Path=/api/payments/plano/1/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/payments/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/payments/plano/1/ HTTP/1.1" 200 172
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/payments/criar-pagamento/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/criar-pagamento/1/
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 48
+[PremiumAccessMiddleware] Path=/payments/criar-pagamento/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/criar-pagamento/1/
+PAYMENT_AUDIT: {"timestamp": "2026-03-15T15:45:03.498380+00:00", "event_type": "payment_attempt", "user_id": 203, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal Premium", "valor": 19.9}}
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+Criando preferência com dados: {'items': [{'title': 'Plano Mensal Premium', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'quantity': 1, 'unit_price': 19.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': '994077754'}}, 'back_urls': {'success': 'https://dojo-on.onrender.com/payments/sucesso/', 'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/'}, 'external_reference': '500946a7-a23e-49ce-8810-444631a84ae0', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}, 'auto_return': 'approved', 'binary_mode': False, 'statement_descriptor': 'DOJO-ON', 'metadata': {'plano_id': '1', 'user_id': '203', 'external_reference': '500946a7-a23e-49ce-8810-444631a84ae0'}, 'differential_pricing': {'id': 1}}
+Resposta da preferência: {'status': 201, 'response': {'additional_info': '', 'auto_return': 'approved', 'back_urls': {'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/', 'success': 'https://dojo-on.onrender.com/payments/sucesso/'}, 'binary_mode': False, 'client_id': '5519793243562045', 'collector_id': 463249815, 'coupon_code': None, 'coupon_labels': None, 'date_created': '2026-03-15T11:45:04.417-04:00', 'date_of_expiration': None, 'differential_pricing': {'id': None}, 'expiration_date_from': None, 'expiration_date_to': None, 'expires': False, 'external_reference': '500946a7-a23e-49ce-8810-444631a84ae0', 'id': '463249815-c1224737-f98b-4417-99b2-09aa6f771aaf', 'init_point': 'https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-c1224737-f98b-4417-99b2-09aa6f771aaf', 'internal_metadata': None, 'items': [{'id': '', 'category_id': '', 'currency_id': 'BRL', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'title': 'Plano Mensal Premium', 'quantity': 1, 'unit_price': 19.9}], 'marketplace': 'NONE', 'marketplace_fee': 0, 'metadata': {'external_reference': '500946a7-a23e-49ce-8810-444631a84ae0', 'plano_id': '1', 'user_id': '203'}, 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'operation_type': 'regular_payment', 'payer': {'phone': {'area_code': '89', 'number': '994077754'}, 'address': {'zip_code': '', 'street_name': '', 'street_number': None}, 'email': 'ccamposs2007@gmail.com', 'identification': {'number': '04217183313', 'type': 'CPF'}, 'name': '', 'surname': '', 'date_created': None, 'last_purchase': None}, 'payment_methods': {'default_card_id': None, 'default_payment_method_id': None, 'excluded_payment_methods': [{'id': ''}], 'excluded_payment_types': [{'id': ''}], 'installments': 12, 'default_installments': None}, 'processing_modes': None, 'product_id': None, 'preference_expired': False, 'redirect_urls': {'failure': '', 'pending': '', 'success': ''}, 'sandbox_init_point': 'https://sandbox.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-c1224737-f98b-4417-99b2-09aa6f771aaf', 'site_id': 'MLB', 'shipments': {'default_shipping_method': None, 'receiver_address': {'zip_code': '', 'street_name': '', 'street_number': None, 'floor': '', 'apartment': '', 'city_name': None, 'state_name': None, 'country_name': None, 'neighborhood': None}}, 'statement_descriptor': 'DOJO-ON', 'total_amount': None, 'last_updated': None, 'financing_group': ''}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 226
+[PremiumAccessMiddleware] Path=/payments/checkout/63/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/checkout/63/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+Checkout - Payment ID: pref_463249815-c1224737-f98b-4417-99b2-09aa6f771aaf
+Checkout - Payment status: pending
+Checkout - External reference: 500946a7-a23e-49ce-8810-444631a84ae0
+Checkout - Init Point: https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-c1224737-f98b-4417-99b2-09aa6f771aaf
+"GET /payments/checkout/63/ HTTP/1.1" 200 36835
+[PremiumAccessMiddleware] Path=/payments/verificar-status/63/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/63/
+Buscando pagamento real para preferência pref_463249815-c1224737-f98b-4417-99b2-09aa6f771aaf
+"GET /payments/verificar-status/63/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/63/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/63/
+Buscando pagamento real para preferência pref_463249815-c1224737-f98b-4417-99b2-09aa6f771aaf
+"GET /payments/verificar-status/63/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/63/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/63/
+Buscando pagamento real para preferência pref_463249815-c1224737-f98b-4417-99b2-09aa6f771aaf
+"GET /payments/verificar-status/63/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/63/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/63/
+Buscando pagamento real para preferência pref_463249815-c1224737-f98b-4417-99b2-09aa6f771aaf
+"GET /payments/verificar-status/63/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/63/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/63/
+Buscando pagamento real para preferência pref_463249815-c1224737-f98b-4417-99b2-09aa6f771aaf
+"GET /payments/verificar-status/63/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/63/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/63/
+Buscando pagamento real para preferência pref_463249815-c1224737-f98b-4417-99b2-09aa6f771aaf
+"GET /payments/verificar-status/63/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/63/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/63/
+Buscando pagamento real para preferência pref_463249815-c1224737-f98b-4417-99b2-09aa6f771aaf
+"GET /payments/verificar-status/63/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/63/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/63/
+Buscando pagamento real para preferência pref_463249815-c1224737-f98b-4417-99b2-09aa6f771aaf
+"GET /payments/verificar-status/63/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/63/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/63/
+Buscando pagamento real para preferência pref_463249815-c1224737-f98b-4417-99b2-09aa6f771aaf
+"GET /payments/verificar-status/63/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/63/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/63/
+Buscando pagamento real para preferência pref_463249815-c1224737-f98b-4417-99b2-09aa6f771aaf
+"GET /payments/verificar-status/63/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/63/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/63/
+Buscando pagamento real para preferência pref_463249815-c1224737-f98b-4417-99b2-09aa6f771aaf
+"GET /payments/verificar-status/63/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/63/
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/meu_projeto/urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/payments/verificar-status/63/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/63/
+Buscando pagamento real para preferência pref_463249815-c1224737-f98b-4417-99b2-09aa6f771aaf
+"GET /payments/verificar-status/63/ HTTP/1.1" 200 128
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/payments/views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/payments/views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/payments/verificar-status/63/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/63/
+Buscando pagamento real para preferência pref_463249815-c1224737-f98b-4417-99b2-09aa6f771aaf
+"GET /payments/verificar-status/63/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/63/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/63/
+Buscando pagamento real para preferência pref_463249815-c1224737-f98b-4417-99b2-09aa6f771aaf
+"GET /payments/verificar-status/63/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/63/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/63/
+Buscando pagamento real para preferência pref_463249815-c1224737-f98b-4417-99b2-09aa6f771aaf
+"GET /payments/verificar-status/63/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/63/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/63/
+Buscando pagamento real para preferência pref_463249815-c1224737-f98b-4417-99b2-09aa6f771aaf
+"GET /payments/verificar-status/63/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/63/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/63/
+Buscando pagamento real para preferência pref_463249815-c1224737-f98b-4417-99b2-09aa6f771aaf
+"GET /payments/verificar-status/63/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/63/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/63/
+Buscando pagamento real para preferência pref_463249815-c1224737-f98b-4417-99b2-09aa6f771aaf
+"GET /payments/verificar-status/63/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/63/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/63/
+Buscando pagamento real para preferência pref_463249815-c1224737-f98b-4417-99b2-09aa6f771aaf
+"GET /payments/verificar-status/63/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/63/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/63/
+Buscando pagamento real para preferência pref_463249815-c1224737-f98b-4417-99b2-09aa6f771aaf
+"GET /payments/verificar-status/63/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/63/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/63/
+Buscando pagamento real para preferência pref_463249815-c1224737-f98b-4417-99b2-09aa6f771aaf
+"GET /payments/verificar-status/63/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/api/payments/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/payments/plano/1/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /api/payments/plano/1/ HTTP/1.1" 200 172
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Path=/api/payments/plano/1/
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/payments/plano/1/
+"GET /api/payments/plano/1/ HTTP/1.1" 200 172
+[PremiumAccessMiddleware] Path=/payments/criar-pagamento/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/criar-pagamento/1/
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 48
+[PremiumAccessMiddleware] Path=/payments/criar-pagamento/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/criar-pagamento/1/
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 48
+[PremiumAccessMiddleware] Path=/payments/criar-pagamento/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/criar-pagamento/1/
+PAYMENT_AUDIT: {"timestamp": "2026-03-15T15:56:49.299656+00:00", "event_type": "payment_attempt", "user_id": 203, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal Premium", "valor": 19.9}}
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+Criando preferência com dados: {'items': [{'title': 'Plano Mensal Premium', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'quantity': 1, 'unit_price': 19.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': '994077754'}}, 'back_urls': {'success': 'https://dojo-on.onrender.com/payments/sucesso/', 'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/'}, 'external_reference': 'ced076c1-31e6-4963-9a7d-b4650a002a67', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}, 'auto_return': 'approved', 'binary_mode': False, 'statement_descriptor': 'DOJO-ON', 'metadata': {'plano_id': '1', 'user_id': '203', 'external_reference': 'ced076c1-31e6-4963-9a7d-b4650a002a67'}, 'differential_pricing': {'id': 1}}
+Resposta da preferência: {'status': 201, 'response': {'additional_info': '', 'auto_return': 'approved', 'back_urls': {'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/', 'success': 'https://dojo-on.onrender.com/payments/sucesso/'}, 'binary_mode': False, 'client_id': '5519793243562045', 'collector_id': 463249815, 'coupon_code': None, 'coupon_labels': None, 'date_created': '2026-03-15T11:56:50.125-04:00', 'date_of_expiration': None, 'differential_pricing': {'id': None}, 'expiration_date_from': None, 'expiration_date_to': None, 'expires': False, 'external_reference': 'ced076c1-31e6-4963-9a7d-b4650a002a67', 'id': '463249815-32f8378d-2e8f-402e-b4f6-7ecfc4f0a457', 'init_point': 'https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-32f8378d-2e8f-402e-b4f6-7ecfc4f0a457', 'internal_metadata': None, 'items': [{'id': '', 'category_id': '', 'currency_id': 'BRL', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'title': 'Plano Mensal Premium', 'quantity': 1, 'unit_price': 19.9}], 'marketplace': 'NONE', 'marketplace_fee': 0, 'metadata': {'external_reference': 'ced076c1-31e6-4963-9a7d-b4650a002a67', 'plano_id': '1', 'user_id': '203'}, 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'operation_type': 'regular_payment', 'payer': {'phone': {'area_code': '89', 'number': '994077754'}, 'address': {'zip_code': '', 'street_name': '', 'street_number': None}, 'email': 'ccamposs2007@gmail.com', 'identification': {'number': '04217183313', 'type': 'CPF'}, 'name': '', 'surname': '', 'date_created': None, 'last_purchase': None}, 'payment_methods': {'default_card_id': None, 'default_payment_method_id': None, 'excluded_payment_methods': [{'id': ''}], 'excluded_payment_types': [{'id': ''}], 'installments': 12, 'default_installments': None}, 'processing_modes': None, 'product_id': None, 'preference_expired': False, 'redirect_urls': {'failure': '', 'pending': '', 'success': ''}, 'sandbox_init_point': 'https://sandbox.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-32f8378d-2e8f-402e-b4f6-7ecfc4f0a457', 'site_id': 'MLB', 'shipments': {'default_shipping_method': None, 'receiver_address': {'zip_code': '', 'street_name': '', 'street_number': None, 'floor': '', 'apartment': '', 'city_name': None, 'state_name': None, 'country_name': None, 'neighborhood': None}}, 'statement_descriptor': 'DOJO-ON', 'total_amount': None, 'last_updated': None, 'financing_group': ''}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 226
+[PremiumAccessMiddleware] Path=/payments/checkout/64/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/checkout/64/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+Checkout - Payment ID: pref_463249815-32f8378d-2e8f-402e-b4f6-7ecfc4f0a457
+Checkout - Payment status: pending
+Checkout - External reference: ced076c1-31e6-4963-9a7d-b4650a002a67
+Checkout - Init Point: https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-32f8378d-2e8f-402e-b4f6-7ecfc4f0a457
+"GET /payments/checkout/64/ HTTP/1.1" 200 36835
+[PremiumAccessMiddleware] Path=/payments/verificar-status/64/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/64/
+Buscando pagamento real para preferência pref_463249815-32f8378d-2e8f-402e-b4f6-7ecfc4f0a457
+"GET /payments/verificar-status/64/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/64/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/64/
+Buscando pagamento real para preferência pref_463249815-32f8378d-2e8f-402e-b4f6-7ecfc4f0a457
+"GET /payments/verificar-status/64/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/64/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/64/
+Buscando pagamento real para preferência pref_463249815-32f8378d-2e8f-402e-b4f6-7ecfc4f0a457
+"GET /payments/verificar-status/64/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/64/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/64/
+Buscando pagamento real para preferência pref_463249815-32f8378d-2e8f-402e-b4f6-7ecfc4f0a457
+"GET /payments/verificar-status/64/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/64/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/64/
+Buscando pagamento real para preferência pref_463249815-32f8378d-2e8f-402e-b4f6-7ecfc4f0a457
+"GET /payments/verificar-status/64/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/64/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/64/
+Buscando pagamento real para preferência pref_463249815-32f8378d-2e8f-402e-b4f6-7ecfc4f0a457
+"GET /payments/verificar-status/64/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/64/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/64/
+Buscando pagamento real para preferência pref_463249815-32f8378d-2e8f-402e-b4f6-7ecfc4f0a457
+"GET /payments/verificar-status/64/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/64/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/64/
+Buscando pagamento real para preferência pref_463249815-32f8378d-2e8f-402e-b4f6-7ecfc4f0a457
+"GET /payments/verificar-status/64/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/64/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/64/
+Buscando pagamento real para preferência pref_463249815-32f8378d-2e8f-402e-b4f6-7ecfc4f0a457
+"GET /payments/verificar-status/64/ HTTP/1.1" 200 128
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/payments/views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/payments/verificar-status/64/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/64/
+Buscando pagamento real para preferência pref_463249815-32f8378d-2e8f-402e-b4f6-7ecfc4f0a457
+"GET /payments/verificar-status/64/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/64/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/64/
+Buscando pagamento real para preferência pref_463249815-32f8378d-2e8f-402e-b4f6-7ecfc4f0a457
+"GET /payments/verificar-status/64/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/64/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/64/
+Buscando pagamento real para preferência pref_463249815-32f8378d-2e8f-402e-b4f6-7ecfc4f0a457
+"GET /payments/verificar-status/64/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/64/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/64/
+Buscando pagamento real para preferência pref_463249815-32f8378d-2e8f-402e-b4f6-7ecfc4f0a457
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /payments/verificar-status/64/ HTTP/1.1" 200 128
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Path=/api/payments/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/payments/plano/1/
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /api/payments/plano/1/ HTTP/1.1" 200 172
+[PremiumAccessMiddleware] Path=/api/payments/plano/1/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/payments/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/payments/plano/1/ HTTP/1.1" 200 172
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/payments/criar-pagamento/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/criar-pagamento/1/
+PAYMENT_AUDIT: {"timestamp": "2026-03-15T15:58:33.112721+00:00", "event_type": "payment_attempt", "user_id": 203, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal Premium", "valor": 19.9}}
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+Criando preferência com dados: {'items': [{'title': 'Plano Mensal Premium', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'quantity': 1, 'unit_price': 19.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': '994077754'}}, 'back_urls': {'success': 'https://dojo-on.onrender.com/payments/sucesso/', 'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/'}, 'external_reference': 'a3c4e788-4d65-4496-9d9f-43ea4a3aa01f', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}, 'auto_return': 'approved', 'binary_mode': False, 'statement_descriptor': 'DOJO-ON', 'metadata': {'plano_id': '1', 'user_id': '203', 'external_reference': 'a3c4e788-4d65-4496-9d9f-43ea4a3aa01f'}, 'differential_pricing': {'id': 1}}
+Resposta da preferência: {'status': 201, 'response': {'additional_info': '', 'auto_return': 'approved', 'back_urls': {'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/', 'success': 'https://dojo-on.onrender.com/payments/sucesso/'}, 'binary_mode': False, 'client_id': '5519793243562045', 'collector_id': 463249815, 'coupon_code': None, 'coupon_labels': None, 'date_created': '2026-03-15T11:58:33.900-04:00', 'date_of_expiration': None, 'differential_pricing': {'id': None}, 'expiration_date_from': None, 'expiration_date_to': None, 'expires': False, 'external_reference': 'a3c4e788-4d65-4496-9d9f-43ea4a3aa01f', 'id': '463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed', 'init_point': 'https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed', 'internal_metadata': None, 'items': [{'id': '', 'category_id': '', 'currency_id': 'BRL', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'title': 'Plano Mensal Premium', 'quantity': 1, 'unit_price': 19.9}], 'marketplace': 'NONE', 'marketplace_fee': 0, 'metadata': {'external_reference': 'a3c4e788-4d65-4496-9d9f-43ea4a3aa01f', 'plano_id': '1', 'user_id': '203'}, 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'operation_type': 'regular_payment', 'payer': {'phone': {'area_code': '89', 'number': '994077754'}, 'address': {'zip_code': '', 'street_name': '', 'street_number': None}, 'email': 'ccamposs2007@gmail.com', 'identification': {'number': '04217183313', 'type': 'CPF'}, 'name': '', 'surname': '', 'date_created': None, 'last_purchase': None}, 'payment_methods': {'default_card_id': None, 'default_payment_method_id': None, 'excluded_payment_methods': [{'id': ''}], 'excluded_payment_types': [{'id': ''}], 'installments': 12, 'default_installments': None}, 'processing_modes': None, 'product_id': None, 'preference_expired': False, 'redirect_urls': {'failure': '', 'pending': '', 'success': ''}, 'sandbox_init_point': 'https://sandbox.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed', 'site_id': 'MLB', 'shipments': {'default_shipping_method': None, 'receiver_address': {'zip_code': '', 'street_name': '', 'street_number': None, 'floor': '', 'apartment': '', 'city_name': None, 'state_name': None, 'country_name': None, 'neighborhood': None}}, 'statement_descriptor': 'DOJO-ON', 'total_amount': None, 'last_updated': None, 'financing_group': ''}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 350
+[PremiumAccessMiddleware] Path=/payments/checkout/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/checkout/65/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+Checkout - Payment ID: pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+Checkout - Payment status: pending
+Checkout - External reference: a3c4e788-4d65-4496-9d9f-43ea4a3aa01f
+Checkout - Init Point: https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/checkout/65/ HTTP/1.1" 200 36835
+[PremiumAccessMiddleware] Path=/payments/verificar-status/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/65/
+Buscando pagamento real para preferência pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/verificar-status/65/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/65/
+Buscando pagamento real para preferência pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/verificar-status/65/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/65/
+Buscando pagamento real para preferência pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/verificar-status/65/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/65/
+Buscando pagamento real para preferência pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/verificar-status/65/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/65/
+Buscando pagamento real para preferência pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/verificar-status/65/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/65/
+Buscando pagamento real para preferência pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/verificar-status/65/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/65/
+Buscando pagamento real para preferência pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/verificar-status/65/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/65/
+Buscando pagamento real para preferência pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/verificar-status/65/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/65/
+Buscando pagamento real para preferência pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/verificar-status/65/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/65/
+Buscando pagamento real para preferência pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/verificar-status/65/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/65/
+Buscando pagamento real para preferência pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/verificar-status/65/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/65/
+Buscando pagamento real para preferência pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/verificar-status/65/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/65/
+Buscando pagamento real para preferência pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/verificar-status/65/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/65/
+Buscando pagamento real para preferência pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/verificar-status/65/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/65/
+Buscando pagamento real para preferência pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/verificar-status/65/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/65/
+Buscando pagamento real para preferência pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/verificar-status/65/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/65/
+Buscando pagamento real para preferência pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/verificar-status/65/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/65/
+Buscando pagamento real para preferência pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/verificar-status/65/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/65/
+Buscando pagamento real para preferência pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/verificar-status/65/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/65/
+Buscando pagamento real para preferência pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/verificar-status/65/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/65/
+Buscando pagamento real para preferência pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/verificar-status/65/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/65/
+Buscando pagamento real para preferência pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/verificar-status/65/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/65/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/65/
+Buscando pagamento real para preferência pref_463249815-6bb104b0-7a73-42cd-8a8c-8e0104426eed
+"GET /payments/verificar-status/65/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Path=/api/payments/plano/1/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/payments/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/payments/plano/1/ HTTP/1.1" 200 172
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/payments/plano/1/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/payments/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/payments/plano/1/ HTTP/1.1" 200 172
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/payments/criar-pagamento/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/criar-pagamento/1/
+PAYMENT_AUDIT: {"timestamp": "2026-03-15T16:00:53.234651+00:00", "event_type": "payment_attempt", "user_id": 203, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal Premium", "valor": 19.9}}
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+Criando preferência com dados: {'items': [{'title': 'Plano Mensal Premium', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'quantity': 1, 'unit_price': 19.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': '994077754'}}, 'back_urls': {'success': 'https://dojo-on.onrender.com/payments/sucesso/', 'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/'}, 'external_reference': 'c2380834-addc-4526-9795-159301f550a2', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}, 'auto_return': 'approved', 'binary_mode': False, 'statement_descriptor': 'DOJO-ON', 'metadata': {'plano_id': '1', 'user_id': '203', 'external_reference': 'c2380834-addc-4526-9795-159301f550a2'}, 'differential_pricing': {'id': 1}}
+Resposta da preferência: {'status': 201, 'response': {'additional_info': '', 'auto_return': 'approved', 'back_urls': {'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/', 'success': 'https://dojo-on.onrender.com/payments/sucesso/'}, 'binary_mode': False, 'client_id': '5519793243562045', 'collector_id': 463249815, 'coupon_code': None, 'coupon_labels': None, 'date_created': '2026-03-15T12:00:53.967-04:00', 'date_of_expiration': None, 'differential_pricing': {'id': None}, 'expiration_date_from': None, 'expiration_date_to': None, 'expires': False, 'external_reference': 'c2380834-addc-4526-9795-159301f550a2', 'id': '463249815-a5cbe49a-b44a-4050-a15d-fda21db8fef5', 'init_point': 'https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-a5cbe49a-b44a-4050-a15d-fda21db8fef5', 'internal_metadata': None, 'items': [{'id': '', 'category_id': '', 'currency_id': 'BRL', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'title': 'Plano Mensal Premium', 'quantity': 1, 'unit_price': 19.9}], 'marketplace': 'NONE', 'marketplace_fee': 0, 'metadata': {'external_reference': 'c2380834-addc-4526-9795-159301f550a2', 'plano_id': '1', 'user_id': '203'}, 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'operation_type': 'regular_payment', 'payer': {'phone': {'area_code': '89', 'number': '994077754'}, 'address': {'zip_code': '', 'street_name': '', 'street_number': None}, 'email': 'ccamposs2007@gmail.com', 'identification': {'number': '04217183313', 'type': 'CPF'}, 'name': '', 'surname': '', 'date_created': None, 'last_purchase': None}, 'payment_methods': {'default_card_id': None, 'default_payment_method_id': None, 'excluded_payment_methods': [{'id': ''}], 'excluded_payment_types': [{'id': ''}], 'installments': 12, 'default_installments': None}, 'processing_modes': None, 'product_id': None, 'preference_expired': False, 'redirect_urls': {'failure': '', 'pending': '', 'success': ''}, 'sandbox_init_point': 'https://sandbox.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-a5cbe49a-b44a-4050-a15d-fda21db8fef5', 'site_id': 'MLB', 'shipments': {'default_shipping_method': None, 'receiver_address': {'zip_code': '', 'street_name': '', 'street_number': None, 'floor': '', 'apartment': '', 'city_name': None, 'state_name': None, 'country_name': None, 'neighborhood': None}}, 'statement_descriptor': 'DOJO-ON', 'total_amount': None, 'last_updated': None, 'financing_group': ''}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 350
+[PremiumAccessMiddleware] Path=/payments/checkout/66/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/checkout/66/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+Checkout - Payment ID: pref_463249815-a5cbe49a-b44a-4050-a15d-fda21db8fef5
+Checkout - Payment status: pending
+Checkout - External reference: c2380834-addc-4526-9795-159301f550a2
+Checkout - Init Point: https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-a5cbe49a-b44a-4050-a15d-fda21db8fef5
+"GET /payments/checkout/66/ HTTP/1.1" 200 36835
+[PremiumAccessMiddleware] Path=/payments/verificar-status/66/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/66/
+Buscando pagamento real para preferência pref_463249815-a5cbe49a-b44a-4050-a15d-fda21db8fef5
+"GET /payments/verificar-status/66/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/66/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/66/
+Buscando pagamento real para preferência pref_463249815-a5cbe49a-b44a-4050-a15d-fda21db8fef5
+"GET /payments/verificar-status/66/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/66/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/66/
+Buscando pagamento real para preferência pref_463249815-a5cbe49a-b44a-4050-a15d-fda21db8fef5
+"GET /payments/verificar-status/66/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/66/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/66/
+Buscando pagamento real para preferência pref_463249815-a5cbe49a-b44a-4050-a15d-fda21db8fef5
+"GET /payments/verificar-status/66/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/66/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/66/
+Buscando pagamento real para preferência pref_463249815-a5cbe49a-b44a-4050-a15d-fda21db8fef5
+"GET /payments/verificar-status/66/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/66/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/66/
+Buscando pagamento real para preferência pref_463249815-a5cbe49a-b44a-4050-a15d-fda21db8fef5
+"GET /payments/verificar-status/66/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/66/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/66/
+Buscando pagamento real para preferência pref_463249815-a5cbe49a-b44a-4050-a15d-fda21db8fef5
+"GET /payments/verificar-status/66/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/66/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/66/
+Buscando pagamento real para preferência pref_463249815-a5cbe49a-b44a-4050-a15d-fda21db8fef5
+"GET /payments/verificar-status/66/ HTTP/1.1" 200 128
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/payments/views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/payments/verificar-status/66/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/66/
+Buscando pagamento real para preferência pref_463249815-a5cbe49a-b44a-4050-a15d-fda21db8fef5
+"GET /payments/verificar-status/66/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/66/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/66/
+Buscando pagamento real para preferência pref_463249815-a5cbe49a-b44a-4050-a15d-fda21db8fef5
+"GET /payments/verificar-status/66/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/66/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/66/
+Buscando pagamento real para preferência pref_463249815-a5cbe49a-b44a-4050-a15d-fda21db8fef5
+"GET /payments/verificar-status/66/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/66/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/66/
+Buscando pagamento real para preferência pref_463249815-a5cbe49a-b44a-4050-a15d-fda21db8fef5
+"GET /payments/verificar-status/66/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Path=/api/payments/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/payments/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /api/payments/plano/1/ HTTP/1.1" 200 172
+[PremiumAccessMiddleware] Path=/api/payments/plano/1/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/payments/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /api/payments/plano/1/ HTTP/1.1" 200 172
+[PremiumAccessMiddleware] Path=/payments/criar-pagamento/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/criar-pagamento/1/
+PAYMENT_AUDIT: {"timestamp": "2026-03-15T16:02:46.225584+00:00", "event_type": "payment_attempt", "user_id": 203, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal Premium", "valor": 19.9}}
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+Criando preferência com dados: {'items': [{'title': 'Plano Mensal Premium', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'quantity': 1, 'unit_price': 19.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': '994077754'}}, 'back_urls': {'success': 'https://dojo-on.onrender.com/payments/sucesso/', 'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/'}, 'external_reference': '44c5e0e3-cb34-45d7-9440-a3edadcb2fb7', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}, 'auto_return': 'approved', 'binary_mode': False, 'statement_descriptor': 'DOJO-ON', 'metadata': {'plano_id': '1', 'user_id': '203', 'external_reference': '44c5e0e3-cb34-45d7-9440-a3edadcb2fb7'}, 'differential_pricing': {'id': 1}}
+Resposta da preferência: {'status': 201, 'response': {'additional_info': '', 'auto_return': 'approved', 'back_urls': {'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/', 'success': 'https://dojo-on.onrender.com/payments/sucesso/'}, 'binary_mode': False, 'client_id': '5519793243562045', 'collector_id': 463249815, 'coupon_code': None, 'coupon_labels': None, 'date_created': '2026-03-15T12:02:47.220-04:00', 'date_of_expiration': None, 'differential_pricing': {'id': None}, 'expiration_date_from': None, 'expiration_date_to': None, 'expires': False, 'external_reference': '44c5e0e3-cb34-45d7-9440-a3edadcb2fb7', 'id': '463249815-812d1431-6faa-45c7-996a-b2a9516698c7', 'init_point': 'https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-812d1431-6faa-45c7-996a-b2a9516698c7', 'internal_metadata': None, 'items': [{'id': '', 'category_id': '', 'currency_id': 'BRL', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'title': 'Plano Mensal Premium', 'quantity': 1, 'unit_price': 19.9}], 'marketplace': 'NONE', 'marketplace_fee': 0, 'metadata': {'external_reference': '44c5e0e3-cb34-45d7-9440-a3edadcb2fb7', 'plano_id': '1', 'user_id': '203'}, 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'operation_type': 'regular_payment', 'payer': {'phone': {'area_code': '89', 'number': '994077754'}, 'address': {'zip_code': '', 'street_name': '', 'street_number': None}, 'email': 'ccamposs2007@gmail.com', 'identification': {'number': '04217183313', 'type': 'CPF'}, 'name': '', 'surname': '', 'date_created': None, 'last_purchase': None}, 'payment_methods': {'default_card_id': None, 'default_payment_method_id': None, 'excluded_payment_methods': [{'id': ''}], 'excluded_payment_types': [{'id': ''}], 'installments': 12, 'default_installments': None}, 'processing_modes': None, 'product_id': None, 'preference_expired': False, 'redirect_urls': {'failure': '', 'pending': '', 'success': ''}, 'sandbox_init_point': 'https://sandbox.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-812d1431-6faa-45c7-996a-b2a9516698c7', 'site_id': 'MLB', 'shipments': {'default_shipping_method': None, 'receiver_address': {'zip_code': '', 'street_name': '', 'street_number': None, 'floor': '', 'apartment': '', 'city_name': None, 'state_name': None, 'country_name': None, 'neighborhood': None}}, 'statement_descriptor': 'DOJO-ON', 'total_amount': None, 'last_updated': None, 'financing_group': ''}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 350
+[PremiumAccessMiddleware] Path=/payments/checkout/67/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/checkout/67/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+Checkout - Payment ID: pref_463249815-812d1431-6faa-45c7-996a-b2a9516698c7
+Checkout - Payment status: pending
+Checkout - External reference: 44c5e0e3-cb34-45d7-9440-a3edadcb2fb7
+Checkout - Init Point: https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-812d1431-6faa-45c7-996a-b2a9516698c7
+"GET /payments/checkout/67/ HTTP/1.1" 200 36835
+[PremiumAccessMiddleware] Path=/payments/verificar-status/67/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/67/
+Buscando pagamento real para preferência pref_463249815-812d1431-6faa-45c7-996a-b2a9516698c7
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/67/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/67/
+Buscando pagamento real para preferência pref_463249815-812d1431-6faa-45c7-996a-b2a9516698c7
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/67/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/67/
+Buscando pagamento real para preferência pref_463249815-812d1431-6faa-45c7-996a-b2a9516698c7
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/67/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/67/
+Buscando pagamento real para preferência pref_463249815-812d1431-6faa-45c7-996a-b2a9516698c7
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/67/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/67/
+Buscando pagamento real para preferência pref_463249815-812d1431-6faa-45c7-996a-b2a9516698c7
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/67/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/67/
+Buscando pagamento real para preferência pref_463249815-812d1431-6faa-45c7-996a-b2a9516698c7
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/67/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/67/
+Buscando pagamento real para preferência pref_463249815-812d1431-6faa-45c7-996a-b2a9516698c7
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/67/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/67/
+Buscando pagamento real para preferência pref_463249815-812d1431-6faa-45c7-996a-b2a9516698c7
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/67/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/67/
+Buscando pagamento real para preferência pref_463249815-812d1431-6faa-45c7-996a-b2a9516698c7
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/67/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/67/
+Buscando pagamento real para preferência pref_463249815-812d1431-6faa-45c7-996a-b2a9516698c7
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/67/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/67/
+Buscando pagamento real para preferência pref_463249815-812d1431-6faa-45c7-996a-b2a9516698c7
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/67/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/67/
+Buscando pagamento real para preferência pref_463249815-812d1431-6faa-45c7-996a-b2a9516698c7
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/67/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/67/
+Buscando pagamento real para preferência pref_463249815-812d1431-6faa-45c7-996a-b2a9516698c7
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/67/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/67/
+Buscando pagamento real para preferência pref_463249815-812d1431-6faa-45c7-996a-b2a9516698c7
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/67/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/67/
+Buscando pagamento real para preferência pref_463249815-812d1431-6faa-45c7-996a-b2a9516698c7
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/67/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/67/
+Buscando pagamento real para preferência pref_463249815-812d1431-6faa-45c7-996a-b2a9516698c7
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/67/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/67/
+Buscando pagamento real para preferência pref_463249815-812d1431-6faa-45c7-996a-b2a9516698c7
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/67/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/67/
+Buscando pagamento real para preferência pref_463249815-812d1431-6faa-45c7-996a-b2a9516698c7
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/meu_projeto/urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+[PremiumAccessMiddleware] Path=/payments/verificar-status/67/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/67/
+Buscando pagamento real para preferência pref_463249815-812d1431-6faa-45c7-996a-b2a9516698c7
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/payments/verificar-status/67/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/verificar-status/67/
+Buscando pagamento real para preferência pref_463249815-812d1431-6faa-45c7-996a-b2a9516698c7
+"GET /payments/verificar-status/67/ HTTP/1.1" 200 128
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Path=/api/csrf/
+[PremiumAccessMiddleware] Path=/api/payments/plano/1/
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/csrf/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/payments/plano/1/
+"GET /api/csrf/ HTTP/1.1" 200 14
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/payments/plano/1/ HTTP/1.1" 200 172
+"GET /api/me/ HTTP/1.1" 200 338
+[PremiumAccessMiddleware] Path=/api/me/
+[PremiumAccessMiddleware] Path=/api/payments/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/payments/plano/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/me/
+"GET /api/me/ HTTP/1.1" 200 338
+"GET /api/payments/plano/1/ HTTP/1.1" 200 172
+[PremiumAccessMiddleware] Path=/payments/criar-pagamento/1/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /payments/criar-pagamento/1/
+PAYMENT_AUDIT: {"timestamp": "2026-03-15T16:05:00.958695+00:00", "event_type": "payment_attempt", "user_id": 203, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal Premium", "valor": 19.9}}
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+Criando preferência com dados: {'items': [{'title': 'Plano Mensal Premium', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'quantity': 1, 'unit_price': 19.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': '994077754'}}, 'back_urls': {'success': 'https://dojo-on.onrender.com/payments/sucesso/', 'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/'}, 'external_reference': '6061754c-db19-4eaf-bf16-f1705b42c34d', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}, 'auto_return': 'approved', 'binary_mode': False, 'statement_descriptor': 'DOJO-ON', 'metadata': {'plano_id': '1', 'user_id': '203', 'external_reference': '6061754c-db19-4eaf-bf16-f1705b42c34d'}, 'differential_pricing': {'id': 1}}
+Resposta da preferência: {'status': 201, 'response': {'additional_info': '', 'auto_return': 'approved', 'back_urls': {'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/', 'success': 'https://dojo-on.onrender.com/payments/sucesso/'}, 'binary_mode': False, 'client_id': '5519793243562045', 'collector_id': 463249815, 'coupon_code': None, 'coupon_labels': None, 'date_created': '2026-03-15T12:05:01.745-04:00', 'date_of_expiration': None, 'differential_pricing': {'id': None}, 'expiration_date_from': None, 'expiration_date_to': None, 'expires': False, 'external_reference': '6061754c-db19-4eaf-bf16-f1705b42c34d', 'id': '463249815-2df42af6-20f2-4b70-8b59-0007090cf573', 'init_point': 'https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-2df42af6-20f2-4b70-8b59-0007090cf573', 'internal_metadata': None, 'items': [{'id': '', 'category_id': '', 'currency_id': 'BRL', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'title': 'Plano Mensal Premium', 'quantity': 1, 'unit_price': 19.9}], 'marketplace': 'NONE', 'marketplace_fee': 0, 'metadata': {'external_reference': '6061754c-db19-4eaf-bf16-f1705b42c34d', 'plano_id': '1', 'user_id': '203'}, 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'operation_type': 'regular_payment', 'payer': {'phone': {'area_code': '89', 'number': '994077754'}, 'address': {'zip_code': '', 'street_name': '', 'street_number': None}, 'email': 'ccamposs2007@gmail.com', 'identification': {'number': '04217183313', 'type': 'CPF'}, 'name': '', 'surname': '', 'date_created': None, 'last_purchase': None}, 'payment_methods': {'default_card_id': None, 'default_payment_method_id': None, 'excluded_payment_methods': [{'id': ''}], 'excluded_payment_types': [{'id': ''}], 'installments': 12, 'default_installments': None}, 'processing_modes': None, 'product_id': None, 'preference_expired': False, 'redirect_urls': {'failure': '', 'pending': '', 'success': ''}, 'sandbox_init_point': 'https://sandbox.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-2df42af6-20f2-4b70-8b59-0007090cf573', 'site_id': 'MLB', 'shipments': {'default_shipping_method': None, 'receiver_address': {'zip_code': '', 'street_name': '', 'street_number': None, 'floor': '', 'apartment': '', 'city_name': None, 'state_name': None, 'country_name': None, 'neighborhood': None}}, 'statement_descriptor': 'DOJO-ON', 'total_amount': None, 'last_updated': None, 'financing_group': ''}}
+"POST /payments/criar-pagamento/1/ HTTP/1.1" 200 350
+[PremiumAccessMiddleware] Path=/api/payments/checkout-redirect/68/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/payments/checkout-redirect/68/
+"GET /api/payments/checkout-redirect/68/ HTTP/1.1" 200 208
+[PremiumAccessMiddleware] Path=/api/payments/checkout-redirect/68/
+[PremiumAccessMiddleware] Trial ativo (global). Liberando: /api/payments/checkout-redirect/68/
+"GET /api/payments/checkout-redirect/68/ HTTP/1.1" 200 208

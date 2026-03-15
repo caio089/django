@@ -106,3 +106,75 @@ export async function submitQuizResult(payload) {
   if (!res.ok) throw new Error(data.error || 'Erro ao enviar resultado');
   return data;
 }
+
+// ——— Pagamentos (payments) ———
+const paymentBase = () => getBaseUrl() + '/payments';
+
+export function getPaymentCsrfToken() {
+  return getCsrfToken();
+}
+
+/** GET detalhes do plano por ID (usa /api para o mesmo proxy do login/me) */
+export async function getPlanoDetail(planoId) {
+  const res = await fetch(`${getBaseUrl()}/api/payments/plano/${planoId}/`, { credentials: 'include' });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Plano não encontrado');
+  return data;
+}
+
+/** POST criar pagamento (retorna payment_id e preference_id para checkout) — usa /api */
+export async function criarPagamento(planoId, { nome, email, telefone = '', cpf = '' }) {
+  const body = new URLSearchParams({
+    nome: nome || '',
+    email: email || '',
+    telefone: telefone || '',
+    cpf: cpf || '',
+  });
+  const res = await fetch(`${getBaseUrl()}/api/payments/criar-pagamento/${planoId}/`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'X-CSRFToken': getCsrfToken() || '',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Accept': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+    },
+    body: body.toString(),
+  });
+  const contentType = res.headers.get('content-type') || '';
+  if (!contentType.includes('application/json')) {
+    const text = await res.text();
+    if (res.status === 302 || res.status === 401 || (res.status === 200 && text.includes('<!DOCTYPE'))) {
+      throw new Error('Faça login novamente e tente de novo.');
+    }
+    throw new Error('Resposta inválida do servidor.');
+  }
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Erro ao criar pagamento');
+  return data;
+}
+
+/** GET URL do Mercado Pago para redirecionar a partir de payment_id (quando cai em /payments/checkout/:id) */
+export async function getCheckoutRedirectUrl(paymentId) {
+  const res = await fetch(`${getBaseUrl()}/api/payments/checkout-redirect/${paymentId}/`, { credentials: 'include' });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok || !data.init_point) throw new Error(data.error || 'Não foi possível obter o link de pagamento');
+  return data.init_point;
+}
+
+/** POST gerar PIX (retorna qr_code e qr_code_base64) — usa /api */
+export async function gerarPix(paymentId) {
+  const res = await fetch(`${getBaseUrl()}/api/payments/gerar-pix/${paymentId}/`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'X-CSRFToken': getCsrfToken() || '',
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+    },
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Erro ao gerar PIX');
+  return data;
+}

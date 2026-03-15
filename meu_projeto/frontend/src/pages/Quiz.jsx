@@ -93,6 +93,72 @@ function ModalUltimaPergunta({ onClose }) {
   );
 }
 
+/** Judoka com animação de “fala” + balão: Bem-vindo ao quiz do Dojo Online */
+function JudokaWelcome({ onContinue }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, scale: 0.98 }}
+      className="relative text-center w-full pt-8 pb-6"
+    >
+      {/* Balão de fala — em cima, com espaço para não cortar */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.85 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.4, ease: 'easeOut' }}
+        className="mx-auto mb-4 max-w-[320px] px-5 py-4 rounded-2xl rounded-bl-none bg-white border-2 border-amber-400 shadow-xl"
+        style={{ boxShadow: '0 10px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(251,191,36,0.3)' }}
+      >
+        <p className="text-slate-800 font-bold text-lg sm:text-xl leading-snug">
+          Bem-vindo ao quiz do Dojo Online!
+        </p>
+      </motion.div>
+      {/* Judoka — cores sólidas para aparecer no fundo escuro */}
+      <motion.div
+        className="mx-auto w-40 sm:w-48"
+        animate={{ y: [0, -6, 0] }}
+        transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+      >
+        <svg viewBox="0 0 120 180" className="w-full h-auto block mx-auto" aria-hidden>
+          <defs>
+            <linearGradient id="giJudoka" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="#fef3c7" />
+              <stop offset="100%" stopColor="#fde68a" />
+            </linearGradient>
+          </defs>
+          {/* Gi / corpo */}
+          <rect x="45" y="60" width="30" height="50" rx="4" fill="url(#giJudoka)" stroke="#d97706" strokeWidth="1" />
+          <rect x="42" y="55" width="36" height="25" rx="3" fill="url(#giJudoka)" stroke="#d97706" strokeWidth="1" />
+          {/* Cabeça / pele */}
+          <circle cx="60" cy="40" r="18" fill="#fef3c7" stroke="#fcd34d" strokeWidth="1" />
+          <circle cx="60" cy="38" r="14" fill="#fffbeb" />
+          {/* Braços */}
+          <path d="M 85 52 Q 105 45 108 30" stroke="#d97706" strokeWidth="5" fill="none" strokeLinecap="round" />
+          <path d="M 35 55 L 20 50" stroke="#d97706" strokeWidth="5" fill="none" strokeLinecap="round" />
+          {/* Pernas */}
+          <rect x="48" y="108" width="14" height="55" rx="3" fill="url(#giJudoka)" stroke="#d97706" strokeWidth="1" />
+          <rect x="58" y="108" width="14" height="55" rx="3" fill="url(#giJudoka)" stroke="#d97706" strokeWidth="1" />
+          {/* Faixa */}
+          <rect x="42" y="75" width="36" height="8" rx="2" fill="#b45309" />
+        </svg>
+      </motion.div>
+      <motion.button
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5 }}
+        whileHover={{ scale: 1.04 }}
+        whileTap={{ scale: 0.98 }}
+        onClick={onContinue}
+        className="mt-8 px-10 py-4 rounded-2xl font-bold text-white text-lg border-0 cursor-pointer"
+        style={{ backgroundColor: RANKING_MODE.color, boxShadow: `0 8px 28px -4px ${RANKING_MODE.glow}` }}
+      >
+        Continuar
+      </motion.button>
+    </motion.div>
+  );
+}
+
 function JudokaCelebration() {
   return (
     <motion.div
@@ -163,6 +229,7 @@ export default function Quiz() {
   const [showLastQuestionModal, setShowLastQuestionModal] = useState(false);
   const [isTreinoNivelAnterior, setIsTreinoNivelAnterior] = useState(false);
   const [nivelSalvo, setNivelSalvo] = useState(1);
+  const [showQuizWelcome, setShowQuizWelcome] = useState(true);
 
   useEffect(() => {
     setMounted(true);
@@ -491,6 +558,10 @@ export default function Quiz() {
                 transition={{ duration: 0.4 }}
                 className="text-center max-w-4xl mx-auto"
               >
+                {showQuizWelcome ? (
+                  <JudokaWelcome onContinue={() => setShowQuizWelcome(false)} />
+                ) : (
+                  <>
                 <motion.span
                   className="font-jp text-6xl sm:text-7xl font-bold block text-white/95 mb-4 drop-shadow-[0_0_30px_rgba(59,130,246,0.3)]"
                   initial={{ opacity: 0, y: 20 }}
@@ -577,23 +648,51 @@ export default function Quiz() {
                           </tr>
                         </thead>
                         <tbody>
-                          {(Array.isArray(ranking) ? ranking : []).slice(0, 25).map((e, idx) => (
-                            <tr key={e?.posicao ?? idx} className="border-b border-white/5 hover:bg-white/5">
-                              <td className="py-2.5 px-3 font-medium text-slate-300">{e?.posicao ?? '—'}</td>
-                              <td className="py-2.5 px-3 text-white font-medium">{e?.nome ?? '—'}</td>
-                              <td className="py-2.5 px-3 text-slate-400 hidden sm:table-cell">{e?.dojo || '—'}</td>
-                              <td className="py-2.5 px-3 text-slate-400 hidden md:table-cell">{e?.cidade || '—'}</td>
-                              <td className="py-2.5 px-3 text-right text-amber-400 font-semibold">{e?.xp_total ?? '—'}</td>
-                              <td className="py-2.5 px-3 text-center">
-                                <span className="px-2 py-0.5 rounded-lg bg-white/10 text-slate-300 text-xs">{e?.nivel_quiz ?? '—'} · {e?.categoria_titulo || '—'}</span>
-                              </td>
-                            </tr>
-                          ))}
+                          {(Array.isArray(ranking) ? ranking : []).slice(0, 25).map((e, idx) => {
+                            const isTop3 = idx < 3;
+                            const medalStyles = isTop3 ? [
+                              { rowBg: 'rgba(245,158,11,0.18)', borderColor: '#f59e0b', trophyColor: '#fbbf24', label: '1º' },
+                              { rowBg: 'rgba(148,163,184,0.2)', borderColor: '#94a3b8', trophyColor: '#cbd5e1', label: '2º' },
+                              { rowBg: 'rgba(180,83,9,0.25)', borderColor: '#b45309', trophyColor: '#d97706', label: '3º' },
+                            ][idx] : null;
+                            return (
+                              <tr
+                                key={e?.posicao ?? idx}
+                                className="border-b border-white/5 hover:bg-white/5"
+                                style={isTop3 ? { backgroundColor: medalStyles.rowBg, borderLeft: `4px solid ${medalStyles.borderColor}` } : undefined}
+                              >
+                                <td className="py-2.5 px-3">
+                                  {isTop3 ? (
+                                    <span className="inline-flex items-center gap-1.5 font-bold">
+                                      <span
+                                        className="p-1 rounded-lg border inline-flex"
+                                        style={{ backgroundColor: medalStyles.rowBg, borderColor: medalStyles.borderColor }}
+                                      >
+                                        <Trophy className="w-4 h-4" style={{ color: medalStyles.trophyColor }} />
+                                      </span>
+                                      <span className="text-white">{medalStyles.label}</span>
+                                    </span>
+                                  ) : (
+                                    <span className="font-medium text-slate-300">{e?.posicao ?? '—'}</span>
+                                  )}
+                                </td>
+                                <td className="py-2.5 px-3 text-white font-medium">{e?.nome ?? '—'}</td>
+                                <td className="py-2.5 px-3 text-slate-400 hidden sm:table-cell">{e?.dojo || '—'}</td>
+                                <td className="py-2.5 px-3 text-slate-400 hidden md:table-cell">{e?.cidade || '—'}</td>
+                                <td className="py-2.5 px-3 text-right text-amber-400 font-semibold">{e?.xp_total ?? '—'}</td>
+                                <td className="py-2.5 px-3 text-center">
+                                  <span className="px-2 py-0.5 rounded-lg bg-white/10 text-slate-300 text-xs">{e?.nivel_quiz ?? '—'} · {e?.categoria_titulo || '—'}</span>
+                                </td>
+                              </tr>
+                            );
+                          })}
                         </tbody>
                       </table>
                     )}
                   </div>
                 </motion.div>
+                  </>
+                )}
               </motion.section>
             )}
 
