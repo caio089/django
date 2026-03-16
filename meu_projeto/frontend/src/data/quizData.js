@@ -161,16 +161,16 @@ export const XP_POR_ACERTO = 10;
 
 /** Categorias por nível (10 níveis para manter a pessoa presa ao sistema). */
 export const CATEGORIAS_NIVEL = {
-  1: 'Kohai',
+  1: 'Iniciante',
   2: 'Aprendiz',
-  3: 'Ninja',
-  4: 'Samurai',
-  5: 'Monge',
-  6: 'Mestre',
-  7: 'Yudansha',
-  8: 'Renshi',
-  9: 'Kyoshi',
-  10: 'Sensei',
+  3: 'Discípulo',
+  4: 'Ninja',
+  5: 'Samurai',
+  6: 'Faixa Preta',
+  7: 'Guardião do Caminho',
+  8: 'Sensei',
+  9: 'Mestre do Judô',
+  10: 'Espírito de Jigoro Kano',
 };
 
 export const MAX_NIVEL = 10;

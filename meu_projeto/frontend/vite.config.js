@@ -8,7 +8,9 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/api': { target: 'http://127.0.0.1:8000', changeOrigin: true },
-      '/quiz': { target: 'http://127.0.0.1:8000', changeOrigin: true },
+      // Apenas as rotas de API de quiz vão para o Django;
+      // as páginas React em /quiz e /quiz/caminho ficam no frontend.
+      '/quiz/api': { target: 'http://127.0.0.1:8000', changeOrigin: true },
       '/static': { target: 'http://127.0.0.1:8000', changeOrigin: true },
       '/admin': { target: 'http://127.0.0.1:8000', changeOrigin: true },
       // Só encaminha ao Django as rotas de API/checkout; /payments, /payments/planos e /payments/plano/:id ficam no React

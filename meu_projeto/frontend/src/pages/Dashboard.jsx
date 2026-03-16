@@ -143,7 +143,7 @@ export default function Dashboard() {
   }, [user]);
 
   useEffect(() => {
-    if (trialExpirado) {
+    if (false && trialExpirado) {
       const t = setTimeout(() => navigate('/payments/planos'), 5000);
       return () => clearTimeout(t);
     }
@@ -155,11 +155,11 @@ export default function Dashboard() {
         if (!r.authenticated) navigate('/login');
         else {
           setUser(r.user);
-          if (r.user?.trial_ativo && r.user?.trial_fim) {
+          if (false && r.user?.trial_ativo && r.user?.trial_fim) {
             const key = 'trial_welcome_shown_' + r.user.id;
             if (!localStorage.getItem(key)) setShowTrialWelcome(true);
           }
-          if (r.user?.trial_expirado) setTrialExpirado(true);
+          if (false && r.user?.trial_expirado) setTrialExpirado(true);
         }
       })
       .catch(() => navigate('/login'));
@@ -193,8 +193,8 @@ export default function Dashboard() {
 
   const nome = user?.nome || 'Visitante';
   const faixa = user?.faixa || 'Branca';
-  const trialAtivo = user?.trial_ativo;
-  const temAcesso = user?.trial_ativo || user?.conta_premium || false;
+  const trialAtivo = false;
+  const temAcesso = user?.conta_premium || false;
   const themeColor = FAIXA_TO_COLOR[faixa] || FAIXA_TO_COLOR.Branca;
   const quote = QUOTES[Math.floor(Math.random() * QUOTES.length)];
 
@@ -202,40 +202,7 @@ export default function Dashboard() {
     <div className="min-h-screen relative overflow-x-hidden font-display antialiased">
       <DashboardBackground accentColor={themeColor} />
 
-      {/* Trial Bar */}
-      {trialAtivo && (
-        <motion.div
-          initial={{ opacity: 0, y: -24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ type: 'spring', damping: 25 }}
-          className="fixed top-5 left-1/2 -translate-x-1/2 z-40 w-[94%] max-w-lg"
-        >
-          <div
-            className="rounded-2xl border border-white/15 bg-black/50 backdrop-blur-xl overflow-hidden dojo-frame"
-            style={{ borderColor: `${themeColor}40` }}
-          >
-            <div className="flex items-center gap-4 px-5 py-4">
-              <div
-                className="p-2 rounded-xl"
-                style={{ backgroundColor: `${themeColor}30` }}
-              >
-                <Clock className="w-5 h-5" style={{ color: themeColor }} />
-              </div>
-              <span className="text-xs uppercase tracking-widest text-slate-400 font-medium">Período trial</span>
-              <span className="font-mono tabular-nums text-lg text-white font-semibold">{trialCountdown}</span>
-            </div>
-            <div className="h-2 bg-white/5 overflow-hidden">
-              <motion.div
-                className="h-full"
-                style={{ background: `linear-gradient(90deg, ${themeColor}, ${themeColor}cc)` }}
-                initial={{ width: 0 }}
-                animate={{ width: `${trialProgress}%` }}
-                transition={{ duration: 0.6, ease: 'easeOut' }}
-              />
-            </div>
-          </div>
-        </motion.div>
-      )}
+      {/* Trial Bar removida */}
 
       <motion.button
         onClick={() => setSidebarOpen(true)}
@@ -333,74 +300,7 @@ export default function Dashboard() {
         )}
       </AnimatePresence>
 
-      {/* Trial Welcome Modal */}
-      <AnimatePresence>
-        {showTrialWelcome && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
-            onClick={() => setShowTrialWelcome(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-              className="rounded-2xl border border-white/10 bg-[#0f1115] p-8 max-w-md w-full dojo-frame"
-            >
-              <p className="font-jp text-xl block mb-1" style={{ color: themeColor }}>おかえり</p>
-              <p className="text-slate-500 text-sm mb-3">Bem-vindo de volta</p>
-              <h3 className="text-xl font-bold text-white">Bem-vindo ao período grátis!</h3>
-              <p className="mt-3 text-slate-400">
-                Acesso por 3 dias a todo o conteúdo premium. Aproveite para evoluir no judô.
-              </p>
-              <button
-                onClick={() => {
-                  setShowTrialWelcome(false);
-                  localStorage.setItem('trial_welcome_shown_' + user?.id, '1');
-                }}
-                className="mt-6 w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold hover:opacity-90 transition-opacity"
-              >
-                Começar agora
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Trial Expirado */}
-      {trialExpirado && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
-        >
-          <motion.div
-            initial={{ scale: 0.9 }}
-            animate={{ scale: 1 }}
-            className="rounded-2xl border border-white/10 bg-[#0f1115] p-8 max-w-md w-full"
-          >
-            <h3 className="text-xl font-bold text-white">Período grátis encerrado</h3>
-            <p className="mt-3 text-slate-400">Assine para continuar evoluindo no judô.</p>
-            <div className="mt-6 flex gap-3">
-              <Link
-                to="/payments/planos"
-                className="flex-1 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-semibold text-center"
-              >
-                Ver planos
-              </Link>
-              <button
-                onClick={() => setTrialExpirado(false)}
-                className="flex-1 py-3.5 rounded-xl border border-white/20 text-slate-400 hover:bg-white/5 font-medium"
-              >
-                Depois
-              </button>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
+      {/* Trial modais removidos */}
 
       {/* Main */}
       <div className="relative z-10 pt-20 md:pt-24 pb-12 px-4 sm:px-6 max-w-6xl mx-auto">

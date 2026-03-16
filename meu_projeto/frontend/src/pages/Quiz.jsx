@@ -93,72 +93,6 @@ function ModalUltimaPergunta({ onClose }) {
   );
 }
 
-/** Judoka com animação de “fala” + balão: Bem-vindo ao quiz do Dojo Online */
-function JudokaWelcome({ onContinue }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0, scale: 0.98 }}
-      className="relative text-center w-full pt-8 pb-6"
-    >
-      {/* Balão de fala — em cima, com espaço para não cortar */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.85 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.4, ease: 'easeOut' }}
-        className="mx-auto mb-4 max-w-[320px] px-5 py-4 rounded-2xl rounded-bl-none bg-white border-2 border-amber-400 shadow-xl"
-        style={{ boxShadow: '0 10px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(251,191,36,0.3)' }}
-      >
-        <p className="text-slate-800 font-bold text-lg sm:text-xl leading-snug">
-          Bem-vindo ao quiz do Dojo Online!
-        </p>
-      </motion.div>
-      {/* Judoka — cores sólidas para aparecer no fundo escuro */}
-      <motion.div
-        className="mx-auto w-40 sm:w-48"
-        animate={{ y: [0, -6, 0] }}
-        transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-      >
-        <svg viewBox="0 0 120 180" className="w-full h-auto block mx-auto" aria-hidden>
-          <defs>
-            <linearGradient id="giJudoka" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#fef3c7" />
-              <stop offset="100%" stopColor="#fde68a" />
-            </linearGradient>
-          </defs>
-          {/* Gi / corpo */}
-          <rect x="45" y="60" width="30" height="50" rx="4" fill="url(#giJudoka)" stroke="#d97706" strokeWidth="1" />
-          <rect x="42" y="55" width="36" height="25" rx="3" fill="url(#giJudoka)" stroke="#d97706" strokeWidth="1" />
-          {/* Cabeça / pele */}
-          <circle cx="60" cy="40" r="18" fill="#fef3c7" stroke="#fcd34d" strokeWidth="1" />
-          <circle cx="60" cy="38" r="14" fill="#fffbeb" />
-          {/* Braços */}
-          <path d="M 85 52 Q 105 45 108 30" stroke="#d97706" strokeWidth="5" fill="none" strokeLinecap="round" />
-          <path d="M 35 55 L 20 50" stroke="#d97706" strokeWidth="5" fill="none" strokeLinecap="round" />
-          {/* Pernas */}
-          <rect x="48" y="108" width="14" height="55" rx="3" fill="url(#giJudoka)" stroke="#d97706" strokeWidth="1" />
-          <rect x="58" y="108" width="14" height="55" rx="3" fill="url(#giJudoka)" stroke="#d97706" strokeWidth="1" />
-          {/* Faixa */}
-          <rect x="42" y="75" width="36" height="8" rx="2" fill="#b45309" />
-        </svg>
-      </motion.div>
-      <motion.button
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5 }}
-        whileHover={{ scale: 1.04 }}
-        whileTap={{ scale: 0.98 }}
-        onClick={onContinue}
-        className="mt-8 px-10 py-4 rounded-2xl font-bold text-white text-lg border-0 cursor-pointer"
-        style={{ backgroundColor: RANKING_MODE.color, boxShadow: `0 8px 28px -4px ${RANKING_MODE.glow}` }}
-      >
-        Continuar
-      </motion.button>
-    </motion.div>
-  );
-}
-
 function JudokaCelebration() {
   return (
     <motion.div
@@ -229,7 +163,8 @@ export default function Quiz() {
   const [showLastQuestionModal, setShowLastQuestionModal] = useState(false);
   const [isTreinoNivelAnterior, setIsTreinoNivelAnterior] = useState(false);
   const [nivelSalvo, setNivelSalvo] = useState(1);
-  const [showQuizWelcome, setShowQuizWelcome] = useState(true);
+  const [showTreinoSelector, setShowTreinoSelector] = useState(false);
+  const [nivelTreinoEscolhido, setNivelTreinoEscolhido] = useState(1);
 
   useEffect(() => {
     setMounted(true);
@@ -247,6 +182,7 @@ export default function Quiz() {
       // localStorage pode estar bloqueado (ex.: modo privado)
     }
   }, [mounted]);
+
 
   const loadRanking = useCallback(async () => {
     setLoadingRanking(true);
@@ -479,12 +415,12 @@ export default function Quiz() {
     setPhase('quiz');
   }, [nivelAtual]);
 
-  const startTreinoNivelAnterior = useCallback(() => {
-    if (nivelAtual <= 1) return;
-    const nivelAnterior = nivelAtual - 1;
+  const startTreinoEmNivel = useCallback((nivel) => {
+    const n = Math.max(1, Math.min(MAX_NIVEL, nivel));
     setIsTreinoNivelAnterior(true);
-    setNivelAtual(nivelAnterior);
-    setQuestions(getQuestionsForLevel(nivelAnterior));
+    setIsRankingMode(true);
+    setNivelAtual(n);
+    setQuestions(getQuestionsForLevel(n));
     setCurrent(0);
     setScore(0);
     setXpNivel(0);
@@ -494,7 +430,13 @@ export default function Quiz() {
     setAnswered(false);
     setShowLastQuestionModal(false);
     setPhase('quiz');
-  }, [nivelAtual]);
+  }, []);
+
+  const startTreinoNivelAnterior = useCallback(() => {
+    if (nivelAtual <= 1) return;
+    const nivelAnterior = nivelAtual - 1;
+    startTreinoEmNivel(nivelAnterior);
+  }, [nivelAtual, startTreinoEmNivel]);
 
   const restart = useCallback(() => {
     setPhase('select');
@@ -522,20 +464,22 @@ export default function Quiz() {
   return (
     <div className="min-h-screen relative font-display antialiased overflow-x-hidden bg-[#0a0c0f]">
       <DojoBackground accentColor={ACCENT} />
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+          <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-blue-500/10 blur-3xl" />
         <div className="absolute top-1/2 -left-32 w-64 h-64 rounded-full bg-indigo-500/5 blur-3xl" />
       </div>
 
       <header className="fixed top-0 left-0 right-0 z-40 bg-black/60 backdrop-blur-xl border-b-2" style={{ borderBottomColor: `${ACCENT}30`, boxShadow: `0 4px 24px -8px ${ACCENT}30` }}>
-        <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
+        <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
           <Link
             to="/index"
             className="flex items-center gap-2 text-slate-400 hover:text-white px-3 py-2 rounded-xl hover:bg-white/5 transition-all duration-200"
           >
             <ArrowLeft className="w-4 h-4" /> Voltar
           </Link>
-          <span className="font-jp text-slate-500 text-sm tracking-wider">クイズ — Quiz</span>
+          <div className="flex items-center gap-3">
+            <span className="font-jp text-slate-500 text-sm tracking-wider">クイズ — Quiz</span>
+          </div>
         </div>
       </header>
 
@@ -558,10 +502,6 @@ export default function Quiz() {
                 transition={{ duration: 0.4 }}
                 className="text-center max-w-4xl mx-auto"
               >
-                {showQuizWelcome ? (
-                  <JudokaWelcome onContinue={() => setShowQuizWelcome(false)} />
-                ) : (
-                  <>
                 <motion.span
                   className="font-jp text-6xl sm:text-7xl font-bold block text-white/95 mb-4 drop-shadow-[0_0_30px_rgba(59,130,246,0.3)]"
                   initial={{ opacity: 0, y: 20 }}
@@ -599,7 +539,7 @@ export default function Quiz() {
                     <span className="text-slate-500 text-sm">— continue de onde parou</span>
                   </motion.div>
                 )}
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
                   <motion.button
                     variants={item}
                     initial="hidden"
@@ -626,6 +566,23 @@ export default function Quiz() {
                     </motion.button>
                   )}
                 </div>
+                {nivelSalvo > 1 && (
+                  <motion.button
+                    variants={item}
+                    initial="hidden"
+                    animate="show"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => {
+                      const base = Math.max(1, Math.min(MAX_NIVEL - 1, nivelSalvo - 1));
+                      setNivelTreinoEscolhido(base);
+                      setShowTreinoSelector(true);
+                    }}
+                    className="mt-2 py-2.5 px-4 rounded-xl text-slate-300 hover:text-white text-xs sm:text-sm font-medium border border-white/10 hover:border-white/30 bg-white/5 inline-flex items-center gap-2"
+                  >
+                    <MapPin className="w-4 h-4" /> Treinar níveis anteriores (sem XP)
+                  </motion.button>
+                )}
                 <motion.div variants={container} initial="hidden" animate="show" className="w-full max-w-3xl mx-auto">
                   <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
                     <Award className="w-5 h-5 text-amber-400" /> Ranking
@@ -691,8 +648,6 @@ export default function Quiz() {
                     )}
                   </div>
                 </motion.div>
-                  </>
-                )}
               </motion.section>
             )}
 
@@ -1189,6 +1144,64 @@ export default function Quiz() {
           </AnimatePresence>
         </div>
       </main>
+
+      {/* Seletor de treino de nível anterior (fase select) */}
+      <AnimatePresence>
+        {phase === 'select' && showTreinoSelector && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md px-4"
+            onClick={() => setShowTreinoSelector(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 16 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: 'spring', damping: 18, stiffness: 260 }}
+              onClick={(e) => e.stopPropagation()}
+              className="w-full max-w-md rounded-3xl border border-white/15 bg-[#020617]/95 p-6 sm:p-7"
+            >
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-2 flex items-center gap-2">
+                <MapPin className="w-5 h-5 text-amber-400" /> Treinar níveis anteriores
+              </h3>
+              <p className="text-slate-400 text-sm mb-4">
+                Escolha um nível que você já alcançou para refazer as perguntas <span className="font-semibold text-amber-300">sem ganhar XP</span>.
+              </p>
+              <div className="grid grid-cols-2 gap-3 max-h-64 overflow-y-auto py-1">
+                {Array.from({ length: Math.max(0, nivelSalvo - 1) }, (_, i) => i + 1).map((n) => (
+                  <button
+                    key={n}
+                    type="button"
+                    onClick={() => {
+                      setShowTreinoSelector(false);
+                      startTreinoEmNivel(n);
+                    }}
+                    className={`flex flex-col items-start px-4 py-3 rounded-2xl border text-left transition-all ${
+                      n === nivelTreinoEscolhido
+                        ? 'border-amber-400 bg-amber-500/15 text-white shadow-[0_0_24px_rgba(251,191,36,0.4)]'
+                        : 'border-white/10 bg-white/5 text-slate-200 hover:border-amber-400/70 hover:bg-amber-500/10'
+                    }`}
+                  >
+                    <span className="text-xs uppercase tracking-widest text-slate-400">Nível {n}</span>
+                    <span className="font-semibold text-sm">{CATEGORIAS_NIVEL[n]}</span>
+                  </button>
+                ))}
+              </div>
+              <div className="mt-5 flex justify-end gap-3">
+                <button
+                  type="button"
+                  onClick={() => setShowTreinoSelector(false)}
+                  className="px-4 py-2.5 rounded-xl text-slate-300 hover:text-white bg-white/5 border border-white/15 text-sm font-medium"
+                >
+                  Cancelar
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

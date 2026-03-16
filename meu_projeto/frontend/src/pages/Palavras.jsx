@@ -1,9 +1,11 @@
 import { useState, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Volume2 } from 'lucide-react';
+import { ArrowLeft, Volume2, Mic } from 'lucide-react';
 import DojoBackground from '../components/DojoBackground';
 import { BELT_DATA } from '../data/palavrasData';
+import { useSpeechRecognition } from '../hooks/useSpeechRecognition';
+import { pronunciaCorreta } from '../utils/pronuncia';
 
 const ACCENT = 'rgb(124, 58, 237)';
 
@@ -78,8 +80,31 @@ function speakJapanese(text) {
 
 function WordCard({ w, index }) {
   const [playing, setPlaying] = useState(false);
+  const [feedback, setFeedback] = useState(null); // 'ok' | 'erro' | 'no-support'
+  const [debugTexto, setDebugTexto] = useState('');
   const kanji = w.japanese.replace(/\s*\([^)]*\)/g, '').trim();
   const textToSpeak = w.speak || kanji || w.romaji;
+  // alvo principal: tradução em português; secundário: romaji
+  const alvoPronunciaPt = w.meaning;
+  const alvoPronunciaRomaji = w.romaji;
+
+  const { supported, listening, transcript, error, startListening, stopListening, reset } =
+    useSpeechRecognition({
+      lang: 'pt-BR',
+      onResult: (texto) => {
+        setDebugTexto(texto);
+        if (!alvoPronunciaPt && !alvoPronunciaRomaji) {
+          setFeedback('erro');
+          setTimeout(() => setFeedback(null), 1500);
+          return;
+        }
+        const resPt = alvoPronunciaPt ? pronunciaCorreta(alvoPronunciaPt, texto, 0.75) : { ok: false };
+        const resRomaji = alvoPronunciaRomaji ? pronunciaCorreta(alvoPronunciaRomaji, texto, 0.75) : { ok: false };
+        const ok = resPt.ok || resRomaji.ok;
+        setFeedback(ok ? 'ok' : 'erro');
+        setTimeout(() => setFeedback(null), 1500);
+      },
+    });
 
   const handleClick = useCallback(() => {
     setPlaying(true);
@@ -152,7 +177,111 @@ function WordCard({ w, index }) {
             />
           </motion.div>
         </div>
-        <p className="relative text-slate-500/80 text-xs mt-3 font-medium">Toque para ouvir</p>
+        <div className="relative mt-3 flex items-center justify-between gap-3 text-xs">
+          <p className="text-slate-500/80 font-medium">
+            Toque para ouvir · fale a tradução em voz alta para treinar
+          </p>
+          {listening && (
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/60 text-emerald-100 text-[10px] font-semibold">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-300" />
+              </span>
+              Escutando você...
+            </div>
+          )}
+        </div>
+
+        {/* Botão de pronúncia por voz */}
+        <div className="mt-4 flex items-center justify-between gap-3 text-xs">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation(); // não disparar o play do card
+              if (listening) return; // já está ouvindo; evita múltiplos cliques
+              if (!supported) {
+                setFeedback('no-support');
+                setTimeout(() => setFeedback(null), 1500);
+                return;
+              }
+              setDebugTexto('');
+              reset();
+              startListening();
+              // Mantém o microfone ligado por ~4s e então força o stop
+              setTimeout(() => {
+                stopListening();
+              }, 4000);
+            }}
+            disabled={listening}
+            className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full border text-xs font-semibold transition-all shadow-sm ${
+              !supported
+                ? 'border-white/10 text-slate-600 cursor-not-allowed bg-black/20'
+                : listening
+                ? 'border-emerald-400 bg-emerald-500/15 text-emerald-100 shadow-[0_0_20px_rgba(16,185,129,0.5)]'
+                : 'border-white/20 bg-white/10 text-slate-50 hover:border-purple-400/70 hover:bg-purple-500/30'
+            }`}
+          >
+            <motion.span
+              animate={
+                listening
+                  ? { scale: [1, 1.2, 1], opacity: [0.8, 1, 0.8] }
+                  : { scale: 1, opacity: 1 }
+              }
+              transition={
+                listening
+                  ? { duration: 0.8, repeat: Infinity, ease: 'easeInOut' }
+                  : { duration: 0.2 }
+              }
+              className="flex items-center justify-center"
+            >
+              <Mic className="w-4 h-4 mr-1" />
+            </motion.span>
+            {listening ? 'Escutando…' : 'Falar'}
+          </button>
+          {debugTexto && (
+            <span className="text-[10px] text-slate-400 truncate max-w-[60%]">
+              Você disse: <span className="text-slate-200">{debugTexto}</span>
+            </span>
+          )}
+        </div>
+
+        {/* Overlay visual quando está escutando */}
+        {listening && (
+          <motion.div
+            className="pointer-events-none absolute inset-0 rounded-2xl border-2 border-emerald-400/60"
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: [0.4, 0.8, 0.4], scale: [0.96, 1, 0.96] }}
+            transition={{ duration: 1, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        )}
+
+        {/* Feedback rápido de acerto/erro */}
+        {feedback && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            className={`pointer-events-none absolute inset-x-4 bottom-4 rounded-2xl px-4 py-2 text-xs font-semibold text-center ${
+              feedback === 'ok'
+                ? 'bg-emerald-500/90 text-white'
+                : feedback === 'erro'
+                ? 'bg-red-500/90 text-white'
+                : 'bg-amber-500/95 text-slate-900'
+            }`}
+          >
+            {feedback === 'ok'
+              ? 'Parabéns! Pronúncia correta'
+              : feedback === 'erro'
+              ? 'Tente novamente'
+              : 'Seu navegador não suporta reconhecimento de voz'}
+          </motion.div>
+        )}
+
+        {error && (
+          <p className="mt-2 text-[10px] text-red-400/80">
+            Erro no microfone/navegador. Verifique permissões.
+          </p>
+        )}
       </div>
     </motion.button>
   );
