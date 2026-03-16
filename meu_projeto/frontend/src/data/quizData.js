@@ -116,6 +116,20 @@ const PERGUNTAS_NIVEL_10 = [
   { question: 'Kenka-yotsu ocorre quando:', answers: ['Ambos destros', 'Destro x canhoto (lados opostos)', 'Ambos canhotos', 'Em Kata'], correct: 1, explanation: 'Kenka-yotsu: destro x canhoto ou canhoto x destro.' },
 ];
 
+// Export para uso em simulados
+export {
+  PERGUNTAS_NIVEL_1_2,
+  PERGUNTAS_NIVEL_3_4,
+  PERGUNTAS_NIVEL_5_6,
+  PERGUNTAS_NIVEL_7_8,
+  PERGUNTAS_NIVEL_9_10,
+  PERGUNTAS_NIVEL_6,
+  PERGUNTAS_NIVEL_7,
+  PERGUNTAS_NIVEL_8,
+  PERGUNTAS_NIVEL_9,
+  PERGUNTAS_NIVEL_10,
+};
+
 // Cada nível tem pool EXCLUSIVO — perguntas diferentes por nível
 const POOL_POR_NIVEL = {
   1: PERGUNTAS_NIVEL_1_2,

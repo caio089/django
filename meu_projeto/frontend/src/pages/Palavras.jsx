@@ -1,11 +1,12 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ArrowLeft, Volume2, Mic } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowLeft, Volume2, Mic, Trophy, Sparkles } from 'lucide-react';
 import DojoBackground from '../components/DojoBackground';
 import { BELT_DATA } from '../data/palavrasData';
 import { useSpeechRecognition } from '../hooks/useSpeechRecognition';
-import { pronunciaCorreta } from '../utils/pronuncia';
+import { pronunciaCorreta, normalizarTexto } from '../utils/pronuncia';
 
 const ACCENT = 'rgb(124, 58, 237)';
 
@@ -26,6 +27,9 @@ function getAllWords() {
 
 const TODAS_PALAVRAS = getAllWords();
 
+const NUMERO_PT = { 1: 'um', 2: 'dois', 3: 'três', 4: 'quatro', 5: 'cinco', 6: 'seis', 7: 'sete', 8: 'oito', 9: 'nove', 10: 'dez' };
+const NUMERO_ROMAJI_LOWER = { 1: 'ichi', 2: 'ni', 3: 'san', 4: 'shi', 5: 'go', 6: 'roku', 7: 'shichi', 8: 'hachi', 9: 'ku', 10: 'ju' };
+
 const NUMEROS_JUDO = [
   { kanji: '一', romaji: 'Ichi', num: 1, speak: 'いち' },
   { kanji: '二', romaji: 'Ni', num: 2, speak: 'に' },
@@ -41,30 +45,214 @@ const NUMEROS_JUDO = [
 
 let jaVoices = [];
 
-function NumeroCard({ n }) {
+// Partículas estáveis (evita flicker por re-renders)
+const PARTICLES = (() => {
+  const colors = ['#22c55e', '#34d399', '#86efac', '#4ade80', '#fbbf24', '#f59e0b', '#a78bfa', '#ffffff'];
+  return {
+    intense: Array.from({ length: 16 }, (_, i) => ({
+      id: i,
+      angle: (i / 16) * 360,
+      color: colors[i % colors.length],
+      delay: ((i * 7) % 13) / 13 * 0.1,
+      size: 10 + (i % 5) * 1.5,
+    })),
+    normal: Array.from({ length: 36 }, (_, i) => ({
+      id: i,
+      angle: (i / 36) * 360,
+      color: colors[i % colors.length],
+      delay: ((i * 5) % 11) / 11 * 0.1,
+      size: 8 + (i % 4) * 1.2,
+    })),
+  };
+})();
+
+function ConfettiBurst({ active, intense }) {
+  if (!active) return null;
+  const particles = intense ? PARTICLES.intense : PARTICLES.normal;
+  const dist = intense ? 320 : 220;
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      {particles.map((p) => (
+        <motion.div
+          key={p.id}
+          className="absolute left-1/2 top-1/2 rounded-full"
+          style={{ width: p.size, height: p.size, backgroundColor: p.color, transform: 'translate(-50%, -50%)' }}
+          initial={{ x: 0, y: 0, opacity: 1, scale: 1, rotate: 0 }}
+          animate={{
+            x: Math.cos((p.angle * Math.PI) / 180) * dist,
+            y: Math.sin((p.angle * Math.PI) / 180) * dist,
+            opacity: 0,
+            scale: 0,
+            rotate: 360,
+          }}
+          transition={{ duration: 0.8, delay: p.delay, ease: 'easeOut' }}
+        />
+      ))}
+    </div>
+  );
+}
+
+function CelebraçãoAcerto({ onClose, isNumero }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black"
+      style={{ isolation: 'isolate', transform: 'translateZ(0)' }}
+      onClick={onClose}
+    >
+      <ConfettiBurst active intense />
+      <motion.div
+        initial={{ scale: 0.5, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.8, opacity: 0 }}
+        transition={{ type: 'spring', damping: 18, stiffness: 260 }}
+        onClick={(e) => e.stopPropagation()}
+        className="relative text-center max-w-md"
+      >
+        <motion.div
+          animate={{ scale: [1, 1.05, 1] }}
+          transition={{ duration: 0.5, repeat: 1 }}
+          className="mb-4 inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 shadow-[0_0_40px_rgba(245,158,11,0.6)]"
+        >
+          <Trophy className="w-10 h-10 text-white" strokeWidth={2.5} />
+        </motion.div>
+        <motion.h2
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="text-xl sm:text-2xl font-bold text-amber-400 mb-2 drop-shadow-lg"
+        >
+          O DOJO ESTÁ ORGULHOSO DE VOCÊ!
+        </motion.h2>
+        <motion.p
+          initial={{ y: 10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="text-slate-200 text-base mb-4"
+        >
+          {isNumero ? 'Você pronunciou o número perfeitamente!' : 'Pronúncia correta! Excelente!'}
+        </motion.p>
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.5, type: 'spring', stiffness: 300 }}
+          className="flex justify-center gap-2"
+        >
+          <Sparkles className="w-6 h-6 text-amber-400/80" />
+          <span className="text-amber-300/90 text-sm font-semibold">OSS!</span>
+          <Sparkles className="w-6 h-6 text-amber-400/80" />
+        </motion.div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+function NumeroCard({ n, cardId, speechProps = {}, onCelebrate }) {
   const [playing, setPlaying] = useState(false);
-  const handleClick = useCallback(() => {
+  const [feedback, setFeedback] = useState(null);
+  const [debugTexto, setDebugTexto] = useState('');
+  const timeoutRef = useRef(null);
+
+  const sp = speechProps ?? { supported: false, listening: false, activeCardId: null, startVoiceForCard: () => {}, stopVoice: () => {}, reset: () => {} };
+  const isListening = sp.listening && sp.activeCardId === cardId;
+  const { supported = false, startVoiceForCard = () => {}, stopVoice = () => {}, reset = () => {} } = sp;
+
+  const alvoPt = NUMERO_PT[n.num];
+  const alvoRomaji = NUMERO_ROMAJI_LOWER[n.num] ?? n.romaji?.toLowerCase().trim();
+
+  const onResult = useCallback(
+    (texto) => {
+      setDebugTexto(texto);
+      const txtNorm = normalizarTexto(texto || '');
+      const resPt = alvoPt ? pronunciaCorreta(alvoPt, texto, 0.52) : { ok: false };
+      const resRomaji = alvoRomaji ? pronunciaCorreta(alvoRomaji, texto, 0.52) : { ok: false };
+      const digitMatch = txtNorm === String(n.num);
+      const ok = resPt.ok || resRomaji.ok || digitMatch;
+      if (ok && onCelebrate) {
+        onCelebrate(true);
+      } else if (!ok) {
+        setFeedback('erro');
+        setTimeout(() => setFeedback(null), 1500);
+      }
+    },
+    [alvoPt, alvoRomaji, onCelebrate, n.num]
+  );
+
+  useEffect(() => () => { if (timeoutRef.current) clearTimeout(timeoutRef.current); }, []);
+
+  const handlePlay = useCallback(() => {
     setPlaying(true);
     speakJapanese(n.speak || n.kanji);
     setTimeout(() => setPlaying(false), 800);
   }, [n.speak, n.kanji]);
 
   return (
-    <motion.button
-      onClick={handleClick}
-      whileHover={{ scale: 1.08 }}
-      whileTap={{ scale: 0.95 }}
-      className={`flex flex-col items-center justify-center rounded-xl p-4 min-w-[72px] transition-all ${
-        playing
-          ? 'bg-emerald-500/25 ring-2 ring-emerald-400/50'
-          : 'bg-white/[0.05] border border-white/10 hover:bg-white/[0.1] hover:border-purple-500/30'
-      }`}
+    <motion.div
+      role="group"
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      whileHover={{ y: -4 }}
+      className="relative"
     >
-      <span className="font-jp text-2xl font-bold text-white">{n.kanji}</span>
-      <span className="text-slate-400 text-xs font-mono mt-0.5">{n.romaji}</span>
-      <span className="text-amber-400/90 text-sm font-semibold mt-0.5">{n.num}</span>
-      {n.desc && <span className="text-slate-500 text-[10px] mt-0.5">{n.desc}</span>}
-    </motion.button>
+      <div
+        className={`flex flex-col items-center justify-center rounded-2xl p-6 sm:p-8 min-w-[140px] sm:min-w-[160px] transition-all ${
+          playing || isListening
+            ? 'bg-emerald-500/25 ring-2 ring-emerald-400/50'
+            : 'bg-white/[0.05] border border-white/10 hover:bg-white/[0.1] hover:border-purple-500/30'
+        }`}
+      >
+        <button
+          type="button"
+          onClick={handlePlay}
+          className="flex flex-col items-center justify-center w-full cursor-pointer text-left"
+        >
+          <span className="font-jp text-4xl sm:text-5xl font-bold text-white">{n.kanji}</span>
+          <span className="text-slate-400 text-sm sm:text-base font-mono mt-1">{n.romaji}</span>
+          <span className="text-amber-400/90 text-lg sm:text-xl font-semibold mt-1">{n.num}</span>
+          {n.desc && <span className="text-slate-500 text-xs mt-1">{n.desc}</span>}
+        </button>
+        {supported && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              if (!supported) return;
+              if (isListening) {
+                if (timeoutRef.current) clearTimeout(timeoutRef.current);
+                timeoutRef.current = null;
+                stopVoice();
+                return;
+              }
+              setDebugTexto('');
+              reset();
+              startVoiceForCard(onResult, cardId);
+              timeoutRef.current = setTimeout(() => { timeoutRef.current = null; stopVoice(); }, VOICE_TIMEOUT_MS);
+            }}
+            className={`mt-3 inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border transition-all ${
+              isListening ? 'border-emerald-400 bg-emerald-500/20 text-emerald-100' : 'border-white/20 bg-white/10 text-slate-300 hover:border-purple-400/50'
+            }`}
+          >
+            <Mic className="w-4 h-4" />
+            {isListening ? 'Parar' : 'Falar'}
+          </button>
+        )}
+        {debugTexto && <span className="text-xs text-slate-500 mt-2 truncate max-w-full">Você: {debugTexto}</span>}
+        {feedback === 'erro' && (
+          <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-[10px] text-red-400 mt-1">Tente novamente</motion.span>
+        )}
+        {isListening && (
+          <motion.div
+            className="pointer-events-none absolute inset-0 rounded-xl border-2 border-emerald-400/60"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0.3, 0.7, 0.3] }}
+            transition={{ duration: 1, repeat: Infinity }}
+          />
+        )}
+      </div>
+    </motion.div>
   );
 }
 
@@ -78,33 +266,62 @@ function speakJapanese(text) {
   window.speechSynthesis.speak(u);
 }
 
-function WordCard({ w, index }) {
+const VOICE_TIMEOUT_MS = 6000; // 6s para o usuário falar
+
+function WordCard({ w, index, cardId, speechProps = {}, onCelebrate }) {
   const [playing, setPlaying] = useState(false);
   const [feedback, setFeedback] = useState(null); // 'ok' | 'erro' | 'no-support'
   const [debugTexto, setDebugTexto] = useState('');
+  const timeoutRef = useRef(null);
   const kanji = w.japanese.replace(/\s*\([^)]*\)/g, '').trim();
   const textToSpeak = w.speak || kanji || w.romaji;
-  // alvo principal: tradução em português; secundário: romaji
   const alvoPronunciaPt = w.meaning;
   const alvoPronunciaRomaji = w.romaji;
 
-  const { supported, listening, transcript, error, startListening, stopListening, reset } =
-    useSpeechRecognition({
-      lang: 'pt-BR',
-      onResult: (texto) => {
-        setDebugTexto(texto);
-        if (!alvoPronunciaPt && !alvoPronunciaRomaji) {
-          setFeedback('erro');
-          setTimeout(() => setFeedback(null), 1500);
-          return;
-        }
-        const resPt = alvoPronunciaPt ? pronunciaCorreta(alvoPronunciaPt, texto, 0.75) : { ok: false };
-        const resRomaji = alvoPronunciaRomaji ? pronunciaCorreta(alvoPronunciaRomaji, texto, 0.75) : { ok: false };
-        const ok = resPt.ok || resRomaji.ok;
-        setFeedback(ok ? 'ok' : 'erro');
+  const sp = speechProps ?? {
+    supported: false,
+    listening: false,
+    activeCardId: null,
+    error: null,
+    startVoiceForCard: () => {},
+    stopVoice: () => {},
+    reset: () => {},
+  };
+  const isListening = sp.listening && sp.activeCardId === cardId;
+  const {
+    supported = false,
+    error = null,
+    startVoiceForCard = () => {},
+    stopVoice = () => {},
+    reset = () => {},
+  } = sp;
+
+  const onResult = useCallback(
+    (texto) => {
+      setDebugTexto(texto);
+      if (!alvoPronunciaPt && !alvoPronunciaRomaji) {
+        setFeedback('erro');
         setTimeout(() => setFeedback(null), 1500);
-      },
-    });
+        return;
+      }
+      const resPt = alvoPronunciaPt ? pronunciaCorreta(alvoPronunciaPt, texto, 0.52) : { ok: false };
+      const resRomaji = alvoPronunciaRomaji ? pronunciaCorreta(alvoPronunciaRomaji, texto, 0.52) : { ok: false };
+      const ok = resPt.ok || resRomaji.ok;
+      if (ok) {
+        (onCelebrate ?? (() => {}))(false);
+      } else {
+        setFeedback('erro');
+        setTimeout(() => setFeedback(null), 1500);
+      }
+    },
+    [alvoPronunciaPt, alvoPronunciaRomaji, onCelebrate]
+  );
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   const handleClick = useCallback(() => {
     setPlaying(true);
@@ -113,7 +330,10 @@ function WordCard({ w, index }) {
   }, [textToSpeak]);
 
   return (
-    <motion.button
+    <motion.div
+      role="group"
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleClick(); } }}
       initial={{ opacity: 0, y: 24, scale: 0.96 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, margin: '-50px' }}
@@ -121,7 +341,7 @@ function WordCard({ w, index }) {
       whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.2 } }}
       whileTap={{ scale: 0.97 }}
       onClick={handleClick}
-      className="relative w-full text-left rounded-2xl overflow-hidden group"
+      className="relative w-full text-left rounded-2xl overflow-hidden group cursor-pointer"
     >
       <div
         className={`relative rounded-2xl p-5 sm:p-6 transition-all duration-300 group-hover:shadow-[0_0_30px_-5px_rgba(124,58,237,0.25)] ${
@@ -181,7 +401,7 @@ function WordCard({ w, index }) {
           <p className="text-slate-500/80 font-medium">
             Toque para ouvir · fale a tradução em voz alta para treinar
           </p>
-          {listening && (
+          {isListening && (
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/60 text-emerald-100 text-[10px] font-semibold">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -192,43 +412,47 @@ function WordCard({ w, index }) {
           )}
         </div>
 
-        {/* Botão de pronúncia por voz */}
+        {/* Botão de pronúncia por voz — button real (parent é div, não há nesting) */}
         <div className="mt-4 flex items-center justify-between gap-3 text-xs">
           <button
             type="button"
             onClick={(e) => {
               e.stopPropagation(); // não disparar o play do card
-              if (listening) return; // já está ouvindo; evita múltiplos cliques
               if (!supported) {
                 setFeedback('no-support');
                 setTimeout(() => setFeedback(null), 1500);
                 return;
               }
+              if (isListening) {
+                if (timeoutRef.current) clearTimeout(timeoutRef.current);
+                timeoutRef.current = null;
+                stopVoice();
+                return;
+              }
               setDebugTexto('');
               reset();
-              startListening();
-              // Mantém o microfone ligado por ~4s e então força o stop
-              setTimeout(() => {
-                stopListening();
-              }, 4000);
+              startVoiceForCard(onResult, cardId);
+              timeoutRef.current = setTimeout(() => {
+                timeoutRef.current = null;
+                stopVoice();
+              }, VOICE_TIMEOUT_MS);
             }}
-            disabled={listening}
             className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full border text-xs font-semibold transition-all shadow-sm ${
               !supported
                 ? 'border-white/10 text-slate-600 cursor-not-allowed bg-black/20'
-                : listening
+                : isListening
                 ? 'border-emerald-400 bg-emerald-500/15 text-emerald-100 shadow-[0_0_20px_rgba(16,185,129,0.5)]'
                 : 'border-white/20 bg-white/10 text-slate-50 hover:border-purple-400/70 hover:bg-purple-500/30'
             }`}
           >
             <motion.span
               animate={
-                listening
+                isListening
                   ? { scale: [1, 1.2, 1], opacity: [0.8, 1, 0.8] }
                   : { scale: 1, opacity: 1 }
               }
               transition={
-                listening
+                isListening
                   ? { duration: 0.8, repeat: Infinity, ease: 'easeInOut' }
                   : { duration: 0.2 }
               }
@@ -236,7 +460,7 @@ function WordCard({ w, index }) {
             >
               <Mic className="w-4 h-4 mr-1" />
             </motion.span>
-            {listening ? 'Escutando…' : 'Falar'}
+            {isListening ? 'Parar e ver resultado' : 'Falar'}
           </button>
           {debugTexto && (
             <span className="text-[10px] text-slate-400 truncate max-w-[60%]">
@@ -246,7 +470,7 @@ function WordCard({ w, index }) {
         </div>
 
         {/* Overlay visual quando está escutando */}
-        {listening && (
+        {isListening && (
           <motion.div
             className="pointer-events-none absolute inset-0 rounded-2xl border-2 border-emerald-400/60"
             initial={{ opacity: 0, scale: 0.96 }}
@@ -255,23 +479,19 @@ function WordCard({ w, index }) {
           />
         )}
 
-        {/* Feedback rápido de acerto/erro */}
+        {/* Feedback rápido de erro / no-support */}
         {feedback && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             className={`pointer-events-none absolute inset-x-4 bottom-4 rounded-2xl px-4 py-2 text-xs font-semibold text-center ${
-              feedback === 'ok'
-                ? 'bg-emerald-500/90 text-white'
-                : feedback === 'erro'
+              feedback === 'erro'
                 ? 'bg-red-500/90 text-white'
                 : 'bg-amber-500/95 text-slate-900'
             }`}
           >
-            {feedback === 'ok'
-              ? 'Parabéns! Pronúncia correta'
-              : feedback === 'erro'
+            {feedback === 'erro'
               ? 'Tente novamente'
               : 'Seu navegador não suporta reconhecimento de voz'}
           </motion.div>
@@ -283,13 +503,62 @@ function WordCard({ w, index }) {
           </p>
         )}
       </div>
-    </motion.button>
+    </motion.div>
   );
 }
 
 export default function Palavras() {
   const [search, setSearch] = useState('');
   const [focused, setFocused] = useState(false);
+  const [activeCardId, setActiveCardId] = useState(null);
+  const [celebration, setCelebration] = useState({ show: false, isNumero: false });
+  const celebrationTimerRef = useRef(null);
+  const pendingOnResultRef = useRef(null);
+
+  const handleCelebrate = useCallback((isNumero) => {
+    if (celebrationTimerRef.current) clearTimeout(celebrationTimerRef.current);
+    // Pequeno delay para a UI estabilizar antes de exibir (evita flicker)
+    const showId = setTimeout(() => {
+      setCelebration({ show: true, isNumero });
+    }, 80);
+    celebrationTimerRef.current = setTimeout(() => {
+      celebrationTimerRef.current = null;
+      clearTimeout(showId);
+      setCelebration({ show: false, isNumero: false });
+    }, 2580);
+  }, []);
+
+  const speech = useSpeechRecognition({
+    lang: 'pt-BR',
+    onResult: (text) => {
+      pendingOnResultRef.current?.(text);
+      pendingOnResultRef.current = null;
+    },
+  });
+
+  const startVoiceForCard = useCallback((onResult, cardId) => {
+    setActiveCardId(cardId);
+    pendingOnResultRef.current = (text) => {
+      onResult(text);
+      setActiveCardId(null);
+    };
+    speech.startListening();
+  }, [speech.startListening]);
+
+  const stopVoiceWithClear = useCallback(() => {
+    setActiveCardId(null);
+    speech.stopListening();
+  }, [speech.stopListening]);
+
+  const speechProps = {
+    supported: speech.supported,
+    listening: speech.listening,
+    activeCardId,
+    error: speech.error,
+    startVoiceForCard,
+    stopVoice: stopVoiceWithClear,
+    reset: speech.reset,
+  };
 
   useEffect(() => {
     const load = () => {
@@ -429,7 +698,7 @@ export default function Palavras() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.03 }}
             >
-              <NumeroCard n={n} />
+              <NumeroCard n={n} cardId={`num-${n.num}`} speechProps={speechProps} onCelebrate={handleCelebrate} />
             </motion.div>
           ))}
         </div>
@@ -446,7 +715,7 @@ export default function Palavras() {
           layout
         >
           {filtered.map((w, i) => (
-            <WordCard key={`${w.japanese}-${w.meaning}-${i}`} w={w} index={i} />
+            <WordCard key={`${w.japanese}-${w.meaning}-${i}`} w={w} index={i} cardId={`${w.japanese}-${w.meaning}-${i}`} speechProps={speechProps} onCelebrate={handleCelebrate} />
           ))}
         </motion.div>
         {filtered.length === 0 && (
@@ -459,6 +728,25 @@ export default function Palavras() {
           </motion.p>
         )}
       </div>
+
+      {/* Celebração via portal no body — isolada dos re-renders da página */}
+      {typeof document !== 'undefined' &&
+        createPortal(
+          <AnimatePresence mode="wait">
+            {celebration.show && (
+              <CelebraçãoAcerto
+                key="celebration"
+                onClose={() => {
+                  if (celebrationTimerRef.current) clearTimeout(celebrationTimerRef.current);
+                  celebrationTimerRef.current = null;
+                  setCelebration({ show: false, isNumero: false });
+                }}
+                isNumero={celebration.isNumero}
+              />
+            )}
+          </AnimatePresence>,
+          document.body
+        )}
 
       {/* Floating accent orbs - desktop only */}
       <div className="hidden lg:block fixed inset-0 pointer-events-none overflow-hidden">

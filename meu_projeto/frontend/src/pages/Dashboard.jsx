@@ -33,8 +33,10 @@ const FAIXAS = [
 
 const MENU_ITENS = [
   { icon: BookOpen, label: 'Quiz', href: '/quiz', desc: 'Teste seus conhecimentos', emoji: '📝' },
+  { icon: Award, label: 'Simulados', href: '/simulados', desc: 'Simulados de graduação', emoji: '📋' },
   { icon: Trophy, label: 'Ranking', href: '/ranking', desc: 'Ranking completo do quiz', emoji: '🏆' },
   { icon: Award, label: 'Rolamentos', href: '/ukemis', desc: 'Todos os ukemis', emoji: '🔄' },
+  { icon: Award, label: 'Amarrar faixa', href: '/amarrar-faixa', desc: 'Como amarrar a faixa', emoji: '🎗️' },
   { icon: History, label: 'História', href: '/historia', desc: 'Origens e evolução', emoji: '📚' },
   { icon: Languages, label: 'Japonês', href: '/palavras', desc: 'Vocabulário', emoji: '🇯🇵' },
   { icon: FileText, label: 'Regras', href: '/regras', desc: 'Regulamentos', emoji: '📋' },
@@ -336,6 +338,22 @@ export default function Dashboard() {
                       Escolha sua faixa e evolua no judô.
                     </p>
                   </div>
+                  {/* Card Quiz — destaque para jogar */}
+                  <Link
+                    to="/quiz"
+                    className="group block p-5 rounded-2xl border border-amber-500/30 bg-amber-500/10 hover:bg-amber-500/20 transition-all duration-300 hover:scale-[1.02]"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="p-3 rounded-xl bg-amber-500/20 border border-amber-500/30">
+                        <BookOpen className="w-8 h-8 text-amber-400" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-semibold text-white">Quiz de Judô</h3>
+                        <p className="text-slate-400 text-sm mt-0.5">Teste seus conhecimentos sobre teoria do judô</p>
+                      </div>
+                      <ChevronRight className="w-6 h-6 text-amber-400 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </Link>
                   <ScrollReveal direction="up" delay={0.4}>
                     <div
                       className="rounded-2xl border backdrop-blur p-5 dojo-frame"
@@ -382,6 +400,19 @@ export default function Dashboard() {
                       Faixa <span className="font-semibold" style={{ color: themeColor }}>{faixa}</span>. Escolha sua faixa e comece.
                     </p>
                   </div>
+                  <Link
+                    to="/quiz"
+                    className="group flex items-center gap-4 p-4 rounded-2xl border border-amber-500/30 bg-amber-500/10 hover:bg-amber-500/20 transition-all mx-auto max-w-sm"
+                  >
+                    <div className="p-2.5 rounded-xl bg-amber-500/20 border border-amber-500/30">
+                      <BookOpen className="w-6 h-6 text-amber-400" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-white">Quiz de Judô</h3>
+                      <p className="text-slate-400 text-sm">Teste seus conhecimentos</p>
+                    </div>
+                    <ChevronRight className="w-5 h-5 text-amber-400 group-hover:translate-x-1 transition-transform" />
+                  </Link>
                   <div
                     className="rounded-2xl border p-4 mx-auto max-w-sm"
                     style={{ backgroundColor: `${themeColor}08`, borderColor: `${themeColor}30` }}

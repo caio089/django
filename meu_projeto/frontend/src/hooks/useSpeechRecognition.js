@@ -1,64 +1,103 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-export function useSpeechRecognition({ lang = 'pt-BR', onResult } = {}) {
+export function useSpeechRecognition({ lang = 'pt-BR', onResult, onEnd } = {}) {
   const [supported, setSupported] = useState(false);
   const [listening, setListening] = useState(false);
   const [transcript, setTranscript] = useState('');
   const [error, setError] = useState(null);
   const recognitionRef = useRef(null);
   const startingRef = useRef(false);
+  const accumulatedRef = useRef('');
+  const deliveredRef = useRef(false);
+  const onResultRef = useRef(onResult);
+  const onEndRef = useRef(onEnd);
+
+  onResultRef.current = onResult;
+  onEndRef.current = onEnd;
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const SpeechRecognition =
-      window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SpeechRecognition) {
+    let recog = null;
+    if (typeof window !== 'undefined') {
+      const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (SpeechRecognition) {
+        try {
+          recog = new SpeechRecognition();
+          recog.lang = lang || 'pt-BR';
+          recog.interimResults = true;
+          recog.maxAlternatives = 3;
+          recog.continuous = true;
+
+          const deliverResult = (finalText) => {
+            if (deliveredRef.current) return;
+            deliveredRef.current = true;
+            setTranscript(finalText);
+            if (onResultRef.current) onResultRef.current(finalText);
+            if (onEndRef.current) onEndRef.current(finalText);
+          };
+
+          recog.onstart = () => {
+            startingRef.current = false;
+            deliveredRef.current = false;
+            accumulatedRef.current = '';
+            setListening(true);
+            setError(null);
+            setTranscript('');
+          };
+
+          recog.onend = () => {
+            setListening(false);
+            const finalText = accumulatedRef.current.trim();
+            deliverResult(finalText);
+          };
+
+          recog.onerror = (e) => {
+            setListening(false);
+            setError(e.error || 'speech-error');
+            const finalText = accumulatedRef.current.trim();
+            deliverResult(finalText);
+          };
+
+          recog.onresult = (e) => {
+            let full = '';
+            for (let i = 0; i < e.results.length; i++) {
+              const r = e.results[i];
+              const t = r[0]?.transcript || '';
+              full += t;
+              if (r.isFinal) full += ' ';
+            }
+            const newAccumulated = full.trim();
+            accumulatedRef.current = newAccumulated;
+            setTranscript(newAccumulated);
+          };
+
+          recognitionRef.current = recog;
+          setSupported(true);
+        } catch {
+          setSupported(false);
+        }
+      } else {
+        setSupported(false);
+      }
+    } else {
       setSupported(false);
-      return;
     }
-    const recog = new SpeechRecognition();
-    recog.lang = lang || 'pt-BR';
-    recog.interimResults = false;
-    recog.maxAlternatives = 1;
-    recog.continuous = false;
-
-    recog.onstart = () => {
-      startingRef.current = false;
-      setListening(true);
-      setError(null);
-      setTranscript('');
-    };
-    recog.onend = () => {
-      setListening(false);
-    };
-    recog.onerror = (e) => {
-      setListening(false);
-      setError(e.error || 'speech-error');
-    };
-    recog.onresult = (e) => {
-      const text = Array.from(e.results)
-        .map((r) => r[0]?.transcript || '')
-        .join(' ')
-        .trim();
-      setTranscript(text);
-      if (onResult && text) onResult(text);
-    };
-
-    recognitionRef.current = recog;
-    setSupported(true);
 
     return () => {
-      recog.onresult = null;
-      recog.onend = null;
-      recog.onerror = null;
-      recog.onstart = null;
-      try {
-        recog.abort();
-      } catch {
-        // ignore
+      if (recog) {
+        recog.onresult = null;
+        recog.onend = null;
+        recog.onerror = null;
+        recog.onstart = null;
+        try {
+          recog.abort();
+        } catch {
+          /* ignore */
+        }
+        if (recognitionRef.current === recog) recognitionRef.current = null;
       }
     };
-  }, [lang, onResult]);
+  }, [lang]);
 
   const startListening = useCallback(() => {
     const recog = recognitionRef.current;
