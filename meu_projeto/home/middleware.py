@@ -39,13 +39,11 @@ class FaixaRedirectMiddleware:
         # Verificar se há parâmetro de faixa na URL
         faixa = request.GET.get('faixa')
         if faixa:
-            logger.info(f"🥋 Faixa detectada na URL: {faixa}")
             return self.redirect_to_faixa(faixa)
         
         # Verificar se há faixa salva na sessão
         faixa_sessao = request.session.get('faixa_selecionada')
         if faixa_sessao and request.path == '/':
-            logger.info(f"🥋 Faixa da sessão: {faixa_sessao}")
             return self.redirect_to_faixa(faixa_sessao)
         
         return None
@@ -74,7 +72,6 @@ class FaixaRedirectMiddleware:
         
         url_destino = faixas_urls.get(faixa.lower())
         if url_destino:
-            logger.info(f"🔄 Redirecionando para: {url_destino}")
             return HttpResponseRedirect(url_destino)
         
         return None
@@ -111,7 +108,6 @@ class GoogleLoginMiddleware:
                 'picture': google_data.get('picture')
             }
             
-            logger.info(f"✅ Dados do Google salvos na sessão: {google_data.get('email')}")
             
         except Exception as e:
             logger.error(f"❌ Erro ao processar dados do Google: {e}")

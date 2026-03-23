@@ -162,6 +162,139 @@ export async function getCheckoutRedirectUrl(paymentId) {
   return data.init_point;
 }
 
+// ——— Admin Panel API ———
+const adminBase = () => getBaseUrl() + '/api/admin';
+
+/** GET verificar se está logado como admin */
+export async function adminMe() {
+  const res = await fetch(`${adminBase()}/me/`, { credentials: 'include' });
+  return res.json();
+}
+
+/** POST login admin: { username, password } */
+export async function adminLogin(username, password) {
+  await fetchCsrf();
+  const res = await fetch(`${adminBase()}/login/`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: headers(),
+    body: JSON.stringify({ username, password }),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Erro ao fazer login');
+  return data;
+}
+
+/** POST logout admin */
+export async function adminLogout() {
+  const res = await fetch(`${adminBase()}/logout/`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: headers(),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Erro ao sair');
+  return data;
+}
+
+/** GET dashboard completo */
+export async function adminDashboard() {
+  const res = await fetch(`${adminBase()}/dashboard/`, { credentials: 'include' });
+  const data = await res.json().catch(() => ({}));
+  if (res.status === 401 || res.status === 403) throw new Error('Acesso negado');
+  if (!res.ok) throw new Error(data.error || 'Erro ao carregar');
+  return data;
+}
+
+/** POST dar premium: { user_id ou user_email, plan_id } */
+export async function adminGivePremium(payload) {
+  await fetchCsrf();
+  const res = await fetch(`${adminBase()}/give-premium/`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: headers(),
+    body: JSON.stringify(payload),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Erro');
+  return data;
+}
+
+/** POST remover premium: { user_id } */
+export async function adminRemovePremium(userId) {
+  await fetchCsrf();
+  const res = await fetch(`${adminBase()}/remove-premium/`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: headers(),
+    body: JSON.stringify({ user_id: userId }),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Erro');
+  return data;
+}
+
+/** POST excluir usuário: { user_id, confirm: "excluir" } */
+export async function adminDeleteUser(userId) {
+  await fetchCsrf();
+  const res = await fetch(`${adminBase()}/delete-user/`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: headers(),
+    body: JSON.stringify({ user_id: userId, confirm: 'excluir' }),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Erro');
+  return data;
+}
+
+/** POST refresh cache */
+export async function adminRefreshCache() {
+  await fetchCsrf();
+  const res = await fetch(`${adminBase()}/refresh-cache/`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: headers(),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Erro');
+  return data;
+}
+
+/** POST ativar assinatura manual (email via query) */
+export async function adminAtivarManual(email) {
+  await fetchCsrf();
+  const res = await fetch(`${adminBase()}/ativar-manual/?email=${encodeURIComponent(email)}`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: headers(),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Erro');
+  return data;
+}
+
+/** POST corrigir assinaturas */
+export async function adminCorrigirAssinaturas() {
+  await fetchCsrf();
+  const res = await fetch(`${adminBase()}/corrigir-assinaturas/`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: headers(),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Erro');
+  return data;
+}
+
+/** GET detalhes do usuário */
+export async function adminUserDetail(userId) {
+  const res = await fetch(`${adminBase()}/user/${userId}/`, { credentials: 'include' });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Erro');
+  return data;
+}
+
 /** POST gerar PIX (retorna qr_code e qr_code_base64) — usa /api */
 export async function gerarPix(paymentId) {
   const res = await fetch(`${getBaseUrl()}/api/payments/gerar-pix/${paymentId}/`, {

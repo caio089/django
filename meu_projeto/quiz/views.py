@@ -1,12 +1,10 @@
-from django.shortcuts import render, redirect
-from django.contrib import messages
+from django.shortcuts import redirect
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from django.utils import timezone
-from django.conf import settings
-from payments.views import verificar_acesso_premium
+from meu_projeto.redirect_utils import redirect_to_frontend
 from .models import ProgressoQuiz, QuizRanking, ProgressoUsuario
 import json
 
@@ -27,22 +25,8 @@ MAX_NIVEL_QUIZ = 10
 
 # Create your views here.
 def quiz(request):
-    # Em desenvolvimento: redirecionar para a página nova do quiz (React)
-    if getattr(settings, 'DEBUG', False) and getattr(settings, 'FRONTEND_URL', ''):
-        base = settings.FRONTEND_URL.rstrip('/')
-        return redirect(f'{base}/quiz')
-    # Verificar se usuário está logado
-    if not request.user.is_authenticated:
-        messages.warning(request, 'Você precisa fazer login para acessar esta página.')
-        return redirect('login')
-    # Verificar acesso premium
-    tem_acesso, assinatura = verificar_acesso_premium(request.user)
-    if not tem_acesso:
-        messages.warning(request, 'Esta página requer assinatura premium. Escolha um plano para continuar.')
-        return redirect('payments:planos')
-    return render(request, 'quiz/quiz.html', {
-        'assinatura': assinatura
-    })
+    """Redireciona para o React em /quiz"""
+    return redirect_to_frontend('/quiz')
 
 @login_required
 @csrf_exempt

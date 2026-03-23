@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from meu_projeto.redirect_utils import redirect_to_frontend
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import JsonResponse, HttpResponse
@@ -17,7 +18,6 @@ import uuid
 from datetime import datetime, timedelta
 from django.utils import timezone
 import logging
-from home.trial import trial_delta
 
 # Configurar logging para debug
 logger = logging.getLogger(__name__)
@@ -119,96 +119,8 @@ def criar_perfil_usuario(user):
 
 @login_required
 def listar_planos(request):
-    """
-    Lista planos premium disponíveis
-    """
-    # Garantir existência de planos padrão sem provocar erro em caso de duplicatas
-    plano_mensal = PlanoPremium.objects.filter(nome="Plano Mensal Premium").order_by('id').first()
-    if not plano_mensal:
-        plano_mensal = PlanoPremium.objects.create(
-            nome="Plano Mensal Premium",
-            descricao="Acesso completo à plataforma de judô com todos os recursos premium",
-            preco=47.90,
-            duracao_dias=30,
-            ativo=True,
-            acesso_ilimitado_quiz=True,
-            relatorios_detalhados=True,
-            suporte_prioritario=True,
-        )
-    # Atualizar preço/duração caso tenham mudado no código
-    if plano_mensal.preco != 47.90 or plano_mensal.duracao_dias != 30:
-        plano_mensal.preco = 47.90
-        plano_mensal.duracao_dias = 30
-        plano_mensal.ativo = True
-        plano_mensal.save(update_fields=["preco", "duracao_dias", "ativo"])
-    
-    plano_trimestral = PlanoPremium.objects.filter(nome="Plano Trimestral Premium").order_by('id').first()
-    if not plano_trimestral:
-        plano_trimestral = PlanoPremium.objects.create(
-            nome="Plano Trimestral Premium",
-            descricao="Assinatura por 3 meses com acesso completo aos recursos premium",
-            preco=119.90,
-            duracao_dias=90,
-            ativo=True,
-            acesso_ilimitado_quiz=True,
-            relatorios_detalhados=True,
-            suporte_prioritario=True,
-        )
-    if plano_trimestral.preco != 119.90 or plano_trimestral.duracao_dias != 90:
-        plano_trimestral.preco = 119.90
-        plano_trimestral.duracao_dias = 90
-        plano_trimestral.ativo = True
-        plano_trimestral.save(update_fields=["preco", "duracao_dias", "ativo"])
-    
-    plano_semestral = PlanoPremium.objects.filter(nome="Plano Semestral Premium").order_by('id').first()
-    if not plano_semestral:
-        plano_semestral = PlanoPremium.objects.create(
-            nome="Plano Semestral Premium",
-            descricao="Assinatura por 6 meses com acesso completo aos recursos premium",
-            preco=99.90,
-            duracao_dias=180,
-            ativo=True,
-            acesso_ilimitado_quiz=True,
-            relatorios_detalhados=True,
-            suporte_prioritario=True,
-        )
-    if plano_semestral.preco != 99.90 or plano_semestral.duracao_dias != 180:
-        plano_semestral.preco = 99.90
-        plano_semestral.duracao_dias = 180
-        plano_semestral.ativo = True
-        plano_semestral.save(update_fields=["preco", "duracao_dias", "ativo"])
-    
-    # Lista de planos ativos para o usuário escolher (apenas os três desejados)
-    # Escolher exatamente 3 planos por duração, priorizando menor preço (garante 19,90/50,00/99,90 se existirem)
-    plano_30 = (
-        PlanoPremium.objects.filter(ativo=True, duracao_dias=30)
-        .order_by('preco', '-id')
-        .first()
-    )
-    plano_90 = (
-        PlanoPremium.objects.filter(ativo=True, duracao_dias=90)
-        .order_by('preco', '-id')
-        .first()
-    )
-    plano_180 = (
-        PlanoPremium.objects.filter(ativo=True, duracao_dias=180)
-        .order_by('preco', '-id')
-        .first()
-    )
-    planos = [p for p in [plano_30, plano_90, plano_180] if p]
-    
-    # Verificar se usuário já tem assinatura ativa
-    assinatura_ativa = Assinatura.objects.filter(
-        usuario=request.user,
-        status='ativa',
-        data_vencimento__gt=timezone.now()
-    ).first()
-    
-    return render(request, 'payments/planos.html', {
-        'plano': plano_mensal,  # destaque mensal existente
-        'planos': planos,       # lista completa para escolha
-        'assinatura_ativa': assinatura_ativa
-    })
+    """Redireciona para o React em /payments/planos"""
+    return redirect_to_frontend('/payments/planos')
 
 @login_required
 @require_http_methods(["GET"])
@@ -228,28 +140,8 @@ def api_plano_detail(request, plano_id):
 
 @login_required
 def escolher_plano(request, plano_id):
-    """
-    Página para escolher plano e preencher dados do usuário
-    """
-    plano = get_object_or_404(PlanoPremium, id=plano_id, ativo=True)
-    
-    # Verificar se já tem assinatura ativa
-    assinatura_ativa = Assinatura.objects.filter(
-        usuario=request.user,
-        status='ativa',
-        data_vencimento__gt=timezone.now()
-    ).exists()
-    
-    if assinatura_ativa:
-        messages.warning(request, 'Você já possui uma assinatura ativa!')
-        return redirect('payments:planos')
-    
-    # Criar perfil se não existir
-    criar_perfil_usuario(request.user)
-    
-    return render(request, 'payments/escolher_plano.html', {
-        'plano': plano
-    })
+    """Redireciona para o React em /payments/plano/:id"""
+    return redirect_to_frontend(f'/payments/plano/{plano_id}')
 
 @login_required
 @require_http_methods(["POST"])
@@ -724,107 +616,8 @@ def api_checkout_redirect(request, payment_id):
 
 @login_required
 def checkout_pagamento(request, payment_id):
-    """
-    Página de checkout com Mercado Pago
-    """
-    pagamento = get_object_or_404(Pagamento, id=payment_id, usuario=request.user)
-    
-    # Obter configuração do Mercado Pago
-    sdk, config = get_mercadopago_config()
-    if not config:
-        messages.error(request, 'Erro na configuração do pagamento.')
-        return redirect('payments:planos')
-    
-    # Debug: verificar dados do pagamento
-    payment_id_mp = pagamento.get_payment_id()
-    logger.info(f"Checkout - Payment ID: {payment_id_mp}")
-    logger.info(f"Checkout - Payment status: {pagamento.status}")
-    logger.info(f"Checkout - External reference: {pagamento.external_reference}")
-    
-    # Se o payment_id começa com "pref_", é uma preferência
-    if payment_id_mp and payment_id_mp.startswith('pref_'):
-        preference_id = payment_id_mp.replace('pref_', '')
-        init_point = f"https://www.mercadopago.com.br/checkout/v1/redirect?pref_id={preference_id}"
-        logger.info(f"Checkout - Init Point: {init_point}")
-        
-        return render(request, 'payments/checkout.html', {
-            'pagamento': pagamento,
-            'public_key': config.get_public_key(),
-            'preference_id': preference_id,
-            'init_point': init_point
-        })
-    else:
-        # Se não é uma preferência, criar uma nova
-        logger.info("Criando nova preferência para checkout...")
-        
-        # Buscar plano pelo valor
-        plano = PlanoPremium.objects.filter(preco=pagamento.valor, ativo=True).first()
-        if not plano:
-            messages.error(request, 'Plano não encontrado.')
-            return redirect('payments:planos')
-        
-        # Criar preferência
-        preference_data = {
-            "items": [
-                {
-                    "title": plano.nome,
-                    "description": plano.descricao,
-                    "quantity": 1,
-                    "unit_price": float(plano.preco),
-                    "currency_id": "BRL"
-                }
-            ],
-            "payer": {
-                "email": pagamento.get_payer_email() or pagamento.usuario.email,
-                "identification": {
-                    "type": "CPF",
-                    "number": pagamento.get_payer_document() or "00000000000"
-                }
-            },
-            "back_urls": {
-                "success": "https://dojo-on.onrender.com/payments/sucesso/",
-                "failure": "https://dojo-on.onrender.com/payments/falha/",
-                "pending": "https://dojo-on.onrender.com/payments/pendente/"
-            },
-            "external_reference": str(pagamento.external_reference),
-            "notification_url": config.webhook_url,
-            "payment_methods": {
-                "excluded_payment_methods": [],
-                "excluded_payment_types": [],
-                "installments": 12
-            },
-            "auto_return": "approved",
-            "binary_mode": False,
-            "statement_descriptor": "DOJO-ON"
-        }
-        
-        try:
-            preference = sdk.preference().create(preference_data)
-            if preference["status"] == 201:
-                preference_data = preference["response"]
-                init_point = preference_data["init_point"]
-                preference_id = preference_data["id"]
-                
-                # Atualizar pagamento com o ID da preferência
-                pagamento.set_payment_id(f"pref_{preference_id}")
-                pagamento.save()
-                
-                logger.info(f"Preferência criada: {preference_id}")
-                
-                return render(request, 'payments/checkout.html', {
-                    'pagamento': pagamento,
-                    'public_key': config.get_public_key(),
-                    'preference_id': preference_id,
-                    'init_point': init_point
-                })
-            else:
-                logger.error(f"Erro ao criar preferência: {preference}")
-                messages.error(request, 'Erro ao criar checkout.')
-                return redirect('payments:planos')
-        except Exception as e:
-            logger.error(f"Erro ao criar preferência: {e}")
-            messages.error(request, 'Erro ao criar checkout.')
-            return redirect('payments:planos')
+    """Redireciona para o React em /payments/checkout/:id"""
+    return redirect_to_frontend(f'/payments/checkout/{payment_id}')
 
 # =====================================================
 # WEBHOOK E PROCESSAMENTO DE PAGAMENTOS
@@ -1285,19 +1078,8 @@ def verificar_status_pagamento(request, payment_id):
 
 @login_required
 def minhas_assinaturas(request):
-    """
-    Lista as assinaturas do usuário
-    """
-    from django.utils import timezone
-    
-    assinaturas = Assinatura.objects.filter(usuario=request.user).order_by('-data_criacao')
-    pagamentos = Pagamento.objects.filter(usuario=request.user).order_by('-data_criacao')
-    
-    return render(request, 'payments/assinaturas.html', {
-        'assinaturas': assinaturas,
-        'pagamentos': pagamentos,
-        'now': timezone.now()
-    })
+    """Redireciona para o React em /payments"""
+    return redirect_to_frontend('/payments')
 
 @login_required
 @require_http_methods(["POST"])
@@ -1353,62 +1135,30 @@ def verificar_acesso_premium(user):
     Retorna: (tem_acesso, assinatura) ou (False, None)
     """
     try:
-        logger.info(f"[verificar_acesso_premium] user_id={user.id}")
         assinatura = Assinatura.objects.filter(
             usuario=user,
             status='ativa',
             data_vencimento__gt=timezone.now()
         ).first()
         
-        # Acesso por assinatura ativa
+        # Acesso somente por assinatura paga ativa
         if assinatura is not None:
-            logger.info(f"[verificar_acesso_premium] Assinatura ativa encontrada. vence_em={assinatura.data_vencimento}")
             return True, assinatura
         
-        # Acesso por período grátis (trial): iniciar se ainda não houver e validar
+        # Garantir profile existe (sem trial)
         try:
-            profile = user.profile
-            logger.info(f"[verificar_acesso_premium] Trial datas: inicio={profile.trial_inicio} fim={profile.trial_fim} now={timezone.now()}")
-            print(f"[verificar_acesso_premium] Trial datas: inicio={profile.trial_inicio} fim={profile.trial_fim} now={timezone.now()}")
-            # Inicializa trial na primeira verificação, caso ainda não tenha sido iniciado
-            if not getattr(profile, "trial_inicio", None):
-                now = timezone.now()
-                profile.trial_inicio = now
-                profile.trial_fim = now + trial_delta()
-                profile.save(update_fields=["trial_inicio", "trial_fim"])
-                logger.info(f"[verificar_acesso_premium] Trial iniciado (views). inicio={profile.trial_inicio} fim={profile.trial_fim}")
-                print(f"[verificar_acesso_premium] Trial iniciado (views). inicio={profile.trial_inicio} fim={profile.trial_fim}")
-            # Concede acesso se o trial estiver ativo (checagem direta por datas + método auxiliar)
-            if (profile.trial_fim and timezone.now() < profile.trial_fim) or (
-                getattr(profile, "is_trial_ativo", None) and profile.is_trial_ativo()
-            ) or (
-                profile.trial_inicio and timezone.now() < (profile.trial_inicio + trial_delta())
-            ):
-                logger.info("[verificar_acesso_premium] Acesso por trial ativo")
-                print("[verificar_acesso_premium] Acesso por trial ativo")
-                return True, None
+            user.profile
         except Profile.DoesNotExist:
-            # Criar profile e iniciar trial imediatamente para garantir acesso de boas-vindas
             try:
-                profile = Profile.objects.create(
+                Profile.objects.create(
                     user=user,
                     nome=user.get_full_name() or user.username or (user.email if hasattr(user, "email") else "Usuário"),
                     idade=18,
                     faixa='branca'
                 )
-                now = timezone.now()
-                profile.trial_inicio = now
-                profile.trial_fim = now + trial_delta()
-                profile.save(update_fields=["trial_inicio", "trial_fim"])
-                logger.info("[verificar_acesso_premium] Profile criado + trial iniciado (views)")
-                print("[verificar_acesso_premium] Profile criado + trial iniciado (views)")
-                return True, None
             except Exception as _e:
-                logger.error(f"Falha ao criar profile e iniciar trial para user {user.id}: {_e}")
-                print(f"[verificar_acesso_premium] ERRO criar profile/trial: {_e}")
+                logger.error(f"Falha ao criar profile para user {user.id}: {_e}")
         
-        logger.info("[verificar_acesso_premium] Acesso negado (sem assinatura e trial inativo)")
-        print("[verificar_acesso_premium] Acesso negado (sem assinatura e trial inativo)")
         return False, None
         
     except Exception as e:

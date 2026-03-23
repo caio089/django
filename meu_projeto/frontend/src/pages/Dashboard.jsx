@@ -61,21 +61,6 @@ const QUOTES = [
   { jp: '「心・技・体」', pt: 'Mente, técnica e corpo' },
 ];
 
-function formatTrialRemaining(trialFim) {
-  if (!trialFim) return '--:--:--';
-  const end = new Date(trialFim);
-  const now = new Date();
-  const ms = end - now;
-  if (ms <= 0) return '00:00:00';
-  const totalSec = Math.floor(ms / 1000);
-  const d = Math.floor(totalSec / 86400);
-  const h = Math.floor((totalSec % 86400) / 3600);
-  const m = Math.floor((totalSec % 3600) / 60);
-  const s = totalSec % 60;
-  const pad = (n) => (n < 10 ? '0' : '') + n;
-  return d > 0 ? `${d}d ${pad(h)}:${pad(m)}:${pad(s)}` : `${pad(h)}:${pad(m)}:${pad(s)}`;
-}
-
 function FaixaCard({ f, locked, navigate, index }) {
   const isCenter = index === 6;
   const shapeClass = isCenter ? 'rounded-3xl' : index % 3 === 0 ? 'rounded-2xl' : 'rounded-[1.5rem]';
@@ -128,10 +113,6 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [user, setUser] = useState(null);
-  const [trialCountdown, setTrialCountdown] = useState('--:--:--');
-  const [trialProgress, setTrialProgress] = useState(0);
-  const [showTrialWelcome, setShowTrialWelcome] = useState(false);
-  const [trialExpirado, setTrialExpirado] = useState(false);
   const [quizRanking, setQuizRanking] = useState([]);
   const [loadingRanking, setLoadingRanking] = useState(false);
 
@@ -145,44 +126,13 @@ export default function Dashboard() {
   }, [user]);
 
   useEffect(() => {
-    if (false && trialExpirado) {
-      const t = setTimeout(() => navigate('/payments/planos'), 5000);
-      return () => clearTimeout(t);
-    }
-  }, [trialExpirado, navigate]);
-
-  useEffect(() => {
     apiMe()
       .then((r) => {
         if (!r.authenticated) navigate('/login');
-        else {
-          setUser(r.user);
-          if (false && r.user?.trial_ativo && r.user?.trial_fim) {
-            const key = 'trial_welcome_shown_' + r.user.id;
-            if (!localStorage.getItem(key)) setShowTrialWelcome(true);
-          }
-          if (false && r.user?.trial_expirado) setTrialExpirado(true);
-        }
+        else setUser(r.user);
       })
       .catch(() => navigate('/login'));
   }, [navigate]);
-
-  useEffect(() => {
-    if (!user?.trial_ativo || !user?.trial_fim) return;
-    const tick = () => {
-      const end = new Date(user.trial_fim);
-      const now = new Date();
-      const start = user?.trial_inicio ? new Date(user.trial_inicio) : new Date(end.getTime() - 3 * 24 * 60 * 60 * 1000);
-      const totalMs = end - start;
-      const used = now - start;
-      const pct = totalMs > 0 ? Math.min(100, Math.max(0, (used / totalMs) * 100)) : 0;
-      setTrialProgress(pct);
-      setTrialCountdown(formatTrialRemaining(user.trial_fim));
-    };
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, [user]);
 
   const handleLogout = async () => {
     try {
@@ -195,7 +145,6 @@ export default function Dashboard() {
 
   const nome = user?.nome || 'Visitante';
   const faixa = user?.faixa || 'Branca';
-  const trialAtivo = false;
   const temAcesso = user?.conta_premium || false;
   const themeColor = FAIXA_TO_COLOR[faixa] || FAIXA_TO_COLOR.Branca;
   const quote = QUOTES[Math.floor(Math.random() * QUOTES.length)];

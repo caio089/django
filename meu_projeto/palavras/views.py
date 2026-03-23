@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
+from meu_projeto.redirect_utils import redirect_to_frontend
 
-# Create your views here.
 def palavras(request):
-    return render(request, 'palavras/palavras.html')
+    """Redireciona para o React em /palavras"""
+    return redirect_to_frontend('/palavras')

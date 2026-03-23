@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
+from meu_projeto.redirect_utils import redirect_to_frontend
 
-# Create your views here.
 def historia(request):
-    return render(request, 'historia/historia.html')  
+    """Redireciona para o React em /historia"""
+    return redirect_to_frontend('/historia')  
 

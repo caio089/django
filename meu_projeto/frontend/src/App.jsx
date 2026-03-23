@@ -16,6 +16,7 @@ import CheckoutRedirect from './pages/CheckoutRedirect';
 import Ranking from './pages/Ranking';
 import Simulados from './pages/Simulados';
 import AmarrarFaixa from './pages/AmarrarFaixa';
+import AdminPanel from './pages/AdminPanel';
 
 class QuizErrorBoundary extends Component {
   state = { hasError: false };
@@ -63,6 +64,7 @@ function App() {
         <Route path="/ranking" element={<Ranking />} />
         <Route path="/simulados" element={<Simulados />} />
         <Route path="/amarrar-faixa" element={<AmarrarFaixa />} />
+        <Route path="/admin-panel" element={<AdminPanel />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

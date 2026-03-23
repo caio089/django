@@ -6,5 +6,5 @@ class HomeConfig(AppConfig):
     name = 'home'
 
     def ready(self):
-        # Importa sinais para garantir criação de trial no cadastro de usuário
+        # Importa sinais para garantir criação de profile no cadastro de usuário
         from . import signals  # noqa: F401

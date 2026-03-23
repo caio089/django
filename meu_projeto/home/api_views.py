@@ -13,7 +13,6 @@ from django.utils import timezone
 
 from .forms import EmailLoginForm, RegisterForm
 from .models import Profile
-from .trial import trial_delta
 
 logger = logging.getLogger(__name__)
 
@@ -24,8 +23,6 @@ def _get_user_data(user):
         return None
     try:
         profile = Profile.objects.get(user=user)
-        trial_ativo = bool(profile.trial_inicio) and profile.is_trial_ativo()
-        trial_expirado = bool(profile.trial_inicio) and not profile.is_trial_ativo()
         return {
             'id': user.id,
             'email': user.email,
@@ -33,10 +30,6 @@ def _get_user_data(user):
             'faixa': profile.get_faixa_display(),
             'faixa_value': profile.faixa,
             'idade': profile.idade,
-            'trial_ativo': trial_ativo,
-            'trial_expirado': trial_expirado,
-            'trial_fim': profile.trial_fim.isoformat() if profile.trial_fim else None,
-            'trial_inicio': profile.trial_inicio.isoformat() if profile.trial_inicio else None,
             'conta_premium': profile.conta_premium,
         }
     except Profile.DoesNotExist:
@@ -47,10 +40,6 @@ def _get_user_data(user):
             'faixa': 'Branca',
             'faixa_value': 'branca',
             'idade': 18,
-            'trial_ativo': False,
-            'trial_expirado': False,
-            'trial_fim': None,
-            'trial_inicio': None,
             'conta_premium': False,
         }
 
@@ -76,16 +65,6 @@ def api_login(request):
         if form.is_valid():
             user = form.cleaned_data['user']
             login(request, user)
-            try:
-                profile = Profile.objects.get(user=user)
-                if not profile.trial_inicio:
-                    now = timezone.now()
-                    profile.trial_inicio = now
-                    profile.trial_fim = now + trial_delta()
-                    profile.save()
-            except Exception as e:
-                logger.error(f"Erro ao iniciar trial: {e}")
-
             return JsonResponse({
                 'success': True,
                 'redirect': '/index',
@@ -133,11 +112,6 @@ def api_register(request):
                 profile.idade = idade
                 profile.faixa = faixa
                 profile.save(update_fields=['nome', 'idade', 'faixa'])
-
-            now = timezone.now()
-            profile.trial_inicio = now
-            profile.trial_fim = now + trial_delta()
-            profile.save()
 
             login(request, user)
             return JsonResponse({

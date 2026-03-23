@@ -13,6 +13,7 @@ export default defineConfig({
       '/quiz/api': { target: 'http://127.0.0.1:8000', changeOrigin: true },
       '/static': { target: 'http://127.0.0.1:8000', changeOrigin: true },
       '/admin': { target: 'http://127.0.0.1:8000', changeOrigin: true },
+      '/dashboard': { target: 'http://127.0.0.1:8000', changeOrigin: true },
       // Só encaminha ao Django as rotas de API/checkout; /payments, /payments/planos e /payments/plano/:id ficam no React
       '/payments/api': { target: 'http://127.0.0.1:8000', changeOrigin: true },
       '/payments/criar-pagamento': { target: 'http://127.0.0.1:8000', changeOrigin: true },

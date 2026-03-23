@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Eye, EyeOff, Mail, Lock, User, Calendar, Award, BookOpen, ChevronRight } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock, User, Calendar, Award } from 'lucide-react';
 import { fetchCsrf, apiLogin, apiRegister } from '../api';
 
 const FAIXAS = [
@@ -130,36 +130,13 @@ export default function Landing() {
         </p>
       </motion.div>
 
-      {/* Coluna direita: Quiz + Login */}
+      {/* Card de Login/Registro — papel washi + moldura */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-20 w-full max-w-md flex flex-col gap-6"
+        className="relative z-20 w-full max-w-md"
       >
-        {/* Card do Quiz */}
-        <Link
-          to="/quiz"
-          className="group relative flex items-center gap-5 p-6 rounded-2xl overflow-hidden border border-white/10 transition-all duration-300 hover:scale-[1.02] hover:border-amber-500/40 active:scale-[0.99]"
-          style={{
-            background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(30, 64, 175, 0.12) 50%, rgba(124, 58, 237, 0.1) 100%)',
-            boxShadow: '0 8px 32px -8px rgba(245, 158, 11, 0.2)',
-          }}
-        >
-          <div
-            className="flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center"
-            style={{ backgroundColor: 'rgba(245, 158, 11, 0.25)', border: '1px solid rgba(245, 158, 11, 0.4)' }}
-          >
-            <BookOpen className="w-7 h-7 text-amber-400" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <h3 className="font-display font-semibold text-white text-lg tracking-wide">Quiz de Judô</h3>
-            <p className="text-slate-400 text-sm mt-0.5">Teste seus conhecimentos sobre teoria do judô</p>
-          </div>
-          <ChevronRight className="w-6 h-6 text-amber-500/80 group-hover:translate-x-1 transition-transform flex-shrink-0" />
-        </Link>
-
-        {/* Card de Login/Registro — papel washi + moldura */}
         <div
           className="relative rounded-2xl overflow-hidden"
           style={{

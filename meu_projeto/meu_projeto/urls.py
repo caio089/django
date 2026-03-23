@@ -16,14 +16,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import RedirectView
 from django.conf import settings
+from django.shortcuts import redirect
 from django.conf.urls.static import static
 from dashboard import views as dashboard_views
 from meu_projeto import views_supabase
 from payments import views as payments_views
 
+def redirect_to_admin_panel(request):
+    """Redireciona para o painel admin no frontend React."""
+    base = getattr(settings, 'FRONTEND_URL', 'http://localhost:5173').rstrip('/')
+    return redirect(f'{base}/admin-panel', permanent=False)
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', redirect_to_admin_panel),
+    path('admin-panel/', redirect_to_admin_panel),
+    path('django-admin/', admin.site.urls),
     path('', include('home.urls')),
     path('index/', include('core.urls')),
     path('pagina1/', include('pag1.urls')),
@@ -40,6 +49,7 @@ urlpatterns = [
     path('regras/', include('regras.urls')),
     path('payments/', include('payments.urls')),
     path('dashboard/', include('dashboard.urls')),
+    path('api/admin/', include('dashboard.api_urls')),
     path('admin-dashboard/', dashboard_views.dashboard_admin, name='admin_dashboard_direct'),  # Atalho direto
     
     # API de pagamentos para o frontend React (mesmo prefixo /api do proxy)

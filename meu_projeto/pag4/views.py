@@ -1,15 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from django.utils import timezone
 from .models import ProgressoElemento
+from meu_projeto.redirect_utils import redirect_to_frontend
 import json
 
 def pagina4(request):
-    """View principal da página 4"""
-    return render(request, 'pag4/pagina4.html')
+    """Redireciona para o React em /pagina/4"""
+    return redirect_to_frontend('/pagina/4')
 
 @login_required
 @csrf_exempt

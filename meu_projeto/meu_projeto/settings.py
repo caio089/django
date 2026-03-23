@@ -316,9 +316,3 @@ LOGGING = {
     },
 }
 
-# =====================================================
-# CONFIGURAÇÕES DE TRIAL (PERÍODO GRÁTIS)
-# =====================================================
-# Permite encurtar o trial para testes locais (ex.: 30 segundos)
-TRIAL_DAYS = int(os.getenv('TRIAL_DAYS', '3'))
-TRIAL_SECONDS_OVERRIDE = int(os.getenv('TRIAL_SECONDS_OVERRIDE', '0'))  # 0 = desligado

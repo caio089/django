@@ -61,7 +61,6 @@ class PaymentSyncMiddleware:
                     faixa='branca'
                 )
                 profile = user.profile
-                logger.info(f"Perfil criado para usuário {user.username}")
             
             # Determinar se deve ter acesso premium
             deve_ter_premium = assinatura_ativa is not None
@@ -82,8 +81,6 @@ class PaymentSyncMiddleware:
                     profile.data_vencimento_premium = None
                 
                 profile.save()
-                
-                logger.info(f"Status premium sincronizado para {user.username}: {deve_ter_premium}")
             
             # Verificar e corrigir assinaturas expiradas
             assinaturas_expiradas = Assinatura.objects.filter(
@@ -96,7 +93,6 @@ class PaymentSyncMiddleware:
                 for assinatura in assinaturas_expiradas:
                     assinatura.status = 'expirada'
                     assinatura.save()
-                    logger.info(f"Assinatura expirada marcada para {user.username}")
                 
                 # Atualizar perfil se necessário
                 if not Assinatura.objects.filter(
@@ -107,7 +103,6 @@ class PaymentSyncMiddleware:
                     profile.conta_premium = False
                     profile.data_vencimento_premium = None
                     profile.save()
-                    logger.info(f"Status premium removido para {user.username} (assinatura expirada)")
         
         except Exception as e:
             logger.error(f"Erro ao sincronizar status de pagamento para {user.username}: {e}")
