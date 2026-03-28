@@ -1,7 +1,7 @@
 import { useState, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ChevronRight, CheckCircle2, XCircle } from 'lucide-react';
+import { ArrowLeft, ChevronRight, XCircle } from 'lucide-react';
 import DojoBackground from '../components/DojoBackground';
 import { FAIXAS_SIMULADO, getQuestionsForFaixa, NOTA_MINIMA_APROVACAO } from '../data/simuladoData';
 
@@ -14,12 +14,6 @@ const TIPO_LABEL = {
   atemi: 'Atemi',
   combinado: 'Combinado',
   contra_ataque: 'Contra-ataque',
-};
-
-const FASE_LABEL = {
-  1: 'Fase 1 — Teoria (10 questões)',
-  2: 'Fase 2 — Em pé (Projeções, Combinados e Contra-ataques)',
-  3: 'Fase 3 — Chão (Imobilização, Chave, Estrangulamento)',
 };
 
 const ACCENT = 'rgb(5, 150, 105)';

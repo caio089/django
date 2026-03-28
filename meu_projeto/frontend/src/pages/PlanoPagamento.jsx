@@ -23,7 +23,6 @@ export default function PlanoPagamento() {
   const [plano, setPlano] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [user, setUser] = useState(null);
 
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
@@ -49,7 +48,6 @@ export default function PlanoPagamento() {
         if (cancelled) return;
         setPlano(planoRes);
         if (userRes) {
-          setUser(userRes);
           setNome(userRes.nome || '');
           setEmail(userRes.email || '');
         }

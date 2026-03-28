@@ -68,18 +68,18 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'meu_projeto.supabase_middleware.SupabaseConnectionMiddleware',  # Middleware para conexões Supabase
-    'meu_projeto.middleware.WWWRedirectMiddleware',  # Redirecionamento www
-    'meu_projeto.supabase_pro_middleware.SupabaseProMiddleware',  # Middleware otimizado para Supabase Pro
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'meu_projeto.supabase_middleware.SupabaseConnectionMiddleware',
+    'meu_projeto.middleware.WWWRedirectMiddleware',
+    'meu_projeto.supabase_pro_middleware.SupabaseProMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'dashboard.middleware.DashboardPerformanceMiddleware',  # Otimização do dashboard
-    'payments.middleware_payment_sync.PaymentSyncMiddleware',  # Sincronização automática de pagamento
+    'dashboard.middleware.DashboardPerformanceMiddleware',
+    'payments.middleware_payment_sync.PaymentSyncMiddleware',
     'payments.middleware.PremiumAccessMiddleware',
     'payments.security.SecurityMiddleware',
 ]
@@ -167,24 +167,15 @@ CACHES = {
     }
 }
 
-# Configurações para resolver problema do modo Session do Supabase
-DISABLE_HEAVY_PROCESSES = True  # Desabilitar processos que consomem conexões
-LIGHT_MODE = True  # Modo leve para evitar esgotamento do pool
-SUPABASE_SESSION_MODE = True  # Supabase está em modo Session (limitado)
-MAX_CONCURRENT_CONNECTIONS = 3  # Limite muito baixo para modo Session
+DISABLE_HEAVY_PROCESSES = True
 
-# Configurações de sessão otimizadas
-SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Usar banco para evitar problemas CSRF
-SESSION_CACHE_ALIAS = 'default'
-SESSION_COOKIE_AGE = 3600  # 1 hora
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+SESSION_COOKIE_AGE = 3600
 SESSION_SAVE_EVERY_REQUEST = False
 SESSION_COOKIE_SAMESITE = 'Lax'
 SESSION_COOKIE_HTTPONLY = True
 
-# Configurações adicionais para reduzir uso de banco
-DATABASE_ROUTERS = []  # Sem roteadores de banco
-CONN_MAX_AGE = 0  # Fechar conexões imediatamente
-DATABASES['default']['CONN_MAX_AGE'] = 0  # Forçar fechamento imediato
+DATABASES['default']['CONN_MAX_AGE'] = 0
 
 # Senhas
 AUTH_PASSWORD_VALIDATORS = [

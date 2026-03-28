@@ -139,7 +139,6 @@ const item = { hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0 } };
 
 export default function Quiz() {
   const [phase, setPhase] = useState('select');
-  const [difficulty, setDifficulty] = useState(null);
   const [questions, setQuestions] = useState([]);
   const [current, setCurrent] = useState(0);
   const [score, setScore] = useState(0);
@@ -248,56 +247,8 @@ export default function Quiz() {
     }
   }, []);
 
-  const startRankingQuizFromStorage = useCallback(async () => {
-    const nome = (typeof window !== 'undefined' ? localStorage.getItem(STORAGE_NICKNAME) : null) || (nickname || '').trim() || 'Anônimo';
-    const d = (typeof window !== 'undefined' ? localStorage.getItem(STORAGE_DOJO) : null) || (dojo || '').trim();
-    const cid = (typeof window !== 'undefined' ? localStorage.getItem(STORAGE_CIDADE) : null) || (cidade || '').trim();
-    try {
-      const nivelInicial = Math.max(1, Math.min(MAX_NIVEL, nivelSalvo));
-      await submitQuizResult({ nickname: nome, dojo: d, cidade: cid, nivel_quiz: nivelInicial, xp_ganho: 0, passou_nivel: false, acertos: 0 });
-    } catch {}
-    setIsRankingMode(true);
-    setIsTreinoNivelAnterior(false);
+  const _initRankingQuiz = useCallback((nome, d, cid) => {
     const nivelInicial = Math.max(1, Math.min(MAX_NIVEL, nivelSalvo));
-    setNivelAtual(nivelInicial);
-    setXpNivel(0);
-    setMaxStreak(0);
-    setStreakAtual(0);
-    setDifficulty('ranking');
-    setQuestions(getQuestionsForLevel(nivelInicial));
-    setCurrent(0);
-    setScore(0);
-    setSelected(null);
-    setAnswered(false);
-    setLastSubmitResult(null);
-    setShowLastQuestionModal(false);
-    setPhase('quiz');
-  }, [nickname, dojo, cidade, nivelSalvo]);
-
-  const startQuiz = useCallback(() => {
-    setDifficulty('ranking');
-    if (hasDadosRanking()) {
-      try {
-        setNickname(localStorage.getItem(STORAGE_NICKNAME) || '');
-        setDojo(localStorage.getItem(STORAGE_DOJO) || '');
-        setCidade(localStorage.getItem(STORAGE_CIDADE) || '');
-      } catch {}
-      startRankingQuizFromStorage();
-    } else {
-      setPhase('nickname');
-    }
-  }, [hasDadosRanking, startRankingQuizFromStorage]);
-
-  const startRankingQuiz = useCallback(() => {
-    const nome = (nickname || '').trim() || 'Anônimo';
-    const d = (dojo || '').trim();
-    const cid = (cidade || '').trim();
-    const nivelInicial = Math.max(1, Math.min(MAX_NIVEL, nivelSalvo));
-    if (typeof window !== 'undefined') {
-      localStorage.setItem(STORAGE_NICKNAME, nome);
-      localStorage.setItem(STORAGE_DOJO, d);
-      localStorage.setItem(STORAGE_CIDADE, cid);
-    }
     submitQuizResult({ nickname: nome, dojo: d, cidade: cid, nivel_quiz: nivelInicial, xp_ganho: 0, passou_nivel: false, acertos: 0 })
       .catch(() => {});
     setIsRankingMode(true);
@@ -306,15 +257,45 @@ export default function Quiz() {
     setXpNivel(0);
     setMaxStreak(0);
     setStreakAtual(0);
-    setDifficulty('ranking');
     setQuestions(getQuestionsForLevel(nivelInicial));
     setCurrent(0);
     setScore(0);
     setSelected(null);
     setAnswered(false);
     setLastSubmitResult(null);
+    setShowLastQuestionModal(false);
     setPhase('quiz');
-  }, [nickname, dojo, cidade, nivelSalvo]);
+  }, [nivelSalvo]);
+
+  const startQuiz = useCallback(() => {
+    if (hasDadosRanking()) {
+      try {
+        const n = localStorage.getItem(STORAGE_NICKNAME) || '';
+        const d = localStorage.getItem(STORAGE_DOJO) || '';
+        const c = localStorage.getItem(STORAGE_CIDADE) || '';
+        setNickname(n);
+        setDojo(d);
+        setCidade(c);
+        _initRankingQuiz(n || 'Anônimo', d, c);
+      } catch {
+        setPhase('nickname');
+      }
+    } else {
+      setPhase('nickname');
+    }
+  }, [hasDadosRanking, _initRankingQuiz]);
+
+  const startRankingQuiz = useCallback(() => {
+    const nome = (nickname || '').trim() || 'Anônimo';
+    const d = (dojo || '').trim();
+    const cid = (cidade || '').trim();
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(STORAGE_NICKNAME, nome);
+      localStorage.setItem(STORAGE_DOJO, d);
+      localStorage.setItem(STORAGE_CIDADE, cid);
+    }
+    _initRankingQuiz(nome, d, cid);
+  }, [nickname, dojo, cidade, _initRankingQuiz]);
 
   const submitAndGoResult = useCallback(async (passou) => {
     const nome = (nickname || '').trim() || 'Anônimo';
@@ -440,7 +421,6 @@ export default function Quiz() {
 
   const restart = useCallback(() => {
     setPhase('select');
-    setDifficulty(null);
     setQuestions([]);
     setIsRankingMode(false);
     setIsTreinoNivelAnterior(false);

@@ -1,13 +1,11 @@
-from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from meu_projeto.redirect_utils import redirect_to_frontend
-from django.contrib.auth import authenticate, login, logout
-from django.db.models import Count, Sum, Q
+from django.contrib.auth import login, logout
+from django.db.models import Sum, Q
 from django.utils import timezone
-from datetime import datetime, timedelta
+from datetime import timedelta
 from django.db import transaction
 from django.core.cache import cache
-from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from payments.models import Pagamento, Assinatura, PlanoPremium
 from django.contrib.auth.models import User
@@ -68,16 +66,6 @@ def admin_logout(request):
 
 def dashboard_admin(request):
     """Redireciona para o React AdminPanel"""
-    return redirect_to_frontend('/admin-panel')
-
-
-@login_required(login_url='/dashboard/login/')
-def give_premium(request):
-    """Legado: redireciona ao React. O AdminPanel usa api/admin/give-premium/."""
-    from meu_projeto.redirect_utils import redirect_to_frontend
-    if not request.user.is_superuser:
-        logout(request)
-        return redirect_to_frontend('/admin-panel')
     return redirect_to_frontend('/admin-panel')
 
 

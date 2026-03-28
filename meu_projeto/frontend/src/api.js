@@ -108,11 +108,6 @@ export async function submitQuizResult(payload) {
 }
 
 // ——— Pagamentos (payments) ———
-const paymentBase = () => getBaseUrl() + '/payments';
-
-export function getPaymentCsrfToken() {
-  return getCsrfToken();
-}
 
 /** GET detalhes do plano por ID (usa /api para o mesmo proxy do login/me) */
 export async function getPlanoDetail(planoId) {
@@ -261,19 +256,6 @@ export async function adminRefreshCache() {
   return data;
 }
 
-/** POST ativar assinatura manual (email via query) */
-export async function adminAtivarManual(email) {
-  await fetchCsrf();
-  const res = await fetch(`${adminBase()}/ativar-manual/?email=${encodeURIComponent(email)}`, {
-    method: 'POST',
-    credentials: 'include',
-    headers: headers(),
-  });
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.error || 'Erro');
-  return data;
-}
-
 /** POST corrigir assinaturas */
 export async function adminCorrigirAssinaturas() {
   await fetchCsrf();
@@ -282,14 +264,6 @@ export async function adminCorrigirAssinaturas() {
     credentials: 'include',
     headers: headers(),
   });
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.error || 'Erro');
-  return data;
-}
-
-/** GET detalhes do usuário */
-export async function adminUserDetail(userId) {
-  const res = await fetch(`${adminBase()}/user/${userId}/`, { credentials: 'include' });
   const data = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(data.error || 'Erro');
   return data;

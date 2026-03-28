@@ -4,7 +4,6 @@ Middleware para gerenciar conexões com Supabase
 import time
 import logging
 from django.db import connection
-from django.core.exceptions import ImproperlyConfigured
 
 logger = logging.getLogger(__name__)
 

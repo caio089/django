@@ -1,10 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.auth.models import AbstractUser
-from django.core.validators import RegexValidator
 from django.utils import timezone
 import random
-import string
 from datetime import timedelta
 
 # Create your models here.
@@ -52,19 +49,6 @@ class Profile(models.Model):
     # data_criacao = models.DateTimeField(auto_now_add=True, verbose_name="Data de criação")
     # data_atualizacao = models.DateTimeField(auto_now=True, verbose_name="Última atualização")
 
-    def is_trial_ativo(self):
-        """Retorna True se o período grátis está ativo."""
-        if self.trial_inicio and self.trial_fim:
-            return timezone.now() < self.trial_fim
-        return False
-    
-    def dias_trial_restantes(self):
-        """Quantidade de dias inteiros restantes no trial."""
-        if self.is_trial_ativo():
-            restante = self.trial_fim - timezone.now()
-            return max(restante.days, 0)
-        return 0
-    
     def __str__(self):
         return f"{self.nome} - {self.get_faixa_display()}"
 

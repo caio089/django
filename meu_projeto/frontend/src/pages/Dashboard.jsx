@@ -10,7 +10,6 @@ import {
   Languages,
   FileText,
   Award,
-  Clock,
   Megaphone,
   Sparkles,
   ChevronRight,
@@ -43,16 +42,7 @@ const MENU_ITENS = [
 ];
 
 // Cor RGB por faixa do usuário — define o tema da página
-const FAIXA_TO_COLOR = {
-  Branca: 'rgb(203, 213, 225)', // slate-300 — visível no dark
-  Cinza: 'rgb(107, 114, 128)',
-  Azul: 'rgb(37, 99, 235)',
-  Amarela: 'rgb(245, 158, 11)',
-  Laranja: 'rgb(234, 88, 12)',
-  Verde: 'rgb(5, 150, 105)',
-  Roxa: 'rgb(124, 58, 237)',
-  Marrom: 'rgb(146, 64, 14)',
-};
+import { FAIXA_TO_COLOR } from '../data/faixaColors';
 
 const QUOTES = [
   { jp: '「柔よく剛を制す」', pt: 'O suave domina o rígido' },
@@ -153,7 +143,6 @@ export default function Dashboard() {
     <div className="min-h-screen relative overflow-x-hidden font-display antialiased">
       <DashboardBackground accentColor={themeColor} />
 
-      {/* Trial Bar removida */}
 
       <motion.button
         onClick={() => setSidebarOpen(true)}
@@ -251,7 +240,7 @@ export default function Dashboard() {
         )}
       </AnimatePresence>
 
-      {/* Trial modais removidos */}
+
 
       {/* Main */}
       <div className="relative z-10 pt-20 md:pt-24 pb-12 px-4 sm:px-6 max-w-6xl mx-auto">

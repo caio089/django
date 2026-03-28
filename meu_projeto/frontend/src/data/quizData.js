@@ -203,16 +203,3 @@ export function getQuestionsForLevel(nivel) {
   const chosen = shuffle([...pool]).slice(0, total);
   return shuffleAnswersInQuestions(chosen);
 }
-
-// Compatibilidade com modo não-ranking (se existir)
-export const QUESTIONS_BY_DIFFICULTY = {
-  easy: POOL_POR_NIVEL[1],
-  medium: [...POOL_POR_NIVEL[1], ...POOL_POR_NIVEL[2], ...POOL_POR_NIVEL[3]].slice(0, 24),
-  hard: POOL_POR_NIVEL[10],
-};
-
-export function getQuestions(difficulty) {
-  const all = Object.values(POOL_POR_NIVEL).flat();
-  const list = shuffle(all).slice(0, difficulty === 'all' ? 45 : 15);
-  return shuffleAnswersInQuestions(list);
-}

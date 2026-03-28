@@ -1,21 +1,17 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404
 from meu_projeto.redirect_utils import redirect_to_frontend
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
-from django.conf import settings
 import json
-import requests
 import mercadopago
-import os
 from .models import PlanoPremium, Assinatura, Pagamento, WebhookEvent, ConfiguracaoPagamento
 from .security import WebhookSecurity, RateLimiter, AuditLogger, DataValidator
 from home.models import Profile
-from quiz.models import ProgressoUsuario
 import uuid
-from datetime import datetime, timedelta
+from datetime import timedelta
 from django.utils import timezone
 import logging
 
@@ -77,41 +73,6 @@ def get_mercadopago_config():
         logger.error(f"❌ Erro ao configurar Mercado Pago: {e}", exc_info=True)
         return None, None
 
-def is_sandbox_environment():
-    """
-    Detecta se estamos em ambiente sandbox baseado no access token
-    """
-    try:
-        config = ConfiguracaoPagamento.objects.filter(ativo=True).first()
-        if config:
-            access_token = config.get_access_token()
-            # Tokens de sandbox geralmente começam com TEST-
-            return access_token.startswith('TEST-') if access_token else True
-        return True  # Assume sandbox por padrão
-    except:
-        return True
-
-def criar_perfil_usuario(user):
-    """
-    Cria perfil do usuário se não existir
-    """
-    try:
-        if not hasattr(user, 'profile'):
-            Profile.objects.create(
-                user=user,
-                nome=user.get_full_name() or user.username,
-                idade=18,  # Idade padrão
-                faixa='branca'
-            )
-        
-        # Criar progresso do usuário se não existir
-        if not hasattr(user, 'progresso'):
-            ProgressoUsuario.objects.create(usuario=user)
-            
-        return True
-    except Exception as e:
-        logger.error(f"Erro ao criar perfil do usuário {user.id}: {e}")
-        return False
 
 # =====================================================
 # VIEWS DE PLANOS E PAGAMENTO
@@ -1165,22 +1126,3 @@ def verificar_acesso_premium(user):
         logger.error(f"Erro ao verificar acesso premium: {e}")
         return False, None
 
-def middleware_premium_required(view_func):
-    """
-    Decorator para verificar acesso premium
-    """
-    def wrapper(request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            return redirect('login')
-        
-        tem_acesso, assinatura = verificar_acesso_premium(request.user)
-        
-        if not tem_acesso:
-            messages.warning(request, 'Esta funcionalidade requer assinatura premium.')
-            return redirect('payments:planos')
-        
-        # Adicionar assinatura ao contexto
-        request.assinatura = assinatura
-        return view_func(request, *args, **kwargs)
-    
-    return wrapper

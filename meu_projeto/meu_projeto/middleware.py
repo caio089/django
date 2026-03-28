@@ -2,7 +2,6 @@
 Middleware personalizado para lidar com redirecionamentos de domínio
 """
 from django.http import HttpResponsePermanentRedirect
-from django.conf import settings
 
 
 class WWWRedirectMiddleware:

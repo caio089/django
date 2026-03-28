@@ -5,7 +5,6 @@ import os
 import time
 import threading
 import logging
-from django.core.management import execute_from_command_line
 
 logger = logging.getLogger(__name__)
 

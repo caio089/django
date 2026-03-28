@@ -9,7 +9,6 @@ from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
-from django.utils import timezone
 
 from .forms import EmailLoginForm, RegisterForm
 from .models import Profile

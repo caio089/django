@@ -7,12 +7,8 @@ import hashlib
 import json
 import logging
 from django.conf import settings
-from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_http_methods
 from django.utils import timezone
 from .models import ConfiguracaoPagamento, WebhookEvent
-from .encryption import encryption_manager
 import requests
 
 logger = logging.getLogger(__name__)
@@ -368,8 +364,3 @@ class SecurityMiddleware:
         response['Referrer-Policy'] = 'strict-origin-when-cross-origin'
         
         return response
-
-# Instâncias globais
-rate_limiter = RateLimiter()
-audit_logger = AuditLogger()
-data_validator = DataValidator()

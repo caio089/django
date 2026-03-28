@@ -6,10 +6,8 @@ import os
 import time
 import threading
 import logging
-import requests
 from django.db import connection, connections
 from django.conf import settings
-from django.core.management.base import BaseCommand
 from django.utils import timezone
 
 logger = logging.getLogger(__name__)
@@ -157,36 +155,6 @@ class SupabaseConnectionMonitor:
         self.connection_issues = []
         self.last_check = None
         
-    def check_connection_health(self):
-        """Verifica saúde das conexões"""
-        try:
-            start_time = time.time()
-            
-            with connection.cursor() as cursor:
-                cursor.execute("SELECT 1")
-                result = cursor.fetchone()
-                
-            response_time = time.time() - start_time
-            
-            if response_time > 5:  # Mais de 5 segundos
-                self.connection_issues.append({
-                    'timestamp': timezone.now(),
-                    'issue': 'slow_response',
-                    'response_time': response_time
-                })
-                logger.warning(f"⚠️ Resposta lenta do banco: {response_time:.2f}s")
-            
-            return True
-            
-        except Exception as e:
-            self.connection_issues.append({
-                'timestamp': timezone.now(),
-                'issue': 'connection_error',
-                'error': str(e)
-            })
-            logger.error(f"❌ Erro na verificação de saúde: {e}")
-            return False
-    
     def get_health_report(self):
         """Retorna relatório de saúde"""
         recent_issues = [
@@ -227,24 +195,3 @@ def get_supabase_status():
         'keep_alive': keep_alive.get_status(),
         'connection_health': connection_monitor.get_health_report()
     }
-
-
-# Comando de gerenciamento para iniciar keep-alive
-class Command(BaseCommand):
-    help = 'Inicia o sistema de keep-alive do Supabase'
-    
-    def handle(self, *args, **options):
-        self.stdout.write("🚀 Iniciando keep-alive do Supabase...")
-        start_supabase_keepalive()
-        self.stdout.write("✅ Keep-alive iniciado com sucesso!")
-        
-        # Manter o comando rodando
-        try:
-            while True:
-                time.sleep(60)
-                status = get_supabase_status()
-                self.stdout.write(f"📊 Status: {status}")
-        except KeyboardInterrupt:
-            self.stdout.write("🛑 Parando keep-alive...")
-            stop_supabase_keepalive()
-            self.stdout.write("✅ Keep-alive parado!")
