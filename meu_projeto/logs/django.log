@@ -10371,3 +10371,437 @@ Watching for file changes with StatReloader
 /Users/caiocampossilva/Documents/GitHub/django/meu_projeto/meu_projeto/settings.py changed, reloading.
 Processos pesados desabilitados - modo leve ativado
 Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Method Not Allowed (HEAD): /api/admin/me/
+Forbidden (CSRF token missing.): /api/admin/login/
+Bad Request: /api/admin/login/
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /api/admin/me/ HTTP/1.1" 200 40
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/admin/me/ HTTP/1.1" 200 40
+"GET /api/admin/me/ HTTP/1.1" 200 40
+"GET /api/csrf/ HTTP/1.1" 200 14
+Bad Request: /api/admin/login/
+"POST /api/admin/login/ HTTP/1.1" 400 63
+"GET /api/csrf/ HTTP/1.1" 200 14
+"POST /api/admin/login/ HTTP/1.1" 200 48
+"GET /api/admin/me/ HTTP/1.1" 200 59
+"GET /api/csrf/ HTTP/1.1" 200 14
+"POST /api/admin/login/ HTTP/1.1" 200 48
+"GET /api/admin/me/ HTTP/1.1" 200 59
+"GET /api/admin/dashboard/ HTTP/1.1" 200 9577
+"GET /api/admin/dashboard/ HTTP/1.1" 200 9577
+"GET /api/admin/me/ HTTP/1.1" 200 40
+Unauthorized: /api/admin/dashboard/
+"GET /api/admin/dashboard/ HTTP/1.1" 401 33
+"GET /api/csrf/ HTTP/1.1" 200 14
+"POST /api/admin/login/ HTTP/1.1" 200 48
+"GET /api/admin/dashboard/ HTTP/1.1" 200 9577
+"GET /api/admin/dashboard/ HTTP/1.1" 200 9577
+"GET /api/csrf/ HTTP/1.1" 200 14
+"POST /api/admin/corrigir-assinaturas/ HTTP/1.1" 200 68
+"GET /api/admin/dashboard/ HTTP/1.1" 200 9577
+"GET /api/csrf/ HTTP/1.1" 200 14
+"POST /api/admin/refresh-cache/ HTTP/1.1" 200 17
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/csrf/ HTTP/1.1" 200 14
+"POST /api/login/ HTTP/1.1" 200 198
+"GET /api/me/ HTTP/1.1" 200 182
+"GET /static/faixa-cinza.png HTTP/1.1" 304 0
+"GET /static/faixa-amarela.png HTTP/1.1" 304 0
+"GET /static/faixa-azul.png HTTP/1.1" 304 0
+"GET /static/faixa-laranja.png HTTP/1.1" 304 0
+"GET /static/faixa-verde.png HTTP/1.1" 304 0
+"GET /static/faixa-marrom.png HTTP/1.1" 304 0
+"GET /static/faixa-roxa.png HTTP/1.1" 304 0
+"GET /api/me/ HTTP/1.1" 200 182
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 586
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 586
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/payments/middleware.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/quiz/views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"HEAD /historia/ HTTP/1.1" 302 0
+"HEAD /regras/ HTTP/1.1" 302 0
+"HEAD /ukemis/ HTTP/1.1" 302 0
+"HEAD /quiz/ HTTP/1.1" 302 0
+"HEAD /palavras/ HTTP/1.1" 302 0
+"POST /quiz/api/submit/ HTTP/1.1" 200 79
+"POST /quiz/api/submit/ HTTP/1.1" 200 79
+"GET /api/me/ HTTP/1.1" 200 182
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 707
+"GET /api/me/ HTTP/1.1" 200 182
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 707
+"GET /api/me/ HTTP/1.1" 200 182
+"GET /api/me/ HTTP/1.1" 200 182
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 707
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 707
+Processos pesados desabilitados - modo leve ativado
+"GET /api/me/ HTTP/1.1" 200 183
+"GET /static/faixa-verde.png HTTP/1.1" 304 0
+"GET /static/faixa-laranja.png HTTP/1.1" 304 0
+"GET /static/faixa-amarela.png HTTP/1.1" 304 0
+"GET /static/faixa-cinza.png HTTP/1.1" 304 0
+"GET /static/faixa-azul.png HTTP/1.1" 304 0
+"GET /static/faixa-roxa.png HTTP/1.1" 304 0
+"GET /static/faixa-marrom.png HTTP/1.1" 304 0
+"GET /api/me/ HTTP/1.1" 200 183
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 707
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /dashboard/ HTTP/1.1" 302 0
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/admin/me/ HTTP/1.1" 200 40
+"GET /api/admin/me/ HTTP/1.1" 200 40
+"GET /api/csrf/ HTTP/1.1" 200 14
+"POST /api/admin/login/ HTTP/1.1" 200 48
+"GET /api/admin/me/ HTTP/1.1" 200 59
+"GET /api/admin/dashboard/ HTTP/1.1" 200 6715
+"GET /api/admin/dashboard/ HTTP/1.1" 200 6715
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/csrf/ HTTP/1.1" 200 14
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/dashboard/api_views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/dashboard/api_urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /api/csrf/ HTTP/1.1" 200 14
+🔄 Perfil criado automaticamente para ccamposs2008@gmail.com
+"POST /api/register/ HTTP/1.1" 200 207
+"GET /api/me/ HTTP/1.1" 200 180
+"GET /static/faixa-azul.png HTTP/1.1" 304 0
+"GET /static/faixa-amarela.png HTTP/1.1" 304 0
+"GET /static/faixa-verde.png HTTP/1.1" 304 0
+"GET /static/faixa-cinza.png HTTP/1.1" 304 0
+"GET /static/faixa-laranja.png HTTP/1.1" 304 0
+"GET /static/faixa-roxa.png HTTP/1.1" 304 0
+"GET /static/faixa-marrom.png HTTP/1.1" 304 0
+"GET /api/me/ HTTP/1.1" 200 180
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 707
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 707
+"GET /api/me/ HTTP/1.1" 200 180
+"GET /static/faixa-cinza.png HTTP/1.1" 304 0
+"GET /static/faixa-amarela.png HTTP/1.1" 304 0
+"GET /static/faixa-azul.png HTTP/1.1" 304 0
+"GET /static/faixa-verde.png HTTP/1.1" 304 0
+"GET /static/faixa-roxa.png HTTP/1.1" 304 0
+"GET /static/faixa-laranja.png HTTP/1.1" 304 0
+"GET /static/faixa-marrom.png HTTP/1.1" 304 0
+"GET /api/me/ HTTP/1.1" 200 180
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 707
+"GET /api/me/ HTTP/1.1" 200 180
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 707
+"GET /api/me/ HTTP/1.1" 200 180
+Forbidden: /api/admin/dashboard/
+"GET /api/admin/dashboard/ HTTP/1.1" 403 26
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/me/ HTTP/1.1" 200 180
+"GET /static/faixa-cinza.png HTTP/1.1" 304 0
+"GET /static/faixa-laranja.png HTTP/1.1" 304 0
+"GET /static/faixa-azul.png HTTP/1.1" 304 0
+"GET /static/faixa-verde.png HTTP/1.1" 304 0
+"GET /static/faixa-roxa.png HTTP/1.1" 304 0
+"GET /static/faixa-amarela.png HTTP/1.1" 304 0
+"GET /static/faixa-marrom.png HTTP/1.1" 304 0
+"POST /api/admin/login/ HTTP/1.1" 200 48
+"GET /api/me/ HTTP/1.1" 200 180
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 707
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 707
+"GET /api/me/ HTTP/1.1" 200 180
+"GET /static/faixa-cinza.png HTTP/1.1" 304 0
+"GET /static/faixa-azul.png HTTP/1.1" 304 0
+"GET /static/faixa-amarela.png HTTP/1.1" 304 0
+"GET /static/faixa-roxa.png HTTP/1.1" 304 0
+"GET /static/faixa-marrom.png HTTP/1.1" 304 0
+"GET /static/faixa-laranja.png HTTP/1.1" 304 0
+"GET /static/faixa-verde.png HTTP/1.1" 304 0
+"GET /api/me/ HTTP/1.1" 200 180
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 707
+"GET /api/me/ HTTP/1.1" 200 180
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 707
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 707
+"GET /api/me/ HTTP/1.1" 200 180
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 707
+"GET /api/me/ HTTP/1.1" 200 180
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 707
+"GET /api/me/ HTTP/1.1" 200 180
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 707
+"POST /quiz/api/submit/ HTTP/1.1" 200 78
+"POST /quiz/api/submit/ HTTP/1.1" 200 79
+"GET /api/admin/dashboard/ HTTP/1.1" 200 56805
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 846
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 846
+"POST /quiz/api/submit/ HTTP/1.1" 200 79
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/csrf/ HTTP/1.1" 200 14
+"POST /api/admin/login/ HTTP/1.1" 200 48
+"POST /api/admin/login/ HTTP/1.1" 200 48
+Forbidden (CSRF token from the 'X-Csrftoken' HTTP header incorrect.): /api/admin/send-marketing-email/
+"POST /api/admin/send-marketing-email/ HTTP/1.1" 403 2539
+"POST /quiz/api/submit/ HTTP/1.1" 200 79
+"GET /quiz/api/ranking/?limit=50 HTTP/1.1" 200 846
+"GET /api/admin/dashboard/ HTTP/1.1" 200 56805
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/me/ HTTP/1.1" 200 180
+"GET /api/payments/plano/1/ HTTP/1.1" 200 172
+"GET /api/me/ HTTP/1.1" 200 180
+"GET /api/payments/plano/1/ HTTP/1.1" 200 172
+Processos pesados desabilitados - modo leve ativado
+PAYMENT_AUDIT: {"timestamp": "2026-04-07T14:32:58.297164+00:00", "event_type": "payment_attempt", "user_id": 204, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal Premium", "valor": 19.9}}
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+Criando preferência com dados: {'items': [{'title': 'Plano Mensal Premium', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'quantity': 1, 'unit_price': 19.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': '994077754'}}, 'back_urls': {'success': 'https://dojo-on.onrender.com/payments/sucesso/', 'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/'}, 'external_reference': 'a0390d4e-1e6b-4587-84c5-34eb82a19218', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}, 'auto_return': 'approved', 'binary_mode': False, 'statement_descriptor': 'DOJO-ON', 'metadata': {'plano_id': '1', 'user_id': '204', 'external_reference': 'a0390d4e-1e6b-4587-84c5-34eb82a19218'}, 'differential_pricing': {'id': 1}}
+Resposta da preferência: {'status': 201, 'response': {'additional_info': '', 'auto_return': 'approved', 'back_urls': {'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/', 'success': 'https://dojo-on.onrender.com/payments/sucesso/'}, 'binary_mode': False, 'client_id': '5519793243562045', 'collector_id': 463249815, 'coupon_code': None, 'coupon_labels': None, 'date_created': '2026-04-07T10:32:59.385-04:00', 'date_of_expiration': None, 'differential_pricing': {'id': None}, 'expiration_date_from': None, 'expiration_date_to': None, 'expires': False, 'external_reference': 'a0390d4e-1e6b-4587-84c5-34eb82a19218', 'id': '463249815-52a05630-6227-432f-97e8-e2792b006ec8', 'init_point': 'https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-52a05630-6227-432f-97e8-e2792b006ec8', 'internal_metadata': None, 'items': [{'id': '', 'category_id': '', 'currency_id': 'BRL', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'title': 'Plano Mensal Premium', 'quantity': 1, 'unit_price': 19.9}], 'marketplace': 'NONE', 'marketplace_fee': 0, 'metadata': {'external_reference': 'a0390d4e-1e6b-4587-84c5-34eb82a19218', 'plano_id': '1', 'user_id': '204'}, 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'operation_type': 'regular_payment', 'payer': {'phone': {'area_code': '89', 'number': '994077754'}, 'address': {'zip_code': '', 'street_name': '', 'street_number': None}, 'email': 'ccamposs2007@gmail.com', 'identification': {'number': '04217183313', 'type': 'CPF'}, 'name': '', 'surname': '', 'date_created': None, 'last_purchase': None}, 'payment_methods': {'default_card_id': None, 'default_payment_method_id': None, 'excluded_payment_methods': [{'id': ''}], 'excluded_payment_types': [{'id': ''}], 'installments': 12, 'default_installments': None}, 'processing_modes': None, 'product_id': None, 'preference_expired': False, 'redirect_urls': {'failure': '', 'pending': '', 'success': ''}, 'sandbox_init_point': 'https://sandbox.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-52a05630-6227-432f-97e8-e2792b006ec8', 'site_id': 'MLB', 'shipments': {'default_shipping_method': None, 'receiver_address': {'zip_code': '', 'street_name': '', 'street_number': None, 'floor': '', 'apartment': '', 'city_name': None, 'state_name': None, 'country_name': None, 'neighborhood': None}}, 'statement_descriptor': 'DOJO-ON', 'total_amount': None, 'last_updated': None, 'financing_group': ''}}
+"POST /api/payments/criar-pagamento/1/ HTTP/1.1" 200 350
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+PIX gerado com sucesso - Payment ID: 153641169938
+QR Code: 00020126580014br.gov.bcb.pix013661abdfe4-acf3-4a0f...
+QR Code Base64 disponível: True
+📋 QR Code Base64 do Mercado Pago: True
+🔧 Adicionado prefixo data:image/png;base64 ao QR Code Base64
+🔍 Início do Base64 MP: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABWQAAAVkAQMAAABpQ4TyAAAABlBMVEX///8AAABVwtN+AAAK0ElEQV...
+🔍 Tem prefixo data: True
+"POST /api/payments/gerar-pix/69/ HTTP/1.1" 200 4434
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/payments/plano/5/ HTTP/1.1" 200 163
+"GET /api/me/ HTTP/1.1" 200 187
+"GET /api/me/ HTTP/1.1" 200 187
+"GET /api/payments/plano/5/ HTTP/1.1" 200 163
+Processos pesados desabilitados - modo leve ativado
+"GET /api/payments/plano/1/ HTTP/1.1" 302 0
+"GET /api/payments/plano/5/ HTTP/1.1" 302 0
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/me/ HTTP/1.1" 200 187
+"GET /api/payments/plano/1/ HTTP/1.1" 200 172
+"GET /api/payments/plano/1/ HTTP/1.1" 200 172
+"GET /api/me/ HTTP/1.1" 200 187
+PAYMENT_AUDIT: {"timestamp": "2026-04-07T14:36:06.237992+00:00", "event_type": "payment_attempt", "user_id": 204, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal Premium", "valor": 47.9}}
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+Criando preferência com dados: {'items': [{'title': 'Plano Mensal Premium', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'quantity': 1, 'unit_price': 47.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': '994077754'}}, 'back_urls': {'success': 'https://dojo-on.onrender.com/payments/sucesso/', 'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/'}, 'external_reference': 'e3575887-b5de-43de-b914-de1912c0acbc', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}, 'auto_return': 'approved', 'binary_mode': False, 'statement_descriptor': 'DOJO-ON', 'metadata': {'plano_id': '1', 'user_id': '204', 'external_reference': 'e3575887-b5de-43de-b914-de1912c0acbc'}, 'differential_pricing': {'id': 1}}
+Resposta da preferência: {'status': 201, 'response': {'additional_info': '', 'auto_return': 'approved', 'back_urls': {'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/', 'success': 'https://dojo-on.onrender.com/payments/sucesso/'}, 'binary_mode': False, 'client_id': '5519793243562045', 'collector_id': 463249815, 'coupon_code': None, 'coupon_labels': None, 'date_created': '2026-04-07T10:36:07.280-04:00', 'date_of_expiration': None, 'differential_pricing': {'id': None}, 'expiration_date_from': None, 'expiration_date_to': None, 'expires': False, 'external_reference': 'e3575887-b5de-43de-b914-de1912c0acbc', 'id': '463249815-92e11d7e-07eb-4d2a-89e6-9069b4c6a1a6', 'init_point': 'https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-92e11d7e-07eb-4d2a-89e6-9069b4c6a1a6', 'internal_metadata': None, 'items': [{'id': '', 'category_id': '', 'currency_id': 'BRL', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'title': 'Plano Mensal Premium', 'quantity': 1, 'unit_price': 47.9}], 'marketplace': 'NONE', 'marketplace_fee': 0, 'metadata': {'external_reference': 'e3575887-b5de-43de-b914-de1912c0acbc', 'plano_id': '1', 'user_id': '204'}, 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'operation_type': 'regular_payment', 'payer': {'phone': {'area_code': '89', 'number': '994077754'}, 'address': {'zip_code': '', 'street_name': '', 'street_number': None}, 'email': 'ccamposs2007@gmail.com', 'identification': {'number': '04217183313', 'type': 'CPF'}, 'name': '', 'surname': '', 'date_created': None, 'last_purchase': None}, 'payment_methods': {'default_card_id': None, 'default_payment_method_id': None, 'excluded_payment_methods': [{'id': ''}], 'excluded_payment_types': [{'id': ''}], 'installments': 12, 'default_installments': None}, 'processing_modes': None, 'product_id': None, 'preference_expired': False, 'redirect_urls': {'failure': '', 'pending': '', 'success': ''}, 'sandbox_init_point': 'https://sandbox.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-92e11d7e-07eb-4d2a-89e6-9069b4c6a1a6', 'site_id': 'MLB', 'shipments': {'default_shipping_method': None, 'receiver_address': {'zip_code': '', 'street_name': '', 'street_number': None, 'floor': '', 'apartment': '', 'city_name': None, 'state_name': None, 'country_name': None, 'neighborhood': None}}, 'statement_descriptor': 'DOJO-ON', 'total_amount': None, 'last_updated': None, 'financing_group': ''}}
+"POST /api/payments/criar-pagamento/1/ HTTP/1.1" 200 350
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+PIX gerado com sucesso - Payment ID: 152901380647
+QR Code: 00020126580014br.gov.bcb.pix013661abdfe4-acf3-4a0f...
+QR Code Base64 disponível: True
+📋 QR Code Base64 do Mercado Pago: True
+🔧 Adicionado prefixo data:image/png;base64 ao QR Code Base64
+🔍 Início do Base64 MP: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABWQAAAVkAQMAAABpQ4TyAAAABlBMVEX///8AAABVwtN+AAAKA0lEQV...
+🔍 Tem prefixo data: True
+"POST /api/payments/gerar-pix/70/ HTTP/1.1" 200 4162
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/me/ HTTP/1.1" 200 187
+"GET /api/payments/plano/5/ HTTP/1.1" 200 164
+"GET /api/me/ HTTP/1.1" 200 187
+"GET /api/payments/plano/5/ HTTP/1.1" 200 164
+PAYMENT_AUDIT: {"timestamp": "2026-04-07T14:36:27.678256+00:00", "event_type": "payment_attempt", "user_id": 204, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Trimestral Premium", "valor": 119.9}}
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+Criando preferência com dados: {'items': [{'title': 'Plano Trimestral Premium', 'description': 'Assinatura por 3 meses com acesso completo aos recursos premium', 'quantity': 1, 'unit_price': 119.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': '994077754'}}, 'back_urls': {'success': 'https://dojo-on.onrender.com/payments/sucesso/', 'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/'}, 'external_reference': 'fb130423-e1a7-4545-af29-692641d9a297', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}, 'auto_return': 'approved', 'binary_mode': False, 'statement_descriptor': 'DOJO-ON', 'metadata': {'plano_id': '5', 'user_id': '204', 'external_reference': 'fb130423-e1a7-4545-af29-692641d9a297'}, 'differential_pricing': {'id': 1}}
+Resposta da preferência: {'status': 201, 'response': {'additional_info': '', 'auto_return': 'approved', 'back_urls': {'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/', 'success': 'https://dojo-on.onrender.com/payments/sucesso/'}, 'binary_mode': False, 'client_id': '5519793243562045', 'collector_id': 463249815, 'coupon_code': None, 'coupon_labels': None, 'date_created': '2026-04-07T10:36:28.867-04:00', 'date_of_expiration': None, 'differential_pricing': {'id': None}, 'expiration_date_from': None, 'expiration_date_to': None, 'expires': False, 'external_reference': 'fb130423-e1a7-4545-af29-692641d9a297', 'id': '463249815-53597f0f-5686-4de6-9167-cfef9d428ae9', 'init_point': 'https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-53597f0f-5686-4de6-9167-cfef9d428ae9', 'internal_metadata': None, 'items': [{'id': '', 'category_id': '', 'currency_id': 'BRL', 'description': 'Assinatura por 3 meses com acesso completo aos recursos premium', 'title': 'Plano Trimestral Premium', 'quantity': 1, 'unit_price': 119.9}], 'marketplace': 'NONE', 'marketplace_fee': 0, 'metadata': {'external_reference': 'fb130423-e1a7-4545-af29-692641d9a297', 'plano_id': '5', 'user_id': '204'}, 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'operation_type': 'regular_payment', 'payer': {'phone': {'area_code': '89', 'number': '994077754'}, 'address': {'zip_code': '', 'street_name': '', 'street_number': None}, 'email': 'ccamposs2007@gmail.com', 'identification': {'number': '04217183313', 'type': 'CPF'}, 'name': '', 'surname': '', 'date_created': None, 'last_purchase': None}, 'payment_methods': {'default_card_id': None, 'default_payment_method_id': None, 'excluded_payment_methods': [{'id': ''}], 'excluded_payment_types': [{'id': ''}], 'installments': 12, 'default_installments': None}, 'processing_modes': None, 'product_id': None, 'preference_expired': False, 'redirect_urls': {'failure': '', 'pending': '', 'success': ''}, 'sandbox_init_point': 'https://sandbox.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-53597f0f-5686-4de6-9167-cfef9d428ae9', 'site_id': 'MLB', 'shipments': {'default_shipping_method': None, 'receiver_address': {'zip_code': '', 'street_name': '', 'street_number': None, 'floor': '', 'apartment': '', 'city_name': None, 'state_name': None, 'country_name': None, 'neighborhood': None}}, 'statement_descriptor': 'DOJO-ON', 'total_amount': None, 'last_updated': None, 'financing_group': ''}}
+"POST /api/payments/criar-pagamento/5/ HTTP/1.1" 200 350
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+PIX gerado com sucesso - Payment ID: 152902218267
+QR Code: 00020126580014br.gov.bcb.pix013661abdfe4-acf3-4a0f...
+QR Code Base64 disponível: True
+📋 QR Code Base64 do Mercado Pago: True
+🔧 Adicionado prefixo data:image/png;base64 ao QR Code Base64
+🔍 Início do Base64 MP: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABWQAAAVkAQMAAABpQ4TyAAAABlBMVEX///8AAABVwtN+AAAKz0lEQV...
+🔍 Tem prefixo data: True
+"POST /api/payments/gerar-pix/71/ HTTP/1.1" 200 4436
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/payments/plano/1/ HTTP/1.1" 200 172
+"GET /api/me/ HTTP/1.1" 200 187
+"GET /api/payments/plano/1/ HTTP/1.1" 200 172
+"GET /api/me/ HTTP/1.1" 200 187
+PAYMENT_AUDIT: {"timestamp": "2026-04-07T14:37:09.998217+00:00", "event_type": "payment_attempt", "user_id": 204, "payment_id": "creating", "status": "initiated", "details": {"plano": "Plano Mensal Premium", "valor": 47.9}}
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+Criando preferência com dados: {'items': [{'title': 'Plano Mensal Premium', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'quantity': 1, 'unit_price': 47.9, 'currency_id': 'BRL'}], 'payer': {'email': 'ccamposs2007@gmail.com', 'identification': {'type': 'CPF', 'number': '04217183313'}, 'phone': {'area_code': '89', 'number': '994077754'}}, 'back_urls': {'success': 'https://dojo-on.onrender.com/payments/sucesso/', 'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/'}, 'external_reference': '8b087438-4302-4019-9cae-e167a6b79f08', 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'payment_methods': {'excluded_payment_methods': [], 'excluded_payment_types': [], 'installments': 12}, 'auto_return': 'approved', 'binary_mode': False, 'statement_descriptor': 'DOJO-ON', 'metadata': {'plano_id': '1', 'user_id': '204', 'external_reference': '8b087438-4302-4019-9cae-e167a6b79f08'}, 'differential_pricing': {'id': 1}}
+Resposta da preferência: {'status': 201, 'response': {'additional_info': '', 'auto_return': 'approved', 'back_urls': {'failure': 'https://dojo-on.onrender.com/payments/falha/', 'pending': 'https://dojo-on.onrender.com/payments/pendente/', 'success': 'https://dojo-on.onrender.com/payments/sucesso/'}, 'binary_mode': False, 'client_id': '5519793243562045', 'collector_id': 463249815, 'coupon_code': None, 'coupon_labels': None, 'date_created': '2026-04-07T10:37:11.452-04:00', 'date_of_expiration': None, 'differential_pricing': {'id': None}, 'expiration_date_from': None, 'expiration_date_to': None, 'expires': False, 'external_reference': '8b087438-4302-4019-9cae-e167a6b79f08', 'id': '463249815-11722b73-bd20-4177-8a91-e5cd5a62a300', 'init_point': 'https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-11722b73-bd20-4177-8a91-e5cd5a62a300', 'internal_metadata': None, 'items': [{'id': '', 'category_id': '', 'currency_id': 'BRL', 'description': 'Acesso completo à plataforma de judô com todos os recursos premium', 'title': 'Plano Mensal Premium', 'quantity': 1, 'unit_price': 47.9}], 'marketplace': 'NONE', 'marketplace_fee': 0, 'metadata': {'external_reference': '8b087438-4302-4019-9cae-e167a6b79f08', 'plano_id': '1', 'user_id': '204'}, 'notification_url': 'https://dojo-on.onrender.com/payments/webhook/', 'operation_type': 'regular_payment', 'payer': {'phone': {'area_code': '89', 'number': '994077754'}, 'address': {'zip_code': '', 'street_name': '', 'street_number': None}, 'email': 'ccamposs2007@gmail.com', 'identification': {'number': '04217183313', 'type': 'CPF'}, 'name': '', 'surname': '', 'date_created': None, 'last_purchase': None}, 'payment_methods': {'default_card_id': None, 'default_payment_method_id': None, 'excluded_payment_methods': [{'id': ''}], 'excluded_payment_types': [{'id': ''}], 'installments': 12, 'default_installments': None}, 'processing_modes': None, 'product_id': None, 'preference_expired': False, 'redirect_urls': {'failure': '', 'pending': '', 'success': ''}, 'sandbox_init_point': 'https://sandbox.mercadopago.com.br/checkout/v1/redirect?pref_id=463249815-11722b73-bd20-4177-8a91-e5cd5a62a300', 'site_id': 'MLB', 'shipments': {'default_shipping_method': None, 'receiver_address': {'zip_code': '', 'street_name': '', 'street_number': None, 'floor': '', 'apartment': '', 'city_name': None, 'state_name': None, 'country_name': None, 'neighborhood': None}}, 'statement_descriptor': 'DOJO-ON', 'total_amount': None, 'last_updated': None, 'financing_group': ''}}
+"POST /api/payments/criar-pagamento/1/ HTTP/1.1" 200 350
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+PIX gerado com sucesso - Payment ID: 152901424765
+QR Code: 00020126580014br.gov.bcb.pix013661abdfe4-acf3-4a0f...
+QR Code Base64 disponível: True
+📋 QR Code Base64 do Mercado Pago: True
+🔧 Adicionado prefixo data:image/png;base64 ao QR Code Base64
+🔍 Início do Base64 MP: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABWQAAAVkAQMAAABpQ4TyAAAABlBMVEX///8AAABVwtN+AAAKtUlEQV...
+🔍 Tem prefixo data: True
+"POST /api/payments/gerar-pix/72/ HTTP/1.1" 200 4398
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+Ambiente detectado: PRODUCAO
+Credenciais carregadas - Ambiente: production
+   Access Token: APP_USR-551979324356...
+   Public Key: APP_USR-0d73e94d-eab...
+   Webhook URL: https://dojo-on.onrender.com/payments/webhook/
+✅ Configurando SDK Mercado Pago - Ambiente: production
+✅ SDK criado com sucesso - Ambiente: production
+🔄 Auto-sync disparado por pagamento aprovado 72
+🔍 ATIVAR ASSINATURA: Iniciando para pagamento 72, usuário ccamposs2008@gmail.com
+🔍 ATIVAR ASSINATURA: Payment data: {'accounts_info': None, 'acquirer_reconciliation': [], 'additional_info': {'bank_info': {'is_same_bank_account_owner': True}, 'tracking_id': 'platform:3.14.3,so:so;,type:SDK2.3.0,security:none'}, 'authorization_code': None, 'binary_mode': False, 'brand_id': None, 'build_version': '3.151.0-rc-1', 'call_for_authorize_id': None, 'callback_url': None, 'captured': True, 'card': {}, 'charges_details': [{'accounts': {'from': 'collector', 'to': 'mp'}, 'amounts': {'original': 0.47, 'refunded': 0}, 'client_id': 0, 'date_created': '2026-04-07T10:37:14.000-04:00', 'external_charge_id': '01KNM60JFXRK1AA7532WSD34S5', 'id': '152901424765-001', 'last_updated': '2026-04-07T10:37:14.000-04:00', 'metadata': {'reason': '', 'source': 'proc-svc-charges', 'source_detail': 'processing_fee_charge'}, 'name': 'mercadopago_fee', 'refund_charges': [], 'reserve_id': None, 'type': 'fee', 'update_charges': []}], 'charges_execution_info': {'internal_execution': {'date': '2026-04-07T10:37:14.119-04:00', 'execution_id': '01KNM60JF47A0Y5J37QET6V9M0'}}, 'collector_id': 463249815, 'corporation_id': None, 'counter_currency': None, 'coupon_amount': 0, 'currency_id': 'BRL', 'date_approved': '2026-04-07T10:37:26.000-04:00', 'date_created': '2026-04-07T10:37:14.000-04:00', 'date_last_updated': '2026-04-07T10:37:32.000-04:00', 'date_of_expiration': '2026-04-08T10:37:13.000-04:00', 'deduction_schema': None, 'description': 'Assinatura Plano Mensal Premium', 'differential_pricing_id': None, 'external_reference': '8b087438-4302-4019-9cae-e167a6b79f08', 'fee_details': [{'amount': 0.47, 'fee_payer': 'collector', 'type': 'mercadopago_fee'}], 'financing_group': None, 'id': 152901424765, 'installments': 1, 'integrator_id': None, 'issuer_id': '12501', 'live_mode': True, 'marketplace_owner': None, 'merchant_account_id': None, 'merchant_number': None, 'metadata': {}, 'money_release_date': '2026-04-07T10:37:26.000-04:00', 'money_release_schema': None, 'money_release_status': 'released', 'notification_url': None, 'operation_type': 'regular_payment', 'order': {}, 'payer': {'email': 'XXXXXXXXXXX', 'entity_type': None, 'first_name': None, 'id': '1855622431', 'identification': {'number': '99999999999', 'type': 'CPF'}, 'last_name': None, 'operator_id': None, 'phone': {'number': None, 'extension': None, 'area_code': None}, 'type': None}, 'payment_method': {'id': 'pix', 'issuer_id': '12501', 'type': 'bank_transfer'}, 'payment_method_id': 'pix', 'payment_type_id': 'bank_transfer', 'platform_id': None, 'point_of_interaction': {'application_data': {'name': None, 'operating_system': None, 'version': None}, 'business_info': {'branch': 'Merchant Services', 'sub_unit': 'sdk', 'unit': 'online_payments'}, 'location': {'source': None, 'state_id': None}, 'sub_type': 'INTER_PSP', 'transaction_data': {'bank_info': {'collector': {'account_alias': None, 'account_holder_name': 'Caio Campos Silva', 'account_id': 80888942744, 'long_name': 'MERCADO PAGO INSTITUIÇÃO DE PAGAMENTO LTDA.', 'transfer_account_id': None}, 'is_same_bank_account_owner': True, 'origin_bank_id': None, 'origin_wallet_id': None, 'payer': {'account_id': 9690102309, 'branch': '1', 'external_account_id': None, 'id': None, 'identification': {}, 'long_name': 'NU PAGAMENTOS S.A. - INSTITUIÇÃO DE PAGAMENTO'}}, 'bank_transfer_id': 123544667452, 'e2e_id': None, 'financial_institution': 1, 'is_end_consumer': None, 'merchant_category_code': None, 'qr_code': '00020126580014br.gov.bcb.pix013661abdfe4-acf3-4a0f-b3f3-5713038e885b520400005303986540547.905802BR5911CACA31771266009Sao Paulo62250521mpqrinter1529014247656304BFF5', 'qr_code_base64': 'iVBORw0KGgoAAAANSUhEUgAABWQAAAVkAQMAAABpQ4TyAAAABlBMVEX///8AAABVwtN+AAAKtUlEQVR42uzdTZLiuhIGUBEMGLIElsLSiqXVUlgCQwYEetH1LCSlbIq+/YM74nwTgnvL9jGzbEmZSURERERERERERERERERERERERERERERERERERET+bHZ5yGfaTJ8ppX3Op+lPP/Lt6/tXzinlH98POX/d5Ot7yTWl44/Py4/LNtPnzE3yj4vT101iaGlpaWlpaWlpaWlpaWl/g/YcvhdlzveqLQ8oD/56wG35lcvFX59pUuf2ZuVVU/0sOdLS0tLS0tLS0tLS0tKuWVsrzV2teav2/2VrKVdPaTv9/1u9T3ngcbrJqO0L6DTdpF686wpmWlpaWlpaWlpaWlpa2n9Om8cyNYWa97Cw+Pk5veJxqIFvCzUvLS0tLS0tLS0tLS0t7T+qLeuX927F9KPVNPtvx1y7RdDplcvKaVMw09LS0tLS0tLS0tLS0tL+cW3YLRwr9HJsdFvXe5sUfaf7bLcYdzcpZ0+bi35tbzMtLS0tLS0tLS0tLS3t39TmxSXaJ7uFZzsXXetu4Z+9ya/1WaKlpaWlpaWlpaWlpaX9O9rZbGrr2tweE00Lte6uq3lnb9JtPW5q3hwK6P8QWlpaWlpaWlpaWlpa2r+pPdR9t/WupVwtN77MXbSd23zbaGP7o2b/7Wm4+DrVvs/239LS0tLS0tLS0tLS0tK+V7sbH3R8aOM4ze14mjM+sOt/W7JvOxfl7hRnXDntzpHS0tLS0tLS0tLS0tLS0v6CNtW6OH1ToZezph9hQ28trpdeuWn5exoWi2cOsNLS0tLS0tLS0tLS0tKuVLtrz5o+jo2G3Osx0a7mvS00HWrOnKZ2d3BeHjtam+buXjshS0tLS0tLS0tLS0tLS/se7bn9m13buvYeWtg2/W+b3cJduTrWvPdOm3MzkqU5czouv9LS0tLS0tLS0tLS0tKuUpvrJMzpQfdxAEoONe/MAJSxUE5zBXRzgLW88vm7WpeWlpaWlpaWlpaWlpaW9ue1KXQ36o6Lbqr20u4aLsV18zmePb13lfrHXLlfcg67hfPzrlC0tLS0tLS0tLS0tLS0K9Cmx27he6h9y1JtPHP6pFvvsW5Bni4qP8G2tkHqCueZ6puWlpaWlpaWlpaWlpZ2ZdpdLVNrxdnUvPGMaaq7hWvNew0rqM0rx8mhteZdqnFpaWlpaWlpaWlpaWlpV609h/8Ua92UUte5qJ413YYV1Gt7kzx2LupGsdxqDdxc/NoJWVpaWlpaWlpaWlpaWlral7RNd6NpaXbztFI/PR4Qx7U8WSyuW45v9dVjk6bzT/x7Ai0tLS0tLS0tLS0tLe0btHGvbhrVp3ap9tJeuR13CdefIJ45zZ12PGt6DbNfaGlpaWlpaWlpaWlpaden3c01H5pvXXtqV1BzO/OlGRzz2a6gdoNj7mH5tZx2vYXquzmoSktLS0tLS0tLS0tLS7sybaP+DPtvP6fFzhSUOXQuqoVzt4K6Cftvm/63l7bWzQsdjGhpaWlpaWlpaWlpaWnXp+1r3km9mW0yNNv/NnYuOraF8376CRpld5qzbOI9vDCDk5aWlpaWlpaWlpaWlpb2P2nrg5aGfqaxa2/s1huWaDdhy3G/xbh2672Nole69dLS0tLS0tLS0tLS0tK+XVvXe7sNvjNNh5bK1XiTqM+PmzTaQ1tiv9itl5aWlpaWlpaWlpaWlvZt2tAvaDP2wd23x0P746Jd39tSC8++cnNwtb7qdly7zbS0tLS0tLS0tLS0tLSr1c7mEmZyNmdOu0XQ89xN4pnTWDh3r5zHi4+0tLS0tLS0tLS0tLS0tL9FO87r3Eza+Rkvp7aoPodWSeM6bxxDmmbL/Dh1hpaWlpaWlpaWlpaWlnaN2lTndR4XOhfFmrdu8G02+pbF4mPuh38ewyCZ5S3HsYcSLS0tLS0tLS0tLS0t7Vq1odIsi56b2rkoznw51+tjzVu3GjcrpzFj56IXJ4fS0tLS0tLS0tLS0tLSvlG7Gx/UXbMfp6h0r5i+2X/bbeIty69lmkpT48bCmZaWlpaWlpaWlpaWlpb2V7WprrJ2D4rFdDP8M7ZGmm2RdHxMDm3K/eZmpdyPZf5r/55AS0tLS0tLS0tLS0tL+x7tLvzNdzNfUqu9jeu8tWvv0jpvM/Pl0L7q7IozLS0tLS0tLS0tLS0t7dq0Syc8j4+aN5ar8zeZXXaty6+b2vYo536ATLzZs5qXlpaWlpaWlpaWlpaWdgXa7vMeWtfmWvPux85F8ZWnLbT3qk3TwdVSMDfabt9t8zvR0tLS0tLS0tLS0tLSrlzbVZrdymm/+Hl6zOCMy6/X0Lkohykq+7n9t3Gg55WWlpaWlpaWlpaWlpaW9rdomzOnn49rSjH95Ljoue4a7tofjeu+965C/5jbLTxuNU60tLS0tLS0tLS0tLS0a9TG/rfX0HQoZqZ1behYFBeLU3j1VNd7z+267zX8brS0tLS0tLS0tLS0tLTr05bK81r37i5NUakDUG7LTYeelq3xZjOv/MrKKS0tLS0tLS0tLS0tLe0btam9ptS+l/oZV067M6fjSmlzk1ynqHy0I1lSrXWr+hoGfNLS0tLS0tLS0tLS0tLS/h7tdfbB4QHfabtWSffQrTdNu4X7g6tdhX4OvxstLS0tLS0tLS0tLS3t+rSHYcPvvat9UxjXEs+clnK1LhZfw01mB8ds6+9xTq+HlpaWlpaWlpaWlpaW9u3acZdwo05tuXpJ/diWpvlQnsvnQ7npBsd02m63cH7hzCktLS0tLS0tLS0tLS3te7XdSc9+8EleaF0bX7WrcaO2W4Ztll/rPtxmJzAtLS0tLS0tLS0tLS0t7e/V1o2/8+u8+fE99lXK3fDP8QnxlVMo81PYNUxLS0tLS0tLS0tLS0u7am198DX1E0PjbuHZbr27qv1sdws3Z07LqxbtR1vzduNHaWlpaWlpaWlpaWlpader3dVjo93Ml8tYrpaZL7F1bRw/Oj2wL5Q/hpo3dbVv+L1oaWlpaWlpaWlpaWlp16rNYQttqXWPg/rWPTC3Dz7URc/wypuq3YdmuocwRSW9UPPS0tLS0tLS0tLS0tLSvlE7o6+di3LXdCjWvEuzOMuR0OmV7wuF80zPpPN3NS8tLS0tLS0tLS0tLS0t7X/XptR3Lkptcd3MfInHRcd13nizvnPR6aHtXzn9fGhpaWlpaWlpaWlpaWn/mna3MKalWd/tHlBmvzTDPrtytfa/jc1z7/Xiy/SZ2z64syvOtLS0tLS0tLS0tLS0tGvTnoeV081y39tUHxS1Y827D7Vup41bjne1DRItLS0tLS0tLS0tLS3tqrXjDJN9LVtPC8uYcQBKt/82tZt4L2PN271q3H97pKWlpaWlpaWlpaWlpaX9Q9rNtN7bbPgtRfW+3S3cVOqHoFzeetzc5Kusn+mzlGlpaWlpaWlpaWlpaWn/IW0pV+8Lu4XL0uy2Xnxua9zYuWim1q0Xl8L5Wj+PtLS0tLS0tLS0tLS0tGvWjruFc11BnV05PdTjouHAagra5ozpZZwcWldMZ34vWlpaWlpaWlpaWlpa2vVpx85FTfbt/7nV8jWHoZ+HoWBemhzajGIpNW/XuejZFBVaWlpaWlpaWlpaWlpa2te1IiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIqvO/wIAAP//nsShbQDibC8AAAAASUVORK5CYII=', 'ticket_url': 'https://www.mercadopago.com.br/payments/152901424765/ticket?caller_id=1855622431&hash=fc43ff69-5078-4820-8286-b83a4be97727', 'transaction_id': 'PIXE18236120202604071437s059e170cbc'}, 'type': 'OPENPLATFORM'}, 'pos_id': None, 'processing_mode': 'aggregator', 'refunds': [], 'release_info': None, 'shipping_amount': 0, 'sponsor_id': None, 'statement_descriptor': None, 'status': 'approved', 'status_detail': 'accredited', 'store_id': None, 'tags': None, 'taxes_amount': 0, 'transaction_amount': 47.9, 'transaction_amount_refunded': 0, 'transaction_details': {'acquirer_reference': None, 'bank_transfer_id': 123544667452, 'external_resource_url': None, 'financial_institution': '1', 'installment_amount': 0, 'net_received_amount': 47.43, 'overpaid_amount': 0, 'payable_deferral_period': None, 'payment_method_reference_id': None, 'total_paid_amount': 47.9, 'transaction_id': 'PIXE18236120202604071437s059e170cbc'}}
+✅ ATIVAR ASSINATURA: Plano encontrado: Plano Mensal Premium (R$ 47.90)
+🔍 ATIVAR ASSINATURA: Criando assinatura com dados:
+  - Usuário: ccamposs2008@gmail.com
+  - Plano: Plano Mensal Premium
+  - Status: ativa
+  - Ativo: True
+  - External Reference: 8b087438-4302-4019-9cae-e167a6b79f08
+🔄 Auto-sync: ccamposs2008@gmail.com -> Premium
+🔄 Auto-sync disparado por mudança na assinatura 62
+✅ ATIVAR ASSINATURA: Assinatura criada com ID 62
+🔄 Auto-sync disparado por pagamento aprovado 72
+✅ ATIVAR ASSINATURA: Pagamento vinculado à assinatura
+✅ ATIVAR ASSINATURA: Perfil do usuário atualizado - conta_premium=True
+🎉 ATIVAR ASSINATURA: Assinatura ativada com sucesso para usuário 204: Plano Mensal Premium
+Cache do dashboard limpo após ativação de assinatura
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/payments/views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/me/ HTTP/1.1" 200 186
+"GET /api/payments/plano/1/ HTTP/1.1" 200 172
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+"GET /api/me/ HTTP/1.1" 200 186
+"GET /static/faixa-amarela.png HTTP/1.1" 304 0
+"GET /static/faixa-cinza.png HTTP/1.1" 304 0
+"GET /static/faixa-azul.png HTTP/1.1" 304 0
+"GET /static/faixa-laranja.png HTTP/1.1" 304 0
+"GET /static/faixa-verde.png HTTP/1.1" 304 0
+"GET /static/faixa-marrom.png HTTP/1.1" 304 0
+"GET /static/faixa-roxa.png HTTP/1.1" 304 0
+"GET /api/me/ HTTP/1.1" 200 186
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 853
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 853
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/payments/views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado

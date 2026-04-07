@@ -15,7 +15,6 @@ class PremiumAccessMiddleware:
             '/pagina5/', '/pagina6/', '/pagina7/',
             '/pag1/', '/pag2/', '/pag3/', '/pag4/',
             '/pag5/', '/pag6/', '/pag7/',
-            '/quiz/', '/ukemis/', '/palavras/', '/historia/', '/regras/'
         ]
         self.excluded_urls = [
             '/payments/', '/login/', '/register/', '/admin/',

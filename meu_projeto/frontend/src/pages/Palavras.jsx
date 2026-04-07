@@ -7,6 +7,7 @@ import DojoBackground from '../components/DojoBackground';
 import { BELT_DATA } from '../data/palavrasData';
 import { useSpeechRecognition } from '../hooks/useSpeechRecognition';
 import { pronunciaCorreta, normalizarTexto } from '../utils/pronuncia';
+import { apiMe } from '../api';
 
 const ACCENT = 'rgb(124, 58, 237)';
 
@@ -512,6 +513,7 @@ export default function Palavras() {
   const [focused, setFocused] = useState(false);
   const [activeCardId, setActiveCardId] = useState(null);
   const [celebration, setCelebration] = useState({ show: false, isNumero: false });
+  const [isPremiumUser, setIsPremiumUser] = useState(false);
   const celebrationTimerRef = useRef(null);
   const pendingOnResultRef = useRef(null);
 
@@ -559,6 +561,12 @@ export default function Palavras() {
     stopVoice: stopVoiceWithClear,
     reset: speech.reset,
   };
+
+  useEffect(() => {
+    apiMe()
+      .then((r) => setIsPremiumUser(!!r?.user?.conta_premium))
+      .catch(() => setIsPremiumUser(false));
+  }, []);
 
   useEffect(() => {
     const load = () => {
@@ -704,28 +712,49 @@ export default function Palavras() {
         </div>
       </motion.section>
 
+      {!isPremiumUser && (
+        <div className="max-w-5xl mx-auto px-4 mb-8">
+          <div className="rounded-2xl border border-amber-400/40 bg-amber-500/10 p-4 text-amber-100">
+            Modo gratis: somente a secao de numeros esta liberada. O restante do vocabulario e Premium.
+          </div>
+        </div>
+      )}
+
       {/* Grid de palavras */}
       <div className="max-w-5xl mx-auto px-4 pb-32">
         <h2 className="font-jp text-lg font-bold text-white mb-4 flex items-center gap-2">
           <span className="w-1 h-5 rounded-full bg-amber-500/80" />
           用語 — Vocabulário
         </h2>
-        <motion.div
-          className="grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-          layout
-        >
-          {filtered.map((w, i) => (
-            <WordCard key={`${w.japanese}-${w.meaning}-${i}`} w={w} index={i} cardId={`${w.japanese}-${w.meaning}-${i}`} speechProps={speechProps} onCelebrate={handleCelebrate} />
-          ))}
-        </motion.div>
-        {filtered.length === 0 && (
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-slate-500 text-center py-20 text-lg"
-          >
-            Nenhuma palavra encontrada.
-          </motion.p>
+        {isPremiumUser ? (
+          <>
+            <motion.div
+              className="grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+              layout
+            >
+              {filtered.map((w, i) => (
+                <WordCard key={`${w.japanese}-${w.meaning}-${i}`} w={w} index={i} cardId={`${w.japanese}-${w.meaning}-${i}`} speechProps={speechProps} onCelebrate={handleCelebrate} />
+              ))}
+            </motion.div>
+            {filtered.length === 0 && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-slate-500 text-center py-20 text-lg"
+              >
+                Nenhuma palavra encontrada.
+              </motion.p>
+            )}
+          </>
+        ) : (
+          <div className="rounded-2xl border border-white/15 bg-white/5 p-8 text-center">
+            <div className="text-5xl mb-2">🔒</div>
+            <p className="text-white text-lg font-semibold mb-2">Vocabulário completo bloqueado</p>
+            <p className="text-slate-400 mb-5">Desbloqueie todas as palavras e pronuncias com o plano Premium.</p>
+            <Link to="/payments/planos" className="inline-block px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-black font-semibold transition-colors">
+              Desbloquear Premium
+            </Link>
+          </div>
         )}
       </div>
 

@@ -8,6 +8,27 @@ const getBaseUrl = () => {
   return import.meta.env.VITE_API_URL || '';
 };
 
+const DEFAULT_TIMEOUT_MS = 10000;
+
+async function fetchWithTimeout(url, options = {}, timeoutMs = DEFAULT_TIMEOUT_MS) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    return await fetch(url, {
+      ...options,
+      signal: controller.signal,
+    });
+  } catch (err) {
+    if (err?.name === 'AbortError') {
+      throw new Error('Tempo de resposta do backend esgotado. Verifique o servidor/API.');
+    }
+    throw err;
+  } finally {
+    clearTimeout(timeoutId);
+  }
+}
+
 const getCsrfToken = () => {
   const match = document.cookie.match(/csrftoken=([^;]+)/);
   return match ? match[1] : null;
@@ -25,7 +46,7 @@ const headers = (contentType = 'application/json') => {
 };
 
 export async function fetchCsrf() {
-  const res = await fetch(`${getBaseUrl()}/api/csrf/`, { credentials: 'include' });
+  const res = await fetchWithTimeout(`${getBaseUrl()}/api/csrf/`, { credentials: 'include' });
   if (!res.ok) {
     if (res.status === 502 || res.status === 503) throw new Error('Backend offline. Rode: npm run dev');
     throw new Error('Falha ao obter CSRF');
@@ -162,14 +183,14 @@ const adminBase = () => getBaseUrl() + '/api/admin';
 
 /** GET verificar se está logado como admin */
 export async function adminMe() {
-  const res = await fetch(`${adminBase()}/me/`, { credentials: 'include' });
+  const res = await fetchWithTimeout(`${adminBase()}/me/`, { credentials: 'include' });
   return res.json();
 }
 
 /** POST login admin: { username, password } */
 export async function adminLogin(username, password) {
   await fetchCsrf();
-  const res = await fetch(`${adminBase()}/login/`, {
+  const res = await fetchWithTimeout(`${adminBase()}/login/`, {
     method: 'POST',
     credentials: 'include',
     headers: headers(),
@@ -194,7 +215,8 @@ export async function adminLogout() {
 
 /** GET dashboard completo */
 export async function adminDashboard() {
-  const res = await fetch(`${adminBase()}/dashboard/`, { credentials: 'include' });
+  // Dashboard faz muitas agregações no banco; em produção pode levar mais tempo.
+  const res = await fetchWithTimeout(`${adminBase()}/dashboard/`, { credentials: 'include' }, 45000);
   const data = await res.json().catch(() => ({}));
   if (res.status === 401 || res.status === 403) throw new Error('Acesso negado');
   if (!res.ok) throw new Error(data.error || 'Erro ao carregar');
@@ -269,6 +291,20 @@ export async function adminCorrigirAssinaturas() {
   return data;
 }
 
+/** POST envio de email remarketing */
+export async function adminSendMarketingEmail(payload) {
+  await fetchCsrf();
+  const res = await fetch(`${adminBase()}/send-marketing-email/`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: headers(),
+    body: JSON.stringify(payload),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Erro ao enviar e-mail');
+  return data;
+}
+
 /** POST gerar PIX (retorna qr_code e qr_code_base64) — usa /api */
 export async function gerarPix(paymentId) {
   const res = await fetch(`${getBaseUrl()}/api/payments/gerar-pix/${paymentId}/`, {
@@ -283,5 +319,19 @@ export async function gerarPix(paymentId) {
   });
   const data = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(data.error || 'Erro ao gerar PIX');
+  return data;
+}
+
+/** GET status atual do pagamento e assinatura */
+export async function verificarStatusPagamento(paymentId) {
+  const res = await fetch(`${getBaseUrl()}/api/payments/verificar-status/${paymentId}/`, {
+    credentials: 'include',
+    headers: {
+      'Accept': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+    },
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Erro ao verificar status do pagamento');
   return data;
 }

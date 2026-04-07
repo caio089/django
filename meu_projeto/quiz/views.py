@@ -5,6 +5,7 @@ from django.views.decorators.http import require_http_methods
 from django.utils import timezone
 from meu_projeto.redirect_utils import redirect_to_frontend
 from .models import ProgressoQuiz, QuizRanking, ProgressoUsuario
+from home.models import Profile
 import json
 
 # Categorias do ranking por nível (10 níveis)
@@ -21,6 +22,17 @@ CATEGORIAS_NIVEL = {
     10: 'Sensei',
 }
 MAX_NIVEL_QUIZ = 10
+
+def _has_premium_access(user):
+    """Usuário premium tem acesso aos níveis 2+ do quiz."""
+    if not user or not user.is_authenticated:
+        return False
+    try:
+        profile = Profile.objects.get(user=user)
+        return bool(profile.conta_premium)
+    except Profile.DoesNotExist:
+        return False
+
 
 # Create your views here.
 def quiz(request):
@@ -235,6 +247,7 @@ def api_submit(request):
         nivel_quiz = max(1, min(MAX_NIVEL_QUIZ, int(data.get('nivel_quiz', 1))))
         xp_ganho = max(0, int(data.get('xp_ganho', 0)))
         passou_nivel = data.get('passou_nivel', False)
+        premium_access = _has_premium_access(request.user)
 
         # Garantir sessão para anônimos
         if not request.session.session_key:
@@ -261,7 +274,11 @@ def api_submit(request):
         entry.dojo = dojo or getattr(entry, 'dojo', '') or ''
         entry.cidade = cidade or entry.cidade
         entry.xp_total += xp_ganho
-        if passou_nivel:
+        # Modo freemium: sem premium, apenas nível 1 permanece liberado.
+        if not premium_access:
+            entry.nivel_quiz = 1
+            entry.categoria_titulo = CATEGORIAS_NIVEL.get(1, 'Kohai')
+        elif passou_nivel:
             entry.nivel_quiz = min(MAX_NIVEL_QUIZ, entry.nivel_quiz + 1)
             entry.categoria_titulo = CATEGORIAS_NIVEL.get(entry.nivel_quiz, 'Sensei')
         else:

@@ -13,7 +13,7 @@ import {
   QrCode,
 } from 'lucide-react';
 import DojoBackground from '../components/DojoBackground';
-import { fetchCsrf, apiMe, getPlanoDetail, criarPagamento, gerarPix } from '../api';
+import { fetchCsrf, apiMe, getPlanoDetail, criarPagamento, gerarPix, verificarStatusPagamento } from '../api';
 
 const ACCENT = 'rgb(180, 50, 55)';
 const GOLD = 'rgb(212, 175, 55)';
@@ -35,6 +35,8 @@ export default function PlanoPagamento() {
   const [paymentError, setPaymentError] = useState(null);
   const [pixData, setPixData] = useState(null);
   const [copied, setCopied] = useState(false);
+  const [pixLocalPaymentId, setPixLocalPaymentId] = useState(null);
+  const [pixStatus, setPixStatus] = useState(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -77,6 +79,8 @@ export default function PlanoPagamento() {
       if (!created.payment_id) throw new Error('Resposta inválida');
       const pix = await gerarPix(created.payment_id);
       if (!pix.qr_code_base64 && !pix.qr_code) throw new Error(pix.error || 'PIX não gerado');
+      setPixLocalPaymentId(created.payment_id);
+      setPixStatus('pending');
       setPixData({
         qr_code_base64: pix.qr_code_base64,
         qr_code: pix.qr_code,
@@ -138,7 +142,38 @@ export default function PlanoPagamento() {
     setModalOpen(false);
     setModalMode(null);
     setPixData(null);
+    setPixStatus(null);
+    setPixLocalPaymentId(null);
   };
+
+  useEffect(() => {
+    if (!modalOpen || modalMode !== 'pix' || !pixLocalPaymentId) return;
+    let cancelled = false;
+    let intervalId;
+
+    const pollStatus = async () => {
+      try {
+        const status = await verificarStatusPagamento(pixLocalPaymentId);
+        if (cancelled) return;
+        setPixStatus(status?.status || null);
+        if (status?.status === 'approved' && status?.assinatura_ativa) {
+          setPaymentError(null);
+          setModalOpen(false);
+          alert('Pagamento aprovado! Seu acesso premium foi liberado.');
+          window.location.reload();
+        }
+      } catch (_e) {
+        // Mantém polling silencioso para não atrapalhar o fluxo do usuário.
+      }
+    };
+
+    pollStatus();
+    intervalId = window.setInterval(pollStatus, 5000);
+    return () => {
+      cancelled = true;
+      if (intervalId) window.clearInterval(intervalId);
+    };
+  }, [modalOpen, modalMode, pixLocalPaymentId]);
 
   if (loading) {
     return (
@@ -392,6 +427,9 @@ export default function PlanoPagamento() {
               )}
               <p className="text-slate-500 text-xs mt-6 text-center">
                 Abra o app do seu banco, escaneie o QR Code ou cole o código. O pagamento será confirmado em instantes.
+              </p>
+              <p className="text-slate-400 text-xs mt-2 text-center">
+                Status: {pixStatus === 'approved' ? 'Aprovado' : pixStatus === 'pending' ? 'Aguardando pagamento' : 'Verificando...'}
               </p>
             </motion.div>
           </motion.div>

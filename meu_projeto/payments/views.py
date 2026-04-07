@@ -1,10 +1,11 @@
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404, render
 from meu_projeto.redirect_utils import redirect_to_frontend
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
+from django.core.mail import EmailMessage
 import json
 import mercadopago
 from .models import PlanoPremium, Assinatura, Pagamento, WebhookEvent, ConfiguracaoPagamento
@@ -429,7 +430,8 @@ def gerar_pix_direto(request, payment_id):
                     "number": pagamento.get_payer_document() or "00000000000"
                 }
             },
-            "external_reference": str(pagamento.external_reference)
+            "external_reference": str(pagamento.external_reference),
+            "notification_url": config.webhook_url
         }
         
         # Criar pagamento no Mercado Pago
@@ -703,19 +705,6 @@ def processar_pagamento_webhook(payment_id, webhook_event):
     Atualiza status e cria ativa assinatura se aprovado
     """
     try:
-        # Buscar pagamento no banco usando dados criptografados
-        pagamentos = Pagamento.objects.all()
-        pagamento = None
-        
-        for p in pagamentos:
-            if p.get_payment_id() == payment_id:
-                pagamento = p
-                break
-        
-        if not pagamento:
-            logger.error(f"Pagamento {payment_id} não encontrado no banco")
-            return
-        
         # Verificar status no Mercado Pago
         sdk, config = get_mercadopago_config()
         if not sdk:
@@ -728,6 +717,37 @@ def processar_pagamento_webhook(payment_id, webhook_event):
             return
         
         payment_data = payment_info["response"]
+        
+        # Buscar pagamento no banco:
+        # 1) por payment_id real (PIX direto)
+        # 2) por external_reference (checkout por preferência/cartão)
+        pagamentos = Pagamento.objects.all()
+        pagamento = None
+        payment_id_str = str(payment_id)
+        external_reference = str(payment_data.get("external_reference") or "")
+        
+        for p in pagamentos:
+            if str(p.get_payment_id() or "") == payment_id_str:
+                pagamento = p
+                break
+        
+        if not pagamento and external_reference:
+            pagamento = Pagamento.objects.filter(external_reference=external_reference).order_by('-id').first()
+            if pagamento:
+                logger.info(
+                    f"Pagamento local encontrado por external_reference={external_reference} "
+                    f"(pagamento_id={pagamento.id})"
+                )
+                # Guarda o payment_id real para consultas futuras
+                pagamento.set_payment_id(payment_id_str)
+                pagamento.save(update_fields=['payment_id'])
+        
+        if not pagamento:
+            logger.error(
+                f"Pagamento {payment_id} não encontrado no banco "
+                f"(external_reference={external_reference})"
+            )
+            return
         
         # Atualizar status do pagamento
         status_anterior = pagamento.status
@@ -850,6 +870,7 @@ def ativar_assinatura(pagamento, payment_data):
         
         # Vincular pagamento à assinatura
         pagamento.assinatura = assinatura
+        pagamento.status = payment_data.get("status", pagamento.status)
         pagamento.save()
         logger.info(f"✅ ATIVAR ASSINATURA: Pagamento vinculado à assinatura")
         
@@ -864,6 +885,41 @@ def ativar_assinatura(pagamento, payment_data):
             logger.error(f"❌ ATIVAR ASSINATURA: Erro ao atualizar perfil do usuário {pagamento.usuario.id}: {e}")
         
         logger.info(f"🎉 ATIVAR ASSINATURA: Assinatura ativada com sucesso para usuário {pagamento.usuario.id}: {plano.nome}")
+        
+        # Enviar recibo por e-mail sem bloquear ativação caso haja falha no SMTP
+        try:
+            email_destino = pagamento.get_payer_email() or pagamento.usuario.email
+            if email_destino:
+                nome_cliente = pagamento.get_payer_name() or pagamento.usuario.get_full_name() or pagamento.usuario.username
+                valor_pago = payment_data.get("transaction_amount", float(pagamento.valor))
+                payment_id_real = payment_data.get("id") or pagamento.get_payment_id() or "N/A"
+                data_pagamento = payment_data.get("date_approved") or timezone.now().strftime("%Y-%m-%d %H:%M:%S")
+                
+                corpo = (
+                    f"Olá, {nome_cliente}!\n\n"
+                    "Pagamento confirmado com sucesso.\n\n"
+                    "Recibo de compra:\n"
+                    f"- Cliente: {nome_cliente}\n"
+                    f"- E-mail: {email_destino}\n"
+                    f"- Plano: {plano.nome}\n"
+                    f"- Valor: R$ {float(valor_pago):.2f}\n"
+                    f"- ID do pagamento: {payment_id_real}\n"
+                    f"- Referência: {pagamento.external_reference}\n"
+                    f"- Data de confirmação: {data_pagamento}\n\n"
+                    "Confirmamos que o serviço foi prestado por Caio Campos Silva.\n\n"
+                    "Obrigado pela confiança.\n"
+                    "Dojo On"
+                )
+                
+                msg = EmailMessage(
+                    subject="Pagamento confirmado - Recibo Dojo On",
+                    body=corpo,
+                    to=[email_destino],
+                )
+                msg.send(fail_silently=False)
+                logger.info(f"✅ E-mail de recibo enviado para {email_destino}")
+        except Exception as email_error:
+            logger.error(f"❌ Falha ao enviar e-mail de recibo para pagamento {pagamento.id}: {email_error}")
         
         # Limpar cache do dashboard após ativar assinatura
         try:
@@ -983,20 +1039,47 @@ def verificar_status_pagamento(request, payment_id):
                 'data_vencimento': assinatura.data_vencimento.isoformat() if assinatura else None
             })
         
-        # Se tem pref_, buscar o payment_id real
+        # Se tem pref_, buscar pagamento real via external_reference
         if payment_id_mp.startswith('pref_'):
-            # Para preferências, vamos buscar pagamentos relacionados
-            # Primeiro, vamos verificar se já existe um pagamento real
-            logger.info(f"Buscando pagamento real para preferência {payment_id_mp}")
-            # Por enquanto, retornar status atual
-            assinatura = Assinatura.objects.filter(external_reference=pagamento.external_reference).first()
-            return JsonResponse({
-                'status': pagamento.status,
-                'status_display': pagamento.get_status_display(),
-                'tem_assinatura': assinatura is not None,
-                'assinatura_ativa': assinatura.status == 'ativa' if assinatura else False,
-                'data_vencimento': assinatura.data_vencimento.isoformat() if assinatura else None
-            })
+            logger.info(
+                f"Buscando pagamento real no MP para external_reference={pagamento.external_reference}"
+            )
+            sdk, config = get_mercadopago_config()
+            if sdk:
+                try:
+                    search_result = sdk.payment().search({
+                        'external_reference': str(pagamento.external_reference)
+                    })
+                    if search_result.get("status") == 200:
+                        resultados = search_result.get("response", {}).get("results", [])
+                        if resultados:
+                            # Pega o mais recente (geralmente o último evento do checkout)
+                            payment_data = sorted(
+                                resultados,
+                                key=lambda x: x.get("date_last_updated") or x.get("date_created") or "",
+                                reverse=True
+                            )[0]
+                            pagamento.set_payment_id(str(payment_data.get("id")))
+                            pagamento.status = payment_data.get("status", pagamento.status)
+                            pagamento.metodo_pagamento = payment_data.get("payment_method_id")
+                            if payment_data.get("status") == "approved":
+                                pagamento.data_pagamento = timezone.now()
+                            pagamento.save()
+                            
+                            if payment_data.get("status") == "approved":
+                                assinatura_existente = Assinatura.objects.filter(
+                                    external_reference=pagamento.external_reference
+                                ).first()
+                                if not assinatura_existente:
+                                    ativar_assinatura(pagamento, payment_data)
+                                    logger.info(
+                                        f"Assinatura ativada em verificar_status para pagamento {pagamento.id}"
+                                    )
+                except Exception as e:
+                    logger.error(f"Erro ao buscar pagamento por preferência no MP: {e}")
+        
+        # Recarregar pagamento após possível atualização acima
+        pagamento.refresh_from_db()
         
         # Verificar status no Mercado Pago
         sdk, config = get_mercadopago_config()

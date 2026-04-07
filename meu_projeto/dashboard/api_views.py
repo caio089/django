@@ -4,6 +4,7 @@ Usa sessão Django + CSRF (igual ao login normal do app).
 """
 import json
 import uuid
+from functools import wraps
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import ensure_csrf_cookie
@@ -14,6 +15,8 @@ from django.db.models import Count, Sum, Q
 from django.utils import timezone
 from django.db import transaction
 from datetime import timedelta
+from django.core.mail import EmailMessage
+from django.conf import settings
 
 from payments.models import Pagamento, Assinatura, PlanoPremium
 from home.models import Profile
@@ -22,6 +25,7 @@ from .views import clear_dashboard_cache
 
 def _require_superuser(view_func):
     """Decorator que retorna 403 JSON se não for superuser."""
+    @wraps(view_func)
     def wrapper(request, *args, **kwargs):
         if not request.user.is_authenticated:
             return JsonResponse({'error': 'Não autenticado'}, status=401)
@@ -46,21 +50,34 @@ def api_admin_me(request):
 
 @require_http_methods(['POST'])
 def api_admin_login(request):
-    """Login admin via JSON: { username, password }."""
+    """Login admin via JSON: { username|email, password }."""
     try:
         data = json.loads(request.body) if request.body else {}
     except json.JSONDecodeError:
         return JsonResponse({'success': False, 'error': 'JSON inválido'}, status=400)
 
-    username = data.get('username', '').strip()
+    username = (data.get('username') or '').strip()
+    email = (data.get('email') or '').strip()
     password = data.get('password', '')
 
-    if not username or not password:
-        return JsonResponse({'success': False, 'error': 'Usuário e senha são obrigatórios'}, status=400)
+    login_value = username or email
+    if not login_value or not password:
+        return JsonResponse({'success': False, 'error': 'Usuário/e-mail e senha são obrigatórios'}, status=400)
 
-    user = authenticate(request, username=username, password=password)
+    # Permite login admin usando e-mail sem quebrar o backend padrão do Django.
+    auth_username = login_value
+    if '@' in login_value:
+        user_by_email = User.objects.filter(email__iexact=login_value).only('username').first()
+        if not user_by_email:
+            return JsonResponse({'success': False, 'error': 'Usuário ou senha incorretos'}, status=400)
+        auth_username = user_by_email.username
+
+    user = authenticate(request, username=auth_username, password=password)
     if user is None:
         return JsonResponse({'success': False, 'error': 'Usuário ou senha incorretos'}, status=400)
+
+    if not user.is_active:
+        return JsonResponse({'success': False, 'error': 'Conta desativada'}, status=403)
 
     if not user.is_superuser:
         return JsonResponse({'success': False, 'error': 'Usuário ou senha incorretos'}, status=400)
@@ -196,7 +213,51 @@ def api_admin_dashboard(request):
             'nome': nome,
             'faixa': faixa,
             'date_joined': u.date_joined.strftime('%d/%m/%Y'),
+            'last_login': u.last_login.strftime('%d/%m/%Y %H:%M') if u.last_login else None,
             'premium': u.id in active_user_ids,
+        })
+
+    # Lista completa de cadastrados para gestão no painel
+    all_users = User.objects.order_by('-date_joined')
+    all_users_list = []
+    for u in all_users:
+        try:
+            profile = u.profile
+            nome = profile.nome
+            faixa = profile.get_faixa_display()
+            premium_profile = bool(profile.conta_premium)
+        except Profile.DoesNotExist:
+            nome = u.username
+            faixa = '-'
+            premium_profile = False
+        premium_flag = (u.id in active_user_ids) or premium_profile
+        all_users_list.append({
+            'id': u.id,
+            'username': u.username,
+            'email': u.email,
+            'nome': nome,
+            'faixa': faixa,
+            'premium': premium_flag,
+            'is_active': u.is_active,
+            'is_superuser': u.is_superuser,
+            'date_joined': u.date_joined.strftime('%d/%m/%Y %H:%M'),
+            'last_login': u.last_login.strftime('%d/%m/%Y %H:%M') if u.last_login else None,
+        })
+
+    # Últimos atualizados (proxy por último login)
+    latest_updated_users = User.objects.order_by('-last_login', '-date_joined')[:20]
+    latest_updated_list = []
+    for u in latest_updated_users:
+        try:
+            nome = u.profile.nome
+        except Profile.DoesNotExist:
+            nome = u.username
+        latest_updated_list.append({
+            'id': u.id,
+            'nome': nome,
+            'email': u.email,
+            'last_login': u.last_login.strftime('%d/%m/%Y %H:%M') if u.last_login else None,
+            'date_joined': u.date_joined.strftime('%d/%m/%Y %H:%M'),
         })
 
     # Planos disponíveis
@@ -241,6 +302,8 @@ def api_admin_dashboard(request):
         'monthly_data': monthly_data,
         'recent_subscriptions': recent_subscriptions,
         'recent_users': recent_users_list,
+        'all_users': all_users_list,
+        'latest_updated_users': latest_updated_list,
         'status_counts': status_counts,
         'plans': plans,
         'pending_payments': pending_list,
@@ -289,6 +352,13 @@ def api_admin_give_premium(request):
         data_vencimento=data_vencimento,
         ativo=True,
     )
+    profile, _ = Profile.objects.get_or_create(
+        user=user,
+        defaults={'nome': user.get_full_name() or user.username, 'idade': 18, 'faixa': 'branca'}
+    )
+    profile.conta_premium = True
+    profile.data_vencimento_premium = data_vencimento
+    profile.save(update_fields=['conta_premium', 'data_vencimento_premium'])
     clear_dashboard_cache()
     return JsonResponse({'success': True, 'message': f'Plano {plan.nome} atribuído para {user.username}'})
 
@@ -323,6 +393,13 @@ def api_admin_remove_premium(request):
         a.data_cancelamento = timezone.now()
         a.save()
         count += 1
+    try:
+        profile = user.profile
+        profile.conta_premium = False
+        profile.data_vencimento_premium = None
+        profile.save(update_fields=['conta_premium', 'data_vencimento_premium'])
+    except Profile.DoesNotExist:
+        pass
     clear_dashboard_cache()
     return JsonResponse({'success': True, 'message': f'{count} assinatura(s) cancelada(s)'})
 
@@ -477,3 +554,53 @@ def api_admin_corrigir_assinaturas(request):
         corrigidas += 1
     clear_dashboard_cache()
     return JsonResponse({'success': True, 'message': f'{corrigidas} assinaturas corrigidas', 'count': corrigidas})
+
+
+@login_required
+@_require_superuser
+@require_http_methods(['POST'])
+def api_admin_send_marketing_email(request):
+    """
+    Envia e-mail de remarketing para usuários selecionados ou todos.
+    JSON: { subject, body, send_to: 'all'|'selected', user_ids?: [] }
+    """
+    try:
+        data = json.loads(request.body) if request.body else {}
+    except json.JSONDecodeError:
+        return JsonResponse({'success': False, 'error': 'JSON inválido'}, status=400)
+
+    subject = (data.get('subject') or '').strip()
+    body = (data.get('body') or '').strip()
+    send_to = (data.get('send_to') or 'selected').strip()
+    user_ids = data.get('user_ids') or []
+
+    if not subject or not body:
+        return JsonResponse({'success': False, 'error': 'Informe assunto e mensagem'}, status=400)
+
+    users_qs = User.objects.filter(is_active=True).exclude(email__isnull=True).exclude(email='')
+    if send_to != 'all':
+        users_qs = users_qs.filter(id__in=user_ids)
+
+    emails = sorted(set([u.email.strip().lower() for u in users_qs if '@' in u.email]))
+    if not emails:
+        return JsonResponse({'success': False, 'error': 'Nenhum destinatário válido'}, status=400)
+
+    from_email = getattr(settings, 'DEFAULT_FROM_EMAIL', None) or getattr(settings, 'EMAIL_HOST_USER', None)
+    if not from_email:
+        return JsonResponse({'success': False, 'error': 'DEFAULT_FROM_EMAIL não configurado'}, status=500)
+
+    sent = 0
+    batch_size = 100
+    for i in range(0, len(emails), batch_size):
+        batch = emails[i:i + batch_size]
+        msg = EmailMessage(
+            subject=subject,
+            body=body,
+            from_email=from_email,
+            to=[from_email],
+            bcc=batch,
+        )
+        msg.send(fail_silently=False)
+        sent += len(batch)
+
+    return JsonResponse({'success': True, 'sent': sent, 'message': f'E-mail enviado para {sent} destinatário(s)'})

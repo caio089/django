@@ -15,7 +15,7 @@ import DojoBackground from '../components/DojoBackground';
 const ACCENT = 'rgb(180, 50, 55)';
 const GOLD = 'rgb(212, 175, 55)';
 
-// planoId = ID do PlanoPremium no backend (Django). Mensal=1/30d, Trimestral=2/90d, Semestral=3/180d.
+// planoId = ID do PlanoPremium no backend (Django). Ajustado para manter apenas mensal e trimestral.
 const PLANOS = [
   {
     nome: 'Mensal',
@@ -34,23 +34,10 @@ const PLANOS = [
     preco: 'R$ 119,90',
     popular: true,
     economize: '3 meses',
-    planoId: 2,
+    planoId: 5,
     beneficios: [
       'Tudo do plano mensal',
       'Melhor custo-benefício',
-      'Conteúdo exclusivo',
-      'Suporte prioritário',
-    ],
-  },
-  {
-    nome: 'Anual',
-    preco: 'R$ 249,90',
-    popular: false,
-    economize: '30%',
-    planoId: 3,
-    beneficios: [
-      'Tudo do plano mensal',
-      '2 meses grátis',
       'Conteúdo exclusivo',
       'Suporte prioritário',
     ],
@@ -163,7 +150,7 @@ export default function Planos() {
       {/* Cards de planos */}
       <div className="max-w-5xl mx-auto px-4 pb-20">
         <motion.div
-          className="grid md:grid-cols-3 gap-8"
+          className="grid md:grid-cols-2 gap-8"
           variants={container}
           initial="hidden"
           animate="show"
@@ -302,8 +289,8 @@ export default function Planos() {
                 background: `linear-gradient(90deg, transparent, ${ACCENT}, ${GOLD}, transparent)`,
               }}
             />
-            {[
-              { step: 1, title: 'Escolha o plano', desc: 'Mensal ou anual.' },
+              {[
+              { step: 1, title: 'Escolha o plano', desc: 'Mensal ou trimestral.' },
               { step: 2, title: 'Pague com segurança', desc: 'Cartão ou PIX.' },
               { step: 3, title: 'Aproveite o dojo', desc: 'Acesso imediato.' },
             ].map(({ step, title, desc }) => (

@@ -164,9 +164,17 @@ export default function Quiz() {
   const [nivelSalvo, setNivelSalvo] = useState(1);
   const [showTreinoSelector, setShowTreinoSelector] = useState(false);
   const [nivelTreinoEscolhido, setNivelTreinoEscolhido] = useState(1);
+  const [isPremiumUser, setIsPremiumUser] = useState(false);
+  const maxNivelDisponivel = isPremiumUser ? MAX_NIVEL : 1;
 
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    apiMe()
+      .then((r) => setIsPremiumUser(!!r?.user?.conta_premium))
+      .catch(() => setIsPremiumUser(false));
   }, []);
 
   useEffect(() => {
@@ -176,11 +184,11 @@ export default function Quiz() {
       setDojo(localStorage.getItem(STORAGE_DOJO) || '');
       setCidade(localStorage.getItem(STORAGE_CIDADE) || '');
       const n = parseInt(localStorage.getItem(STORAGE_NIVEL) || '1', 10);
-      setNivelSalvo(Math.max(1, Math.min(MAX_NIVEL, n)) || 1);
+      setNivelSalvo(Math.max(1, Math.min(maxNivelDisponivel, n)) || 1);
     } catch {
       // localStorage pode estar bloqueado (ex.: modo privado)
     }
-  }, [mounted]);
+  }, [mounted, maxNivelDisponivel]);
 
 
   const loadRanking = useCallback(async () => {
@@ -194,7 +202,7 @@ export default function Quiz() {
         if (nick) {
           const entry = arr.find((e) => (e?.nome || '').trim().toLowerCase() === nick.trim().toLowerCase());
           if (entry?.nivel_quiz) {
-            const n = Math.max(1, Math.min(MAX_NIVEL, Number(entry.nivel_quiz) || 1));
+            const n = Math.max(1, Math.min(maxNivelDisponivel, Number(entry.nivel_quiz) || 1));
             setNivelSalvo(n);
             localStorage.setItem(STORAGE_NIVEL, String(n));
           }
@@ -265,7 +273,7 @@ export default function Quiz() {
     setLastSubmitResult(null);
     setShowLastQuestionModal(false);
     setPhase('quiz');
-  }, [nivelSalvo]);
+  }, [nivelSalvo, maxNivelDisponivel]);
 
   const startQuiz = useCallback(() => {
     if (hasDadosRanking()) {
@@ -303,24 +311,25 @@ export default function Quiz() {
     const cid = (cidade || '').trim();
     setSubmitting(true);
     try {
+      const canLevelUp = isPremiumUser;
       const res = await submitQuizResult({
         nickname: nome,
         dojo: d,
         cidade: cid,
         nivel_quiz: nivelAtual,
         xp_ganho: xpNivel,
-        passou_nivel: passou,
+        passou_nivel: canLevelUp && passou,
         acertos: score,
       });
       setLastSubmitResult(res);
       if (typeof window !== 'undefined' && res?.nivel_quiz) {
         try {
-          localStorage.setItem(STORAGE_NIVEL, String(Math.max(1, Math.min(MAX_NIVEL, res.nivel_quiz))));
+          localStorage.setItem(STORAGE_NIVEL, String(Math.max(1, Math.min(maxNivelDisponivel, res.nivel_quiz))));
         } catch {}
       }
-      setNivelSalvo((prev) => (res?.nivel_quiz ? Math.max(1, Math.min(MAX_NIVEL, res.nivel_quiz)) : prev));
+      setNivelSalvo((prev) => (res?.nivel_quiz ? Math.max(1, Math.min(maxNivelDisponivel, res.nivel_quiz)) : prev));
       await loadRanking();
-      if (passou && nivelAtual < MAX_NIVEL) {
+      if (canLevelUp && passou && nivelAtual < MAX_NIVEL) {
         setPhase('levelUp');
       } else {
         setPhase('result');
@@ -330,7 +339,7 @@ export default function Quiz() {
     } finally {
       setSubmitting(false);
     }
-  }, [nickname, dojo, cidade, nivelAtual, xpNivel, score, loadRanking]);
+  }, [nickname, dojo, cidade, nivelAtual, xpNivel, score, loadRanking, isPremiumUser, maxNivelDisponivel]);
 
   const handleAnswer = useCallback((idx) => {
     if (answered) return;
@@ -379,6 +388,10 @@ export default function Quiz() {
   }, [current, questions.length, score, isRankingMode, isTreinoNivelAnterior, submitAndGoResult]);
 
   const goNextLevel = useCallback(() => {
+    if (!isPremiumUser) {
+      setPhase('result');
+      return;
+    }
     const next = Math.min(MAX_NIVEL, nivelAtual + 1);
     setNivelAtual(next);
     setNivelSalvo(next);
@@ -394,9 +407,10 @@ export default function Quiz() {
     setSelected(null);
     setAnswered(false);
     setPhase('quiz');
-  }, [nivelAtual]);
+  }, [nivelAtual, isPremiumUser]);
 
   const startTreinoEmNivel = useCallback((nivel) => {
+    if (!isPremiumUser) return;
     const n = Math.max(1, Math.min(MAX_NIVEL, nivel));
     setIsTreinoNivelAnterior(true);
     setIsRankingMode(true);
@@ -411,7 +425,7 @@ export default function Quiz() {
     setAnswered(false);
     setShowLastQuestionModal(false);
     setPhase('quiz');
-  }, []);
+  }, [isPremiumUser]);
 
   const startTreinoNivelAnterior = useCallback(() => {
     if (nivelAtual <= 1) return;
@@ -506,6 +520,15 @@ export default function Quiz() {
                 >
                   8 perguntas por nível · 10 níveis. Acerte todas seguidas para subir.
                 </motion.p>
+                {!isPremiumUser && (
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="mb-4 px-4 py-2 rounded-xl inline-block bg-blue-500/10 border border-blue-400/30 text-blue-200 text-sm"
+                  >
+                    Gratis: Quiz Nivel 1 liberado. Niveis 2+ apenas no Premium.
+                  </motion.p>
+                )}
                 {hasDadosRanking() && (
                   <motion.div
                     initial={{ opacity: 0, y: 8 }}
@@ -546,7 +569,7 @@ export default function Quiz() {
                     </motion.button>
                   )}
                 </div>
-                {nivelSalvo > 1 && (
+                {isPremiumUser && nivelSalvo > 1 && (
                   <motion.button
                     variants={item}
                     initial="hidden"
@@ -811,6 +834,11 @@ export default function Quiz() {
                         <span className="text-3xl font-bold text-white">{nivelAtual}</span>
                         <span className="text-amber-400 font-bold block text-lg">{CATEGORIAS_NIVEL[nivelAtual]}</span>
                       </motion.div>
+                      {!isPremiumUser && (
+                        <div className="px-4 py-2 rounded-xl bg-blue-500/15 border border-blue-400/40">
+                          <span className="text-blue-200 text-xs font-semibold">Modo Gratis: somente Nivel 1</span>
+                        </div>
+                      )}
                       {maxStreak > 0 && (
                         <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="px-4 py-2 rounded-xl bg-emerald-500/20 border-2 border-emerald-400/40">
                           <span className="text-emerald-400 font-bold text-lg">{maxStreak}</span>
@@ -1017,6 +1045,11 @@ export default function Quiz() {
                 >
                   {total ? (score / total >= 0.8 ? 'Excelente! Você domina a teoria do judô.' : score / total >= 0.5 ? 'Bom trabalho! Continue estudando e evoluindo.' : isRankingMode ? 'Revise o conteúdo e tente de novo para passar de nível.' : 'Siga treinando e revise o conteúdo para melhorar.') : ''}
                 </motion.p>
+                {!isPremiumUser && (
+                  <div className="mb-8 p-4 rounded-2xl bg-amber-500/10 border border-amber-400/30 text-amber-200">
+                    Voce concluiu o Nivel 1 gratis. Para desbloquear niveis 2 a 10, assine o Premium.
+                  </div>
+                )}
                 <div className="grid grid-cols-2 gap-6 mb-8">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -1093,6 +1126,14 @@ export default function Quiz() {
                 )}
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
+                  {!isPremiumUser && (
+                    <Link
+                      to="/payments/planos"
+                      className="py-4 px-8 rounded-2xl font-bold text-black bg-amber-400 hover:bg-amber-300 transition-colors text-lg"
+                    >
+                      Desbloquear niveis Premium
+                    </Link>
+                  )}
                   <motion.button
                     whileHover={{ scale: 1.04 }}
                     whileTap={{ scale: 0.98 }}

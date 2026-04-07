@@ -12,5 +12,6 @@ urlpatterns = [
     path('refresh-cache/', api_views.api_admin_refresh_cache),
     path('ativar-manual/', api_views.api_admin_ativar_manual),
     path('corrigir-assinaturas/', api_views.api_admin_corrigir_assinaturas),
+    path('send-marketing-email/', api_views.api_admin_send_marketing_email),
     path('user/<int:user_id>/', api_views.api_admin_user_detail),
 ]

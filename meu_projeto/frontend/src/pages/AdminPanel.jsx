@@ -17,6 +17,8 @@ import {
   Loader2,
   BarChart3,
   Zap,
+  Mail,
+  Send,
 } from 'lucide-react';
 import {
   adminMe,
@@ -28,6 +30,7 @@ import {
   adminDeleteUser,
   adminRefreshCache,
   adminCorrigirAssinaturas,
+  adminSendMarketingEmail,
   fetchCsrf,
 } from '../api';
 
@@ -79,13 +82,13 @@ function AdminLogin({ onSuccess }) {
               </div>
             )}
             <div>
-              <label className="block text-slate-400 text-sm mb-2">Usuário</label>
+              <label className="block text-slate-400 text-sm mb-2">Usuário ou e-mail</label>
               <input
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500/50"
-                placeholder="Digite seu usuário"
+                placeholder="Digite seu usuário ou e-mail"
                 required
                 autoComplete="username"
               />
@@ -152,6 +155,13 @@ function AdminDashboard({ user, onLogout }) {
   const [error, setError] = useState('');
   const [actionLoading, setActionLoading] = useState(null);
   const [modal, setModal] = useState(null);
+  const [sendTo, setSendTo] = useState('selected');
+  const [selectedUsers, setSelectedUsers] = useState([]);
+  const [marketingSubject, setMarketingSubject] = useState('Convite para ativar seu acesso Premium no Dojo Online');
+  const [marketingBody, setMarketingBody] = useState(
+    'Ola!\\n\\nEstamos com novidades no Dojo Online e queremos te convidar para ativar o Premium.\\n\\nAcesse: https://www.dojoon.com.br/payments/planos/\\n\\nBons treinos!'
+  );
+  const [marketingResult, setMarketingResult] = useState('');
 
   const load = async () => {
     setLoading(true);
@@ -194,6 +204,28 @@ function AdminDashboard({ user, onLogout }) {
       user: u,
       planId,
     });
+  };
+
+  const toggleSelectedUser = (id) => {
+    setSelectedUsers((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
+  };
+
+  const handleSendMarketing = async () => {
+    setActionLoading('marketing');
+    setMarketingResult('');
+    try {
+      const resp = await adminSendMarketingEmail({
+        subject: marketingSubject,
+        body: marketingBody,
+        send_to: sendTo,
+        user_ids: selectedUsers,
+      });
+      setMarketingResult(resp?.message || 'E-mail enviado com sucesso');
+    } catch (err) {
+      setError(err?.message || 'Erro ao enviar e-mail');
+    } finally {
+      setActionLoading(null);
+    }
   };
 
   if (loading && !data) {
@@ -409,6 +441,143 @@ function AdminDashboard({ user, onLogout }) {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Lista completa de cadastrados */}
+        <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
+          <div className="px-6 py-4 border-b border-white/10 flex items-center justify-between">
+            <h2 className="text-lg font-semibold text-white">Lista de cadastrados</h2>
+            <span className="text-xs text-slate-400">{(data?.all_users || []).length} usuarios</span>
+          </div>
+          <div className="max-h-96 overflow-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-white/10 text-slate-400">
+                  <th className="py-2 px-3 text-left">Sel.</th>
+                  <th className="py-2 px-3 text-left">Nome</th>
+                  <th className="py-2 px-3 text-left">Email</th>
+                  <th className="py-2 px-3 text-left">Cadastro</th>
+                  <th className="py-2 px-3 text-left">Ultimo acesso</th>
+                  <th className="py-2 px-3 text-center">Status</th>
+                  <th className="py-2 px-3 text-right">Acoes</th>
+                </tr>
+              </thead>
+              <tbody>
+                {(data?.all_users || []).map((u) => (
+                  <tr key={u.id} className="border-b border-white/5 hover:bg-white/5">
+                    <td className="py-2 px-3">
+                      <input
+                        type="checkbox"
+                        checked={selectedUsers.includes(u.id)}
+                        onChange={() => toggleSelectedUser(u.id)}
+                        className="accent-amber-400"
+                      />
+                    </td>
+                    <td className="py-2 px-3 text-white">{u.nome || u.username}</td>
+                    <td className="py-2 px-3 text-slate-300">{u.email}</td>
+                    <td className="py-2 px-3 text-slate-400">{u.date_joined}</td>
+                    <td className="py-2 px-3 text-slate-400">{u.last_login || '-'}</td>
+                    <td className="py-2 px-3 text-center">
+                      {u.premium ? (
+                        <span className="px-2 py-0.5 rounded text-xs bg-amber-500/20 text-amber-400">Premium</span>
+                      ) : (
+                        <span className="px-2 py-0.5 rounded text-xs bg-slate-500/20 text-slate-400">Gratis</span>
+                      )}
+                    </td>
+                    <td className="py-2 px-3">
+                      <div className="flex justify-end gap-1">
+                        {!u.premium && data?.plans?.length > 0 && (
+                          <button
+                            onClick={() => handleGivePremium(u)}
+                            className="p-1.5 rounded-lg bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30"
+                            title="Dar premium"
+                          >
+                            <Crown className="w-4 h-4" />
+                          </button>
+                        )}
+                        {u.premium && (
+                          <button
+                            onClick={() => doAction(`rm-all-${u.id}`, () => adminRemovePremium(u.id))}
+                            disabled={actionLoading === `rm-all-${u.id}`}
+                            className="p-1.5 rounded-lg bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 disabled:opacity-50"
+                            title="Remover premium"
+                          >
+                            <UserMinus className="w-4 h-4" />
+                          </button>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Últimos atualizados */}
+        <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
+          <div className="px-6 py-4 border-b border-white/10">
+            <h2 className="text-lg font-semibold text-white">Ultimos atualizados</h2>
+            <p className="text-xs text-slate-400 mt-1">Baseado no ultimo login/acesso</p>
+          </div>
+          <div className="divide-y divide-white/5">
+            {(data?.latest_updated_users || []).map((u) => (
+              <div key={u.id} className="px-6 py-3 flex items-center justify-between">
+                <div>
+                  <p className="text-white font-medium">{u.nome}</p>
+                  <p className="text-slate-400 text-sm">{u.email}</p>
+                </div>
+                <div className="text-right">
+                  <p className="text-slate-300 text-sm">{u.last_login || 'Nunca logou'}</p>
+                  <p className="text-slate-500 text-xs">Cadastro: {u.date_joined}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Remarketing por e-mail */}
+        <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-6">
+          <h2 className="text-lg font-semibold text-white flex items-center gap-2 mb-4">
+            <Mail className="w-5 h-5 text-amber-400" />
+            Remarketing por e-mail
+          </h2>
+          <div className="grid grid-cols-1 gap-4">
+            <div className="flex flex-wrap gap-3">
+              <label className="text-sm text-slate-300 flex items-center gap-2">
+                <input type="radio" name="sendTo" value="selected" checked={sendTo === 'selected'} onChange={(e) => setSendTo(e.target.value)} />
+                Selecionados ({selectedUsers.length})
+              </label>
+              <label className="text-sm text-slate-300 flex items-center gap-2">
+                <input type="radio" name="sendTo" value="all" checked={sendTo === 'all'} onChange={(e) => setSendTo(e.target.value)} />
+                Todos cadastrados
+              </label>
+            </div>
+            <input
+              value={marketingSubject}
+              onChange={(e) => setMarketingSubject(e.target.value)}
+              placeholder="Assunto do e-mail"
+              className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500"
+            />
+            <textarea
+              value={marketingBody}
+              onChange={(e) => setMarketingBody(e.target.value)}
+              placeholder="Mensagem"
+              rows={6}
+              className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500"
+            />
+            <div className="flex items-center gap-3">
+              <button
+                onClick={handleSendMarketing}
+                disabled={actionLoading === 'marketing' || !marketingSubject.trim() || !marketingBody.trim() || (sendTo === 'selected' && selectedUsers.length === 0)}
+                className="px-4 py-2 rounded-lg bg-amber-500 text-black font-semibold hover:bg-amber-400 disabled:opacity-50 flex items-center gap-2"
+              >
+                {actionLoading === 'marketing' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+                Enviar e-mail
+              </button>
+              {marketingResult && <span className="text-emerald-400 text-sm">{marketingResult}</span>}
             </div>
           </div>
         </div>
