@@ -15,20 +15,39 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.conf import settings
 from django.shortcuts import redirect
 from django.conf.urls.static import static
 from dashboard import views as dashboard_views
 from meu_projeto import views_supabase
+from meu_projeto.redirect_utils import frontend_route
 from payments import views as payments_views
 
 def redirect_to_admin_panel(request):
     """Redireciona para o painel admin no frontend React."""
-    base = getattr(settings, 'FRONTEND_URL', 'http://localhost:5173').rstrip('/')
-    return redirect(f'{base}/admin-panel', permanent=False)
+    return frontend_route(request, '/admin-panel')
 
 urlpatterns = [
+    re_path(r'^$', lambda request: frontend_route(request, '/')),
+    re_path(r'^login/?$', lambda request: frontend_route(request, '/login')),
+    re_path(r'^register/?$', lambda request: frontend_route(request, '/register')),
+    re_path(r'^esqueci-senha/?$', lambda request: frontend_route(request, '/esqueci-senha')),
+    re_path(r'^index/?$', lambda request: frontend_route(request, '/index')),
+    re_path(r'^pagina/\d+/?$', lambda request: frontend_route(request, request.path.rstrip('/'))),
+    re_path(r'^quiz/?$', lambda request: frontend_route(request, '/quiz')),
+    re_path(r'^ukemis/?$', lambda request: frontend_route(request, '/ukemis')),
+    re_path(r'^historia/?$', lambda request: frontend_route(request, '/historia')),
+    re_path(r'^palavras/?$', lambda request: frontend_route(request, '/palavras')),
+    re_path(r'^regras/?$', lambda request: frontend_route(request, '/regras')),
+    re_path(r'^payments/?$', lambda request: frontend_route(request, '/payments')),
+    re_path(r'^payments/planos/?$', lambda request: frontend_route(request, '/payments/planos')),
+    re_path(r'^payments/plano/\d+/?$', lambda request: frontend_route(request, request.path.rstrip('/'))),
+    re_path(r'^payments/checkout/\d+/?$', lambda request: frontend_route(request, request.path.rstrip('/'))),
+    re_path(r'^ranking/?$', lambda request: frontend_route(request, '/ranking')),
+    re_path(r'^simulados/?$', lambda request: frontend_route(request, '/simulados')),
+    re_path(r'^amarrar-faixa/?$', lambda request: frontend_route(request, '/amarrar-faixa')),
+    re_path(r'^admin-panel/?$', lambda request: frontend_route(request, '/admin-panel')),
     path('admin/', redirect_to_admin_panel),
     path('admin-panel/', redirect_to_admin_panel),
     path('django-admin/', admin.site.urls),

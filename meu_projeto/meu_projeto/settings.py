@@ -90,7 +90,7 @@ ROOT_URLCONF = 'meu_projeto.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'frontend' / 'dist'],
         'APP_DIRS': True,
         'OPTIONS': {'context_processors': [
             'django.template.context_processors.request',
@@ -200,6 +200,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Esta configuração diz ao Django onde procurar por arquivos estáticos
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
+    BASE_DIR / 'frontend' / 'dist',
 ]
 
 # Configuração do WhiteNoise para servir arquivos estáticos

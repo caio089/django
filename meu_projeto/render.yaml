@@ -3,7 +3,7 @@ services:
     name: dojo-on
     env: python
     plan: free
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install -r requirements.txt && npm --prefix frontend ci && npm --prefix frontend run build && python3 manage.py collectstatic --noinput
     startCommand: bash start.sh
     envVars:
       - key: DEBUG
