@@ -8,11 +8,11 @@ import ScrollReveal from '../components/ScrollReveal';
 const ACCENT = 'rgb(59, 130, 246)';
 
 const KANO_BIO = [
-  { label: 'Nome', value: 'Nasceu "Shinnosuke", posteriormente mudou para Jigoro Kano' },
+  { label: 'Nome', value: 'Kanō Jigorō (Jigoro Kano)' },
   { label: 'Nascimento', value: '28.out.1860 — Mikage, Província de Settsu (atual Hyogo), Japão' },
-  { label: 'Artes marciais', value: 'Praticou Tenjin Shin\'yo-Ryu e Kito-Ryu (possuía Menkyo — licença para ensinar)' },
-  { label: 'Escola de judô', value: 'Em 1882, em Tóquio, criou a Kodokan, primeira escola de judô do mundo' },
-  { label: 'Família', value: 'Pai: Jirosaku Mareshiba Kano | Mãe: Sadako | Esposa: Sumako' },
+  { label: 'Formação marcial', value: 'Estudou escolas de jujutsu como Tenjin Shin\'yo-ryu e Kito-ryu' },
+  { label: 'Kodokan', value: 'Fundou o Kodokan em 1882, em Tóquio, marco inicial do judô moderno' },
+  { label: 'Movimento olímpico', value: 'Foi o primeiro japonês e também o primeiro asiático membro do Comitê Olímpico Internacional (COI)' },
   { label: 'Morte', value: '04.mai.1938, de pneumonia, aos 77 anos, num navio no Oceano Pacífico' },
 ];
 
@@ -24,23 +24,23 @@ const KODOKAN_SIGNIFICADO = [
 
 const TIMELINE = [
   { year: '1882', title: 'Fundação do Judô', text: 'Jigoro Kano funda o Instituto Kodokan em Tóquio, criando o judô baseado em eficiência máxima e benefício mútuo.' },
-  { year: '1886', title: 'Primeira Demonstração', text: 'O judô é apresentado ao público. O Kodokan vence 13 de 15 lutas contra escolas de jujutsu, provando sua eficácia.' },
-  { year: '1914', title: 'Judô no Brasil', text: 'Mitsuyo Maeda, "Conde Koma", chega a Belém do Pará e funda a primeira escola de judô do país.' },
-  { year: '1964', title: 'Primeira aparição olímpica', text: 'O judô faz sua primeira apresentação nos Jogos de Tóquio, como esporte de demonstração.' },
-  { year: '1972', title: 'Primeiro torneio olímpico', text: 'Nos Jogos de Munique, o judô entra como esporte oficial pela primeira vez. Chiaki Ishii conquista o bronze.' },
+  { year: '1886', title: 'Consolidação do Kodokan', text: 'Desafios e torneios com escolas de jujutsu ajudaram o Kodokan a ganhar prestígio no Japão.' },
+  { year: '1914', title: 'Judô no Brasil', text: 'Mitsuyo Maeda, o Conde Koma, chega a Belém do Pará e se torna peça importante na difusão do judô no país.' },
+  { year: '1964', title: 'Estreia olímpica', text: 'O judô entra oficialmente no programa dos Jogos Olímpicos em Tóquio 1964.' },
+  { year: '1972', title: 'Retorno definitivo', text: 'Após ficar fora de 1968, o judô volta aos Jogos em Munique 1972 e permanece no programa olímpico.' },
   { year: 'Hoje', title: 'Século XXI', text: 'Milhões de praticantes no mundo. Equilíbrio entre tradição e modernidade.' },
 ];
 
 const FILOSOFIA = [
   { kanji: '精力善用', nome: 'Seiryoku Zenyo', desc: 'Máxima eficiência com mínimo esforço', emoji: '⚡', text: 'A sabedoria supera a força física. O judô ensina a usar a energia do oponente contra ele.' },
   { kanji: '自他共栄', nome: 'Jita Kyoei', desc: 'Benefício mútuo e prosperidade', emoji: '🤝', text: 'O progresso vem pela cooperação e respeito mútuo. O treino beneficia ambos os parceiros.' },
-  { kanji: '武士道', nome: 'Bushido', desc: 'O caminho do guerreiro', emoji: '⚔️', text: 'Honra, lealdade, coragem e respeito. O judô desenvolve o caráter e a integridade moral.' },
+  { kanji: '礼', nome: 'Rei', desc: 'Respeito e cortesia', emoji: '🙇', text: 'A etiqueta, o autocontrole e o respeito ao parceiro são partes essenciais da prática do judô.' },
 ];
 
 const TECNICAS = [
   { nome: 'Nage-waza', desc: 'Técnicas de Projeção', emoji: '🔄', text: 'Projeções de quadril, perna, ombro e sacrifício, demonstrando Seiryoku Zenyo.' },
-  { nome: 'Katame-waza', desc: 'Técnicas de Controle', emoji: '🔒', text: 'Imobilizações, estrangulamentos e chaves. Kano manteve apenas as técnicas seguras.' },
-  { nome: 'Atemi-waza', desc: 'Técnicas de Golpe', emoji: '⚡', text: 'Incluídas no judô tradicional para preservar o aspecto marcial completo.' },
+  { nome: 'Katame-waza', desc: 'Técnicas de Controle', emoji: '🔒', text: 'Imobilizações, estrangulamentos e chaves de braço compõem parte importante do repertório técnico do judô.' },
+  { nome: 'Atemi-waza', desc: 'Golpes em estudo formal', emoji: '⚡', text: 'Golpes existem em alguns estudos formais e katas, mas não fazem parte das lutas esportivas de judô.' },
 ];
 
 const MEDALHAS_OLIMPICAS = [
@@ -80,6 +80,96 @@ const MEDALHAS_OLIMPICAS = [
     { peso: '-78kg', nome: 'Mayra Aguiar', tipo: 'bronze' },
     { peso: '+100kg', nome: 'Rafael Silva', tipo: 'bronze' },
   ]},
+  { ano: '2020', cidade: 'Tóquio (JPN)', medalhas: [
+    { peso: '-66kg', nome: 'Daniel Cargnin', tipo: 'bronze' },
+    { peso: '-78kg', nome: 'Mayra Aguiar', tipo: 'bronze' },
+  ]},
+  { ano: '2024', cidade: 'Paris (FRA)', medalhas: [
+    { peso: '+78kg', nome: 'Beatriz Souza', tipo: 'ouro' },
+    { peso: '-66kg', nome: 'Willian Lima', tipo: 'prata' },
+    { peso: '-52kg', nome: 'Larissa Pimenta', tipo: 'bronze' },
+    { peso: 'Equipe mista', nome: 'Brasil', tipo: 'bronze' },
+  ]},
+];
+
+const GRADUACAO_FAIXAS = [
+  {
+    nome: 'Branca',
+    classe: 'bg-white text-slate-900',
+    titulo: 'Início da jornada',
+    descricao: 'Representa o começo. Simboliza abertura para aprender, disciplina básica e primeiros contatos com a etiqueta do judô.',
+  },
+  {
+    nome: 'Cinza',
+    classe: 'bg-slate-400 text-slate-900',
+    titulo: 'Primeiros fundamentos',
+    descricao: 'Marca os primeiros avanços técnicos. O praticante começa a consolidar postura, deslocamento, ukemis e noções iniciais de projeção.',
+  },
+  {
+    nome: 'Azul',
+    classe: 'bg-blue-500 text-white',
+    titulo: 'Base em construção',
+    descricao: 'Mostra maior controle corporal e entendimento das técnicas básicas. A confiança cresce, mas ainda com foco forte no aprendizado.',
+  },
+  {
+    nome: 'Amarela',
+    classe: 'bg-amber-300 text-slate-900',
+    titulo: 'Crescimento técnico',
+    descricao: 'Nesta etapa o judoca amplia repertório, melhora tempo de entrada e começa a enxergar melhor combinações e situações de luta.',
+  },
+  {
+    nome: 'Laranja',
+    classe: 'bg-orange-500 text-white',
+    titulo: 'Evolução e consistência',
+    descricao: 'Representa um nível intermediário mais sólido. O aluno já executa técnicas com mais intenção, controle e leitura do adversário.',
+  },
+  {
+    nome: 'Verde',
+    classe: 'bg-emerald-600 text-white',
+    titulo: 'Maturidade intermediária',
+    descricao: 'A faixa verde costuma indicar maior variação técnica e melhor entendimento tático. O judoca já mostra mais autonomia no treino.',
+  },
+  {
+    nome: 'Roxa',
+    classe: 'bg-purple-600 text-white',
+    titulo: 'Refinamento',
+    descricao: 'O praticante começa a refinar detalhes, contra-ataques, combinações e transições com mais clareza, aproximando-se do nível avançado.',
+  },
+  {
+    nome: 'Marrom',
+    classe: 'bg-amber-900 text-white',
+    titulo: 'Preparação para a preta',
+    descricao: 'É a fase de lapidação final antes da faixa preta. Exige repertório amplo, postura madura, responsabilidade e compreensão mais profunda do judô.',
+  },
+  {
+    nome: 'Preta',
+    classe: 'bg-black text-white border border-white/20',
+    titulo: 'Novo começo em nível avançado',
+    descricao: 'A faixa preta não significa “fim”, mas o início de uma etapa mais profunda. O judoca passa a estudar com mais responsabilidade técnica e filosófica.',
+  },
+];
+
+const GRADUACAO_ALTAS = [
+  {
+    titulo: 'Kyu',
+    subtitulo: 'Graduações coloridas',
+    texto: 'As graduações de kyu correspondem às faixas anteriores à preta. Nesta página, a ordem apresentada é: branca, cinza, azul, amarela, laranja, verde, roxa e marrom.',
+  },
+  {
+    titulo: 'Dan',
+    subtitulo: 'Graus da faixa preta',
+    texto: 'Após a faixa preta, o avanço passa a ser contado em graus chamados dan. Cada dan representa aprofundamento técnico, experiência, postura e contribuição ao judô.',
+  },
+  {
+    titulo: 'Kodansha',
+    subtitulo: 'Graduações superiores',
+    texto: 'Kodansha é o praticante de graduação alta dentro do sistema de dan. Em geral, o termo é usado para designar faixas pretas mais graduadas, reconhecidas por trajetória e conhecimento.',
+  },
+  {
+    titulo: 'Faixa vermelha',
+    subtitulo: 'Símbolo de altíssima graduação',
+    texto: 'A faixa vermelha está ligada aos graus mais elevados e representa uma vida dedicada ao judô. Ela é rara e associada a mestres de enorme legado técnico, moral e histórico.',
+  },
 ];
 
 function JigoroKanoBio() {
@@ -140,7 +230,7 @@ export default function Historia() {
             História do Judô
           </motion.h1>
           <motion.p className="text-slate-400 text-lg" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
-            140 anos de evolução, filosofia e tradição — 道の心
+            Desde 1882, tradição, filosofia e evolução — 道の心
           </motion.p>
         </div>
       </section>
@@ -150,7 +240,7 @@ export default function Historia() {
           <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-center">
             <p className="text-slate-300 leading-relaxed">
               O judô, &quot;caminho da suavidade&quot;, transcende o combate físico. Jigoro Kano criou em 1882 uma prática
-              que une eficiência, respeito e harmonia. Uma filosofia de vida que inspira milhões no mundo.
+              que une educação, eficiência e respeito. Mais do que um esporte, tornou-se uma disciplina formativa com alcance mundial.
             </p>
           </div>
         </ScrollReveal>
@@ -170,9 +260,11 @@ export default function Historia() {
                 </div>
               </div>
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
-                Educador japonês, poliglota e fundador do judô — uma das primeiras artes marciais japonesas a ganhar
-                reconhecimento internacional. O judô foi a primeira a se tornar esporte olímpico oficial. Kano também
-                foi o <strong className="text-white">primeiro membro asiático do Comitê Olímpico Internacional</strong>.
+                Educador japonês e fundador do judô moderno. Sua proposta reorganizou técnicas de jujutsu em um sistema
+                de educação física, formação moral e prática esportiva. O judô foi a
+                <strong className="text-white"> primeira arte marcial japonesa a integrar o programa olímpico</strong>.
+                Kano também foi o
+                <strong className="text-white"> primeiro japonês e primeiro asiático membro do Comitê Olímpico Internacional</strong>.
               </p>
               <JigoroKanoBio />
             </div>
@@ -191,7 +283,7 @@ export default function Historia() {
                 </div>
               </div>
               <p className="text-slate-300 text-sm leading-relaxed mb-6">
-                Fundada por Jigoro Kano aos 21 anos, em maio de 1882, em Tóquio, no Japão — e existe até os dias atuais.
+                Fundado por Jigoro Kano em maio de 1882, em Tóquio, o Kodokan começou com poucos tatames e se tornou a principal referência mundial do judô.
               </p>
               <div className="grid grid-cols-3 gap-3 mb-6">
                 {KODOKAN_SIGNIFICADO.map((s) => (
@@ -202,16 +294,8 @@ export default function Historia() {
                   </div>
                 ))}
               </div>
-              <p className="text-amber-400/80 text-sm font-semibold mb-2 font-jp">Escola para estudar o caminho</p>
+              <p className="text-amber-400/80 text-sm font-semibold mb-2 font-jp">Lugar para estudar o caminho</p>
               <div className="space-y-4">
-                <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
-                  <h4 className="text-white font-semibold text-sm mb-2">Símbolo da Kodokan</h4>
-                  <p className="text-slate-400 text-xs leading-relaxed">
-                    Forma de oito lados — fio de seda, círculo vermelho, núcleo de ferro em chamas. Inspirado no
-                    <strong className="text-white"> Yata-no-Kagami</strong> (espelho sagrado do relicário imperial do Japão),
-                    que representa sabedoria e honestidade. &quot;O espelho de 8 mãos&quot; — símbolo de pureza, iluminação espiritual e renovação.
-                  </p>
-                </div>
                 <p className="text-slate-400 text-xs leading-relaxed">
                   A sede da Kodokan é um local icônico para praticantes de todo o mundo — centro de ensino e pesquisa
                   dedicado à promoção e preservação do judô, tornando-se um símbolo duradouro da influência global dessa arte marcial.
@@ -303,18 +387,13 @@ export default function Historia() {
                 <span className="text-2xl">🇧🇷</span> Chegada do Judô no Brasil
               </h2>
               <p className="text-slate-400 text-sm leading-relaxed mb-4">
-                Há quem afirme que o judô veio com a imigração japonesa em 1908. Há também referências vagas sobre
-                um certo professor Miura que teria ensinado judô por volta de 1903. Entretanto, foi no início dos anos
-                vinte que chegou ao Brasil <strong className="text-white">Mitsuyo Maeda</strong> (ou Eisei Maeda),
-                conhecido como <strong className="text-amber-400">Conde Koma</strong>, tendo ele o primeiro registro
-                nos anais da história do judô brasileiro.
+                A presença japonesa no Brasil ajudou a criar ambiente favorável para a difusão do judô, mas um dos nomes
+                historicamente mais associados a esse processo é <strong className="text-white">Mitsuyo Maeda</strong>,
+                conhecido como <strong className="text-amber-400">Conde Koma</strong>, que chegou a Belém do Pará em 1914.
               </p>
               <p className="text-slate-400 text-sm leading-relaxed mb-4">
-                Percorreu várias capitais aceitando desafios e ganhando todos, promovendo assim o esporte.
-                Radicou-se em <strong className="text-white">Belém do Pará</strong>, onde montou sua escola. Dentre
-                seus alunos constava a <strong className="text-white">família Gracie</strong>, que deu continuidade ao
-                trabalho, progredindo e fundando novas escolas em algumas capitais e se projetando no cenário esportivo
-                brasileiro através do Jiu-Jitsu. (Gama, 1986)
+                Maeda viajou, realizou demonstrações e ensinou sua arte no Brasil, tornando-se uma figura importante na
+                história do judô e também uma referência na genealogia do jiu-jitsu brasileiro.
               </p>
               <div className="flex items-center gap-2 text-amber-400/80 text-xs">
                 <span className="font-jp">柔道</span> Judô no Brasil — Conde Koma
@@ -332,13 +411,13 @@ export default function Historia() {
               </h2>
               <p className="text-slate-400 text-sm leading-relaxed mb-6">
                 O judô é um esporte de combate individual que no Brasil tem bom prestígio e popularidade, produzindo
-                bons resultados em nível internacional — um dos que mais trouxeram medalhas olímpicas ao país.
+                bons resultados em nível internacional. O país construiu uma tradição consistente na modalidade em Jogos Olímpicos.
               </p>
               <div className="flex flex-wrap gap-3 mb-6">
-                <span className="px-4 py-2 rounded-xl bg-amber-500/20 text-amber-400 font-bold">22 medalhas</span>
-                <span className="px-4 py-2 rounded-xl bg-amber-400/30 text-amber-300 font-semibold">4 ouros</span>
-                <span className="px-4 py-2 rounded-xl bg-slate-400/30 text-slate-300 font-semibold">3 pratas</span>
-                <span className="px-4 py-2 rounded-xl bg-amber-700/40 text-amber-200 font-semibold">15 bronzes</span>
+                <span className="px-4 py-2 rounded-xl bg-amber-500/20 text-amber-400 font-bold">28 medalhas</span>
+                <span className="px-4 py-2 rounded-xl bg-amber-400/30 text-amber-300 font-semibold">5 ouros</span>
+                <span className="px-4 py-2 rounded-xl bg-slate-400/30 text-slate-300 font-semibold">4 pratas</span>
+                <span className="px-4 py-2 rounded-xl bg-amber-700/40 text-amber-200 font-semibold">19 bronzes</span>
               </div>
               <div className="space-y-4 max-h-[420px] overflow-y-auto pr-1">
                 {MEDALHAS_OLIMPICAS.map((edicao) => (
@@ -385,11 +464,40 @@ export default function Historia() {
           <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
             <h3 className="font-jp text-lg font-bold text-white mb-4">Sistema de Graduação</h3>
             <p className="text-slate-400 text-sm mb-4">
-              Cada faixa representa uma etapa no desenvolvimento. A faixa branca simboliza pureza e mente aberta;
-              as cores subsequentes representam o crescimento técnico e filosófico.
+              No judô, a graduação organiza a evolução do praticante. Cada faixa marca uma etapa de amadurecimento técnico,
+              disciplinar e mental dentro do caminho do aprendizado.
             </p>
-            <p className="text-slate-500 text-xs">
-              段位 — Dan | 級位 — Kyu — O sistema garante progressão gradual respeitando o desenvolvimento técnico e mental.
+            <div className="rounded-2xl border border-white/10 bg-black/20 p-4 mb-6">
+              <p className="text-white font-semibold mb-2">Ordem das faixas</p>
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Branca, cinza, azul, amarela, laranja, verde, roxa, marrom e preta.
+              </p>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-6">
+              {GRADUACAO_FAIXAS.map((faixa) => (
+                <div key={faixa.nome} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                  <div className={`inline-flex px-3 py-1 rounded-full text-xs font-bold mb-3 ${faixa.classe}`}>
+                    {faixa.nome}
+                  </div>
+                  <h4 className="text-white font-semibold mb-2">{faixa.titulo}</h4>
+                  <p className="text-slate-400 text-sm leading-relaxed">{faixa.descricao}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              {GRADUACAO_ALTAS.map((item) => (
+                <div key={item.titulo} className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                  <p className="text-amber-400/90 text-xs font-semibold uppercase tracking-wider mb-1">{item.subtitulo}</p>
+                  <h4 className="text-white font-semibold mb-2">{item.titulo}</h4>
+                  <p className="text-slate-400 text-sm leading-relaxed">{item.texto}</p>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-slate-500 text-xs mt-5">
+              級位 — Kyu | 段位 — Dan — A progressão pode variar em detalhes conforme federação, idade e regulamento adotado pela escola.
             </p>
           </div>
         </ScrollReveal>

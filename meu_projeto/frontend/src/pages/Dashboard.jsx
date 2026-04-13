@@ -45,7 +45,6 @@ const MENU_ITENS = [
 import { FAIXA_TO_COLOR } from '../data/faixaColors';
 
 const QUOTES = [
-  { jp: '「柔よく剛を制す」', pt: 'O suave domina o rígido' },
   { jp: '「精力善用、自他共栄」', pt: 'Máxima eficiência, prosperidade mútua' },
   { jp: '「形を正し、心を鍛える」', pt: 'Corrija a forma, tempere a mente' },
   { jp: '「心・技・体」', pt: 'Mente, técnica e corpo' },
@@ -344,7 +343,7 @@ export default function Dashboard() {
         {user && (
           <>
             <div className="text-center mb-6 md:mb-8">
-              <span className="font-jp text-4xl sm:text-5xl font-bold text-white/95 block mb-4">柔道</span>
+              <span className="font-dojo text-4xl sm:text-5xl font-bold text-white/95 block mb-4">Dojo Online</span>
               <p className="font-jp text-xl sm:text-2xl font-medium text-white/90">{quote.jp}</p>
               <p className="text-sm sm:text-base mt-1 opacity-80" style={{ color: themeColor }}>{quote.pt}</p>
             </div>

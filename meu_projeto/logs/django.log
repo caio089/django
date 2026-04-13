@@ -13166,3 +13166,59 @@ Traceback (most recent call last):
 django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.dojoon.com'. You may need to add 'www.dojoon.com' to ALLOWED_HOSTS.
 Payments ready: signals carregados; jobs pesados desativados no boot
 Payments ready: signals carregados; jobs pesados desativados no boot
+Payments ready: signals carregados; jobs pesados desativados no boot
+Payments ready: signals carregados; jobs pesados desativados no boot
+Payments ready: signals carregados; jobs pesados desativados no boot
+Payments ready: signals carregados; jobs pesados desativados no boot
+Watching for file changes with StatReloader
+"GET /static/ HTTP/1.1" 404 1945
+"GET /static/ HTTP/1.1" 404 1945
+"GET /static/ HTTP/1.1" 404 1945
+"GET /static/ HTTP/1.1" 404 1945
+"GET /static/ HTTP/1.1" 404 1945
+"GET /static/ HTTP/1.1" 404 1945
+"GET /static/ HTTP/1.1" 404 1945
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/csrf/ HTTP/1.1" 200 14
+"POST /api/login/ HTTP/1.1" 200 206
+"GET /api/me/ HTTP/1.1" 200 190
+"GET /api/me/ HTTP/1.1" 200 190
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 607
+"GET /api/me/ HTTP/1.1" 200 190
+"GET /api/me/ HTTP/1.1" 200 190
+"GET /api/me/ HTTP/1.1" 200 190
+"GET /api/me/ HTTP/1.1" 200 190
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 607
+"GET /api/me/ HTTP/1.1" 200 190
+"GET /api/me/ HTTP/1.1" 200 190
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 607
+"GET /api/me/ HTTP/1.1" 200 190
+"GET /api/me/ HTTP/1.1" 200 190
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 607
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 607
+"GET /api/me/ HTTP/1.1" 200 190
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 607
+"GET /api/me/ HTTP/1.1" 200 190
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 607
+"GET /api/me/ HTTP/1.1" 200 190
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 607
+"GET /api/me/ HTTP/1.1" 200 190
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 607
+"GET /api/me/ HTTP/1.1" 200 190
+"GET /api/me/ HTTP/1.1" 200 190
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 607
+"GET /api/me/ HTTP/1.1" 200 190
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 607
+"GET /api/me/ HTTP/1.1" 200 190
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 607
+"GET /api/me/ HTTP/1.1" 200 190
+"GET /api/me/ HTTP/1.1" 200 190
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 607
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 607
+"GET /api/me/ HTTP/1.1" 200 190
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 607
+"GET /api/me/ HTTP/1.1" 200 190
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 607
+"GET /api/me/ HTTP/1.1" 200 190
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 607

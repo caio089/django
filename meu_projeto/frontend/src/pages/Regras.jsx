@@ -154,9 +154,7 @@ export default function Regras() {
         </div>
       </section>
 
-      {/* Spacer para o nav fixo no mobile */}
-      <div className="h-16 sm:h-14 md:hidden" aria-hidden />
-      <div className="fixed md:sticky top-[57px] left-0 right-0 z-30 py-3 px-4 bg-black/40 backdrop-blur-xl border-b border-white/5 md:bg-black/30 md:backdrop-blur-lg">
+      <div className="hidden md:block sticky top-[57px] z-30 py-3 px-4 bg-black/30 backdrop-blur-lg border-b border-white/5">
         <div className="max-w-5xl mx-auto flex flex-wrap justify-center gap-2">
           {SECTIONS.map((s) => (
             <button
@@ -195,27 +193,27 @@ export default function Regras() {
           <ScrollReveal direction="up">
             <h2 className="font-jp text-xl sm:text-2xl font-bold text-white mb-5 flex items-center gap-3">
               <span className="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style={{ backgroundColor: 'rgba(5,150,105,0.2)' }}>🥋</span>
-              袴 — Regras do Kimono
+              柔道着 — Regras do Judogi
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
               <RuleCard title="Tamanhos" icon="📏" borderColor="rgb(5, 150, 105)" onClick={() => setModal('kimono-tamanhos')}>
-                <p>Masculino: 1–5 • Feminino: F1–F4 • Infantil: I1–I4</p>
+                <p>Não há grade oficial única. O tamanho varia por fabricante e pelo caimento.</p>
               </RuleCard>
               <RuleCard title="Material" icon="🧵" borderColor="rgb(5, 150, 105)" onClick={() => setModal('kimono-material')}>
-                <p>100% algodão, mínimo 700g. Cor branca ou azul</p>
+                <p>Judogi resistente, branco ou azul. Em alto nível, pode haver exigência de homologação.</p>
               </RuleCard>
               <RuleCard title="Medidas" icon="📐" borderColor="rgb(5, 150, 105)" onClick={() => setModal('kimono-medidas')}>
-                <p>Manga 5–7 cm do pulso • Calça 5–7 cm do tornozelo</p>
+                <p>Mangas até o punho • Calça próxima ao tornozelo • Faixa 4–4,5 cm</p>
               </RuleCard>
             </div>
             <div className="grid gap-4 mt-5 sm:grid-cols-2">
               <RuleCard title="Permitido" icon="✓" borderColor="rgb(34, 197, 94)" onClick={() => setModal('kimono-permitido')}>
-                <p>Kimono limpo e bem passado</p>
-                <p>Faixa 4–5 cm • Camiseta branca por baixo</p>
+                <p>Judogi limpo, íntegro e ajustado corretamente</p>
+                <p>Faixa bem amarrada • Peça branca lisa por baixo quando o regulamento exigir</p>
               </RuleCard>
               <RuleCard title="Proibido" icon="✕" borderColor="rgb(239, 68, 68)" onClick={() => setModal('kimono-proibido')}>
-                <p>Kimono rasgado ou sujo</p>
-                <p>Faixa incorreta • Roupas coloridas por baixo</p>
+                <p>Judogi rasgado, fora das medidas ou excessivamente apertado</p>
+                <p>Faixa inadequada • Roupa colorida/estampada por baixo quando vedada</p>
               </RuleCard>
             </div>
           </ScrollReveal>
@@ -230,10 +228,10 @@ export default function Regras() {
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               <RuleCard title="Área de Combate" icon="⬜" borderColor={ACCENT} onClick={() => setModal('regras-area')}>
-                <p>Tatame 8×8 m • Área segura 3 m • Verde ou azul</p>
+                <p>Área principal 8×8 m • Zona de segurança ao redor • Cores variam conforme o evento</p>
               </RuleCard>
               <RuleCard title="Duração" icon="⏱" borderColor={ACCENT} onClick={() => setModal('regras-duracao')}>
-                <p>Sênior/Júnior: 4 min • Cadete: 3 • Infantil: 2 min</p>
+                <p>Sênior, Júnior e Cadete: 4 min • Sub-15: 3 min • Sub-13: 2 min</p>
               </RuleCard>
               <RuleCard title="Golden Score" icon="⭐" borderColor={ACCENT} onClick={() => setModal('regras-golden')}>
                 <p>Empate → primeiro ponto vence. Sem limite de tempo</p>
@@ -265,7 +263,7 @@ export default function Regras() {
                 <p>1 mão sem manter = ok • 2 mãos sem manter = shido</p>
               </RuleCard>
               <RuleCard title="Kumikata (Zonas)" icon="✋" borderColor="rgb(59, 130, 246)" onClick={() => setModal('pont-kumikata-zonas')}>
-                <p>Wagi, manga, calças — permitido/proibido por situação</p>
+                <p>Uwagi, manga e calça: permitido ou proibido conforme a situação</p>
               </RuleCard>
             </div>
           </ScrollReveal>
@@ -326,7 +324,7 @@ export default function Regras() {
                 <p>Controle só em cabeça/pescoço sem braço = Mate! ou Shido!</p>
               </RuleCard>
               <RuleCard title="Por Categoria de Idade" icon="👥" borderColor="rgb(124, 58, 237)" onClick={() => setModal('tecnicas-categorias')}>
-                <p>Infantis: proibido finalização • Adultos: todas</p>
+                <p>Restrições variam por idade, categoria e regulamento da competição</p>
               </RuleCard>
             </div>
           </ScrollReveal>
@@ -356,8 +354,8 @@ export default function Regras() {
         {/* Fonte */}
         <ScrollReveal direction="up">
           <div className="mt-12 pt-8 border-t border-white/5 text-center">
-            <p className="text-slate-500 text-sm">Fonte: Seminário Técnico Nacional de Judô</p>
-            <p className="text-slate-600 text-xs mt-1">01 e 02 de fevereiro de 2026</p>
+            <p className="text-slate-500 text-sm">Referências: IJF e regulamentos nacionais da CBJ</p>
+            <p className="text-slate-600 text-xs mt-1">Alguns detalhes podem variar conforme categoria, evento e ciclo de regras.</p>
           </div>
         </ScrollReveal>
       </div>
@@ -365,53 +363,60 @@ export default function Regras() {
       {/* Modais */}
       <Modal open={modal === 'kimono-tamanhos'} onClose={() => setModal(null)} title="Tamanhos do Kimono">
         <ul className="space-y-2">
-          <li><strong className="text-white">Masculino:</strong> 1, 2, 3, 4, 5</li>
-          <li><strong className="text-white">Feminino:</strong> F1, F2, F3, F4</li>
-          <li><strong className="text-white">Infantil:</strong> I1, I2, I3, I4</li>
+          <li>• Não existe uma tabela oficial única da IJF com categorias como &quot;masculino/feminino/infantil&quot;.</li>
+          <li>• A numeração do judogi varia conforme a <strong className="text-white">marca</strong> e o <strong className="text-white">modelo</strong>.</li>
+          <li>• Em competição, o mais importante é o <strong className="text-white">caimento correto</strong> no controle do judogi.</li>
+          <li>• Para treino, escolha o tamanho pela sua altura e complemente com prova prática do caimento.</li>
         </ul>
       </Modal>
       <Modal open={modal === 'kimono-material'} onClose={() => setModal(null)} title="Material do Judogi">
         <ul className="space-y-2">
-          <li>• 100% algodão</li>
-          <li>• Peso mínimo: 700g</li>
-          <li>• Cor: branca ou azul</li>
+          <li>• O judogi deve ser <strong className="text-white">resistente</strong> e apropriado para a prática do judô.</li>
+          <li>• Em eventos oficiais, pode ser exigido judogi <strong className="text-white">homologado</strong> pela federação do evento.</li>
+          <li>• As cores normalmente aceitas em competição são <strong className="text-white">branco</strong> e <strong className="text-white">azul</strong>.</li>
+          <li>• O tecido não precisa ser sempre &quot;100% algodão&quot; em todos os regulamentos atuais.</li>
         </ul>
       </Modal>
       <Modal open={modal === 'kimono-medidas'} onClose={() => setModal(null)} title="Medidas do Kimono">
         <ul className="space-y-2">
-          <li>• <strong className="text-white">Manga:</strong> 5–7 cm do pulso</li>
-          <li>• <strong className="text-white">Calça:</strong> 5–7 cm do tornozelo</li>
-          <li>• <strong className="text-white">Largura:</strong> 10–15 cm do corpo</li>
+          <li>• <strong className="text-white">Mangas:</strong> devem chegar até a região do punho, dentro da tolerância do controle.</li>
+          <li>• <strong className="text-white">Calça:</strong> não deve ficar excessivamente curta; em regra oficial, a barra fica próxima ao tornozelo/maléolo.</li>
+          <li>• <strong className="text-white">Faixa:</strong> geralmente entre <strong className="text-white">4 e 4,5 cm</strong> de largura.</li>
+          <li>• <strong className="text-white">Caimento:</strong> não pode ficar justo demais nem largo demais.</li>
         </ul>
       </Modal>
       <Modal open={modal === 'kimono-permitido'} onClose={() => setModal(null)} title="O que é Permitido">
         <ul className="space-y-2 text-green-300/90">
-          <li>• Kimono limpo e bem passado</li>
-          <li>• Faixa (obi) de 4–5 cm de largura</li>
-          <li>• Camiseta branca por baixo (opcional)</li>
-          <li>• Calcinha/short branco por baixo</li>
+          <li>• Judogi limpo, seco e em bom estado</li>
+          <li>• Faixa bem ajustada e amarrada corretamente</li>
+          <li>• Peça branca lisa por baixo quando o regulamento da categoria permitir ou exigir</li>
+          <li>• Judogi com medidas compatíveis com o controle da competição</li>
         </ul>
       </Modal>
       <Modal open={modal === 'kimono-proibido'} onClose={() => setModal(null)} title="O que é Proibido">
         <ul className="space-y-2 text-red-300/90">
-          <li>• Kimono rasgado ou sujo</li>
-          <li>• Faixa muito longa ou curta</li>
-          <li>• Camiseta colorida por baixo</li>
-          <li>• Calcinha/short colorido</li>
+          <li>• Judogi rasgado, sujo ou sem condições de uso</li>
+          <li>• Faixa muito curta, muito longa ou mal amarrada</li>
+          <li>• Roupa colorida ou estampada por baixo quando a regra exigir peça branca lisa</li>
+          <li>• Judogi excessivamente apertado ou fora das medidas permitidas</li>
         </ul>
       </Modal>
       <Modal open={modal === 'regras-area'} onClose={() => setModal(null)} title="Área de Combate">
         <ul className="space-y-2">
-          <li>• <strong className="text-white">Tatame:</strong> 8×8 metros</li>
-          <li>• <strong className="text-white">Área segura:</strong> 3 metros</li>
-          <li>• <strong className="text-white">Cor:</strong> verde ou azul</li>
+          <li>• <strong className="text-white">Área principal:</strong> em alto nível, costuma ser <strong className="text-white">8×8 metros</strong>.</li>
+          <li>• <strong className="text-white">Segurança:</strong> deve haver uma área externa ao redor do combate, normalmente com alguns metros de folga.</li>
+          <li>• <strong className="text-white">Cores:</strong> não existe uma única combinação para todos os torneios.</li>
+          <li>• Em grandes eventos recentes da <strong className="text-white">IJF</strong>, é comum ver área interna <strong className="text-white">azul</strong> e externa <strong className="text-white">vermelha</strong>.</li>
+          <li>• Em eventos regionais, escolares ou nacionais, podem aparecer outras combinações, inclusive <strong className="text-white">amarelo</strong> em algumas montagens.</li>
         </ul>
       </Modal>
       <Modal open={modal === 'regras-duracao'} onClose={() => setModal(null)} title="Duração das Lutas">
         <ul className="space-y-2">
-          <li>• <strong className="text-white">Sênior e Júnior:</strong> 4 minutos</li>
-          <li>• <strong className="text-white">Cadete:</strong> 3 minutos</li>
-          <li>• <strong className="text-white">Infantil:</strong> 2 minutos</li>
+          <li>• <strong className="text-white">Sênior:</strong> 4 minutos</li>
+          <li>• <strong className="text-white">Júnior:</strong> 4 minutos</li>
+          <li>• <strong className="text-white">Cadete:</strong> 4 minutos</li>
+          <li>• <strong className="text-white">Sub-15:</strong> 3 minutos</li>
+          <li>• <strong className="text-white">Sub-13:</strong> 2 minutos</li>
         </ul>
       </Modal>
       <Modal open={modal === 'regras-golden'} onClose={() => setModal(null)} title="Golden Score">
@@ -488,7 +493,7 @@ export default function Regras() {
       </Modal>
       <Modal open={modal === 'pont-kumikata-zonas'} onClose={() => setModal(null)} title="Kumikata — Zonas da Pegada">
         <p className="mb-3 text-emerald-300/90 font-medium">Permitido:</p>
-        <p className="text-slate-400 text-sm mb-4">Pegadas no wagi e abaixo da faixa até o nível da parte superior da coxa.</p>
+        <p className="text-slate-400 text-sm mb-4">Pegadas no <strong className="text-white">uwagi</strong> e abaixo da faixa apenas nas situações permitidas pela regra.</p>
         <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 mb-4">
           <p className="text-amber-300 font-semibold">Shido:</p>
           <p className="text-sm mt-2 text-slate-400">Kumikata negativo abaixo da faixa e na parte superior interna das coxas.</p>
@@ -642,19 +647,19 @@ export default function Regras() {
       <Modal open={modal === 'tecnicas-categorias'} onClose={() => setModal(null)} title="Regras por Categoria">
         <div className="grid gap-6 sm:grid-cols-2">
           <div className="p-4 rounded-xl bg-purple-500/10 border border-purple-500/20">
-            <h4 className="font-semibold text-purple-300 mb-2">Infantis (5–12 anos)</h4>
+            <h4 className="font-semibold text-purple-300 mb-2">Categorias de base</h4>
             <ul className="text-sm space-y-1">
-              <li>• Proibidas finalizações</li>
-              <li>• Foco em projeções</li>
-              <li>• Tatame reduzido • 1–2,5 min</li>
+              <li>• Sub-15: 3 minutos • Sub-13: 2 minutos</li>
+              <li>• O foco costuma ser segurança, desenvolvimento técnico e progressão pedagógica</li>
+              <li>• Consulte sempre o regulamento do evento para confirmar técnicas permitidas</li>
             </ul>
           </div>
           <div className="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20">
-            <h4 className="font-semibold text-blue-300 mb-2">Adultos (13+ anos)</h4>
+            <h4 className="font-semibold text-blue-300 mb-2">Cadete, Júnior e Sênior</h4>
             <ul className="text-sm space-y-1">
-              <li>• Todas as técnicas permitidas</li>
-              <li>• Golden Score em empate</li>
-              <li>• Duração: 3–4 min</li>
+              <li>• Seguem mais de perto as regras competitivas oficiais</li>
+              <li>• Golden Score em caso de empate</li>
+              <li>• Cadete, Júnior e Sênior: 4 minutos</li>
             </ul>
           </div>
         </div>
