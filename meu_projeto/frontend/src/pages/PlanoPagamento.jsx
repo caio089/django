@@ -151,9 +151,11 @@ export default function PlanoPagamento() {
     if (!modalOpen || modalMode !== 'pix' || !pixLocalPaymentId) return;
     let cancelled = false;
     let intervalId;
+    let attempts = 0;
 
     const pollStatus = async () => {
       try {
+        attempts += 1;
         const status = await verificarStatusPagamento(pixLocalPaymentId);
         if (cancelled) return;
         setPixStatus(status?.status || null);
@@ -168,10 +170,25 @@ export default function PlanoPagamento() {
     };
 
     pollStatus();
-    intervalId = window.setInterval(pollStatus, 5000);
+    const getDelayMs = () => {
+      // Mais rápido logo após pagar:
+      // 0–20s: 2s; 20–60s: 4s; 60–120s: 8s; 120s+: 15s
+      if (attempts <= 10) return 2000;
+      if (attempts <= 25) return 4000;
+      if (attempts <= 40) return 8000;
+      return 15000;
+    };
+    const schedule = () => {
+      if (cancelled) return;
+      intervalId = window.setTimeout(async () => {
+        await pollStatus();
+        schedule();
+      }, getDelayMs());
+    };
+    schedule();
     return () => {
       cancelled = true;
-      if (intervalId) window.clearInterval(intervalId);
+      if (intervalId) window.clearTimeout(intervalId);
     };
   }, [modalOpen, modalMode, pixLocalPaymentId]);
 
@@ -300,7 +317,7 @@ export default function PlanoPagamento() {
               <input
                 type="text"
                 value={cpf}
-                onChange={(e) => setCpf(e.target.value)}
+                onChange={(e) => setCpf(e.target.value.replace(/[^\d.\- ]/g, ''))}
                 className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:border-white/20 outline-none transition"
                 placeholder="000.000.000-00"
               />

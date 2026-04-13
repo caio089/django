@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Trophy, ChevronRight, Lightbulb, Check, X, Sparkles, Award, MapPin } from 'lucide-react';
 import DojoBackground from '../components/DojoBackground';
-import { getQuestionsForLevel, XP_POR_ACERTO, CATEGORIAS_NIVEL, MAX_NIVEL } from '../data/quizData';
-import { getQuizRanking, submitQuizResult, apiMe } from '../api';
+import { getQuestionsForLevel, CATEGORIAS_NIVEL, MAX_NIVEL } from '../data/quizData';
+import { getQuizRanking, startQuizAttempt, submitQuizAttempt, apiMe } from '../api';
 
 const STORAGE_NICKNAME = 'quiz_ranking_nickname';
 const STORAGE_CIDADE = 'quiz_ranking_cidade';
@@ -18,6 +18,20 @@ const WRONG_COLOR = 'rgb(239, 68, 68)';
 const RANKING_MODE = { id: 'ranking', label: 'Quiz Ranking', desc: '8 perguntas por nível · 10 níveis — suba até Sensei', emoji: '🏆', color: 'rgb(234, 179, 8)', glow: 'rgba(234,179,8,0.4)' };
 
 const LETTERS = ['A', 'B', 'C', 'D'];
+
+function djb2(str) {
+  let hash = 5381;
+  for (let i = 0; i < str.length; i += 1) {
+    hash = ((hash << 5) + hash) + str.charCodeAt(i);
+    hash |= 0;
+  }
+  return String(hash >>> 0);
+}
+
+function getQuestionKey(q) {
+  const base = `${q?.question || ''}|${Array.isArray(q?.answers) ? q.answers.join('|') : ''}`;
+  return djb2(base);
+}
 
 function ConfettiBurst({ active, intense }) {
   if (!active) return null;
@@ -148,7 +162,9 @@ export default function Quiz() {
   // Modo ranking
   const [isRankingMode, setIsRankingMode] = useState(false);
   const [nivelAtual, setNivelAtual] = useState(1);
-  const [xpNivel, setXpNivel] = useState(0);
+  const [attemptId, setAttemptId] = useState(null);
+  const [questionKeys, setQuestionKeys] = useState([]);
+  const [correctKeys, setCorrectKeys] = useState([]);
   const [nickname, setNickname] = useState('');
   const [dojo, setDojo] = useState('');
   const [cidade, setCidade] = useState('');
@@ -229,6 +245,30 @@ export default function Quiz() {
   }, [phase, questions.length, current]);
 
   useEffect(() => {
+    // Iniciar tentativa (server-side timing) quando entra no quiz ranking
+    if (phase !== 'quiz') return;
+    if (!isRankingMode || isTreinoNivelAnterior) return;
+    if (!isPremiumUser) return;
+    if (!questions || questions.length === 0) return;
+    let cancelled = false;
+    const keys = questions.map(getQuestionKey);
+    setQuestionKeys(keys);
+    setCorrectKeys([]);
+    setAttemptId(null);
+    startQuizAttempt({ nivel_quiz: nivelAtual, question_keys: keys })
+      .then((r) => {
+        if (!cancelled) setAttemptId(r?.attempt_id ?? r?.attemptId ?? r?.attempt_id ?? r?.attempt_id);
+        if (!cancelled && r?.attempt_id != null) setAttemptId(r.attempt_id);
+        if (!cancelled && r?.attemptId != null) setAttemptId(r.attemptId);
+      })
+      .catch(() => {
+        // Se falhar (ex.: não premium), só não pontua.
+        if (!cancelled) setAttemptId(null);
+      });
+    return () => { cancelled = true; };
+  }, [phase, isRankingMode, isTreinoNivelAnterior, isPremiumUser, questions, nivelAtual]);
+
+  useEffect(() => {
     if (phase === 'nickname') {
       try {
         if (typeof window !== 'undefined' && localStorage.getItem(STORAGE_NICKNAME)) {
@@ -257,12 +297,12 @@ export default function Quiz() {
 
   const _initRankingQuiz = useCallback((nome, d, cid) => {
     const nivelInicial = Math.max(1, Math.min(MAX_NIVEL, nivelSalvo));
-    submitQuizResult({ nickname: nome, dojo: d, cidade: cid, nivel_quiz: nivelInicial, xp_ganho: 0, passou_nivel: false, acertos: 0 })
-      .catch(() => {});
     setIsRankingMode(true);
     setIsTreinoNivelAnterior(false);
     setNivelAtual(nivelInicial);
-    setXpNivel(0);
+    setAttemptId(null);
+    setQuestionKeys([]);
+    setCorrectKeys([]);
     setMaxStreak(0);
     setStreakAtual(0);
     setQuestions(getQuestionsForLevel(nivelInicial));
@@ -311,15 +351,12 @@ export default function Quiz() {
     const cid = (cidade || '').trim();
     setSubmitting(true);
     try {
-      const canLevelUp = isPremiumUser;
-      const res = await submitQuizResult({
+      const res = await submitQuizAttempt({
+        attempt_id: attemptId,
+        correct_keys: correctKeys,
         nickname: nome,
         dojo: d,
         cidade: cid,
-        nivel_quiz: nivelAtual,
-        xp_ganho: xpNivel,
-        passou_nivel: canLevelUp && passou,
-        acertos: score,
       });
       setLastSubmitResult(res);
       if (typeof window !== 'undefined' && res?.nivel_quiz) {
@@ -329,7 +366,7 @@ export default function Quiz() {
       }
       setNivelSalvo((prev) => (res?.nivel_quiz ? Math.max(1, Math.min(maxNivelDisponivel, res.nivel_quiz)) : prev));
       await loadRanking();
-      if (canLevelUp && passou && nivelAtual < MAX_NIVEL) {
+      if (isPremiumUser && passou && nivelAtual < MAX_NIVEL) {
         setPhase('levelUp');
       } else {
         setPhase('result');
@@ -339,7 +376,7 @@ export default function Quiz() {
     } finally {
       setSubmitting(false);
     }
-  }, [nickname, dojo, cidade, nivelAtual, xpNivel, score, loadRanking, isPremiumUser, maxNivelDisponivel]);
+  }, [nickname, dojo, cidade, attemptId, correctKeys, loadRanking, isPremiumUser, maxNivelDisponivel, nivelAtual]);
 
   const handleAnswer = useCallback((idx) => {
     if (answered) return;
@@ -351,7 +388,10 @@ export default function Quiz() {
       const nextStreak = streakAtual + 1;
       setStreakAtual(nextStreak);
       setMaxStreak((m) => Math.max(m, nextStreak));
-      if (isRankingMode && !isTreinoNivelAnterior) setXpNivel((x) => x + XP_POR_ACERTO);
+      if (isRankingMode && !isTreinoNivelAnterior) {
+        const key = questionKeys[current] || getQuestionKey(q);
+        setCorrectKeys((prev) => (prev.includes(key) ? prev : [...prev, key]));
+      }
       setShowConfetti(true);
       setTimeout(() => setShowConfetti(false), 1200);
     } else {
@@ -359,7 +399,7 @@ export default function Quiz() {
       if (isRankingMode && !isTreinoNivelAnterior) submitAndGoResult(false);
       // em treino: continua mostrando explicação, depois vai pra result sem subir ranking
     }
-  }, [answered, questions, current, streakAtual, isRankingMode, isTreinoNivelAnterior, submitAndGoResult]);
+  }, [answered, questions, current, streakAtual, isRankingMode, isTreinoNivelAnterior, submitAndGoResult, questionKeys]);
 
   const nextQuestion = useCallback(() => {
     const totalNivel = questions.length;
@@ -401,7 +441,9 @@ export default function Quiz() {
     setQuestions(getQuestionsForLevel(next));
     setCurrent(0);
     setScore(0);
-    setXpNivel(0);
+    setAttemptId(null);
+    setQuestionKeys([]);
+    setCorrectKeys([]);
     setStreakAtual(0);
     setShowLastQuestionModal(false);
     setSelected(null);
@@ -418,7 +460,9 @@ export default function Quiz() {
     setQuestions(getQuestionsForLevel(n));
     setCurrent(0);
     setScore(0);
-    setXpNivel(0);
+    setAttemptId(null);
+    setQuestionKeys([]);
+    setCorrectKeys([]);
     setMaxStreak(0);
     setStreakAtual(0);
     setSelected(null);
@@ -853,7 +897,7 @@ export default function Quiz() {
                   <div className="flex items-center gap-3">
                     <span className="text-emerald-400 font-semibold flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
                       <Check className="w-4 h-4" /> {score} acertos
-                      {isRankingMode && !isTreinoNivelAnterior && <span className="text-emerald-300/80">(+{xpNivel} XP)</span>}
+                      {isRankingMode && !isTreinoNivelAnterior && <span className="text-emerald-300/80">(+{correctKeys.length} certas)</span>}
                     </span>
                     {streakAtual > 0 && (
                       <span className="text-amber-300 font-bold px-3 py-1.5 rounded-full bg-amber-500/20 border border-amber-400/40">{streakAtual} seguidos 🔥</span>

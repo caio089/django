@@ -26,7 +26,9 @@ def clear_dashboard_cache():
             'dashboard_recent_subscriptions', 
             'dashboard_status_counts',
             'dashboard_monthly_data',
-            'dashboard_growth_data'
+            'dashboard_growth_data',
+            # API do painel React (admin)
+            'admin_dashboard:v2',
         ]
         
         # Limpar caches individuais
@@ -41,6 +43,7 @@ def clear_dashboard_cache():
             cache.delete_pattern('*user*')
             cache.delete_pattern('*subscription*')
             cache.delete_pattern('*premium*')
+            cache.delete_pattern('admin_dashboard:*')
         except:
             pass  # delete_pattern pode não estar disponível em todos os backends
         

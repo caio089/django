@@ -10,11 +10,24 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+def _admin_token_ok(request):
+    """
+    Proteção simples para endpoints de infra.
+    Use header: X-ADMIN-TOKEN = SUPABASE_ADMIN_TOKEN
+    """
+    import os
+    token = os.getenv("SUPABASE_ADMIN_TOKEN", "")
+    if not token:
+        return False
+    return request.META.get("HTTP_X_ADMIN_TOKEN", "") == token
+
 @csrf_exempt
 @require_http_methods(["GET"])
 def supabase_status(request):
     """Endpoint para verificar status do Supabase"""
     try:
+        if not _admin_token_ok(request):
+            return JsonResponse({'success': False, 'error': 'Acesso negado'}, status=403)
         # Obter status do keep-alive
         status = get_supabase_status()
         
@@ -57,6 +70,8 @@ def supabase_status(request):
 def start_keepalive(request):
     """Endpoint para iniciar keep-alive manualmente"""
     try:
+        if not _admin_token_ok(request):
+            return JsonResponse({'success': False, 'error': 'Acesso negado'}, status=403)
         start_supabase_keepalive()
         return JsonResponse({
             'success': True,
@@ -74,6 +89,8 @@ def start_keepalive(request):
 def stop_keepalive(request):
     """Endpoint para parar keep-alive"""
     try:
+        if not _admin_token_ok(request):
+            return JsonResponse({'success': False, 'error': 'Acesso negado'}, status=403)
         stop_supabase_keepalive()
         return JsonResponse({
             'success': True,
@@ -91,6 +108,8 @@ def stop_keepalive(request):
 def test_connection(request):
     """Endpoint para testar conexão com Supabase"""
     try:
+        if not _admin_token_ok(request):
+            return JsonResponse({'success': False, 'error': 'Acesso negado'}, status=403)
         import time
         start_time = time.time()
         

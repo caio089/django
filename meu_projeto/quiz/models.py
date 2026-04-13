@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.conf import settings
 
 class CategoriaQuiz(models.Model):
     """
@@ -267,6 +268,56 @@ class QuizRanking(models.Model):
 
     def __str__(self):
         return f"{self.nickname} — Nível {self.nivel_quiz} ({self.categoria_titulo}) — {self.xp_total} XP"
+
+
+class QuizQuestionProgress(models.Model):
+    """
+    Controle por usuário/pergunta para evitar farm infinito.
+    `question_key` é um identificador estável gerado no frontend a partir do conteúdo da pergunta.
+    """
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name="quiz_question_progress")
+    question_key = models.CharField(max_length=128, db_index=True)
+
+    times_seen = models.PositiveIntegerField(default=0)
+    times_correct = models.PositiveIntegerField(default=0)
+    first_correct_at = models.DateTimeField(null=True, blank=True)
+
+    data_atualizacao = models.DateTimeField(auto_now=True)
+    data_criacao = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ["usuario", "question_key"]
+        indexes = [
+            models.Index(fields=["usuario", "question_key"], name="qqp_user_key_idx"),
+        ]
+
+
+class QuizAttempt(models.Model):
+    """
+    Tentativa de quiz com tempo medido no servidor (anti-burla).
+    """
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name="quiz_attempts")
+    nivel_quiz = models.PositiveIntegerField(default=1)
+    total_perguntas = models.PositiveIntegerField(default=8)
+
+    question_keys = models.JSONField(default=list)  # lista ordenada de keys
+
+    started_at = models.DateTimeField(auto_now_add=True)
+    finished_at = models.DateTimeField(null=True, blank=True)
+    elapsed_seconds = models.PositiveIntegerField(null=True, blank=True)
+
+    correct_count = models.PositiveIntegerField(default=0)
+    xp_awarded = models.PositiveIntegerField(default=0)
+    bonus_time_xp = models.PositiveIntegerField(default=0)
+
+    suspicious = models.BooleanField(default=False)
+    suspicious_reason = models.CharField(max_length=200, blank=True, default="")
+
+    class Meta:
+        indexes = [
+            models.Index(fields=["usuario", "started_at"], name="qattempt_user_start_idx"),
+            models.Index(fields=["usuario", "nivel_quiz"], name="qattempt_user_level_idx"),
+        ]
 
 
 class ProgressoQuiz(models.Model):

@@ -142,6 +142,21 @@ def api_me(request):
     """Retorna dados do usuário logado."""
     if not request.user.is_authenticated:
         return JsonResponse({'authenticated': False})
+    # Expira assinatura do usuário sob demanda (evita sync por request em middleware)
+    try:
+        from django.utils import timezone
+        from payments.models import Assinatura
+        # Marcar como expirada caso esteja vencida
+        expiradas = Assinatura.objects.filter(
+            usuario=request.user,
+            status='ativa',
+            data_vencimento__lt=timezone.now()
+        )
+        if expiradas.exists():
+            expiradas.update(status='expirada')
+    except Exception:
+        # Não quebrar /api/me por falha de sincronização
+        pass
     return JsonResponse({
         'authenticated': True,
         'user': _get_user_data(request.user),

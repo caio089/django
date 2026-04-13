@@ -12,15 +12,18 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Count, Sum, Q
+from django.db.models.functions import TruncMonth
 from django.utils import timezone
 from django.db import transaction
 from datetime import timedelta
 from django.core.mail import EmailMessage
 from django.conf import settings
+from django.core.cache import cache
 
-from payments.models import Pagamento, Assinatura, PlanoPremium
+from payments.models import Pagamento, Assinatura, PlanoPremium, WebhookEvent
 from home.models import Profile
 from .views import clear_dashboard_cache
+from .models import DashboardFinanceSettings
 
 
 def _require_superuser(view_func):
@@ -100,6 +103,16 @@ def api_admin_logout(request):
 @require_http_methods(['GET'])
 def api_admin_dashboard(request):
     """Retorna todas as métricas do dashboard em JSON."""
+    # Finance settings influenciam métricas — incluir no cache key
+    fs = DashboardFinanceSettings.objects.order_by("-updated_at").first()
+    fs_updated = int(fs.updated_at.timestamp()) if fs else 0
+
+    # Cache curto para reduzir CPU/DB (principalmente com polling do painel)
+    cache_key = f"admin_dashboard:v3:{fs_updated}"
+    cached = cache.get(cache_key)
+    if cached:
+        return JsonResponse(cached)
+
     now = timezone.now()
     current_month = now.month
     current_year = now.year
@@ -116,7 +129,7 @@ def api_admin_dashboard(request):
     unique_premium = active_subscriptions.values('usuario').distinct().count()
 
     # Receitas
-    total_revenue = Pagamento.objects.filter(status='approved').aggregate(total=Sum('valor'))['total'] or 0
+    total_revenue_raw = Pagamento.objects.filter(status='approved').aggregate(total=Sum('valor'))['total'] or 0
     current_month_revenue = Pagamento.objects.filter(
         status='approved',
         data_criacao__year=current_year,
@@ -127,6 +140,20 @@ def api_admin_dashboard(request):
         data_criacao__gte=last_month.replace(day=1),
         data_criacao__lt=now.replace(day=1)
     ).aggregate(total=Sum('valor'))['total'] or 0
+
+    # Configurações financeiras (editáveis)
+    if not fs:
+        fs = DashboardFinanceSettings.objects.create()
+        fs_updated = int(fs.updated_at.timestamp())
+
+    revenue_offset = fs.revenue_offset or 0
+    infra_cost = fs.infra_cost or 0
+    additional_cost = fs.additional_cost or 0
+
+    total_revenue = total_revenue_raw - revenue_offset
+    if total_revenue < 0:
+        total_revenue = 0
+    profit = total_revenue - infra_cost - additional_cost
 
     # Crescimento
     new_premium_this_month = Assinatura.objects.filter(
@@ -139,32 +166,41 @@ def api_admin_dashboard(request):
     ).count()
     growth = ((new_premium_this_month - new_premium_last_month) / new_premium_last_month * 100) if new_premium_last_month > 0 else (100 if new_premium_this_month > 0 else 0)
 
-    # Histórico 12 meses
+    # Histórico 12 meses (agregação em 2 queries em vez de loop)
+    start_12m = (now.replace(day=1, hour=0, minute=0, second=0, microsecond=0) - timedelta(days=365))
+    pay_monthly = (
+        Pagamento.objects.filter(status="approved", data_criacao__gte=start_12m)
+        .annotate(m=TruncMonth("data_criacao"))
+        .values("m")
+        .annotate(revenue=Sum("valor"))
+        .order_by("m")
+    )
+    subs_monthly = (
+        Assinatura.objects.filter(data_criacao__gte=start_12m)
+        .annotate(m=TruncMonth("data_criacao"))
+        .values("m")
+        .annotate(subscriptions=Count("id"))
+        .order_by("m")
+    )
+    pay_map = {r["m"].strftime("%Y-%m"): float(r["revenue"] or 0) for r in pay_monthly if r.get("m")}
+    sub_map = {r["m"].strftime("%Y-%m"): int(r["subscriptions"] or 0) for r in subs_monthly if r.get("m")}
+    # Preencher exatamente 12 meses, incluindo meses vazios
     monthly_data = []
-    for i in range(12):
-        month_date = now - timedelta(days=30 * i)
-        month_start = month_date.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
-        if i == 0:
-            month_end = now
-        else:
-            next_month = month_start + timedelta(days=32)
-            month_end = next_month.replace(day=1) - timedelta(days=1)
-        month_revenue = Pagamento.objects.filter(
-            status='approved',
-            data_criacao__gte=month_start,
-            data_criacao__lte=month_end
-        ).aggregate(total=Sum('valor'))['total'] or 0
-        month_subs = Assinatura.objects.filter(
-            data_criacao__gte=month_start,
-            data_criacao__lte=month_end
-        ).count()
+    cursor = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+    months = []
+    for _ in range(12):
+        months.append(cursor)
+        prev = (cursor - timedelta(days=1)).replace(day=1)
+        cursor = prev
+    months.reverse()
+    for m in months:
+        key = m.strftime("%Y-%m")
         monthly_data.append({
-            'month': month_start.strftime('%Y-%m'),
-            'month_name': month_start.strftime('%b/%Y'),
-            'revenue': float(month_revenue),
-            'subscriptions': month_subs,
+            "month": key,
+            "month_name": m.strftime("%b/%Y"),
+            "revenue": pay_map.get(key, 0.0),
+            "subscriptions": sub_map.get(key, 0),
         })
-    monthly_data.reverse()
 
     # Usuários
     total_users = User.objects.count()
@@ -217,8 +253,21 @@ def api_admin_dashboard(request):
             'premium': u.id in active_user_ids,
         })
 
-    # Lista completa de cadastrados para gestão no painel
-    all_users = User.objects.order_by('-date_joined')
+    # Lista de cadastrados (PAGINADA) para gestão no painel
+    try:
+        page = max(1, int(request.GET.get("page", "1")))
+    except Exception:
+        page = 1
+    try:
+        page_size = int(request.GET.get("page_size", "50"))
+    except Exception:
+        page_size = 50
+    page_size = max(10, min(200, page_size))
+    offset = (page - 1) * page_size
+
+    all_users_qs = User.objects.select_related('profile').order_by('-date_joined')
+    total_users_count = all_users_qs.count()
+    all_users = all_users_qs[offset:offset + page_size]
     all_users_list = []
     for u in all_users:
         try:
@@ -226,7 +275,7 @@ def api_admin_dashboard(request):
             nome = profile.nome
             faixa = profile.get_faixa_display()
             premium_profile = bool(profile.conta_premium)
-        except Profile.DoesNotExist:
+        except Exception:
             nome = u.username
             faixa = '-'
             premium_profile = False
@@ -282,13 +331,25 @@ def api_admin_dashboard(request):
         'data': p.data_criacao.strftime('%d/%m/%Y %H:%M'),
     } for p in pending_payments]
 
-    return JsonResponse({
+    # Observabilidade simples (últimas 24h)
+    since_24h = now - timedelta(hours=24)
+    webhooks_24h = WebhookEvent.objects.filter(data_recebimento__gte=since_24h)
+    webhooks_24h_total = webhooks_24h.count()
+    webhooks_24h_failed = webhooks_24h.exclude(erro_processamento__isnull=True).exclude(erro_processamento="").count()
+    payments_24h_approved = Pagamento.objects.filter(status="approved", data_criacao__gte=since_24h).count()
+
+    payload = {
         'stats': {
             'active_subscriptions': active_count,
             'unique_premium_users': unique_premium,
+            'total_revenue_raw': float(total_revenue_raw),
+            'revenue_offset': float(revenue_offset),
             'total_revenue': float(total_revenue),
             'current_month_revenue': float(current_month_revenue),
             'last_month_revenue': float(last_month_revenue),
+            'infra_cost': float(infra_cost),
+            'additional_cost': float(additional_cost),
+            'profit': float(profit),
             'new_premium_this_month': new_premium_this_month,
             'new_premium_last_month': new_premium_last_month,
             'growth_percentage': round(growth, 1),
@@ -298,16 +359,113 @@ def api_admin_dashboard(request):
             'payments_by_status': payments_by_status,
             'approved_payments': approved_payments,
             'total_payments': total_payments,
+            'webhooks_24h_total': webhooks_24h_total,
+            'webhooks_24h_failed': webhooks_24h_failed,
+            'payments_24h_approved': payments_24h_approved,
         },
         'monthly_data': monthly_data,
         'recent_subscriptions': recent_subscriptions,
         'recent_users': recent_users_list,
         'all_users': all_users_list,
+        'all_users_pagination': {
+            'page': page,
+            'page_size': page_size,
+            'total': total_users_count,
+            'has_next': (offset + page_size) < total_users_count,
+        },
         'latest_updated_users': latest_updated_list,
         'status_counts': status_counts,
         'plans': plans,
         'pending_payments': pending_list,
         'current_date': now.strftime('%d/%m/%Y'),
+    }
+    cache.set(cache_key, payload, 30)  # 30s já corta custo brutal do polling
+    return JsonResponse(payload)
+
+
+@login_required
+@_require_superuser
+@require_http_methods(["GET", "POST"])
+def api_admin_finance_settings(request):
+    """Lê/atualiza custos e offset de receita do dashboard."""
+    fs = DashboardFinanceSettings.objects.order_by("-updated_at").first()
+    if not fs:
+        fs = DashboardFinanceSettings.objects.create()
+
+    if request.method == "GET":
+        return JsonResponse({
+            "success": True,
+            "settings": {
+                "revenue_offset": float(fs.revenue_offset or 0),
+                "infra_cost": float(fs.infra_cost or 0),
+                "additional_cost": float(fs.additional_cost or 0),
+                "updated_at": fs.updated_at.isoformat(),
+            }
+        })
+
+    try:
+        data = json.loads(request.body) if request.body else {}
+    except json.JSONDecodeError:
+        return JsonResponse({"success": False, "error": "JSON inválido"}, status=400)
+
+    def _to_decimal(value, field):
+        try:
+            if value is None or value == "":
+                return None
+            return round(float(value), 2)
+        except Exception:
+            raise ValueError(f"{field} inválido")
+
+    try:
+        infra_cost = _to_decimal(data.get("infra_cost"), "infra_cost")
+        additional_cost = _to_decimal(data.get("additional_cost"), "additional_cost")
+    except ValueError as e:
+        return JsonResponse({"success": False, "error": str(e)}, status=400)
+
+    update_fields = []
+    if infra_cost is not None:
+        fs.infra_cost = infra_cost
+        update_fields.append("infra_cost")
+    if additional_cost is not None:
+        fs.additional_cost = additional_cost
+        update_fields.append("additional_cost")
+
+    if update_fields:
+        fs.save(update_fields=update_fields + ["updated_at"])
+        clear_dashboard_cache()
+
+    return JsonResponse({
+        "success": True,
+        "settings": {
+            "revenue_offset": float(fs.revenue_offset or 0),
+            "infra_cost": float(fs.infra_cost or 0),
+            "additional_cost": float(fs.additional_cost or 0),
+            "updated_at": fs.updated_at.isoformat(),
+        }
+    })
+
+
+@login_required
+@_require_superuser
+@require_http_methods(["POST"])
+def api_admin_reset_total_revenue(request):
+    """
+    "Zera" a métrica de receita total do dashboard sem apagar dados:
+    define revenue_offset = soma atual de pagamentos approved.
+    """
+    fs = DashboardFinanceSettings.objects.order_by("-updated_at").first()
+    if not fs:
+        fs = DashboardFinanceSettings.objects.create()
+
+    total_revenue_raw = Pagamento.objects.filter(status="approved").aggregate(total=Sum("valor"))["total"] or 0
+    fs.revenue_offset = total_revenue_raw
+    fs.save(update_fields=["revenue_offset", "updated_at"])
+    clear_dashboard_cache()
+    return JsonResponse({
+        "success": True,
+        "revenue_offset": float(fs.revenue_offset or 0),
+        "total_revenue_raw": float(total_revenue_raw),
+        "message": "Receita total zerada com sucesso (via offset).",
     })
 
 
@@ -604,3 +762,124 @@ def api_admin_send_marketing_email(request):
         sent += len(batch)
 
     return JsonResponse({'success': True, 'sent': sent, 'message': f'E-mail enviado para {sent} destinatário(s)'})
+
+
+@login_required
+@_require_superuser
+@require_http_methods(['GET'])
+def api_admin_payments(request):
+    """Lista pagamentos (paginado) para auditoria no painel admin."""
+    try:
+        page = max(1, int(request.GET.get("page", "1")))
+    except Exception:
+        page = 1
+    try:
+        page_size = int(request.GET.get("page_size", "50"))
+    except Exception:
+        page_size = 50
+    page_size = max(10, min(200, page_size))
+    offset = (page - 1) * page_size
+
+    qs = Pagamento.objects.select_related("usuario").order_by("-data_criacao")
+    total = qs.count()
+    rows = qs[offset:offset + page_size]
+
+    items = []
+    for p in rows:
+        items.append({
+            "id": p.id,
+            "user_email": getattr(p.usuario, "email", "") if p.usuario else "",
+            "valor": float(p.valor),
+            "status": p.status,
+            "metodo": p.metodo_pagamento,
+            "payment_id": p.get_payment_id(),
+            "external_reference": str(p.external_reference),
+            "created_at": p.data_criacao.strftime("%d/%m/%Y %H:%M"),
+            "admin_notified": bool(getattr(p, "admin_notification_sent", False)),
+        })
+
+    return JsonResponse({
+        "success": True,
+        "items": items,
+        "pagination": {
+            "page": page,
+            "page_size": page_size,
+            "total": total,
+            "has_next": (offset + page_size) < total,
+        }
+    })
+
+
+@login_required
+@_require_superuser
+@require_http_methods(['GET'])
+def api_admin_webhooks(request):
+    """Lista eventos de webhook (paginado) para auditoria no painel admin."""
+    try:
+        page = max(1, int(request.GET.get("page", "1")))
+    except Exception:
+        page = 1
+    try:
+        page_size = int(request.GET.get("page_size", "50"))
+    except Exception:
+        page_size = 50
+    page_size = max(10, min(200, page_size))
+    offset = (page - 1) * page_size
+
+    qs = WebhookEvent.objects.order_by("-data_recebimento")
+    total = qs.count()
+    rows = qs[offset:offset + page_size]
+
+    items = []
+    for w in rows:
+        items.append({
+            "id": w.id,
+            "tipo": w.tipo,
+            "action": w.action,
+            "mp_id": w.get_id_mercadopago(),
+            "external_reference": w.get_external_reference(),
+            "processado": bool(w.processado),
+            "erro": w.erro_processamento or "",
+            "ip": w.ip_address,
+            "received_at": w.data_recebimento.strftime("%d/%m/%Y %H:%M"),
+        })
+
+    return JsonResponse({
+        "success": True,
+        "items": items,
+        "pagination": {
+            "page": page,
+            "page_size": page_size,
+            "total": total,
+            "has_next": (offset + page_size) < total,
+        }
+    })
+
+
+@login_required
+@_require_superuser
+@require_http_methods(['POST'])
+def api_admin_reprocess_payment(request):
+    """
+    Reprocessa um pagamento usando o ID do Mercado Pago (payment_id_mp).
+    JSON: { payment_id_mp: "123..." }
+    """
+    try:
+        data = json.loads(request.body) if request.body else {}
+    except json.JSONDecodeError:
+        return JsonResponse({"success": False, "error": "JSON inválido"}, status=400)
+
+    payment_id_mp = str(data.get("payment_id_mp") or "").strip()
+    if not payment_id_mp:
+        return JsonResponse({"success": False, "error": "Informe payment_id_mp"}, status=400)
+
+    # Import local para evitar custo no import do módulo
+    try:
+        from payments.views import processar_pagamento_webhook
+        # webhook_event opcional para auditoria; aqui não temos request do MP
+        processar_pagamento_webhook(payment_id_mp, webhook_event=None)
+    except Exception as e:
+        return JsonResponse({"success": False, "error": f"Falha ao reprocessar: {e}"}, status=500)
+
+    clear_dashboard_cache()
+    return JsonResponse({"success": True, "message": "Reprocessamento disparado"})

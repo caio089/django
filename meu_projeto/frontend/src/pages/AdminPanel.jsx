@@ -25,10 +25,16 @@ import {
   adminLogin,
   adminLogout,
   adminDashboard,
+  adminDashboardPage,
+  adminPayments,
+  adminWebhooks,
+  adminReprocessPayment,
   adminGivePremium,
   adminRemovePremium,
   adminDeleteUser,
   adminRefreshCache,
+  adminFinanceSettings,
+  adminResetTotalRevenue,
   adminCorrigirAssinaturas,
   adminSendMarketingEmail,
   fetchCsrf,
@@ -156,6 +162,11 @@ function AdminDashboard({ user, onLogout }) {
   const [actionLoading, setActionLoading] = useState(null);
   const [modal, setModal] = useState(null);
   const [lastUpdatedAt, setLastUpdatedAt] = useState(null);
+  const [usersPage, setUsersPage] = useState(1);
+  const [usersHasNext, setUsersHasNext] = useState(false);
+  const [infraCost, setInfraCost] = useState('');
+  const [additionalCost, setAdditionalCost] = useState('');
+  const [financeSavedAt, setFinanceSavedAt] = useState(null);
   const [sendTo, setSendTo] = useState('selected');
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [marketingSubject, setMarketingSubject] = useState('Convite para ativar seu acesso Premium no Dojo Online');
@@ -163,23 +174,88 @@ function AdminDashboard({ user, onLogout }) {
     'Ola!\\n\\nEstamos com novidades no Dojo Online e queremos te convidar para ativar o Premium.\\n\\nAcesse: https://www.dojoon.com.br/payments/planos/\\n\\nBons treinos!'
   );
   const [marketingResult, setMarketingResult] = useState('');
+  const [auditTab, setAuditTab] = useState('payments'); // 'payments' | 'webhooks'
+  const [paymentsAudit, setPaymentsAudit] = useState({ items: [], pagination: { page: 1, has_next: false } });
+  const [webhooksAudit, setWebhooksAudit] = useState({ items: [], pagination: { page: 1, has_next: false } });
+  const [reprocessId, setReprocessId] = useState('');
 
-  const load = async () => {
-    setLoading(true);
+  const DASH_CACHE_KEY = 'adminDashboardCache:v1';
+
+  const load = async ({ page = 1, appendUsers = false, showLoading = true } = {}) => {
+    if (showLoading) setLoading(true);
     setError('');
     try {
-      const d = await adminDashboard();
-      setData(d);
+      const d = await adminDashboardPage({ page, page_size: 50 });
+      setData((prev) => {
+        if (!appendUsers || !prev) return d;
+        const prevUsers = Array.isArray(prev?.all_users) ? prev.all_users : [];
+        const nextUsers = Array.isArray(d?.all_users) ? d.all_users : [];
+        return {
+          ...d,
+          all_users: [...prevUsers, ...nextUsers],
+        };
+      });
+      const pag = d?.all_users_pagination;
+      setUsersPage(pag?.page || page);
+      setUsersHasNext(!!pag?.has_next);
       setLastUpdatedAt(new Date());
+      try {
+        // Cache local para abrir o painel instantaneamente na próxima visita/reload
+        sessionStorage.setItem(DASH_CACHE_KEY, JSON.stringify({ data: d, cached_at: Date.now() }));
+      } catch {
+        // ignore
+      }
     } catch (err) {
       setError(err?.message || 'Erro ao carregar');
     } finally {
-      setLoading(false);
+      if (showLoading) setLoading(false);
     }
   };
 
   useEffect(() => {
-    load();
+    // Se tiver cache local, renderiza primeiro e atualiza em background
+    try {
+      const raw = sessionStorage.getItem(DASH_CACHE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed?.data) {
+          setData(parsed.data);
+          setLoading(false);
+          setLastUpdatedAt(new Date(parsed.cached_at || Date.now()));
+        }
+      }
+    } catch {
+      // ignore
+    }
+    load({ page: 1, appendUsers: false, showLoading: false });
+  }, []);
+
+  useEffect(() => {
+    // Carrega configurações financeiras (sem bloquear a UI)
+    adminFinanceSettings()
+      .then((resp) => {
+        const s = resp?.settings || {};
+        setInfraCost(String(s.infra_cost ?? ''));
+        setAdditionalCost(String(s.additional_cost ?? ''));
+        setFinanceSavedAt(s.updated_at ? new Date(s.updated_at) : null);
+      })
+      .catch(() => {});
+  }, []);
+
+  const loadPaymentsAudit = async (page = 1) => {
+    const resp = await adminPayments({ page, page_size: 30 });
+    setPaymentsAudit(resp);
+  };
+
+  const loadWebhooksAudit = async (page = 1) => {
+    const resp = await adminWebhooks({ page, page_size: 30 });
+    setWebhooksAudit(resp);
+  };
+
+  useEffect(() => {
+    // carregar auditoria inicial sem bloquear a tela
+    loadPaymentsAudit(1).catch(() => {});
+    loadWebhooksAudit(1).catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -192,15 +268,30 @@ function AdminDashboard({ user, onLogout }) {
         if (cancelled) return;
         if (document.visibilityState !== 'visible') return;
         // atualiza sem bloquear a UI (mantém loading atual apenas na primeira carga)
-        adminDashboard()
+        // Mantém a página atual de usuários (não faz append no polling)
+        adminDashboardPage({ page: 1, page_size: 50 })
           .then((d) => {
             if (!cancelled) {
-              setData(d);
+              setData((prev) => {
+                // preservar lista já carregada (páginas adicionais) para evitar "piscadas"
+                const prevUsers = Array.isArray(prev?.all_users) ? prev.all_users : null;
+                const nextUsers = Array.isArray(d?.all_users) ? d.all_users : null;
+                const mergedUsers = prevUsers && prevUsers.length > (nextUsers?.length || 0) ? prevUsers : nextUsers;
+                return { ...d, all_users: mergedUsers || d?.all_users };
+              });
+              const pag = d?.all_users_pagination;
+              setUsersPage(pag?.page || 1);
+              setUsersHasNext(!!pag?.has_next);
               setLastUpdatedAt(new Date());
+              try {
+                sessionStorage.setItem(DASH_CACHE_KEY, JSON.stringify({ data: d, cached_at: Date.now() }));
+              } catch {
+                // ignore
+              }
             }
           })
           .catch(() => {});
-      }, 15000);
+      }, 20000);
     };
 
     start();
@@ -238,6 +329,12 @@ function AdminDashboard({ user, onLogout }) {
 
   const toggleSelectedUser = (id) => {
     setSelectedUsers((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
+  };
+
+  const loadMoreUsers = async () => {
+    if (!usersHasNext) return;
+    const nextPage = (usersPage || 1) + 1;
+    await load({ page: nextPage, appendUsers: true, showLoading: false });
   };
 
   const handleSendMarketing = async () => {
@@ -352,9 +449,9 @@ function AdminDashboard({ user, onLogout }) {
           <StatCard icon={Users} label="Usuários premium" value={s.unique_premium_users ?? 0} />
           <StatCard
             icon={DollarSign}
-            label="Receita total"
+            label="Receita total (ajustada)"
             value={formatBRL(s.total_revenue)}
-            sub={`Este mês: ${formatBRL(s.current_month_revenue)}`}
+            sub={`Bruta: ${formatBRL(s.total_revenue_raw)} · Offset: ${formatBRL(s.revenue_offset)} · Mês: ${formatBRL(s.current_month_revenue)}`}
           />
           <StatCard
             icon={TrendingUp}
@@ -364,10 +461,95 @@ function AdminDashboard({ user, onLogout }) {
           />
         </div>
 
+        {/* Financeiro */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+          <StatCard icon={DollarSign} label="Custo infra (mês)" value={formatBRL(s.infra_cost)} sub="Definido manualmente no painel" />
+          <StatCard icon={DollarSign} label="Custos adicionais (mês)" value={formatBRL(s.additional_cost)} sub="Definido manualmente no painel" />
+          <StatCard icon={TrendingUp} label="Lucro (Receita - custos)" value={formatBRL(s.profit)} sub="Receita ajustada - adicionais - infra" />
+        </div>
+
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-6 mb-8">
+          <h2 className="text-lg font-semibold text-white mb-1">Financeiro (editar custos)</h2>
+          <p className="text-xs text-slate-500 mb-4">
+            Você define os custos e o painel calcula: receita ajustada - custos adicionais - infraestrutura.
+            {financeSavedAt ? ` Última alteração: ${financeSavedAt.toLocaleString('pt-BR')}` : ''}
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 items-end">
+            <div>
+              <label className="block text-slate-400 text-sm mb-1">Custo de infraestrutura (R$)</label>
+              <input
+                value={infraCost}
+                onChange={(e) => setInfraCost(e.target.value)}
+                placeholder="Ex: 120.00"
+                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500"
+              />
+            </div>
+            <div>
+              <label className="block text-slate-400 text-sm mb-1">Custos adicionais (R$)</label>
+              <input
+                value={additionalCost}
+                onChange={(e) => setAdditionalCost(e.target.value)}
+                placeholder="Ex: 50.00"
+                className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500"
+              />
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={async () => {
+                  setActionLoading('save-finance');
+                  try {
+                    await adminFinanceSettings({
+                      infra_cost: infraCost,
+                      additional_cost: additionalCost,
+                    });
+                    await adminRefreshCache();
+                    await load({ page: 1, appendUsers: false });
+                    setFinanceSavedAt(new Date());
+                  } catch (err) {
+                    setError(err?.message || 'Erro ao salvar custos');
+                  } finally {
+                    setActionLoading(null);
+                  }
+                }}
+                disabled={actionLoading === 'save-finance'}
+                className="flex-1 px-4 py-3 rounded-xl bg-amber-500 text-black font-semibold hover:bg-amber-400 disabled:opacity-50"
+              >
+                {actionLoading === 'save-finance' ? 'Salvando...' : 'Salvar custos'}
+              </button>
+              <button
+                onClick={async () => {
+                  if (!confirm('Zerar a métrica de receita total exibida? (Não apaga pagamentos)')) return;
+                  setActionLoading('reset-revenue');
+                  try {
+                    await adminResetTotalRevenue();
+                    await adminRefreshCache();
+                    await load({ page: 1, appendUsers: false });
+                  } catch (err) {
+                    setError(err?.message || 'Erro ao zerar receita');
+                  } finally {
+                    setActionLoading(null);
+                  }
+                }}
+                disabled={actionLoading === 'reset-revenue'}
+                className="px-4 py-3 rounded-xl bg-red-500/20 text-red-300 hover:bg-red-500/30 disabled:opacity-50"
+                title="Zera a métrica de receita total exibida (via offset)"
+              >
+                {actionLoading === 'reset-revenue' ? 'Zerando...' : 'Zerar receita'}
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
           <StatCard icon={Users} label="Total de usuários" value={s.total_users ?? 0} sub={`+${s.users_this_month ?? 0} este mês`} />
           <StatCard icon={BarChart3} label="Taxa de conversão" value={`${s.conversion_rate ?? 0}%`} sub="Pagamentos aprovados / total" />
           <StatCard icon={AlertCircle} label="Pagamentos pendentes" value={data?.pending_payments?.length ?? 0} sub="Últimos 7 dias" />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+          <StatCard icon={Zap} label="Webhooks (24h)" value={s.webhooks_24h_total ?? 0} sub={`Falhas: ${s.webhooks_24h_failed ?? 0}`} />
+          <StatCard icon={CreditCard} label="Aprovados (24h)" value={s.payments_24h_approved ?? 0} sub="Pagamentos confirmados" />
+          <StatCard icon={RefreshCw} label="Cache dashboard" value="30s" sub="TTL para reduzir custo" />
         </div>
 
         {/* Gráfico receita */}
@@ -484,7 +666,42 @@ function AdminDashboard({ user, onLogout }) {
         <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
           <div className="px-6 py-4 border-b border-white/10 flex items-center justify-between">
             <h2 className="text-lg font-semibold text-white">Lista de cadastrados</h2>
-            <span className="text-xs text-slate-400">{(data?.all_users || []).length} usuarios</span>
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-slate-400">
+                {(data?.all_users || []).length} usuarios
+                {selectedUsers.length > 0 ? ` · ${selectedUsers.length} selecionado(s)` : ''}
+              </span>
+              {selectedUsers.length > 0 && (
+                <>
+                  <button
+                    onClick={() => {
+                      if (!confirm(`Retirar premium de ${selectedUsers.length} usuário(s) selecionado(s)?`)) return;
+                      doAction('bulk-rm-premium', async () => {
+                        // Sequencial para evitar rajada de requests
+                        for (const id of selectedUsers) {
+                          // eslint-disable-next-line no-await-in-loop
+                          await adminRemovePremium(id);
+                        }
+                        setSelectedUsers([]);
+                      });
+                    }}
+                    disabled={actionLoading === 'bulk-rm-premium'}
+                    className="px-3 py-2 rounded-lg bg-amber-500/20 text-amber-300 hover:bg-amber-500/30 disabled:opacity-50 text-sm flex items-center gap-2"
+                    title="Retirar premium dos selecionados"
+                  >
+                    <UserMinus className="w-4 h-4" />
+                    Retirar premium
+                  </button>
+                  <button
+                    onClick={() => setSelectedUsers([])}
+                    className="px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-sm"
+                    title="Limpar seleção"
+                  >
+                    Limpar
+                  </button>
+                </>
+              )}
+            </div>
           </div>
           <div className="max-h-96 overflow-auto">
             <table className="w-full text-sm">
@@ -548,6 +765,18 @@ function AdminDashboard({ user, onLogout }) {
                 ))}
               </tbody>
             </table>
+            <div className="p-4 flex items-center justify-between gap-3 border-t border-white/10">
+              <span className="text-xs text-slate-500">
+                Mostrando {(data?.all_users || []).length} de {data?.all_users_pagination?.total ?? '—'}
+              </span>
+              <button
+                onClick={loadMoreUsers}
+                disabled={!usersHasNext || loading}
+                className="px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-sm disabled:opacity-50"
+              >
+                {usersHasNext ? 'Carregar mais' : 'Fim'}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -638,6 +867,199 @@ function AdminDashboard({ user, onLogout }) {
             {actionLoading === 'corrigir' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Wrench className="w-4 h-4" />}
             Corrigir assinaturas
           </button>
+        </div>
+
+        {/* Auditoria: Pagamentos & Webhooks */}
+        <div className="mt-10 rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
+          <div className="px-6 py-4 border-b border-white/10 flex items-center justify-between flex-wrap gap-3">
+            <div>
+              <h2 className="text-lg font-semibold text-white">Auditoria</h2>
+              <p className="text-xs text-slate-500">Pagamentos e webhooks recentes (paginado)</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setAuditTab('payments')}
+                className={`px-3 py-2 rounded-lg text-sm border ${
+                  auditTab === 'payments' ? 'border-amber-500/50 bg-amber-500/10 text-amber-300' : 'border-white/10 bg-white/5 text-slate-300 hover:bg-white/10'
+                }`}
+              >
+                Pagamentos
+              </button>
+              <button
+                onClick={() => setAuditTab('webhooks')}
+                className={`px-3 py-2 rounded-lg text-sm border ${
+                  auditTab === 'webhooks' ? 'border-amber-500/50 bg-amber-500/10 text-amber-300' : 'border-white/10 bg-white/5 text-slate-300 hover:bg-white/10'
+                }`}
+              >
+                Webhooks
+              </button>
+            </div>
+          </div>
+
+          {auditTab === 'payments' ? (
+            <div className="p-6">
+              <div className="flex flex-col lg:flex-row gap-3 lg:items-end lg:justify-between mb-4">
+                <div className="text-sm text-slate-400">
+                  Últimos pagamentos. Use o reprocessamento se um webhook falhar.
+                </div>
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <input
+                    value={reprocessId}
+                    onChange={(e) => setReprocessId(e.target.value)}
+                    placeholder="payment_id_mp (Mercado Pago)"
+                    className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm"
+                  />
+                  <button
+                    onClick={async () => {
+                      if (!reprocessId.trim()) return;
+                      setActionLoading('reprocess');
+                      try {
+                        await adminReprocessPayment(reprocessId.trim());
+                        setReprocessId('');
+                        await loadPaymentsAudit(1);
+                        await loadWebhooksAudit(1);
+                        await load({ page: 1, appendUsers: false });
+                      } catch (err) {
+                        setError(err?.message || 'Erro ao reprocessar');
+                      } finally {
+                        setActionLoading(null);
+                      }
+                    }}
+                    disabled={actionLoading === 'reprocess' || !reprocessId.trim()}
+                    className="px-4 py-2 rounded-lg bg-amber-500 text-black font-semibold hover:bg-amber-400 disabled:opacity-50 text-sm"
+                  >
+                    {actionLoading === 'reprocess' ? 'Reprocessando...' : 'Reprocessar'}
+                  </button>
+                </div>
+              </div>
+
+              <div className="overflow-auto">
+                <table className="w-full text-sm min-w-[820px]">
+                  <thead>
+                    <tr className="border-b border-white/10 text-slate-400">
+                      <th className="py-2 px-3 text-left">Data</th>
+                      <th className="py-2 px-3 text-left">E-mail</th>
+                      <th className="py-2 px-3 text-left">Status</th>
+                      <th className="py-2 px-3 text-left">Valor</th>
+                      <th className="py-2 px-3 text-left">Método</th>
+                      <th className="py-2 px-3 text-left">MP ID</th>
+                      <th className="py-2 px-3 text-center">Admin</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {(paymentsAudit?.items || []).map((p) => (
+                      <tr key={p.id} className="border-b border-white/5 hover:bg-white/5">
+                        <td className="py-2 px-3 text-slate-300">{p.created_at}</td>
+                        <td className="py-2 px-3 text-slate-300">{p.user_email}</td>
+                        <td className="py-2 px-3 text-slate-300">{p.status}</td>
+                        <td className="py-2 px-3 text-slate-300">{formatBRL(p.valor)}</td>
+                        <td className="py-2 px-3 text-slate-300">{p.metodo || '-'}</td>
+                        <td className="py-2 px-3 text-slate-300">{p.payment_id || '-'}</td>
+                        <td className="py-2 px-3 text-center">
+                          {p.admin_notified ? (
+                            <span className="px-2 py-0.5 rounded text-xs bg-emerald-500/15 text-emerald-300">ok</span>
+                          ) : (
+                            <span className="px-2 py-0.5 rounded text-xs bg-slate-500/20 text-slate-400">—</span>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                    {(!paymentsAudit?.items || paymentsAudit.items.length === 0) && (
+                      <tr>
+                        <td colSpan={7} className="py-8 text-center text-slate-500">Nenhum pagamento encontrado</td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="mt-4 flex items-center justify-between">
+                <span className="text-xs text-slate-500">
+                  Página {paymentsAudit?.pagination?.page ?? 1}
+                </span>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => loadPaymentsAudit(Math.max(1, (paymentsAudit?.pagination?.page || 1) - 1))}
+                    disabled={(paymentsAudit?.pagination?.page || 1) <= 1}
+                    className="px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-sm disabled:opacity-50"
+                  >
+                    Anterior
+                  </button>
+                  <button
+                    onClick={() => loadPaymentsAudit((paymentsAudit?.pagination?.page || 1) + 1)}
+                    disabled={!paymentsAudit?.pagination?.has_next}
+                    className="px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-sm disabled:opacity-50"
+                  >
+                    Próxima
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="p-6">
+              <div className="overflow-auto">
+                <table className="w-full text-sm min-w-[920px]">
+                  <thead>
+                    <tr className="border-b border-white/10 text-slate-400">
+                      <th className="py-2 px-3 text-left">Data</th>
+                      <th className="py-2 px-3 text-left">Tipo</th>
+                      <th className="py-2 px-3 text-left">Ação</th>
+                      <th className="py-2 px-3 text-left">MP ID</th>
+                      <th className="py-2 px-3 text-left">Ref</th>
+                      <th className="py-2 px-3 text-center">Processado</th>
+                      <th className="py-2 px-3 text-left">Erro</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {(webhooksAudit?.items || []).map((w) => (
+                      <tr key={w.id} className="border-b border-white/5 hover:bg-white/5">
+                        <td className="py-2 px-3 text-slate-300">{w.received_at}</td>
+                        <td className="py-2 px-3 text-slate-300">{w.tipo}</td>
+                        <td className="py-2 px-3 text-slate-300">{w.action}</td>
+                        <td className="py-2 px-3 text-slate-300">{w.mp_id || '-'}</td>
+                        <td className="py-2 px-3 text-slate-300">{w.external_reference || '-'}</td>
+                        <td className="py-2 px-3 text-center">
+                          {w.processado ? (
+                            <span className="px-2 py-0.5 rounded text-xs bg-emerald-500/15 text-emerald-300">sim</span>
+                          ) : (
+                            <span className="px-2 py-0.5 rounded text-xs bg-amber-500/15 text-amber-300">não</span>
+                          )}
+                        </td>
+                        <td className="py-2 px-3 text-red-300">{w.erro || ''}</td>
+                      </tr>
+                    ))}
+                    {(!webhooksAudit?.items || webhooksAudit.items.length === 0) && (
+                      <tr>
+                        <td colSpan={7} className="py-8 text-center text-slate-500">Nenhum webhook encontrado</td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="mt-4 flex items-center justify-between">
+                <span className="text-xs text-slate-500">
+                  Página {webhooksAudit?.pagination?.page ?? 1}
+                </span>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => loadWebhooksAudit(Math.max(1, (webhooksAudit?.pagination?.page || 1) - 1))}
+                    disabled={(webhooksAudit?.pagination?.page || 1) <= 1}
+                    className="px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-sm disabled:opacity-50"
+                  >
+                    Anterior
+                  </button>
+                  <button
+                    onClick={() => loadWebhooksAudit((webhooksAudit?.pagination?.page || 1) + 1)}
+                    disabled={!webhooksAudit?.pagination?.has_next}
+                    className="px-3 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 text-sm disabled:opacity-50"
+                  >
+                    Próxima
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </main>
 

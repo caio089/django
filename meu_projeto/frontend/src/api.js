@@ -115,7 +115,33 @@ export async function getQuizRanking(limit = 50) {
   return data;
 }
 
-/** POST resultado do quiz (ranking por nível: nickname, cidade, nivel_quiz, xp_ganho, passou_nivel). */
+/** POST iniciar tentativa do quiz (server-side timing). */
+export async function startQuizAttempt({ nivel_quiz, question_keys }) {
+  const res = await fetch(`${getBaseUrl()}/quiz/api/start-attempt/`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: headers(),
+    body: JSON.stringify({ nivel_quiz, question_keys }),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Erro ao iniciar tentativa');
+  return data;
+}
+
+/** POST finalizar tentativa do quiz (XP calculado no servidor). */
+export async function submitQuizAttempt({ attempt_id, correct_keys, nickname, dojo, cidade }) {
+  const res = await fetch(`${getBaseUrl()}/quiz/api/submit-attempt/`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: headers(),
+    body: JSON.stringify({ attempt_id, correct_keys, nickname, dojo, cidade }),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Erro ao enviar resultado');
+  return data;
+}
+
+/** POST resultado do quiz (LEGADO). Mantido para compatibilidade. */
 export async function submitQuizResult(payload) {
   const res = await fetch(`${getBaseUrl()}/quiz/api/submit/`, {
     method: 'POST',
@@ -160,7 +186,7 @@ export async function criarPagamento(planoId, { nome, email, telefone = '', cpf 
   const contentType = res.headers.get('content-type') || '';
   if (!contentType.includes('application/json')) {
     const text = await res.text();
-    if (res.status === 302 || res.status === 401 || (res.status === 200 && text.includes('<!DOCTYPE'))) {
+    if (res.status === 302 || res.status === 401 || res.status === 403 || (res.status === 200 && text.includes('<!DOCTYPE'))) {
       throw new Error('Faça login novamente e tente de novo.');
     }
     throw new Error('Resposta inválida do servidor.');
@@ -223,6 +249,16 @@ export async function adminDashboard() {
   return data;
 }
 
+/** GET dashboard (paginado para all_users) */
+export async function adminDashboardPage({ page = 1, page_size = 50 } = {}) {
+  const qs = new URLSearchParams({ page: String(page), page_size: String(page_size) });
+  const res = await fetchWithTimeout(`${adminBase()}/dashboard/?${qs.toString()}`, { credentials: 'include' }, 45000);
+  const data = await res.json().catch(() => ({}));
+  if (res.status === 401 || res.status === 403) throw new Error('Acesso negado');
+  if (!res.ok) throw new Error(data.error || 'Erro ao carregar');
+  return data;
+}
+
 /** POST dar premium: { user_id ou user_email, plan_id } */
 export async function adminGivePremium(payload) {
   await fetchCsrf();
@@ -278,6 +314,39 @@ export async function adminRefreshCache() {
   return data;
 }
 
+/** GET/POST configurações financeiras do dashboard (custos). */
+export async function adminFinanceSettings(payload = null) {
+  if (!payload) {
+    const res = await fetchWithTimeout(`${adminBase()}/finance-settings/`, { credentials: 'include' }, 15000);
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || 'Erro ao carregar configurações financeiras');
+    return data;
+  }
+  await fetchCsrf();
+  const res = await fetch(`${adminBase()}/finance-settings/`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: headers(),
+    body: JSON.stringify(payload),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Erro ao salvar configurações financeiras');
+  return data;
+}
+
+/** POST zerar receita total exibida (offset). */
+export async function adminResetTotalRevenue() {
+  await fetchCsrf();
+  const res = await fetch(`${adminBase()}/finance-reset-revenue/`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: headers(),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Erro ao zerar receita total');
+  return data;
+}
+
 /** POST corrigir assinaturas */
 export async function adminCorrigirAssinaturas() {
   await fetchCsrf();
@@ -302,6 +371,40 @@ export async function adminSendMarketingEmail(payload) {
   });
   const data = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(data.error || 'Erro ao enviar e-mail');
+  return data;
+}
+
+/** GET pagamentos (admin) paginado */
+export async function adminPayments({ page = 1, page_size = 50 } = {}) {
+  const qs = new URLSearchParams({ page: String(page), page_size: String(page_size) });
+  const res = await fetchWithTimeout(`${adminBase()}/payments/?${qs.toString()}`, { credentials: 'include' }, 45000);
+  const data = await res.json().catch(() => ({}));
+  if (res.status === 401 || res.status === 403) throw new Error('Acesso negado');
+  if (!res.ok) throw new Error(data.error || 'Erro ao carregar pagamentos');
+  return data;
+}
+
+/** GET webhooks (admin) paginado */
+export async function adminWebhooks({ page = 1, page_size = 50 } = {}) {
+  const qs = new URLSearchParams({ page: String(page), page_size: String(page_size) });
+  const res = await fetchWithTimeout(`${adminBase()}/webhooks/?${qs.toString()}`, { credentials: 'include' }, 45000);
+  const data = await res.json().catch(() => ({}));
+  if (res.status === 401 || res.status === 403) throw new Error('Acesso negado');
+  if (!res.ok) throw new Error(data.error || 'Erro ao carregar webhooks');
+  return data;
+}
+
+/** POST reprocessar pagamento (admin) */
+export async function adminReprocessPayment(payment_id_mp) {
+  await fetchCsrf();
+  const res = await fetch(`${adminBase()}/reprocess-payment/`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: headers(),
+    body: JSON.stringify({ payment_id_mp }),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Erro ao reprocessar pagamento');
   return data;
 }
 

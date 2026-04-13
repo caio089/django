@@ -124,32 +124,36 @@ def criar_pagamento(request, plano_id):
         email = data_validator.sanitize_input(email)
         telefone = data_validator.sanitize_input(telefone)
         cpf = data_validator.sanitize_input(cpf)
+
+        # Normalizar (aceitar CPF/telefone com máscara, espaços etc.)
+        cpf_digits = ''.join(filter(str.isdigit, cpf or ''))
+        telefone_digits = ''.join(filter(str.isdigit, telefone or ''))
         
         # Validar dados obrigatórios
         if not all([plano_id, nome, email]):
             return JsonResponse({
                 'success': False,
                 'error': 'Dados obrigatórios não fornecidos'
-            })
+            }, status=400)
         
         # Validar formato dos dados
         if not data_validator.validate_email(email):
             return JsonResponse({
                 'success': False,
                 'error': 'Email inválido'
-            })
+            }, status=400)
         
-        if cpf and not data_validator.validate_cpf(cpf):
+        if cpf_digits and not data_validator.validate_cpf(cpf_digits):
             return JsonResponse({
                 'success': False,
                 'error': 'CPF inválido'
-            })
+            }, status=400)
         
-        if telefone and not data_validator.validate_phone(telefone):
+        if telefone_digits and not data_validator.validate_phone(telefone_digits):
             return JsonResponse({
                 'success': False,
                 'error': 'Telefone inválido'
-            })
+            }, status=400)
         
         # Buscar plano
         plano = get_object_or_404(PlanoPremium, id=plano_id, ativo=True)
@@ -181,8 +185,8 @@ def criar_pagamento(request, plano_id):
         if not sdk:
             return JsonResponse({
                 'success': False,
-                'error': 'Erro na configuração do pagamento'
-            })
+                'error': 'Pagamento indisponível no momento (configuração Mercado Pago).'
+            }, status=503)
         
         # Criar preferência de pagamento
         external_reference = str(uuid.uuid4())
@@ -201,11 +205,11 @@ def criar_pagamento(request, plano_id):
                 "email": email,
                 "identification": {
                     "type": "CPF",
-                    "number": cpf.replace('.', '').replace('-', '') if cpf else None
+                    "number": cpf_digits or None
                 },
                 "phone": {
-                    "area_code": telefone[:2] if telefone and len(telefone) > 2 else "11",
-                    "number": telefone[2:] if telefone and len(telefone) > 2 else telefone
+                    "area_code": telefone_digits[:2] if telefone_digits and len(telefone_digits) > 2 else "11",
+                    "number": telefone_digits[2:] if telefone_digits and len(telefone_digits) > 2 else telefone_digits
                 }
             },
             "back_urls": {
@@ -259,9 +263,9 @@ def criar_pagamento(request, plano_id):
             pagamento.set_payer_email(email)
             pagamento.set_payer_name(nome)
             if telefone:
-                pagamento.set_payer_phone(telefone)
+                pagamento.set_payer_phone(telefone_digits or telefone)
             if cpf:
-                pagamento.set_payer_document(cpf)
+                pagamento.set_payer_document(cpf_digits or cpf)
             pagamento.save()
             
             # URL direta para o checkout do Mercado Pago (frontend redireciona para aqui)
@@ -287,8 +291,8 @@ def criar_pagamento(request, plano_id):
             logger.error(f"Erro ao criar preferência: {preference}")
             return JsonResponse({
                 'success': False,
-                'error': 'Erro ao criar pagamento no Mercado Pago'
-            })
+                'error': preference.get("response", {}).get("message") or 'Erro ao criar pagamento no Mercado Pago'
+            }, status=400)
             
     except Exception as e:
         logger.error(f"Erro ao criar pagamento: {e}", exc_info=True)
@@ -297,7 +301,7 @@ def criar_pagamento(request, plano_id):
         return JsonResponse({
             'success': False,
             'error': f'Erro interno do servidor: {str(e)}'
-        })
+        }, status=500)
 
 @login_required
 @require_http_methods(["POST"])
@@ -721,16 +725,13 @@ def processar_pagamento_webhook(payment_id, webhook_event):
         # Buscar pagamento no banco:
         # 1) por payment_id real (PIX direto)
         # 2) por external_reference (checkout por preferência/cartão)
-        pagamentos = Pagamento.objects.all()
         pagamento = None
         payment_id_str = str(payment_id)
         external_reference = str(payment_data.get("external_reference") or "")
-        
-        for p in pagamentos:
-            if str(p.get_payment_id() or "") == payment_id_str:
-                pagamento = p
-                break
-        
+
+        # payment_id é um campo "normal" e indexável — evitar varredura O(N)
+        pagamento = Pagamento.objects.filter(payment_id=payment_id_str).order_by('-id').first()
+
         if not pagamento and external_reference:
             pagamento = Pagamento.objects.filter(external_reference=external_reference).order_by('-id').first()
             if pagamento:
@@ -1062,6 +1063,13 @@ def verificar_status_pagamento(request, payment_id):
     """
     try:
         pagamento = Pagamento.objects.get(id=payment_id, usuario=request.user)
+
+        # Cache curto para reduzir chamadas ao Mercado Pago durante polling
+        from django.core.cache import cache
+        cache_key = f"pay_status:{pagamento.id}:{pagamento.status}:{pagamento.get_payment_id()}"
+        cached = cache.get(cache_key)
+        if cached:
+            return JsonResponse(cached)
         
         # Obter payment_id real do Mercado Pago
         payment_id_mp = pagamento.get_payment_id()
@@ -1143,13 +1151,18 @@ def verificar_status_pagamento(request, payment_id):
         # Buscar assinatura atualizada
         assinatura = Assinatura.objects.filter(external_reference=pagamento.external_reference).first()
         
-        return JsonResponse({
+        payload = {
             'status': pagamento.status,
             'status_display': pagamento.get_status_display(),
             'tem_assinatura': assinatura is not None,
             'assinatura_ativa': assinatura.status == 'ativa' if assinatura else False,
             'data_vencimento': assinatura.data_vencimento.isoformat() if assinatura else None
-        })
+        }
+        # Importante: durante o "pending" o usuário fica em polling — cache alto atrasa a confirmação.
+        # Mantemos cache bem curto enquanto pendente; após aprovado podemos cachear mais.
+        cache_ttl = 2 if pagamento.status in ('pending', 'in_process') else 15
+        cache.set(cache_key, payload, cache_ttl)
+        return JsonResponse(payload)
         
     except Pagamento.DoesNotExist:
         return JsonResponse({'error': 'Pagamento não encontrado'}, status=404)

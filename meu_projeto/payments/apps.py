@@ -25,38 +25,9 @@ class PaymentsConfig(AppConfig):
             # Importar signals para auto-sincronização
             from . import signals
             
-            # Agendar sincronização para executar após inicialização completa
-            import threading
-            
-            def delayed_startup():
-                """Executa tarefas de inicialização em thread separada"""
-                try:
-                    from django.conf import settings
-                    
-                    # Verificar se processos pesados estão desabilitados
-                    if getattr(settings, 'DISABLE_HEAVY_PROCESSES', False):
-                        logger.info("Processos pesados desabilitados - modo leve ativado")
-                        return
-                    
-                    from .startup_sync import StartupPaymentSync
-                    StartupPaymentSync.run_automatic_sync()
-                    
-                    from .signals import PeriodicSyncManager
-                    PeriodicSyncManager.start_periodic_sync()
-                    
-                    from .auto_monitor import AutoMonitor
-                    AutoMonitor.start_monitoring()
-                    
-                    from .auto_notifications import AutoNotificationManager
-                    AutoNotificationManager.send_system_health_report()
-                    
-                    logger.info("Sistema de pagamentos inicializado com sucesso")
-                except Exception as e:
-                    logger.error(f"Erro na inicialização de pagamentos: {e}")
-            
-            # Executar em thread separada para não bloquear a inicialização
-            thread = threading.Thread(target=delayed_startup, daemon=True)
-            thread.start()
+            # IMPORTANTE (Render): não iniciar loops/threads infinitos no web dyno.
+            # Toda rotina pesada deve ser executada via job (cron/worker) explícito.
+            logger.info("Payments ready: signals carregados; jobs pesados desativados no boot")
             
         except Exception as e:
             logger.error(f"Erro ao agendar inicialização de pagamentos: {e}")

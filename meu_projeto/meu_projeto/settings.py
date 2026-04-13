@@ -71,7 +71,6 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'meu_projeto.supabase_middleware.SupabaseConnectionMiddleware',
     'meu_projeto.middleware.WWWRedirectMiddleware',
-    'meu_projeto.supabase_pro_middleware.SupabaseProMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -79,7 +78,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'dashboard.middleware.DashboardPerformanceMiddleware',
-    'payments.middleware_payment_sync.PaymentSyncMiddleware',
     'payments.middleware.PremiumAccessMiddleware',
     'payments.security.SecurityMiddleware',
 ]
@@ -299,7 +297,7 @@ LOGGING = {
     'loggers': {
         'payments': {
             'handlers': ['file', 'console'],
-            'level': 'DEBUG',
+            'level': 'INFO',
             'propagate': True,
         },
         'django': {
