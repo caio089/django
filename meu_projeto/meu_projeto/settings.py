@@ -19,7 +19,7 @@ FRONTEND_URL = os.getenv(
 )
 
 # Hosts
-ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,testserver,www.dojoon.com.br,dojoon.com.br,dojo-on.onrender.com,dojoon.onrender.com').split(',')]
+ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,testserver,www.dojoon.com.br,dojoon.com.br,www.dojoon.com,dojoon.com,dojo-on.onrender.com,dojoon.onrender.com').split(',')]
 
 # CSRF Trusted Origins
 CSRF_TRUSTED_ORIGINS = [

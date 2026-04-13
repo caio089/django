@@ -22,6 +22,8 @@ ALLOWED_HOSTS = [
     'testserver',
     'www.dojoon.com.br',
     'dojoon.com.br',
+    'www.dojoon.com',
+    'dojoon.com',
     'dojo-on.onrender.com',
     'dojoon.onrender.com',
     '.onrender.com',

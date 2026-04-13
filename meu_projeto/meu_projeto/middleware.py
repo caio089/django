@@ -6,19 +6,23 @@ from django.http import HttpResponsePermanentRedirect
 
 class WWWRedirectMiddleware:
     """
-    Middleware para redirecionar www.dojoon.com.br para dojoon.com.br
+    Middleware para redirecionar aliases do domínio para dojoon.com.br.
     """
     def __init__(self, get_response):
         self.get_response = get_response
 
     def __call__(self, request):
-        # Verificar se é www.dojoon.com.br e redirecionar para dojoon.com.br
-        host = request.get_host().lower()
-        
-        # Lista de hosts que devem redirecionar para o domínio principal
-        www_hosts = ['www.dojoon.com.br']
-        
-        if host in www_hosts:
+        # Usa o host bruto para evitar DisallowedHost antes do redirecionamento.
+        raw_host = request.META.get('HTTP_X_FORWARDED_HOST') or request.META.get('HTTP_HOST', '')
+        host = raw_host.split(':', 1)[0].lower().strip()
+
+        redirect_hosts = {
+            'www.dojoon.com.br',
+            'www.dojoon.com',
+            'dojoon.com',
+        }
+
+        if host in redirect_hosts:
             # Preservar o protocolo (http/https)
             protocol = 'https' if request.is_secure() else 'http'
             # Preservar a URL completa

@@ -13140,3 +13140,29 @@ LINE 1: DELETE FROM "quiz_quizquestionprogress" WHERE "quiz_quizques...
 "GET /api/admin/payments/?page=1&page_size=30 HTTP/1.1" 200 8407
 "GET /api/admin/dashboard/?page=1&page_size=50 HTTP/1.1" 200 24271
 Payments ready: signals carregados; jobs pesados desativados no boot
+Payments ready: signals carregados; jobs pesados desativados no boot
+Payments ready: signals carregados; jobs pesados desativados no boot
+Payments ready: signals carregados; jobs pesados desativados no boot
+Payments ready: signals carregados; jobs pesados desativados no boot
+Invalid HTTP_HOST header: 'dojoon.com'. You may need to add 'dojoon.com' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/meu_projeto/middleware.py", line 16, in __call__
+    host = request.get_host().lower()
+           ~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/django/http/request.py", line 205, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'dojoon.com'. You may need to add 'dojoon.com' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: 'www.dojoon.com'. You may need to add 'www.dojoon.com' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/meu_projeto/middleware.py", line 16, in __call__
+    host = request.get_host().lower()
+           ~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/site-packages/django/http/request.py", line 205, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.dojoon.com'. You may need to add 'www.dojoon.com' to ALLOWED_HOSTS.
+Payments ready: signals carregados; jobs pesados desativados no boot
+Payments ready: signals carregados; jobs pesados desativados no boot

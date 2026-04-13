@@ -11,7 +11,7 @@ services:
       - key: SECRET_KEY
         generateValue: true
       - key: ALLOWED_HOSTS
-        value: dojo-on.onrender.com,dojoon.onrender.com,www.dojoon.com.br,dojoon.com.br
+        value: dojo-on.onrender.com,dojoon.onrender.com,www.dojoon.com.br,dojoon.com.br,www.dojoon.com,dojoon.com
       - key: FRONTEND_URL
         value: https://dojoon.com.br
       - key: DATABASE_URL
