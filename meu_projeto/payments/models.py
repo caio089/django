@@ -142,6 +142,10 @@ class Pagamento(models.Model):
     data_pagamento = models.DateTimeField(null=True, blank=True, verbose_name="Data do pagamento")
     data_criacao = models.DateTimeField(auto_now_add=True)
     data_atualizacao = models.DateTimeField(auto_now=True)
+
+    # Notificações internas (admin)
+    admin_notification_sent = models.BooleanField(default=False, verbose_name="Notificação admin enviada")
+    admin_notification_sent_at = models.DateTimeField(null=True, blank=True, verbose_name="Data notificação admin")
     
     def set_payer_email(self, email):
         """Define email do pagador"""

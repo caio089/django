@@ -885,6 +885,43 @@ def ativar_assinatura(pagamento, payment_data):
             logger.error(f"❌ ATIVAR ASSINATURA: Erro ao atualizar perfil do usuário {pagamento.usuario.id}: {e}")
         
         logger.info(f"🎉 ATIVAR ASSINATURA: Assinatura ativada com sucesso para usuário {pagamento.usuario.id}: {plano.nome}")
+
+        # Notificar admin (uma vez por pagamento)
+        try:
+            from django.conf import settings
+            notify_to = getattr(settings, "PAYMENT_NOTIFY_EMAIL", "") or ""
+            if notify_to and not getattr(pagamento, "admin_notification_sent", False):
+                nome_cliente = pagamento.get_payer_name() or pagamento.usuario.get_full_name() or pagamento.usuario.username
+                email_cliente = pagamento.get_payer_email() or pagamento.usuario.email
+                valor_pago = payment_data.get("transaction_amount", float(pagamento.valor))
+                payment_id_real = payment_data.get("id") or pagamento.get_payment_id() or "N/A"
+                metodo = payment_data.get("payment_method_id") or pagamento.metodo_pagamento or "-"
+                data_pagamento = payment_data.get("date_approved") or timezone.now().strftime("%Y-%m-%d %H:%M:%S")
+
+                corpo_admin = (
+                    "Pagamento aprovado (notificação automática)\n\n"
+                    f"- Cliente: {nome_cliente}\n"
+                    f"- E-mail: {email_cliente}\n"
+                    f"- Plano: {plano.nome}\n"
+                    f"- Valor: R$ {float(valor_pago):.2f}\n"
+                    f"- Método: {metodo}\n"
+                    f"- ID do pagamento (MP): {payment_id_real}\n"
+                    f"- Referência: {pagamento.external_reference}\n"
+                    f"- Data: {data_pagamento}\n"
+                )
+
+                EmailMessage(
+                    subject=f"Dojo On — Pagamento aprovado (R$ {float(valor_pago):.2f})",
+                    body=corpo_admin,
+                    to=[notify_to],
+                ).send(fail_silently=False)
+
+                pagamento.admin_notification_sent = True
+                pagamento.admin_notification_sent_at = timezone.now()
+                pagamento.save(update_fields=["admin_notification_sent", "admin_notification_sent_at"])
+                logger.info(f"✅ Notificação admin enviada para {notify_to}")
+        except Exception as notify_error:
+            logger.error(f"❌ Falha ao notificar admin para pagamento {pagamento.id}: {notify_error}")
         
         # Enviar recibo por e-mail sem bloquear ativação caso haja falha no SMTP
         try:
@@ -963,8 +1000,8 @@ def pagamento_sucesso(request):
             assinatura = Assinatura.objects.filter(external_reference=pagamento.external_reference).first()
             
             if pagamento.status == 'approved' and assinatura:
-                # Redirecionar para página de bem-vindo
-                return redirect('payments:bem_vindo', payment_id=pagamento.id)
+                # Redirecionar para o frontend (React) com modal de boas-vindas
+                return redirect_to_frontend('/index?welcome=1')
             elif pagamento.status == 'pending':
                 messages.info(request, 'Seu pagamento está sendo processado. Você receberá uma confirmação em breve.')
             else:

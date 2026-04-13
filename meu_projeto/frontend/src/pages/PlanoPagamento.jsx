@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowLeft,
@@ -20,6 +20,7 @@ const GOLD = 'rgb(212, 175, 55)';
 
 export default function PlanoPagamento() {
   const { planoId } = useParams();
+  const navigate = useNavigate();
   const [plano, setPlano] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -159,8 +160,7 @@ export default function PlanoPagamento() {
         if (status?.status === 'approved' && status?.assinatura_ativa) {
           setPaymentError(null);
           setModalOpen(false);
-          alert('Pagamento aprovado! Seu acesso premium foi liberado.');
-          window.location.reload();
+          navigate('/index?welcome=1', { replace: true });
         }
       } catch (_e) {
         // Mantém polling silencioso para não atrapalhar o fluxo do usuário.

@@ -10805,3 +10805,80 @@ Processos pesados desabilitados - modo leve ativado
 Processos pesados desabilitados - modo leve ativado
 Watching for file changes with StatReloader
 Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 302 0
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/csrf/ HTTP/1.1" 200 14
+"GET /api/csrf/ HTTP/1.1" 200 14
+"POST /api/login/ HTTP/1.1" 200 199
+"GET /api/me/ HTTP/1.1" 200 183
+"GET /static/faixa-cinza.png HTTP/1.1" 200 23948
+"GET /static/faixa-verde.png HTTP/1.1" 200 102267
+"GET /static/faixa-laranja.png HTTP/1.1" 200 38025
+"GET /static/faixa-azul.png HTTP/1.1" 200 163875
+"GET /static/faixa-amarela.png HTTP/1.1" 200 155038
+"GET /static/faixa-marrom.png HTTP/1.1" 200 134181
+"GET /static/faixa-roxa.png HTTP/1.1" 200 145067
+"GET /api/me/ HTTP/1.1" 200 183
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 853
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 853
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/meu_projeto/urls.py changed, reloading.
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/meu_projeto/urls.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/payments/views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/payments/views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Processos pesados desabilitados - modo leve ativado
+"GET /api/me/ HTTP/1.1" 200 183
+"GET /api/me/ HTTP/1.1" 200 183
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 853
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 853
+"GET /api/me/ HTTP/1.1" 200 183
+"GET /api/me/ HTTP/1.1" 200 183
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 853
+"GET /api/me/ HTTP/1.1" 200 183
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 853
+"GET /api/me/ HTTP/1.1" 200 183
+"GET /quiz/api/ranking/?limit=100 HTTP/1.1" 200 853
+"GET /api/me/ HTTP/1.1" 200 183
+"GET /api/me/ HTTP/1.1" 200 183
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 853
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 853
+"GET /api/me/ HTTP/1.1" 200 183
+"GET /api/me/ HTTP/1.1" 200 183
+"GET /api/me/ HTTP/1.1" 200 183
+"GET /api/me/ HTTP/1.1" 200 183
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 853
+"GET /quiz/api/ranking/?limit=15 HTTP/1.1" 200 853
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/meu_projeto/settings.py changed, reloading.
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/meu_projeto/settings.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/payments/models.py changed, reloading.
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/payments/models.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/payments/views.py changed, reloading.
+/Users/caiocampossilva/Documents/GitHub/django/meu_projeto/payments/views.py changed, reloading.
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader
+Processos pesados desabilitados - modo leve ativado
+Watching for file changes with StatReloader

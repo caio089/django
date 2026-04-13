@@ -23,8 +23,8 @@ const PERGUNTAS_NIVEL_3_4 = [
   { question: 'O que significa "Seiryoku Zen\'yo"?', answers: ['Benefícios mútuos', 'Melhor uso da energia', 'Caminho suave', 'Técnica perfeita'], correct: 1, explanation: 'Seiryoku Zen\'yo significa melhor uso da energia (máxima eficiência).' },
   { question: 'Qual era o nome de nascimento de Jigoro Kano?', answers: ['Jigoro', 'Kano', 'Shinnosuke', 'Tomita'], correct: 2, explanation: 'Quando nasceu chamava-se "Shinnosuke"; posteriormente mudou para Jigoro Kano.' },
   { question: 'Onde Jigoro Kano nasceu?', answers: ['Tóquio', 'Mikage, província de Settsu', 'Osaka', 'Kyoto'], correct: 1, explanation: 'Nasceu em 28.out.1860 em Mikage, província de Settsu (atual Hyogo), Japão.' },
-  { question: 'Qual arte marcial além do judô que Kano praticou possuía Menkyo?', answers: ['Tenjin Shin\'yo-ryu', 'Kito-ryu', 'Aikido', 'Karate'], correct: 1, explanation: 'Kano praticou Kito-ryu, onde possuía Menkyo — licença para ensinar.' },
-  { question: 'O que é "Menkyo" no judô/jujutsu?', answers: ['Uniforme', 'Faixa', 'Licença para ensinar', 'Competição'], correct: 2, explanation: 'Menkyo é uma licença/certificado para ensinar a arte.' },
+  { question: 'Quais escolas influenciaram Kano na criação do judô?', answers: ['Aikido e Karate', 'Tenjin Shin\'yo-ryu e Kito-ryu', 'Kendo e Sumo', 'Boxe e Wrestling'], correct: 1, explanation: 'Kano estudou Tenjin Shin\'yo-ryu e Kito-ryu, que influenciaram a criação do judô.' },
+  { question: 'Na etiqueta do judô, o que significa "Rei"?', answers: ['Luta', 'Respeito', 'Queda', 'Ponto'], correct: 1, explanation: 'Rei (礼) significa respeito — base da etiqueta no judô.' },
 ];
 
 const PERGUNTAS_NIVEL_5_6 = [
@@ -85,13 +85,13 @@ const PERGUNTAS_NIVEL_7 = [
 
 const PERGUNTAS_NIVEL_8 = [
   { question: 'Em que província atual fica Mikage (onde Kano nasceu)?', answers: ['Tóquio', 'Osaka', 'Hyogo', 'Kyoto'], correct: 2, explanation: 'Mikage ficava na província de Settsu, atual Hyogo.' },
-  { question: 'Qual arte marcial Kano praticou além de Kito-ryu?', answers: ['Aikido', 'Tenjin Shin\'yo-ryu', 'Karate', 'Kempo'], correct: 1, explanation: 'Kano praticou Tenjin Shin\'yo-ryu e Kito-ryu.' },
+  { question: 'No judô, o que é "Randori"?', answers: ['Uma saudação', 'Treino livre (prática com resistência)', 'Um tipo de faixa', 'Uma luta oficial valendo medalha'], correct: 1, explanation: 'Randori é o treino livre, para aplicar técnicas com resistência e controle.' },
   { question: 'O que é "Kaeshi-waza"?', answers: ['Técnicas de projeção', 'Técnicas de contra-ataque', 'Técnicas de imobilização', 'Técnicas de estrangulamento'], correct: 1, explanation: 'Kaeshi-waza são técnicas de contra-ataque.' },
   { question: 'Qual a ordem correta das fases de uma projeção?', answers: ['Kake, Kuzushi, Kime', 'Kumi-kata, Kuzushi, Tsukuri, Kake, Kime', 'Kime, Kake, Kuzushi', 'Kuzushi, Kake, Tsukuri'], correct: 1, explanation: 'Ordem: 1.Kumi-kata, 2.Kuzushi, 3.Tsukuri, 4.Kake, 5.Kime.' },
-  { question: 'O Kodokan foi criado em que cidade?', answers: ['Osaka', 'Kyoto', 'Tóquio', 'Yokohama'], correct: 2, explanation: 'Em 1882, em Tóquio, Kano criou o Kodokan.' },
-  { question: 'Qual a visão do Kohai em relação ao Senpai?', answers: ['Rival', 'Exemplo e referência', 'Adversário', 'Árbitro'], correct: 1, explanation: 'O Kohai tem o Senpai como exemplo, com mais experiência.' },
-  { question: 'O Uke no randori é o judoca que:', answers: ['Aplica a técnica', 'Recebe a técnica e se defende', 'Árbitra', 'Anota pontos'], correct: 1, explanation: 'Uke é o judoca passivo que recebe a técnica.' },
-  { question: 'O Tori no randori é o judoca que:', answers: ['Recebe a técnica', 'Aplica/ataca com a técnica', 'Observa', 'Coaching'], correct: 1, explanation: 'Tori é o judoca ativo que aplica a técnica.' },
+  { question: 'O Kodokan é conhecido como:', answers: ['Um campeonato de judô', 'A escola/instituto fundado por Jigoro Kano', 'Um tipo de golpe', 'Uma faixa especial'], correct: 1, explanation: 'O Kodokan é a escola/instituto fundada por Kano para desenvolver e ensinar o judô.' },
+  { question: 'Ao entrar ou sair do tatame, qual atitude é a mais correta?', answers: ['Ignorar e seguir andando', 'Fazer uma saudação (rei)', 'Bater palma', 'Gritar o nome do dojo'], correct: 1, explanation: 'Saudar (rei) ao entrar/sair do tatame demonstra respeito ao dojo e aos colegas.' },
+  { question: 'O que significa "Kō" (講) em "Kōdōkan"?', answers: ['Caminho', 'Estudo/ensinamento', 'Faixa', 'Força'], correct: 1, explanation: 'Kō (講) está ligado a estudo/ensinamento. Kodokan é a “escola para estudar o caminho”.' },
+  { question: 'O que significa "Dō" (道) em "Kōdōkan"?', answers: ['Escola', 'Caminho', 'Luta', 'Uniforme'], correct: 1, explanation: 'Dō (道) significa caminho.' },
 ];
 
 const PERGUNTAS_NIVEL_9 = [
@@ -101,7 +101,7 @@ const PERGUNTAS_NIVEL_9 = [
   { question: 'O princípio "bem estar e benefícios mútuos" corresponde a:', answers: ['Seiryoku Zen\'yo', 'Jita-kyoei', 'Za-rei', 'Tsukuri'], correct: 1, explanation: 'Jita-kyoei = bem estar e benefícios mútuos.' },
   { question: 'Qual a terceira fase da projeção?', answers: ['Kuzushi', 'Tsukuri (preparação)', 'Kake', 'Kime'], correct: 1, explanation: 'Tsukuri = preparação da técnica.' },
   { question: 'Qual a quarta fase da projeção?', answers: ['Tsukuri', 'Kake (execução)', 'Kime', 'Kuzushi'], correct: 1, explanation: 'Kake = execução da técnica.' },
-  { question: 'Onde fica o Kodokan até hoje?', answers: ['Osaka', 'Tóquio', 'Kyoto', 'Yokohama'], correct: 1, explanation: 'O Kodokan foi criado em Tóquio em 1882.' },
+  { question: 'No judô, o que significa "Shintai"?', answers: ['Respiração', 'Deslocamento (movimentação)', 'Saudação', 'Imobilização'], correct: 1, explanation: 'Shintai é o deslocamento/movimentação usada no judô.' },
   { question: 'O judô é classificado como:', answers: ['Esporte apenas', 'Arte marcial japonesa', 'Luta livre', 'Defesa pessoal'], correct: 1, explanation: 'O judô é uma arte marcial japonesa criada em Tóquio.' },
 ];
 

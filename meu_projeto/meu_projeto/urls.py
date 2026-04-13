@@ -56,6 +56,7 @@ urlpatterns = [
     path('api/payments/criar-pagamento/<int:plano_id>/', payments_views.criar_pagamento, name='api_payments_criar'),
     path('api/payments/gerar-pix/<int:payment_id>/', payments_views.gerar_pix_direto, name='api_payments_gerar_pix'),
     path('api/payments/checkout-redirect/<int:payment_id>/', payments_views.api_checkout_redirect, name='api_payments_checkout_redirect'),
+    path('api/payments/verificar-status/<int:payment_id>/', payments_views.verificar_status_pagamento, name='api_payments_verificar_status'),
     # Endpoints de monitoramento do Supabase
     path('api/supabase/status/', views_supabase.supabase_status, name='supabase_status'),
     path('api/supabase/start/', views_supabase.start_keepalive, name='supabase_start'),

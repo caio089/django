@@ -155,6 +155,7 @@ function AdminDashboard({ user, onLogout }) {
   const [error, setError] = useState('');
   const [actionLoading, setActionLoading] = useState(null);
   const [modal, setModal] = useState(null);
+  const [lastUpdatedAt, setLastUpdatedAt] = useState(null);
   const [sendTo, setSendTo] = useState('selected');
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [marketingSubject, setMarketingSubject] = useState('Convite para ativar seu acesso Premium no Dojo Online');
@@ -169,6 +170,7 @@ function AdminDashboard({ user, onLogout }) {
     try {
       const d = await adminDashboard();
       setData(d);
+      setLastUpdatedAt(new Date());
     } catch (err) {
       setError(err?.message || 'Erro ao carregar');
     } finally {
@@ -178,6 +180,34 @@ function AdminDashboard({ user, onLogout }) {
 
   useEffect(() => {
     load();
+  }, []);
+
+  useEffect(() => {
+    let intervalId;
+    let cancelled = false;
+
+    const start = () => {
+      if (intervalId) window.clearInterval(intervalId);
+      intervalId = window.setInterval(() => {
+        if (cancelled) return;
+        if (document.visibilityState !== 'visible') return;
+        // atualiza sem bloquear a UI (mantém loading atual apenas na primeira carga)
+        adminDashboard()
+          .then((d) => {
+            if (!cancelled) {
+              setData(d);
+              setLastUpdatedAt(new Date());
+            }
+          })
+          .catch(() => {});
+      }, 15000);
+    };
+
+    start();
+    return () => {
+      cancelled = true;
+      if (intervalId) window.clearInterval(intervalId);
+    };
   }, []);
 
   const doAction = async (key, fn) => {
@@ -263,6 +293,11 @@ function AdminDashboard({ user, onLogout }) {
             </div>
           </div>
           <div className="flex items-center gap-2">
+            {lastUpdatedAt && (
+              <span className="hidden sm:inline text-xs text-slate-500 mr-1">
+                Atualizado {lastUpdatedAt.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}
+              </span>
+            )}
             <a
               href="/django-admin/"
               target="_blank"

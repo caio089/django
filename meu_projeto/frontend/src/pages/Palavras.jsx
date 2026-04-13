@@ -208,11 +208,11 @@ function NumeroCard({ n, cardId, speechProps = {}, onCelebrate }) {
         <button
           type="button"
           onClick={handlePlay}
-          className="flex flex-col items-center justify-center w-full cursor-pointer text-left"
+          className="flex flex-col items-center justify-center w-full cursor-pointer text-center"
         >
-          <span className="font-jp text-4xl sm:text-5xl font-bold text-white">{n.kanji}</span>
-          <span className="text-slate-400 text-sm sm:text-base font-mono mt-1">{n.romaji}</span>
-          <span className="text-amber-400/90 text-lg sm:text-xl font-semibold mt-1">{n.num}</span>
+          <span className="w-full text-center font-jp text-4xl sm:text-5xl font-bold text-white">{n.kanji}</span>
+          <span className="w-full text-center text-slate-400 text-sm sm:text-base font-mono mt-1">{n.romaji}</span>
+          <span className="w-full text-center text-amber-400/90 text-lg sm:text-xl font-semibold mt-1">{n.num}</span>
           {n.desc && <span className="text-slate-500 text-xs mt-1">{n.desc}</span>}
         </button>
         {supported && (
@@ -697,7 +697,7 @@ export default function Palavras() {
         <p className="text-slate-500 text-sm mb-4">
           Contagem usada nos treinos e competições
         </p>
-        <div className="flex flex-wrap gap-3 sm:gap-4">
+        <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
           {NUMEROS_JUDO.map((n, i) => (
             <motion.div
               key={`${n.kanji}-${n.num}`}

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Menu,
@@ -101,10 +101,12 @@ function FaixaCard({ f, locked, navigate, index }) {
 
 export default function Dashboard() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [user, setUser] = useState(null);
   const [quizRanking, setQuizRanking] = useState([]);
   const [loadingRanking, setLoadingRanking] = useState(false);
+  const [welcomeOpen, setWelcomeOpen] = useState(false);
 
   useEffect(() => {
     if (!user) return;
@@ -124,6 +126,21 @@ export default function Dashboard() {
       .catch(() => navigate('/login'));
   }, [navigate]);
 
+  useEffect(() => {
+    const params = new URLSearchParams(location.search || '');
+    const wantsWelcome = params.get('welcome') === '1';
+    if (!wantsWelcome) return;
+    if (!user?.conta_premium) return;
+
+    setWelcomeOpen(true);
+    params.delete('welcome');
+    const nextSearch = params.toString();
+    navigate(
+      { pathname: location.pathname, search: nextSearch ? `?${nextSearch}` : '' },
+      { replace: true }
+    );
+  }, [location.pathname, location.search, navigate, user]);
+
   const handleLogout = async () => {
     try {
       const r = await apiLogout();
@@ -142,6 +159,75 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen relative overflow-x-hidden font-display antialiased">
       <DashboardBackground accentColor={themeColor} />
+
+      <AnimatePresence>
+        {welcomeOpen && user && (
+          <motion.div
+            className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setWelcomeOpen(false)}
+          >
+            <motion.div
+              className="rounded-3xl border border-white/10 bg-[#0f1115] p-7 max-w-lg w-full shadow-2xl"
+              initial={{ scale: 0.92, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.92, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              style={{ boxShadow: `0 0 70px ${themeColor}25` }}
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="font-jp text-slate-500 tracking-widest text-xs">ようこそ</p>
+                  <h2 className="text-2xl font-bold text-white leading-tight">
+                    Bem-vindo ao Premium, {user?.nome || 'Judoca'}.
+                  </h2>
+                  <p className="mt-2 text-slate-400 text-sm">
+                    Seu pagamento foi confirmado e seu acesso já está liberado.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setWelcomeOpen(false)}
+                  className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition"
+                  aria-label="Fechar"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="mt-6 grid gap-3">
+                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                  <p className="text-white font-semibold">Agora você tem acesso a:</p>
+                  <ul className="mt-3 space-y-2 text-sm text-slate-300">
+                    <li className="flex gap-2"><span style={{ color: themeColor }}>•</span> Todas as faixas (conteúdo completo)</li>
+                    <li className="flex gap-2"><span style={{ color: themeColor }}>•</span> Trilhas de estudo sem bloqueios</li>
+                    <li className="flex gap-2"><span style={{ color: themeColor }}>•</span> Evolução guiada no Dojo Online</li>
+                  </ul>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Link
+                    to="/pagina/1"
+                    onClick={() => setWelcomeOpen(false)}
+                    className="flex-1 text-center px-5 py-3 rounded-2xl font-semibold text-white border border-white/10 hover:bg-white/5 transition"
+                  >
+                    Começar pela 1ª faixa
+                  </Link>
+                  <Link
+                    to="/quiz"
+                    onClick={() => setWelcomeOpen(false)}
+                    className="flex-1 text-center px-5 py-3 rounded-2xl font-semibold transition"
+                    style={{ backgroundColor: `${themeColor}25`, color: themeColor, border: `1px solid ${themeColor}40` }}
+                  >
+                    Fazer o quiz
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
 
       <motion.button

@@ -278,6 +278,9 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'noreply@dojoon.com.br')
 
+# Recebe alertas quando um pagamento é confirmado
+PAYMENT_NOTIFY_EMAIL = os.getenv('PAYMENT_NOTIFY_EMAIL', 'ccamposs2007@gmail.com')
+
 # Configurações de logging para debug
 LOGGING = {
     'version': 1,
