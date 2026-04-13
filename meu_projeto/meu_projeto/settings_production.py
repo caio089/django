@@ -12,6 +12,9 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'chave_de_teste_local')
 # Debug - sempre False em produção
 DEBUG = False
 
+# URL pública do frontend em produção
+FRONTEND_URL = os.getenv('FRONTEND_URL', 'https://dojoon.com.br')
+
 # Hosts permitidos
 ALLOWED_HOSTS = [
     'localhost',

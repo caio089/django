@@ -12,8 +12,11 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'chave_de_teste_local')
 # Debug
 DEBUG = os.getenv('DEBUG', 'True') == 'True'  # True local, False no Render via .env
 
-# URL do frontend React (dev: Vite; prod: pode ser o mesmo domínio)
-FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:5173')
+# URL do frontend React (dev: Vite; prod: domínio público)
+FRONTEND_URL = os.getenv(
+    'FRONTEND_URL',
+    'http://localhost:5173' if DEBUG else 'https://dojoon.com.br',
+)
 
 # Hosts
 ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,testserver,www.dojoon.com.br,dojoon.com.br,dojo-on.onrender.com,dojoon.onrender.com').split(',')]

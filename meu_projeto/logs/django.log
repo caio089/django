@@ -13139,3 +13139,4 @@ LINE 1: DELETE FROM "quiz_quizquestionprogress" WHERE "quiz_quizques...
 "GET /api/admin/webhooks/?page=1&page_size=30 HTTP/1.1" 200 6107
 "GET /api/admin/payments/?page=1&page_size=30 HTTP/1.1" 200 8407
 "GET /api/admin/dashboard/?page=1&page_size=50 HTTP/1.1" 200 24271
+Payments ready: signals carregados; jobs pesados desativados no boot
